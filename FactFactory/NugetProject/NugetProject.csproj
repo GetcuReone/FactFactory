@@ -6,4 +6,8 @@
     <AssemblyOriginatorKeyFile>..\GetcuReone.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FactFactory\FactFactory.csproj" />
+  </ItemGroup>
+
 </Project>
