@@ -8,6 +8,6 @@ steps:
 - script: |
     echo Install file $(snk_file.secureFilePath)
 
-    cp '$(snk_file.secureFilePath)' '$(Build.Repository.LocalPath)/FactFactory/FactFactory'
-    echo copied '$(snk_file.secureFilePath)' to '$(Build.Repository.LocalPath)\FactFactory\FactFactory'
+    cp '$(snk_file.secureFilePath)' '$(Build.Repository.LocalPath)/FactFactory'
+    echo copied '$(snk_file.secureFilePath)' to '$(Build.Repository.LocalPath)\FactFactory'
   displayName: 'Сopy file snk to projects'
