@@ -10,5 +10,12 @@ namespace FactFactoryTests.FactContainer
             container.Add(fact);
             return container;
         }
+
+        public static FactFactory.Entities.FactContainer RemoveAndReturn<TFact>(this FactFactory.Entities.FactContainer container)
+            where TFact : IFact
+        {
+            container.Remove<TFact>();
+            return container;
+        }
     }
 }
