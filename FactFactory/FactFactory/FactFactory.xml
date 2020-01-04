@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FactFactory</name>
+    </assembly>
+    <members>
+        <member name="T:FactFactory.Entities.DateOfDerive">
+            <summary>
+            Start date for fact finding
+            </summary>
+        </member>
+        <member name="M:FactFactory.Entities.DateOfDerive.#ctor(System.DateTime)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="fact"></param>
+        </member>
+        <member name="T:FactFactory.Entities.FactBase`1">
+            <summary>
+            Base class for fact
+            </summary>
+            <typeparam name="TFact">type fact</typeparam>
+        </member>
+        <member name="P:FactFactory.Entities.FactBase`1.Value">
+            <summary>
+            Value fact
+            </summary>
+        </member>
+        <member name="M:FactFactory.Entities.FactBase`1.#ctor(`0)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="fact"></param>
+        </member>
+        <member name="T:FactFactory.Entities.FactContainer">
+            <summary>
+            Fact collection
+            </summary>
+        </member>
+        <member name="M:FactFactory.Entities.FactContainer.Add``1(``0)">
+            <summary>
+            Add fact
+            </summary>
+            <typeparam name="TFact">type fact</typeparam>
+            <param name="fact">fact</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactContainer.Remove``1">
+            <summary>
+            Remove fact
+            </summary>
+            <typeparam name="TFact">type fact</typeparam>
+        </member>
+        <member name="M:FactFactory.Entities.FactContainer.TryGetFact``1(``0@)">
+            <summary>
+            Try get fact
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="fact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Entities.FactContainer.GetFact``1">
+            <summary>
+            Get fact
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Entities.FactContainer.Contains``1">
+            <summary>
+            Is this type of fact contained
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Entities.FactContainer.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactContainer.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="T:FactFactory.Exceptions.FactNotFoundException`1">
+            <summary>
+            Fact not found error
+            </summary>
+            <typeparam name="TFact"></typeparam>
+        </member>
+        <member name="M:FactFactory.Exceptions.FactNotFoundException`1.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="T:FactFactory.FactFactoryBase">
+            <summary>
+            Base class for fact factory
+            </summary>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase.CreateObject``2(System.Func{``0,``1},``0)">
+            <summary>
+            Object creation method
+            </summary>
+            <typeparam name="TParameters"></typeparam>
+            <typeparam name="TObj"></typeparam>
+            <param name="factoryFunc"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FactFactory.Interfaces.IFact">
+            <summary>
+            Fact interface
+            </summary>
+        </member>
+        <member name="T:FactFactory.Interfaces.IFact`1">
+            <summary>
+            Typed Fact Interface
+            </summary>
+        </member>
+        <member name="P:FactFactory.Interfaces.IFact`1.Value">
+            <summary>
+            Value fact
+            </summary>
+        </member>
+    </members>
+</doc>

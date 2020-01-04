@@ -16,4 +16,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FactFactory\FactFactory.csproj" />
+    <ProjectReference Include="..\JwtTestAdapter\JwtTestAdapter.csproj" />
+  </ItemGroup>
+
 </Project>
