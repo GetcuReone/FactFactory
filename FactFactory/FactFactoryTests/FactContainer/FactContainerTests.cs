@@ -47,5 +47,26 @@ namespace FactFactoryTests.FactContainer
                     Assert.IsNotNull(ex, "error can't should be null");
                 });
         }
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][container] contains fact")]
+        public void ContainsFactTestCase()
+        {
+            GivenCreateContainer()
+                .And("Add fact", container => container.AddAndReturn(new IntFact(0)))
+                .When("Contains", container => container.Contains<IntFact>())
+                .Then("Check result", result => Assert.IsTrue(result, "fact not contained"));
+        }
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][container] not contains fact")]
+        public void NotContainsFactTestCase()
+        {
+            GivenCreateContainer()
+                .When("Contains", container => container.Contains<IntFact>())
+                .Then("Check result", result => Assert.IsFalse(result, "fact contained"));
+        }
     }
 }
