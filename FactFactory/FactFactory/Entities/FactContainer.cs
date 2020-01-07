@@ -10,9 +10,25 @@ namespace FactFactory.Entities
     /// <summary>
     /// Fact collection
     /// </summary>
-    public class FactContainer : IEnumerable<IFact>
+    public class FactContainer : IFactContainer
     {
-        private readonly List<IFact> _container = new List<IFact>();
+        private readonly List<IFact> _container;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public FactContainer()
+        {
+            _container = new List<IFact>();
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public FactContainer(IEnumerable<IFact> facts)
+        {
+            _container = new List<IFact>(facts);
+        }
 
         /// <summary>
         /// Add fact

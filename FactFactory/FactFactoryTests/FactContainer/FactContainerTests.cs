@@ -1,5 +1,5 @@
-﻿using FactFactory.Entities;
-using FactFactory.Exceptions;
+﻿using FactFactory.Exceptions;
+using FactFactory.Facts;
 using JwtTestAdapter;
 using JwtTestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -22,13 +22,13 @@ namespace FactFactoryTests.FactContainer
         {
             DateTime operationDate = DateTime.Now;
             GivenCreateContainer()
-                .When("Add fact", container => container.AddAndReturn(new DateOfDerive(operationDate)))
+                .When("Add fact", container => container.AddAndReturn(new DateOfDeriveFact(operationDate)))
                 .Then("Check contains fact", container =>
                 {
                     foreach(var fact in container)
                     {
                         Assert.IsNotNull(fact, "fact can't should be null");
-                        var dateOfDerive = fact as DateOfDerive;
+                        var dateOfDerive = fact as DateOfDeriveFact;
                         Assert.IsNotNull(dateOfDerive, "dateOfDerive can't should be null");
                         Assert.AreEqual(operationDate, dateOfDerive.Value, "another fact value was expected");
                     }

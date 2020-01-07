@@ -4,37 +4,19 @@
         <name>FactFactory</name>
     </assembly>
     <members>
-        <member name="T:FactFactory.Entities.DateOfDerive">
-            <summary>
-            Start date for fact finding
-            </summary>
-        </member>
-        <member name="M:FactFactory.Entities.DateOfDerive.#ctor(System.DateTime)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="fact"></param>
-        </member>
-        <member name="T:FactFactory.Entities.FactBase`1">
-            <summary>
-            Base class for fact
-            </summary>
-            <typeparam name="TFact">type fact</typeparam>
-        </member>
-        <member name="P:FactFactory.Entities.FactBase`1.Value">
-            <summary>
-            Value fact
-            </summary>
-        </member>
-        <member name="M:FactFactory.Entities.FactBase`1.#ctor(`0)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="fact"></param>
-        </member>
         <member name="T:FactFactory.Entities.FactContainer">
             <summary>
             Fact collection
+            </summary>
+        </member>
+        <member name="M:FactFactory.Entities.FactContainer.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{FactFactory.Interfaces.IFact})">
+            <summary>
+            Constructor
             </summary>
         </member>
         <member name="M:FactFactory.Entities.FactContainer.Add``1(``0)">
@@ -78,6 +60,29 @@
         <member name="M:FactFactory.Entities.FactContainer.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc />
         </member>
+        <member name="T:FactFactory.Entities.FactInfo`1">
+            <inheritdoc />
+        </member>
+        <member name="P:FactFactory.Entities.FactInfo`1.FactName">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactInfo`1.Compare``1(``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactInfo`1.ContainsContainer(FactFactory.Interfaces.IFactContainer)">
+            <inheritdoc />
+        </member>
+        <member name="T:FactFactory.Entities.FactRuleCollection">
+            <summary>
+            Collection fo <see cref="T:FactFactory.Entities.FactRule"/>
+            </summary>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IList{FactFactory.Entities.FactRule})">
+            <inheritdoc />
+        </member>
         <member name="T:FactFactory.Exceptions.FactNotFoundException`1">
             <summary>
             Fact not found error
@@ -92,6 +97,16 @@
             Base class for fact factory
             </summary>
         </member>
+        <member name="P:FactFactory.FactFactoryBase.FactContainer">
+            <summary>
+            Fact container
+            </summary>
+        </member>
+        <member name="P:FactFactory.FactFactoryBase.FactRuleCollection">
+            <summary>
+            Collection of rules for derive facts
+            </summary>
+        </member>
         <member name="M:FactFactory.FactFactoryBase.CreateObject``2(System.Func{``0,``1},``0)">
             <summary>
             Object creation method
@@ -102,10 +117,59 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
+        <member name="M:FactFactory.FactFactoryBase.WantFact``1(System.Action{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.FactFactoryBase.Derive">
+            <inheritdoc />
+        </member>
+        <member name="T:FactFactory.Facts.DateOfDeriveFact">
+            <summary>
+            Start date for fact finding
+            </summary>
+        </member>
+        <member name="M:FactFactory.Facts.DateOfDeriveFact.#ctor(System.DateTime)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="fact"></param>
+        </member>
+        <member name="M:FactFactory.Facts.DateOfDeriveFact.GetFactInfo">
+            <inheritdoc />
+        </member>
+        <member name="T:FactFactory.Facts.FactBase`1">
+            <summary>
+            Base class for fact
+            </summary>
+            <typeparam name="TFact">type fact</typeparam>
+        </member>
+        <member name="P:FactFactory.Facts.FactBase`1.Value">
+            <summary>
+            Value fact
+            </summary>
+        </member>
+        <member name="M:FactFactory.Facts.FactBase`1.#ctor(`0)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="fact"></param>
+        </member>
+        <member name="M:FactFactory.Facts.FactBase`1.GetFactInfo">
+            <summary>
+            Need to insert return new FactInfo{type of your fact}();
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:FactFactory.Interfaces.IFact">
             <summary>
             Fact interface
             </summary>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFact.GetFactInfo">
+            <summary>
+            Return fact information as an output parameter
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:FactFactory.Interfaces.IFact`1">
             <summary>
@@ -116,6 +180,125 @@
             <summary>
             Value fact
             </summary>
+        </member>
+        <member name="T:FactFactory.Interfaces.IFactContainer">
+            <summary>
+            Container interface with facts for deriving other facts
+            </summary>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactContainer.Add``1(``0)">
+            <summary>
+            Add fact
+            </summary>
+            <typeparam name="TFact">type fact</typeparam>
+            <param name="fact">fact</param>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactContainer.Remove``1">
+            <summary>
+            Remove fact
+            </summary>
+            <typeparam name="TFact">type fact</typeparam>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactContainer.TryGetFact``1(``0@)">
+            <summary>
+            Try get fact
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="fact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactContainer.GetFact``1">
+            <summary>
+            Get fact
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactContainer.Contains``1">
+            <summary>
+            Is this type of fact contained
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:FactFactory.Interfaces.IFactFactory`1">
+            <summary>
+            Fact factory interface
+            </summary>
+        </member>
+        <member name="P:FactFactory.Interfaces.IFactFactory`1.FactContainer">
+            <summary>
+            Fact container
+            </summary>
+        </member>
+        <member name="P:FactFactory.Interfaces.IFactFactory`1.FactRuleCollection">
+            <summary>
+            Collection of rules for derive facts
+            </summary>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactFactory`1.Derive">
+            <summary>
+            Derive the facts
+            </summary>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactFactory`1.WantFact``1(System.Action{``0})">
+            <summary>
+            Wish to derive a fact
+            </summary>
+            <typeparam name="TFact">type fact</typeparam>
+            <param name="wantFactAction"></param>
+        </member>
+        <member name="T:FactFactory.Interfaces.IFactInfo">
+            <summary>
+            Fact info
+            </summary>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactInfo.Compare``1(``0)">
+            <summary>
+            Compare <see cref="T:FactFactory.Interfaces.IFactInfo"/>
+            </summary>
+            <param name="factInfo"></param>
+        </member>
+        <member name="P:FactFactory.Interfaces.IFactInfo.FactName">
+            <summary>
+            Fact name
+            </summary>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactInfo.ContainsContainer(FactFactory.Interfaces.IFactContainer)">
+            <summary>
+            Is in the container
+            </summary>
+            <param name="container"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FactFactory.Interfaces.IFactRule">
+            <summary>
+            Rule of fact derivation
+            </summary>
+        </member>
+        <member name="P:FactFactory.Interfaces.IFactRule.InputFactInfos">
+            <summary>
+            Information on input factacles rules
+            </summary>
+        </member>
+        <member name="P:FactFactory.Interfaces.IFactRule.OutputFactInfo">
+            <summary>
+            Rule exit information
+            </summary>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactRule.IsCanDerive(FactFactory.Interfaces.IFactContainer)">
+            <summary>
+            is it possible to derive the fact
+            </summary>
+            <param name="container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactRule.Derive(FactFactory.Interfaces.IFactContainer)">
+            <summary>
+            Rule of fact derive
+            </summary>
+            <param name="container"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

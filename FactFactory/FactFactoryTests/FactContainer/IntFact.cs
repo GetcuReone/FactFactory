@@ -1,4 +1,4 @@
-﻿using FactFactory.Entities;
+﻿using FactFactory.Facts;
 
 namespace FactFactoryTests.FactContainer
 {

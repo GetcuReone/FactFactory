@@ -1,6 +1,7 @@
-﻿using FactFactory.Interfaces;
+﻿using FactFactory.Entities;
+using FactFactory.Interfaces;
 
-namespace FactFactory.Entities
+namespace FactFactory.Facts
 {
     /// <summary>
     /// Base class for fact
@@ -21,5 +22,11 @@ namespace FactFactory.Entities
         {
             Value = fact;
         }
+
+        /// <summary>
+        /// Need to insert return new FactInfo{type of your fact}();
+        /// </summary>
+        /// <returns></returns>
+        public abstract IFactInfo GetFactInfo();
     }
 }
