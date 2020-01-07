@@ -87,7 +87,7 @@
         <member name="M:FactFactory.Entities.FactRule.Derive(FactFactory.Interfaces.IFactContainer)">
             <inheritdoc />
         </member>
-        <member name="M:FactFactory.Entities.FactRule.IsCanDerive(FactFactory.Interfaces.IFactContainer)">
+        <member name="M:FactFactory.Entities.FactRule.CanDerive(FactFactory.Interfaces.IFactContainer)">
             <inheritdoc />
         </member>
         <member name="T:FactFactory.Entities.FactRuleCollection">
@@ -304,7 +304,7 @@
             Rule exit information
             </summary>
         </member>
-        <member name="M:FactFactory.Interfaces.IFactRule.IsCanDerive(FactFactory.Interfaces.IFactContainer)">
+        <member name="M:FactFactory.Interfaces.IFactRule.CanDerive(FactFactory.Interfaces.IFactContainer)">
             <summary>
             is it possible to derive the fact
             </summary>

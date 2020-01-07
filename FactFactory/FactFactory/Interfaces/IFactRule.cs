@@ -23,7 +23,7 @@ namespace FactFactory.Interfaces
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        bool IsCanDerive(IFactContainer container);
+        bool CanDerive(IFactContainer container);
 
         /// <summary>
         /// Rule of fact derive

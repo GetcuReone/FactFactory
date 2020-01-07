@@ -1,6 +1,7 @@
 ﻿using FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace FactFactory.Entities
@@ -20,7 +21,9 @@ namespace FactFactory.Entities
         public FactRule(Func<IFactContainer, IFact> func, List<IFactInfo> inputFactInfos, IFactInfo outputFactInfo)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
-            InputFactInfos = inputFactInfos;
+            InputFactInfos = inputFactInfos != null 
+                ? new ReadOnlyCollection<IFactInfo>(inputFactInfos)
+                : new ReadOnlyCollection<IFactInfo>(new List<IFactInfo>());
             OutputFactInfo = outputFactInfo;
         }
 
@@ -31,7 +34,7 @@ namespace FactFactory.Entities
         }
 
         /// <inheritdoc />
-        public bool IsCanDerive(IFactContainer container)
+        public bool CanDerive(IFactContainer container)
         {
             return InputFactInfos.All(factInfo => factInfo.ContainsContainer(container));
         }

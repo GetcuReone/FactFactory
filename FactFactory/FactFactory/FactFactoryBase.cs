@@ -77,7 +77,7 @@ namespace FactFactory
                     throw new InvalidOperationException($"There is no rule that can deduce a {wantFactInfo.FactName}");
 
                 // Check if we can already derive the fact
-                IFactRule ruleDerive = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.IsCanDerive(container))?.Root.FactRule;
+                IFactRule ruleDerive = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.CanDerive(container))?.Root.FactRule;
                 if (ruleDerive != null)
                 {
                     container.Add(

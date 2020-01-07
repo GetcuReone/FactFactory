@@ -1,5 +1,6 @@
 ﻿using FactFactory.Exceptions;
 using FactFactory.Facts;
+using FactFactoryTests.CommonFacts;
 using JwtTestAdapter;
 using JwtTestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

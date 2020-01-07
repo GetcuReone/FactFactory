@@ -30,6 +30,11 @@ namespace JwtTestAdapter
             return given;
         }
 
+        protected GivenBlock<object> GivenEmpty()
+        {
+            return Given("Empty given", () => { });
+        }
+
         protected virtual TException ExpectedException<TException>(Action action)
             where TException: Exception
         {

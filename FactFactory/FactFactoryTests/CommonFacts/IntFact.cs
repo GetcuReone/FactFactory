@@ -2,7 +2,7 @@
 using FactFactory.Facts;
 using FactFactory.Interfaces;
 
-namespace FactFactoryTests.FactContainer
+namespace FactFactoryTests.CommonFacts
 {
     internal sealed class IntFact : FactBase<int>
     {

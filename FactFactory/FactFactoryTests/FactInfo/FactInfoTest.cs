@@ -1,6 +1,6 @@
 ﻿using FactFactory.Facts;
 using FactFactory.Interfaces;
-using FactFactoryTests.FactInfo.Env;
+using FactFactoryTests.CommonFacts;
 using JwtTestAdapter;
 using JwtTestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

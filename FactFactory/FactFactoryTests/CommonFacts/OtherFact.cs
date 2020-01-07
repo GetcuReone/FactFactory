@@ -2,7 +2,7 @@
 using FactFactory.Interfaces;
 using System;
 
-namespace FactFactoryTests.FactInfo.Env
+namespace FactFactoryTests.CommonFacts
 {
     internal sealed class OtherFact : FactBase<DateTime>
     {
