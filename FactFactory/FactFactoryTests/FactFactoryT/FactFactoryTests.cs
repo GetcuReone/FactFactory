@@ -126,7 +126,7 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouits.MilliSecond.FiveHundred)]
         [TestMethod]
         [Description("[fact][factory][negative] Want a fact that cannot be derived")]
         public void CannotDerivedOneFactFromOne2TestCase()
