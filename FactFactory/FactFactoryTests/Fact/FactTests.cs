@@ -7,7 +7,7 @@ using System;
 namespace FactFactoryTests.Fact
 {
     [TestClass]
-    public sealed class FactTests: TestBase
+    public sealed class FactTests : TestBase
     {
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
