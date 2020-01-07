@@ -124,6 +124,7 @@ namespace FactFactory
                         List<FactRuleNode> nextNodes = new List<FactRuleNode>();
                         // A set of facts for which no rules were found
                         List<IFactInfo> notFoundRuleForFacts = new List<IFactInfo>();
+                        bool cannotDerived = false;
 
                         foreach (FactRuleNode node in factRuleTree.CurrentLevel)
                         {
@@ -154,19 +155,20 @@ namespace FactFactory
                                 else
                                 {
                                     // Is there a neighboring node capable of deriving this fact
-                                    if (node.Parent != null 
+                                    if (node.Parent != null
                                         && node.Parent.Childs.Count(n => (n != node) && (n.FactRule.OutputFactInfo.Compare(node.FactRule.OutputFactInfo))) > 0)
                                     {
                                         node.Parent.Childs.Remove(node);
                                     }
                                     else
-                                        notFoundRuleForFacts.Add(needFact);
+                                        cannotDerived = true;
 
+                                    notFoundRuleForFacts.Add(needFact);
                                 }
                             }
                         }
 
-                        if (!notFoundRuleForFacts.IsNullOrEmpty())
+                        if (cannotDerived)
                         {
                             notFoundRuleForFactsSet.Add(notFoundRuleForFacts);
                             factRuleTrees.Remove(factRuleTree);

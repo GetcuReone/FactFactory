@@ -126,12 +126,12 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.FiveHundred)]
+        [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory][negative] Want a fact that cannot be derived")]
         public void CannotDerivedOneFactFromOne2TestCase()
         {
-            Given("Set rules", () => FactFactory.Rules.AddRange(RuleCollectionHelper.GetInputFactRules()))
+            Given("Set rules", () => FactFactory.Rules.AddRange(RuleCollectionHelper.GetRulesForNotAvailableInput6Fact()))
                 .And("Want fact", _ => FactFactory.WantFact((Input6Fact fact) => { }))
                 .When("Derive facts", _ => ExpectedException<InvalidDeriveOperationException>(() => FactFactory.Derive()))
                 .Then("Check error", ex =>
