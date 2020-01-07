@@ -494,27 +494,27 @@
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="T:FactFactory.Interfaces.IFactFactory`1">
+        <member name="T:FactFactory.Interfaces.IFactFactory`2">
             <summary>
             Fact factory interface
             </summary>
         </member>
-        <member name="P:FactFactory.Interfaces.IFactFactory`1.FactContainer">
+        <member name="P:FactFactory.Interfaces.IFactFactory`2.FactContainer">
             <summary>
             Fact container
             </summary>
         </member>
-        <member name="P:FactFactory.Interfaces.IFactFactory`1.FactRuleCollection">
+        <member name="P:FactFactory.Interfaces.IFactFactory`2.FactRuleCollection">
             <summary>
             Collection of rules for derive facts
             </summary>
         </member>
-        <member name="M:FactFactory.Interfaces.IFactFactory`1.Derive">
+        <member name="M:FactFactory.Interfaces.IFactFactory`2.Derive">
             <summary>
             Derive the facts
             </summary>
         </member>
-        <member name="M:FactFactory.Interfaces.IFactFactory`1.WantFact``1(System.Action{``0})">
+        <member name="M:FactFactory.Interfaces.IFactFactory`2.WantFact``1(System.Action{``0})">
             <summary>
             Wish to derive a fact
             </summary>

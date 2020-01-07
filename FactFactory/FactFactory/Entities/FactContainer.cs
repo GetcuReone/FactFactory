@@ -38,7 +38,9 @@ namespace FactFactory.Entities
         public void Add<TFact>(TFact fact)
             where TFact: IFact
         {
-            if (_container.Any(item => item is TFact))
+            var factInfo = fact.GetFactInfo();
+
+            if (this.Any(f => f.GetFactInfo().Compare(factInfo)))
                 throw new ArgumentException($"The fact container already contains {typeof(TFact).FullName} type of fact");
 
             _container.Add(fact);
@@ -101,7 +103,8 @@ namespace FactFactory.Entities
         public bool Contains<TFact>()
             where TFact : IFact
         {
-            return _container.Any(fact => fact is TFact);
+            var factInfo = new FactInfo<TFact>();
+            return this.Any(fact => fact.GetFactInfo().Compare(factInfo));
         }
 
         /// <inheritdoc />

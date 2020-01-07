@@ -21,8 +21,4 @@
     <ProjectReference Include="..\JwtTestAdapter\JwtTestAdapter.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="FactRuleCollection\Env\" />
-  </ItemGroup>
-
 </Project>

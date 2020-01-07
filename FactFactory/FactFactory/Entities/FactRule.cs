@@ -30,7 +30,12 @@ namespace FactFactory.Entities
         /// <inheritdoc />
         public IFact Derive(IFactContainer container)
         {
-            return _func(container);
+            IFact fact = _func(container);
+
+            if (fact == null)
+                throw new InvalidOperationException("Rule cannot return null");
+
+            return fact;
         }
 
         /// <inheritdoc />

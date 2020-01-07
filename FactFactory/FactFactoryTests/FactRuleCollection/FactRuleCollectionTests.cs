@@ -21,7 +21,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule without input facts")]
+        [Description("[fact][rule][coolection] Add a rule without input facts")]
         public void AddRuleWithoutInputFactsTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -35,7 +35,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 1 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 1 input facts")]
         public void AddRuleWith1InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -61,7 +61,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 2 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 2 input facts")]
         public void AddRuleWith2InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -88,7 +88,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 3 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 3 input facts")]
         public void AddRuleWith3InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -116,7 +116,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 4 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 4 input facts")]
         public void AddRuleWith4InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -145,7 +145,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 5 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 5 input facts")]
         public void AddRuleWith5InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -175,7 +175,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 6 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 6 input facts")]
         public void AddRuleWith6InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -206,7 +206,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 7 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 7 input facts")]
         public void AddRuleWith7InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -238,7 +238,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 8 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 8 input facts")]
         public void AddRuleWith8InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -271,7 +271,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 9 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 9 input facts")]
         public void AddRuleWith9InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -305,7 +305,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 10 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 10 input facts")]
         public void AddRuleWith10InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -340,7 +340,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 11 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 11 input facts")]
         public void AddRuleWith11InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -376,7 +376,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 16 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 16 input facts")]
         public void AddRuleWith12InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -413,7 +413,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 13 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 13 input facts")]
         public void AddRuleWith13InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -451,7 +451,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 14 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 14 input facts")]
         public void AddRuleWith14InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -490,7 +490,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 15 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 15 input facts")]
         public void AddRuleWith15InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -530,7 +530,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] Add a rule with 16 input facts")]
+        [Description("[fact][rule][coolection] Add a rule with 16 input facts")]
         public void AddRuleWith16InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))

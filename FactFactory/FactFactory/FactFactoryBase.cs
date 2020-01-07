@@ -5,13 +5,14 @@ using FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace FactFactory
 {
     /// <summary>
     /// Base class for fact factory
     /// </summary>
-    public abstract class FactFactoryBase : IFactFactory<FactRule>
+    public abstract class FactFactoryBase : IFactFactory<FactRule, FactRuleCollection>
     {
         private readonly List<IFactInfo> _wantFacts = new List<IFactInfo>();
         private readonly List<Action<FactContainer>> _wantActions = new List<Action<FactContainer>>();
@@ -24,7 +25,7 @@ namespace FactFactory
         /// <summary>
         /// Collection of rules for derive facts
         /// </summary>
-        public virtual IList<FactRule> FactRuleCollection => throw new NotImplementedException();
+        public virtual FactRuleCollection FactRuleCollection { get; } = new FactRuleCollection();
 
         /// <summary>
         /// Object creation method
@@ -55,13 +56,14 @@ namespace FactFactory
         /// <inheritdoc />
         public virtual void Derive()
         {
-            foreach (IFactInfo wantFactInfo in _wantFacts)
-            {
-                var container = new FactContainer(FactContainer)
+            var successedTrees = new List<FactRuleTree>();
+            var container = new FactContainer(FactContainer)
                 {
                     new DateOfDeriveFact(DateTime.Now),
                 };
 
+            foreach (IFactInfo wantFactInfo in _wantFacts)
+            {
                 // find the rules that can calculate the fact
                 List<FactRuleTree> factRuleTrees = FactRuleCollection?.Where(rule => rule.OutputFactInfo.Compare(wantFactInfo))
                     .Select(rule => 
@@ -133,7 +135,7 @@ namespace FactFactory
                         }
                         else if (nextNodes.IsNullOrEmpty())
                         {
-                            factRuleTree.Root.Derive(this, container);
+                            successedTrees.Add(factRuleTree);
                             isDerive = true;
                             break;
                         }
@@ -143,9 +145,27 @@ namespace FactFactory
                             factRuleTree.CurrentLevel.AddRange(nextNodes);
                         }
                     }
+
+                    if (factRuleTrees.IsNullOrEmpty())
+                    {
+                        var stringBuilder = new StringBuilder($"to derive a {wantFactInfo.FactName}, you need one of the following sets of facts");
+                        foreach (var item in notFoundRuleForFactsSet)
+                        {
+                            stringBuilder.AppendLine();
+                            stringBuilder.Append("{ ");
+                            stringBuilder.Append(string.Join(", ", item.Select(i => i.FactName)));
+                            stringBuilder.Append(" }");
+                        }
+
+                        throw new InvalidOperationException(stringBuilder.ToString());
+                    }
                 }
 
+                foreach (var tree in successedTrees)
+                    tree.Root.Derive(this, container);
 
+                foreach (var wantAction in _wantActions)
+                    wantAction(container);
             }
         }
     }
