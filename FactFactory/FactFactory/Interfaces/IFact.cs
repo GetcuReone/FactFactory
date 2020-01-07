@@ -15,11 +15,11 @@
     /// <summary>
     /// Typed Fact Interface
     /// </summary>
-    public interface IFact<TFact> : IFact
+    public interface IFact<TFactValue> : IFact
     {
         /// <summary>
         /// Value fact
         /// </summary>
-        TFact Value { get; }
+        TFactValue Value { get; }
     }
 }

@@ -101,6 +101,261 @@
         <member name="M:FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IList{FactFactory.Entities.FactRule})">
             <inheritdoc />
         </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``1(System.Func{``0})">
+            <summary>
+            Add a rule without input facts
+            </summary>
+            <typeparam name="TFactResult">type of fact result</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``2(System.Func{``0,``1})">
+            <summary>
+            Add a rule with 1 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``3(System.Func{``0,``1,``2})">
+            <summary>
+            Add a rule with 2 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``4(System.Func{``0,``1,``2,``3})">
+            <summary>
+            Add a rule with 3 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``5(System.Func{``0,``1,``2,``3,``4})">
+            <summary>
+            Add a rule with 4 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``6(System.Func{``0,``1,``2,``3,``4,``5})">
+            <summary>
+            Add a rule with 5 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``7(System.Func{``0,``1,``2,``3,``4,``5,``6})">
+            <summary>
+            Add a rule with 6 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactIn6">type 6 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7})">
+            <summary>
+            Add a rule with 7 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactIn6">type 6 input fact</typeparam>
+            <typeparam name="TFactIn7">type 7 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
+            <summary>
+            Add a rule with 8 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactIn6">type 6 input fact</typeparam>
+            <typeparam name="TFactIn7">type 7 input fact</typeparam>
+            <typeparam name="TFactIn8">type 8 input fact</typeparam>
+            <typeparam name="TFactIn9">type 9 input fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
+            <summary>
+            Add a rule with 9 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactIn6">type 6 input fact</typeparam>
+            <typeparam name="TFactIn7">type 7 input fact</typeparam>
+            <typeparam name="TFactIn8">type 8 input fact</typeparam>
+            <typeparam name="TFactIn9">type 9 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10})">
+            <summary>
+            Add a rule with 10 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactIn6">type 6 input fact</typeparam>
+            <typeparam name="TFactIn7">type 7 input fact</typeparam>
+            <typeparam name="TFactIn8">type 8 input fact</typeparam>
+            <typeparam name="TFactIn9">type 9 input fact</typeparam>
+            <typeparam name="TFactIn10">type 10 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11})">
+            <summary>
+            Add a rule with 11 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactIn6">type 6 input fact</typeparam>
+            <typeparam name="TFactIn7">type 7 input fact</typeparam>
+            <typeparam name="TFactIn8">type 8 input fact</typeparam>
+            <typeparam name="TFactIn9">type 9 input fact</typeparam>
+            <typeparam name="TFactIn10">type 10 input fact</typeparam>
+            <typeparam name="TFactIn11">type 11 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12})">
+            <summary>
+            Add a rule with 12 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactIn6">type 6 input fact</typeparam>
+            <typeparam name="TFactIn7">type 7 input fact</typeparam>
+            <typeparam name="TFactIn8">type 8 input fact</typeparam>
+            <typeparam name="TFactIn9">type 9 input fact</typeparam>
+            <typeparam name="TFactIn10">type 10 input fact</typeparam>
+            <typeparam name="TFactIn11">type 11 input fact</typeparam>
+            <typeparam name="TFactIn12">type 12 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13})">
+            <summary>
+            Add a rule with 13 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactIn6">type 6 input fact</typeparam>
+            <typeparam name="TFactIn7">type 7 input fact</typeparam>
+            <typeparam name="TFactIn8">type 8 input fact</typeparam>
+            <typeparam name="TFactIn9">type 9 input fact</typeparam>
+            <typeparam name="TFactIn10">type 10 input fact</typeparam>
+            <typeparam name="TFactIn11">type 11 input fact</typeparam>
+            <typeparam name="TFactIn12">type 12 input fact</typeparam>
+            <typeparam name="TFactIn13">type 13 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14})">
+            <summary>
+            Add a rule with 14 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactIn6">type 6 input fact</typeparam>
+            <typeparam name="TFactIn7">type 7 input fact</typeparam>
+            <typeparam name="TFactIn8">type 8 input fact</typeparam>
+            <typeparam name="TFactIn9">type 9 input fact</typeparam>
+            <typeparam name="TFactIn10">type 10 input fact</typeparam>
+            <typeparam name="TFactIn11">type 11 input fact</typeparam>
+            <typeparam name="TFactIn12">type 12 input fact</typeparam>
+            <typeparam name="TFactIn13">type 13 input fact</typeparam>
+            <typeparam name="TFactIn14">type 14 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15})">
+            <summary>
+            Add a rule with 15 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactIn6">type 6 input fact</typeparam>
+            <typeparam name="TFactIn7">type 7 input fact</typeparam>
+            <typeparam name="TFactIn8">type 8 input fact</typeparam>
+            <typeparam name="TFactIn9">type 9 input fact</typeparam>
+            <typeparam name="TFactIn10">type 10 input fact</typeparam>
+            <typeparam name="TFactIn11">type 11 input fact</typeparam>
+            <typeparam name="TFactIn12">type 12 input fact</typeparam>
+            <typeparam name="TFactIn13">type 13 input fact</typeparam>
+            <typeparam name="TFactIn14">type 14 input fact</typeparam>
+            <typeparam name="TFactIn15">type 15 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add``17(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16})">
+            <summary>
+            Add a rule with 16 input facts
+            </summary>
+            <typeparam name="TFactIn1">type 1 input fact</typeparam>
+            <typeparam name="TFactIn2">type 2 input fact</typeparam>
+            <typeparam name="TFactIn3">type 3 input fact</typeparam>
+            <typeparam name="TFactIn4">type 4 input fact</typeparam>
+            <typeparam name="TFactIn5">type 5 input fact</typeparam>
+            <typeparam name="TFactIn6">type 6 input fact</typeparam>
+            <typeparam name="TFactIn7">type 7 input fact</typeparam>
+            <typeparam name="TFactIn8">type 8 input fact</typeparam>
+            <typeparam name="TFactIn9">type 9 input fact</typeparam>
+            <typeparam name="TFactIn10">type 10 input fact</typeparam>
+            <typeparam name="TFactIn11">type 11 input fact</typeparam>
+            <typeparam name="TFactIn12">type 12 input fact</typeparam>
+            <typeparam name="TFactIn13">type 13 input fact</typeparam>
+            <typeparam name="TFactIn14">type 14 input fact</typeparam>
+            <typeparam name="TFactIn15">type 15 input fact</typeparam>
+            <typeparam name="TFactIn16">type 16 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
+            <param name="rule">rule of fact derivation</param>
+        </member>
         <member name="T:FactFactory.Exceptions.FactNotFoundException`1">
             <summary>
             Fact not found error
