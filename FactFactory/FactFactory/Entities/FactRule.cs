@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace FactFactory.Entities
 {
+    /// <inheritdoc />
     public class FactRule : IFactRule
     {
         private readonly Func<IFactContainer, IFact> _func;

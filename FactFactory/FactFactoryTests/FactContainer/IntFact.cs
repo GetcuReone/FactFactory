@@ -1,4 +1,6 @@
-﻿using FactFactory.Facts;
+﻿using FactFactory.Entities;
+using FactFactory.Facts;
+using FactFactory.Interfaces;
 
 namespace FactFactoryTests.FactContainer
 {
@@ -6,6 +8,11 @@ namespace FactFactoryTests.FactContainer
     {
         public IntFact(int fact) : base(fact)
         {
+        }
+
+        public override IFactInfo GetFactInfo()
+        {
+            return new FactInfo<IntFact>();
         }
     }
 }

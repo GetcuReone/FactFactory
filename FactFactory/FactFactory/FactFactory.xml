@@ -72,6 +72,24 @@
         <member name="M:FactFactory.Entities.FactInfo`1.ContainsContainer(FactFactory.Interfaces.IFactContainer)">
             <inheritdoc />
         </member>
+        <member name="T:FactFactory.Entities.FactRule">
+            <inheritdoc />
+        </member>
+        <member name="P:FactFactory.Entities.FactRule.InputFactInfos">
+            <inheritdoc />
+        </member>
+        <member name="P:FactFactory.Entities.FactRule.OutputFactInfo">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRule.#ctor(System.Func{FactFactory.Interfaces.IFactContainer,FactFactory.Interfaces.IFact},System.Collections.Generic.List{FactFactory.Interfaces.IFactInfo},FactFactory.Interfaces.IFactInfo)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRule.Derive(FactFactory.Interfaces.IFactContainer)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRule.IsCanDerive(FactFactory.Interfaces.IFactContainer)">
+            <inheritdoc />
+        </member>
         <member name="T:FactFactory.Entities.FactRuleCollection">
             <summary>
             Collection fo <see cref="T:FactFactory.Entities.FactRule"/>
