@@ -13,6 +13,11 @@ namespace FactFactoryTests.FactFactoryT
                 (Input1Fact firstFact, Input2Fact secondFact) => new Input15Fact(firstFact.Value + secondFact.Value),
                 () => new Input1Fact(1),
                 (Input1Fact fact) => new Input2Fact(fact.Value * 2),
+                (Input2Fact firstFact, Input3Fact secondFact) => new Input4Fact(firstFact.Value + secondFact.Value),
+                (Input2Fact firstFact, Input5Fact secondFact) => new Input4Fact(firstFact.Value + secondFact.Value),
+                (Input4Fact secondFact) => new Input6Fact(secondFact.Value + 14),
+                (Input5Fact secondFact) => new Input6Fact(secondFact.Value + 14),
+                (Input6Fact fact) => new Input7Fact(fact.Value * 2),
             };
         }
     }

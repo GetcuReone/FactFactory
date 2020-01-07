@@ -5,8 +5,8 @@ using FactFactory.Helpers;
 using FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 
 namespace FactFactory
 {
@@ -37,7 +37,7 @@ namespace FactFactory
             foreach (var wantFact in wantFacts)
             {
                 if (canNotUse.Any(f => f.Compare(wantFact)))
-                    throw new InvalidOperationException($"You cannot request a fact. Only available for request in the rules");
+                    throw new ArgumentException($"You cannot request a {wantFact.FactName}. Only available for request in the rules");
                 else if (_wantFacts.All(f => !f.Compare(wantFact)))
                     _wantFacts.Add(wantFact);
             }
@@ -76,7 +76,11 @@ namespace FactFactory
         public virtual void Derive()
         {
             var successedTrees = new List<FactRuleTree>();
-            var container = new FactContainer(Container) { new DateOfDeriveFact(DateTime.Now)};
+            var container = new FactContainer(Container) 
+            { 
+                new DateOfDeriveFact(DateTime.Now),
+                new DerivingCurrentFactsFact(new ReadOnlyCollection<IFactInfo>(_wantFacts))
+            };
 
             var excludeFacts = GetFactInfosAvailableOnlyRules();
 
@@ -124,7 +128,7 @@ namespace FactFactory
                         foreach (FactRuleNode node in factRuleTree.CurrentLevel)
                         {
                             List<IFactInfo> needFacts = node.FactRule.InputFactInfos
-                                .Where(fact => !fact.ContainsContainer(container) && excludeFacts.All(exF => exF.Compare(fact)))
+                                .Where(fact => !fact.ContainsContainer(container) && excludeFacts.All(exF => !exF.Compare(fact)))
                                 .ToList();
 
                             if (needFacts.IsNullOrEmpty())
@@ -148,7 +152,17 @@ namespace FactFactory
                                     node.Childs.AddRange(nodes);
                                 }
                                 else
-                                    notFoundRuleForFacts.Add(needFact);
+                                {
+                                    // Is there a neighboring node capable of deriving this fact
+                                    if (node.Parent != null 
+                                        && node.Parent.Childs.Count(n => (n != node) && (n.FactRule.OutputFactInfo.Compare(node.FactRule.OutputFactInfo))) > 0)
+                                    {
+                                        node.Parent.Childs.Remove(node);
+                                    }
+                                    else
+                                        notFoundRuleForFacts.Add(needFact);
+
+                                }
                             }
                         }
 
@@ -194,6 +208,7 @@ namespace FactFactory
             TFact fact = default;
 
             WantFact((TFact factInner) => fact = factInner);
+            Derive();
 
             return fact;
         }

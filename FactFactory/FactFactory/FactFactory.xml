@@ -472,6 +472,17 @@
         <member name="M:FactFactory.Facts.DateOfDeriveFact.GetFactInfo">
             <inheritdoc />
         </member>
+        <member name="T:FactFactory.Facts.DerivingCurrentFactsFact">
+            <summary>
+            Current Calculated Facts
+            </summary>
+        </member>
+        <member name="M:FactFactory.Facts.DerivingCurrentFactsFact.#ctor(System.Collections.ObjectModel.ReadOnlyCollection{FactFactory.Interfaces.IFactInfo})">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Facts.DerivingCurrentFactsFact.GetFactInfo">
+            <inheritdoc />
+        </member>
         <member name="T:FactFactory.Facts.FactBase`1">
             <summary>
             Base class for fact
