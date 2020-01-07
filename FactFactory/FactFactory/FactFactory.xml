@@ -365,19 +365,41 @@
         <member name="M:FactFactory.Exceptions.FactNotFoundException`1.#ctor">
             <inheritdoc />
         </member>
+        <member name="T:FactFactory.Exceptions.InvalidDeriveOperationException">
+            <summary>
+            <see cref="T:System.InvalidOperationException"/> for method <see cref="M:FactFactory.Interfaces.IFactFactory`2.Derive"/>
+            </summary>
+        </member>
+        <member name="P:FactFactory.Exceptions.InvalidDeriveOperationException.NotFoundRuleForFactsSet">
+            <summary>
+            A set of fact sets for which no rules were found
+            </summary>
+        </member>
+        <member name="M:FactFactory.Exceptions.InvalidDeriveOperationException.#ctor(System.String,System.Collections.Generic.List{System.Collections.Generic.List{FactFactory.Interfaces.IFactInfo}})">
+            <summary>
+            Contructor
+            </summary>
+            <param name="message"></param>
+            <param name="notFoundRuleForFactsSet">a set of fact sets for which no rules were found</param>
+        </member>
         <member name="T:FactFactory.FactFactoryBase">
             <summary>
             Base class for fact factory
             </summary>
         </member>
-        <member name="P:FactFactory.FactFactoryBase.FactContainer">
+        <member name="P:FactFactory.FactFactoryBase.Container">
             <summary>
             Fact container
             </summary>
         </member>
-        <member name="P:FactFactory.FactFactoryBase.FactRuleCollection">
+        <member name="P:FactFactory.FactFactoryBase.Rules">
             <summary>
             Collection of rules for derive facts
+            </summary>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase.GetFactInfosAvailableOnlyRules">
+            <summary>
+            Get facts available only in rules
             </summary>
         </member>
         <member name="M:FactFactory.FactFactoryBase.CreateObject``2(System.Func{``0,``1},``0)">
@@ -390,15 +412,55 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
+        <member name="M:FactFactory.FactFactoryBase.Derive">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.FactFactoryBase.DeriveAndReturn``1">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.FactFactoryBase.GetDefaultRules">
+            <summary>
+            Get default rules
+            </summary>
+            <returns>rules</returns>
+        </member>
         <member name="M:FactFactory.FactFactoryBase.WantFact``1(System.Action{``0})">
             <inheritdoc />
         </member>
-        <member name="M:FactFactory.FactFactoryBase.Derive">
+        <member name="M:FactFactory.FactFactoryBase.WantFact``2(System.Action{``0,``1})">
+            <inheritdoc />
+        </member>
+        <member name="T:FactFactory.Facts.CurrentFactInfoFindingFact">
+            <summary>
+            Current fact finding information
+            <para>
+            Only available for request in the rules
+            </para>
+            </summary>
+        </member>
+        <member name="M:FactFactory.Facts.CurrentFactInfoFindingFact.#ctor(FactFactory.Interfaces.IFactInfo)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Facts.CurrentFactInfoFindingFact.GetFactInfo">
+            <inheritdoc />
+        </member>
+        <member name="T:FactFactory.Facts.DateOfDeriveCurrentFact">
+            <summary>
+            Start date for deriving of current fact
+            <para>
+            Only available for request in the rules
+            </para>
+            </summary>
+        </member>
+        <member name="M:FactFactory.Facts.DateOfDeriveCurrentFact.#ctor(System.DateTime)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Facts.DateOfDeriveCurrentFact.GetFactInfo">
             <inheritdoc />
         </member>
         <member name="T:FactFactory.Facts.DateOfDeriveFact">
             <summary>
-            Start date for fact finding
+            Start date for deriving of all facts
             </summary>
         </member>
         <member name="M:FactFactory.Facts.DateOfDeriveFact.#ctor(System.DateTime)">
@@ -499,12 +561,12 @@
             Fact factory interface
             </summary>
         </member>
-        <member name="P:FactFactory.Interfaces.IFactFactory`2.FactContainer">
+        <member name="P:FactFactory.Interfaces.IFactFactory`2.Container">
             <summary>
             Fact container
             </summary>
         </member>
-        <member name="P:FactFactory.Interfaces.IFactFactory`2.FactRuleCollection">
+        <member name="P:FactFactory.Interfaces.IFactFactory`2.Rules">
             <summary>
             Collection of rules for derive facts
             </summary>
@@ -514,12 +576,27 @@
             Derive the facts
             </summary>
         </member>
+        <member name="M:FactFactory.Interfaces.IFactFactory`2.DeriveAndReturn``1">
+            <summary>
+            Derive a fact from the rules and return it
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:FactFactory.Interfaces.IFactFactory`2.WantFact``1(System.Action{``0})">
             <summary>
             Wish to derive a fact
             </summary>
             <typeparam name="TFact">type fact</typeparam>
-            <param name="wantFactAction"></param>
+            <param name="wantFactAction">action to be taken after the fact is derived from the rule</param>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactFactory`2.WantFact``2(System.Action{``0,``1})">
+            <summary>
+            Want to derive a facts
+            </summary>
+            <typeparam name="TFact1">type 1 input fact</typeparam>
+            <typeparam name="TFact2">type 1 input fact</typeparam>
+            <param name="wantFactAction">action to be taken after the fact is derived from the rule</param>
         </member>
         <member name="T:FactFactory.Interfaces.IFactInfo">
             <summary>

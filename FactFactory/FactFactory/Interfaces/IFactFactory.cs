@@ -14,12 +14,12 @@ namespace FactFactory.Interfaces
         /// <summary>
         /// Fact container
         /// </summary>
-        IFactContainer FactContainer { get; }
+        IFactContainer Container { get; }
 
         /// <summary>
         /// Collection of rules for derive facts
         /// </summary>
-        TFactRuleCollection FactRuleCollection { get; }
+        TFactRuleCollection Rules { get; }
 
         /// <summary>
         /// Derive the facts
@@ -27,10 +27,27 @@ namespace FactFactory.Interfaces
         void Derive();
 
         /// <summary>
+        /// Derive a fact from the rules and return it
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <returns></returns>
+        TFact DeriveAndReturn<TFact>() where TFact : IFact;
+
+        /// <summary>
         /// Wish to derive a fact
         /// </summary>
         /// <typeparam name="TFact">type fact</typeparam>
-        /// <param name="wantFactAction"></param>
+        /// <param name="wantFactAction">action to be taken after the fact is derived from the rule</param>
         void WantFact<TFact>(Action<TFact> wantFactAction) where TFact: IFact;
+
+        /// <summary>
+        /// Want to derive a facts
+        /// </summary>
+        /// <typeparam name="TFact1">type 1 input fact</typeparam>
+        /// <typeparam name="TFact2">type 1 input fact</typeparam>
+        /// <param name="wantFactAction">action to be taken after the fact is derived from the rule</param>
+        void WantFact<TFact1, TFact2>(Action<TFact1, TFact2> wantFactAction) 
+            where TFact1 : IFact 
+            where TFact2 : IFact;
     }
 }

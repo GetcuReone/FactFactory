@@ -5,7 +5,7 @@ using FactFactory.Interfaces;
 namespace FactFactory.Facts
 {
     /// <summary>
-    /// Start date for fact finding
+    /// Start date for deriving of all facts
     /// </summary>
     public sealed class DateOfDeriveFact : FactBase<DateTime>
     {
