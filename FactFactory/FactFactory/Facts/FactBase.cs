@@ -8,7 +8,7 @@ namespace FactFactory.Facts
     /// Base class for fact
     /// </summary>
     /// <typeparam name="TFactValue">type fact</typeparam>
-    public abstract class FactBase<TFactValue> : IFact<TFactValue>
+    public abstract class FactBase<TFactValue> : IFact
     {
         /// <summary>
         /// Value fact

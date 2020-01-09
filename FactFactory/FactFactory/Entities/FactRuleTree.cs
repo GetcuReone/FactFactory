@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FactFactory.Entities
 {
@@ -6,6 +7,7 @@ namespace FactFactory.Entities
     {
         internal FactRuleNode Root { get; set; }
 
-        internal List<FactRuleNode> CurrentLevel { get; } = new List<FactRuleNode>();
+        internal DateTime DateOfDerive { get; set; }
+        internal List<List<FactRuleNode>> Levels { get; } = new List<List<FactRuleNode>>();
     }
 }

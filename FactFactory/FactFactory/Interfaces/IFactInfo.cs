@@ -19,8 +19,9 @@
         /// <summary>
         /// Is in the container
         /// </summary>
-        /// <param name="container"></param>
+        /// <typeparam name="TFactContainer">type container</typeparam>
+        /// <param name="container">container</param>
         /// <returns></returns>
-        bool ContainsContainer(IFactContainer container);
+        bool ContainsContainer<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
     }
 }

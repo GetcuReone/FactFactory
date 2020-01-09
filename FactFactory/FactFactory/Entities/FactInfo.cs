@@ -16,7 +16,8 @@ namespace FactFactory.Entities
         }
 
         /// <inheritdoc />
-        public bool ContainsContainer(IFactContainer container)
+        public bool ContainsContainer<TFactContainer>(TFactContainer container)
+            where TFactContainer : IFactContainer
         {
             return container.Contains<TFact>();
         }

@@ -10,12 +10,12 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class FactFactoryTests : TestBase
     {
-        private FactFactoryT FactFactory { get; set; }
+        private FactFactory.FactFactory FactFactory { get; set; }
 
         [TestInitialize]
         public void Initialaze()
         {
-            FactFactory = new FactFactoryT();
+            FactFactory = new FactFactory.FactFactory();
         }
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
@@ -143,8 +143,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.IsNotNull(ex.NotFoundRuleForFactsSet[0], "item from NotFoundRuleForFactsSet cannot be null");
                     Assert.AreEqual(2, ex.NotFoundRuleForFactsSet[0].Count, "there must be one set of necessary facts");
 
-                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][0].Compare(new FactFactory.Entities.FactInfo<Input3Fact>()), "type fact must be Input1Fact");
-                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][1].Compare(new FactFactory.Entities.FactInfo<Input5Fact>()), "type fact must be Input5Fact");
+                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][0].Compare(new FactFactory.Entities.FactInfo<Input5Fact>()), "type fact must be Input5Fact");
+                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][1].Compare(new FactFactory.Entities.FactInfo<Input3Fact>()), "type fact must be Input3Fact");
                 });
         }
 

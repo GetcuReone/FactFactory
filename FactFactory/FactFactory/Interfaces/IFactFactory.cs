@@ -7,14 +7,15 @@ namespace FactFactory.Interfaces
     /// <summary>
     /// Fact factory interface
     /// </summary>
-    public interface IFactFactory<TFactRule, TFactRuleCollection> : IAbstractFactory
+    public interface IFactFactory<TFactContainer, TFactRule, TFactRuleCollection> : IAbstractFactory
+        where TFactContainer : IFactContainer
         where TFactRule: IFactRule
         where TFactRuleCollection : IList<TFactRule>
     {
         /// <summary>
         /// Fact container
         /// </summary>
-        IFactContainer Container { get; }
+        TFactContainer Container { get; }
 
         /// <summary>
         /// Collection of rules for derive facts

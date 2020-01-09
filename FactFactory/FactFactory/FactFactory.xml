@@ -69,7 +69,7 @@
         <member name="M:FactFactory.Entities.FactInfo`1.Compare``1(``0)">
             <inheritdoc />
         </member>
-        <member name="M:FactFactory.Entities.FactInfo`1.ContainsContainer(FactFactory.Interfaces.IFactContainer)">
+        <member name="M:FactFactory.Entities.FactInfo`1.ContainsContainer``1(``0)">
             <inheritdoc />
         </member>
         <member name="T:FactFactory.Entities.FactRule">
@@ -367,7 +367,7 @@
         </member>
         <member name="T:FactFactory.Exceptions.InvalidDeriveOperationException">
             <summary>
-            <see cref="T:System.InvalidOperationException"/> for method <see cref="M:FactFactory.Interfaces.IFactFactory`2.Derive"/>
+            <see cref="T:System.InvalidOperationException"/> for method <see cref="!:IFactFactory&lt;TFactRule, TFactRuleCollection&gt;.Derive"/>
             </summary>
         </member>
         <member name="P:FactFactory.Exceptions.InvalidDeriveOperationException.NotFoundRuleForFactsSet">
@@ -382,27 +382,36 @@
             <param name="message"></param>
             <param name="notFoundRuleForFactsSet">a set of fact sets for which no rules were found</param>
         </member>
-        <member name="T:FactFactory.FactFactoryBase">
+        <member name="T:FactFactory.FactFactory">
+            <inheritdoc />
+        </member>
+        <member name="P:FactFactory.FactFactory.Container">
+            <inheritdoc />
+        </member>
+        <member name="P:FactFactory.FactFactory.Rules">
+            <inheritdoc />
+        </member>
+        <member name="T:FactFactory.FactFactoryBase`3">
             <summary>
             Base class for fact factory
             </summary>
         </member>
-        <member name="P:FactFactory.FactFactoryBase.Container">
+        <member name="P:FactFactory.FactFactoryBase`3.Container">
             <summary>
             Fact container
             </summary>
         </member>
-        <member name="P:FactFactory.FactFactoryBase.Rules">
+        <member name="P:FactFactory.FactFactoryBase`3.Rules">
             <summary>
             Collection of rules for derive facts
             </summary>
         </member>
-        <member name="M:FactFactory.FactFactoryBase.GetFactInfosAvailableOnlyRules">
+        <member name="M:FactFactory.FactFactoryBase`3.GetFactInfosAvailableOnlyRules">
             <summary>
             Get facts available only in rules
             </summary>
         </member>
-        <member name="M:FactFactory.FactFactoryBase.CreateObject``2(System.Func{``0,``1},``0)">
+        <member name="M:FactFactory.FactFactoryBase`3.CreateObject``2(System.Func{``0,``1},``0)">
             <summary>
             Object creation method
             </summary>
@@ -412,22 +421,30 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
-        <member name="M:FactFactory.FactFactoryBase.Derive">
-            <inheritdoc />
-        </member>
-        <member name="M:FactFactory.FactFactoryBase.DeriveAndReturn``1">
-            <inheritdoc />
-        </member>
-        <member name="M:FactFactory.FactFactoryBase.GetDefaultRules">
+        <member name="M:FactFactory.FactFactoryBase`3.GetRulesForDerive">
             <summary>
-            Get default rules
+            Return a list with the appropriate rules at the time of the derive of the facts
             </summary>
-            <returns>rules</returns>
+            <returns></returns>
         </member>
-        <member name="M:FactFactory.FactFactoryBase.WantFact``1(System.Action{``0})">
+        <member name="M:FactFactory.FactFactoryBase`3.GetFactRuleTrees(FactFactory.Interfaces.IFactInfo,System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Returns trees. Their number is equal to the number of rules that can derive the necessary <paramref name="wantFact"/>.
+            </summary>
+            <param name="wantFact">derive fact</param>
+            <param name="rules">rule set</param>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.Derive">
             <inheritdoc />
         </member>
-        <member name="M:FactFactory.FactFactoryBase.WantFact``2(System.Action{``0,``1})">
+        <member name="M:FactFactory.FactFactoryBase`3.DeriveAndReturn``1">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``1(System.Action{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``2(System.Action{``0,``1})">
             <inheritdoc />
         </member>
         <member name="T:FactFactory.Facts.CurrentFactInfoFindingFact">
@@ -514,16 +531,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FactFactory.Interfaces.IFact`1">
-            <summary>
-            Typed Fact Interface
-            </summary>
-        </member>
-        <member name="P:FactFactory.Interfaces.IFact`1.Value">
-            <summary>
-            Value fact
-            </summary>
-        </member>
         <member name="T:FactFactory.Interfaces.IFactContainer">
             <summary>
             Container interface with facts for deriving other facts
@@ -564,41 +571,41 @@
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="T:FactFactory.Interfaces.IFactFactory`2">
+        <member name="T:FactFactory.Interfaces.IFactFactory`3">
             <summary>
             Fact factory interface
             </summary>
         </member>
-        <member name="P:FactFactory.Interfaces.IFactFactory`2.Container">
+        <member name="P:FactFactory.Interfaces.IFactFactory`3.Container">
             <summary>
             Fact container
             </summary>
         </member>
-        <member name="P:FactFactory.Interfaces.IFactFactory`2.Rules">
+        <member name="P:FactFactory.Interfaces.IFactFactory`3.Rules">
             <summary>
             Collection of rules for derive facts
             </summary>
         </member>
-        <member name="M:FactFactory.Interfaces.IFactFactory`2.Derive">
+        <member name="M:FactFactory.Interfaces.IFactFactory`3.Derive">
             <summary>
             Derive the facts
             </summary>
         </member>
-        <member name="M:FactFactory.Interfaces.IFactFactory`2.DeriveAndReturn``1">
+        <member name="M:FactFactory.Interfaces.IFactFactory`3.DeriveAndReturn``1">
             <summary>
             Derive a fact from the rules and return it
             </summary>
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:FactFactory.Interfaces.IFactFactory`2.WantFact``1(System.Action{``0})">
+        <member name="M:FactFactory.Interfaces.IFactFactory`3.WantFact``1(System.Action{``0})">
             <summary>
             Wish to derive a fact
             </summary>
             <typeparam name="TFact">type fact</typeparam>
             <param name="wantFactAction">action to be taken after the fact is derived from the rule</param>
         </member>
-        <member name="M:FactFactory.Interfaces.IFactFactory`2.WantFact``2(System.Action{``0,``1})">
+        <member name="M:FactFactory.Interfaces.IFactFactory`3.WantFact``2(System.Action{``0,``1})">
             <summary>
             Want to derive a facts
             </summary>
@@ -622,11 +629,12 @@
             Fact name
             </summary>
         </member>
-        <member name="M:FactFactory.Interfaces.IFactInfo.ContainsContainer(FactFactory.Interfaces.IFactContainer)">
+        <member name="M:FactFactory.Interfaces.IFactInfo.ContainsContainer``1(``0)">
             <summary>
             Is in the container
             </summary>
-            <param name="container"></param>
+            <typeparam name="TFactContainer">type container</typeparam>
+            <param name="container">container</param>
             <returns></returns>
         </member>
         <member name="T:FactFactory.Interfaces.IFactRule">
