@@ -9,10 +9,5 @@ namespace FactFactoryTests.CommonFacts
         public OtherFact(DateTime fact) : base(fact)
         {
         }
-
-        //public override IFactInfo GetFactInfo()
-        //{
-        //    return new FactFactory.Entities.FactInfo<OtherFact>();
-        //}
     }
 }

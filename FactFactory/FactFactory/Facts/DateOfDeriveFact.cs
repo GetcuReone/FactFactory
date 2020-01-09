@@ -16,11 +16,5 @@ namespace FactFactory.Facts
         public DateOfDeriveFact(DateTime fact) : base(fact)
         {
         }
-
-        /// <inheritdoc />
-        //public override IFactInfo GetFactInfo()
-        //{
-        //    return new FactInfo<DateOfDeriveFact>();
-        //}
     }
 }

@@ -197,7 +197,7 @@
             <typeparam name="TFactIn6">type 6 input fact</typeparam>
             <typeparam name="TFactIn7">type 7 input fact</typeparam>
             <typeparam name="TFactIn8">type 8 input fact</typeparam>
-            <typeparam name="TFactIn9">type 9 input fact</typeparam>
+            <typeparam name="TFactOut">type output fact</typeparam>
             <param name="rule">rule of fact derivation</param>
         </member>
         <member name="M:FactFactory.Entities.FactRuleCollection.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
@@ -499,7 +499,7 @@
         </member>
         <member name="M:FactFactory.Facts.FactBase`1.GetFactInfo">
             <summary>
-            Need to insert return new FactInfo{type of your fact}();
+            Must return FactInfo{type of your fact}();
             </summary>
             <returns></returns>
         </member>

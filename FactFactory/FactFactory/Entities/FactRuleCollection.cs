@@ -193,7 +193,7 @@ namespace FactFactory.Entities
         /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
         /// <typeparam name="TFactIn7">type 7 input fact</typeparam>
         /// <typeparam name="TFactIn8">type 8 input fact</typeparam>
-        /// <typeparam name="TFactIn9">type 9 input fact</typeparam>
+        /// <typeparam name="TFactOut">type output fact</typeparam>
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut> rule)
