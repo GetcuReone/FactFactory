@@ -1,7 +1,6 @@
 ﻿using FactFactory.Entities;
 using FactFactory.Interfaces;
 using System;
-using System.Reflection;
 
 namespace FactFactory.Facts
 {
@@ -25,23 +24,14 @@ namespace FactFactory.Facts
             Value = fact;
         }
 
-        private IFactInfo CreateFactInfo<TFact>()
-            where TFact: FactBase<TFactValue>
-        {
-            return new FactInfo<TFact>();
-        }
-
         /// <summary>
         /// Must return FactInfo{type of your fact}();
         /// </summary>
         /// <returns></returns>
         public virtual IFactInfo GetFactInfo()
         {
-            MethodInfo method = typeof(FactBase<TFactValue>).GetMethod("CreateFactInfo", BindingFlags.NonPublic | BindingFlags.Instance);
-            MethodInfo generic = method.MakeGenericMethod(GetType());
-
-            return (IFactInfo)generic.Invoke(this, null);
+            Type genericType = typeof(FactInfo<>).MakeGenericType(GetType());
+            return (IFactInfo)Activator.CreateInstance(genericType);
         }
-
     }
 }
