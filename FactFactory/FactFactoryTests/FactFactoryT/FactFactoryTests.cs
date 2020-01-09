@@ -170,5 +170,15 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.IsNotNull(input7Fact, "input7Fact is not derived");
                 });
         }
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][factory][negative] rules cannot be empty")]
+        public void RulesCannotBeEmptyTestCase()
+        {
+            Given("Set rules", () => new Env.FactFactoryWithoutRules())
+                .When("Derive facts", factory => ExpectedException<InvalidOperationException>(() => factory.DeriveAndReturn<Input10Fact>()))
+                .Then("Check error", ex => Assert.IsNotNull(ex, "error cannot be null"));
+        }
     }
 }
