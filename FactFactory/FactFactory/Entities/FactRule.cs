@@ -62,7 +62,7 @@ namespace FactFactory.Entities
             {
                 foreach (var fact in factRule.InputFactInfos)
                 {
-                    if (!InputFactInfos.All(f => !f.Compare(fact)))
+                    if (InputFactInfos.All(f => !f.Compare(fact)))
                         return false;
                 }
 

@@ -2,6 +2,7 @@
 using FactFactoryTests.CommonFacts;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Collection = FactFactory.Entities.FactRuleCollection;
@@ -567,6 +568,20 @@ namespace FactFactoryTests.FactRuleCollection
                     foreach (IFactInfo factInfo in factInfos)
                         Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
+        }
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][rule][negative][coolection] create a rule without param")]
+        public void AddRuleAlreadyContainsTestCase()
+        {
+            GivenEmpty()
+                .And("Add rule", _ => Collection.Add(() => new Input10Fact(10)))
+                .When("Add rule already contains", _ =>
+                {
+                    return ExpectedException<ArgumentException>(() => Collection.Add(() => new Input10Fact(11)));
+                })
+                .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
         }
     }
 }
