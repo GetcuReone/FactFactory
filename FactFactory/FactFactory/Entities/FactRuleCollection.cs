@@ -1,19 +1,65 @@
 ﻿using FactFactory.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FactFactory.Entities
 {
     /// <summary>
     /// Collection fo <see cref="FactRule"/>
     /// </summary>
-    public class FactRuleCollection: List<FactRule>
+    public class FactRuleCollection: IList<FactRule>
     {
-        /// <inheritdoc />
-        public FactRuleCollection() { }
+        private readonly List<FactRule> _list;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public FactRuleCollection()
+        {
+            _list = new List<FactRule>();
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="factRules"></param>
+        public FactRuleCollection(IEnumerable<FactRule> factRules)
+        {
+            _list = new List<FactRule>(factRules);
+        }
 
         /// <inheritdoc />
-        public FactRuleCollection(IList<FactRule> factRules) : base(factRules) { }
+        public FactRule this[int index] 
+        { 
+            get => _list[index]; 
+            set
+            {
+
+                if (value == _list[index])
+                    return;
+                else if (Contains(value))
+                    throw new ArgumentException("This rule is already in the rule collection");
+
+                _list[index] = value;
+            }
+        }
+
+        /// <inheritdoc />
+        public int Count => _list.Count;
+
+        /// <inheritdoc />
+        public bool IsReadOnly => false;
+
+        /// <inheritdoc />
+        public void Add(FactRule item)
+        {
+            if (Contains(item))
+                throw new ArgumentException("This rule is already in the rule collection");
+
+            _list.Add(item);
+        }
 
         /// <summary>
         /// Add a rule without input facts
@@ -522,6 +568,71 @@ namespace FactFactory.Entities
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>(), ct.GetFact<TFactIn14>(), ct.GetFact<TFactIn15>(), ct.GetFact<TFactIn16>()),
                 new List<IFactInfo> { new FactInfo<TFactIn1>(), new FactInfo<TFactIn2>(), new FactInfo<TFactIn3>(), new FactInfo<TFactIn4>(), new FactInfo<TFactIn5>(), new FactInfo<TFactIn6>(), new FactInfo<TFactIn7>(), new FactInfo<TFactIn8>(), new FactInfo<TFactIn9>(), new FactInfo<TFactIn10>(), new FactInfo<TFactIn11>(), new FactInfo<TFactIn12>(), new FactInfo<TFactIn13>(), new FactInfo<TFactIn14>(), new FactInfo<TFactIn15>(), new FactInfo<TFactIn16>() },
                 new FactInfo<TFactOut>()));
+        }
+
+        /// <summary>
+        /// Adds the elements of the specified collection to the end of the <see cref="FactRuleCollection"/>
+        /// </summary>
+        /// <param name="rules">The collection whose elements should be added to the end of the  <see cref="FactRuleCollection"/>. 
+        /// The collection itself cannot be null, but it can contain elements that are null,
+        /// if type T is a reference type.</param>
+        /// <exception cref="ArgumentNullException">collection is null</exception>
+        public void AddRange(IEnumerable<FactRule> rules)
+        {
+            _list.AddRange(rules);
+        }
+
+        /// <inheritdoc />
+        public void Clear()
+        {
+            _list.Clear();
+        }
+
+        /// <inheritdoc />
+        public bool Contains(FactRule item)
+        {
+            return _list.Any(r => r.Compare(item));
+        }
+
+        /// <inheritdoc />
+        public void CopyTo(FactRule[] array, int arrayIndex)
+        {
+            _list.CopyTo(array, arrayIndex);
+        }
+
+        /// <inheritdoc />
+        public IEnumerator<FactRule> GetEnumerator()
+        {
+            return _list.GetEnumerator();
+        }
+
+        /// <inheritdoc />
+        public int IndexOf(FactRule item)
+        {
+            return _list.IndexOf(item);
+        }
+
+        /// <inheritdoc />
+        public void Insert(int index, FactRule item)
+        {
+            _list.Insert(index, item);
+        }
+
+        /// <inheritdoc />
+        public bool Remove(FactRule item)
+        {
+            return _list.Remove(item);
+        }
+
+        /// <inheritdoc />
+        public void RemoveAt(int index)
+        {
+            _list.RemoveAt(index);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

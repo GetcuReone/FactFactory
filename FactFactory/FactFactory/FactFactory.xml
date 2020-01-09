@@ -84,10 +84,13 @@
         <member name="M:FactFactory.Entities.FactRule.#ctor(System.Func{FactFactory.Interfaces.IFactContainer,FactFactory.Interfaces.IFact},System.Collections.Generic.List{FactFactory.Interfaces.IFactInfo},FactFactory.Interfaces.IFactInfo)">
             <inheritdoc />
         </member>
-        <member name="M:FactFactory.Entities.FactRule.Derive(FactFactory.Interfaces.IFactContainer)">
+        <member name="M:FactFactory.Entities.FactRule.Derive``1(``0)">
             <inheritdoc />
         </member>
-        <member name="M:FactFactory.Entities.FactRule.CanDerive(FactFactory.Interfaces.IFactContainer)">
+        <member name="M:FactFactory.Entities.FactRule.CanDerive``1(``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRule.Compare``1(``0)">
             <inheritdoc />
         </member>
         <member name="T:FactFactory.Entities.FactRuleCollection">
@@ -96,9 +99,26 @@
             </summary>
         </member>
         <member name="M:FactFactory.Entities.FactRuleCollection.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{FactFactory.Entities.FactRule})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="factRules"></param>
+        </member>
+        <member name="P:FactFactory.Entities.FactRuleCollection.Item(System.Int32)">
             <inheritdoc />
         </member>
-        <member name="M:FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IList{FactFactory.Entities.FactRule})">
+        <member name="P:FactFactory.Entities.FactRuleCollection.Count">
+            <inheritdoc />
+        </member>
+        <member name="P:FactFactory.Entities.FactRuleCollection.IsReadOnly">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Add(FactFactory.Entities.FactRule)">
             <inheritdoc />
         </member>
         <member name="M:FactFactory.Entities.FactRuleCollection.Add``1(System.Func{``0})">
@@ -355,6 +375,39 @@
             <typeparam name="TFactIn16">type 16 input fact</typeparam>
             <typeparam name="TFactOut">type output fact</typeparam>
             <param name="rule">rule of fact derivation</param>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.AddRange(System.Collections.Generic.IEnumerable{FactFactory.Entities.FactRule})">
+            <summary>
+            Adds the elements of the specified collection to the end of the <see cref="T:FactFactory.Entities.FactRuleCollection"/>
+            </summary>
+            <param name="rules">The collection whose elements should be added to the end of the  <see cref="T:FactFactory.Entities.FactRuleCollection"/>. 
+            The collection itself cannot be null, but it can contain elements that are null,
+            if type T is a reference type.</param>
+            <exception cref="T:System.ArgumentNullException">collection is null</exception>
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Clear">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Contains(FactFactory.Entities.FactRule)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.CopyTo(FactFactory.Entities.FactRule[],System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.IndexOf(FactFactory.Entities.FactRule)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Insert(System.Int32,FactFactory.Entities.FactRule)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.Remove(FactFactory.Entities.FactRule)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactRuleCollection.RemoveAt(System.Int32)">
+            <inheritdoc />
         </member>
         <member name="T:FactFactory.Exceptions.FactNotFoundException`1">
             <summary>
@@ -652,18 +705,26 @@
             Rule exit information
             </summary>
         </member>
-        <member name="M:FactFactory.Interfaces.IFactRule.CanDerive(FactFactory.Interfaces.IFactContainer)">
+        <member name="M:FactFactory.Interfaces.IFactRule.CanDerive``1(``0)">
             <summary>
             is it possible to derive the fact
             </summary>
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="M:FactFactory.Interfaces.IFactRule.Derive(FactFactory.Interfaces.IFactContainer)">
+        <member name="M:FactFactory.Interfaces.IFactRule.Derive``1(``0)">
             <summary>
             Rule of fact derive
             </summary>
             <param name="container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactRule.Compare``1(``0)">
+            <summary>
+            Compare rules
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <param name="factRule"></param>
             <returns></returns>
         </member>
     </members>

@@ -23,13 +23,21 @@ namespace FactFactory.Interfaces
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        bool CanDerive(IFactContainer container);
+        bool CanDerive<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
 
         /// <summary>
         /// Rule of fact derive
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        IFact Derive(IFactContainer container);
+        IFact Derive<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// Compare rules
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <param name="factRule"></param>
+        /// <returns></returns>
+        bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule;
     }
 }

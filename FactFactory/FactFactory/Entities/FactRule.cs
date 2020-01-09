@@ -1,4 +1,5 @@
-﻿using FactFactory.Interfaces;
+﻿using FactFactory.Helpers;
+using FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,7 +29,8 @@ namespace FactFactory.Entities
         }
 
         /// <inheritdoc />
-        public IFact Derive(IFactContainer container)
+        public IFact Derive<TFactContainer>(TFactContainer container) 
+            where TFactContainer : IFactContainer
         {
             IFact fact = _func(container);
 
@@ -39,9 +41,33 @@ namespace FactFactory.Entities
         }
 
         /// <inheritdoc />
-        public bool CanDerive(IFactContainer container)
+        public bool CanDerive<TFactContainer>(TFactContainer container) 
+            where TFactContainer : IFactContainer
         {
             return InputFactInfos.All(factInfo => factInfo.ContainsContainer(container));
+        }
+
+        /// <inheritdoc />
+        public bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule
+        {
+            if (!OutputFactInfo.Compare(factRule.OutputFactInfo))
+                return false;
+            else if (factRule.InputFactInfos.IsNullOrEmpty() && InputFactInfos.IsNullOrEmpty())
+                return true;
+            else if (InputFactInfos.IsNullOrEmpty() || factRule.InputFactInfos.IsNullOrEmpty())
+                return false;
+            else if (factRule.InputFactInfos.Count != InputFactInfos.Count)
+                return false;
+            else
+            {
+                foreach (var fact in factRule.InputFactInfos)
+                {
+                    if (!InputFactInfos.All(f => !f.Compare(fact)))
+                        return false;
+                }
+
+                return true;
+            }
         }
     }
 }
