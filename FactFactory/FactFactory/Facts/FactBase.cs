@@ -1,32 +1,47 @@
 ﻿using FactFactory.Entities;
 using FactFactory.Interfaces;
+using System;
+using System.Reflection;
 
 namespace FactFactory.Facts
 {
     /// <summary>
     /// Base class for fact
     /// </summary>
-    /// <typeparam name="TFact">type fact</typeparam>
-    public abstract class FactBase<TFact> : IFact<TFact>
+    /// <typeparam name="TFactValue">type fact</typeparam>
+    public abstract class FactBase<TFactValue> : IFact<TFactValue>
     {
         /// <summary>
         /// Value fact
         /// </summary>
-        public virtual TFact Value { get; }
+        public virtual TFactValue Value { get; }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="fact"></param>
-        protected FactBase(TFact fact)
+        protected FactBase(TFactValue fact)
         {
             Value = fact;
         }
 
+        private IFactInfo CreateFactInfo<TFact>()
+            where TFact: FactBase<TFactValue>
+        {
+            return new FactInfo<TFact>();
+        }
+
         /// <summary>
-        /// Need to insert return new FactInfo{type of your fact}();
+        /// Must return FactInfo{type of your fact}();
         /// </summary>
         /// <returns></returns>
-        public abstract IFactInfo GetFactInfo();
+        public virtual IFactInfo GetFactInfo()
+        {
+            MethodInfo method = typeof(FactBase<TFactValue>).GetMethod("CreateFactInfo", BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo generic = method.MakeGenericMethod(GetType());
+
+            return (IFactInfo)generic.Invoke(this, null);
+        }
+
     }
 }

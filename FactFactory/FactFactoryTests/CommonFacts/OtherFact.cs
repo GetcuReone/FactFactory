@@ -10,9 +10,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
-        {
-            return new FactFactory.Entities.FactInfo<OtherFact>();
-        }
+        //public override IFactInfo GetFactInfo()
+        //{
+        //    return new FactFactory.Entities.FactInfo<OtherFact>();
+        //}
     }
 }

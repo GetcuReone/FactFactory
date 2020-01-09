@@ -18,9 +18,9 @@ namespace FactFactory.Facts
         }
 
         /// <inheritdoc />
-        public override IFactInfo GetFactInfo()
-        {
-            return new FactInfo<DateOfDeriveFact>();
-        }
+        //public override IFactInfo GetFactInfo()
+        //{
+        //    return new FactInfo<DateOfDeriveFact>();
+        //}
     }
 }

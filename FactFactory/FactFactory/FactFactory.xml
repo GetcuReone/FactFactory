@@ -469,9 +469,6 @@
             </summary>
             <param name="fact"></param>
         </member>
-        <member name="M:FactFactory.Facts.DateOfDeriveFact.GetFactInfo">
-            <inheritdoc />
-        </member>
         <member name="T:FactFactory.Facts.DerivingCurrentFactsFact">
             <summary>
             Current Calculated Facts
@@ -487,7 +484,7 @@
             <summary>
             Base class for fact
             </summary>
-            <typeparam name="TFact">type fact</typeparam>
+            <typeparam name="TFactValue">type fact</typeparam>
         </member>
         <member name="P:FactFactory.Facts.FactBase`1.Value">
             <summary>
