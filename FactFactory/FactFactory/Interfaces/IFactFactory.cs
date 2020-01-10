@@ -40,15 +40,5 @@ namespace FactFactory.Interfaces
         /// <typeparam name="TFact">type fact</typeparam>
         /// <param name="wantFactAction">action to be taken after the fact is derived from the rule</param>
         void WantFact<TFact>(Action<TFact> wantFactAction) where TFact: IFact;
-
-        /// <summary>
-        /// Want to derive a facts
-        /// </summary>
-        /// <typeparam name="TFact1">type 1 input fact</typeparam>
-        /// <typeparam name="TFact2">type 1 input fact</typeparam>
-        /// <param name="wantFactAction">action to be taken after the fact is derived from the rule</param>
-        void WantFact<TFact1, TFact2>(Action<TFact1, TFact2> wantFactAction) 
-            where TFact1 : IFact 
-            where TFact2 : IFact;
     }
 }

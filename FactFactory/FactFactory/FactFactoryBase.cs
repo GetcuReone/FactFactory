@@ -156,11 +156,19 @@ namespace FactFactory
                     for(int i = factRuleTrees.Count - 1; i >= 0; i--)
                     {
                         FactRuleTree factRuleTree = factRuleTrees[i];
+                        List<FactRuleNode> lastLevel = factRuleTree.Levels[factRuleTree.Levels.Count - 1];
+
+                        if (lastLevel.Count == 0)
+                        {
+                            successedTrees.Add(factRuleTree);
+                            isDerive = true;
+                            break;
+                        }
+
                         List<FactRuleNode> nextNodes = new List<FactRuleNode>();
                         // A set of facts for which no rules were found
                         List<IFactInfo> notFoundRuleForFacts = new List<IFactInfo>();
                         bool cannotDerived = false;
-                        List<FactRuleNode> lastLevel = factRuleTree.Levels[factRuleTree.Levels.Count - 1];
 
                         for(int j = lastLevel.Count - 1; j >= 0; j--)
                         {
