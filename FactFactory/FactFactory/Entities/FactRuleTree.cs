@@ -6,8 +6,6 @@ namespace FactFactory.Entities
     internal class FactRuleTree
     {
         internal FactRuleNode Root { get; set; }
-
-        internal DateTime DateOfDerive { get; set; }
         internal List<List<FactRuleNode>> Levels { get; } = new List<List<FactRuleNode>>();
     }
 }

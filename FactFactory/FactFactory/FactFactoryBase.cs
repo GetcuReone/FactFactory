@@ -13,13 +13,13 @@ namespace FactFactory
     /// <summary>
     /// Base class for fact factory
     /// </summary>
-    public abstract class FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection> : IFactFactory<TFactContainer, TFactRule, TFactRuleCollection>
+    public abstract class FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IFactFactory<TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
         where TFactContainer : IFactContainer
         where TFactRule : IFactRule
         where TFactRuleCollection : IList<TFactRule>
+        where TWantAction : IWantAction
     {
-        private readonly List<IFactInfo> _wantFacts = new List<IFactInfo>();
-        private readonly List<Action<FactContainer>> _wantActions = new List<Action<FactContainer>>();
+        private readonly List<TWantAction> _wantActions = new List<TWantAction>();
 
 
         /// <summary>
@@ -35,11 +35,11 @@ namespace FactFactory
         /// <summary>
         /// Get facts available only in rules
         /// </summary>
-        public virtual List<IFactInfo> GetFactInfosAvailableOnlyRules()
+        public virtual IEnumerable<IFactInfo> GetFactInfosAvailableOnlyRules()
         {
             return new List<IFactInfo>()
             {
-                new FactInfo<CurrentFactInfoFindingFact>(),
+                new FactInfo<CurrentFactsFindingFact>(),
                 new FactInfo<DateOfDeriveCurrentFact>(),
             };
         }
@@ -63,7 +63,7 @@ namespace FactFactory
         /// Return a list with the appropriate rules at the time of the derive of the facts
         /// </summary>
         /// <returns></returns>
-        public virtual IEnumerable<TFactRule> GetRulesForDerive()
+        public virtual IEnumerable<TFactRule> GetRulesForDerive(TWantAction wantAction)
         {
             return new List<TFactRule>(Rules);
         }
@@ -117,33 +117,55 @@ namespace FactFactory
         /// <inheritdoc />
         public virtual void Derive()
         {
-            var successedTrees = new List<FactRuleTree>();
             var container = new FactContainer(Container) 
             { 
                 new DateOfDeriveFact(DateTime.Now),
-                new DerivingCurrentFactsFact(new ReadOnlyCollection<IFactInfo>(_wantFacts))
+                new DerivingCurrentFactsFact(
+                    new ReadOnlyCollection<IFactInfo>(
+                        _wantActions.SelectMany(action => action.InputFacts).ToList()))
             };
-            var ruleCollection = GetRulesForDerive();
 
+            var derivedTrees = new Dictionary<TWantAction, List<FactRuleTree>>();
             var excludeFacts = GetFactInfosAvailableOnlyRules();
 
-            foreach (IFactInfo wantFactInfo in _wantFacts)
-            {
-                DateTime deriveFactOperationDate = DateTime.Now;
+            foreach (var wantAction in _wantActions)
+                derivedTrees.Add(wantAction, DeriveTreesForWantAction(wantAction, container, excludeFacts));
 
+            foreach(KeyValuePair<TWantAction, List<FactRuleTree>> derivedTree in derivedTrees)
+            {
+                container.Add(new DateOfDeriveCurrentFact(derivedTree.Key.DateOfDerive));
+                container.Add(new CurrentFactsFindingFact(derivedTree.Key.InputFacts.ToList()));
+
+                foreach(var tree in derivedTree.Value)
+                    tree.Root.Derive(this, container);
+
+                derivedTree.Key.Invoke(container);
+
+                container.Remove<CurrentFactsFindingFact>();
+                container.Remove<DateOfDeriveCurrentFact>();
+            }
+        }
+
+        private List<FactRuleTree> DeriveTreesForWantAction(TWantAction wantAction, FactContainer container, IEnumerable<IFactInfo> excludeFacts)
+        {
+            IEnumerable<TFactRule> ruleCollection = GetRulesForDerive(wantAction);
+            wantAction.DateOfDerive = DateTime.Now;
+            var computedTrees = new List<FactRuleTree>();
+
+            foreach (IFactInfo wantFact in wantAction.InputFacts)
+            {
                 // If fact already exists
-                if (wantFactInfo.ContainsContainer(container))
+                if (wantFact.ContainsContainer(container))
                     continue;
 
                 // find the rules that can calculate the fact
-                List<FactRuleTree> factRuleTrees = GetFactRuleTrees(wantFactInfo, ruleCollection);
+                List<FactRuleTree> factRuleTrees = GetFactRuleTrees(wantFact, ruleCollection);
 
                 // Check if we can already derive the fact
-                FactRuleTree factRuleTreeSuccess = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.CanDerive(container));
-                if (factRuleTreeSuccess != null)
+                FactRuleTree factRuleTreeComputed = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.CanDerive(container));
+                if (factRuleTreeComputed != null)
                 {
-                    factRuleTreeSuccess.DateOfDerive = deriveFactOperationDate;
-                    successedTrees.Add(factRuleTreeSuccess);
+                    computedTrees.Add(factRuleTreeComputed);
                     continue;
                 }
 
@@ -151,16 +173,17 @@ namespace FactFactory
                 // A set of fact sets for which no rules were found
                 List<List<IFactInfo>> notFoundRuleForFactsSet = new List<List<IFactInfo>>();
                 List<FactRuleNode> allCompletedNodes = new List<FactRuleNode>();
+
                 while (!isDerive)
                 {
-                    for(int i = factRuleTrees.Count - 1; i >= 0; i--)
+                    for (int i = factRuleTrees.Count - 1; i >= 0; i--)
                     {
                         FactRuleTree factRuleTree = factRuleTrees[i];
                         List<FactRuleNode> lastLevel = factRuleTree.Levels[factRuleTree.Levels.Count - 1];
 
                         if (lastLevel.Count == 0)
                         {
-                            successedTrees.Add(factRuleTree);
+                            computedTrees.Add(factRuleTree);
                             isDerive = true;
                             break;
                         }
@@ -170,7 +193,7 @@ namespace FactFactory
                         List<IFactInfo> notFoundRuleForFacts = new List<IFactInfo>();
                         bool cannotDerived = false;
 
-                        for(int j = lastLevel.Count - 1; j >= 0; j--)
+                        for (int j = lastLevel.Count - 1; j >= 0; j--)
                         {
                             FactRuleNode node = lastLevel[j];
 
@@ -247,8 +270,7 @@ namespace FactFactory
                         }
                         else if (nextNodes.IsNullOrEmpty())
                         {
-                            factRuleTree.DateOfDerive = deriveFactOperationDate;
-                            successedTrees.Add(factRuleTree);
+                            computedTrees.Add(factRuleTree);
                             isDerive = true;
                             break;
                         }
@@ -257,27 +279,42 @@ namespace FactFactory
                     }
 
                     if (factRuleTrees.IsNullOrEmpty())
-                        throw new InvalidDeriveOperationException($"To derive a {wantFactInfo.FactName}, a set of facts is not enough", notFoundRuleForFactsSet);
+                        throw new InvalidDeriveOperationException($"To derive a {wantFact.FactName}, a set of facts is not enough", notFoundRuleForFactsSet);
                 }
             }
 
-            foreach (var tree in successedTrees)
-            {
-                container.Add(new DateOfDeriveCurrentFact(tree.DateOfDerive));
-                container.Add(new CurrentFactInfoFindingFact(tree.Root.FactRule.OutputFactInfo));
-
-                tree.Root.Derive(this, container);
-
-                container.Remove<CurrentFactInfoFindingFact>();
-                container.Remove<DateOfDeriveCurrentFact>();
-            }
-
-            foreach (var wantAction in _wantActions)
-                wantAction(container);
+            return computedTrees;
         }
 
         /// <inheritdoc />
-        public virtual TFact DeriveAndReturn<TFact>() where TFact : IFact
+        public abstract TFact DeriveAndReturn<TFact>() where TFact : IFact;
+
+        /// <inheritdoc />
+        public virtual void WantFact(TWantAction wantAction)
+        {
+            if (_wantActions.IndexOf(wantAction) != -1)
+                throw new ArgumentException("Action already requested");
+
+            var excludeFacts = GetFactInfosAvailableOnlyRules();
+
+            var excludeFact = wantAction.InputFacts.FirstOrDefault(f => excludeFacts.Any(ef => ef.Compare(f)));
+            if (excludeFact != null)
+                throw new ArgumentException($"The {excludeFact.FactName} is available only for the rules.");
+
+            _wantActions.Add(wantAction);
+        }
+    }
+
+    /// <summary>
+    /// Base class for fact factory
+    /// </summary>
+    public abstract class FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection> : FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection, WantAction>
+        where TFactContainer : IFactContainer
+        where TFactRule : IFactRule
+        where TFactRuleCollection : IList<TFactRule>
+    {
+        /// <inheritdoc />
+        public override TFact DeriveAndReturn<TFact>()
         {
             TFact fact = default;
 
@@ -287,34 +324,32 @@ namespace FactFactory
             return fact;
         }
 
-        private void WantFact(List<IFactInfo> wantFacts, Action<IFactContainer> wantAction)
-        {
-            var canNotUse = GetFactInfosAvailableOnlyRules();
-
-            foreach (var wantFact in wantFacts)
-            {
-                if (canNotUse.Any(f => f.Compare(wantFact)))
-                    throw new ArgumentException($"You cannot request a {wantFact.FactName}. Only available for request in the rules");
-                else if (_wantFacts.All(f => !f.Compare(wantFact)))
-                    _wantFacts.Add(wantFact);
-            }
-
-            _wantActions.Add(wantAction);
-        }
-
-        /// <inheritdoc />
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="wantFactAction"></param>
         public virtual void WantFact<TFact>(Action<TFact> wantFactAction) where TFact : IFact
         {
-            WantFact(new List<IFactInfo> { new FactInfo<TFact>() }, container => wantFactAction(container.GetFact<TFact>()));
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact>()),
+                new List<IFactInfo> { new FactInfo<TFact>() }));
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact1"></typeparam>
+        /// <typeparam name="TFact2"></typeparam>
+        /// <param name="wantFactAction"></param>
         public virtual void WantFact<TFact1, TFact2>(Action<TFact1, TFact2> wantFactAction)
             where TFact1 : IFact
             where TFact2 : IFact
         {
-            WantFact(new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>() },
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>()));
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>()),
+                new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>() }));
         }
     }
+
 }

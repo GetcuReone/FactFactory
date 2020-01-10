@@ -85,7 +85,7 @@ namespace FactFactoryTests.FactFactoryT
         public void WantNotAvailableFactTestCase()
         {
             GivenEmpty()
-                .When("Want fact", _ => ExpectedException<ArgumentException>(() => FactFactory.WantFact((CurrentFactInfoFindingFact fact) => { })))
+                .When("Want fact", _ => ExpectedException<ArgumentException>(() => FactFactory.WantFact((CurrentFactsFindingFact fact) => { })))
                 .Then("Check error", ex => Assert.IsNotNull(ex, "error cannot be null"));
 
         }

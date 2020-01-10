@@ -1,5 +1,6 @@
 ﻿using FactFactory.Entities;
 using FactFactory.Interfaces;
+using System.Collections.Generic;
 
 namespace FactFactory.Facts
 {
@@ -9,17 +10,17 @@ namespace FactFactory.Facts
     /// Only available for request in the rules
     /// </para>
     /// </summary>
-    public sealed class CurrentFactInfoFindingFact : FactBase<IFactInfo>
+    public sealed class CurrentFactsFindingFact : FactBase<IReadOnlyCollection<IFactInfo>>
     {
         /// <inheritdoc />
-        public CurrentFactInfoFindingFact(IFactInfo fact) : base(fact)
+        public CurrentFactsFindingFact(IReadOnlyCollection<IFactInfo> fact) : base(fact)
         {
         }
 
         /// <inheritdoc />
         public override IFactInfo GetFactInfo()
         {
-            return new FactInfo<CurrentFactInfoFindingFact>();
+            return new FactInfo<CurrentFactsFindingFact>();
         }
     }
 }
