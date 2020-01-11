@@ -1,7 +1,6 @@
 using JwtTestAdapter;
 using JwtTestAdapter.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -18,7 +17,7 @@ namespace InfrostructTests
 #if DEBUG
             mode = "Debug";
 #else
-            mode = Release;
+            mode = "Release";
 #endif
             List<string> assemblyPaths = new List<string>
             {

@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 namespace FactFactory.Exceptions
 {
     /// <summary>
-    /// <see cref="InvalidOperationException"/> for method <see cref="IFactFactory{TFactContainer, TFactRule, TFactRuleCollection}.Derive"/>
+    /// <see cref="InvalidOperationException"/> for method <see cref="IFactFactory{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
     /// </summary>
     public class InvalidDeriveOperationException : InvalidOperationException
     {
