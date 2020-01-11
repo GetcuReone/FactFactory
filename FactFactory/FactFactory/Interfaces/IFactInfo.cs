@@ -23,5 +23,18 @@
         /// <param name="container">container</param>
         /// <returns></returns>
         bool ContainsContainer<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// Is it possible to convert a fact type to a <typeparamref name="TFact"/>
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <returns></returns>
+        bool IsFactType<TFact>() where TFact : IFact;
+
+        /// <summary>
+        /// Return fact. The current fact is not contained in the container.
+        /// </summary>
+        /// <returns></returns>
+        INotContainedFact GetNotContainedFact();
     }
 }

@@ -1,4 +1,5 @@
-﻿using FactFactory.Interfaces;
+﻿using FactFactory.Facts;
+using FactFactory.Interfaces;
 
 namespace FactFactory.Entities
 {
@@ -20,6 +21,18 @@ namespace FactFactory.Entities
             where TFactContainer : IFactContainer
         {
             return container.Contains<TFact>();
+        }
+
+        /// <inheritdoc />
+        public INotContainedFact GetNotContainedFact()
+        {
+            return new NotContainedFact<TFact>();
+        }
+
+        /// <inheritdoc />
+        public bool IsFactType<TFact1>() where TFact1 : IFact
+        {
+            return Compare(new FactInfo<TFact1>());
         }
     }
 }

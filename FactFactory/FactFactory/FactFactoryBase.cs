@@ -274,6 +274,14 @@ namespace FactFactory
                         {
                             FactRuleNode node = lastLevel[j];
 
+                            foreach(var notContainedFactInfo in node.FactRule.InputFactInfos.Where(fact => fact.IsFactType<INotContainedFact>()))
+                            {
+                                INotContainedFact notContainedFact = notContainedFactInfo.GetNotContainedFact();
+
+                                if (container.All(fact => !notContainedFact.IsFactContained(container)))
+                                    container.Add(notContainedFact);
+                            }
+
                             List<IFactInfo> needFacts = node.FactRule.InputFactInfos
                                 .Where(fact => !fact.ContainsContainer(container) && excludeFacts.All(exF => !exF.Compare(fact)))
                                 .ToList();

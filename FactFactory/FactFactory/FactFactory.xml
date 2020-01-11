@@ -72,6 +72,12 @@
         <member name="M:FactFactory.Entities.FactInfo`1.ContainsContainer``1(``0)">
             <inheritdoc />
         </member>
+        <member name="M:FactFactory.Entities.FactInfo`1.GetNotContainedFact">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactInfo`1.IsFactType``1">
+            <inheritdoc />
+        </member>
         <member name="T:FactFactory.Entities.FactRule">
             <inheritdoc />
         </member>
@@ -445,7 +451,7 @@
         </member>
         <member name="T:FactFactory.Exceptions.InvalidDeriveOperationException">
             <summary>
-            <see cref="T:System.InvalidOperationException"/> for method <see cref="!:IFactFactory&lt;TFactContainer, TFactRule, TFactRuleCollection&gt;.Derive"/>
+            <see cref="T:System.InvalidOperationException"/> for method <see cref="M:FactFactory.Interfaces.IFactFactory`4.Derive"/>
             </summary>
         </member>
         <member name="P:FactFactory.Exceptions.InvalidDeriveOperationException.NotFoundRuleForFactsSet">
@@ -634,6 +640,55 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:FactFactory.Facts.NotContainedFact`1">
+            <summary>
+            Information about a fact that is not contained in the container at the time of the function call <see cref="M:FactFactory.Interfaces.IFactFactory`4.Derive"/>
+            </summary>
+        </member>
+        <member name="P:FactFactory.Facts.NotContainedFact`1.Value">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Facts.NotContainedFact`1.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:FactFactory.Facts.NotContainedFact`1.GetFactInfoNotContained``1">
+            <inheritdoc />
+        </member>
+        <member name="T:FactFactory.Facts.NotContainedFactBase">
+            <summary>
+            Information about a fact that is not contained in the container at the time of the function call <see cref="M:FactFactory.Interfaces.IFactFactory`4.Derive"/>
+            </summary>
+        </member>
+        <member name="M:FactFactory.Facts.NotContainedFactBase.#ctor(FactFactory.Interfaces.IFactInfo)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="fact"></param>
+        </member>
+        <member name="M:FactFactory.Facts.NotContainedFactBase.GetFactInfoNotContained``1">
+            <summary>
+            Return information about a fact not contained in the container
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Facts.NotContainedFactBase.IsFactContained``1(``0)">
+            <summary>
+            Is the fact contained in the container
+            </summary>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Facts.NotContainedFactBase.GetInstance``1">
+            <summary>
+            Get instace
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
+        </member>
         <member name="T:FactFactory.Interfaces.IFact">
             <summary>
             Fact interface
@@ -742,6 +797,19 @@
             <param name="container">container</param>
             <returns></returns>
         </member>
+        <member name="M:FactFactory.Interfaces.IFactInfo.IsFactType``1">
+            <summary>
+            Is it possible to convert a fact type to a <typeparamref name="TFact"/>
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactInfo.GetNotContainedFact">
+            <summary>
+            Return fact. The current fact is not contained in the container.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:FactFactory.Interfaces.IFactRule">
             <summary>
             Rule of fact derivation
@@ -777,6 +845,19 @@
             </summary>
             <typeparam name="TFactRule"></typeparam>
             <param name="factRule"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FactFactory.Interfaces.INotContainedFact">
+            <summary>
+            Information about a fact that is not contained in the container at the time of the function call <see cref="M:FactFactory.Interfaces.IFactFactory`4.Derive"/>
+            </summary>
+        </member>
+        <member name="M:FactFactory.Interfaces.INotContainedFact.IsFactContained``1(``0)">
+            <summary>
+            Is the fact contained in the container
+            </summary>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="container"></param>
             <returns></returns>
         </member>
         <member name="T:FactFactory.Interfaces.IWantAction">
