@@ -148,7 +148,7 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        //[Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] Derived tow facts")]
         public void DerivedTwoFactsTestCase()

@@ -93,6 +93,9 @@
         <member name="M:FactFactory.Entities.FactRule.Compare``1(``0)">
             <inheritdoc />
         </member>
+        <member name="M:FactFactory.Entities.FactRule.ToString">
+            <inheritdoc />
+        </member>
         <member name="T:FactFactory.Entities.FactRuleCollection">
             <summary>
             Collection fo <see cref="T:FactFactory.Entities.FactRule"/>
@@ -428,6 +431,9 @@
         <member name="M:FactFactory.Entities.WantAction.Invoke``1(``0)">
             <inheritdoc />
         </member>
+        <member name="M:FactFactory.Entities.WantAction.ToString">
+            <inheritdoc />
+        </member>
         <member name="T:FactFactory.Exceptions.FactNotFoundException`1">
             <summary>
             Fact not found error
@@ -505,6 +511,16 @@
             </summary>
             <param name="wantFact">derive fact</param>
             <param name="rules">rule set</param>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`4.SyncComputedNodeForLevelTreeAndCheckGoneRoot(FactFactory.Entities.FactRuleTree,System.Int32,System.Collections.Generic.List{FactFactory.Entities.FactRuleNode})">
+            <summary>
+            Synchronizes the level of nodes. Searches for finished nodes and removes them from the level. 
+            Returns the truth if, invoking itself, the method has passed the root of the tree
+            </summary>
+            <param name="factRuleTree"></param>
+            <param name="level"></param>
+            <param name="computedNodes"></param>
             <returns></returns>
         </member>
         <member name="M:FactFactory.FactFactoryBase`4.Derive">

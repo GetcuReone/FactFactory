@@ -69,5 +69,11 @@ namespace FactFactory.Entities
                 return true;
             }
         }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"({string.Join(", ", InputFactInfos.Select(f => f.FactName).ToList())}) => ({OutputFactInfo.FactName})";
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace FactFactory.Entities
 {
@@ -31,6 +32,12 @@ namespace FactFactory.Entities
         public void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer
         {
             _action(container);
+        }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"({string.Join(", ", InputFacts.Select(f => f.FactName).ToList())})";
         }
     }
 }
