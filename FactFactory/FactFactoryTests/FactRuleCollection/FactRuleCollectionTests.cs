@@ -1,4 +1,5 @@
-﻿using FactFactory.Interfaces;
+﻿using FactFactory.Facts;
+using FactFactory.Interfaces;
 using FactFactoryTests.CommonFacts;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -580,6 +581,19 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule already contains", _ =>
                 {
                     return ExpectedException<ArgumentException>(() => Collection.Add(() => new Input10Fact(11)));
+                })
+                .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
+        }
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][rule][negative][coolection] add a rule with a NotContained on the output")]
+        public void AddRuleWithNotContainedOutTestCase()
+        {
+            GivenEmpty()
+                .When("Add rule already contains", _ =>
+                {
+                    return ExpectedException<ArgumentException>(() => Collection.Add(() => new NotContainedFact<Input10Fact>()));
                 })
                 .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
         }
