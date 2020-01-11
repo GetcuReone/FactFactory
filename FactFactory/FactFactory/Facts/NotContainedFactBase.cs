@@ -1,5 +1,4 @@
 ﻿using FactFactory.Interfaces;
-using System.Linq;
 
 namespace FactFactory.Facts
 {
@@ -31,7 +30,7 @@ namespace FactFactory.Facts
         /// <returns></returns>
         public virtual bool IsFactContained<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer
         {
-            return container.All(fact => !Value.Compare(fact.GetFactInfo()));
+            return Value.ContainsContainer(container);
         }
 
         /// <summary>

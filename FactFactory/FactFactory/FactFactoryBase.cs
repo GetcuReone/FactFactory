@@ -274,17 +274,21 @@ namespace FactFactory
                         {
                             FactRuleNode node = lastLevel[j];
 
-                            foreach(var notContainedFactInfo in node.FactRule.InputFactInfos.Where(fact => fact.IsFactType<INotContainedFact>()))
+                            List<IFactInfo> needFacts = node.FactRule.InputFactInfos
+                                .Where(fact => !fact.ContainsContainer(container) && excludeFacts.All(exF => !exF.Compare(fact)))
+                                .ToList();
+
+                            foreach (var notContainedFactInfo in needFacts.Where(fact => fact.IsFactType<INotContainedFact>()).ToList())
                             {
                                 INotContainedFact notContainedFact = notContainedFactInfo.GetNotContainedFact();
 
                                 if (container.All(fact => !notContainedFact.IsFactContained(container)))
+                                {
                                     container.Add(notContainedFact);
-                            }
+                                    needFacts.Remove(notContainedFactInfo);
+                                }
 
-                            List<IFactInfo> needFacts = node.FactRule.InputFactInfos
-                                .Where(fact => !fact.ContainsContainer(container) && excludeFacts.All(exF => !exF.Compare(fact)))
-                                .ToList();
+                            }
 
                             // If the rule can be calculated from the parameters in the container, then add the node to the list of complete
                             if (needFacts.IsNullOrEmpty())

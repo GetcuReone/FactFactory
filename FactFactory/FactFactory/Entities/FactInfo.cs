@@ -1,5 +1,6 @@
 ﻿using FactFactory.Facts;
 using FactFactory.Interfaces;
+using System;
 
 namespace FactFactory.Entities
 {
@@ -26,13 +27,14 @@ namespace FactFactory.Entities
         /// <inheritdoc />
         public INotContainedFact GetNotContainedFact()
         {
-            return new NotContainedFact<TFact>();
+            return (INotContainedFact) Activator.CreateInstance(typeof(TFact));
         }
 
         /// <inheritdoc />
         public bool IsFactType<TFact1>() where TFact1 : IFact
         {
-            return Compare(new FactInfo<TFact1>());
+            bool result = typeof(TFact1).IsAssignableFrom(typeof(TFact));
+            return result;
         }
     }
 }

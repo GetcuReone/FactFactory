@@ -220,7 +220,7 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] Derivation of only necessary facts")]
-        public void DerivationOnlyNecessaryFacts()
+        public void DerivationOnlyNecessaryFactsTestCase()
         {
             int counter = 0;
 
@@ -265,6 +265,24 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Derive facts", FactFactory.DeriveAndReturn<Input1Fact>)
                 .Then("Check result", f => Assert.AreEqual(5, counter, "It had to work out 5 rules"));
+        }
+
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][factory] Rule challenge with fact NotContained")]
+        public void RunRuleWithInputNotContainedFactTestCase()
+        {
+            int value = 24;
+
+            Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
+                .And("Add rule with input NotContainedFact", _ => FactFactory.Rules.Add((NotContainedFact<Input1Fact> f) => new Input1Fact(value)))
+                .When("Derive fact", _ => FactFactory.DeriveAndReturn<Input1Fact>())
+                .Then("Check result", fact =>
+                {
+                    Assert.IsNotNull(fact, "fact cannot be null");
+                    Assert.AreEqual(value, fact.Value, "The fact is derived incorrectly");
+                });
         }
     }
 }
