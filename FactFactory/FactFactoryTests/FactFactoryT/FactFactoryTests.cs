@@ -181,7 +181,7 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check error", ex => Assert.IsNotNull(ex, "error cannot be null"));
         }
 
-        //[Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] rules cannot be empty")]
         public void ChoosingShortestWayTestCase()
