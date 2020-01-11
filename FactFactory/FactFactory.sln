@@ -5,13 +5,15 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NugetProject", "NugetProject\NugetProject.csproj", "{A9BCAFB7-CA1C-4D6A-80A5-73B127DE3E60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactFactory", "FactFactory\FactFactory.csproj", "{9BDC7A05-6967-4845-AB7F-3767136ED98F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory", "FactFactory\FactFactory.csproj", "{9BDC7A05-6967-4845-AB7F-3767136ED98F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FactFactoryFolder", "FactFactoryFolder", "{05F728D2-803F-4056-82AB-1262419DDD08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactFactoryTests", "FactFactoryTests\FactFactoryTests.csproj", "{E617090E-FC37-4540-862D-07A0ED4CEFBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactoryTests", "FactFactoryTests\FactFactoryTests.csproj", "{E617090E-FC37-4540-862D-07A0ED4CEFBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtTestAdapter", "JwtTestAdapter\JwtTestAdapter.csproj", "{63776A3E-3A9A-4FE3-B83E-EFE6875EB55E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtTestAdapter", "JwtTestAdapter\JwtTestAdapter.csproj", "{63776A3E-3A9A-4FE3-B83E-EFE6875EB55E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrostructTests", "InfrostructTests\InfrostructTests.csproj", "{385C9CF4-7BD2-4F74-A64B-8B6F1ED9114C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{63776A3E-3A9A-4FE3-B83E-EFE6875EB55E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63776A3E-3A9A-4FE3-B83E-EFE6875EB55E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63776A3E-3A9A-4FE3-B83E-EFE6875EB55E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{385C9CF4-7BD2-4F74-A64B-8B6F1ED9114C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{385C9CF4-7BD2-4F74-A64B-8B6F1ED9114C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{385C9CF4-7BD2-4F74-A64B-8B6F1ED9114C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{385C9CF4-7BD2-4F74-A64B-8B6F1ED9114C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

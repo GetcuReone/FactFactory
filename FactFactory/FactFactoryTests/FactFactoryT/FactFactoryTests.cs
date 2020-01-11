@@ -187,7 +187,7 @@ namespace FactFactoryTests.FactFactoryT
         public void ChoosingShortestWayTestCase()
         {
             Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
-                .And("Add main rule", () => FactFactory.Container.Add(new Input16Fact(0)))
+                .And("Add fact", () => FactFactory.Container.Add(new Input16Fact(0)))
                 .And("Add main rule", () => FactFactory.Rules.Add((Input2Fact f) => new Input1Fact(f.Value + 1)))
                 .And("Add 1 way", () =>
                 {
@@ -215,6 +215,56 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Derive facts", FactFactory.DeriveAndReturn<Input1Fact>)
                 .Then("Check result", f => Assert.AreEqual(5, f.Value, "Another number of rules worked"));
+        }
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][factory] Derivation of only necessary facts")]
+        public void DerivationOnlyNecessaryFacts()
+        {
+            int counter = 0;
+
+            Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
+                .And("Add fact Input16Fact", () => FactFactory.Container.Add(new Input16Fact(0)))
+                .And("Add fact Input15Fact", () => FactFactory.Container.Add(new Input15Fact(0)))
+                .And("Add main rule", () => FactFactory.Rules.Add((Input2Fact f) => 
+                {
+                    counter++;
+                    return new Input1Fact(f.Value + 1);
+                }))
+                .And("Add way", () =>
+                {
+                    FactFactory.Rules.Add((Input8Fact f) => 
+                    {
+                        counter++;
+                        return new Input2Fact(f.Value + 1);
+                    });
+                    FactFactory.Rules.Add((Input9Fact f) => 
+                    {
+                        counter++;
+                        return new Input8Fact(f.Value + 1);
+                    });
+                    FactFactory.Rules.Add((Input10Fact f) => 
+                    {
+                        counter++;
+                        return new Input9Fact(f.Value + 1);
+                    });
+                    FactFactory.Rules.Add((Input16Fact f) => 
+                    {
+                        counter++;
+                        return new Input10Fact(f.Value + 1);
+                    });
+                })
+                .And("Add another rule to output the penultimate fact", () =>
+                {
+                    FactFactory.Rules.Add((Input8Fact f) =>
+                    {
+                        counter++;
+                        return new Input10Fact(f.Value + 1);
+                    });
+                })
+                .When("Derive facts", FactFactory.DeriveAndReturn<Input1Fact>)
+                .Then("Check result", f => Assert.AreEqual(5, counter, "It had to work out 5 rules"));
         }
     }
 }
