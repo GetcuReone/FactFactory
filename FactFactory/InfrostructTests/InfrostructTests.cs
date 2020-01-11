@@ -14,12 +14,18 @@ namespace InfrostructTests
         [TestMethod]
         public void AllHaveTimeoutTestCase()
         {
-            List<string> assemblyNames = new List<string>
+            string mode = string.Empty;
+#if DEBUG
+            mode = "Debug";
+#else
+            mode = Release;
+#endif
+            List<string> assemblyPaths = new List<string>
             {
-                "FactFactoryTests",
+                @"..\..\..\..\FactFactoryTests\bin\" + mode + @"\netcoreapp3.0\FactFactoryTests.dll",
             };
 
-            Given("We get all the test builds", () => assemblyNames.ConvertAll(name => Assembly.LoadFrom(name + ".dll")))
+            Given("We get all the test builds", () => assemblyPaths.ConvertAll(name => Assembly.LoadFrom(name)))
                 .And("We get all types", assemblies => assemblies.SelectMany(assembly => assembly.GetTypes()).ToList())
                 .And("Get all classes with tests", types => types.Where(type => type.GetCustomAttribute(typeof(TestClassAttribute)) != null).ToList())
                 .When("Return all test methods", classes =>
