@@ -113,10 +113,13 @@ namespace FactFactory
             {
                 foreach (FactRuleNode parentNode in keyValuePair.Value)
                 {
-                    foreach (var removeNode in parentNode.Childs.Where(n => n.FactRule.OutputFactInfo.Compare(keyValuePair.Key.FactRule.OutputFactInfo)))
+                    if (parentNode == null)
+                        continue;
+
+                    foreach (var removeNode in parentNode.Childs.Where(n => n.FactRule.OutputFactInfo.Compare(keyValuePair.Key.FactRule.OutputFactInfo)).ToList())
                     {
-                        parentNode.Childs.Remove(parentNode);
-                        if (levelNodes.IndexOf(parentNode) != -1)
+                        parentNode.Childs.Remove(removeNode);
+                        if (levelNodes.IndexOf(removeNode) != -1)
                             levelNodes.Remove(removeNode);
                     }
                     parentNode.Childs.Add(keyValuePair.Key);
@@ -158,15 +161,20 @@ namespace FactFactory
                 return true;
 
             List<FactRuleNode> currentLevel = factRuleTree.Levels[level];
-            List<FactRuleNode> computedNodesInCurrentLevel = currentLevel
-                .Where(node => node.FactRule.InputFactInfos
-                    .All(f => computedNodes.Any(n => n.FactRule.OutputFactInfo.Compare(f))))
-                .ToList();
+            List<FactRuleNode> computedNodesInCurrentLevel = new List<FactRuleNode>();
+
+            foreach(var node in currentLevel)
+            {
+                if (node.FactRule.InputFactInfos.Count > 0 && node.FactRule.InputFactInfos.All(f => computedNodes.Any(n => n.FactRule.OutputFactInfo.Compare(f))))
+                    computedNodesInCurrentLevel.Add(node);
+                else if (computedNodes.Any(n => n.FactRule.Compare(node.FactRule)))
+                    computedNodesInCurrentLevel.Add(node);
+            }
 
             if (!computedNodesInCurrentLevel.IsNullOrEmpty())
             {
                 SyncComputedNodes(currentLevel, computedNodesInCurrentLevel);
-                computedNodes.AddRange(computedNodesInCurrentLevel);
+                computedNodes.AddRange(computedNodesInCurrentLevel.Where(node => computedNodes.All(n => !n.FactRule.Compare(node.FactRule))));
                 return SyncComputedNodeForLevelTreeAndCheckGoneRoot(factRuleTree, level - 1, computedNodes);
             }
             else
@@ -262,7 +270,7 @@ namespace FactFactory
                         List<FactRuleNode> currentLevelCompletedNodes = new List<FactRuleNode>();
                         bool cannotDerived = false;
 
-                        for (int j = lastLevel.Count - 1; j >= 0; j--)
+                        for (int j = 0; j < lastLevel.Count; j++)
                         {
                             FactRuleNode node = lastLevel[j];
 
@@ -273,13 +281,9 @@ namespace FactFactory
                             // If the rule can be calculated from the parameters in the container, then add the node to the list of complete
                             if (needFacts.IsNullOrEmpty())
                             {
-                                lastLevel.RemoveAll(n => n.FactRule.OutputFactInfo.Compare(node.FactRule.OutputFactInfo));
                                 allCompletedNodes.Add(node);
                                 currentLevelCompletedNodes.Add(node);
 
-                                SyncComputedNodes(lastLevel, new List<FactRuleNode> { node });
-
-                                j = lastLevel.Count;
                                 continue;
                             }
 
@@ -321,6 +325,8 @@ namespace FactFactory
                                 {
                                     // Is there a neighboring node capable of deriving this fact
                                     cannotDerived = RemoveRuleNodeAndCheckGoneRoot(factRuleTree, lastlevelNumber, node);
+                                    j--;
+
                                     notFoundRuleForFacts.Add(needFact);
                                 }
                             }
@@ -331,10 +337,22 @@ namespace FactFactory
                             notFoundRuleForFactsSet.Add(notFoundRuleForFacts);
                             factRuleTrees.Remove(factRuleTree);
                         }
-                        else if (!nextNodes.IsNullOrEmpty())
+                        else if (currentLevelCompletedNodes.Count > 0)
                         {
-                            if (currentLevelCompletedNodes.Count > 0)
+                            if (SyncComputedNodeForLevelTreeAndCheckGoneRoot(factRuleTree, lastlevelNumber, currentLevelCompletedNodes))
+                            {
+                                computedTrees.Add(factRuleTree);
+                                isDerive = true;
+                                break; 
+                            }
+                            else if (nextNodes.Count > 0)
+                            {
                                 SyncComputedNodes(nextNodes, currentLevelCompletedNodes);
+                                factRuleTree.Levels.Add(nextNodes);
+                            }
+                        }
+                        else if (nextNodes.Count > 0)
+                        {
                             factRuleTree.Levels.Add(nextNodes);
                         }
                         else

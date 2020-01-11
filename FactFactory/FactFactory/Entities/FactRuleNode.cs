@@ -17,7 +17,7 @@ namespace FactFactory.Entities
             foreach (FactRuleNode child in Childs)
                 child.Derive(factory, container);
 
-            if (!FactRule.OutputFactInfo.ContainsContainer(container))
+            if (!FactRule.OutputFactInfo.ContainsContainer(container) && FactRule.CanDerive(container))
                 container.Add(
                     factory.CreateObject(ct => FactRule.Derive(container), container));
         }

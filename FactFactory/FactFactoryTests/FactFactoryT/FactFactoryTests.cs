@@ -126,7 +126,7 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        //[Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory][negative] Want a fact that cannot be derived")]
         public void CannotDerivedOneFactFromOne2TestCase()
@@ -143,12 +143,12 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.IsNotNull(ex.NotFoundRuleForFactsSet[0], "item from NotFoundRuleForFactsSet cannot be null");
                     Assert.AreEqual(2, ex.NotFoundRuleForFactsSet[0].Count, "there must be one set of necessary facts");
 
-                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][0].Compare(new FactFactory.Entities.FactInfo<Input5Fact>()), "type fact must be Input5Fact");
-                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][1].Compare(new FactFactory.Entities.FactInfo<Input3Fact>()), "type fact must be Input3Fact");
+                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][0].Compare(new FactFactory.Entities.FactInfo<Input3Fact>()), "type fact must be Input3Fact");
+                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][1].Compare(new FactFactory.Entities.FactInfo<Input5Fact>()), "type fact must be Input5Fact");
                 });
         }
 
-        //[Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] Derived tow facts")]
         public void DerivedTwoFactsTestCase()
@@ -179,6 +179,42 @@ namespace FactFactoryTests.FactFactoryT
             Given("Set rules", () => new Env.FactFactoryWithoutRules())
                 .When("Derive facts", factory => ExpectedException<InvalidOperationException>(() => factory.DeriveAndReturn<Input10Fact>()))
                 .Then("Check error", ex => Assert.IsNotNull(ex, "error cannot be null"));
+        }
+
+        //[Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][factory] rules cannot be empty")]
+        public void ChoosingShortestWayTestCase()
+        {
+            Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
+                .And("Add main rule", () => FactFactory.Container.Add(new Input16Fact(0)))
+                .And("Add main rule", () => FactFactory.Rules.Add((Input2Fact f) => new Input1Fact(f.Value + 1)))
+                .And("Add 1 way", () =>
+                {
+                    FactFactory.Rules.Add((Input3Fact f) => new Input2Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input4Fact f) => new Input3Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input5Fact f) => new Input4Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input6Fact f) => new Input5Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input7Fact f) => new Input6Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input16Fact f) => new Input7Fact(f.Value + 1));
+                })
+                .And("Add 2 way", () =>
+                {
+                    FactFactory.Rules.Add((Input8Fact f) => new Input2Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input9Fact f) => new Input8Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input10Fact f) => new Input9Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input16Fact f) => new Input10Fact(f.Value + 1));
+                })
+                .And("Add 3 way", () =>
+                {
+                    FactFactory.Rules.Add((Input11Fact f) => new Input2Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input12Fact f) => new Input11Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input13Fact f) => new Input12Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input14Fact f) => new Input13Fact(f.Value + 1));
+                    FactFactory.Rules.Add((Input16Fact f) => new Input14Fact(f.Value + 1));
+                })
+                .When("Derive facts", FactFactory.DeriveAndReturn<Input1Fact>)
+                .Then("Check result", f => Assert.AreEqual(5, f.Value, "Another number of rules worked"));
         }
     }
 }

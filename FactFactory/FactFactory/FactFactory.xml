@@ -469,6 +469,12 @@
         <member name="P:FactFactory.FactFactory.Rules">
             <inheritdoc />
         </member>
+        <member name="M:FactFactory.FactFactory.Derive">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.FactFactory.GetRulesForDerive(FactFactory.Entities.WantAction)">
+            <inheritdoc />
+        </member>
         <member name="T:FactFactory.FactFactoryBase`4">
             <summary>
             Base class for fact factory
