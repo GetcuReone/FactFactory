@@ -55,6 +55,8 @@ namespace FactFactory.Entities
         /// <inheritdoc />
         public void Add(FactRule item)
         {
+            if (item.OutputFactInfo.IsFactType<INotContainedFact>())
+                throw new ArgumentException($"A rule cannot return a {item.OutputFactInfo.FactName}");
             if (Contains(item))
                 throw new ArgumentException("This rule is already in the rule collection");
 
