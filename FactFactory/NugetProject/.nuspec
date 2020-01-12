@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>FactFactory</id>
-    <version>0.0.0</version>
+    <version>0.0.1</version>
     <authors>Getcu Reone</authors>
     <owners>GetcuReone</owners>
     <!--<projectUrl>https://github.com/GetcuReone/FactFactory/wiki</projectUrl>-->
@@ -32,7 +32,7 @@
   </metadata>
 
   <files>
-    <file src="bin\Release\netstandard2.0\FactFactory.dll" target="lib\netstandard2.0" />
-    <file src="bin\Release\netstandard2.0\FactFactory.xml" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\FactFactory**dll" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\FactFactory**xml" target="lib\netstandard2.0" />
   </files>
 </package>
