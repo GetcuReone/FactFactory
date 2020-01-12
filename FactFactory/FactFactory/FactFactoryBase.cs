@@ -14,10 +14,10 @@ namespace FactFactory
     /// Base class for fact factory
     /// </summary>
     public abstract class FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IFactFactory<TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
-        where TFactContainer : IFactContainer
-        where TFactRule : IFactRule
-        where TFactRuleCollection : IList<TFactRule>
-        where TWantAction : IWantAction
+        where TFactContainer : class, IFactContainer
+        where TFactRule : class, IFactRule
+        where TFactRuleCollection : class, IList<TFactRule>
+        where TWantAction : class, IWantAction
     {
         private readonly List<TWantAction> _wantActions = new List<TWantAction>();
 
@@ -441,9 +441,9 @@ namespace FactFactory
     /// Base class for fact factory
     /// </summary>
     public abstract class FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection> : FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection, WantAction>
-        where TFactContainer : IFactContainer
-        where TFactRule : IFactRule
-        where TFactRuleCollection : IList<TFactRule>
+        where TFactContainer : class, IFactContainer
+        where TFactRule : class, IFactRule
+        where TFactRuleCollection : class, IList<TFactRule>
     {
         /// <inheritdoc />
         public override TFact DeriveAndReturn<TFact>()

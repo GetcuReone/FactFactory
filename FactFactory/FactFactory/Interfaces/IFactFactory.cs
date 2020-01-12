@@ -7,10 +7,10 @@ namespace FactFactory.Interfaces
     /// Fact factory interface
     /// </summary>
     public interface IFactFactory<TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IAbstractFactory
-        where TFactContainer : IFactContainer
-        where TFactRule: IFactRule
-        where TFactRuleCollection : IList<TFactRule>
-        where TWantAction : IWantAction
+        where TFactContainer : class, IFactContainer
+        where TFactRule : class, IFactRule
+        where TFactRuleCollection : class, IList<TFactRule>
+        where TWantAction : class, IWantAction
     {
         /// <summary>
         /// Fact container
