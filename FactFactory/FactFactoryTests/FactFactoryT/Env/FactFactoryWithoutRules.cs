@@ -6,7 +6,7 @@ namespace FactFactoryTests.FactFactoryT.Env
 {
     internal sealed class FactFactoryWithoutRules : FactFactory.FactFactory
     {
-        public override IEnumerable<FactFactory.Entities.FactRule> GetRulesForDerive(WAction wantAction)
+        protected override IReadOnlyCollection<FactFactory.Entities.FactRule> GetRulesForDerive(WAction wantAction)
         {
             return default;
         }

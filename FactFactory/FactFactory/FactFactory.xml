@@ -481,6 +481,9 @@
         <member name="M:FactFactory.FactFactory.GetRulesForDerive(FactFactory.Entities.WantAction)">
             <inheritdoc />
         </member>
+        <member name="M:FactFactory.FactFactory.GetCopyFactContainer">
+            <inheritdoc />
+        </member>
         <member name="T:FactFactory.FactFactoryBase`4">
             <summary>
             Base class for fact factory
@@ -511,11 +514,37 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
+        <member name="M:FactFactory.FactFactoryBase`4.Derive">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`4.WantFact(`3)">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`4.DeriveAndReturn``1">
+            <summary>
+            Derive a fact from the rules and return it
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:FactFactory.FactFactoryBase`4.GetRulesForDerive(`3)">
             <summary>
             Return a list with the appropriate rules at the time of the derive of the facts
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`4.GetCopyFactContainer">
+            <summary>
+            Get copy fact container
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`4.DeriveFact(`1,`0)">
+            <summary>
+            Derive fact
+            </summary>
+            <param name="rule">rule for calculating the fact</param>
+            <param name="container">fact container</param>
         </member>
         <member name="M:FactFactory.FactFactoryBase`4.GetFactRuleTrees(FactFactory.Interfaces.IFactInfo,System.Collections.Generic.IEnumerable{`1})">
             <summary>
@@ -534,15 +563,6 @@
             <param name="level"></param>
             <param name="computedNodes"></param>
             <returns></returns>
-        </member>
-        <member name="M:FactFactory.FactFactoryBase`4.Derive">
-            <inheritdoc />
-        </member>
-        <member name="M:FactFactory.FactFactoryBase`4.DeriveAndReturn``1">
-            <inheritdoc />
-        </member>
-        <member name="M:FactFactory.FactFactoryBase`4.WantFact(`3)">
-            <inheritdoc />
         </member>
         <member name="T:FactFactory.FactFactoryBase`3">
             <summary>
@@ -759,13 +779,6 @@
             <summary>
             Derive the facts
             </summary>
-        </member>
-        <member name="M:FactFactory.Interfaces.IFactFactory`4.DeriveAndReturn``1">
-            <summary>
-            Derive a fact from the rules and return it
-            </summary>
-            <typeparam name="TFact"></typeparam>
-            <returns></returns>
         </member>
         <member name="M:FactFactory.Interfaces.IFactFactory`4.WantFact(`3)">
             <summary>

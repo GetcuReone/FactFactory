@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using FactFactory.Entities;
 
 namespace FactFactory
@@ -6,7 +7,7 @@ namespace FactFactory
     /// <inheritdoc />
     public class FactFactory : FactFactoryBase<FactContainer, FactRule, FactRuleCollection>
     {
-        private FactRuleCollection _tempRule;
+        private ReadOnlyCollection<FactRule> _tempRule;
         /// <inheritdoc />
         public override FactContainer Container { get; } = new FactContainer();
 
@@ -16,18 +17,23 @@ namespace FactFactory
         /// <inheritdoc />
         public override void Derive()
         {
-            _tempRule = new FactRuleCollection(Rules);
+            _tempRule = new ReadOnlyCollection<FactRule>(Rules);
 
             base.Derive();
 
-            _tempRule.Clear();
             _tempRule = null;
         }
 
         /// <inheritdoc />
-        public override IEnumerable<FactRule> GetRulesForDerive(WantAction wantAction)
+        protected override IReadOnlyCollection<FactRule> GetRulesForDerive(WantAction wantAction)
         {
             return _tempRule;
+        }
+
+        /// <inheritdoc />
+        protected override FactContainer GetCopyFactContainer()
+        {
+            return new FactContainer(Container);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace FactFactory
         /// <summary>
         /// Get facts available only in rules
         /// </summary>
-        public virtual IEnumerable<IFactInfo> GetFactInfosAvailableOnlyRules()
+        protected virtual IEnumerable<IFactInfo> GetFactInfosAvailableOnlyRules()
         {
             return new List<IFactInfo>()
             {
@@ -59,138 +59,14 @@ namespace FactFactory
                 : throw new ArgumentNullException(nameof(factoryFunc));
         }
 
-        /// <summary>
-        /// Return a list with the appropriate rules at the time of the derive of the facts
-        /// </summary>
-        /// <returns></returns>
-        public virtual IEnumerable<TFactRule> GetRulesForDerive(TWantAction wantAction)
-        {
-            return new List<TFactRule>(Rules);
-        }
-
-        /// <summary>
-        /// Returns trees. Their number is equal to the number of rules that can derive the necessary <paramref name="wantFact"/>.
-        /// </summary>
-        /// <param name="wantFact">derive fact</param>
-        /// <param name="rules">rule set</param>
-        /// <returns></returns>
-        private List<FactRuleTree> GetFactRuleTrees(IFactInfo wantFact, IEnumerable<TFactRule> rules)
-        {
-            if (rules == null)
-                throw new InvalidOperationException("Rules cannot be null");
-
-            List<FactRuleTree> factRuleTrees = rules?.Where(rule => rule.OutputFactInfo.Compare(wantFact))
-                    .Select(rule =>
-                    {
-                        var tree = new FactRuleTree 
-                        { 
-                            Root = new FactRuleNode { FactRule = rule } 
-                        };
-                        tree.Levels.Add(new List<FactRuleNode> { tree.Root });
-                        return tree;
-                    })
-                    .ToList();
-
-            if (factRuleTrees.IsNullOrEmpty())
-                throw new InvalidOperationException($"There is no rule that can deduce a {wantFact.FactName}");
-
-            return factRuleTrees;
-        }
-
-        private void SyncComputedNodes(List<FactRuleNode> levelNodes, List<FactRuleNode> computedNodes)
-        {
-            // value - parents, key - node matching on child
-            Dictionary<FactRuleNode, List<FactRuleNode>> keyValuePairs = new Dictionary<FactRuleNode, List<FactRuleNode>>();
-            foreach (var computedNode in computedNodes.Distinct())
-            {
-                List<FactRuleNode> parentNodes = levelNodes
-                    .Where(n => n.FactRule.OutputFactInfo.Compare(computedNode.FactRule.OutputFactInfo))
-                    .Select(n => n.Parent).ToList();
-                keyValuePairs.Add(computedNode, parentNodes);
-            }
-
-            foreach (KeyValuePair<FactRuleNode, List<FactRuleNode>> keyValuePair in keyValuePairs)
-            {
-                foreach (FactRuleNode parentNode in keyValuePair.Value)
-                {
-                    if (parentNode == null)
-                        continue;
-
-                    foreach (var removeNode in parentNode.Childs.Where(n => n.FactRule.OutputFactInfo.Compare(keyValuePair.Key.FactRule.OutputFactInfo)).ToList())
-                    {
-                        parentNode.Childs.Remove(removeNode);
-                        if (levelNodes.IndexOf(removeNode) != -1)
-                            levelNodes.Remove(removeNode);
-                    }
-                    parentNode.Childs.Add(keyValuePair.Key);
-                }
-            }
-        }
-
-        private bool RemoveRuleNodeAndCheckGoneRoot(FactRuleTree factRuleTree, int level, FactRuleNode removeNode)
-        {
-
-            if (level == 0)
-            {
-                factRuleTree.Levels[level].Remove(removeNode);
-                return true;
-            }
-
-            factRuleTree.Levels[level].Remove(removeNode);
-            FactRuleNode parent = removeNode.Parent;
-            parent.Childs.Remove(removeNode);
-
-            // If the node has a child node that can calculate this fact
-            if (parent.Childs.Any(node => node.FactRule.OutputFactInfo.Compare(removeNode.FactRule.OutputFactInfo)))
-                return false;
-            else
-                return RemoveRuleNodeAndCheckGoneRoot(factRuleTree, level - 1, parent);
-        }
-
-        /// <summary>
-        /// Synchronizes the level of nodes. Searches for finished nodes and removes them from the level. 
-        /// Returns the truth if, invoking itself, the method has passed the root of the tree
-        /// </summary>
-        /// <param name="factRuleTree"></param>
-        /// <param name="level"></param>
-        /// <param name="computedNodes"></param>
-        /// <returns></returns>
-        private bool SyncComputedNodeForLevelTreeAndCheckGoneRoot(FactRuleTree factRuleTree, int level, List<FactRuleNode> computedNodes)
-        {
-            if (level < 0)
-                return true;
-
-            List<FactRuleNode> currentLevel = factRuleTree.Levels[level];
-            List<FactRuleNode> computedNodesInCurrentLevel = new List<FactRuleNode>();
-
-            foreach(var node in currentLevel)
-            {
-                if (node.FactRule.InputFactInfos.Count > 0 && node.FactRule.InputFactInfos.All(f => computedNodes.Any(n => n.FactRule.OutputFactInfo.Compare(f))))
-                    computedNodesInCurrentLevel.Add(node);
-                else if (computedNodes.Any(n => n.FactRule.Compare(node.FactRule)))
-                    computedNodesInCurrentLevel.Add(node);
-            }
-
-            if (!computedNodesInCurrentLevel.IsNullOrEmpty())
-            {
-                SyncComputedNodes(currentLevel, computedNodesInCurrentLevel);
-                computedNodes.AddRange(computedNodesInCurrentLevel.Where(node => computedNodes.All(n => !n.FactRule.Compare(node.FactRule))));
-                return SyncComputedNodeForLevelTreeAndCheckGoneRoot(factRuleTree, level - 1, computedNodes);
-            }
-            else
-                return false;
-        }
-
         /// <inheritdoc />
         public virtual void Derive()
         {
-            var container = new FactContainer(Container) 
-            { 
-                new DateOfDeriveFact(DateTime.Now),
-                new DerivingCurrentFactsFact(
-                    new ReadOnlyCollection<IFactInfo>(
-                        _wantActions.SelectMany(action => action.InputFacts).ToList()))
-            };
+            TFactContainer container = GetCopyFactContainer();
+            container.Add(new DateOfDeriveFact(DateTime.Now));
+            container.Add(new DerivingCurrentFactsFact(
+                new ReadOnlyCollection<IFactInfo>(
+                    _wantActions.SelectMany(action => action.InputFacts).ToList())));
 
             var derivedTrees = new Dictionary<TWantAction, List<FactRuleTree>>();
             var excludeFacts = GetFactInfosAvailableOnlyRules();
@@ -204,7 +80,7 @@ namespace FactFactory
                 container.Add(new CurrentFactsFindingFact(derivedTree.Key.InputFacts.ToList()));
 
                 foreach(var tree in derivedTree.Value)
-                    tree.Root.Derive(this, container);
+                    DeriveNode(tree.Root, container);
 
                 derivedTree.Key.Invoke(container);
 
@@ -213,9 +89,59 @@ namespace FactFactory
             }
         }
 
-        private List<FactRuleTree> DeriveTreesForWantAction(TWantAction wantAction, FactContainer container, IEnumerable<IFactInfo> excludeFacts)
+        /// <inheritdoc />
+        public virtual void WantFact(TWantAction wantAction)
         {
-            IEnumerable<TFactRule> ruleCollection = GetRulesForDerive(wantAction);
+            if (_wantActions.IndexOf(wantAction) != -1)
+                throw new ArgumentException("Action already requested");
+
+            var excludeFacts = GetFactInfosAvailableOnlyRules();
+
+            var excludeFact = wantAction.InputFacts.FirstOrDefault(f => excludeFacts.Any(ef => ef.Compare(f)));
+            if (excludeFact != null)
+                throw new ArgumentException($"The {excludeFact.FactName} is available only for the rules.");
+
+            _wantActions.Add(wantAction);
+        }
+
+        #region methods for derive
+
+        /// <summary>
+        /// Derive a fact from the rules and return it
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <returns></returns>
+        public abstract TFact DeriveAndReturn<TFact>() where TFact : IFact;
+
+        /// <summary>
+        /// Return a list with the appropriate rules at the time of the derive of the facts
+        /// </summary>
+        /// <returns></returns>
+        protected virtual IReadOnlyCollection<TFactRule> GetRulesForDerive(TWantAction wantAction)
+        {
+            return new ReadOnlyCollection<TFactRule>(Rules);
+        }
+
+        /// <summary>
+        /// Get copy fact container
+        /// </summary>
+        /// <returns></returns>
+        protected abstract TFactContainer GetCopyFactContainer();
+
+        /// <summary>
+        /// Derive fact
+        /// </summary>
+        /// <param name="rule">rule for calculating the fact</param>
+        /// <param name="container">fact container</param>
+        protected virtual void DeriveFact(TFactRule rule, TFactContainer container)
+        {
+            if (!rule.OutputFactInfo.ContainsContainer(container))
+                container.Add(CreateObject(ct => rule.Derive(container), container));
+        }
+
+        private List<FactRuleTree> DeriveTreesForWantAction(TWantAction wantAction, TFactContainer container, IEnumerable<IFactInfo> excludeFacts)
+        {
+            IReadOnlyCollection<TFactRule> ruleCollection = GetRulesForDerive(wantAction);
             wantAction.DateOfDerive = DateTime.Now;
             var computedTrees = new List<FactRuleTree>();
 
@@ -355,7 +281,7 @@ namespace FactFactory
                             {
                                 computedTrees.Add(factRuleTree);
                                 isDerive = true;
-                                break; 
+                                break;
                             }
                             else if (nextNodes.Count > 0)
                             {
@@ -383,23 +309,128 @@ namespace FactFactory
             return computedTrees;
         }
 
-        /// <inheritdoc />
-        public abstract TFact DeriveAndReturn<TFact>() where TFact : IFact;
-
-        /// <inheritdoc />
-        public virtual void WantFact(TWantAction wantAction)
+        /// <summary>
+        /// Returns trees. Their number is equal to the number of rules that can derive the necessary <paramref name="wantFact"/>.
+        /// </summary>
+        /// <param name="wantFact">derive fact</param>
+        /// <param name="rules">rule set</param>
+        /// <returns></returns>
+        private List<FactRuleTree> GetFactRuleTrees(IFactInfo wantFact, IEnumerable<TFactRule> rules)
         {
-            if (_wantActions.IndexOf(wantAction) != -1)
-                throw new ArgumentException("Action already requested");
+            if (rules == null)
+                throw new InvalidOperationException("Rules cannot be null");
 
-            var excludeFacts = GetFactInfosAvailableOnlyRules();
+            List<FactRuleTree> factRuleTrees = rules?.Where(rule => rule.OutputFactInfo.Compare(wantFact))
+                    .Select(rule =>
+                    {
+                        var tree = new FactRuleTree
+                        {
+                            Root = new FactRuleNode { FactRule = rule }
+                        };
+                        tree.Levels.Add(new List<FactRuleNode> { tree.Root });
+                        return tree;
+                    })
+                    .ToList();
 
-            var excludeFact = wantAction.InputFacts.FirstOrDefault(f => excludeFacts.Any(ef => ef.Compare(f)));
-            if (excludeFact != null)
-                throw new ArgumentException($"The {excludeFact.FactName} is available only for the rules.");
+            if (factRuleTrees.IsNullOrEmpty())
+                throw new InvalidOperationException($"There is no rule that can deduce a {wantFact.FactName}");
 
-            _wantActions.Add(wantAction);
+            return factRuleTrees;
         }
+
+        private void SyncComputedNodes(List<FactRuleNode> levelNodes, List<FactRuleNode> computedNodes)
+        {
+            // value - parents, key - node matching on child
+            Dictionary<FactRuleNode, List<FactRuleNode>> keyValuePairs = new Dictionary<FactRuleNode, List<FactRuleNode>>();
+            foreach (var computedNode in computedNodes.Distinct())
+            {
+                List<FactRuleNode> parentNodes = levelNodes
+                    .Where(n => n.FactRule.OutputFactInfo.Compare(computedNode.FactRule.OutputFactInfo))
+                    .Select(n => n.Parent).ToList();
+                keyValuePairs.Add(computedNode, parentNodes);
+            }
+
+            foreach (KeyValuePair<FactRuleNode, List<FactRuleNode>> keyValuePair in keyValuePairs)
+            {
+                foreach (FactRuleNode parentNode in keyValuePair.Value)
+                {
+                    if (parentNode == null)
+                        continue;
+
+                    foreach (var removeNode in parentNode.Childs.Where(n => n.FactRule.OutputFactInfo.Compare(keyValuePair.Key.FactRule.OutputFactInfo)).ToList())
+                    {
+                        parentNode.Childs.Remove(removeNode);
+                        if (levelNodes.IndexOf(removeNode) != -1)
+                            levelNodes.Remove(removeNode);
+                    }
+                    parentNode.Childs.Add(keyValuePair.Key);
+                }
+            }
+        }
+
+        private bool RemoveRuleNodeAndCheckGoneRoot(FactRuleTree factRuleTree, int level, FactRuleNode removeNode)
+        {
+
+            if (level == 0)
+            {
+                factRuleTree.Levels[level].Remove(removeNode);
+                return true;
+            }
+
+            factRuleTree.Levels[level].Remove(removeNode);
+            FactRuleNode parent = removeNode.Parent;
+            parent.Childs.Remove(removeNode);
+
+            // If the node has a child node that can calculate this fact
+            if (parent.Childs.Any(node => node.FactRule.OutputFactInfo.Compare(removeNode.FactRule.OutputFactInfo)))
+                return false;
+            else
+                return RemoveRuleNodeAndCheckGoneRoot(factRuleTree, level - 1, parent);
+        }
+
+        /// <summary>
+        /// Synchronizes the level of nodes. Searches for finished nodes and removes them from the level. 
+        /// Returns the truth if, invoking itself, the method has passed the root of the tree
+        /// </summary>
+        /// <param name="factRuleTree"></param>
+        /// <param name="level"></param>
+        /// <param name="computedNodes"></param>
+        /// <returns></returns>
+        private bool SyncComputedNodeForLevelTreeAndCheckGoneRoot(FactRuleTree factRuleTree, int level, List<FactRuleNode> computedNodes)
+        {
+            if (level < 0)
+                return true;
+
+            List<FactRuleNode> currentLevel = factRuleTree.Levels[level];
+            List<FactRuleNode> computedNodesInCurrentLevel = new List<FactRuleNode>();
+
+            foreach (var node in currentLevel)
+            {
+                if (node.FactRule.InputFactInfos.Count > 0 && node.FactRule.InputFactInfos.All(f => computedNodes.Any(n => n.FactRule.OutputFactInfo.Compare(f))))
+                    computedNodesInCurrentLevel.Add(node);
+                else if (computedNodes.Any(n => n.FactRule.Compare(node.FactRule)))
+                    computedNodesInCurrentLevel.Add(node);
+            }
+
+            if (!computedNodesInCurrentLevel.IsNullOrEmpty())
+            {
+                SyncComputedNodes(currentLevel, computedNodesInCurrentLevel);
+                computedNodes.AddRange(computedNodesInCurrentLevel.Where(node => computedNodes.All(n => !n.FactRule.Compare(node.FactRule))));
+                return SyncComputedNodeForLevelTreeAndCheckGoneRoot(factRuleTree, level - 1, computedNodes);
+            }
+            else
+                return false;
+        }
+
+        private void DeriveNode(FactRuleNode node, TFactContainer container)
+        {
+            foreach (FactRuleNode child in node.Childs)
+                DeriveNode(child, container);
+
+            DeriveFact((TFactRule)node.FactRule, container);
+        }
+
+        #endregion
     }
 
     /// <summary>

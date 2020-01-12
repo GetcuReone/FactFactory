@@ -12,16 +12,6 @@ namespace FactFactory.Entities
 
         internal List<FactRuleNode> Childs { get; } = new List<FactRuleNode>();
 
-        internal void Derive(IAbstractFactory factory, IFactContainer container)
-        {
-            foreach (FactRuleNode child in Childs)
-                child.Derive(factory, container);
-
-            if (!FactRule.OutputFactInfo.ContainsContainer(container) && FactRule.CanDerive(container))
-                container.Add(
-                    factory.CreateObject(ct => FactRule.Derive(container), container));
-        }
-
         internal bool ExistsBranch(IFactRule factRule)
         {
             if (factRule == FactRule)
