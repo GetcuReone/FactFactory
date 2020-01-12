@@ -7,7 +7,7 @@ namespace JwtTestAdapter.Entities
     {
         internal GivenBlock() { }
 
-        public virtual GivenBlock<object> And(string description, Action action)
+        public virtual GivenBlock<TResult> And(string description, Action action)
         {
             LoggingHelper.Info($"[given] (start) {description}");
 
@@ -15,10 +15,10 @@ namespace JwtTestAdapter.Entities
 
             LoggingHelper.Info($"[given] (end) {description}");
 
-            return new GivenBlock<object>();
+            return new GivenBlock<TResult> { Result = Result };
         }
 
-        public virtual GivenBlock<object> And(string description, Action<TResult> action)
+        public virtual GivenBlock<TResult> And(string description, Action<TResult> action)
         {
             LoggingHelper.Info($"[given] (start) {description}");
 
@@ -26,7 +26,7 @@ namespace JwtTestAdapter.Entities
 
             LoggingHelper.Info($"[given] (end) {description}");
 
-            return new GivenBlock<object>();
+            return new GivenBlock<TResult> { Result = Result };
         }
 
         public virtual GivenBlock<TResult1> And<TResult1>(string description, Func<TResult1> func)
@@ -51,7 +51,7 @@ namespace JwtTestAdapter.Entities
             return given;
         }
 
-        public virtual WhenBlock<object> When(string description, Action action)
+        public virtual WhenBlock<TResult> When(string description, Action action)
         {
             LoggingHelper.Info($"[when] (start) {description}");
 
@@ -59,10 +59,10 @@ namespace JwtTestAdapter.Entities
 
             LoggingHelper.Info($"[when] (end) {description}");
 
-            return new WhenBlock<object>();
+            return new WhenBlock<TResult> { Result = Result };
         }
 
-        public virtual WhenBlock<object> When(string description, Action<TResult> action)
+        public virtual WhenBlock<TResult> When(string description, Action<TResult> action)
         {
             LoggingHelper.Info($"[when] (start) {description}");
 
@@ -70,7 +70,7 @@ namespace JwtTestAdapter.Entities
 
             LoggingHelper.Info($"[when] (end) {description}");
 
-            return new WhenBlock<object>();
+            return new WhenBlock<TResult> { Result = Result };
         }
 
         public virtual WhenBlock<TResult1> When<TResult1>(string description, Func<TResult1> func)

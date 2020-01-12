@@ -7,7 +7,7 @@ namespace JwtTestAdapter.Entities
     {
         internal ThenBlock() { }
 
-        public virtual ThenBlock<object> And(string description, Action action)
+        public virtual ThenBlock<TResult> And(string description, Action action)
         {
             LoggingHelper.Info($"[then] (start) {description}");
 
@@ -15,10 +15,10 @@ namespace JwtTestAdapter.Entities
 
             LoggingHelper.Info($"[then] (end) {description}");
 
-            return new ThenBlock<object>();
+            return new ThenBlock<TResult> { Result = Result };
         }
 
-        public virtual ThenBlock<object> And(string description, Action<TResult> action)
+        public virtual ThenBlock<TResult> And(string description, Action<TResult> action)
         {
             LoggingHelper.Info($"[then] (start) {description}");
 
@@ -26,7 +26,7 @@ namespace JwtTestAdapter.Entities
 
             LoggingHelper.Info($"[then] (end) {description}");
 
-            return new ThenBlock<object>();
+            return new ThenBlock<TResult> { Result = Result };
         }
 
         public virtual ThenBlock<TResult1> And<TResult1>(string description, Func<TResult1> func)
