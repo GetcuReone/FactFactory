@@ -18,4 +18,10 @@
     <PackageReference Include="ComboPatterns" Version="2.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="FactFactory.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
