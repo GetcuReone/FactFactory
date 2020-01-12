@@ -1,5 +1,4 @@
 ﻿using ComboPatterns.Interfaces;
-using System;
 using System.Collections.Generic;
 
 namespace FactFactory.Interfaces
@@ -27,13 +26,6 @@ namespace FactFactory.Interfaces
         /// Derive the facts
         /// </summary>
         void Derive();
-
-        /// <summary>
-        /// Derive a fact from the rules and return it
-        /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <returns></returns>
-        TFact DeriveAndReturn<TFact>() where TFact : IFact;
 
         /// <summary>
         /// Requesting a desired fact through action
