@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -17,8 +17,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FactFactory\FactFactory.csproj" />
+    <ProjectReference Include="..\FactFactory\FactFactory.csproj" >
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>FactFactory.dll</IncludeAssets>
+    </ProjectReference>
     <ProjectReference Include="..\JwtTestAdapter\JwtTestAdapter.csproj" />
   </ItemGroup>
+
+  <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))"/>
+    </ItemGroup>
+  </Target>
 
 </Project>
