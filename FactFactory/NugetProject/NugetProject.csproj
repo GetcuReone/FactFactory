@@ -2,12 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\GetcuReone.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FactFactory\FactFactory.csproj" />
+    <None Remove=".nuspec" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include=".nuspec" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FactFactory\FactFactory.csproj"/>
   </ItemGroup>
 
 </Project>

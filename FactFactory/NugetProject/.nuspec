@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>FactFactory</id>
+    <version>0.0.0</version>
+    <authors>Getcu Reone</authors>
+    <owners>GetcuReone</owners>
+    <!--<projectUrl>https://github.com/GetcuReone/FactFactory/wiki</projectUrl>-->
+
+    <!-- License information is displayed on the gallery -->
+    <license type="expression">Apache-2.0</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    
+    <releaseNotes>
+      - publish alpha version
+    </releaseNotes>
+
+    <repository type="git" url="https://github.com/GetcuReone/FactFactory.git" branch="master"/>
+    <description>My implementation of a machine that can derive facts from other facts</description>
+
+    <!-- Copyright information -->
+    <copyright>Copyright © GetcuReone 2020</copyright>
+
+    <!-- Tags appear in the gallery and can be used for tag searches -->
+    <tags>factfactory combopatterns</tags>
+
+    <language>en-US</language>
+
+    <dependencies>
+      <dependency id="ComboPatterns" version="2.3.0" />
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="bin\Release\netstandard2.0\FactFactory.dll" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\FactFactory.xml" target="lib\netstandard2.0" />
+  </files>
+</package>
