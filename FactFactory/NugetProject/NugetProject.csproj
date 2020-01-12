@@ -11,15 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove=".nuspec" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include=".nuspec" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\FactFactory\FactFactory.csproj"/>
+    <ProjectReference Include="..\FactFactory\FactFactory.csproj" />
   </ItemGroup>
 
 </Project>
