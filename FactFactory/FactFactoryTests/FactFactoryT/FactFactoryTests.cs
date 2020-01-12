@@ -309,9 +309,9 @@ namespace FactFactoryTests.FactFactoryT
         [Description("[fact][factory][negative] get original container")]
         public void GetOriginalContainerTestCase()
         {
-            GivenEmpty()
-                .When("Run derive", _ => ExpectedException<InvalidOperationException>(() => FactFactory.DeriveAndReturn<OtherFact>()))
-                .Then("Check error", ex => Assert.IsNotNull(ex, "error cannot be null"));
+            Given("Create factory", () => new Env.FactFactoryWithoutRules())
+                .When("Run derive", factory => ExpectedException<InvalidOperationException>(() => factory.DeriveAndReturn<OtherFact>()))
+                .Then("Check error", ex => Assert.AreEqual("method GetCopyFactContainer return original container", ex.Message, "Message not match"));
         }
     }
 }
