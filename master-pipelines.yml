@@ -51,7 +51,7 @@ steps:
     versioningScheme: 'off'
 
 - task: NuGetCommand@2
-  displayName: "NuGet push local internal source"
+  displayName: "NuGet push internal source"
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
