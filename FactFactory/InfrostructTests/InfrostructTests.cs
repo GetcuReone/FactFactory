@@ -21,7 +21,7 @@ namespace InfrostructTests
 #endif
             List<string> assemblyPaths = new List<string>
             {
-                @"..\..\..\..\FactFactoryTests\bin\" + mode + @"\netcoreapp3.0\FactFactoryTests.dll",
+                @"..\..\..\..\FactFactoryTests\bin\" + mode + @"\netcoreapp2.1\FactFactoryTests.dll",
             };
 
             Given("We get all the test builds", () => assemblyPaths.ConvertAll(name => Assembly.LoadFrom(name)))
