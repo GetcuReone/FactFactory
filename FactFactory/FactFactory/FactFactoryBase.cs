@@ -63,6 +63,10 @@ namespace FactFactory
         public virtual void Derive()
         {
             TFactContainer container = GetCopyFactContainer();
+
+            if (container.Equals(Container))
+                throw new InvalidOperationException("method GetCopyFactContainer return original object");
+
             container.Add(new DateOfDeriveFact(DateTime.Now));
             container.Add(new DerivingCurrentFactsFact(
                 new ReadOnlyCollection<IFactInfo>(
