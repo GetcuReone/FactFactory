@@ -303,5 +303,15 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(value * value, fact.Value, "The fact is derived incorrectly");
                 });
         }
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][factory][negative] get original container")]
+        public void GetOriginalContainerTestCase()
+        {
+            GivenEmpty()
+                .When("Run derive", _ => ExpectedException<InvalidOperationException>(() => FactFactory.DeriveAndReturn<OtherFact>()))
+                .Then("Check error", ex => Assert.IsNotNull(ex, "error cannot be null"));
+        }
     }
 }
