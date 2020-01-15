@@ -1,29 +1,20 @@
-﻿using FactFactory.Interfaces;
-using System;
+﻿using FactFactory.Entities;
+using FactFactory.Interfaces;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace FactFactory.Exceptions
 {
     /// <summary>
-    /// <see cref="InvalidOperationException"/> for method <see cref="IFactFactory{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
+    /// <see cref="FactFactoryException"/> for method <see cref="IFactFactory{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
     /// </summary>
-    public class InvalidDeriveOperationException : InvalidOperationException
+    public class InvalidDeriveOperationException : FactFactoryExceptionBase<DeriveErrorDetail>
     {
         /// <summary>
-        /// A set of fact sets for which no rules were found
+        /// Constructor
         /// </summary>
-        public ReadOnlyCollection<ReadOnlyCollection<IFactInfo>> NotFoundRuleForFactsSet { get; }
-
-        /// <summary>
-        /// Contructor
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="notFoundRuleForFactsSet">a set of fact sets for which no rules were found</param>
-        public InvalidDeriveOperationException(string message, List<List<IFactInfo>> notFoundRuleForFactsSet) : base(message)
+        /// <param name="details"></param>
+        public InvalidDeriveOperationException(List<DeriveErrorDetail> details) : base(details)
         {
-            NotFoundRuleForFactsSet = new ReadOnlyCollection<ReadOnlyCollection<IFactInfo>>(
-                notFoundRuleForFactsSet.ConvertAll(notFoundRuleForFacts => new ReadOnlyCollection<IFactInfo>(notFoundRuleForFacts)));
         }
     }
 }

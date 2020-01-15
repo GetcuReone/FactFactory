@@ -1,4 +1,5 @@
-﻿using FactFactory.Entities;
+﻿using FactFactory.Consts;
+using FactFactory.Entities;
 using FactFactory.Exceptions;
 using FactFactory.Facts;
 using FactFactory.Helpers;
@@ -51,10 +52,10 @@ namespace FactFactory
         /// </summary>
         public virtual void Derive()
         {
-            TFactContainer container =GetCopyContainer();
+            TFactContainer container = GetCopyContainer();
 
             if (container.Equals(Container))
-                throw new InvalidOperationException("method GetCopyFactContainer return original container");
+                throw FactFactoryHelper.CreateDeriveException(ErrorCodes.InvalidData, "method GetCopyContainer return original container");
 
             container.Add(new DateOfDeriveFact(DateTime.Now));
             container.Add(new DerivingCurrentFactsFact(
@@ -62,7 +63,7 @@ namespace FactFactory
                     _wantActions.SelectMany(action => action.InputFacts).ToList())));
 
             var derivedTrees = new Dictionary<TWantAction, List<FactRuleTree>>();
-            var notFountFactsTrees = new Dictionary<TWantAction, Dictionary<IFactInfo, List<List<IFactInfo>>>>();
+            var notFoundFactsTrees = new Dictionary<IWantAction, Dictionary<IFactInfo, List<List<IFactInfo>>>>();
             IReadOnlyCollection<IFactInfo> excludeFacts = GetFactInfosAvailableOnlyRules();
 
             foreach (TWantAction wantAction in _wantActions)
@@ -73,14 +74,12 @@ namespace FactFactory
                 else
                 {
                     foreach (var key in notFoundFacts.Keys)
-                        notFountFactsTrees.Add(wantAction, notFoundFacts);
+                        notFoundFactsTrees.Add(wantAction, notFoundFacts);
                 }
             }
 
-            if (notFountFactsTrees.Count != 0)
-            {
-                throw new Exception();
-            }
+            if (notFoundFactsTrees.Count != 0)
+                throw FactFactoryHelper.CreateDeriveException(notFoundFactsTrees);
 
             foreach (var key in derivedTrees.Keys)
             {
@@ -111,13 +110,13 @@ namespace FactFactory
         public virtual void WantFact(TWantAction wantAction)
         {
             if (_wantActions.IndexOf(wantAction) != -1)
-                throw new ArgumentException("Action already requested");
+                throw FactFactoryHelper.CreateException(ErrorCodes.InvalidData, "Action already requested");
 
             var excludeFacts = GetFactInfosAvailableOnlyRules();
 
             var excludeFact = wantAction.InputFacts.FirstOrDefault(f => excludeFacts.Any(ef => ef.Compare(f)));
             if (excludeFact != null)
-                throw new ArgumentException($"The {excludeFact.FactName} is available only for the rules.");
+                throw FactFactoryHelper.CreateException(ErrorCodes.InvalidData, $"The {excludeFact.FactName} is available only for the rules.");
 
             _wantActions.Add(wantAction);
         }
@@ -351,10 +350,10 @@ namespace FactFactory
         /// <param name="wantFact">derive fact</param>
         /// <param name="rules">rule set</param>
         /// <returns></returns>
-        private List<FactRuleTree> GetFactRuleTrees(IFactInfo wantFact, IEnumerable<TFactRule> rules)
+        private List<FactRuleTree> GetFactRuleTrees(IFactInfo wantFact, IReadOnlyCollection<TFactRule> rules)
         {
-            if (rules == null)
-                throw new InvalidOperationException("Rules cannot be null");
+            if (rules.IsNullOrEmpty())
+                throw FactFactoryHelper.CreateException(ErrorCodes.RuleCollectionEmpty, "Rules cannot be null");
 
             List<FactRuleTree> factRuleTrees = rules?.Where(rule => rule.OutputFactInfo.Compare(wantFact))
                     .Select(rule =>
@@ -369,7 +368,7 @@ namespace FactFactory
                     .ToList();
 
             if (factRuleTrees.IsNullOrEmpty())
-                throw new InvalidOperationException($"There is no rule that can deduce a {wantFact.FactName}");
+                throw FactFactoryHelper.CreateException(ErrorCodes.RuleNotFound, $"There is no rule that can deduce a {wantFact.FactName}");
 
             return factRuleTrees;
         }

@@ -4,6 +4,38 @@
         <name>FactFactory</name>
     </assembly>
     <members>
+        <member name="T:FactFactory.Consts.ErrorCodes">
+            <summary>
+            Error codes
+            </summary>
+        </member>
+        <member name="F:FactFactory.Consts.ErrorCodes.InvalidData">
+            <summary>
+            Invalid data
+            </summary>
+        </member>
+        <member name="T:FactFactory.Entities.ErrorDetail">
+            <summary>
+            Error detail
+            </summary>
+        </member>
+        <member name="M:FactFactory.Entities.ErrorDetail.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="code"></param>
+            <param name="reason"></param>
+        </member>
+        <member name="P:FactFactory.Entities.ErrorDetail.Code">
+            <summary>
+            Error code
+            </summary>
+        </member>
+        <member name="P:FactFactory.Entities.ErrorDetail.Reason">
+            <summary>
+            Error reason
+            </summary>
+        </member>
         <member name="T:FactFactory.Entities.FactContainer">
             <summary>
             Fact collection
@@ -440,6 +472,22 @@
         <member name="M:FactFactory.Entities.WantAction.ToString">
             <inheritdoc />
         </member>
+        <member name="T:FactFactory.Exceptions.FactFactoryException">
+            <summary>
+            Base error for FactFactory
+            </summary>
+        </member>
+        <member name="M:FactFactory.Exceptions.FactFactoryException.#ctor(System.Collections.Generic.List{FactFactory.Entities.ErrorDetail})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="details"></param>
+        </member>
+        <member name="P:FactFactory.Exceptions.FactFactoryException.Details">
+            <summary>
+            More info exception
+            </summary>
+        </member>
         <member name="T:FactFactory.Exceptions.FactNotFoundException`1">
             <summary>
             Fact not found error
@@ -739,6 +787,19 @@
             Get instace
             </summary>
             <typeparam name="TFact"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:FactFactory.Helpers.FactFactoryHelper">
+            <summary>
+            Helper for <see cref="T:FactFactory.FactFactoryBase`4"/>
+            </summary>
+        </member>
+        <member name="M:FactFactory.Helpers.FactFactoryHelper.CreateException(System.String,System.String)">
+            <summary>
+            Create <see cref="T:FactFactory.Exceptions.FactFactoryException"/>
+            </summary>
+            <param name="code">error code</param>
+            <param name="reason">error reason</param>
             <returns></returns>
         </member>
         <member name="T:FactFactory.Interfaces.IFact">
