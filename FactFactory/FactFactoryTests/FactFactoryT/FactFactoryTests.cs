@@ -1,10 +1,13 @@
 ﻿using FactFactory.Consts;
 using FactFactory.Exceptions;
 using FactFactory.Facts;
+using FactFactory.Interfaces;
 using FactFactoryTests.CommonFacts;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -107,7 +110,6 @@ namespace FactFactoryTests.FactFactoryT
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Ignore]
         [Description("[fact][factory][negative] Want a fact that cannot be derived")]
         public void CannotDerivedOneFactFromOne1TestCase()
         {
@@ -117,24 +119,24 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check error", ex => 
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
-                    //Assert.IsNotNull(ex.NotFoundRuleForFactsSet, "NotFoundRuleForFactsSet cannot be null");
-                    //Assert.AreEqual(2, ex.NotFoundRuleForFactsSet.Count, "there must be two set of sets of necessary facts");
+                    Assert.IsNotNull(ex.Details, "error cannot be null");
+                    Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
 
-                    //Assert.IsNotNull(ex.NotFoundRuleForFactsSet[0], "item from NotFoundRuleForFactsSet cannot be null");
-                    //Assert.IsNotNull(ex.NotFoundRuleForFactsSet[1], "item from NotFoundRuleForFactsSet cannot be null");
+                    var detail = ex.Details[0];
+                    Assert.AreEqual(ErrorCodes.FactCannotCalculated, detail.Code, "code not match");
+                    Assert.AreEqual(1, detail.NotFoundFacts.Values.Count, "Sets expected for one fact");
 
-                    //Assert.AreEqual(1, ex.NotFoundRuleForFactsSet[0].Count, "there must be one set of necessary facts");
-                    //Assert.AreEqual(1, ex.NotFoundRuleForFactsSet[1].Count, "there must be one set of necessary facts");
+                    var notFoundFactSet = detail.NotFoundFacts.Values.First();
 
-                    //Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][0].Compare(new FactFactory.Entities.FactInfo<Input5Fact>()), "type fact must be Input5Fact");
-                    //Assert.IsTrue(ex.NotFoundRuleForFactsSet[1][0].Compare(new FactFactory.Entities.FactInfo<Input3Fact>()), "type fact must be Input3Fact");
+                    Assert.AreEqual(2, notFoundFactSet.Count, "2 sets of facts expected");
+                    Assert.IsTrue(new FactFactory.Entities.FactInfo<Input3Fact>().Compare(notFoundFactSet[0][0]), "expected other fact");
+                    Assert.IsTrue(new FactFactory.Entities.FactInfo<Input5Fact>().Compare(notFoundFactSet[1][0]), "expected other fact");
                 });
         }
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory][negative] Want a fact that cannot be derived")]
-        [Ignore]
         public void CannotDerivedOneFactFromOne2TestCase()
         {
             Given("Set rules", () => FactFactory.Rules.AddRange(RuleCollectionHelper.GetRulesForNotAvailableInput6Fact()))
@@ -143,14 +145,19 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
-                    //Assert.IsNotNull(ex.NotFoundRuleForFactsSet, "NotFoundRuleForFactsSet cannot be null");
-                    //Assert.AreEqual(1, ex.NotFoundRuleForFactsSet.Count, "there must be two set of sets of necessary facts");
+                    Assert.IsNotNull(ex.Details, "error cannot be null");
+                    Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
 
-                    //Assert.IsNotNull(ex.NotFoundRuleForFactsSet[0], "item from NotFoundRuleForFactsSet cannot be null");
-                    //Assert.AreEqual(2, ex.NotFoundRuleForFactsSet[0].Count, "there must be one set of necessary facts");
+                    var detail = ex.Details[0];
+                    Assert.AreEqual(ErrorCodes.FactCannotCalculated, detail.Code, "code not match");
 
-                    //Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][0].Compare(new FactFactory.Entities.FactInfo<Input3Fact>()), "type fact must be Input3Fact");
-                    //Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][1].Compare(new FactFactory.Entities.FactInfo<Input5Fact>()), "type fact must be Input5Fact");
+                    var listFact = new List<IFactInfo>
+                    {
+                        new FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new FactFactory.Entities.FactInfo<Input5Fact>()
+                    };
+
+                    Assert.IsTrue(listFact.All(fact => detail.NotFoundFacts.Values.First()[0].Any(f => f.Compare(fact))), "Other facts expected");
                 });
         }
 

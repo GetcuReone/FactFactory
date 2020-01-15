@@ -341,7 +341,7 @@ namespace FactFactory
                 }
             }
 
-            return true;
+            return notFoundFacts.Count == 0;
         }
 
         /// <summary>
