@@ -5,7 +5,6 @@ using FactFactory.Interfaces;
 using FactFactoryTests.CommonFacts;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -340,6 +339,101 @@ namespace FactFactoryTests.FactFactoryT
                     var detail = ex.Details[0];
                     Assert.AreEqual(ErrorCodes.InvalidData, detail.Code, "code not match");
                     Assert.AreEqual("method GetCopyContainer return original container", detail.Reason, "reason not match");
+                });
+        }
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][factory] check method DeriveFact")]
+        public void DeriveFactTestCase()
+        {
+            Given("Add rule", () => FactFactory.Rules.Add(() => new Input10Fact(10)))
+                .When("Run DeriveFact", _ => FactFactory.DeriveFact<Input10Fact>())
+                .Then("Check result", fact =>
+                {
+                    Assert.IsNotNull(fact, "fact cannot be null");
+                    Assert.AreEqual(10, fact.Value, "Fact have other value");
+                });
+        }
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][factory] get fact from container")]
+        public void GetFactFromContainerTastCase()
+        {
+            var input6Fact = new Input6Fact(6);
+
+            Given("Add fact in container", () => FactFactory.Container.Add(input6Fact))
+                .When("Derive fact", () => FactFactory.DeriveFact<Input6Fact>())
+                .Then("Check fact", fact => Assert.AreEqual(input6Fact, fact, "facts must match"));
+        }
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][factory] derive only one fact")]
+        public void DeriveOnlyOneFactTestCase()
+        {
+            Input6Fact fact6 = null;
+            Input16Fact fact16 = null;
+            Input7Fact fact7 = null;
+
+            Given("Add rules", () =>
+            {
+                FactFactory.Rules.Add(() => new Input6Fact(6));
+                FactFactory.Rules.Add(() => new Input16Fact(16));
+                FactFactory.Rules.Add(() => new Input7Fact(7));
+            })
+                .And("Want facts", () =>
+                {
+                    FactFactory.WantFact((Input6Fact fact) => fact6 = fact);
+                    FactFactory.WantFact((Input16Fact fact) => fact16 = fact);
+                    FactFactory.WantFact((Input7Fact fact) => fact7 = fact);
+                })
+                .When("Derive fact", () => FactFactory.DeriveFact<Input7Fact>())
+                .Then("Check result", fact =>
+                {
+                    Assert.IsNotNull(fact, "fact not derived");
+
+                    Assert.IsNull(fact7, "fact7 cannot derived");
+                    Assert.IsNull(fact16, "fact16 cannot derived");
+                    Assert.IsNull(fact6, "fact6 cannot derived");
+                });
+        }
+
+        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][factory] derive facts after run method DeriveFact")]
+        public void DeriveFactsAfterRunDeriveFactTestCase()
+        {
+            Input6Fact fact6 = null;
+            Input16Fact fact16 = null;
+            Input7Fact fact7 = null;
+
+            Given("Add rules", () =>
+            {
+                FactFactory.Rules.Add(() => new Input6Fact(6));
+                FactFactory.Rules.Add(() => new Input16Fact(16));
+                FactFactory.Rules.Add(() => new Input7Fact(7));
+            })
+                .And("Want facts", () =>
+                {
+                    FactFactory.WantFact((Input6Fact fact) => fact6 = fact);
+                    FactFactory.WantFact((Input16Fact fact) => fact16 = fact);
+                    FactFactory.WantFact((Input7Fact fact) => fact7 = fact);
+                })
+                .And("Derive fact", () => FactFactory.DeriveFact<Input7Fact>())
+                .When("Derive facts", fact =>
+                {
+                    FactFactory.Derive();
+                    return fact;
+                })
+                .Then("Check result", fact =>
+                {
+                    Assert.IsNotNull(fact7, "fact7 must derived");
+                    Assert.IsNotNull(fact16, "fact16 must derived");
+                    Assert.IsNotNull(fact6, "fact6 must derived");
+
+                    Assert.AreNotEqual(fact, fact7, "fact and fact7 must be different");
                 });
         }
     }
