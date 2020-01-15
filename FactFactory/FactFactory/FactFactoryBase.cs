@@ -116,7 +116,7 @@ namespace FactFactory
 
             var excludeFact = wantAction.InputFacts.FirstOrDefault(f => excludeFacts.Any(ef => ef.Compare(f)));
             if (excludeFact != null)
-                throw FactFactoryHelper.CreateException(ErrorCodes.InvalidData, $"The {excludeFact.FactName} is available only for the rules.");
+                throw FactFactoryHelper.CreateException(ErrorCodes.InvalidData, $"The {excludeFact.FactName} is available only for the rules");
 
             _wantActions.Add(wantAction);
         }
@@ -353,7 +353,7 @@ namespace FactFactory
         private List<FactRuleTree> GetFactRuleTrees(IFactInfo wantFact, IReadOnlyCollection<TFactRule> rules)
         {
             if (rules.IsNullOrEmpty())
-                throw FactFactoryHelper.CreateException(ErrorCodes.RuleCollectionEmpty, "Rules cannot be null");
+                throw FactFactoryHelper.CreateDeriveException(ErrorCodes.RuleCollectionEmpty, "Rules cannot be null");
 
             List<FactRuleTree> factRuleTrees = rules?.Where(rule => rule.OutputFactInfo.Compare(wantFact))
                     .Select(rule =>
@@ -368,7 +368,7 @@ namespace FactFactory
                     .ToList();
 
             if (factRuleTrees.IsNullOrEmpty())
-                throw FactFactoryHelper.CreateException(ErrorCodes.RuleNotFound, $"There is no rule that can deduce a {wantFact.FactName}");
+                throw FactFactoryHelper.CreateDeriveException(ErrorCodes.RuleNotFound, $"There is no rule that can deduce a {wantFact.FactName}");
 
             return factRuleTrees;
         }

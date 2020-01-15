@@ -1,4 +1,5 @@
-﻿using FactFactory.Exceptions;
+﻿using FactFactory.Consts;
+using FactFactory.Exceptions;
 using FactFactory.Facts;
 using FactFactoryTests.CommonFacts;
 using JwtTestAdapter;
@@ -71,8 +72,17 @@ namespace FactFactoryTests.FactFactoryT
         public void WantNotAvailableFactTestCase()
         {
             GivenEmpty()
-                .When("Want fact", _ => ExpectedException<ArgumentException>(() => FactFactory.WantFact((CurrentFactsFindingFact fact) => { })))
-                .Then("Check error", ex => Assert.IsNotNull(ex, "error cannot be null"));
+                .When("Want fact", _ => ExpectedException<FactFactoryException>(() => FactFactory.WantFact((CurrentFactsFindingFact fact) => { })))
+                .Then("Check error", ex => 
+                {
+                    Assert.IsNotNull(ex, "error cannot be null");
+                    Assert.IsNotNull(ex.Details, "error cannot be null");
+                    Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
+
+                    var detail = ex.Details[0];
+                    Assert.AreEqual(ErrorCodes.InvalidData, detail.Code, "code not match");
+                    Assert.AreEqual("The CurrentFactsFindingFact is available only for the rules", detail.Reason, "reason not match");
+                });
 
         }
 
@@ -83,8 +93,16 @@ namespace FactFactoryTests.FactFactoryT
         {
             Given("Set rules", () => FactFactory.Rules.AddRange(RuleCollectionHelper.GetInputFactRules()))
                 .And("Want fact", _ => FactFactory.WantFact((OtherFact fact) => { }))
-                .When("Derive facts", _ => ExpectedException<InvalidOperationException>(() => FactFactory.Derive()))
-                .Then("Check error", ex => Assert.IsNotNull(ex, "error cannot be null"));
+                .When("Derive facts", _ => ExpectedException<InvalidDeriveOperationException>(() => FactFactory.Derive()))
+                .Then("Check error", ex => 
+                {
+                    Assert.IsNotNull(ex, "error cannot be null");
+                    Assert.IsNotNull(ex.Details, "error cannot be null");
+                    Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
+
+                    var detail = ex.Details[0];
+                    Assert.AreEqual(ErrorCodes.RuleNotFound, detail.Code, "code not match");
+                });
         }
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
@@ -99,17 +117,17 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check error", ex => 
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
-                    Assert.IsNotNull(ex.NotFoundRuleForFactsSet, "NotFoundRuleForFactsSet cannot be null");
-                    Assert.AreEqual(2, ex.NotFoundRuleForFactsSet.Count, "there must be two set of sets of necessary facts");
+                    //Assert.IsNotNull(ex.NotFoundRuleForFactsSet, "NotFoundRuleForFactsSet cannot be null");
+                    //Assert.AreEqual(2, ex.NotFoundRuleForFactsSet.Count, "there must be two set of sets of necessary facts");
 
-                    Assert.IsNotNull(ex.NotFoundRuleForFactsSet[0], "item from NotFoundRuleForFactsSet cannot be null");
-                    Assert.IsNotNull(ex.NotFoundRuleForFactsSet[1], "item from NotFoundRuleForFactsSet cannot be null");
+                    //Assert.IsNotNull(ex.NotFoundRuleForFactsSet[0], "item from NotFoundRuleForFactsSet cannot be null");
+                    //Assert.IsNotNull(ex.NotFoundRuleForFactsSet[1], "item from NotFoundRuleForFactsSet cannot be null");
 
-                    Assert.AreEqual(1, ex.NotFoundRuleForFactsSet[0].Count, "there must be one set of necessary facts");
-                    Assert.AreEqual(1, ex.NotFoundRuleForFactsSet[1].Count, "there must be one set of necessary facts");
+                    //Assert.AreEqual(1, ex.NotFoundRuleForFactsSet[0].Count, "there must be one set of necessary facts");
+                    //Assert.AreEqual(1, ex.NotFoundRuleForFactsSet[1].Count, "there must be one set of necessary facts");
 
-                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][0].Compare(new FactFactory.Entities.FactInfo<Input5Fact>()), "type fact must be Input5Fact");
-                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[1][0].Compare(new FactFactory.Entities.FactInfo<Input3Fact>()), "type fact must be Input3Fact");
+                    //Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][0].Compare(new FactFactory.Entities.FactInfo<Input5Fact>()), "type fact must be Input5Fact");
+                    //Assert.IsTrue(ex.NotFoundRuleForFactsSet[1][0].Compare(new FactFactory.Entities.FactInfo<Input3Fact>()), "type fact must be Input3Fact");
                 });
         }
 
@@ -125,14 +143,14 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
-                    Assert.IsNotNull(ex.NotFoundRuleForFactsSet, "NotFoundRuleForFactsSet cannot be null");
-                    Assert.AreEqual(1, ex.NotFoundRuleForFactsSet.Count, "there must be two set of sets of necessary facts");
+                    //Assert.IsNotNull(ex.NotFoundRuleForFactsSet, "NotFoundRuleForFactsSet cannot be null");
+                    //Assert.AreEqual(1, ex.NotFoundRuleForFactsSet.Count, "there must be two set of sets of necessary facts");
 
-                    Assert.IsNotNull(ex.NotFoundRuleForFactsSet[0], "item from NotFoundRuleForFactsSet cannot be null");
-                    Assert.AreEqual(2, ex.NotFoundRuleForFactsSet[0].Count, "there must be one set of necessary facts");
+                    //Assert.IsNotNull(ex.NotFoundRuleForFactsSet[0], "item from NotFoundRuleForFactsSet cannot be null");
+                    //Assert.AreEqual(2, ex.NotFoundRuleForFactsSet[0].Count, "there must be one set of necessary facts");
 
-                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][0].Compare(new FactFactory.Entities.FactInfo<Input3Fact>()), "type fact must be Input3Fact");
-                    Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][1].Compare(new FactFactory.Entities.FactInfo<Input5Fact>()), "type fact must be Input5Fact");
+                    //Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][0].Compare(new FactFactory.Entities.FactInfo<Input3Fact>()), "type fact must be Input3Fact");
+                    //Assert.IsTrue(ex.NotFoundRuleForFactsSet[0][1].Compare(new FactFactory.Entities.FactInfo<Input5Fact>()), "type fact must be Input5Fact");
                 });
         }
 
@@ -164,9 +182,17 @@ namespace FactFactoryTests.FactFactoryT
         [Description("[fact][factory][negative] rules cannot be empty")]
         public void RulesCannotBeEmptyTestCase()
         {
-            Given("Set rules", () => new Env.FactFactoryWithoutRules())
-                .When("Derive facts", factory => ExpectedException<InvalidOperationException>(() => factory.DeriveFact<Input10Fact>()))
-                .Then("Check error", ex => Assert.IsNotNull(ex, "error cannot be null"));
+            Given("Set rules", () => FactFactory.Rules.Clear())
+                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException>(() => FactFactory.DeriveFact<Input10Fact>()))
+                .Then("Check error", ex => 
+                {
+                    Assert.IsNotNull(ex, "error cannot be null");
+                    Assert.IsNotNull(ex.Details, "error cannot be null");
+                    Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
+
+                    var detail = ex.Details[0];
+                    Assert.AreEqual(ErrorCodes.RuleCollectionEmpty, detail.Code, "code not match");
+                });
         }
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
@@ -297,8 +323,17 @@ namespace FactFactoryTests.FactFactoryT
         public void GetOriginalContainerTestCase()
         {
             Given("Create factory", () => new Env.FactFactoryWithoutRules())
-                .When("Run derive", factory => ExpectedException<InvalidOperationException>(() => factory.DeriveFact<OtherFact>()))
-                .Then("Check error", ex => Assert.AreEqual("method GetCopyFactContainer return original container", ex.Message, "Message not match"));
+                .When("Run derive", factory => ExpectedException<InvalidDeriveOperationException>(() => factory.DeriveFact<OtherFact>()))
+                .Then("Check error", ex => 
+                {
+                    Assert.IsNotNull(ex, "error cannot be null");
+                    Assert.IsNotNull(ex.Details, "error cannot be null");
+                    Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
+
+                    var detail = ex.Details[0];
+                    Assert.AreEqual(ErrorCodes.InvalidData, detail.Code, "code not match");
+                    Assert.AreEqual("method GetCopyContainer return original container", detail.Reason, "reason not match");
+                });
         }
     }
 }
