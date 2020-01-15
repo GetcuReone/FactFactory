@@ -11,6 +11,7 @@ namespace FactFactoryTests.FactContainer
     [TestClass]
     public sealed class FactContainerTests : TestBase
     {
+        // TODO: Make container copy test
         private GivenBlock<FactFactory.Entities.FactContainer> GivenCreateContainer()
         {
             return Given("Create container", () => new FactFactory.Entities.FactContainer());

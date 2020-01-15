@@ -8,13 +8,20 @@ namespace FactFactory
     public class FactFactory : FactFactoryBase<FactContainer, FactRule, FactRuleCollection>
     {
         private ReadOnlyCollection<FactRule> _tempRule;
-        /// <inheritdoc />
+
+        /// <summary>
+        /// Fact container
+        /// </summary>
         public override FactContainer Container { get; } = new FactContainer();
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Collection of rules for derive facts
+        /// </summary>
         public override FactRuleCollection Rules { get; } = new FactRuleCollection();
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Derive the facts
+        /// </summary>
         public override void Derive()
         {
             _tempRule = new ReadOnlyCollection<FactRule>(Rules);
@@ -24,14 +31,20 @@ namespace FactFactory
             _tempRule = null;
         }
 
-        /// <inheritdoc />
-        protected override IReadOnlyCollection<FactRule> GetRulesForDerive(WantAction wantAction)
+        /// <summary>
+        /// Return a list with the appropriate rules at the time of the derive of the facts
+        /// </summary>
+        /// <returns></returns>
+        protected override IReadOnlyCollection<FactRule> GetRulesForWantAction(WantAction wantAction)
         {
             return _tempRule;
         }
 
-        /// <inheritdoc />
-        protected override FactContainer GetCopyFactContainer()
+        /// <summary>
+        /// Get copy container
+        /// </summary>
+        /// <returns></returns>
+        protected override FactContainer GetCopyContainer()
         {
             return new FactContainer(Container);
         }

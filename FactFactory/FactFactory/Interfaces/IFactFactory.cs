@@ -28,6 +28,13 @@ namespace FactFactory.Interfaces
         void Derive();
 
         /// <summary>
+        /// Derive <typeparamref name="TFact"/>
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <returns></returns>
+        TFact DeriveFact<TFact>() where TFact : IFact;
+
+        /// <summary>
         /// Requesting a desired fact through action
         /// </summary>
         /// <param name="wantAction"></param>

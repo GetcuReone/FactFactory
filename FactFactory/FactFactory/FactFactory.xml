@@ -470,19 +470,31 @@
             <inheritdoc />
         </member>
         <member name="P:FactFactory.FactFactory.Container">
-            <inheritdoc />
+            <summary>
+            Fact container
+            </summary>
         </member>
         <member name="P:FactFactory.FactFactory.Rules">
-            <inheritdoc />
+            <summary>
+            Collection of rules for derive facts
+            </summary>
         </member>
         <member name="M:FactFactory.FactFactory.Derive">
-            <inheritdoc />
+            <summary>
+            Derive the facts
+            </summary>
         </member>
-        <member name="M:FactFactory.FactFactory.GetRulesForDerive(FactFactory.Entities.WantAction)">
-            <inheritdoc />
+        <member name="M:FactFactory.FactFactory.GetRulesForWantAction(FactFactory.Entities.WantAction)">
+            <summary>
+            Return a list with the appropriate rules at the time of the derive of the facts
+            </summary>
+            <returns></returns>
         </member>
-        <member name="M:FactFactory.FactFactory.GetCopyFactContainer">
-            <inheritdoc />
+        <member name="M:FactFactory.FactFactory.GetCopyContainer">
+            <summary>
+            Get copy container
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:FactFactory.FactFactoryBase`4">
             <summary>
@@ -499,11 +511,6 @@
             Collection of rules for derive facts
             </summary>
         </member>
-        <member name="M:FactFactory.FactFactoryBase`4.GetFactInfosAvailableOnlyRules">
-            <summary>
-            Get facts available only in rules
-            </summary>
-        </member>
         <member name="M:FactFactory.FactFactoryBase`4.CreateObject``2(System.Func{``0,``1},``0)">
             <summary>
             Object creation method
@@ -515,36 +522,57 @@
             <returns></returns>
         </member>
         <member name="M:FactFactory.FactFactoryBase`4.Derive">
-            <inheritdoc />
-        </member>
-        <member name="M:FactFactory.FactFactoryBase`4.WantFact(`3)">
-            <inheritdoc />
-        </member>
-        <member name="M:FactFactory.FactFactoryBase`4.DeriveAndReturn``1">
             <summary>
-            Derive a fact from the rules and return it
+            Derive the facts
+            </summary>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`4.DeriveFact``1">
+            <summary>
+            Derive <typeparamref name="TFact"/>
             </summary>
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:FactFactory.FactFactoryBase`4.GetRulesForDerive(`3)">
+        <member name="M:FactFactory.FactFactoryBase`4.WantFact(`3)">
+            <summary>
+            Requesting a desired fact through action
+            </summary>
+            <param name="wantAction"></param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`4.GetFactInfosAvailableOnlyRules">
+            <summary>
+            Get facts available only in rules
+            </summary>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`4.GetRulesForWantAction(`3)">
             <summary>
             Return a list with the appropriate rules at the time of the derive of the facts
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FactFactory.FactFactoryBase`4.GetCopyFactContainer">
+        <member name="M:FactFactory.FactFactoryBase`4.CalculateFact(`1,`0)">
             <summary>
-            Get copy fact container
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:FactFactory.FactFactoryBase`4.DeriveFact(`1,`0)">
-            <summary>
-            Derive fact
+            Calculate fact
             </summary>
             <param name="rule">rule for calculating the fact</param>
             <param name="container">fact container</param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`4.GetCopyContainer">
+            <summary>
+            Get copy container
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`4.TryDeriveTreesForWantAction(System.Collections.Generic.List{FactFactory.Entities.FactRuleTree}@,`3,`0,System.Collections.Generic.IReadOnlyCollection{FactFactory.Interfaces.IFactInfo},System.Collections.Generic.Dictionary{FactFactory.Interfaces.IFactInfo,System.Collections.Generic.List{System.Collections.Generic.List{FactFactory.Interfaces.IFactInfo}}}@)">
+            <summary>
+            We are trying to calculate a tree by which we find a fact
+            </summary>
+            <param name="treesResult">found trees</param>
+            <param name="wantAction">desired action information</param>
+            <param name="container">fact container</param>
+            <param name="excludeFacts">facts that should not be calculated</param>
+            <param name="notFoundFacts"></param>
+            <returns></returns>
         </member>
         <member name="M:FactFactory.FactFactoryBase`4.GetFactRuleTrees(FactFactory.Interfaces.IFactInfo,System.Collections.Generic.IEnumerable{`1})">
             <summary>
@@ -569,8 +597,12 @@
             Base class for fact factory
             </summary>
         </member>
-        <member name="M:FactFactory.FactFactoryBase`3.DeriveAndReturn``1">
-            <inheritdoc />
+        <member name="M:FactFactory.FactFactoryBase`3.DeriveFact``1">
+            <summary>
+            Derive <typeparamref name="TFact"/>
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
         </member>
         <member name="M:FactFactory.FactFactoryBase`3.WantFact``1(System.Action{``0})">
             <summary>
@@ -779,6 +811,13 @@
             <summary>
             Derive the facts
             </summary>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactFactory`4.DeriveFact``1">
+            <summary>
+            Derive <typeparamref name="TFact"/>
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
         </member>
         <member name="M:FactFactory.Interfaces.IFactFactory`4.WantFact(`3)">
             <summary>
