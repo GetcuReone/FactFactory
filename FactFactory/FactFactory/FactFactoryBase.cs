@@ -184,7 +184,14 @@ namespace FactFactory
                 if (wantFact.ContainsContainer(container))
                     continue;
 
-                if (TryDeriveTreeForFactInfo(out FactRuleTree treeResult, wantFact, container, ruleCollection, excludeFacts, out List<List<IFactInfo>> notFoundFactSet))
+                if (wantFact.IsFactType<INoFact>())
+                {
+                    if (!TryDeriveTreeForFactInfo(out FactRuleTree _, wantFact, container, ruleCollection, excludeFacts, out List<List<IFactInfo>> _))
+                        continue;
+                    else
+                        notFoundFacts.Add(wantFact, new List<List<IFactInfo>>());
+                }
+                else if (TryDeriveTreeForFactInfo(out FactRuleTree treeResult, wantFact, container, ruleCollection, excludeFacts, out List<List<IFactInfo>> notFoundFactSet))
                 {
                     treesResult.Add(treeResult);
                 }
