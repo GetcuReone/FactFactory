@@ -52,7 +52,7 @@ namespace FactFactory
         /// </summary>
         public virtual void Derive()
         {
-            TFactContainer container = GetCopyContainer();
+            TFactContainer container = GetContainerForDerive();
 
             if (container.Equals(Container))
                 throw FactFactoryHelper.CreateDeriveException(ErrorCodes.InvalidData, "method GetCopyContainer return original container");
@@ -65,8 +65,9 @@ namespace FactFactory
             var derivedTrees = new Dictionary<TWantAction, List<FactRuleTree>>();
             var notFoundFactsTrees = new Dictionary<IWantAction, Dictionary<IFactInfo, List<List<IFactInfo>>>>();
             IReadOnlyCollection<IFactInfo> excludeFacts = GetFactInfosAvailableOnlyRules();
+            List<TWantAction> wantActions = new List<TWantAction>(_wantActions);
 
-            foreach (TWantAction wantAction in _wantActions)
+            foreach (TWantAction wantAction in wantActions)
             {
 
                 if (TryDeriveTreesForWantAction(out List<FactRuleTree> result, wantAction, container, excludeFacts, out Dictionary<IFactInfo, List<List<IFactInfo>>> notFoundFacts))
@@ -156,10 +157,10 @@ namespace FactFactory
         }
 
         /// <summary>
-        /// Get copy container
+        /// Get container for derive
         /// </summary>
         /// <returns></returns>
-        protected abstract TFactContainer GetCopyContainer();
+        protected abstract TFactContainer GetContainerForDerive();
 
         /// <summary>
         /// We are trying to calculate a tree by which we find a fact

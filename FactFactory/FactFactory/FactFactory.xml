@@ -576,7 +576,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FactFactory.FactFactory.GetCopyContainer">
+        <member name="M:FactFactory.FactFactory.GetContainerForDerive">
             <summary>
             Get copy container
             </summary>
@@ -643,9 +643,9 @@
             <param name="rule">rule for calculating the fact</param>
             <param name="container">fact container</param>
         </member>
-        <member name="M:FactFactory.FactFactoryBase`4.GetCopyContainer">
+        <member name="M:FactFactory.FactFactoryBase`4.GetContainerForDerive">
             <summary>
-            Get copy container
+            Get container for derive
             </summary>
             <returns></returns>
         </member>

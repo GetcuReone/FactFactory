@@ -44,7 +44,7 @@ namespace FactFactory
         /// Get copy container
         /// </summary>
         /// <returns></returns>
-        protected override FactContainer GetCopyContainer()
+        protected override FactContainer GetContainerForDerive()
         {
             return new FactContainer(Container);
         }

@@ -10,7 +10,7 @@ namespace FactFactoryTests.FactFactoryT.Env
             return default;
         }
 
-        protected override FactFactory.Entities.FactContainer GetCopyContainer()
+        protected override FactFactory.Entities.FactContainer GetContainerForDerive()
         {
             return Container;
         }
