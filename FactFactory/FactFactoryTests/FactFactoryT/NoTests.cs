@@ -6,9 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactoryTests.FactFactoryT
 {
     [TestClass]
-    public sealed class FactFactoryNoTests : FactFactoryTestBase
+    public sealed class NoTests : FactFactoryTestBase
     {
-        //[Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] derive the fact through the rule with the NoFact")]
         public void DeriveUseRuleWithNoFactTestCase()

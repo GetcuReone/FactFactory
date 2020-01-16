@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactoryTests.FactFactoryT.Env
 {
     [TestClass]
-    public sealed class FactFactoryNotContainedTests : FactFactoryTestBase
+    public sealed class NotContainedTests : FactFactoryTestBase
     {
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
