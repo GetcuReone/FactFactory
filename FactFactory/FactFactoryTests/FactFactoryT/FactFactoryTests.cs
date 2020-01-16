@@ -295,7 +295,7 @@ namespace FactFactoryTests.FactFactoryT
             int value = 24;
 
             Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
-                .And("Add rule with input NotContainedFact", _ => FactFactory.Rules.Add((NotContainedFact<Input1Fact> f) => new Input1Fact(value)))
+                .And("Add rule with input NotContainedFact", _ => FactFactory.Rules.Add((NotContained<Input1Fact> f) => new Input1Fact(value)))
                 .When("Derive fact", _ => FactFactory.DeriveFact<Input1Fact>())
                 .Then("Check result", fact =>
                 {
@@ -312,8 +312,8 @@ namespace FactFactoryTests.FactFactoryT
             int value = 24;
 
             Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
-                .And("Add rule with input NotContainedFact 1", _ => FactFactory.Rules.Add((NotContainedFact<Input1Fact> f) => new Input1Fact(value)))
-                .And("Add rule with input NotContainedFact 1", _ => FactFactory.Rules.Add((NotContainedFact<Input2Fact> f) => new Input2Fact(value)))
+                .And("Add rule with input NotContainedFact 1", _ => FactFactory.Rules.Add((NotContained<Input1Fact> f) => new Input1Fact(value)))
+                .And("Add rule with input NotContainedFact 1", _ => FactFactory.Rules.Add((NotContained<Input2Fact> f) => new Input2Fact(value)))
                 .And("Add rule result", _ => FactFactory.Rules.Add((Input1Fact f1, Input2Fact f2) => new Input3Fact(f1.Value * f2.Value)))
                 .When("Derive fact", _ => FactFactory.DeriveFact<Input3Fact>())
                 .Then("Check result", fact =>

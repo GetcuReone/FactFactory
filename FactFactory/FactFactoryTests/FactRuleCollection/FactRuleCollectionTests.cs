@@ -593,7 +593,7 @@ namespace FactFactoryTests.FactRuleCollection
             GivenEmpty()
                 .When("Add rule already contains", _ =>
                 {
-                    return ExpectedException<ArgumentException>(() => Collection.Add(() => new NotContainedFact<Input10Fact>()));
+                    return ExpectedException<ArgumentException>(() => Collection.Add(() => new NotContained<Input10Fact>()));
                 })
                 .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
         }

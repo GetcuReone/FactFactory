@@ -1,4 +1,6 @@
-﻿using FactFactory.Facts;
+﻿using FactFactory.Consts;
+using FactFactory.Facts;
+using FactFactory.Helpers;
 using FactFactory.Interfaces;
 using System;
 
@@ -25,9 +27,25 @@ namespace FactFactory.Entities
         }
 
         /// <inheritdoc />
-        public INotContainedFact GetNotContainedFact()
+        public INotContainedFact GetNotContainedInstance()
         {
+            var type = typeof(TFact);
+
+            if (!typeof(INotContainedFact).IsAssignableFrom(type))
+                throw FactFactoryHelper.CreateException(ErrorCodes.FactWrongType, $"Fact is not a type {nameof(INotContainedFact)}");
+
             return (INotContainedFact) Activator.CreateInstance(typeof(TFact));
+        }
+
+        /// <inheritdoc />
+        public INoFact GetNoInstance()
+        {
+            var type = typeof(TFact);
+
+            if (!typeof(INoFact).IsAssignableFrom(type))
+                throw FactFactoryHelper.CreateException(ErrorCodes.FactWrongType, $"Fact is not a type {nameof(INoFact)}");
+
+            return (INoFact)Activator.CreateInstance(typeof(TFact));
         }
 
         /// <inheritdoc />

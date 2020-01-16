@@ -24,5 +24,10 @@
         /// Rule not found
         /// </summary>
         public static readonly string RuleNotFound = "RuleNotFound";
+
+        /// <summary>
+        /// The fact is of the wrong type
+        /// </summary>
+        public static readonly string FactWrongType = "FactWrongType";
     }
 }

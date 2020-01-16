@@ -35,6 +35,12 @@
         /// Return fact. The current fact is not contained in the container.
         /// </summary>
         /// <returns></returns>
-        INotContainedFact GetNotContainedFact();
+        INotContainedFact GetNotContainedInstance();
+
+        /// <summary>
+        /// Return an instance of a type <see cref="INoFact"/> fact in for the current fact type
+        /// </summary>
+        /// <returns></returns>
+        INoFact GetNoInstance();
     }
 }

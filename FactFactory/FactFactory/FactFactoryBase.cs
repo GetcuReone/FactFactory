@@ -184,165 +184,176 @@ namespace FactFactory
                 if (wantFact.ContainsContainer(container))
                     continue;
 
-                // find the rules that can calculate the fact
-                List<FactRuleTree> factRuleTrees = GetFactRuleTrees(wantFact, ruleCollection);
-
-                // Check if we can already derive the fact
-                FactRuleTree factRuleTreeComputed = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.CanDerive(container));
-                if (factRuleTreeComputed != null)
+                if (TryDeriveTreeForFactInfo(out FactRuleTree treeResult, wantFact, container, ruleCollection, excludeFacts, out List<List<IFactInfo>> notFoundFactSet))
                 {
-                    treesResult.Add(factRuleTreeComputed);
-                    continue;
+                    treesResult.Add(treeResult);
                 }
-
-                // create the necessary number of sets of missing facts
-                List<List<IFactInfo>> notFoundFactSets = factRuleTrees.ConvertAll(item => new List<IFactInfo>());
-                bool isDerive = false;
-                List<FactRuleNode> allCompletedNodes = new List<FactRuleNode>();
-
-                while (!isDerive)
+                else
                 {
-                    for (int i = factRuleTrees.Count - 1; i >= 0; i--)
-                    {
-                        FactRuleTree factRuleTree = factRuleTrees[i];
-
-                        if (factRuleTree == null)
-                            continue;
-
-                        int lastlevelNumber = factRuleTree.Levels.Count - 1;
-
-                        if (SyncComputedNodeForLevelTreeAndCheckGoneRoot(factRuleTree, lastlevelNumber, allCompletedNodes))
-                        {
-                            treesResult.Add(factRuleTree);
-                            isDerive = true;
-                            break;
-                        }
-
-                        List<FactRuleNode> lastLevel = factRuleTree.Levels[lastlevelNumber];
-
-                        if (lastLevel.Count == 0)
-                        {
-                            treesResult.Add(factRuleTree);
-                            isDerive = true;
-                            break;
-                        }
-
-                        List<FactRuleNode> nextNodes = new List<FactRuleNode>();
-                        List<FactRuleNode> currentLevelCompletedNodes = new List<FactRuleNode>();
-                        bool cannotDerived = false;
-
-                        for (int j = 0; j < lastLevel.Count; j++)
-                        {
-                            FactRuleNode node = lastLevel[j];
-
-                            List<IFactInfo> needFacts = node.FactRule.InputFactInfos
-                                .Where(fact => !fact.ContainsContainer(container) && excludeFacts.All(exF => !exF.Compare(fact)))
-                                .ToList();
-
-                            foreach (var notContainedFactInfo in needFacts.Where(fact => fact.IsFactType<INotContainedFact>()).ToList())
-                            {
-                                INotContainedFact notContainedFact = notContainedFactInfo.GetNotContainedFact();
-
-                                if (container.All(fact => !notContainedFact.IsFactContained(container)))
-                                {
-                                    container.Add(notContainedFact);
-                                    needFacts.Remove(notContainedFactInfo);
-                                }
-                            }
-
-                            // If the rule can be calculated from the parameters in the container, then add the node to the list of complete
-                            if (needFacts.IsNullOrEmpty())
-                            {
-                                allCompletedNodes.Add(node);
-                                currentLevelCompletedNodes.Add(node);
-                                continue;
-                            }
-
-                            var completedNodesForFact = allCompletedNodes
-                                .Where(n => needFacts.Any(f => f.Compare(n.FactRule.OutputFactInfo)))
-                                .ToList();
-
-                            if (completedNodesForFact.Count > 0)
-                            {
-                                foreach (var completedNodeForFact in completedNodesForFact)
-                                    node.Childs.Add(completedNodeForFact);
-
-                                var foundFacts = completedNodesForFact.Select(n => n.FactRule.OutputFactInfo).ToList();
-                                needFacts.RemoveAll(f => foundFacts.Any(ff => ff.Compare(f)));
-
-                                if (needFacts.Count == 0)
-                                    continue;
-                            }
-
-                            foreach (var needFact in needFacts)
-                            {
-
-                                var needRules = ruleCollection
-                                    .Where(rule => rule.OutputFactInfo.Compare(needFact))
-                                    .Where(rule => !node.ExistsBranch(rule))
-                                    .ToList();
-
-                                if (needRules.Count > 0)
-                                {
-                                    var nodes = needRules.Select(rule => new FactRuleNode
-                                    {
-                                        FactRule = rule,
-                                        Parent = node,
-                                    }).ToList();
-                                    nextNodes.AddRange(nodes);
-                                    node.Childs.AddRange(nodes);
-                                }
-                                else
-                                {
-                                    // Is there a neighboring node capable of deriving this fact
-                                    cannotDerived = RemoveRuleNodeAndCheckGoneRoot(factRuleTree, lastlevelNumber, node);
-                                    j--;
-
-                                    notFoundFactSets[i].Add(needFact);
-                                }
-                            }
-                        }
-
-                        if (cannotDerived)
-                        {
-                            factRuleTrees[i] = null;
-                        }
-                        else if (currentLevelCompletedNodes.Count > 0)
-                        {
-                            if (SyncComputedNodeForLevelTreeAndCheckGoneRoot(factRuleTree, lastlevelNumber, currentLevelCompletedNodes))
-                            {
-                                treesResult.Add(factRuleTree);
-                                isDerive = true;
-                                break;
-                            }
-                            else if (nextNodes.Count > 0)
-                            {
-                                SyncComputedNodes(nextNodes, currentLevelCompletedNodes);
-                                factRuleTree.Levels.Add(nextNodes);
-                            }
-                        }
-                        else if (nextNodes.Count > 0)
-                        {
-                            factRuleTree.Levels.Add(nextNodes);
-                        }
-                        else
-                        {
-                            treesResult.Add(factRuleTree);
-                            isDerive = true;
-                            break;
-                        }
-                    }
-
-                    if (factRuleTrees.All(tree => tree == null))
-                    {
-                        notFoundFactSets.RemoveAll(factSet => factSet.Count == 0);
-                        notFoundFacts.Add(wantFact, notFoundFactSets);
-                        break;
-                    }
+                    notFoundFacts.Add(wantFact, notFoundFactSet);
                 }
             }
 
             return notFoundFacts.Count == 0;
+        }
+
+        private bool TryDeriveTreeForFactInfo(out FactRuleTree treeResult, IFactInfo wantFact, TFactContainer container, IReadOnlyCollection<TFactRule> ruleCollection, IReadOnlyCollection<IFactInfo> excludeFacts, out List<List<IFactInfo>> notFoundFactSet)
+        {
+            treeResult = null;
+            notFoundFactSet = null;
+
+            // find the rules that can calculate the fact
+            List<FactRuleTree> factRuleTrees = GetFactRuleTrees(wantFact, ruleCollection);
+
+            // Check if we can already derive the fact
+            FactRuleTree factRuleTreeComputed = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.CanDerive(container));
+
+            if (factRuleTreeComputed != null)
+            {
+                treeResult = factRuleTreeComputed;
+                return true;
+            }
+
+            // create the necessary number of sets of missing facts
+            notFoundFactSet = factRuleTrees.ConvertAll(item => new List<IFactInfo>());
+            List<FactRuleNode> allCompletedNodes = new List<FactRuleNode>();
+
+            while (true)
+            {
+                for (int i = factRuleTrees.Count - 1; i >= 0; i--)
+                {
+                    FactRuleTree factRuleTree = factRuleTrees[i];
+
+                    if (factRuleTree == null)
+                        continue;
+
+                    int lastlevelNumber = factRuleTree.Levels.Count - 1;
+
+                    if (SyncComputedNodeForLevelTreeAndCheckGoneRoot(factRuleTree, lastlevelNumber, allCompletedNodes))
+                    {
+                        treeResult = factRuleTree;
+                        return true;
+                    }
+
+                    List<FactRuleNode> lastLevel = factRuleTree.Levels[lastlevelNumber];
+
+                    if (lastLevel.Count == 0)
+                    {
+                        treeResult = factRuleTree;
+                        return true;
+                    }
+
+                    List<FactRuleNode> nextNodes = new List<FactRuleNode>();
+                    List<FactRuleNode> currentLevelCompletedNodes = new List<FactRuleNode>();
+                    bool cannotDerived = false;
+
+                    for (int j = 0; j < lastLevel.Count; j++)
+                    {
+                        FactRuleNode node = lastLevel[j];
+
+                        List<IFactInfo> needFacts = node.FactRule.InputFactInfos
+                            .Where(fact => !fact.ContainsContainer(container) && excludeFacts.All(exF => !exF.Compare(fact)))
+                            .ToList();
+
+                        foreach (var notContainedFactInfo in needFacts.Where(fact => fact.IsFactType<INotContainedFact>()).ToList())
+                        {
+                            INotContainedFact notContainedFact = notContainedFactInfo.GetNotContainedInstance();
+
+                            if (container.All(fact => !notContainedFact.IsFactContained(container)))
+                            {
+                                container.Add(notContainedFact);
+                                needFacts.Remove(notContainedFactInfo);
+                            }
+                        }
+
+                        // If the rule can be calculated from the parameters in the container, then add the node to the list of complete
+                        if (needFacts.IsNullOrEmpty())
+                        {
+                            allCompletedNodes.Add(node);
+                            currentLevelCompletedNodes.Add(node);
+                            continue;
+                        }
+
+                        var completedNodesForFact = allCompletedNodes
+                            .Where(n => needFacts.Any(f => f.Compare(n.FactRule.OutputFactInfo)))
+                            .ToList();
+
+                        if (completedNodesForFact.Count > 0)
+                        {
+                            foreach (var completedNodeForFact in completedNodesForFact)
+                                node.Childs.Add(completedNodeForFact);
+
+                            var foundFacts = completedNodesForFact.Select(n => n.FactRule.OutputFactInfo).ToList();
+                            needFacts.RemoveAll(f => foundFacts.Any(ff => ff.Compare(f)));
+
+                            if (needFacts.Count == 0)
+                                continue;
+                        }
+
+                        foreach (var needFact in needFacts)
+                        {
+                            var needRules = ruleCollection
+                                    .Where(rule => rule.OutputFactInfo.Compare(needFact))
+                                    .Where(rule => !node.ExistsBranch(rule))
+                                    .ToList();
+
+                            if (needRules.Count > 0)
+                            {
+                                var nodes = needRules.Select(rule => new FactRuleNode
+                                {
+                                    FactRule = rule,
+                                    Parent = node,
+                                }).ToList();
+                                nextNodes.AddRange(nodes);
+                                node.Childs.AddRange(nodes);
+                            }
+                            else
+                            {
+                                // Is there a neighboring node capable of deriving this fact
+                                cannotDerived = RemoveRuleNodeAndCheckGoneRoot(factRuleTree, lastlevelNumber, node);
+                                j--;
+
+                                notFoundFactSet[i].Add(needFact);
+                            }
+                        }
+                    }
+
+                    if (cannotDerived)
+                    {
+                        factRuleTrees[i] = null;
+                    }
+                    else if (currentLevelCompletedNodes.Count > 0)
+                    {
+                        if (SyncComputedNodeForLevelTreeAndCheckGoneRoot(factRuleTree, lastlevelNumber, currentLevelCompletedNodes))
+                        {
+                            treeResult = factRuleTree;
+                            return true;
+                        }
+                        else if (nextNodes.Count > 0)
+                        {
+                            SyncComputedNodes(nextNodes, currentLevelCompletedNodes);
+                            factRuleTree.Levels.Add(nextNodes);
+                        }
+                    }
+                    else if (nextNodes.Count > 0)
+                    {
+                        factRuleTree.Levels.Add(nextNodes);
+                    }
+                    else
+                    {
+                        treeResult = factRuleTree;
+                        return true;
+                    }
+                }
+
+                if (factRuleTrees.All(tree => tree == null))
+                {
+                    notFoundFactSet.RemoveAll(factSet => factSet.Count == 0);
+                    break;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>

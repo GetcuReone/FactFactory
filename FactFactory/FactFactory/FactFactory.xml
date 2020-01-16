@@ -29,6 +29,11 @@
             Rule not found
             </summary>
         </member>
+        <member name="F:FactFactory.Consts.ErrorCodes.FactWrongType">
+            <summary>
+            The fact is of the wrong type
+            </summary>
+        </member>
         <member name="T:FactFactory.Entities.DeriveErrorDetail">
             <summary>
             Error detail for method <see cref="M:FactFactory.FactFactoryBase`4.Derive"/>
@@ -137,7 +142,10 @@
         <member name="M:FactFactory.Entities.FactInfo`1.ContainsContainer``1(``0)">
             <inheritdoc />
         </member>
-        <member name="M:FactFactory.Entities.FactInfo`1.GetNotContainedFact">
+        <member name="M:FactFactory.Entities.FactInfo`1.GetNotContainedInstance">
+            <inheritdoc />
+        </member>
+        <member name="M:FactFactory.Entities.FactInfo`1.GetNoInstance">
             <inheritdoc />
         </member>
         <member name="M:FactFactory.Entities.FactInfo`1.IsFactType``1">
@@ -778,41 +786,35 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FactFactory.Facts.NotContainedFact`1">
+        <member name="T:FactFactory.Facts.NotContained`1">
             <summary>
             Information about a fact that is not contained in the container at the time of the function call <see cref="M:FactFactory.Interfaces.IFactFactory`4.Derive"/>
             </summary>
         </member>
-        <member name="P:FactFactory.Facts.NotContainedFact`1.Value">
-            <inheritdoc />
-        </member>
-        <member name="M:FactFactory.Facts.NotContainedFact`1.#ctor">
+        <member name="M:FactFactory.Facts.NotContained`1.#ctor">
             <summary>
             Constructor
             </summary>
         </member>
-        <member name="M:FactFactory.Facts.NotContainedFact`1.GetFactInfoNotContained``1">
-            <inheritdoc />
+        <member name="M:FactFactory.Facts.NotContained`1.GetFactInfoNotContained``1">
+            <summary>
+            Return information about a fact not contained in the container
+            </summary>
+            <typeparam name="TFact1"></typeparam>
+            <returns></returns>
         </member>
-        <member name="T:FactFactory.Facts.NotContainedFactBase">
+        <member name="T:FactFactory.Facts.NotContainedBase">
             <summary>
             Information about a fact that is not contained in the container at the time of the function call <see cref="M:FactFactory.Interfaces.IFactFactory`4.Derive"/>
             </summary>
         </member>
-        <member name="M:FactFactory.Facts.NotContainedFactBase.#ctor(FactFactory.Interfaces.IFactInfo)">
+        <member name="M:FactFactory.Facts.NotContainedBase.#ctor(FactFactory.Interfaces.IFactInfo)">
             <summary>
             Constructor
             </summary>
             <param name="fact"></param>
         </member>
-        <member name="M:FactFactory.Facts.NotContainedFactBase.GetFactInfoNotContained``1">
-            <summary>
-            Return information about a fact not contained in the container
-            </summary>
-            <typeparam name="TFact"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:FactFactory.Facts.NotContainedFactBase.IsFactContained``1(``0)">
+        <member name="M:FactFactory.Facts.NotContainedBase.IsFactContained``1(``0)">
             <summary>
             Is the fact contained in the container
             </summary>
@@ -820,12 +822,26 @@
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="M:FactFactory.Facts.NotContainedFactBase.GetInstance``1">
+        <member name="T:FactFactory.Facts.No`1">
             <summary>
-            Get instace
+            Class for facts that cannot be calculated
             </summary>
-            <typeparam name="TFact"></typeparam>
-            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Facts.No`1.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:FactFactory.Facts.NoBase">
+            <summary>
+            Base class for facts that cannot be calculated
+            </summary>
+        </member>
+        <member name="M:FactFactory.Facts.NoBase.#ctor(FactFactory.Interfaces.IFactInfo)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="fact"></param>
         </member>
         <member name="T:FactFactory.Helpers.FactFactoryHelper">
             <summary>
@@ -963,9 +979,15 @@
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:FactFactory.Interfaces.IFactInfo.GetNotContainedFact">
+        <member name="M:FactFactory.Interfaces.IFactInfo.GetNotContainedInstance">
             <summary>
             Return fact. The current fact is not contained in the container.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactInfo.GetNoInstance">
+            <summary>
+            Return an instance of a type <see cref="T:FactFactory.Interfaces.INoFact"/> fact in for the current fact type
             </summary>
             <returns></returns>
         </member>
@@ -1005,6 +1027,16 @@
             <typeparam name="TFactRule"></typeparam>
             <param name="factRule"></param>
             <returns></returns>
+        </member>
+        <member name="T:FactFactory.Interfaces.INoFact">
+            <summary>
+            Not calculated fact
+            </summary>
+        </member>
+        <member name="P:FactFactory.Interfaces.INoFact.Value">
+            <summary>
+            Information about a fact that cannot be calculated
+            </summary>
         </member>
         <member name="T:FactFactory.Interfaces.INotContainedFact">
             <summary>

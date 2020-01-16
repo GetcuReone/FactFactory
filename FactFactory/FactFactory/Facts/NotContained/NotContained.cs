@@ -6,22 +6,22 @@ namespace FactFactory.Facts
     /// <summary>
     /// Information about a fact that is not contained in the container at the time of the function call <see cref="IFactFactory{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
     /// </summary>
-    public sealed class NotContainedFact<TFact> : NotContainedFactBase
+    public sealed class NotContained<TFact> : NotContainedBase
         where TFact : IFact
     {
-        /// <inheritdoc />
-        public override IFactInfo Value { get; }
-
         /// <summary>
         /// Constructor
         /// </summary>
-        public NotContainedFact() : base(null)
+        public NotContained() : base(GetFactInfoNotContained<TFact>())
         {
-            Value = GetFactInfoNotContained<TFact>();
         }
 
-        /// <inheritdoc />
-        protected override IFactInfo GetFactInfoNotContained<TFact1>()
+        /// <summary>
+        /// Return information about a fact not contained in the container
+        /// </summary>
+        /// <typeparam name="TFact1"></typeparam>
+        /// <returns></returns>
+        private static IFactInfo GetFactInfoNotContained<TFact1>() where TFact1 : IFact
         {
             return new FactInfo<TFact1>();
         }
