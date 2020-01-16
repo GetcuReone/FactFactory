@@ -116,8 +116,11 @@ namespace FactFactory
             var excludeFacts = GetFactInfosAvailableOnlyRules();
 
             var excludeFact = wantAction.InputFacts.FirstOrDefault(f => excludeFacts.Any(ef => ef.Compare(f)));
+
             if (excludeFact != null)
                 throw FactFactoryHelper.CreateException(ErrorCodes.InvalidData, $"The {excludeFact.FactName} is available only for the rules");
+            if (wantAction.InputFacts.Any(fact => fact.IsFactType<INoFact>() || fact.IsFactType<INotContainedFact>()))
+                throw FactFactoryHelper.CreateException(ErrorCodes.InvalidData, $"Cannot derive for No and NotContained facts");
 
             _wantActions.Add(wantAction);
         }
