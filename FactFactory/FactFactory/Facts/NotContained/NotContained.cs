@@ -1,4 +1,4 @@
-﻿using FactFactory.Entities;
+﻿using FactFactory.Helpers;
 using FactFactory.Interfaces;
 
 namespace FactFactory.Facts
@@ -12,18 +12,8 @@ namespace FactFactory.Facts
         /// <summary>
         /// Constructor
         /// </summary>
-        public NotContained() : base(GetFactInfoNotContained<TFact>())
+        public NotContained() : base(FactFactoryHelper.GetFactInfo<TFact>())
         {
-        }
-
-        /// <summary>
-        /// Return information about a fact not contained in the container
-        /// </summary>
-        /// <typeparam name="TFact1"></typeparam>
-        /// <returns></returns>
-        private static IFactInfo GetFactInfoNotContained<TFact1>() where TFact1 : IFact
-        {
-            return new FactInfo<TFact1>();
         }
     }
 }

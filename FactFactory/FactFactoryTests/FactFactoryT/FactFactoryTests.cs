@@ -289,42 +289,6 @@ namespace FactFactoryTests.FactFactoryT
 
         [Timeout(Timeouits.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] Rule challenge with fact NotContained")]
-        public void RunRuleWithInputNotContainedFactTestCase()
-        {
-            int value = 24;
-
-            Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
-                .And("Add rule with input NotContainedFact", _ => FactFactory.Rules.Add((NotContained<Input1Fact> f) => new Input1Fact(value)))
-                .When("Derive fact", _ => FactFactory.DeriveFact<Input1Fact>())
-                .Then("Check result", fact =>
-                {
-                    Assert.IsNotNull(fact, "fact cannot be null");
-                    Assert.AreEqual(value, fact.Value, "The fact is derived incorrectly");
-                });
-        }
-
-        [Timeout(Timeouits.MilliSecond.Hundred)]
-        [TestMethod]
-        [Description("[fact][factory] Rule challenge with facts NotContained")]
-        public void RunRuleWithTwoInputNotContainedFactTestCase()
-        {
-            int value = 24;
-
-            Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
-                .And("Add rule with input NotContainedFact 1", _ => FactFactory.Rules.Add((NotContained<Input1Fact> f) => new Input1Fact(value)))
-                .And("Add rule with input NotContainedFact 1", _ => FactFactory.Rules.Add((NotContained<Input2Fact> f) => new Input2Fact(value)))
-                .And("Add rule result", _ => FactFactory.Rules.Add((Input1Fact f1, Input2Fact f2) => new Input3Fact(f1.Value * f2.Value)))
-                .When("Derive fact", _ => FactFactory.DeriveFact<Input3Fact>())
-                .Then("Check result", fact =>
-                {
-                    Assert.IsNotNull(fact, "fact cannot be null");
-                    Assert.AreEqual(value * value, fact.Value, "The fact is derived incorrectly");
-                });
-        }
-
-        [Timeout(Timeouits.MilliSecond.Hundred)]
-        [TestMethod]
         [Description("[fact][factory][negative] get original container")]
         public void GetOriginalContainerTestCase()
         {
@@ -352,7 +316,7 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check result", fact =>
                 {
                     Assert.IsNotNull(fact, "fact cannot be null");
-                    Assert.AreEqual(10, fact.Value, "Fact have other value");
+                    Assert.AreEqual(10, fact.Value, "fact have other value");
                 });
         }
 

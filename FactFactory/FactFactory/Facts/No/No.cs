@@ -1,4 +1,4 @@
-﻿using FactFactory.Entities;
+﻿using FactFactory.Helpers;
 using FactFactory.Interfaces;
 
 namespace FactFactory.Facts
@@ -12,14 +12,8 @@ namespace FactFactory.Facts
         /// <summary>
         /// Constructor
         /// </summary>
-        public No() : base(GetNoFactInfo<TFact>())
+        public No() : base(FactFactoryHelper.GetFactInfo<TFact>())
         {
-        }
-
-        private static IFactInfo GetNoFactInfo<TFact1>()
-            where TFact1 : IFact
-        {
-            return new FactInfo<TFact1>();
         }
     }
 }

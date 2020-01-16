@@ -96,6 +96,12 @@
             <typeparam name="TFact">type fact</typeparam>
             <param name="fact">fact</param>
         </member>
+        <member name="M:FactFactory.Entities.FactContainer.Remove``1(``0)">
+            <summary>
+            Remove fact
+            </summary>
+            <typeparam name="TFact">type fact</typeparam>
+        </member>
         <member name="M:FactFactory.Entities.FactContainer.Remove``1">
             <summary>
             Remove fact
@@ -796,13 +802,6 @@
             Constructor
             </summary>
         </member>
-        <member name="M:FactFactory.Facts.NotContained`1.GetFactInfoNotContained``1">
-            <summary>
-            Return information about a fact not contained in the container
-            </summary>
-            <typeparam name="TFact1"></typeparam>
-            <returns></returns>
-        </member>
         <member name="T:FactFactory.Facts.NotContainedBase">
             <summary>
             Information about a fact that is not contained in the container at the time of the function call <see cref="M:FactFactory.Interfaces.IFactFactory`4.Derive"/>
@@ -892,6 +891,13 @@
             Remove fact
             </summary>
             <typeparam name="TFact">type fact</typeparam>
+        </member>
+        <member name="M:FactFactory.Interfaces.IFactContainer.Remove``1(``0)">
+            <summary>
+            Remove fact
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="fact"></param>
         </member>
         <member name="M:FactFactory.Interfaces.IFactContainer.TryGetFact``1(``0@)">
             <summary>

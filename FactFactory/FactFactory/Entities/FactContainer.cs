@@ -50,6 +50,16 @@ namespace FactFactory.Entities
         /// Remove fact
         /// </summary>
         /// <typeparam name="TFact">type fact</typeparam>
+        public void Remove<TFact>(TFact fact)
+            where TFact : IFact
+        {
+            _container.Remove(fact);
+        }
+
+        /// <summary>
+        /// Remove fact
+        /// </summary>
+        /// <typeparam name="TFact">type fact</typeparam>
         public void Remove<TFact>()
             where TFact : IFact
         {

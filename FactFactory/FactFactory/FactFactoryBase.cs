@@ -184,14 +184,7 @@ namespace FactFactory
                 if (wantFact.ContainsContainer(container))
                     continue;
 
-                if (wantFact.IsFactType<INoFact>())
-                {
-                    if (!TryDeriveTreeForFactInfo(out FactRuleTree _, wantFact, container, ruleCollection, excludeFacts, out List<List<IFactInfo>> _))
-                        continue;
-                    else
-                        notFoundFacts.Add(wantFact, new List<List<IFactInfo>>());
-                }
-                else if (TryDeriveTreeForFactInfo(out FactRuleTree treeResult, wantFact, container, ruleCollection, excludeFacts, out List<List<IFactInfo>> notFoundFactSet))
+                if (TryDeriveTreeForFactInfo(out FactRuleTree treeResult, wantFact, container, ruleCollection, excludeFacts, out List<List<IFactInfo>> notFoundFactSet))
                 {
                     treesResult.Add(treeResult);
                 }
@@ -262,15 +255,20 @@ namespace FactFactory
                             .Where(fact => !fact.ContainsContainer(container) && excludeFacts.All(exF => !exF.Compare(fact)))
                             .ToList();
 
+                        // Exclude NotContained facts
                         foreach (var notContainedFactInfo in needFacts.Where(fact => fact.IsFactType<INotContainedFact>()).ToList())
                         {
                             INotContainedFact notContainedFact = notContainedFactInfo.GetNotContainedInstance();
 
-                            if (container.All(fact => !notContainedFact.IsFactContained(container)))
-                            {
-                                container.Add(notContainedFact);
+                            if (container.All(fact => !notContainedFact.IsFactContained(container))) 
                                 needFacts.Remove(notContainedFactInfo);
-                            }
+                        }
+
+                        // Exclude No facts
+                        foreach (var noFactInfo in needFacts.Where(fact => fact.IsFactType<INoFact>()).ToList())
+                        {
+                            if (!TryDeriveNoFactInfo(noFactInfo, container, ruleCollection, excludeFacts))
+                                needFacts.Remove(noFactInfo);
                         }
 
                         // If the rule can be calculated from the parameters in the container, then add the node to the list of complete
@@ -299,6 +297,15 @@ namespace FactFactory
 
                         foreach (var needFact in needFacts)
                         {
+                            if (needFact.IsFactType<INoFact>() || needFact.IsFactType<INotContainedFact>())
+                            {
+                                cannotDerived = RemoveRuleNodeAndCheckGoneRoot(factRuleTree, lastlevelNumber, node);
+                                j--;
+
+                                notFoundFactSet[i].Add(needFact);
+                                continue;
+                            }
+
                             var needRules = ruleCollection
                                     .Where(rule => rule.OutputFactInfo.Compare(needFact))
                                     .Where(rule => !node.ExistsBranch(rule))
@@ -482,6 +489,21 @@ namespace FactFactory
                 DeriveNode(child, container);
 
             CalculateFact((TFactRule)node.FactRule, container);
+        }
+
+        private bool TryDeriveNoFactInfo(IFactInfo wantFact, TFactContainer container, IReadOnlyCollection<TFactRule> ruleCollection, IReadOnlyCollection<IFactInfo> excludeFacts)
+        {
+            try
+            {
+                return TryDeriveTreeForFactInfo(out FactRuleTree _, wantFact.GetNoInstance().Value, container, ruleCollection, excludeFacts, out List<List<IFactInfo>> _);
+            }
+            catch (InvalidDeriveOperationException ex)
+            {
+                if (ex.Details != null && ex.Details.Count == 1 && ex.Details[0].Code == ErrorCodes.RuleNotFound)
+                    return false;
+
+                throw;
+            }
         }
 
         #endregion

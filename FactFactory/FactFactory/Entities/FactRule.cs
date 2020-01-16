@@ -32,7 +32,22 @@ namespace FactFactory.Entities
         public IFact Derive<TFactContainer>(TFactContainer container) 
             where TFactContainer : IFactContainer
         {
+            List<IFact> includeFacts = new List<IFact>(
+                InputFactInfos
+                    .Where(factInfo => factInfo.IsFactType<INotContainedFact>())
+                    .Select(factInfo => factInfo.GetNotContainedInstance()));
+
+            includeFacts.AddRange(InputFactInfos
+                    .Where(factInfo => factInfo.IsFactType<INoFact>())
+                    .Select(factInfo => factInfo.GetNoInstance()));
+
+            foreach (var includeFact in includeFacts)
+                container.Add(includeFact);
+
             IFact fact = _func(container);
+
+            foreach (var includeFact in includeFacts)
+                container.Remove(includeFact);
 
             if (fact == null)
                 throw new InvalidOperationException("Rule cannot return null");

@@ -21,6 +21,13 @@ namespace FactFactory.Interfaces
         void Remove<TFact>() where TFact : IFact;
 
         /// <summary>
+        /// Remove fact
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="fact"></param>
+        void Remove<TFact>(TFact fact) where TFact : IFact;
+
+        /// <summary>
         /// Try get fact
         /// </summary>
         /// <typeparam name="TFact"></typeparam>

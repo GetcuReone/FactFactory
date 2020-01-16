@@ -62,5 +62,10 @@ namespace FactFactory.Helpers
 
             return new InvalidDeriveOperationException(details);
         }
+
+        internal static IFactInfo GetFactInfo<TFact>() where TFact : IFact
+        {
+            return new FactInfo<TFact>();
+        }
     }
 }
