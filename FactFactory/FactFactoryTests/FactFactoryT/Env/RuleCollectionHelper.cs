@@ -1,6 +1,6 @@
 ﻿using FactFactoryTests.CommonFacts;
 
-namespace FactFactoryTests.FactFactoryT
+namespace FactFactoryTests.FactFactoryT.Env
 {
     public static class RuleCollectionHelper
     {

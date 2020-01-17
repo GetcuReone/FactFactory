@@ -1,8 +1,9 @@
-﻿using FactFactory.Consts;
+﻿using FactFactory.Constants;
 using FactFactory.Exceptions;
 using FactFactory.Facts;
 using FactFactory.Interfaces;
 using FactFactoryTests.CommonFacts;
+using FactFactoryTests.FactFactoryT.Env;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class DeriveTests : FactFactoryTestBase
     {
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] check method Derive")]
         public void DeriveTestCase()
@@ -37,7 +38,7 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] Checking for facts when deriving")]
         public void FactsWhenDeducingTestCase()
@@ -62,7 +63,7 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory][negative] Want a fact for which there is no rule")]
         public void NotExistsRuleForFactTestCase()
@@ -78,11 +79,11 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
 
                     var detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCodes.RuleNotFound, detail.Code, "code not match");
+                    Assert.AreEqual(ErrorCode.RuleNotFound, detail.Code, "code not match");
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory][negative] Want a fact that cannot be derived")]
         public void CannotDerivedOneFactFromOne1TestCase()
@@ -98,7 +99,7 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
 
                     var detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCodes.FactCannotCalculated, detail.Code, "code not match");
+                    Assert.AreEqual(ErrorCode.FactCannotCalculated, detail.Code, "code not match");
                     Assert.AreEqual(1, detail.NotFoundFacts.Values.Count, "Sets expected for one fact");
 
                     var notFoundFactSet = detail.NotFoundFacts.Values.First();
@@ -109,7 +110,7 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory][negative] Want a fact that cannot be derived")]
         public void CannotDerivedOneFactFromOne2TestCase()
@@ -125,7 +126,7 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
 
                     var detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCodes.FactCannotCalculated, detail.Code, "code not match");
+                    Assert.AreEqual(ErrorCode.FactCannotCalculated, detail.Code, "code not match");
 
                     var listFact = new List<IFactInfo>
                     {
@@ -137,7 +138,7 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] Derived tow facts")]
         public void DerivedTwoFactsTestCase()

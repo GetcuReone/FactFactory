@@ -1,4 +1,4 @@
-﻿using FactFactory.Consts;
+﻿using FactFactory.Constants;
 using FactFactory.Entities;
 using FactFactory.Exceptions;
 using FactFactory.Interfaces;
@@ -54,7 +54,7 @@ namespace FactFactory.Helpers
             foreach(var keyAction in notFoundFacts.Keys)
             {
                 details.Add(new DeriveErrorDetail(
-                    ErrorCodes.FactCannotCalculated,
+                    ErrorCode.FactCannotCalculated,
                     $"facts {string.Join(", ", notFoundFacts[keyAction].Keys.Select(k => k.FactName))} cannot be calculated for action {keyAction.ToString()}",
                     keyAction,
                     notFoundFacts[keyAction]));

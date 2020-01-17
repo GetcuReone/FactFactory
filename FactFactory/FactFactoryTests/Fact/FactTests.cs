@@ -9,7 +9,7 @@ namespace FactFactoryTests.Fact
     [TestClass]
     public sealed class FactTests : TestBase
     {
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact] set value fact")]
         public void SetValueFactTestCase()
@@ -21,7 +21,7 @@ namespace FactFactoryTests.Fact
                 .Then("Check value fact", fact => Assert.AreEqual(operationDate, fact.Value, "a different value of the fact was expected"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact] check method GetFactInfo")]
         public void GetFactInfoTestCase()

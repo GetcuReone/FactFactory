@@ -1,4 +1,4 @@
-﻿using FactFactory.Consts;
+﻿using FactFactory.Constants;
 using FactFactory.Entities;
 using FactFactory.Exceptions;
 using FactFactory.Facts;
@@ -55,7 +55,7 @@ namespace FactFactory
             TFactContainer container = GetContainerForDerive();
 
             if (container.Equals(Container))
-                throw FactFactoryHelper.CreateDeriveException(ErrorCodes.InvalidData, "method GetCopyContainer return original container");
+                throw FactFactoryHelper.CreateDeriveException(ErrorCode.InvalidData, "method GetCopyContainer return original container");
 
             container.Add(new DateOfDeriveFact(DateTime.Now));
             container.Add(new DerivingCurrentFactsFact(
@@ -111,16 +111,16 @@ namespace FactFactory
         public virtual void WantFact(TWantAction wantAction)
         {
             if (_wantActions.IndexOf(wantAction) != -1)
-                throw FactFactoryHelper.CreateException(ErrorCodes.InvalidData, "Action already requested");
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, "Action already requested");
 
             var excludeFacts = GetFactInfosAvailableOnlyRules();
 
             var excludeFact = wantAction.InputFacts.FirstOrDefault(f => excludeFacts.Any(ef => ef.Compare(f)));
 
             if (excludeFact != null)
-                throw FactFactoryHelper.CreateException(ErrorCodes.InvalidData, $"The {excludeFact.FactName} is available only for the rules");
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"The {excludeFact.FactName} is available only for the rules");
             if (wantAction.InputFacts.Any(fact => fact.IsFactType<INoFact>() || fact.IsFactType<INotContainedFact>()))
-                throw FactFactoryHelper.CreateException(ErrorCodes.InvalidData, $"Cannot derive for No and NotContained facts");
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"Cannot derive for No and NotContained facts");
 
             _wantActions.Add(wantAction);
         }
@@ -382,7 +382,7 @@ namespace FactFactory
         private List<FactRuleTree> GetFactRuleTrees(IFactInfo wantFact, IReadOnlyCollection<TFactRule> rules)
         {
             if (rules.IsNullOrEmpty())
-                throw FactFactoryHelper.CreateDeriveException(ErrorCodes.RuleCollectionEmpty, "Rules cannot be null");
+                throw FactFactoryHelper.CreateDeriveException(ErrorCode.EmptyRuleCollection, "Rules cannot be null");
 
             List<FactRuleTree> factRuleTrees = rules?.Where(rule => rule.OutputFactInfo.Compare(wantFact))
                     .Select(rule =>
@@ -397,7 +397,7 @@ namespace FactFactory
                     .ToList();
 
             if (factRuleTrees.IsNullOrEmpty())
-                throw FactFactoryHelper.CreateDeriveException(ErrorCodes.RuleNotFound, $"There is no rule that can deduce a {wantFact.FactName}");
+                throw FactFactoryHelper.CreateDeriveException(ErrorCode.RuleNotFound, $"There is no rule that can deduce a {wantFact.FactName}");
 
             return factRuleTrees;
         }
@@ -502,7 +502,7 @@ namespace FactFactory
             }
             catch (InvalidDeriveOperationException ex)
             {
-                if (ex.Details != null && ex.Details.Count == 1 && ex.Details[0].Code == ErrorCodes.RuleNotFound)
+                if (ex.Details != null && ex.Details.Count == 1 && ex.Details[0].Code == ErrorCode.RuleNotFound)
                     return false;
 
                 throw;

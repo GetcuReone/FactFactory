@@ -16,7 +16,7 @@ namespace FactFactoryTests.FactInfo
             return Given("Create OthreFact", () => new OtherFact(dateTime));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] successful comparison of information about one fact")]
         public void CompareFactInfoOneFactTestCase()
@@ -34,7 +34,7 @@ namespace FactFactoryTests.FactInfo
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] successful comparison of information about one fact")]
         public void SuccessCompareFactInfoTowFactTestCase()
@@ -57,7 +57,7 @@ namespace FactFactoryTests.FactInfo
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] unsuccessful comparison of two facts")]
         public void FailedCompareFactInfoTowFactTestCase()
@@ -80,7 +80,7 @@ namespace FactFactoryTests.FactInfo
                 .Then("Compare factInfos", () => Assert.IsFalse(first.Compare(second), "factual information is the same"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] check fact name")]
         public void FactNameTestCase()
@@ -90,7 +90,7 @@ namespace FactFactoryTests.FactInfo
                 .Then("Check result", factInfo => Assert.AreEqual(nameof(OtherFact), factInfo.FactName, "not expected fact name"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] container contains fact")]
         public void ContainsContainerTestCase()
@@ -108,7 +108,7 @@ namespace FactFactoryTests.FactInfo
                     fact => Assert.IsTrue(fact.GetFactInfo().ContainsContainer(container), "the container does not contain a fact"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] the container does not contain a fact")]
         public void NotContainsContainerTestCase()
