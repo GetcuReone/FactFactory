@@ -3,7 +3,7 @@
   <metadata>
     <id>FactFactory</id>
     <version>0.2.0</version>
-    <authors>Getcu Reone</authors>
+    <authors>GetcuReone</authors>
     <owners>GetcuReone</owners>
     <!--<projectUrl>https://github.com/GetcuReone/FactFactory/wiki</projectUrl>-->
 
@@ -19,7 +19,7 @@
     <description>My implementation of a machine that can derive facts from other facts</description>
 
     <!-- Copyright information -->
-    <copyright>Copyright © GetcuReone 2020</copyright>
+    <copyright>Copyright © 2020 GetcuReone</copyright>
 
     <!-- Tags appear in the gallery and can be used for tag searches -->
     <tags>factfactory combopatterns</tags>

@@ -3,12 +3,12 @@ using FactFactoryTests.CommonFacts;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FactFactoryTests.FactFactoryT.Env
+namespace FactFactoryTests.FactFactoryT
 {
     [TestClass]
     public sealed class NotContainedTests : FactFactoryTestBase
     {
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] Rule challenge with facts NotContained")]
         public void RunRuleWithTwoInputNotContainedFactTestCase()
@@ -28,7 +28,7 @@ namespace FactFactoryTests.FactFactoryT.Env
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] Rule challenge with fact NotContained")]
         public void RunRuleWithInputNotContainedFactTestCase()

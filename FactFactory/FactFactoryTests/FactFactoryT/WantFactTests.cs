@@ -1,4 +1,4 @@
-﻿using FactFactory.Consts;
+﻿using FactFactory.Constants;
 using FactFactory.Entities;
 using FactFactory.Exceptions;
 using FactFactory.Facts;
@@ -11,7 +11,7 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class WantFactTests : FactFactoryTestBase
     {
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory][negative] Want not available fact")]
         public void WantNotAvailableFactTestCase()
@@ -25,12 +25,12 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
 
                     ErrorDetail detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCodes.InvalidData, detail.Code, "code not match");
+                    Assert.AreEqual(ErrorCode.InvalidData, detail.Code, "code not match");
                     Assert.AreEqual("The CurrentFactsFindingFact is available only for the rules", detail.Reason, "reason not match");
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory][negative] Want not contained fact")]
         public void WantNotContainedFactTestCase()
@@ -44,12 +44,12 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(1, ex.Details.Count, "there must be one detail");
 
                     ErrorDetail detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCodes.InvalidData, detail.Code, "code not match");
+                    Assert.AreEqual(ErrorCode.InvalidData, detail.Code, "code not match");
                     Assert.AreEqual("Cannot derive for No and NotContained facts", detail.Reason, "reason not match");
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory][negative] Want no fact")]
         public void WantNoFactTestCase()
@@ -63,7 +63,7 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(1, ex.Details.Count, "there must be one detail");
 
                     ErrorDetail detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCodes.InvalidData, detail.Code, "code not match");
+                    Assert.AreEqual(ErrorCode.InvalidData, detail.Code, "code not match");
                     Assert.AreEqual("Cannot derive for No and NotContained facts", detail.Reason, "reason not match");
                 });
         }

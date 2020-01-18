@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactoryTests", "FactFac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtTestAdapter", "JwtTestAdapter\JwtTestAdapter.csproj", "{63776A3E-3A9A-4FE3-B83E-EFE6875EB55E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrostructTests", "InfrostructTests\InfrostructTests.csproj", "{385C9CF4-7BD2-4F74-A64B-8B6F1ED9114C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureTests", "InfrastructureTests\InfrastructureTests.csproj", "{385C9CF4-7BD2-4F74-A64B-8B6F1ED9114C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

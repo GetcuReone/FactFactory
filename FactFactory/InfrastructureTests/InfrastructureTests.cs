@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace InfrostructTests
+namespace InfrastructureTests
 {
     [TestClass]
-    public class InfrostructTests : TestBase
+    public class InfrastructureTests : TestBase
     {
         [TestMethod]
         public void AllHaveTimeoutTestCase()

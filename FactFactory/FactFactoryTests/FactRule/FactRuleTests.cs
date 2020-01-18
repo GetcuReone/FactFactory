@@ -14,7 +14,7 @@ namespace FactFactoryTests.FactRule
     [TestClass]
     public sealed class FactRuleTests : TestBase
     {
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule] create FactRule without param")]
         public void CreateFactRuleWithoutParamTestCase()
@@ -24,7 +24,7 @@ namespace FactFactoryTests.FactRule
                 .Then("Check input param", rule => Assert.AreEqual(0, rule.InputFactInfos.Count, "InputFactInfos is not empty"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule] create a rule with one input parameter")]
         public void CreateFactRuleOneInputParamTestCase()
@@ -44,7 +44,7 @@ namespace FactFactoryTests.FactRule
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule] create a rule with several input parameters")]
         public void CreateFactRuleSeveralInputParamTestCase()
@@ -63,7 +63,7 @@ namespace FactFactoryTests.FactRule
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule] create a rule with output parameter")]
         public void CreateFactRuleOutputParamTestCase()
@@ -79,7 +79,7 @@ namespace FactFactoryTests.FactRule
                 .Then("Check output param", rule => Assert.IsTrue(rule.OutputFactInfo.Compare(fact.GetFactInfo()), "factual information does not match"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][negative] create a rule without param")]
         public void CreateFactRuleWithoutFuncTestCase()
@@ -92,7 +92,7 @@ namespace FactFactoryTests.FactRule
                 .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule] check method derive")]
         public void DeriveFactRuleTestCase()
@@ -125,7 +125,7 @@ namespace FactFactoryTests.FactRule
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule] rule can be followed")]
         public void CanDeriveFactRuleTestCase()
@@ -143,7 +143,7 @@ namespace FactFactoryTests.FactRule
                 .Then("check result", result => Assert.IsTrue(result, "rule cannot be executed"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule] rule cannot be executed")]
         public void CanNotDeriveFactRuleTestCase()

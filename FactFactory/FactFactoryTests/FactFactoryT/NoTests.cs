@@ -8,7 +8,7 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class NoTests : FactFactoryTestBase
     {
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] derive the fact through the rule with the NoFact")]
         public void DeriveUseRuleWithNoFactTestCase()
@@ -30,7 +30,7 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] derive with NoFact")]
         public void DeriveWithNoFactTestCase()

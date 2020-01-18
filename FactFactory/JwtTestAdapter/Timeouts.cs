@@ -1,6 +1,6 @@
 ﻿namespace JwtTestAdapter
 {
-    public static class Timeouits
+    public static class Timeouts
     {
         public static class MilliSecond
         {
