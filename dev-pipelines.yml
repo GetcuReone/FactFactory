@@ -23,8 +23,6 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- template: pipeline-steps/install-snk.yml
-
 - task: VSBuild@1
   displayName: "VS build"
   inputs:
