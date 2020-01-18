@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>FactFactory</id>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
     <authors>GetcuReone</authors>
     <owners>GetcuReone</owners>
     <!--<projectUrl>https://github.com/GetcuReone/FactFactory/wiki</projectUrl>-->
