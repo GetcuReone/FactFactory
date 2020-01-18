@@ -1,9 +1,9 @@
-﻿namespace FactFactory.Consts
+﻿namespace FactFactory.Constants
 {
     /// <summary>
     /// Error codes
     /// </summary>
-    public static class ErrorCodes
+    public static class ErrorCode
     {
         /// <summary>
         /// Invalid data
@@ -18,7 +18,7 @@
         /// <summary>
         /// Collection of rules for calculating the fact is empty
         /// </summary>
-        public static readonly string RuleCollectionEmpty = "RuleCollectionEmpty";
+        public static readonly string EmptyRuleCollection = "EmptyRuleCollection";
 
         /// <summary>
         /// Rule not found
@@ -26,8 +26,8 @@
         public static readonly string RuleNotFound = "RuleNotFound";
 
         /// <summary>
-        /// The fact is of the wrong type
+        /// The fact is of the invalid type
         /// </summary>
-        public static readonly string FactWrongType = "FactWrongType";
+        public static readonly string InvalidFactType = "InvalidFactType";
     }
 }

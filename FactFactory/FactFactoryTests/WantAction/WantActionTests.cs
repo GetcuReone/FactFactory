@@ -10,7 +10,7 @@ namespace FactFactoryTests.WantAction
     [TestClass]
     public sealed class WantActionTests : TestBase
     {
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][action][negative] create WantAction without action")]
         public void CreateWantActionWithoutActionTestCase()
@@ -20,7 +20,7 @@ namespace FactFactoryTests.WantAction
                 .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][action][negative] run invoke")]
         public void InvokeTestCase()

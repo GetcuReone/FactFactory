@@ -1,4 +1,4 @@
-﻿using FactFactory.Consts;
+﻿using FactFactory.Constants;
 using FactFactory.Exceptions;
 using FactFactoryTests.CommonFacts;
 using JwtTestAdapter;
@@ -12,12 +12,12 @@ namespace FactFactoryTests.FactFactoryT
         private FactFactory.FactFactory FactFactory { get; set; }
 
         [TestInitialize]
-        public void Initialaze()
+        public void Initialize()
         {
             FactFactory = new FactFactory.FactFactory();
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory][negative] rules cannot be empty")]
         public void RulesCannotBeEmptyTestCase()
@@ -31,11 +31,11 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
 
                     var detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCodes.RuleCollectionEmpty, detail.Code, "code not match");
+                    Assert.AreEqual(ErrorCode.EmptyRuleCollection, detail.Code, "code not match");
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] rules cannot be empty")]
         public void ChoosingShortestWayTestCase()
@@ -71,7 +71,7 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check result", f => Assert.AreEqual(5, f.Value, "Another number of rules worked"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] Derivation of only necessary facts")]
         public void DerivationOnlyNecessaryFactsTestCase()
@@ -121,7 +121,7 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check result", f => Assert.AreEqual(5, counter, "It had to work out 5 rules"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory][negative] get original container")]
         public void GetOriginalContainerTestCase()
@@ -135,12 +135,12 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
 
                     var detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCodes.InvalidData, detail.Code, "code not match");
+                    Assert.AreEqual(ErrorCode.InvalidData, detail.Code, "code not match");
                     Assert.AreEqual("method GetCopyContainer return original container", detail.Reason, "reason not match");
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] check method DeriveFact")]
         public void DeriveFactTestCase()
@@ -154,7 +154,7 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] get fact from container")]
         public void GetFactFromContainerTastCase()
@@ -166,7 +166,7 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check fact", fact => Assert.AreEqual(input6Fact, fact, "facts must match"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] derive only one fact")]
         public void DeriveOnlyOneFactTestCase()
@@ -198,7 +198,7 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][factory] derive facts after run method DeriveFact")]
         public void DeriveFactsAfterRunDeriveFactTestCase()

@@ -4,34 +4,34 @@
         <name>FactFactory</name>
     </assembly>
     <members>
-        <member name="T:FactFactory.Consts.ErrorCodes">
+        <member name="T:FactFactory.Constants.ErrorCode">
             <summary>
             Error codes
             </summary>
         </member>
-        <member name="F:FactFactory.Consts.ErrorCodes.InvalidData">
+        <member name="F:FactFactory.Constants.ErrorCode.InvalidData">
             <summary>
             Invalid data
             </summary>
         </member>
-        <member name="F:FactFactory.Consts.ErrorCodes.FactCannotCalculated">
+        <member name="F:FactFactory.Constants.ErrorCode.FactCannotCalculated">
             <summary>
             Fact cannot be calculated
             </summary>
         </member>
-        <member name="F:FactFactory.Consts.ErrorCodes.RuleCollectionEmpty">
+        <member name="F:FactFactory.Constants.ErrorCode.EmptyRuleCollection">
             <summary>
             Collection of rules for calculating the fact is empty
             </summary>
         </member>
-        <member name="F:FactFactory.Consts.ErrorCodes.RuleNotFound">
+        <member name="F:FactFactory.Constants.ErrorCode.RuleNotFound">
             <summary>
             Rule not found
             </summary>
         </member>
-        <member name="F:FactFactory.Consts.ErrorCodes.FactWrongType">
+        <member name="F:FactFactory.Constants.ErrorCode.InvalidFactType">
             <summary>
-            The fact is of the wrong type
+            The fact is of the invalid type
             </summary>
         </member>
         <member name="T:FactFactory.Entities.DeriveErrorDetail">

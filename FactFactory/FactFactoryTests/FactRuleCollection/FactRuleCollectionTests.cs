@@ -16,12 +16,12 @@ namespace FactFactoryTests.FactRuleCollection
         private Collection Collection { get; set; }
 
         [TestInitialize]
-        public void Initialaze()
+        public void Initialize()
         {
             Collection = new Collection();
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule without input facts")]
         public void AddRuleWithoutInputFactsTestCase()
@@ -35,7 +35,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 1 input facts")]
         public void AddRuleWith1InputFactTestCase()
@@ -61,7 +61,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 2 input facts")]
         public void AddRuleWith2InputFactTestCase()
@@ -88,7 +88,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 3 input facts")]
         public void AddRuleWith3InputFactTestCase()
@@ -116,7 +116,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 4 input facts")]
         public void AddRuleWith4InputFactTestCase()
@@ -145,7 +145,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 5 input facts")]
         public void AddRuleWith5InputFactTestCase()
@@ -175,7 +175,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 6 input facts")]
         public void AddRuleWith6InputFactTestCase()
@@ -206,7 +206,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 7 input facts")]
         public void AddRuleWith7InputFactTestCase()
@@ -238,7 +238,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 8 input facts")]
         public void AddRuleWith8InputFactTestCase()
@@ -271,7 +271,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 9 input facts")]
         public void AddRuleWith9InputFactTestCase()
@@ -305,7 +305,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 10 input facts")]
         public void AddRuleWith10InputFactTestCase()
@@ -340,7 +340,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 11 input facts")]
         public void AddRuleWith11InputFactTestCase()
@@ -376,7 +376,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 16 input facts")]
         public void AddRuleWith12InputFactTestCase()
@@ -413,7 +413,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 13 input facts")]
         public void AddRuleWith13InputFactTestCase()
@@ -451,7 +451,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 14 input facts")]
         public void AddRuleWith14InputFactTestCase()
@@ -490,7 +490,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 15 input facts")]
         public void AddRuleWith15InputFactTestCase()
@@ -530,7 +530,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][coolection] Add a rule with 16 input facts")]
         public void AddRuleWith16InputFactTestCase()
@@ -571,7 +571,7 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][negative][coolection] create a rule without param")]
         public void AddRuleAlreadyContainsTestCase()
@@ -585,7 +585,7 @@ namespace FactFactoryTests.FactRuleCollection
                 .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
         }
 
-        [Timeout(Timeouits.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule][negative][coolection] add a rule with a NotContained on the output")]
         public void AddRuleWithNotContainedOutTestCase()
