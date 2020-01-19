@@ -38,11 +38,3 @@ steps:
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     testRunTitle: 'VS run tests'
-
-- task: DotNetCoreCLI@2
-  displayName: 'NuGet pack'
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/NugetProject.csproj'
-    nobuild: true
-    versioningScheme: 'off'
