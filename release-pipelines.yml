@@ -48,7 +48,7 @@ steps:
   displayName: "NuGet pack"
   inputs:
     command: 'pack'
-    packagesToPack: '**/.nuspec'
+    packagesToPack: '**/NugetProject.csproj'
     versioningScheme: 'off'
 
 - task: NuGetCommand@2
