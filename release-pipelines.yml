@@ -40,16 +40,9 @@ steps:
     testRunTitle: 'VS run tests'
 
 - task: NuGetCommand@2
-  displayName: "NuGet pack"
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/NugetProject.csproj'
-    versioningScheme: 'off'
-
-- task: NuGetCommand@2
   displayName: "NuGet push internal source"
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/FactFactory*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'd5079c70-9bc4-4da1-b3c9-feb9869dfc91'

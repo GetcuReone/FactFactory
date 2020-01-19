@@ -72,30 +72,34 @@ namespace InfrastructureTests
                     buildMode);
                 return new DirectoryInfo(nugetFolderPath);
             })
-                .When("Get file .nupkg", nugetFolder => 
+                .And("Get file .nupkg", nugetFolder => 
                 {
                     return nugetFolder.GetFiles()
                         .Where(file => file.Name.Contains(".nupkg"))
                         .OrderBy(file => file.CreationTime)
                         .Last();
                 })
-                .Then("Check archive .nupkg", nugetFileInfo => 
+                .When("Extract the contents of the package", nugetFileInfo => 
                 {
-                    using(FileStream nupkgStream = nugetFileInfo.OpenRead())
+                    using (FileStream nupkgStream = nugetFileInfo.OpenRead())
                     {
                         using (var archive = new ZipArchive(nupkgStream, ZipArchiveMode.Read))
                         {
-                            var files = new string[]
+                            return archive.Entries.Select(entry => entry.FullName).ToArray();
+                        }
+                    }
+                })
+                .Then("Check archive .nupkg", fileNames => 
+                {
+                    var files = new string[]
                             {
                                 "lib/netstandard2.0/FactFactory.dll",
                                 "lib/netstandard2.0/FactFactory.xml",
                                 "LICENSE-2.0.txt"
                             };
 
-                            foreach(string file in files)
-                                Assert.IsTrue(archive.Entries.Any(entry => entry.FullName == file), $"The archive does not contain a file {file}");
-                        }
-                    }
+                    foreach (string file in files)
+                        Assert.IsTrue(fileNames.Any(fileFullName => fileFullName == file), $"The archive does not contain a file {file}");
                 });
         }
     }
