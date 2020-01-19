@@ -8,6 +8,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  nugetArtifactFile: '$(Build.ArtifactStagingDirectory)/FactFactory*.nupkg'
 
 
 steps:
@@ -43,6 +44,6 @@ steps:
   displayName: "NuGet push GetcuReone source"
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/FactFactory*.nupkg'
+    packagesToPush: '$(nugetArtifactFile)'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'd5079c70-9bc4-4da1-b3c9-feb9869dfc91'
