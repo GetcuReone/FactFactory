@@ -2,6 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.3.0</Version>
+    <Authors>GetcuReone</Authors>
+    <PackageId>FactFactory</PackageId>
+    <Product>FactFactory</Product>
+    <Description>My implementation of a machine that can derive facts from other facts</Description>
+    <PackageLicenseFile>LICENSE-2.0.txt</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/GetcuReone/FactFactory.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>factfactory combopatterns</PackageTags>
+    <PackageReleaseNotes>publish alpha version</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -11,7 +26,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FactFactory\FactFactory.csproj" />
+    <PackageReference Include="ComboPatterns" Version="2.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FactFactory\FactFactory.csproj">
+      <PrivateAssets>All</PrivateAssets>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE-2.0.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'all'))" />
+    </ItemGroup>
+  </Target>
 </Project>

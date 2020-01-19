@@ -18,17 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FactFactory\FactFactory.csproj">
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-      <IncludeAssets>FactFactory.dll</IncludeAssets>
-    </ProjectReference>
+    <ProjectReference Include="..\FactFactory\FactFactory.csproj" />
     <ProjectReference Include="..\JwtTestAdapter\JwtTestAdapter.csproj" />
   </ItemGroup>
-
-  <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
-    <ItemGroup>
-      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
-    </ItemGroup>
-  </Target>
 
 </Project>
