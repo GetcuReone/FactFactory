@@ -40,7 +40,7 @@ steps:
     testRunTitle: 'VS run tests'
 
 - task: NuGetCommand@2
-  displayName: "NuGet push internal source"
+  displayName: "NuGet push GetcuReone source"
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/FactFactory*.nupkg'
