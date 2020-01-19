@@ -1,7 +1,8 @@
+variables:
+  nugetRepositoryFile: '$(Build.Repository.LocalPath)/FactFactory/NugetProject/bin/Release/FactFactory*.nupkg'
+
 steps:
 - script: |
-    echo Install file $(snk_file.secureFilePath)
-
-    cp '$(snk_file.secureFilePath)' '$(Build.Repository.LocalPath)/FactFactory'
-    echo copied '$(snk_file.secureFilePath)' to '$(Build.Repository.LocalPath)\FactFactory'
-  displayName: 'Сopy file snk to projects'
+    echo copy $(nugetRepositoryFile) to $(Build.ArtifactStagingDirectory)
+    cp '$(nugetRepositoryFile)' '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Nuget copy to Artifacts folder'
