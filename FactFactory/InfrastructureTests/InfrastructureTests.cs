@@ -92,11 +92,11 @@ namespace InfrastructureTests
                 .Then("Check archive .nupkg", fileNames => 
                 {
                     var files = new string[]
-                            {
-                                "lib/netstandard2.0/FactFactory.dll",
-                                "lib/netstandard2.0/FactFactory.xml",
-                                "LICENSE-2.0.txt"
-                            };
+                    {
+                        "lib/netstandard2.0/FactFactory.dll",
+                        "lib/netstandard2.0/FactFactory.xml",
+                        "LICENSE-2.0.txt"
+                    };
 
                     foreach (string file in files)
                         Assert.IsTrue(fileNames.Any(fileFullName => fileFullName == file), $"The archive does not contain a file {file}");
