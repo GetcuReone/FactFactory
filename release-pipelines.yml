@@ -8,7 +8,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  nugetRepositoryFile: '$(Build.Repository.LocalPath)/FactFactory/NugetProject/bin/Release/FactFactory*.nupkg'
+  nugetRepositoryFile: '$(Build.Repository.LocalPath)/FactFactory/NugetProject/bin/$(buildConfiguration)/FactFactory*.nupkg'
 
 
 steps:
@@ -40,7 +40,12 @@ steps:
     searchFolder: '$(System.DefaultWorkingDirectory)'
     testRunTitle: 'VS run tests'
 
-- template: pipeline-steps/nuget_copy_to_artifacts.yml
+- task: CopyFiles@2
+  displayName: "Nuget copy to Artifacts folder"
+  inputs:
+    SourceFolder: '$(Build.Repository.LocalPath)/FactFactory/NugetProject/bin/$(buildConfiguration)'
+    Contents: '*'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: NuGetCommand@2
   displayName: "NuGet push GetcuReone source"
