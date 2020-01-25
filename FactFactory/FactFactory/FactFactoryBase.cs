@@ -20,7 +20,10 @@ namespace FactFactory
         where TFactRuleCollection : class, IList<TFactRule>
         where TWantAction : class, IWantAction
     {
-        private protected readonly List<TWantAction> _wantActions = new List<TWantAction>();
+        /// <summary>
+        /// Want actions
+        /// </summary>
+        protected List<TWantAction> WantActions { get; } = new List<TWantAction>();
 
         /// <summary>
         /// Fact container
@@ -60,12 +63,12 @@ namespace FactFactory
             container.Add(new DateOfDeriveFact(DateTime.Now));
             container.Add(new DerivingCurrentFactsFact(
                 new ReadOnlyCollection<IFactInfo>(
-                    _wantActions.SelectMany(action => action.InputFacts).ToList())));
+                    WantActions.SelectMany(action => action.InputFacts).ToList())));
 
             var derivedTrees = new Dictionary<TWantAction, List<FactRuleTree>>();
             var notFoundFactsTrees = new Dictionary<IWantAction, Dictionary<IFactInfo, List<List<IFactInfo>>>>();
             IReadOnlyCollection<IFactInfo> excludeFacts = GetFactInfosAvailableOnlyRules();
-            List<TWantAction> wantActions = new List<TWantAction>(_wantActions);
+            List<TWantAction> wantActions = new List<TWantAction>(WantActions);
 
             foreach (TWantAction wantAction in wantActions)
             {
@@ -110,7 +113,7 @@ namespace FactFactory
         /// <param name="wantAction"></param>
         public virtual void WantFact(TWantAction wantAction)
         {
-            if (_wantActions.IndexOf(wantAction) != -1)
+            if (WantActions.IndexOf(wantAction) != -1)
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, "Action already requested");
 
             var excludeFacts = GetFactInfosAvailableOnlyRules();
@@ -122,7 +125,7 @@ namespace FactFactory
             if (wantAction.InputFacts.Any(fact => fact.IsFactType<INoFact>() || fact.IsFactType<INotContainedFact>()))
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"Cannot derive for No and NotContained facts");
 
-            _wantActions.Add(wantAction);
+            WantActions.Add(wantAction);
         }
 
         /// <summary>
@@ -529,13 +532,13 @@ namespace FactFactory
         {
             TFact fact = default;
 
-            var wantActions = new List<WantAction>(_wantActions);
-            _wantActions.Clear();
+            var wantActions = new List<WantAction>(WantActions);
+            WantActions.Clear();
 
             WantFact((TFact factInner) => fact = factInner);
             Derive();
 
-            _wantActions.AddRange(wantActions);
+            WantActions.AddRange(wantActions);
 
             return fact;
         }
