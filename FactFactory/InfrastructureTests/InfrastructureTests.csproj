@@ -6,6 +6,12 @@
     <RootNamespace>InfrastructureTests</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\GetcuReone.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="ComboPatterns" Version="2.3.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />

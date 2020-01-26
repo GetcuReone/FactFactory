@@ -55,10 +55,18 @@ steps:
     nuGetFeedType: 'internal'
     publishVstsFeed: 'd5079c70-9bc4-4da1-b3c9-feb9869dfc91'
 
-- task: NuGetCommand@2
-  displayName: "NuGet push nuget.org source"
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'Nuget.org'
+# - task: NuGetCommand@2
+#   displayName: "NuGet push GitHub source"
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/FactFactory*.nupkg'
+#     nuGetFeedType: 'external'
+#     publishFeedCredentials: 'GitHub_GetcuReone_Nuget'
+
+# - task: NuGetCommand@2
+#   displayName: "NuGet push nuget.org source"
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/FactFactory*.nupkg'
+#     nuGetFeedType: 'external'
+#     publishFeedCredentials: 'Nuget.org'

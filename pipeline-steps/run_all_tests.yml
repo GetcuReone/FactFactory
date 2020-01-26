@@ -1,0 +1,25 @@
+steps:
+- task: VSTest@2
+  displayName: 'VS run Infrastructure tests'
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\InfrastructureTests.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    testRunTitle: 'VS run tests'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
+  displayName: 'VS run tests'
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\*Tests*.dll
+      !**\InfrastructureTests.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    testRunTitle: 'VS run tests'
+    configuration: '$(buildConfiguration)'
