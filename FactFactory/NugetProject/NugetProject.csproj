@@ -13,8 +13,6 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>factfactory combopatterns</PackageTags>
     <PackageReleaseNotes>publish project</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright © 2020 GetcuReone</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
