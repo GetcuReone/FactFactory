@@ -1,4 +1,7 @@
 steps:
+- task: NuGetToolInstaller@1
+  displayName: 'NuGet tool installer'
+
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
   inputs:

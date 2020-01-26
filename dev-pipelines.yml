@@ -19,9 +19,6 @@ variables:
   packageVersion: '0.$(minorVersion).$(patchVersion)'
 
 steps:
-- task: NuGetToolInstaller@1
-  displayName: 'NuGet tool installer'
-
 - template: pipeline-steps/restore_build_pack.yml
 
 - template: pipeline-steps/run_all_tests.yml
