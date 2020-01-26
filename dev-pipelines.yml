@@ -59,7 +59,8 @@ steps:
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
-      **\*Fact*\**\*Tests*.dll
+      **\*Tests*.dll
+      !**\InfrastructureTests.dll
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
