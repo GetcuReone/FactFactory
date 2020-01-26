@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.3.0</Version>
     <Authors>GetcuReone</Authors>
     <PackageId>FactFactory</PackageId>
