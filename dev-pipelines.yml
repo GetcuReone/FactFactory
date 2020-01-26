@@ -14,7 +14,8 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
   majorVersion: '2'
-  packageVersion: '0.3.$(Build.BuildNumber)'
+  minorVersion: '3'
+  packageVersion: '0.$(minorVersion).$(Build.BuildNumber)'
 
 steps:
 - task: NuGetToolInstaller@1
