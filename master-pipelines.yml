@@ -8,8 +8,8 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  majorVersion: '2'
-  packageVersion: '0.$(Build.BuildNumber)'
+  majorVersion: '1'
+  packageVersion: '$(majorVersion).$(Build.BuildNumber)'
 
 
 steps:
@@ -28,3 +28,11 @@ steps:
     packagesToPush: '$(Build.ArtifactStagingDirectory)/FactFactory.$(packageVersion).nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'd5079c70-9bc4-4da1-b3c9-feb9869dfc91'
+
+# - task: NuGetCommand@2
+#   displayName: "NuGet push GitHub source"
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/FactFactory.$(packageVersion).nupkg'
+#     nuGetFeedType: 'external'
+#     publishFeedCredentials: 'GitHub_GetcuReone_Nuget'
