@@ -8,8 +8,8 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  majorVersion: '2'
-  packageVersion: '0.$(Build.BuildNumber)'
+  majorVersion: '1'
+  packageVersion: '$(majorVersion).$(Build.BuildNumber)'
 
 
 steps:
