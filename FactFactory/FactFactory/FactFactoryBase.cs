@@ -548,7 +548,8 @@ namespace FactFactory
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
         /// <param name="wantFactAction"></param>
-        public virtual void WantFact<TFact>(Action<TFact> wantFactAction) where TFact : IFact
+        public virtual void WantFact<TFact>(
+            Action<TFact> wantFactAction) where TFact : IFact
         {
             WantFact(new WantAction(
                 container => wantFactAction(container.GetFact<TFact>()),
@@ -561,13 +562,284 @@ namespace FactFactory
         /// <typeparam name="TFact1"></typeparam>
         /// <typeparam name="TFact2"></typeparam>
         /// <param name="wantFactAction">Desired action</param>
-        public virtual void WantFact<TFact1, TFact2>(Action<TFact1, TFact2> wantFactAction)
+        public virtual void WantFact<TFact1, TFact2>(
+            Action<TFact1, TFact2> wantFactAction)
             where TFact1 : IFact
             where TFact2 : IFact
         {
             WantFact(new WantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>()),
                 new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>() }));
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact1">type fact</typeparam>
+        /// <typeparam name="TFact2">type fact</typeparam>
+        /// <typeparam name="TFact3">type fact</typeparam>
+        /// <param name="wantFactAction">Desired action</param>
+        public virtual void WantFact<TFact1, TFact2, TFact3>(
+            Action<TFact1, TFact2, TFact3> wantFactAction)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+        {
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>()),
+                new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>(), new FactInfo<TFact3>() }));
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact1">type fact</typeparam>
+        /// <typeparam name="TFact2">type fact</typeparam>
+        /// <typeparam name="TFact3">type fact</typeparam>
+        /// <typeparam name="TFact4">type fact</typeparam>
+        /// <param name="wantFactAction">Desired action</param>
+        public virtual void WantFact<TFact1, TFact2, TFact3, TFact4>(
+            Action<TFact1, TFact2, TFact3, TFact4> wantFactAction)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+        {
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>()),
+                new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>(), new FactInfo<TFact3>(), new FactInfo<TFact4>() }));
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact1">type fact</typeparam>
+        /// <typeparam name="TFact2">type fact</typeparam>
+        /// <typeparam name="TFact3">type fact</typeparam>
+        /// <typeparam name="TFact4">type fact</typeparam>
+        /// <typeparam name="TFact5">type fact</typeparam>
+        /// <param name="wantFactAction">Desired action</param>
+        public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5>(
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5> wantFactAction)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+        {
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>()),
+                new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>(), new FactInfo<TFact3>(), new FactInfo<TFact4>(), new FactInfo<TFact5>() }));
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact1">type fact</typeparam>
+        /// <typeparam name="TFact2">type fact</typeparam>
+        /// <typeparam name="TFact3">type fact</typeparam>
+        /// <typeparam name="TFact4">type fact</typeparam>
+        /// <typeparam name="TFact5">type fact</typeparam>
+        /// <typeparam name="TFact6">type fact</typeparam>
+        /// <param name="wantFactAction">Desired action</param>
+        public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6>(
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6> wantFactAction)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+        {
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>()),
+                new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>(), new FactInfo<TFact3>(), new FactInfo<TFact4>(), new FactInfo<TFact5>(), new FactInfo<TFact6>() }));
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact1">type fact</typeparam>
+        /// <typeparam name="TFact2">type fact</typeparam>
+        /// <typeparam name="TFact3">type fact</typeparam>
+        /// <typeparam name="TFact4">type fact</typeparam>
+        /// <typeparam name="TFact5">type fact</typeparam>
+        /// <typeparam name="TFact6">type fact</typeparam>
+        /// <typeparam name="TFact7">type fact</typeparam>
+        /// <param name="wantFactAction">Desired action</param>
+        public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7>(
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7> wantFactAction)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+        {
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>()),
+                new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>(), new FactInfo<TFact3>(), new FactInfo<TFact4>(), new FactInfo<TFact5>(), new FactInfo<TFact6>(), new FactInfo<TFact7>() }));
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact1">type fact</typeparam>
+        /// <typeparam name="TFact2">type fact</typeparam>
+        /// <typeparam name="TFact3">type fact</typeparam>
+        /// <typeparam name="TFact4">type fact</typeparam>
+        /// <typeparam name="TFact5">type fact</typeparam>
+        /// <typeparam name="TFact6">type fact</typeparam>
+        /// <typeparam name="TFact7">type fact</typeparam>
+        /// <typeparam name="TFact8">type fact</typeparam>
+        /// <param name="wantFactAction">Desired action</param>
+        public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8>(
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8> wantFactAction)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+        {
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>()),
+                new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>(), new FactInfo<TFact3>(), new FactInfo<TFact4>(), new FactInfo<TFact5>(), new FactInfo<TFact6>(), new FactInfo<TFact7>(), new FactInfo<TFact8>() }));
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact1">type fact</typeparam>
+        /// <typeparam name="TFact2">type fact</typeparam>
+        /// <typeparam name="TFact3">type fact</typeparam>
+        /// <typeparam name="TFact4">type fact</typeparam>
+        /// <typeparam name="TFact5">type fact</typeparam>
+        /// <typeparam name="TFact6">type fact</typeparam>
+        /// <typeparam name="TFact7">type fact</typeparam>
+        /// <typeparam name="TFact8">type fact</typeparam>
+        /// <typeparam name="TFact9">type fact</typeparam>
+        /// <param name="wantFactAction">Desired action</param>
+        public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9>(
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9> wantFactAction)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+        {
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>()),
+                new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>(), new FactInfo<TFact3>(), new FactInfo<TFact4>(), new FactInfo<TFact5>(), new FactInfo<TFact6>(), new FactInfo<TFact7>(), new FactInfo<TFact8>(), new FactInfo<TFact9>() }));
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact1">type fact</typeparam>
+        /// <typeparam name="TFact2">type fact</typeparam>
+        /// <typeparam name="TFact3">type fact</typeparam>
+        /// <typeparam name="TFact4">type fact</typeparam>
+        /// <typeparam name="TFact5">type fact</typeparam>
+        /// <typeparam name="TFact6">type fact</typeparam>
+        /// <typeparam name="TFact7">type fact</typeparam>
+        /// <typeparam name="TFact8">type fact</typeparam>
+        /// <typeparam name="TFact9">type fact</typeparam>
+        /// <typeparam name="TFact10">type fact</typeparam>
+        /// <param name="wantFactAction">Desired action</param>
+        public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10>(
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10> wantFactAction)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+        {
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>()),
+                new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>(), new FactInfo<TFact3>(), new FactInfo<TFact4>(), new FactInfo<TFact5>(), new FactInfo<TFact6>(), new FactInfo<TFact7>(), new FactInfo<TFact8>(), new FactInfo<TFact9>(), new FactInfo<TFact10>()}));
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact1">type fact</typeparam>
+        /// <typeparam name="TFact2">type fact</typeparam>
+        /// <typeparam name="TFact3">type fact</typeparam>
+        /// <typeparam name="TFact4">type fact</typeparam>
+        /// <typeparam name="TFact5">type fact</typeparam>
+        /// <typeparam name="TFact6">type fact</typeparam>
+        /// <typeparam name="TFact7">type fact</typeparam>
+        /// <typeparam name="TFact8">type fact</typeparam>
+        /// <typeparam name="TFact9">type fact</typeparam>
+        /// <typeparam name="TFact10">type fact</typeparam>
+        /// <typeparam name="TFact11">type fact</typeparam>
+        /// <param name="wantFactAction">Desired action</param>
+        public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11>(
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11> wantFactAction)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+        {
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>()),
+                new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>(), new FactInfo<TFact3>(), new FactInfo<TFact4>(), new FactInfo<TFact5>(), new FactInfo<TFact6>(), new FactInfo<TFact7>(), new FactInfo<TFact8>(), new FactInfo<TFact9>(), new FactInfo<TFact10>(), new FactInfo<TFact11>() }));
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action
+        /// </summary>
+        /// <typeparam name="TFact1">type fact</typeparam>
+        /// <typeparam name="TFact2">type fact</typeparam>
+        /// <typeparam name="TFact3">type fact</typeparam>
+        /// <typeparam name="TFact4">type fact</typeparam>
+        /// <typeparam name="TFact5">type fact</typeparam>
+        /// <typeparam name="TFact6">type fact</typeparam>
+        /// <typeparam name="TFact7">type fact</typeparam>
+        /// <typeparam name="TFact8">type fact</typeparam>
+        /// <typeparam name="TFact9">type fact</typeparam>
+        /// <typeparam name="TFact10">type fact</typeparam>
+        /// <typeparam name="TFact11">type fact</typeparam>
+        /// <typeparam name="TFact12">type fact</typeparam>
+        /// <param name="wantFactAction">Desired action</param>
+        public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12>(
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12> wantFactAction)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+        {
+            WantFact(new WantAction(
+                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>(), container.GetFact<TFact12>()),
+                new List<IFactInfo> { new FactInfo<TFact1>(), new FactInfo<TFact2>(), new FactInfo<TFact3>(), new FactInfo<TFact4>(), new FactInfo<TFact5>(), new FactInfo<TFact6>(), new FactInfo<TFact7>(), new FactInfo<TFact8>(), new FactInfo<TFact9>(), new FactInfo<TFact10>(), new FactInfo<TFact11>(), new FactInfo<TFact12>()}));
         }
 
         /// <summary>

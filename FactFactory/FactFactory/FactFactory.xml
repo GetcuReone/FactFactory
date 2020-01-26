@@ -724,6 +724,141 @@
             <typeparam name="TFact2"></typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``3(System.Action{``0,``1,``2})">
+            <summary>
+            Requesting desired facts through action
+            </summary>
+            <typeparam name="TFact1">type fact</typeparam>
+            <typeparam name="TFact2">type fact</typeparam>
+            <typeparam name="TFact3">type fact</typeparam>
+            <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``4(System.Action{``0,``1,``2,``3})">
+            <summary>
+            Requesting desired facts through action
+            </summary>
+            <typeparam name="TFact1">type fact</typeparam>
+            <typeparam name="TFact2">type fact</typeparam>
+            <typeparam name="TFact3">type fact</typeparam>
+            <typeparam name="TFact4">type fact</typeparam>
+            <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``5(System.Action{``0,``1,``2,``3,``4})">
+            <summary>
+            Requesting desired facts through action
+            </summary>
+            <typeparam name="TFact1">type fact</typeparam>
+            <typeparam name="TFact2">type fact</typeparam>
+            <typeparam name="TFact3">type fact</typeparam>
+            <typeparam name="TFact4">type fact</typeparam>
+            <typeparam name="TFact5">type fact</typeparam>
+            <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``6(System.Action{``0,``1,``2,``3,``4,``5})">
+            <summary>
+            Requesting desired facts through action
+            </summary>
+            <typeparam name="TFact1">type fact</typeparam>
+            <typeparam name="TFact2">type fact</typeparam>
+            <typeparam name="TFact3">type fact</typeparam>
+            <typeparam name="TFact4">type fact</typeparam>
+            <typeparam name="TFact5">type fact</typeparam>
+            <typeparam name="TFact6">type fact</typeparam>
+            <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``7(System.Action{``0,``1,``2,``3,``4,``5,``6})">
+            <summary>
+            Requesting desired facts through action
+            </summary>
+            <typeparam name="TFact1">type fact</typeparam>
+            <typeparam name="TFact2">type fact</typeparam>
+            <typeparam name="TFact3">type fact</typeparam>
+            <typeparam name="TFact4">type fact</typeparam>
+            <typeparam name="TFact5">type fact</typeparam>
+            <typeparam name="TFact6">type fact</typeparam>
+            <typeparam name="TFact7">type fact</typeparam>
+            <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``8(System.Action{``0,``1,``2,``3,``4,``5,``6,``7})">
+            <summary>
+            Requesting desired facts through action
+            </summary>
+            <typeparam name="TFact1">type fact</typeparam>
+            <typeparam name="TFact2">type fact</typeparam>
+            <typeparam name="TFact3">type fact</typeparam>
+            <typeparam name="TFact4">type fact</typeparam>
+            <typeparam name="TFact5">type fact</typeparam>
+            <typeparam name="TFact6">type fact</typeparam>
+            <typeparam name="TFact7">type fact</typeparam>
+            <typeparam name="TFact8">type fact</typeparam>
+            <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``9(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
+            <summary>
+            Requesting desired facts through action
+            </summary>
+            <typeparam name="TFact1">type fact</typeparam>
+            <typeparam name="TFact2">type fact</typeparam>
+            <typeparam name="TFact3">type fact</typeparam>
+            <typeparam name="TFact4">type fact</typeparam>
+            <typeparam name="TFact5">type fact</typeparam>
+            <typeparam name="TFact6">type fact</typeparam>
+            <typeparam name="TFact7">type fact</typeparam>
+            <typeparam name="TFact8">type fact</typeparam>
+            <typeparam name="TFact9">type fact</typeparam>
+            <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``10(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
+            <summary>
+            Requesting desired facts through action
+            </summary>
+            <typeparam name="TFact1">type fact</typeparam>
+            <typeparam name="TFact2">type fact</typeparam>
+            <typeparam name="TFact3">type fact</typeparam>
+            <typeparam name="TFact4">type fact</typeparam>
+            <typeparam name="TFact5">type fact</typeparam>
+            <typeparam name="TFact6">type fact</typeparam>
+            <typeparam name="TFact7">type fact</typeparam>
+            <typeparam name="TFact8">type fact</typeparam>
+            <typeparam name="TFact9">type fact</typeparam>
+            <typeparam name="TFact10">type fact</typeparam>
+            <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``11(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10})">
+            <summary>
+            Requesting desired facts through action
+            </summary>
+            <typeparam name="TFact1">type fact</typeparam>
+            <typeparam name="TFact2">type fact</typeparam>
+            <typeparam name="TFact3">type fact</typeparam>
+            <typeparam name="TFact4">type fact</typeparam>
+            <typeparam name="TFact5">type fact</typeparam>
+            <typeparam name="TFact6">type fact</typeparam>
+            <typeparam name="TFact7">type fact</typeparam>
+            <typeparam name="TFact8">type fact</typeparam>
+            <typeparam name="TFact9">type fact</typeparam>
+            <typeparam name="TFact10">type fact</typeparam>
+            <typeparam name="TFact11">type fact</typeparam>
+            <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``12(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11})">
+            <summary>
+            Requesting desired facts through action
+            </summary>
+            <typeparam name="TFact1">type fact</typeparam>
+            <typeparam name="TFact2">type fact</typeparam>
+            <typeparam name="TFact3">type fact</typeparam>
+            <typeparam name="TFact4">type fact</typeparam>
+            <typeparam name="TFact5">type fact</typeparam>
+            <typeparam name="TFact6">type fact</typeparam>
+            <typeparam name="TFact7">type fact</typeparam>
+            <typeparam name="TFact8">type fact</typeparam>
+            <typeparam name="TFact9">type fact</typeparam>
+            <typeparam name="TFact10">type fact</typeparam>
+            <typeparam name="TFact11">type fact</typeparam>
+            <typeparam name="TFact12">type fact</typeparam>
+            <param name="wantFactAction">Desired action</param>
+        </member>
         <member name="M:FactFactory.FactFactoryBase`3.WantFact``13(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12})">
             <summary>
             Requesting desired facts through action
