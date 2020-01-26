@@ -601,6 +601,11 @@
             Base class for fact factory
             </summary>
         </member>
+        <member name="P:FactFactory.FactFactoryBase`4.WantActions">
+            <summary>
+            Want actions
+            </summary>
+        </member>
         <member name="P:FactFactory.FactFactoryBase`4.Container">
             <summary>
             Fact container
@@ -717,7 +722,29 @@
             </summary>
             <typeparam name="TFact1"></typeparam>
             <typeparam name="TFact2"></typeparam>
-            <param name="wantFactAction"></param>
+            <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="M:FactFactory.FactFactoryBase`3.WantFact``16(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15})">
+            <summary>
+            Requesting desired facts through action
+            </summary>
+            <typeparam name="TFact1">type fact</typeparam>
+            <typeparam name="TFact2">type fact</typeparam>
+            <typeparam name="TFact3">type fact</typeparam>
+            <typeparam name="TFact4">type fact</typeparam>
+            <typeparam name="TFact5">type fact</typeparam>
+            <typeparam name="TFact6">type fact</typeparam>
+            <typeparam name="TFact7">type fact</typeparam>
+            <typeparam name="TFact8">type fact</typeparam>
+            <typeparam name="TFact9">type fact</typeparam>
+            <typeparam name="TFact10">type fact</typeparam>
+            <typeparam name="TFact11">type fact</typeparam>
+            <typeparam name="TFact12">type fact</typeparam>
+            <typeparam name="TFact13">type fact</typeparam>
+            <typeparam name="TFact14">type fact</typeparam>
+            <typeparam name="TFact15">type fact</typeparam>
+            <typeparam name="TFact16">type fact</typeparam>
+            <param name="wantFactAction">Desired action</param>
         </member>
         <member name="T:FactFactory.Facts.CurrentFactsFindingFact">
             <summary>
