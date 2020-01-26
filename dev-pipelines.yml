@@ -31,7 +31,6 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    msbuildArgs: '/p:AssemblyFileVersion=$(majorVersion)'
 
 - task: MSBuild@1
   displayName: 'MS NuGet pack'
