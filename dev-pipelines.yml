@@ -30,6 +30,13 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: MSBuild@1
+  displayName: 'Nuget pack'
+  inputs:
+    solution: '$(Build.Repository.LocalPath)/**/NugetProject.csproj'
+    msbuildArguments: '/t:pack /p:PackageVersion=$(Build.BuildNumber)'
+    clean: true
+
 - task: VSTest@2
   displayName: 'VS run tests'
   inputs:
