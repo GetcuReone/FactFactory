@@ -3,8 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.3.0</Version>
     <Authors>GetcuReone</Authors>
     <PackageId>FactFactory</PackageId>
     <Product>FactFactory</Product>
@@ -12,10 +10,8 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/GetcuReone/FactFactory.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>factfactory combopatterns</PackageTags>
-    <PackageReleaseNotes>publish project</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <PackageTags>factfactory fact getcureone combopatterns</PackageTags>
+    <PackageReleaseNotes>publish project to GitHub</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright © 2020 GetcuReone</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
@@ -25,6 +21,12 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\GetcuReone.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+    <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
+    <FileVersion>$(majorVersion).0.0.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

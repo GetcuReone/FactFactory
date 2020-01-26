@@ -8,33 +8,31 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  majorVersion: '1'
+  packageVersion: '$(majorVersion).$(Build.BuildNumber)'
 
 
 steps:
-- task: NuGetToolInstaller@1
-  displayName: 'NuGet tool installer'
-
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-    restoreSolution: '$(solution)'
-
 - template: pipeline-steps/install-snk.yml
 
-- task: VSBuild@1
-  displayName: "VS build"
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+- template: pipeline-steps/restore_build_pack.yml
 
-- task: VSTest@2
-  displayName: 'VS run tests'
+- template: pipeline-steps/run_all_tests.yml
+
+- template: pipeline-steps/copy_nuget_to_artifacts.yml
+
+- task: NuGetCommand@2
+  displayName: "NuGet push GetcuReone source"
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*Tests*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    testRunTitle: 'VS run tests'
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/FactFactory.$(packageVersion).nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'd5079c70-9bc4-4da1-b3c9-feb9869dfc91'
+
+# - task: NuGetCommand@2
+#   displayName: "NuGet push GitHub source"
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/FactFactory.$(packageVersion).nupkg'
+#     nuGetFeedType: 'external'
+#     publishFeedCredentials: 'GitHub_GetcuReone_Nuget'

@@ -13,30 +13,10 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
+  majorVersion: '1'
+  packageVersion: '1.0.0'
 
 steps:
-- task: NuGetToolInstaller@1
-  displayName: 'NuGet tool installer'
+- template: pipeline-steps/restore_build_pack.yml
 
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-    restoreSolution: '$(solution)'
-
-- task: VSBuild@1
-  displayName: "VS build"
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  displayName: 'VS run tests'
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*Tests*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    testRunTitle: 'VS run tests'
+- template: pipeline-steps/run_all_tests.yml

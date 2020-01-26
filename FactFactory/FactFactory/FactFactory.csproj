@@ -3,9 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>FactFactory.Core</PackageId>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>FactFactory.xml</DocumentationFile>
   </PropertyGroup>
 
@@ -13,6 +10,8 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\GetcuReone.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+    <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
+    <FileVersion>$(majorVersion).0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
