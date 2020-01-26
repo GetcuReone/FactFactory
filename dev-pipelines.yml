@@ -15,54 +15,13 @@ variables:
   buildConfiguration: 'Debug'
   majorVersion: '2'
   minorVersion: '3'
-  packageVersion: '0.$(minorVersion).$(Build.BuildNumber)'
+  patchVersion: '$(Build.BuildNumber)'
+  packageVersion: '0.$(minorVersion).$(patchVersion)'
 
 steps:
 - task: NuGetToolInstaller@1
   displayName: 'NuGet tool installer'
 
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-    restoreSolution: '$(solution)'
+- template: pipeline-steps/restore_build_pack.yml
 
-- task: MSBuild@1
-  displayName: 'MS build'
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    msbuildArguments: '/t:build /p:AssemblyFileVersion=$(majorVersion).0.0 /p:AssemblyVersion=$(majorVersion).0.0'
-    clean: false
-
-- task: MSBuild@1
-  displayName: 'MS NuGet pack'
-  inputs:
-    solution: '$(Build.Repository.LocalPath)/**/NugetProject.csproj'
-    configuration: '$(buildConfiguration)'
-    msbuildArguments: '/t:pack /p:PackageVersion=$(packageVersion)'
-
-- task: VSTest@2
-  displayName: 'VS run Infrastructure tests'
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\InfrastructureTests.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    testRunTitle: 'VS run tests'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  displayName: 'VS run tests'
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*Tests*.dll
-      !**\InfrastructureTests.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    testRunTitle: 'VS run tests'
-    configuration: '$(buildConfiguration)'
+- template: pipeline-steps/run_all_tests.yml
