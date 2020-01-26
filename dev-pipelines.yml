@@ -48,6 +48,8 @@ steps:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
       **\InfrastructureTests.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     testRunTitle: 'VS run tests'
     configuration: '$(buildConfiguration)'
@@ -58,6 +60,8 @@ steps:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
       **\*Fact*\**\*Tests*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     testRunTitle: 'VS run tests'
     configuration: '$(buildConfiguration)'
