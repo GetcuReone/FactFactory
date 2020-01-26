@@ -21,6 +21,8 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\GetcuReone.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+    <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
+    <FileVersion>$(majorVersion).0.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
