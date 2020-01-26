@@ -13,7 +13,7 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    msbuildArguments: '/t:build /p:AssemblyFileVersion=$(majorVersion).0.0 /p:AssemblyVersion=$(majorVersion).0.0'
+    msbuildArguments: '/t:build /p:AssemblyFileVersion=$(majorVersion).0.0.0 /p:AssemblyVersion=$(majorVersion).0.0.0'
     clean: false
 
 - task: MSBuild@1
