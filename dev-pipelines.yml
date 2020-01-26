@@ -43,13 +43,21 @@ steps:
     msbuildArguments: '/t:pack /p:PackageVersion=$(packageVersion)'
 
 - task: VSTest@2
+  displayName: 'VS run Infrastructure tests'
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\InfrastructureTests.dll
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    testRunTitle: 'VS run tests'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
   displayName: 'VS run tests'
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
-      **\*Tests*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
+      **\*Fact*\**\*Tests*.dll
     searchFolder: '$(System.DefaultWorkingDirectory)'
     testRunTitle: 'VS run tests'
     configuration: '$(buildConfiguration)'
