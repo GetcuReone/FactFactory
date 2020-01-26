@@ -13,6 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
+  majorVersion: '1'
   packageVersion: '0.3.$(Build.BuildNumber)'
 
 steps:
@@ -24,21 +25,21 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
-  displayName: "VS build"
+- task: MSBuild@1
+  displayName: 'MS build'
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    msbuildArguments: '/t:restore;build /p:AssemblyFileVersion=$(majorVersion)'
 
 - task: MSBuild@1
-  displayName: 'NuGet pack'
+  displayName: 'MS NuGet pack'
   inputs:
     solution: '$(Build.Repository.LocalPath)/**/NugetProject.csproj'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     msbuildArguments: '/t:pack /p:PackageVersion=$(packageVersion)'
-    clean: true
 
 - task: VSTest@2
   displayName: 'VS run tests'
@@ -50,3 +51,4 @@ steps:
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     testRunTitle: 'VS run tests'
+    configuration: '$(buildConfiguration)'

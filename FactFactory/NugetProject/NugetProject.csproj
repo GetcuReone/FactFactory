@@ -18,12 +18,17 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright © 2020 GetcuReone</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\GetcuReone.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
