@@ -13,10 +13,8 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
-  majorVersion: '2'
-  minorVersion: '3'
-  patchVersion: '$(Build.BuildNumber)'
-  packageVersion: '0.$(minorVersion).$(patchVersion)'
+  majorVersion: '1'
+  packageVersion: '1.0.0'
 
 steps:
 - template: pipeline-steps/restore_build_pack.yml
