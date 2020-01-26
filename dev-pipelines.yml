@@ -13,6 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
+  packageVersion: '0.3.$(Build.BuildNumber)'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -31,10 +32,12 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: MSBuild@1
-  displayName: 'Nuget pack'
+  displayName: 'NuGet pack'
   inputs:
     solution: '$(Build.Repository.LocalPath)/**/NugetProject.csproj'
-    msbuildArguments: '/t:pack /p:PackageVersion=$(Build.BuildNumber)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    msbuildArguments: '/t:pack /p:PackageVersion=$(packageVersion)'
     clean: true
 
 - task: VSTest@2
