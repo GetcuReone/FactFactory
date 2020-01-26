@@ -19,6 +19,8 @@ steps:
 
 - template: pipeline-steps/run_all_tests.yml
 
+- template: pipeline-steps/copy_nuget_to_artifacts.yml
+
 - task: NuGetCommand@2
   displayName: "NuGet push GetcuReone source"
   inputs:
