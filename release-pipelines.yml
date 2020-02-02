@@ -26,10 +26,10 @@ steps:
 
 - template: pipeline_steps/step_copy_nuget_to_artifacts.yml
 
-- task: NuGetCommand@2
-  displayName: "NuGet push nuget.org"
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/$(solutionName)/$(packageFileName)'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'nuget.org'
+#- task: NuGetCommand@2
+#  displayName: "NuGet push nuget.org"
+#  inputs:
+#    command: 'push'
+#    packagesToPush: '$(Build.ArtifactStagingDirectory)/$(solutionName)/$(packageFileName)'
+#    nuGetFeedType: 'external'
+#    publishFeedCredentials: 'nuget.org'
