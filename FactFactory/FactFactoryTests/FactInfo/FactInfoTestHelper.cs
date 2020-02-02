@@ -7,7 +7,7 @@ namespace FactFactoryTests.FactInfo
     {
         public static GivenBlock<IFactType> AndCreateFactInfo(this GivenBlock<IFact> givenBlock)
         {
-            return givenBlock.And("Create factInfo", fact => fact.GeTFactType());
+            return givenBlock.And("Create factInfo", fact => fact.GetFactType());
         }
     }
 }

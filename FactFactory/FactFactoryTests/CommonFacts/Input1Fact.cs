@@ -9,7 +9,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>();
         }
@@ -20,7 +20,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>();
         }
@@ -31,7 +31,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>();
         }
@@ -42,7 +42,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>();
         }
@@ -53,7 +53,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>();
         }
@@ -64,7 +64,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>();
         }
@@ -75,7 +75,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>();
         }
@@ -86,7 +86,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input8Fact>();
         }
@@ -97,7 +97,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input9Fact>();
         }
@@ -108,7 +108,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input10Fact>();
         }
@@ -119,7 +119,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input11Fact>();
         }
@@ -130,7 +130,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input12Fact>();
         }
@@ -141,7 +141,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input13Fact>();
         }
@@ -152,7 +152,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input14Fact>();
         }
@@ -163,7 +163,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input15Fact>();
         }
@@ -174,7 +174,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<Input16Fact>();
         }

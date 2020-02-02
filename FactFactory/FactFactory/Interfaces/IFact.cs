@@ -9,6 +9,6 @@
         /// Return fact information as an output parameter
         /// </summary>
         /// <returns></returns>
-        IFactType GeTFactType();
+        IFactType GetFactType();
     }
 }

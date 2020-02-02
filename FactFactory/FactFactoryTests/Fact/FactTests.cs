@@ -27,7 +27,7 @@ namespace FactFactoryTests.Fact
         public void GeTFactTypeTestCase()
         {
             Given("Create fact", () => new DateOfDeriveFact(DateTime.Now))
-                .When("Run method", fact => fact.GeTFactType())
+                .When("Run method", fact => fact.GetFactType())
                 .Then("Check result", factInfo => Assert.IsTrue(factInfo is FactInfo<DateOfDeriveFact>, "a different type of factual information was expected"));
         }
     }

@@ -28,8 +28,8 @@ namespace FactFactoryTests.FactInfo
             Given("Create fact", () => { fact = new DateOfDeriveFact(DateTime.Now); })
                 .When("Create fact info", _ =>
                 {
-                    first = fact.GeTFactType();
-                    second = fact.GeTFactType();
+                    first = fact.GetFactType();
+                    second = fact.GetFactType();
                 })
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
@@ -51,8 +51,8 @@ namespace FactFactoryTests.FactInfo
             })
                 .When("Create fact info", _ =>
                 {
-                    first = firstFact.GeTFactType();
-                    second = secondFact.GeTFactType();
+                    first = firstFact.GetFactType();
+                    second = secondFact.GetFactType();
                 })
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
@@ -74,8 +74,8 @@ namespace FactFactoryTests.FactInfo
             })
                 .When("Create fact info", _ =>
                 {
-                    first = firstFact.GeTFactType();
-                    second = secondFact.GeTFactType();
+                    first = firstFact.GetFactType();
+                    second = secondFact.GetFactType();
                 })
                 .Then("Compare factInfos", () => Assert.IsFalse(first.Compare(second), "factual information is the same"));
         }
@@ -86,7 +86,7 @@ namespace FactFactoryTests.FactInfo
         public void FactNameTestCase()
         {
             GivenCreateOtherFact(DateTime.Now)
-                .When("Create factInfo", fact => fact.GeTFactType())
+                .When("Create factInfo", fact => fact.GetFactType())
                 .Then("Check result", factInfo => Assert.AreEqual(nameof(OtherFact), factInfo.FactName, "not expected fact name"));
         }
 
@@ -105,7 +105,7 @@ namespace FactFactoryTests.FactInfo
                     return fact;
                 })
                 .Then("Check container contains fact", 
-                    fact => Assert.IsTrue(fact.GeTFactType().ContainsContainer(container), "the container does not contain a fact"));
+                    fact => Assert.IsTrue(fact.GetFactType().ContainsContainer(container), "the container does not contain a fact"));
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
@@ -122,7 +122,7 @@ namespace FactFactoryTests.FactInfo
                     return fact;
                 })
                 .Then("Check container contains fact",
-                    fact => Assert.IsFalse(fact.GeTFactType().ContainsContainer(container), "container contains fact"));
+                    fact => Assert.IsFalse(fact.GetFactType().ContainsContainer(container), "container contains fact"));
         }
     }
 }

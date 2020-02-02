@@ -15,7 +15,7 @@ namespace GetcuReone.FactFactory.Facts
         }
 
         /// <inheritdoc />
-        public override IFactType GeTFactType()
+        public override IFactType GetFactType()
         {
             return new FactInfo<DerivingCurrentFactsFact>();
         }

@@ -28,7 +28,7 @@ namespace GetcuReone.FactFactory.Facts
         /// Must return FactInfo{type of your fact}();
         /// </summary>
         /// <returns></returns>
-        public virtual IFactType GeTFactType()
+        public virtual IFactType GetFactType()
         {
             Type genericType = typeof(FactInfo<>).MakeGenericType(GetType());
             return (IFactType)Activator.CreateInstance(genericType);
