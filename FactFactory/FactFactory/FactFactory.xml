@@ -160,10 +160,10 @@
         <member name="T:GetcuReone.FactFactory.Entities.FactRule">
             <inheritdoc />
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.FactRule.InpuTFactTypes">
+        <member name="P:GetcuReone.FactFactory.Entities.FactRule.InputFactTypes">
             <inheritdoc />
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.FactRule.OutpuTFactType">
+        <member name="P:GetcuReone.FactFactory.Entities.FactRule.OutputFactType">
             <inheritdoc />
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
@@ -502,7 +502,7 @@
             Desired action information
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.WantAction.InputFacts">
+        <member name="P:GetcuReone.FactFactory.Entities.WantAction.InputFactTypes">
             <inheritdoc />
         </member>
         <member name="P:GetcuReone.FactFactory.Entities.WantAction.DateOfDerive">
@@ -644,7 +644,7 @@
             </summary>
             <param name="wantAction"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GeTFactTypesAvailableOnlyRules">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetFactTypesAvailableOnlyRules">
             <summary>
             Get facts available only in rules
             </summary>
@@ -952,7 +952,7 @@
         <member name="M:GetcuReone.FactFactory.Facts.CurrentFactsFindingFact.#ctor(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
             <inheritdoc />
         </member>
-        <member name="M:GetcuReone.FactFactory.Facts.CurrentFactsFindingFact.GeTFactType">
+        <member name="M:GetcuReone.FactFactory.Facts.CurrentFactsFindingFact.GetFactType">
             <inheritdoc />
         </member>
         <member name="T:GetcuReone.FactFactory.Facts.DateOfDeriveCurrentFact">
@@ -966,7 +966,7 @@
         <member name="M:GetcuReone.FactFactory.Facts.DateOfDeriveCurrentFact.#ctor(System.DateTime)">
             <inheritdoc />
         </member>
-        <member name="M:GetcuReone.FactFactory.Facts.DateOfDeriveCurrentFact.GeTFactType">
+        <member name="M:GetcuReone.FactFactory.Facts.DateOfDeriveCurrentFact.GetFactType">
             <inheritdoc />
         </member>
         <member name="T:GetcuReone.FactFactory.Facts.DateOfDeriveFact">
@@ -988,7 +988,7 @@
         <member name="M:GetcuReone.FactFactory.Facts.DerivingCurrentFactsFact.#ctor(System.Collections.ObjectModel.ReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
             <inheritdoc />
         </member>
-        <member name="M:GetcuReone.FactFactory.Facts.DerivingCurrentFactsFact.GeTFactType">
+        <member name="M:GetcuReone.FactFactory.Facts.DerivingCurrentFactsFact.GetFactType">
             <inheritdoc />
         </member>
         <member name="T:GetcuReone.FactFactory.Facts.FactBase`1">
@@ -1008,7 +1008,7 @@
             </summary>
             <param name="fact"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facts.FactBase`1.GeTFactType">
+        <member name="M:GetcuReone.FactFactory.Facts.FactBase`1.GetFactType">
             <summary>
             Must return FactInfo{type of your fact}();
             </summary>
@@ -1090,7 +1090,7 @@
             Fact interface
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFact.GeTFactType">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFact.GetFactType">
             <summary>
             Return fact information as an output parameter
             </summary>
@@ -1181,12 +1181,12 @@
             Rule of fact derivation
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.IFactRule.InpuTFactTypes">
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactRule.InputFactTypes">
             <summary>
             Information on input factacles rules
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.IFactRule.OutpuTFactType">
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactRule.OutputFactType">
             <summary>
             Rule exit information
             </summary>
@@ -1284,7 +1284,7 @@
             Desired action information
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.IWantAction.InputFacts">
+        <member name="P:GetcuReone.FactFactory.Interfaces.IWantAction.InputFactTypes">
             <summary>
             Facts Required to Launch an Action
             </summary>
@@ -1298,7 +1298,7 @@
             <summary>
             Run actioin
             </summary>
-            <typeparam name="TFactContainer">container with <see cref="P:GetcuReone.FactFactory.Interfaces.IWantAction.InputFacts"/></typeparam>
+            <typeparam name="TFactContainer">container with <see cref="P:GetcuReone.FactFactory.Interfaces.IWantAction.InputFactTypes"/></typeparam>
             <param name="container"></param>
         </member>
     </members>

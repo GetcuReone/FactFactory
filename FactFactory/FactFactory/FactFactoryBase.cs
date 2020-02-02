@@ -159,7 +159,25 @@ namespace GetcuReone.FactFactory
         protected virtual void CalculateFact(TFactRule rule, TFactContainer container)
         {
             if (!rule.OutputFactType.ContainsContainer(container))
+            {
+                List<IFact> includeFacts = new List<IFact>(
+                rule.InputFactTypes
+                    .Where(factInfo => factInfo.IsFactType<INotContainedFact>())
+                    .Select(factInfo => factInfo.GetNotContainedInstance()));
+
+                includeFacts.AddRange(
+                    rule.InputFactTypes
+                        .Where(factInfo => factInfo.IsFactType<INoFact>())
+                        .Select(factInfo => factInfo.GetNoInstance()));
+
+                foreach (var includeFact in includeFacts)
+                    container.Add(includeFact);
+
                 container.Add(CreateObject(ct => rule.Derive(container), container));
+
+                foreach (var includeFact in includeFacts)
+                    container.Remove(includeFact);
+            }
         }
 
         /// <summary>
