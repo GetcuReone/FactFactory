@@ -79,7 +79,8 @@ namespace InfrastructureTests
                     files => files
                         .Where(file => file.Name.Contains("Tests.dll") 
                             && !file.FullName.Contains("TestAdapter.dll")
-                            && !file.FullName.Contains("obj"))
+                            && !file.FullName.Contains("obj")
+                            && file.FullName.Contains(buildMode))
                         .ToList())
                 .And("Get assembly infos", files => 
                     files.Select(file => 
@@ -126,22 +127,20 @@ namespace InfrastructureTests
             Given("Get all file", () => InfrastructureHelper.GetAllFiles(new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent))
                 .And("Get all assemblies", files => files.Where(file => file.Name.Contains(".dll")))
                 .And($"Includ only {partNameAssemblies} assemblies", files => files.Where(file => file.Name.Contains(partNameAssemblies)))
-                .And("exclude auxiliary assemblies", files =>
-                {
-                    var result = new List<FileInfo>();
-
-                    foreach (FileInfo file in files)
-                    {
-                        if (!file.FullName.Contains("Tests.dll"))
+                .And($"Include only library assemlies",
+                    files => files
+                        .Where(file => !file.Name.Contains("Tests.dll")
+                            && !file.FullName.Contains("TestAdapter.dll")
+                            && !file.FullName.Contains("obj")
+                            && file.FullName.Contains(buildMode))
+                        .ToList())
+                .And("Get assembly infos",
+                    files =>
+                        files.Select(file =>
                         {
-                            LoggingHelper.Info($"file {file.FullName}");
-                            result.Add(file);
-                        }
-                    }
-
-                    return result;
-                })
-                .And("Get assembly infos", files => files.ConvertAll(file => Assembly.LoadFrom(file.FullName)))
+                            LoggingHelper.Info($"test assembly {file.FullName}");
+                            return Assembly.LoadFrom(file.FullName);
+                        }).ToList())
                 .When("Get types", assemblies => assemblies.SelectMany(assembly => assembly.GetTypes()))
                 .Then("Check types", types =>
                 {
@@ -177,12 +176,24 @@ namespace InfrastructureTests
                 ? $"{majorVersion}.0.0.0"
                 : "1.0.0.0";
 
-            string rootNameAssemblies = "ComboPatterns";
+            string partNameAssemblies = "FactFactory";
 
             Given("Get all file", () => InfrastructureHelper.GetAllFiles(new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent))
                 .And("Get all assemblies", files => files.Where(file => file.Name.Contains(".dll")))
-                .And($"Includ only {rootNameAssemblies} assemblies", files => files.Where(file => file.Name.Contains(rootNameAssemblies) || includeAssemblies.Any(inAss => file.Name.Contains(inAss))))
-                .When("Get assembly infos", files => files.Select(file => Assembly.LoadFrom(file.FullName)))
+                .And($"Includ only {partNameAssemblies} assemblies", files => files.Where(file => file.Name.Contains(partNameAssemblies) || includeAssemblies.Any(inAss => file.Name.Contains(inAss))))
+                .And($"Include only library assemlies",
+                    files => files
+                        .Where(file => !file.FullName.Contains("TestAdapter.dll")
+                            && !file.FullName.Contains("obj")
+                            && file.FullName.Contains(buildMode))
+                        .ToList())
+                .When("Get assembly infos",
+                    files =>
+                        files.Select(file =>
+                        {
+                            LoggingHelper.Info($"test assembly {file.FullName}");
+                            return Assembly.LoadFrom(file.FullName);
+                        }).ToList())
                 .Then("Checke assembly version", assemblies =>
                 {
                     var invalidAssemblies = new List<Assembly>();
