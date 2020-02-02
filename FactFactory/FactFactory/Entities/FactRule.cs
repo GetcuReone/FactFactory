@@ -19,13 +19,13 @@ namespace GetcuReone.FactFactory.Entities
         public IFactType OutputFactType { get; }
 
         /// <inheritdoc />
-        public FactRule(Func<IFactContainer, IFact> func, List<IFactType> inpuTFactTypes, IFactType outpuTFactType)
+        public FactRule(Func<IFactContainer, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
-            InputFactTypes = inpuTFactTypes != null 
-                ? new ReadOnlyCollection<IFactType>(inpuTFactTypes)
+            InputFactTypes = inputFactTypes != null 
+                ? new ReadOnlyCollection<IFactType>(inputFactTypes)
                 : new ReadOnlyCollection<IFactType>(new List<IFactType>());
-            OutputFactType = outpuTFactType;
+            OutputFactType = outputFactType;
         }
 
         /// <inheritdoc />
