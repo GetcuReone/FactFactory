@@ -1,5 +1,0 @@
-steps:
-- script: |
-    echo copy $(nugetRepositoryFile) to $(Build.ArtifactStagingDirectory)
-    cp '$(nugetRepositoryFile)' '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Nuget copy to Artifacts folder'

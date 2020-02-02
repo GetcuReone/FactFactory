@@ -8,7 +8,7 @@ steps:
     restoreSolution: '$(solution)'
 
 - task: MSBuild@1
-  displayName: 'MS build'
+  displayName: 'MS build $(solutionName).sln'
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
@@ -19,6 +19,6 @@ steps:
 - task: MSBuild@1
   displayName: 'MS nuget pack'
   inputs:
-    solution: '$(Build.Repository.LocalPath)/**/NugetProject.csproj'
+    solution: '$(Build.Repository.LocalPath)/**/$(nugetProjectName).csproj'
     configuration: '$(buildConfiguration)'
     msbuildArguments: '/t:pack /p:PackageVersion=$(packageVersion)'
