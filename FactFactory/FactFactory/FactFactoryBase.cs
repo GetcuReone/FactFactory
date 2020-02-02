@@ -63,7 +63,7 @@ namespace GetcuReone.FactFactory
             container.Add(new DateOfDeriveFact(DateTime.Now));
             container.Add(new DerivingCurrentFactsFact(
                 new ReadOnlyCollection<IFactType>(
-                    WantActions.SelectMany(action => action.InputFacts).ToList())));
+                    WantActions.SelectMany(action => action.InputFactTypes).ToList())));
 
             var derivedTrees = new Dictionary<TWantAction, List<FactRuleTree>>();
             var notFoundFactsTrees = new Dictionary<IWantAction, Dictionary<IFactType, List<List<IFactType>>>>();
@@ -88,7 +88,7 @@ namespace GetcuReone.FactFactory
             foreach (var key in derivedTrees.Keys)
             {
                 container.Add(new DateOfDeriveCurrentFact(key.DateOfDerive));
-                container.Add(new CurrentFactsFindingFact(key.InputFacts.ToList()));
+                container.Add(new CurrentFactsFindingFact(key.InputFactTypes.ToList()));
 
                 foreach (var tree in derivedTrees[key])
                     DeriveNode(tree.Root, container);
@@ -118,11 +118,11 @@ namespace GetcuReone.FactFactory
 
             var excludeFacts = GeTFactTypesAvailableOnlyRules();
 
-            var excludeFact = wantAction.InputFacts.FirstOrDefault(f => excludeFacts.Any(ef => ef.Compare(f)));
+            var excludeFact = wantAction.InputFactTypes.FirstOrDefault(f => excludeFacts.Any(ef => ef.Compare(f)));
 
             if (excludeFact != null)
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"The {excludeFact.FactName} is available only for the rules");
-            if (wantAction.InputFacts.Any(fact => fact.IsFactType<INoFact>() || fact.IsFactType<INotContainedFact>()))
+            if (wantAction.InputFactTypes.Any(fact => fact.IsFactType<INoFact>() || fact.IsFactType<INotContainedFact>()))
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"Cannot derive for No and NotContained facts");
 
             WantActions.Add(wantAction);
@@ -184,7 +184,7 @@ namespace GetcuReone.FactFactory
             treesResult = new List<FactRuleTree>();
             notFoundFacts = new Dictionary<IFactType, List<List<IFactType>>>();
 
-            foreach (IFactType wantFact in wantAction.InputFacts)
+            foreach (IFactType wantFact in wantAction.InputFactTypes)
             {
                 // If fact already exists
                 if (wantFact.ContainsContainer(container))

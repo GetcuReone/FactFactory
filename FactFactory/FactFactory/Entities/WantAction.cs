@@ -14,7 +14,7 @@ namespace GetcuReone.FactFactory.Entities
         private readonly Action<IFactContainer> _action;
 
         /// <inheritdoc />
-        public IEnumerable<IFactType> InputFacts { get; }
+        public IEnumerable<IFactType> InputFactTypes { get; }
 
         /// <inheritdoc />
         public DateTime DateOfDerive { get; set; }
@@ -22,10 +22,10 @@ namespace GetcuReone.FactFactory.Entities
         /// <summary>
         /// Constructor
         /// </summary>
-        public WantAction(Action<IFactContainer> action, IList<IFactType> factInfos)
+        public WantAction(Action<IFactContainer> action, IList<IFactType> factTypes)
         {
             _action = action ?? throw new ArgumentNullException(nameof(action));
-            InputFacts = new ReadOnlyCollection<IFactType>(factInfos);
+            InputFactTypes = new ReadOnlyCollection<IFactType>(factTypes);
         }
 
         /// <inheritdoc />
@@ -37,7 +37,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"({string.Join(", ", InputFacts.Select(f => f.FactName).ToList())})";
+            return $"({string.Join(", ", InputFactTypes.Select(f => f.FactName).ToList())})";
         }
     }
 }
