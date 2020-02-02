@@ -67,7 +67,7 @@ namespace GetcuReone.FactFactory
 
             var derivedTrees = new Dictionary<TWantAction, List<FactRuleTree>>();
             var notFoundFactsTrees = new Dictionary<IWantAction, Dictionary<IFactType, List<List<IFactType>>>>();
-            IReadOnlyCollection<IFactType> excludeFacts = GeTFactTypesAvailableOnlyRules();
+            IReadOnlyCollection<IFactType> excludeFacts = GetFactTypesAvailableOnlyRules();
             List<TWantAction> wantActions = new List<TWantAction>(WantActions);
 
             foreach (TWantAction wantAction in wantActions)
@@ -116,7 +116,7 @@ namespace GetcuReone.FactFactory
             if (WantActions.IndexOf(wantAction) != -1)
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, "Action already requested");
 
-            var excludeFacts = GeTFactTypesAvailableOnlyRules();
+            var excludeFacts = GetFactTypesAvailableOnlyRules();
 
             var excludeFact = wantAction.InputFactTypes.FirstOrDefault(f => excludeFacts.Any(ef => ef.Compare(f)));
 
