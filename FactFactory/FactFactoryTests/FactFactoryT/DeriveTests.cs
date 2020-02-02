@@ -128,7 +128,7 @@ namespace FactFactoryTests.FactFactoryT
                     var detail = ex.Details[0];
                     Assert.AreEqual(ErrorCode.FactCannotCalculated, detail.Code, "code not match");
 
-                    var listFact = new List<IFactInfo>
+                    var listFact = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>()

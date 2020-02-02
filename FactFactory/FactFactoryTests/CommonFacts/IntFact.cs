@@ -10,7 +10,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GeTFactType()
         {
             return new FactInfo<IntFact>();
         }

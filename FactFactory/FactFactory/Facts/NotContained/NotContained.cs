@@ -12,7 +12,7 @@ namespace GetcuReone.FactFactory.Facts
         /// <summary>
         /// Constructor
         /// </summary>
-        public NotContained() : base(FactFactoryHelper.GetFactInfo<TFact>())
+        public NotContained() : base(FactFactoryHelper.GeTFactType<TFact>())
         {
         }
     }

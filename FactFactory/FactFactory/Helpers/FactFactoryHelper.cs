@@ -47,7 +47,7 @@ namespace GetcuReone.FactFactory.Helpers
                 });
         }
 
-        internal static InvalidDeriveOperationException CreateDeriveException(Dictionary<IWantAction, Dictionary<IFactInfo, List<List<IFactInfo>>>> notFoundFacts)
+        internal static InvalidDeriveOperationException CreateDeriveException(Dictionary<IWantAction, Dictionary<IFactType, List<List<IFactType>>>> notFoundFacts)
         {
             List<DeriveErrorDetail> details = new List<DeriveErrorDetail>();
 
@@ -63,7 +63,7 @@ namespace GetcuReone.FactFactory.Helpers
             return new InvalidDeriveOperationException(details);
         }
 
-        internal static IFactInfo GetFactInfo<TFact>() where TFact : IFact
+        internal static IFactType GeTFactType<TFact>() where TFact : IFact
         {
             return new FactInfo<TFact>();
         }

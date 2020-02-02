@@ -3,13 +3,13 @@
     /// <summary>
     /// Fact info
     /// </summary>
-    public interface IFactInfo
+    public interface IFactType
     {
         /// <summary>
-        /// Compare <see cref="IFactInfo"/>
+        /// Compare <see cref="IFactType"/>
         /// </summary>
         /// <param name="factInfo"></param>
-        bool Compare<TFactInfo>(TFactInfo factInfo) where TFactInfo : IFactInfo;
+        bool Compare<TFactType>(TFactType factInfo) where TFactType : IFactType;
 
         /// <summary>
         /// Fact name

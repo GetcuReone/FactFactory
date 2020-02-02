@@ -7,15 +7,15 @@ namespace GetcuReone.FactFactory.Facts
     /// <summary>
     /// Current Calculated Facts
     /// </summary>
-    public sealed class DerivingCurrentFactsFact : FactBase<ReadOnlyCollection<IFactInfo>>
+    public sealed class DerivingCurrentFactsFact : FactBase<ReadOnlyCollection<IFactType>>
     {
         /// <inheritdoc />
-        public DerivingCurrentFactsFact(ReadOnlyCollection<IFactInfo> fact) : base(fact)
+        public DerivingCurrentFactsFact(ReadOnlyCollection<IFactType> fact) : base(fact)
         {
         }
 
         /// <inheritdoc />
-        public override IFactInfo GetFactInfo()
+        public override IFactType GeTFactType()
         {
             return new FactInfo<DerivingCurrentFactsFact>();
         }

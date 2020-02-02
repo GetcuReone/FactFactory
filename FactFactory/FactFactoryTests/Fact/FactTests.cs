@@ -23,11 +23,11 @@ namespace FactFactoryTests.Fact
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact] check method GetFactInfo")]
-        public void GetFactInfoTestCase()
+        [Description("[fact] check method GeTFactType")]
+        public void GeTFactTypeTestCase()
         {
             Given("Create fact", () => new DateOfDeriveFact(DateTime.Now))
-                .When("Run method", fact => fact.GetFactInfo())
+                .When("Run method", fact => fact.GeTFactType())
                 .Then("Check result", factInfo => Assert.IsTrue(factInfo is FactInfo<DateOfDeriveFact>, "a different type of factual information was expected"));
         }
     }

@@ -22,14 +22,14 @@ namespace FactFactoryTests.FactInfo
         public void CompareFactInfoOneFactTestCase()
         {
             DateOfDeriveFact fact = null;
-            IFactInfo first = null;
-            IFactInfo second = null;
+            IFactType first = null;
+            IFactType second = null;
 
             Given("Create fact", () => { fact = new DateOfDeriveFact(DateTime.Now); })
                 .When("Create fact info", _ =>
                 {
-                    first = fact.GetFactInfo();
-                    second = fact.GetFactInfo();
+                    first = fact.GeTFactType();
+                    second = fact.GeTFactType();
                 })
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
@@ -41,8 +41,8 @@ namespace FactFactoryTests.FactInfo
         {
             DateOfDeriveFact firstFact = null;
             DateOfDeriveFact secondFact = null;
-            IFactInfo first = null;
-            IFactInfo second = null;
+            IFactType first = null;
+            IFactType second = null;
 
             Given("Create fact", () => 
             { 
@@ -51,8 +51,8 @@ namespace FactFactoryTests.FactInfo
             })
                 .When("Create fact info", _ =>
                 {
-                    first = firstFact.GetFactInfo();
-                    second = secondFact.GetFactInfo();
+                    first = firstFact.GeTFactType();
+                    second = secondFact.GeTFactType();
                 })
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
@@ -64,8 +64,8 @@ namespace FactFactoryTests.FactInfo
         {
             DateOfDeriveFact firstFact = null;
             OtherFact secondFact = null;
-            IFactInfo first = null;
-            IFactInfo second = null;
+            IFactType first = null;
+            IFactType second = null;
 
             Given("Create fact", () =>
             {
@@ -74,8 +74,8 @@ namespace FactFactoryTests.FactInfo
             })
                 .When("Create fact info", _ =>
                 {
-                    first = firstFact.GetFactInfo();
-                    second = secondFact.GetFactInfo();
+                    first = firstFact.GeTFactType();
+                    second = secondFact.GeTFactType();
                 })
                 .Then("Compare factInfos", () => Assert.IsFalse(first.Compare(second), "factual information is the same"));
         }
@@ -86,7 +86,7 @@ namespace FactFactoryTests.FactInfo
         public void FactNameTestCase()
         {
             GivenCreateOtherFact(DateTime.Now)
-                .When("Create factInfo", fact => fact.GetFactInfo())
+                .When("Create factInfo", fact => fact.GeTFactType())
                 .Then("Check result", factInfo => Assert.AreEqual(nameof(OtherFact), factInfo.FactName, "not expected fact name"));
         }
 
@@ -105,7 +105,7 @@ namespace FactFactoryTests.FactInfo
                     return fact;
                 })
                 .Then("Check container contains fact", 
-                    fact => Assert.IsTrue(fact.GetFactInfo().ContainsContainer(container), "the container does not contain a fact"));
+                    fact => Assert.IsTrue(fact.GeTFactType().ContainsContainer(container), "the container does not contain a fact"));
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
@@ -122,7 +122,7 @@ namespace FactFactoryTests.FactInfo
                     return fact;
                 })
                 .Then("Check container contains fact",
-                    fact => Assert.IsFalse(fact.GetFactInfo().ContainsContainer(container), "container contains fact"));
+                    fact => Assert.IsFalse(fact.GeTFactType().ContainsContainer(container), "container contains fact"));
         }
     }
 }

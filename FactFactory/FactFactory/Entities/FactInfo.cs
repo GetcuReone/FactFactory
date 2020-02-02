@@ -6,14 +6,14 @@ using System;
 namespace GetcuReone.FactFactory.Entities
 {
     /// <inheritdoc />
-    public class FactInfo<TFact> : IFactInfo
+    public class FactInfo<TFact> : IFactType
         where TFact: IFact
     {
         /// <inheritdoc />
         public string FactName => typeof(TFact).Name;
 
         /// <inheritdoc />
-        public bool Compare<TFactInfo>(TFactInfo factInfo) where TFactInfo : IFactInfo
+        public bool Compare<TFactType>(TFactType factInfo) where TFactType : IFactType
         {
             return factInfo is FactInfo<TFact>;
         }

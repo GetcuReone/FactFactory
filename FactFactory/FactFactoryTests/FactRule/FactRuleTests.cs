@@ -21,7 +21,7 @@ namespace FactFactoryTests.FactRule
         {
             GivenEmpty()
                 .When("Create factRule", _ => new Rule(ct => { return default; }, null, null))
-                .Then("Check input param", rule => Assert.AreEqual(0, rule.InputFactInfos.Count, "InputFactInfos is not empty"));
+                .Then("Check input param", rule => Assert.AreEqual(0, rule.InpuTFactTypes.Count, "InpuTFactTypes is not empty"));
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
@@ -35,12 +35,12 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule", factInner => 
                 {
                     fact = factInner;
-                    return new Rule(ct => { return default; }, new List<IFactInfo> { fact.GetFactInfo() }, null);
+                    return new Rule(ct => { return default; }, new List<IFactType> { fact.GeTFactType() }, null);
                 })
                 .Then("Check input param", rule => 
                 {
-                    Assert.AreEqual(1, rule.InputFactInfos.Count, "InputFactInfos is empty");
-                    Assert.IsTrue(rule.InputFactInfos.First().Compare(fact.GetFactInfo()), "factual information does not match");
+                    Assert.AreEqual(1, rule.InpuTFactTypes.Count, "InpuTFactTypes is empty");
+                    Assert.IsTrue(rule.InpuTFactTypes.First().Compare(fact.GeTFactType()), "factual information does not match");
                 });
         }
 
@@ -55,11 +55,11 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule", factInner =>
                 {
                     fact = factInner;
-                    return new Rule(ct => { return default; }, new List<IFactInfo> { fact.GetFactInfo(), fact.GetFactInfo(), fact.GetFactInfo() }, null);
+                    return new Rule(ct => { return default; }, new List<IFactType> { fact.GeTFactType(), fact.GeTFactType(), fact.GeTFactType() }, null);
                 })
                 .Then("Check input param", rule =>
                 {
-                    Assert.AreEqual(3, rule.InputFactInfos.Count, "InputFactInfos is not empty");
+                    Assert.AreEqual(3, rule.InpuTFactTypes.Count, "InpuTFactTypes is not empty");
                 });
         }
 
@@ -74,9 +74,9 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule", factInner =>
                 {
                     fact = factInner;
-                    return new Rule(ct => { return default; }, null, fact.GetFactInfo());
+                    return new Rule(ct => { return default; }, null, fact.GeTFactType());
                 })
-                .Then("Check output param", rule => Assert.IsTrue(rule.OutputFactInfo.Compare(fact.GetFactInfo()), "factual information does not match"));
+                .Then("Check output param", rule => Assert.IsTrue(rule.OutpuTFactType.Compare(fact.GeTFactType()), "factual information does not match"));
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
@@ -112,7 +112,7 @@ namespace FactFactoryTests.FactRule
                         return new OtherFact(date.AddDays(number));
                     };
 
-                    return new Rule(func, container.Select(fact => fact.GetFactInfo()).ToList(), new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
+                    return new Rule(func, container.Select(fact => fact.GeTFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
                 })
                 .When("Run method", rule => rule.Derive(container))
                 .Then("Check result", fact =>
@@ -137,7 +137,7 @@ namespace FactFactoryTests.FactRule
                 {
                     Func<IFactContainer, IFact> func = ct => default;
 
-                    return new Rule(func, container.Select(fact => fact.GetFactInfo()).ToList(), new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
+                    return new Rule(func, container.Select(fact => fact.GeTFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
                 })
                 .When("run method", rule => rule.CanDerive(container))
                 .Then("check result", result => Assert.IsTrue(result, "rule cannot be executed"));
@@ -149,7 +149,7 @@ namespace FactFactoryTests.FactRule
         public void CanNotDeriveFactRuleTestCase()
         {
             var container = new Container();
-            var factInfos = new List<IFactInfo> 
+            var factInfos = new List<IFactType> 
             {
                 new GetcuReone.FactFactory.Entities.FactInfo<DateTimeFact>(),
                 new GetcuReone.FactFactory.Entities.FactInfo<IntFact>(),

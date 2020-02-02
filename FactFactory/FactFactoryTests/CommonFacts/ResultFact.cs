@@ -9,7 +9,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GeTFactType()
         {
             return new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>();
         }

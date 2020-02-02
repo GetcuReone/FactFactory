@@ -5,13 +5,13 @@ namespace GetcuReone.FactFactory.Facts
     /// <summary>
     /// Base class for facts that cannot be calculated
     /// </summary>
-    public abstract class NoBase : FactBase<IFactInfo>, INoFact
+    public abstract class NoBase : FactBase<IFactType>, INoFact
     {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="fact"></param>
-        protected NoBase(IFactInfo fact) : base(fact)
+        protected NoBase(IFactType fact) : base(fact)
         {
         }
     }

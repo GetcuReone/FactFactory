@@ -11,7 +11,7 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <summary>
         /// Facts Required to Launch an Action
         /// </summary>
-        IEnumerable<IFactInfo> InputFacts { get; }
+        IEnumerable<IFactType> InputFacts { get; }
 
         /// <summary>
         /// Start date for fact finding for action

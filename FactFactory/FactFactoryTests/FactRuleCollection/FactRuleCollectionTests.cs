@@ -31,7 +31,7 @@ namespace FactFactoryTests.FactRuleCollection
                 .Then("Check collection", _ =>
                 {
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
-                    Assert.AreEqual(0, Collection[0].InputFactInfos.Count, "a different number of input parameters was expected");
+                    Assert.AreEqual(0, Collection[0].InpuTFactTypes.Count, "a different number of input parameters was expected");
                 });
         }
 
@@ -44,20 +44,20 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -70,21 +70,21 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -97,22 +97,22 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -125,10 +125,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -136,12 +136,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -154,10 +154,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -166,12 +166,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -184,10 +184,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -197,12 +197,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -215,10 +215,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -229,12 +229,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -247,10 +247,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -262,12 +262,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input8Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -280,10 +280,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -296,12 +296,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input9Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -314,10 +314,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -331,12 +331,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input10Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -349,10 +349,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -367,12 +367,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input11Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -385,10 +385,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -404,12 +404,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input12Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -422,10 +422,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -442,12 +442,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input13Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -460,10 +460,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -481,12 +481,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input14Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -499,10 +499,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14, Input15Fact fact15) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -521,12 +521,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input15Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 
@@ -539,10 +539,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14, Input15Fact fact15, Input16Fact fact16) => new ResultFact(default)))
                 .Then("Check collection", _ =>
                 {
-                    IReadOnlyCollection<IFactInfo> inputFactInfos = Collection[0].InputFactInfos;
+                    IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InpuTFactTypes;
                     Assert.AreEqual(1, Collection.Count, "collection is empty");
 
-                    var factInfos = new List<IFactInfo>
+                    var factInfos = new List<IFactType>
                     {
                         new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                         new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
@@ -562,12 +562,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new GetcuReone.FactFactory.Entities.FactInfo<Input16Fact>(),
                     };
 
-                    Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factInfos.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.IsTrue(Collection[0].OutpuTFactType.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
-                    foreach (IFactInfo factInfo in factInfos)
-                        Assert.IsTrue(inputFactInfos.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
+                    foreach (IFactType factInfo in factInfos)
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factInfo)), $"No input fact information found {factInfo.FactName}");
                 });
         }
 

@@ -27,7 +27,7 @@ namespace FactFactoryTests.WantAction
         {
             bool isRun = false;
 
-            Given("Create WantAction", () => new WAction(ct => isRun = true, new List<IFactInfo>()))
+            Given("Create WantAction", () => new WAction(ct => isRun = true, new List<IFactType>()))
                 .When("Run method", wantAction => wantAction.Invoke(new GetcuReone.FactFactory.Entities.FactContainer()))
                 .Then("Check result", _ => Assert.IsTrue(isRun, "Invoke not run"));
         }

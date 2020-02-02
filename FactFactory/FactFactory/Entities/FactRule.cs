@@ -13,19 +13,19 @@ namespace GetcuReone.FactFactory.Entities
         private readonly Func<IFactContainer, IFact> _func;
 
         /// <inheritdoc />
-        public IReadOnlyCollection<IFactInfo> InputFactInfos { get; }
+        public IReadOnlyCollection<IFactType> InpuTFactTypes { get; }
 
         /// <inheritdoc />
-        public IFactInfo OutputFactInfo { get; }
+        public IFactType OutpuTFactType { get; }
 
         /// <inheritdoc />
-        public FactRule(Func<IFactContainer, IFact> func, List<IFactInfo> inputFactInfos, IFactInfo outputFactInfo)
+        public FactRule(Func<IFactContainer, IFact> func, List<IFactType> inpuTFactTypes, IFactType outpuTFactType)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
-            InputFactInfos = inputFactInfos != null 
-                ? new ReadOnlyCollection<IFactInfo>(inputFactInfos)
-                : new ReadOnlyCollection<IFactInfo>(new List<IFactInfo>());
-            OutputFactInfo = outputFactInfo;
+            InpuTFactTypes = inpuTFactTypes != null 
+                ? new ReadOnlyCollection<IFactType>(inpuTFactTypes)
+                : new ReadOnlyCollection<IFactType>(new List<IFactType>());
+            OutpuTFactType = outpuTFactType;
         }
 
         /// <inheritdoc />
@@ -33,11 +33,11 @@ namespace GetcuReone.FactFactory.Entities
             where TFactContainer : IFactContainer
         {
             List<IFact> includeFacts = new List<IFact>(
-                InputFactInfos
+                InpuTFactTypes
                     .Where(factInfo => factInfo.IsFactType<INotContainedFact>())
                     .Select(factInfo => factInfo.GetNotContainedInstance()));
 
-            includeFacts.AddRange(InputFactInfos
+            includeFacts.AddRange(InpuTFactTypes
                     .Where(factInfo => factInfo.IsFactType<INoFact>())
                     .Select(factInfo => factInfo.GetNoInstance()));
 
@@ -59,25 +59,25 @@ namespace GetcuReone.FactFactory.Entities
         public bool CanDerive<TFactContainer>(TFactContainer container) 
             where TFactContainer : IFactContainer
         {
-            return InputFactInfos.All(factInfo => factInfo.ContainsContainer(container));
+            return InpuTFactTypes.All(factInfo => factInfo.ContainsContainer(container));
         }
 
         /// <inheritdoc />
         public bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule
         {
-            if (!OutputFactInfo.Compare(factRule.OutputFactInfo))
+            if (!OutpuTFactType.Compare(factRule.OutpuTFactType))
                 return false;
-            else if (factRule.InputFactInfos.IsNullOrEmpty() && InputFactInfos.IsNullOrEmpty())
+            else if (factRule.InpuTFactTypes.IsNullOrEmpty() && InpuTFactTypes.IsNullOrEmpty())
                 return true;
-            else if (InputFactInfos.IsNullOrEmpty() || factRule.InputFactInfos.IsNullOrEmpty())
+            else if (InpuTFactTypes.IsNullOrEmpty() || factRule.InpuTFactTypes.IsNullOrEmpty())
                 return false;
-            else if (factRule.InputFactInfos.Count != InputFactInfos.Count)
+            else if (factRule.InpuTFactTypes.Count != InpuTFactTypes.Count)
                 return false;
             else
             {
-                foreach (var fact in factRule.InputFactInfos)
+                foreach (var fact in factRule.InpuTFactTypes)
                 {
-                    if (InputFactInfos.All(f => !f.Compare(fact)))
+                    if (InpuTFactTypes.All(f => !f.Compare(fact)))
                         return false;
                 }
 
@@ -88,7 +88,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"({string.Join(", ", InputFactInfos.Select(f => f.FactName).ToList())}) => ({OutputFactInfo.FactName})";
+            return $"({string.Join(", ", InpuTFactTypes.Select(f => f.FactName).ToList())}) => ({OutpuTFactType.FactName})";
         }
     }
 }

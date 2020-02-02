@@ -10,15 +10,15 @@ namespace GetcuReone.FactFactory.Facts
     /// Only available for request in the rules
     /// </para>
     /// </summary>
-    public sealed class CurrentFactsFindingFact : FactBase<IReadOnlyCollection<IFactInfo>>
+    public sealed class CurrentFactsFindingFact : FactBase<IReadOnlyCollection<IFactType>>
     {
         /// <inheritdoc />
-        public CurrentFactsFindingFact(IReadOnlyCollection<IFactInfo> fact) : base(fact)
+        public CurrentFactsFindingFact(IReadOnlyCollection<IFactType> fact) : base(fact)
         {
         }
 
         /// <inheritdoc />
-        public override IFactInfo GetFactInfo()
+        public override IFactType GeTFactType()
         {
             return new FactInfo<CurrentFactsFindingFact>();
         }
