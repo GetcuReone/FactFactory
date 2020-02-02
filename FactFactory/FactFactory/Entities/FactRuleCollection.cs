@@ -55,8 +55,8 @@ namespace GetcuReone.FactFactory.Entities
         /// <inheritdoc />
         public void Add(FactRule item)
         {
-            if (item.OutpuTFactType.IsFactType<INotContainedFact>())
-                throw new ArgumentException($"A rule cannot return a {item.OutpuTFactType.FactName}");
+            if (item.OutputFactType.IsFactType<INotContainedFact>())
+                throw new ArgumentException($"A rule cannot return a {item.OutputFactType.FactName}");
             if (Contains(item))
                 throw new ArgumentException("This rule is already in the rule collection");
 

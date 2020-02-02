@@ -11,12 +11,12 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <summary>
         /// Information on input factacles rules
         /// </summary>
-        IReadOnlyCollection<IFactType> InpuTFactTypes { get; }
+        IReadOnlyCollection<IFactType> InputFactTypes { get; }
 
         /// <summary>
         /// Rule exit information
         /// </summary>
-        IFactType OutpuTFactType { get; }
+        IFactType OutputFactType { get; }
 
         /// <summary>
         /// is it possible to derive the fact

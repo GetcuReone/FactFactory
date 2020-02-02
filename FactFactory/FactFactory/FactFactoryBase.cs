@@ -158,7 +158,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">fact container</param>
         protected virtual void CalculateFact(TFactRule rule, TFactContainer container)
         {
-            if (!rule.OutpuTFactType.ContainsContainer(container))
+            if (!rule.OutputFactType.ContainsContainer(container))
                 container.Add(CreateObject(ct => rule.Derive(container), container));
         }
 
@@ -257,7 +257,7 @@ namespace GetcuReone.FactFactory
                     {
                         FactRuleNode node = lastLevel[j];
 
-                        List<IFactType> needFacts = node.FactRule.InpuTFactTypes
+                        List<IFactType> needFacts = node.FactRule.InputFactTypes
                             .Where(fact => !fact.ContainsContainer(container) && excludeFacts.All(exF => !exF.Compare(fact)))
                             .ToList();
 
@@ -286,7 +286,7 @@ namespace GetcuReone.FactFactory
                         }
 
                         var completedNodesForFact = allCompletedNodes
-                            .Where(n => needFacts.Any(f => f.Compare(n.FactRule.OutpuTFactType)))
+                            .Where(n => needFacts.Any(f => f.Compare(n.FactRule.OutputFactType)))
                             .ToList();
 
                         if (completedNodesForFact.Count > 0)
@@ -294,7 +294,7 @@ namespace GetcuReone.FactFactory
                             foreach (var completedNodeForFact in completedNodesForFact)
                                 node.Childs.Add(completedNodeForFact);
 
-                            var foundFacts = completedNodesForFact.Select(n => n.FactRule.OutpuTFactType).ToList();
+                            var foundFacts = completedNodesForFact.Select(n => n.FactRule.OutputFactType).ToList();
                             needFacts.RemoveAll(f => foundFacts.Any(ff => ff.Compare(f)));
 
                             if (needFacts.Count == 0)
@@ -313,7 +313,7 @@ namespace GetcuReone.FactFactory
                             }
 
                             var needRules = ruleCollection
-                                    .Where(rule => rule.OutpuTFactType.Compare(needFact))
+                                    .Where(rule => rule.OutputFactType.Compare(needFact))
                                     .Where(rule => !node.ExistsBranch(rule))
                                     .ToList();
 
@@ -387,7 +387,7 @@ namespace GetcuReone.FactFactory
             if (rules.IsNullOrEmpty())
                 throw FactFactoryHelper.CreateDeriveException(ErrorCode.EmptyRuleCollection, "Rules cannot be null");
 
-            List<FactRuleTree> factRuleTrees = rules?.Where(rule => rule.OutpuTFactType.Compare(wantFact))
+            List<FactRuleTree> factRuleTrees = rules?.Where(rule => rule.OutputFactType.Compare(wantFact))
                     .Select(rule =>
                     {
                         var tree = new FactRuleTree
@@ -423,7 +423,7 @@ namespace GetcuReone.FactFactory
 
             foreach (var node in currentLevel)
             {
-                if (node.FactRule.InpuTFactTypes.Count > 0 && node.FactRule.InpuTFactTypes.All(f => computedNodes.Any(n => n.FactRule.OutpuTFactType.Compare(f))))
+                if (node.FactRule.InputFactTypes.Count > 0 && node.FactRule.InputFactTypes.All(f => computedNodes.Any(n => n.FactRule.OutputFactType.Compare(f))))
                     computedNodesInCurrentLevel.Add(node);
                 else if (computedNodes.Any(n => n.FactRule.Compare(node.FactRule)))
                     computedNodesInCurrentLevel.Add(node);
@@ -446,7 +446,7 @@ namespace GetcuReone.FactFactory
             foreach (var computedNode in computedNodes.Distinct())
             {
                 List<FactRuleNode> parentNodes = levelNodes
-                    .Where(n => n.FactRule.OutpuTFactType.Compare(computedNode.FactRule.OutpuTFactType))
+                    .Where(n => n.FactRule.OutputFactType.Compare(computedNode.FactRule.OutputFactType))
                     .Select(n => n.Parent).ToList();
                 keyValuePairs.Add(computedNode, parentNodes);
             }
@@ -458,7 +458,7 @@ namespace GetcuReone.FactFactory
                     if (parentNode == null)
                         continue;
 
-                    foreach (var removeNode in parentNode.Childs.Where(n => n.FactRule.OutpuTFactType.Compare(keyValuePair.Key.FactRule.OutpuTFactType)).ToList())
+                    foreach (var removeNode in parentNode.Childs.Where(n => n.FactRule.OutputFactType.Compare(keyValuePair.Key.FactRule.OutputFactType)).ToList())
                     {
                         parentNode.Childs.Remove(removeNode);
                         if (levelNodes.IndexOf(removeNode) != -1)
@@ -483,7 +483,7 @@ namespace GetcuReone.FactFactory
             parent.Childs.Remove(removeNode);
 
             // If the node has a child node that can calculate this fact
-            if (parent.Childs.Any(node => node.FactRule.OutpuTFactType.Compare(removeNode.FactRule.OutpuTFactType)))
+            if (parent.Childs.Any(node => node.FactRule.OutputFactType.Compare(removeNode.FactRule.OutputFactType)))
                 return false;
             else
                 return RemoveRuleNodeAndCheckGoneRoot(factRuleTree, level - 1, parent);

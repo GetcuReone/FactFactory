@@ -21,7 +21,7 @@ namespace FactFactoryTests.FactRule
         {
             GivenEmpty()
                 .When("Create factRule", _ => new Rule(ct => { return default; }, null, null))
-                .Then("Check input param", rule => Assert.AreEqual(0, rule.InpuTFactTypes.Count, "InpuTFactTypes is not empty"));
+                .Then("Check input param", rule => Assert.AreEqual(0, rule.InputFactTypes.Count, "InpuTFactTypes is not empty"));
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
@@ -39,8 +39,8 @@ namespace FactFactoryTests.FactRule
                 })
                 .Then("Check input param", rule => 
                 {
-                    Assert.AreEqual(1, rule.InpuTFactTypes.Count, "InpuTFactTypes is empty");
-                    Assert.IsTrue(rule.InpuTFactTypes.First().Compare(fact.GeTFactType()), "factual information does not match");
+                    Assert.AreEqual(1, rule.InputFactTypes.Count, "InpuTFactTypes is empty");
+                    Assert.IsTrue(rule.InputFactTypes.First().Compare(fact.GeTFactType()), "factual information does not match");
                 });
         }
 
@@ -59,7 +59,7 @@ namespace FactFactoryTests.FactRule
                 })
                 .Then("Check input param", rule =>
                 {
-                    Assert.AreEqual(3, rule.InpuTFactTypes.Count, "InpuTFactTypes is not empty");
+                    Assert.AreEqual(3, rule.InputFactTypes.Count, "InpuTFactTypes is not empty");
                 });
         }
 
@@ -76,7 +76,7 @@ namespace FactFactoryTests.FactRule
                     fact = factInner;
                     return new Rule(ct => { return default; }, null, fact.GeTFactType());
                 })
-                .Then("Check output param", rule => Assert.IsTrue(rule.OutpuTFactType.Compare(fact.GeTFactType()), "factual information does not match"));
+                .Then("Check output param", rule => Assert.IsTrue(rule.OutputFactType.Compare(fact.GeTFactType()), "factual information does not match"));
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
