@@ -131,7 +131,7 @@ namespace GetcuReone.FactFactory
         /// <summary>
         /// Get facts available only in rules
         /// </summary>
-        protected virtual IReadOnlyCollection<IFactType> GeTFactTypesAvailableOnlyRules()
+        protected virtual IReadOnlyCollection<IFactType> GetFactTypesAvailableOnlyRules()
         {
             return new ReadOnlyCollection<IFactType>(new List<IFactType> 
             {
