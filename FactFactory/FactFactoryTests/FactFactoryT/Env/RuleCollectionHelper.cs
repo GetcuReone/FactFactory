@@ -4,9 +4,9 @@ namespace FactFactoryTests.FactFactoryT.Env
 {
     public static class RuleCollectionHelper
     {
-        public static FactFactory.Entities.FactRuleCollection GetInputFactRules()
+        public static GetcuReone.FactFactory.Entities.FactRuleCollection GetInputFactRules()
         {
-            return new FactFactory.Entities.FactRuleCollection
+            return new GetcuReone.FactFactory.Entities.FactRuleCollection
             {
                 (Input15Fact firstFact, Input14Fact secondFact) => new Input16Fact(firstFact.Value + secondFact.Value - 3),
                 (Input2Fact secondFact) => new Input14Fact(secondFact.Value + 14),
@@ -21,9 +21,9 @@ namespace FactFactoryTests.FactFactoryT.Env
             };
         }
 
-        public static FactFactory.Entities.FactRuleCollection GetRulesForNotAvailableInput6Fact()
+        public static GetcuReone.FactFactory.Entities.FactRuleCollection GetRulesForNotAvailableInput6Fact()
         {
-            return new FactFactory.Entities.FactRuleCollection
+            return new GetcuReone.FactFactory.Entities.FactRuleCollection
             {
                 (Input15Fact firstFact, Input14Fact secondFact) => new Input16Fact(firstFact.Value + secondFact.Value - 3),
                 (Input2Fact secondFact) => new Input14Fact(secondFact.Value + 14),

@@ -1,6 +1,6 @@
-﻿using FactFactory.Constants;
-using FactFactory.Exceptions;
-using FactFactoryTests.CommonFacts;
+﻿using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Exceptions;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,12 +9,12 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class FactFactoryTests : TestBase
     {
-        private FactFactory.FactFactory FactFactory { get; set; }
+        private GetcuReone.FactFactory.FactFactory FactFactory { get; set; }
 
         [TestInitialize]
         public void Initialize()
         {
-            FactFactory = new FactFactory.FactFactory();
+            FactFactory = new GetcuReone.FactFactory.FactFactory();
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]

@@ -1,7 +1,7 @@
-﻿using FactFactory.Helpers;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Helpers;
+using GetcuReone.FactFactory.Interfaces;
 
-namespace FactFactory.Facts
+namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
     /// Class for facts that cannot be calculated

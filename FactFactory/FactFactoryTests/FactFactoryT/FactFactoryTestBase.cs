@@ -7,9 +7,9 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public abstract class FactFactoryTestBase : TestBase
     {
-        protected GivenBlock<FactFactory.FactFactory> GivenCreateFactFactory()
+        protected GivenBlock<GetcuReone.FactFactory.FactFactory> GivenCreateFactFactory()
         {
-            return Given("Create fact factory", () => new FactFactory.FactFactory());
+            return Given("Create fact factory", () => new GetcuReone.FactFactory.FactFactory());
         }
     }
 }

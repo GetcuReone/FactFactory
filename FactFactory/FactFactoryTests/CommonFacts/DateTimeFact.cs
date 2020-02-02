@@ -1,5 +1,5 @@
-﻿using FactFactory.Facts;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using System;
 
 namespace FactFactoryTests.CommonFacts
@@ -12,7 +12,7 @@ namespace FactFactoryTests.CommonFacts
 
         public override IFactInfo GetFactInfo()
         {
-            return new FactFactory.Entities.FactInfo<DateTimeFact>();
+            return new GetcuReone.FactFactory.Entities.FactInfo<DateTimeFact>();
         }
     }
 }

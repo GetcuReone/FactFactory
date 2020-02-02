@@ -1,15 +1,15 @@
-﻿using FactFactory.Constants;
-using FactFactory.Entities;
-using FactFactory.Exceptions;
-using FactFactory.Facts;
-using FactFactory.Helpers;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Helpers;
+using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace FactFactory
+namespace GetcuReone.FactFactory
 {
     /// <summary>
     /// Base class for fact factory

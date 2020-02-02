@@ -1,8 +1,8 @@
-﻿using FactFactory.Entities;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using System;
 
-namespace FactFactory.Facts
+namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
     /// Start date for deriving of current fact

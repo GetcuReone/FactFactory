@@ -1,6 +1,6 @@
-﻿using FactFactory.Facts;
-using FactFactory.Interfaces;
-using FactFactoryTests.CommonFacts;
+﻿using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter;
 using JwtTestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -95,12 +95,12 @@ namespace FactFactoryTests.FactInfo
         [Description("[fact][info] container contains fact")]
         public void ContainsContainerTestCase()
         {
-            FactFactory.Entities.FactContainer container = null;
+            GetcuReone.FactFactory.Entities.FactContainer container = null;
 
             GivenCreateOtherFact(DateTime.Now)
                 .When("Add container", fact =>
                 {
-                    container = new FactFactory.Entities.FactContainer();
+                    container = new GetcuReone.FactFactory.Entities.FactContainer();
                     container.Add(fact);
                     return fact;
                 })
@@ -113,12 +113,12 @@ namespace FactFactoryTests.FactInfo
         [Description("[fact][info] the container does not contain a fact")]
         public void NotContainsContainerTestCase()
         {
-            FactFactory.Entities.FactContainer container = null;
+            GetcuReone.FactFactory.Entities.FactContainer container = null;
 
             GivenCreateOtherFact(DateTime.Now)
                 .When("Create container", fact =>
                 {
-                    container = new FactFactory.Entities.FactContainer();
+                    container = new GetcuReone.FactFactory.Entities.FactContainer();
                     return fact;
                 })
                 .Then("Check container contains fact",

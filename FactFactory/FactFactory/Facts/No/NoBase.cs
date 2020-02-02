@@ -1,6 +1,6 @@
-﻿using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 
-namespace FactFactory.Facts
+namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
     /// Base class for facts that cannot be calculated

@@ -1,5 +1,5 @@
-﻿using FactFactory.Entities;
-using FactFactory.Facts;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Facts;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

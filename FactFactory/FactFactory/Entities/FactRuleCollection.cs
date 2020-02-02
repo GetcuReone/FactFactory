@@ -1,10 +1,10 @@
-﻿using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FactFactory.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
     /// Collection fo <see cref="FactRule"/>

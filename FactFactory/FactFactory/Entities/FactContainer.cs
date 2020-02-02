@@ -1,11 +1,11 @@
-﻿using FactFactory.Exceptions;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FactFactory.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
     /// Fact collection

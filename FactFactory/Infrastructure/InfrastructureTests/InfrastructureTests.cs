@@ -120,12 +120,12 @@ namespace InfrastructureTests
         [Description("[infrastructure] all namespaces start with GetcuReone.ComboPatterns")]
         public void AllNamespacesStartWithGetcuReoneTestCase()
         {
-            string beginNamespace = "GetcuReone.ComboPatterns";
-            string rootNameAssemblies = "ComboPatterns";
+            string beginNamespace = "GetcuReone";
+            string partNameAssemblies = "FactFactory";
 
             Given("Get all file", () => InfrastructureHelper.GetAllFiles(new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent))
                 .And("Get all assemblies", files => files.Where(file => file.Name.Contains(".dll")))
-                .And($"Includ only {rootNameAssemblies} assemblies", files => files.Where(file => file.Name.Contains(rootNameAssemblies)))
+                .And($"Includ only {partNameAssemblies} assemblies", files => files.Where(file => file.Name.Contains(partNameAssemblies)))
                 .And("exclude auxiliary assemblies", files =>
                 {
                     var result = new List<FileInfo>();

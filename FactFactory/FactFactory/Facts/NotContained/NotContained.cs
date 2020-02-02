@@ -1,7 +1,7 @@
-﻿using FactFactory.Helpers;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Helpers;
+using GetcuReone.FactFactory.Interfaces;
 
-namespace FactFactory.Facts
+namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
     /// Information about a fact that is not contained in the container at the time of the function call <see cref="IFactFactory{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>

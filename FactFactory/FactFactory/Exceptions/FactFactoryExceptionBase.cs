@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace FactFactory.Exceptions
+namespace GetcuReone.FactFactory.Exceptions
 {
     /// <summary>
     /// Base error for FactFactory

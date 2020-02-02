@@ -1,10 +1,9 @@
-﻿using FactFactory.Constants;
-using FactFactory.Facts;
-using FactFactory.Helpers;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Helpers;
+using GetcuReone.FactFactory.Interfaces;
 using System;
 
-namespace FactFactory.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     /// <inheritdoc />
     public class FactInfo<TFact> : IFactInfo

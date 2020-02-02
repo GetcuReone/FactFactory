@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FactFactory.Interfaces
+namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Rule of fact derivation

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FactFactory.Interfaces
+namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Container interface with facts for deriving other facts

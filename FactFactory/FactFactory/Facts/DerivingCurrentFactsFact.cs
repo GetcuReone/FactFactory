@@ -1,8 +1,8 @@
-﻿using FactFactory.Entities;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using System.Collections.ObjectModel;
 
-namespace FactFactory.Facts
+namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
     /// Current Calculated Facts

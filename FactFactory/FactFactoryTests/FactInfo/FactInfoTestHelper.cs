@@ -1,4 +1,4 @@
-﻿using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter.Entities;
 
 namespace FactFactoryTests.FactInfo

@@ -1,4 +1,4 @@
-﻿namespace FactFactory.Interfaces
+﻿namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Fact info

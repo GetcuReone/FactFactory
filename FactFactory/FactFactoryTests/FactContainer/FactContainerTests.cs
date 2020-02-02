@@ -1,6 +1,6 @@
-﻿using FactFactory.Exceptions;
-using FactFactory.Facts;
-using FactFactoryTests.CommonFacts;
+﻿using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Facts;
 using JwtTestAdapter;
 using JwtTestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,9 +12,9 @@ namespace FactFactoryTests.FactContainer
     public sealed class FactContainerTests : TestBase
     {
         // TODO: Make container copy test
-        private GivenBlock<FactFactory.Entities.FactContainer> GivenCreateContainer()
+        private GivenBlock<GetcuReone.FactFactory.Entities.FactContainer> GivenCreateContainer()
         {
-            return Given("Create container", () => new FactFactory.Entities.FactContainer());
+            return Given("Create container", () => new GetcuReone.FactFactory.Entities.FactContainer());
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]

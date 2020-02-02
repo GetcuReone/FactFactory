@@ -1,13 +1,13 @@
-﻿using FactFactory.Interfaces;
-using FactFactoryTests.CommonFacts;
+﻿using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Rule = FactFactory.Entities.FactRule;
-using Container = FactFactory.Entities.FactContainer;
-using FactFactory.Facts;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
+using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
 namespace FactFactoryTests.FactRule
 {
@@ -112,7 +112,7 @@ namespace FactFactoryTests.FactRule
                         return new OtherFact(date.AddDays(number));
                     };
 
-                    return new Rule(func, container.Select(fact => fact.GetFactInfo()).ToList(), new FactFactory.Entities.FactInfo<OtherFact>());
+                    return new Rule(func, container.Select(fact => fact.GetFactInfo()).ToList(), new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
                 })
                 .When("Run method", rule => rule.Derive(container))
                 .Then("Check result", fact =>
@@ -137,7 +137,7 @@ namespace FactFactoryTests.FactRule
                 {
                     Func<IFactContainer, IFact> func = ct => default;
 
-                    return new Rule(func, container.Select(fact => fact.GetFactInfo()).ToList(), new FactFactory.Entities.FactInfo<OtherFact>());
+                    return new Rule(func, container.Select(fact => fact.GetFactInfo()).ToList(), new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
                 })
                 .When("run method", rule => rule.CanDerive(container))
                 .Then("check result", result => Assert.IsTrue(result, "rule cannot be executed"));
@@ -151,8 +151,8 @@ namespace FactFactoryTests.FactRule
             var container = new Container();
             var factInfos = new List<IFactInfo> 
             {
-                new FactFactory.Entities.FactInfo<DateTimeFact>(),
-                new FactFactory.Entities.FactInfo<IntFact>(),
+                new GetcuReone.FactFactory.Entities.FactInfo<DateTimeFact>(),
+                new GetcuReone.FactFactory.Entities.FactInfo<IntFact>(),
             };
 
             Given("Add fact 1", () => container.Add(new DateOfDeriveFact(DateTime.Now)))
@@ -161,7 +161,7 @@ namespace FactFactoryTests.FactRule
                 {
                     Func<IFactContainer, IFact> func = ct => default;
 
-                    return new Rule(func, factInfos, new FactFactory.Entities.FactInfo<OtherFact>());
+                    return new Rule(func, factInfos, new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
                 })
                 .When("run method", rule => rule.CanDerive(container))
                 .Then("check result", result => Assert.IsFalse(result, "rule can be followed"));

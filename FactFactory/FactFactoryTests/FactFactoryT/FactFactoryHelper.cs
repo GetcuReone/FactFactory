@@ -5,7 +5,7 @@ namespace FactFactoryTests.FactFactoryT
 {
     internal static class FactFactoryHelper
     {
-        internal static GivenBlock<FactFactory.FactFactory> AndRulesNotNul(this GivenBlock<FactFactory.FactFactory> givenBlock)
+        internal static GivenBlock<GetcuReone.FactFactory.FactFactory> AndRulesNotNul(this GivenBlock<GetcuReone.FactFactory.FactFactory> givenBlock)
         {
             return givenBlock.And("Rules not null", factory =>
             {

@@ -1,11 +1,11 @@
-﻿using FactFactory.Constants;
-using FactFactory.Entities;
-using FactFactory.Exceptions;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FactFactory.Helpers
+namespace GetcuReone.FactFactory.Helpers
 {
     /// <summary>
     /// Helper for <see cref="FactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>

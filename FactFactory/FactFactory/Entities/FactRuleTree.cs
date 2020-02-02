@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FactFactory.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     internal class FactRuleTree
     {

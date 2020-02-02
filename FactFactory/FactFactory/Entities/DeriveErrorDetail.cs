@@ -1,10 +1,7 @@
-﻿using FactFactory.Interfaces;
-using System;
+﻿using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 
-namespace FactFactory.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
     /// Error detail for method <see cref="FactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>

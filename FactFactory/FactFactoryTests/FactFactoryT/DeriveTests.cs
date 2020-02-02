@@ -1,9 +1,9 @@
-﻿using FactFactory.Constants;
-using FactFactory.Exceptions;
-using FactFactory.Facts;
-using FactFactory.Interfaces;
-using FactFactoryTests.CommonFacts;
+﻿using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
+using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -105,8 +105,8 @@ namespace FactFactoryTests.FactFactoryT
                     var notFoundFactSet = detail.NotFoundFacts.Values.First();
 
                     Assert.AreEqual(2, notFoundFactSet.Count, "2 sets of facts expected");
-                    Assert.IsTrue(new FactFactory.Entities.FactInfo<Input3Fact>().Compare(notFoundFactSet[0][0]), "expected other fact");
-                    Assert.IsTrue(new FactFactory.Entities.FactInfo<Input5Fact>().Compare(notFoundFactSet[1][0]), "expected other fact");
+                    Assert.IsTrue(new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>().Compare(notFoundFactSet[0][0]), "expected other fact");
+                    Assert.IsTrue(new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>().Compare(notFoundFactSet[1][0]), "expected other fact");
                 });
         }
 
@@ -130,8 +130,8 @@ namespace FactFactoryTests.FactFactoryT
 
                     var listFact = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>()
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>()
                     };
 
                     Assert.IsTrue(listFact.All(fact => detail.NotFoundFacts.Values.First()[0].Any(f => f.Compare(fact))), "Other facts expected");

@@ -1,12 +1,12 @@
-﻿using FactFactory.Facts;
-using FactFactory.Interfaces;
-using FactFactoryTests.CommonFacts;
+﻿using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Collection = FactFactory.Entities.FactRuleCollection;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactRuleCollection
 {
@@ -49,11 +49,11 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -75,12 +75,12 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -102,13 +102,13 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -130,14 +130,14 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -159,15 +159,15 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -189,16 +189,16 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
-                        new FactFactory.Entities.FactInfo<Input6Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -220,17 +220,17 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
-                        new FactFactory.Entities.FactInfo<Input6Fact>(),
-                        new FactFactory.Entities.FactInfo<Input7Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -252,18 +252,18 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
-                        new FactFactory.Entities.FactInfo<Input6Fact>(),
-                        new FactFactory.Entities.FactInfo<Input7Fact>(),
-                        new FactFactory.Entities.FactInfo<Input8Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input8Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -285,19 +285,19 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
-                        new FactFactory.Entities.FactInfo<Input6Fact>(),
-                        new FactFactory.Entities.FactInfo<Input7Fact>(),
-                        new FactFactory.Entities.FactInfo<Input8Fact>(),
-                        new FactFactory.Entities.FactInfo<Input9Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input8Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input9Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -319,20 +319,20 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
-                        new FactFactory.Entities.FactInfo<Input6Fact>(),
-                        new FactFactory.Entities.FactInfo<Input7Fact>(),
-                        new FactFactory.Entities.FactInfo<Input8Fact>(),
-                        new FactFactory.Entities.FactInfo<Input9Fact>(),
-                        new FactFactory.Entities.FactInfo<Input10Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input8Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input9Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input10Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -354,21 +354,21 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
-                        new FactFactory.Entities.FactInfo<Input6Fact>(),
-                        new FactFactory.Entities.FactInfo<Input7Fact>(),
-                        new FactFactory.Entities.FactInfo<Input8Fact>(),
-                        new FactFactory.Entities.FactInfo<Input9Fact>(),
-                        new FactFactory.Entities.FactInfo<Input10Fact>(),
-                        new FactFactory.Entities.FactInfo<Input11Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input8Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input9Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input10Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input11Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -390,22 +390,22 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
-                        new FactFactory.Entities.FactInfo<Input6Fact>(),
-                        new FactFactory.Entities.FactInfo<Input7Fact>(),
-                        new FactFactory.Entities.FactInfo<Input8Fact>(),
-                        new FactFactory.Entities.FactInfo<Input9Fact>(),
-                        new FactFactory.Entities.FactInfo<Input10Fact>(),
-                        new FactFactory.Entities.FactInfo<Input11Fact>(),
-                        new FactFactory.Entities.FactInfo<Input12Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input8Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input9Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input10Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input11Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input12Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -427,23 +427,23 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
-                        new FactFactory.Entities.FactInfo<Input6Fact>(),
-                        new FactFactory.Entities.FactInfo<Input7Fact>(),
-                        new FactFactory.Entities.FactInfo<Input8Fact>(),
-                        new FactFactory.Entities.FactInfo<Input9Fact>(),
-                        new FactFactory.Entities.FactInfo<Input10Fact>(),
-                        new FactFactory.Entities.FactInfo<Input11Fact>(),
-                        new FactFactory.Entities.FactInfo<Input12Fact>(),
-                        new FactFactory.Entities.FactInfo<Input13Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input8Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input9Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input10Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input11Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input12Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input13Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -465,24 +465,24 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
-                        new FactFactory.Entities.FactInfo<Input6Fact>(),
-                        new FactFactory.Entities.FactInfo<Input7Fact>(),
-                        new FactFactory.Entities.FactInfo<Input8Fact>(),
-                        new FactFactory.Entities.FactInfo<Input9Fact>(),
-                        new FactFactory.Entities.FactInfo<Input10Fact>(),
-                        new FactFactory.Entities.FactInfo<Input11Fact>(),
-                        new FactFactory.Entities.FactInfo<Input12Fact>(),
-                        new FactFactory.Entities.FactInfo<Input13Fact>(),
-                        new FactFactory.Entities.FactInfo<Input14Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input8Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input9Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input10Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input11Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input12Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input13Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input14Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -504,25 +504,25 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
-                        new FactFactory.Entities.FactInfo<Input6Fact>(),
-                        new FactFactory.Entities.FactInfo<Input7Fact>(),
-                        new FactFactory.Entities.FactInfo<Input8Fact>(),
-                        new FactFactory.Entities.FactInfo<Input9Fact>(),
-                        new FactFactory.Entities.FactInfo<Input10Fact>(),
-                        new FactFactory.Entities.FactInfo<Input11Fact>(),
-                        new FactFactory.Entities.FactInfo<Input12Fact>(),
-                        new FactFactory.Entities.FactInfo<Input13Fact>(),
-                        new FactFactory.Entities.FactInfo<Input14Fact>(),
-                        new FactFactory.Entities.FactInfo<Input15Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input8Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input9Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input10Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input11Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input12Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input13Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input14Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input15Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)
@@ -544,26 +544,26 @@ namespace FactFactoryTests.FactRuleCollection
 
                     var factInfos = new List<IFactInfo>
                     {
-                        new FactFactory.Entities.FactInfo<Input1Fact>(),
-                        new FactFactory.Entities.FactInfo<Input2Fact>(),
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input4Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>(),
-                        new FactFactory.Entities.FactInfo<Input6Fact>(),
-                        new FactFactory.Entities.FactInfo<Input7Fact>(),
-                        new FactFactory.Entities.FactInfo<Input8Fact>(),
-                        new FactFactory.Entities.FactInfo<Input9Fact>(),
-                        new FactFactory.Entities.FactInfo<Input10Fact>(),
-                        new FactFactory.Entities.FactInfo<Input11Fact>(),
-                        new FactFactory.Entities.FactInfo<Input12Fact>(),
-                        new FactFactory.Entities.FactInfo<Input13Fact>(),
-                        new FactFactory.Entities.FactInfo<Input14Fact>(),
-                        new FactFactory.Entities.FactInfo<Input15Fact>(),
-                        new FactFactory.Entities.FactInfo<Input16Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input1Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input2Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input4Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input6Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input7Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input8Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input9Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input10Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input11Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input12Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input13Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input14Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input15Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactInfo<Input16Fact>(),
                     };
 
                     Assert.AreEqual(factInfos.Count, inputFactInfos.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactInfo.Compare(new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactInfo factInfo in factInfos)

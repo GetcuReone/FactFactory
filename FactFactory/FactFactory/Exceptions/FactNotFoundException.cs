@@ -1,7 +1,7 @@
-﻿using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using System;
 
-namespace FactFactory.Exceptions
+namespace GetcuReone.FactFactory.Exceptions
 {
     /// <summary>
     /// Fact not found error

@@ -1,8 +1,6 @@
 ﻿using System;
-using FactFactory.Entities;
-using FactFactory.Interfaces;
 
-namespace FactFactory.Facts
+namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
     /// Start date for deriving of all facts

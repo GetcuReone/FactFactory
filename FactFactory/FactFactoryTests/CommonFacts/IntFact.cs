@@ -1,6 +1,6 @@
-﻿using FactFactory.Entities;
-using FactFactory.Facts;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 
 namespace FactFactoryTests.CommonFacts
 {

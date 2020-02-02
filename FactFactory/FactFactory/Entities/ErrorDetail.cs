@@ -1,4 +1,4 @@
-﻿namespace FactFactory.Entities
+﻿namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
     /// Error detail

@@ -1,5 +1,4 @@
-﻿using FactFactory.Facts;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Facts;
 using System;
 
 namespace FactFactoryTests.CommonFacts
