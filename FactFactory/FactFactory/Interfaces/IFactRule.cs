@@ -26,11 +26,11 @@ namespace GetcuReone.FactFactory.Interfaces
         bool CanDerive<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
 
         /// <summary>
-        /// Rule of fact derive
+        /// Rule of fact calculate
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        IFact Derive<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
+        IFact Calculate<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
 
         /// <summary>
         /// Compare rules

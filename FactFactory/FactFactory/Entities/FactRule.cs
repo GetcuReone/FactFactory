@@ -29,7 +29,7 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <inheritdoc />
-        public IFact Derive<TFactContainer>(TFactContainer container) 
+        public IFact Calculate<TFactContainer>(TFactContainer container) 
             where TFactContainer : IFactContainer
         {
             IFact fact = _func(container);

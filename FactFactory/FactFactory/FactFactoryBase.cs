@@ -173,7 +173,7 @@ namespace GetcuReone.FactFactory
                 foreach (var includeFact in includeFacts)
                     container.Add(includeFact);
 
-                container.Add(CreateObject(ct => rule.Derive(container), container));
+                container.Add(CreateObject(ct => rule.Calculate(container), container));
 
                 foreach (var includeFact in includeFacts)
                     container.Remove(includeFact);

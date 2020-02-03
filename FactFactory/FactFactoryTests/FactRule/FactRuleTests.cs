@@ -94,8 +94,8 @@ namespace FactFactoryTests.FactRule
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] check method derive")]
-        public void DeriveFactRuleTestCase()
+        [Description("[fact][rule] check method calculate")]
+        public void CalculateFactRuleTestCase()
         {
             DateTime operationDate = DateTime.Now;
             var container = new Container();
@@ -114,7 +114,7 @@ namespace FactFactoryTests.FactRule
 
                     return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
                 })
-                .When("Run method", rule => rule.Derive(container))
+                .When("Run method", rule => rule.Calculate(container))
                 .Then("Check result", fact =>
                 {
                     Assert.IsNotNull(fact, "fac cannot be null");
