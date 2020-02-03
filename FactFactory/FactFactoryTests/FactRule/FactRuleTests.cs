@@ -128,7 +128,7 @@ namespace FactFactoryTests.FactRule
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule] rule can be followed")]
-        public void CanDeriveFactRuleTestCase()
+        public void CanCalculateFactRuleTestCase()
         {
             var container = new Container();
             Given("Add fact 1", () => container.Add(new DateOfDeriveFact(DateTime.Now)))
@@ -139,7 +139,7 @@ namespace FactFactoryTests.FactRule
 
                     return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
                 })
-                .When("run method", rule => rule.CanDerive(container))
+                .When("run method", rule => rule.CanCalculate(container))
                 .Then("check result", result => Assert.IsTrue(result, "rule cannot be executed"));
         }
 
@@ -163,7 +163,7 @@ namespace FactFactoryTests.FactRule
 
                     return new Rule(func, factInfos, new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
                 })
-                .When("run method", rule => rule.CanDerive(container))
+                .When("run method", rule => rule.CanCalculate(container))
                 .Then("check result", result => Assert.IsFalse(result, "rule can be followed"));
         }
     }

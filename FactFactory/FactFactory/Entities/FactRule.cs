@@ -41,7 +41,7 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <inheritdoc />
-        public bool CanDerive<TFactContainer>(TFactContainer container) 
+        public bool CanCalculate<TFactContainer>(TFactContainer container) 
             where TFactContainer : IFactContainer
         {
             return InputFactTypes.All(factInfo => factInfo.ContainsContainer(container));

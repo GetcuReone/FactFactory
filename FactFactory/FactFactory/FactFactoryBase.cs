@@ -230,7 +230,7 @@ namespace GetcuReone.FactFactory
             List<FactRuleTree> factRuleTrees = GetFactRuleTrees(wantFact, ruleCollection);
 
             // Check if we can already derive the fact
-            FactRuleTree factRuleTreeComputed = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.CanDerive(container));
+            FactRuleTree factRuleTreeComputed = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.CanCalculate(container));
 
             if (factRuleTreeComputed != null)
             {

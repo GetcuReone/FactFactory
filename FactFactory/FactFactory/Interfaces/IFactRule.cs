@@ -19,11 +19,11 @@ namespace GetcuReone.FactFactory.Interfaces
         IFactType OutputFactType { get; }
 
         /// <summary>
-        /// is it possible to derive the fact
+        /// is it possible to calculate the fact
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        bool CanDerive<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
+        bool CanCalculate<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
 
         /// <summary>
         /// Rule of fact calculate
