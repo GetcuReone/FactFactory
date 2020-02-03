@@ -13,9 +13,15 @@ namespace JwtTestAdapter.Helpers
 
             return collection.Distinct(new Entities.EqualityComparer<TObj>(
                 equalsFunc,
-                obj => obj == default 
-                    ? 0
-                    : 1));
+                obj => 
+                {
+                    if (obj == null)
+                        return 0;
+                    else if (obj.Equals(default))
+                        return -1;
+
+                    return 1;
+                }));
         }
     }
 }
