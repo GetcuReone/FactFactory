@@ -68,6 +68,9 @@ namespace InfrastructureTests
         [Timeout(Timeouts.Minute.One)]
         [TestMethod]
         [Description("[infrastructure] Check for all attribute Timeout tests")]
+#if (!LOCALDEVBUILD)
+        [Ignore]
+#endif
         public void AllHaveTimeoutTestCase()
         {
             string partNameAssemblies = "FactFactory";
@@ -119,6 +122,9 @@ namespace InfrastructureTests
         [Timeout(Timeouts.Minute.One)]
         [TestMethod]
         [Description("[infrastructure] all namespaces start with GetcuReone.ComboPatterns")]
+#if (!LOCALDEVBUILD)
+        [Ignore]
+#endif
         public void AllNamespacesStartWithGetcuReoneTestCase()
         {
             string beginNamespace = "GetcuReone";
@@ -132,8 +138,11 @@ namespace InfrastructureTests
                         .Where(file => !file.Name.Contains("Tests.dll")
                             && !file.FullName.Contains("TestAdapter.dll")
                             && !file.FullName.Contains("obj")
-                            && file.FullName.Contains(buildMode))
-                        .ToList())
+                            && file.FullName.Contains(buildMode)))
+                .And($"Exclude duplicate",
+                    files => files
+                    .DistinctByFunc((x, y) => x.Name == y.Name)
+                    .ToList())
                 .And("Get assembly infos",
                     files =>
                         files.Select(file =>
@@ -141,6 +150,7 @@ namespace InfrastructureTests
                             LoggingHelper.Info($"test assembly {file.FullName}");
                             return Assembly.LoadFrom(file.FullName);
                         }).ToList())
+
                 .When("Get types", assemblies => assemblies.SelectMany(assembly => assembly.GetTypes()))
                 .Then("Check types", types =>
                 {
