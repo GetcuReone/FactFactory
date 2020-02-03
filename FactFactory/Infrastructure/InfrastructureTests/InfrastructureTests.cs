@@ -68,7 +68,7 @@ namespace InfrastructureTests
         [Timeout(Timeouts.Minute.One)]
         [TestMethod]
         [Description("[infrastructure] Check for all attribute Timeout tests")]
-#if (!LOCALDEVBUILD)
+#if DEBUG
         [Ignore]
 #endif
         public void AllHaveTimeoutTestCase()
@@ -122,7 +122,7 @@ namespace InfrastructureTests
         [Timeout(Timeouts.Minute.One)]
         [TestMethod]
         [Description("[infrastructure] all namespaces start with GetcuReone.ComboPatterns")]
-#if (!LOCALDEVBUILD)
+#if DEBUG
         [Ignore]
 #endif
         public void AllNamespacesStartWithGetcuReoneTestCase()
