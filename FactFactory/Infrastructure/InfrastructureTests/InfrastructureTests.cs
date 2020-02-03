@@ -168,8 +168,8 @@ namespace InfrastructureTests
         {
             string[] includeAssemblies = new string[]
             {
-                "NugetProject.dll",
-                "JwtTestAdapter.dll",
+                Path.Combine("NugetProject", "bin", buildMode, "netstandard2.0", "NugetProject.dll"),
+                Path.Combine("JwtTestAdapter", "bin", buildMode, "netstandard2.0", "JwtTestAdapter.dll"),
             };
             string majorVersion = Environment.GetEnvironmentVariable("majorVersion");
             string excpectedAssemblyVersion = majorVersion != null
@@ -180,13 +180,16 @@ namespace InfrastructureTests
 
             Given("Get all file", () => InfrastructureHelper.GetAllFiles(new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent))
                 .And("Get all assemblies", files => files.Where(file => file.Name.Contains(".dll")))
-                .And($"Includ only {partNameAssemblies} assemblies", files => files.Where(file => file.Name.Contains(partNameAssemblies) || includeAssemblies.Any(inAss => file.Name.Contains(inAss))))
+                .And($"Includ only {partNameAssemblies} assemblies", files => files.Where(file => file.Name.Contains(partNameAssemblies) || includeAssemblies.Any(inAss => file.FullName.Contains(inAss))))
                 .And($"Include only library assemlies",
                     files => files
                         .Where(file => !file.FullName.Contains("TestAdapter.dll")
                             && !file.FullName.Contains("obj")
-                            && file.FullName.Contains(buildMode))
-                        .ToList())
+                            && file.FullName.Contains(buildMode)))
+                .And($"Exclude duplicate",
+                    files => files
+                    .DistinctByFunc((x, y) => x.Name == y.Name)
+                    .ToList())
                 .When("Get assembly infos",
                     files =>
                         files.Select(file =>

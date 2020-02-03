@@ -557,7 +557,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException">
             <summary>
-            <see cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException"/> for method <see cref="!:IFactFactory&lt;TFactContainer, TFactRule, TFactRuleCollection, TWantAction&gt;.Derive"/>
+            <see cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException"/> for method <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.Derive"/>
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Entities.DeriveErrorDetail})">
