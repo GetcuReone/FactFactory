@@ -30,7 +30,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ComboPatterns" Version="2.3.0" />
+    <PackageReference Include="ComboPatterns" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>
