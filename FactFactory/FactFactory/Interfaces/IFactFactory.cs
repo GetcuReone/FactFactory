@@ -1,4 +1,4 @@
-﻿using ComboPatterns.Interfaces;
+﻿using GetcuReone.ComboPatterns.Interfaces;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Interfaces

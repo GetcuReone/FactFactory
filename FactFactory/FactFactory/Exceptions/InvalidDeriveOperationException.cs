@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Exceptions

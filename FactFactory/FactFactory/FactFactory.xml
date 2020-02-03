@@ -169,10 +169,10 @@
         <member name="M:GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <inheritdoc />
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRule.Derive``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRule.Calculate``1(``0)">
             <inheritdoc />
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRule.CanDerive``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRule.CanCalculate``1(``0)">
             <inheritdoc />
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRule.Compare``1(``0)">
@@ -1191,16 +1191,16 @@
             Rule exit information
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.CanDerive``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.CanCalculate``1(``0)">
             <summary>
-            is it possible to derive the fact
+            is it possible to calculate the fact
             </summary>
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.Derive``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.Calculate``1(``0)">
             <summary>
-            Rule of fact derive
+            Rule of fact calculate
             </summary>
             <param name="container"></param>
             <returns></returns>
