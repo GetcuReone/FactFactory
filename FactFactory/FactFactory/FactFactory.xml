@@ -616,6 +616,13 @@
             Collection of rules for derive facts
             </summary>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetFactInfo``1">
+            <summary>
+            Get fact type
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CreateObject``2(System.Func{``0,``1},``0)">
             <summary>
             Object creation method
@@ -941,30 +948,28 @@
             <typeparam name="TFact16">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="T:GetcuReone.FactFactory.Facts.CurrentFactsFindingFact">
-            <summary>
-            Current fact finding information
-            <para>
-            Only available for request in the rules
-            </para>
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facts.CurrentFactsFindingFact.#ctor(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <inheritdoc />
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facts.CurrentFactsFindingFact.GetFactType">
-            <inheritdoc />
-        </member>
         <member name="T:GetcuReone.FactFactory.Facts.DerivingCurrentFacts">
             <summary>
             Current calculated facts
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Facts.DerivingCurrentFacts.#ctor(System.Collections.ObjectModel.ReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <inheritdoc />
+            <summary>
+            Constructor
+            </summary>
+            <param name="factTypes"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facts.DerivingCurrentFacts.#ctor(System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="factTypes"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.Facts.DerivingCurrentFacts.GetFactType">
-            <inheritdoc />
+            <summary>
+            Get fact type
+            </summary>
+            <returns>fact type</returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Facts.FactBase`1">
             <summary>
@@ -985,9 +990,9 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Facts.FactBase`1.GetFactType">
             <summary>
-            Must return FactInfo{type of your fact}();
+            Get fact type
             </summary>
-            <returns></returns>
+            <returns>fact type</returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Facts.NotContained`1">
             <summary>

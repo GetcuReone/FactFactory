@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace GetcuReone.FactFactory.Facts
@@ -9,9 +10,22 @@ namespace GetcuReone.FactFactory.Facts
     /// </summary>
     public sealed class DerivingCurrentFacts : FactBase<ReadOnlyCollection<IFactType>>
     {
-        /// <inheritdoc />
-        public DerivingCurrentFacts(ReadOnlyCollection<IFactType> fact) : base(fact)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="factTypes"></param>
+        public DerivingCurrentFacts(ReadOnlyCollection<IFactType> factTypes) : base(factTypes)
         {
+
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="factTypes"></param>
+        public DerivingCurrentFacts(IList<IFactType> factTypes) : this(new ReadOnlyCollection<IFactType>(factTypes))
+        {
+
         }
 
         /// <summary>

@@ -36,6 +36,16 @@ namespace GetcuReone.FactFactory
         public abstract TFactRuleCollection Rules { get; }
 
         /// <summary>
+        /// Get fact type
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <returns></returns>
+        protected IFactType GetFactInfo<TFact>() where TFact : IFact
+        {
+            return new FactInfo<TFact>();
+        }
+
+        /// <summary>
         /// Object creation method
         /// </summary>
         /// <typeparam name="TParameters"></typeparam>
@@ -88,14 +98,14 @@ namespace GetcuReone.FactFactory
             foreach (var key in derivedTrees.Keys)
             {
                 container.Add(new StartDateOfDeriveCurrentFacts(key.DateOfDerive));
-                container.Add(new CurrentFactsFindingFact(key.InputFactTypes.ToList()));
+                container.Add(new DerivingCurrentFacts(key.InputFactTypes.ToList()));
 
                 foreach (var tree in derivedTrees[key])
                     DeriveNode(tree.Root, container);
 
                 key.Invoke(container);
 
-                container.Remove<CurrentFactsFindingFact>();
+                container.Remove<DerivingCurrentFacts>();
                 container.Remove<StartDateOfDeriveCurrentFacts>();
             }
         }
@@ -135,8 +145,8 @@ namespace GetcuReone.FactFactory
         {
             return new ReadOnlyCollection<IFactType>(new List<IFactType> 
             {
-                new FactInfo<CurrentFactsFindingFact>(),
-                new FactInfo<StartDateOfDeriveCurrentFacts>(),
+                GetFactInfo<DerivingCurrentFacts>(),
+                GetFactInfo<StartDateOfDeriveCurrentFacts>(),
             });
         }
 

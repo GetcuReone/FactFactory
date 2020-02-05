@@ -17,7 +17,7 @@ namespace FactFactoryTests.FactFactoryT
         public void WantNotAvailableFactTestCase()
         {
             GivenCreateFactFactory()
-                .When("Want fact", factory => ExpectedException<FactFactoryException>(() => factory.WantFact((CurrentFactsFindingFact fact) => { })))
+                .When("Want fact", factory => ExpectedException<FactFactoryException>(() => factory.WantFact((DerivingCurrentFacts fact) => { })))
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
