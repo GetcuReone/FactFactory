@@ -87,7 +87,7 @@ namespace GetcuReone.FactFactory
 
             foreach (var key in derivedTrees.Keys)
             {
-                container.Add(new DateOfDeriveCurrentFact(key.DateOfDerive));
+                container.Add(new StartDateOfDeriveCurrentFacts(key.DateOfDerive));
                 container.Add(new CurrentFactsFindingFact(key.InputFactTypes.ToList()));
 
                 foreach (var tree in derivedTrees[key])
@@ -96,7 +96,7 @@ namespace GetcuReone.FactFactory
                 key.Invoke(container);
 
                 container.Remove<CurrentFactsFindingFact>();
-                container.Remove<DateOfDeriveCurrentFact>();
+                container.Remove<StartDateOfDeriveCurrentFacts>();
             }
         }
 
@@ -136,7 +136,7 @@ namespace GetcuReone.FactFactory
             return new ReadOnlyCollection<IFactType>(new List<IFactType> 
             {
                 new FactInfo<CurrentFactsFindingFact>(),
-                new FactInfo<DateOfDeriveCurrentFact>(),
+                new FactInfo<StartDateOfDeriveCurrentFacts>(),
             });
         }
 

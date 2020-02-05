@@ -5,22 +5,22 @@ using System;
 namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
-    /// Start date for deriving of current fact
+    /// Date of receipt of current facts
     /// <para>
     /// Only available for request in the rules
     /// </para>
     /// </summary>
-    public sealed class DateOfDeriveCurrentFact : FactBase<DateTime>
+    public sealed class StartDateOfDeriveCurrentFacts : FactBase<DateTime>
     {
         /// <inheritdoc />
-        public DateOfDeriveCurrentFact(DateTime fact) : base(fact)
+        public StartDateOfDeriveCurrentFacts(DateTime fact) : base(fact)
         {
         }
 
         /// <inheritdoc />
         public override IFactType GetFactType()
         {
-            return new FactInfo<DateOfDeriveCurrentFact>();
+            return new FactInfo<StartDateOfDeriveCurrentFacts>();
         }
     }
 }

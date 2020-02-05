@@ -955,31 +955,6 @@
         <member name="M:GetcuReone.FactFactory.Facts.CurrentFactsFindingFact.GetFactType">
             <inheritdoc />
         </member>
-        <member name="T:GetcuReone.FactFactory.Facts.DateOfDeriveCurrentFact">
-            <summary>
-            Start date for deriving of current fact
-            <para>
-            Only available for request in the rules
-            </para>
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facts.DateOfDeriveCurrentFact.#ctor(System.DateTime)">
-            <inheritdoc />
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facts.DateOfDeriveCurrentFact.GetFactType">
-            <inheritdoc />
-        </member>
-        <member name="T:GetcuReone.FactFactory.Facts.DateOfDeriveFact">
-            <summary>
-            Start date for deriving of all facts
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facts.DateOfDeriveFact.#ctor(System.DateTime)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="fact"></param>
-        </member>
         <member name="T:GetcuReone.FactFactory.Facts.DerivingCurrentFactsFact">
             <summary>
             Current Calculated Facts
@@ -1063,6 +1038,31 @@
             Constructor
             </summary>
             <param name="fact"></param>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Facts.StartDateOfDerive">
+            <summary>
+            Start date for deriving of all facts
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facts.StartDateOfDerive.#ctor(System.DateTime)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="fact"></param>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Facts.StartDateOfDeriveCurrentFacts">
+            <summary>
+            Date of receipt of current facts
+            <para>
+            Only available for request in the rules
+            </para>
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facts.StartDateOfDeriveCurrentFacts.#ctor(System.DateTime)">
+            <inheritdoc />
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facts.StartDateOfDeriveCurrentFacts.GetFactType">
+            <inheritdoc />
         </member>
         <member name="T:GetcuReone.FactFactory.Helpers.FactFactoryHelper">
             <summary>
