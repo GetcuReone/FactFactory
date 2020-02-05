@@ -17,7 +17,7 @@ namespace FactFactoryTests.Fact
             DateTime operationDate = DateTime.Now;
 
             Given("Empty", () => { })
-                .When("Create fact", _ => new DateOfDeriveFact(operationDate))
+                .When("Create fact", _ => new StartDateOfDerive(operationDate))
                 .Then("Check value fact", fact => Assert.AreEqual(operationDate, fact.Value, "a different value of the fact was expected"));
         }
 
@@ -26,9 +26,9 @@ namespace FactFactoryTests.Fact
         [Description("[fact] check method GeTFactType")]
         public void GeTFactTypeTestCase()
         {
-            Given("Create fact", () => new DateOfDeriveFact(DateTime.Now))
+            Given("Create fact", () => new StartDateOfDerive(DateTime.Now))
                 .When("Run method", fact => fact.GetFactType())
-                .Then("Check result", factInfo => Assert.IsTrue(factInfo is FactInfo<DateOfDeriveFact>, "a different type of factual information was expected"));
+                .Then("Check result", factInfo => Assert.IsTrue(factInfo is FactInfo<StartDateOfDerive>, "a different type of factual information was expected"));
         }
     }
 }

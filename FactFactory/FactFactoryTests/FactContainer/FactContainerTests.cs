@@ -24,13 +24,13 @@ namespace FactFactoryTests.FactContainer
         {
             DateTime operationDate = DateTime.Now;
             GivenCreateContainer()
-                .When("Add fact", container => container.AddAndReturn(new DateOfDeriveFact(operationDate)))
+                .When("Add fact", container => container.AddAndReturn(new StartDateOfDerive(operationDate)))
                 .Then("Check contains fact", container =>
                 {
                     foreach(var fact in container)
                     {
                         Assert.IsNotNull(fact, "fact can't should be null");
-                        var dateOfDerive = fact as DateOfDeriveFact;
+                        var dateOfDerive = fact as StartDateOfDerive;
                         Assert.IsNotNull(dateOfDerive, "dateOfDerive can't should be null");
                         Assert.AreEqual(operationDate, dateOfDerive.Value, "another fact value was expected");
                     }

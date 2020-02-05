@@ -21,11 +21,11 @@ namespace FactFactoryTests.FactInfo
         [Description("[fact][info] successful comparison of information about one fact")]
         public void CompareFactInfoOneFactTestCase()
         {
-            DateOfDeriveFact fact = null;
+            StartDateOfDerive fact = null;
             IFactType first = null;
             IFactType second = null;
 
-            Given("Create fact", () => { fact = new DateOfDeriveFact(DateTime.Now); })
+            Given("Create fact", () => { fact = new StartDateOfDerive(DateTime.Now); })
                 .When("Create fact info", _ =>
                 {
                     first = fact.GetFactType();
@@ -39,15 +39,15 @@ namespace FactFactoryTests.FactInfo
         [Description("[fact][info] successful comparison of information about one fact")]
         public void SuccessCompareFactInfoTowFactTestCase()
         {
-            DateOfDeriveFact firstFact = null;
-            DateOfDeriveFact secondFact = null;
+            StartDateOfDerive firstFact = null;
+            StartDateOfDerive secondFact = null;
             IFactType first = null;
             IFactType second = null;
 
             Given("Create fact", () => 
             { 
-                firstFact = new DateOfDeriveFact(DateTime.Now);
-                secondFact = new DateOfDeriveFact(DateTime.Now);
+                firstFact = new StartDateOfDerive(DateTime.Now);
+                secondFact = new StartDateOfDerive(DateTime.Now);
             })
                 .When("Create fact info", _ =>
                 {
@@ -62,14 +62,14 @@ namespace FactFactoryTests.FactInfo
         [Description("[fact][info] unsuccessful comparison of two facts")]
         public void FailedCompareFactInfoTowFactTestCase()
         {
-            DateOfDeriveFact firstFact = null;
+            StartDateOfDerive firstFact = null;
             OtherFact secondFact = null;
             IFactType first = null;
             IFactType second = null;
 
             Given("Create fact", () =>
             {
-                firstFact = new DateOfDeriveFact(DateTime.Now);
+                firstFact = new StartDateOfDerive(DateTime.Now);
                 secondFact = new OtherFact(firstFact.Value);
             })
                 .When("Create fact info", _ =>

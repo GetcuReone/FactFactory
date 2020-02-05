@@ -43,13 +43,13 @@ namespace FactFactoryTests.FactFactoryT
         [Description("[fact][factory] Checking for facts when deriving")]
         public void FactsWhenDeducingTestCase()
         {
-            DateOfDeriveFact dateOfDeriveFact = null;
+            StartDateOfDerive dateOfDeriveFact = null;
             DerivingCurrentFactsFact derivingCurrentFactsFact = null;
 
             GivenCreateFactFactory()
                 .And("Want fact DateOfDeriveFact", factory =>
                 {
-                    factory.WantFact((DateOfDeriveFact fact1, DerivingCurrentFactsFact fact2) =>
+                    factory.WantFact((StartDateOfDerive fact1, DerivingCurrentFactsFact fact2) =>
                     {
                         dateOfDeriveFact = fact1;
                         derivingCurrentFactsFact = fact2;

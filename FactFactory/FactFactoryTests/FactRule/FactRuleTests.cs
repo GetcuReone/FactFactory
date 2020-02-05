@@ -100,13 +100,13 @@ namespace FactFactoryTests.FactRule
             DateTime operationDate = DateTime.Now;
             var container = new Container();
 
-            Given("Add fact 1", () => container.Add(new DateOfDeriveFact(operationDate)))
+            Given("Add fact 1", () => container.Add(new StartDateOfDerive(operationDate)))
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
                     Func<IFactContainer, IFact> func = ct =>
                     {
-                        var date = ct.GetFact<DateOfDeriveFact>().Value;
+                        var date = ct.GetFact<StartDateOfDerive>().Value;
                         var number = ct.GetFact<IntFact>().Value;
 
                         return new OtherFact(date.AddDays(number));
@@ -131,7 +131,7 @@ namespace FactFactoryTests.FactRule
         public void CanCalculateFactRuleTestCase()
         {
             var container = new Container();
-            Given("Add fact 1", () => container.Add(new DateOfDeriveFact(DateTime.Now)))
+            Given("Add fact 1", () => container.Add(new StartDateOfDerive(DateTime.Now)))
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
@@ -155,7 +155,7 @@ namespace FactFactoryTests.FactRule
                 new GetcuReone.FactFactory.Entities.FactInfo<IntFact>(),
             };
 
-            Given("Add fact 1", () => container.Add(new DateOfDeriveFact(DateTime.Now)))
+            Given("Add fact 1", () => container.Add(new StartDateOfDerive(DateTime.Now)))
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {

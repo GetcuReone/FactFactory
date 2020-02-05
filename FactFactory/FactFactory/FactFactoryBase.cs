@@ -60,7 +60,7 @@ namespace GetcuReone.FactFactory
             if (container.Equals(Container))
                 throw FactFactoryHelper.CreateDeriveException(ErrorCode.InvalidData, "method GetCopyContainer return original container");
 
-            container.Add(new DateOfDeriveFact(DateTime.Now));
+            container.Add(new StartDateOfDerive(DateTime.Now));
             container.Add(new DerivingCurrentFactsFact(
                 new ReadOnlyCollection<IFactType>(
                     WantActions.SelectMany(action => action.InputFactTypes).ToList())));
