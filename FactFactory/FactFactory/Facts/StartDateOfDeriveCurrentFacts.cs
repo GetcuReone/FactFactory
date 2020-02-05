@@ -20,7 +20,7 @@ namespace GetcuReone.FactFactory.Facts
         /// <inheritdoc />
         public override IFactType GetFactType()
         {
-            return new FactInfo<StartDateOfDeriveCurrentFacts>();
+            return new FactType<StartDateOfDeriveCurrentFacts>();
         }
     }
 }

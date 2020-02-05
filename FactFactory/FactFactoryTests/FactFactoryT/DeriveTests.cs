@@ -102,8 +102,8 @@ namespace FactFactoryTests.FactFactoryT
                     var notFoundFactSet = detail.NotFoundFacts.Values.First();
 
                     Assert.AreEqual(2, notFoundFactSet.Count, "2 sets of facts expected");
-                    Assert.IsTrue(new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>().Compare(notFoundFactSet[0][0]), "expected other fact");
-                    Assert.IsTrue(new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>().Compare(notFoundFactSet[1][0]), "expected other fact");
+                    Assert.IsTrue(new GetcuReone.FactFactory.Entities.FactType<Input3Fact>().Compare(notFoundFactSet[0][0]), "expected other fact");
+                    Assert.IsTrue(new GetcuReone.FactFactory.Entities.FactType<Input5Fact>().Compare(notFoundFactSet[1][0]), "expected other fact");
                 });
         }
 
@@ -127,8 +127,8 @@ namespace FactFactoryTests.FactFactoryT
 
                     var listFact = new List<IFactType>
                     {
-                        new GetcuReone.FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new GetcuReone.FactFactory.Entities.FactInfo<Input5Fact>()
+                        new GetcuReone.FactFactory.Entities.FactType<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactType<Input5Fact>()
                     };
 
                     Assert.IsTrue(listFact.All(fact => detail.NotFoundFacts.Values.First()[0].Any(f => f.Compare(fact))), "Other facts expected");

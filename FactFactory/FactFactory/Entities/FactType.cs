@@ -6,7 +6,7 @@ using System;
 namespace GetcuReone.FactFactory.Entities
 {
     /// <inheritdoc />
-    public class FactInfo<TFact> : IFactType
+    public class FactType<TFact> : IFactType
         where TFact: IFact
     {
         /// <inheritdoc />
@@ -15,7 +15,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <inheritdoc />
         public bool Compare<TFactType>(TFactType factInfo) where TFactType : IFactType
         {
-            return factInfo is FactInfo<TFact>;
+            return factInfo is FactType<TFact>;
         }
 
         /// <inheritdoc />

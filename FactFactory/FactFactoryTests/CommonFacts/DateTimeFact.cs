@@ -12,7 +12,7 @@ namespace FactFactoryTests.CommonFacts
 
         public override IFactType GetFactType()
         {
-            return new GetcuReone.FactFactory.Entities.FactInfo<DateTimeFact>();
+            return new GetcuReone.FactFactory.Entities.FactType<DateTimeFact>();
         }
     }
 }

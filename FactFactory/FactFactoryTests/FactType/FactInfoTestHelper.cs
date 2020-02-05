@@ -1,9 +1,9 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter.Entities;
 
-namespace FactFactoryTests.FactInfo
+namespace FactFactoryTests.FactType
 {
-    public static class FactInfoTestHelper
+    public static class FactTypeTestHelper
     {
         public static GivenBlock<IFactType> AndCreateFactType(this GivenBlock<IFact> givenBlock)
         {

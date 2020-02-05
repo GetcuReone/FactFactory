@@ -11,7 +11,7 @@ namespace FactFactoryTests.CommonFacts
 
         public override IFactType GetFactType()
         {
-            return new GetcuReone.FactFactory.Entities.FactInfo<ResultFact>();
+            return new GetcuReone.FactFactory.Entities.FactType<ResultFact>();
         }
     }
 }

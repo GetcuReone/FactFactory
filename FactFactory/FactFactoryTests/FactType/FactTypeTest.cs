@@ -6,10 +6,10 @@ using JwtTestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace FactFactoryTests.FactInfo
+namespace FactFactoryTests.FactType
 {
     [TestClass]
-    public sealed class FactInfoTest : TestBase
+    public sealed class FactTypeTest : TestBase
     {
         private GivenBlock<OtherFact> GivenCreateOtherFact(DateTime dateTime)
         {
@@ -19,7 +19,7 @@ namespace FactFactoryTests.FactInfo
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] successful comparison of information about one fact")]
-        public void CompareFactInfoOneFactTestCase()
+        public void CompareFactTypeOneFactTestCase()
         {
             StartDateOfDerive fact = null;
             IFactType first = null;
@@ -37,7 +37,7 @@ namespace FactFactoryTests.FactInfo
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] successful comparison of information about one fact")]
-        public void SuccessCompareFactInfoTowFactTestCase()
+        public void SuccessCompareFactTypeTowFactTestCase()
         {
             StartDateOfDerive firstFact = null;
             StartDateOfDerive secondFact = null;
@@ -60,7 +60,7 @@ namespace FactFactoryTests.FactInfo
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] unsuccessful comparison of two facts")]
-        public void FailedCompareFactInfoTowFactTestCase()
+        public void FailedCompareFactTypeTowFactTestCase()
         {
             StartDateOfDerive firstFact = null;
             OtherFact secondFact = null;

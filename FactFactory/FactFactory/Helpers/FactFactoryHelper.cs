@@ -65,7 +65,7 @@ namespace GetcuReone.FactFactory.Helpers
 
         internal static IFactType GeTFactType<TFact>() where TFact : IFact
         {
-            return new FactInfo<TFact>();
+            return new FactType<TFact>();
         }
     }
 }

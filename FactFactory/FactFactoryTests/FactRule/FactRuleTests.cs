@@ -112,7 +112,7 @@ namespace FactFactoryTests.FactRule
                         return new OtherFact(date.AddDays(number));
                     };
 
-                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
+                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactType<OtherFact>());
                 })
                 .When("Run method", rule => rule.Calculate(container))
                 .Then("Check result", fact =>
@@ -137,7 +137,7 @@ namespace FactFactoryTests.FactRule
                 {
                     Func<IFactContainer, IFact> func = ct => default;
 
-                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
+                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactType<OtherFact>());
                 })
                 .When("run method", rule => rule.CanCalculate(container))
                 .Then("check result", result => Assert.IsTrue(result, "rule cannot be executed"));
@@ -151,8 +151,8 @@ namespace FactFactoryTests.FactRule
             var container = new Container();
             var factInfos = new List<IFactType> 
             {
-                new GetcuReone.FactFactory.Entities.FactInfo<DateTimeFact>(),
-                new GetcuReone.FactFactory.Entities.FactInfo<IntFact>(),
+                new GetcuReone.FactFactory.Entities.FactType<DateTimeFact>(),
+                new GetcuReone.FactFactory.Entities.FactType<IntFact>(),
             };
 
             Given("Add fact 1", () => container.Add(new StartDateOfDerive(DateTime.Now)))
@@ -161,7 +161,7 @@ namespace FactFactoryTests.FactRule
                 {
                     Func<IFactContainer, IFact> func = ct => default;
 
-                    return new Rule(func, factInfos, new GetcuReone.FactFactory.Entities.FactInfo<OtherFact>());
+                    return new Rule(func, factInfos, new GetcuReone.FactFactory.Entities.FactType<OtherFact>());
                 })
                 .When("run method", rule => rule.CanCalculate(container))
                 .Then("check result", result => Assert.IsFalse(result, "rule can be followed"));

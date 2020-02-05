@@ -136,27 +136,6 @@
         <member name="M:GetcuReone.FactFactory.Entities.FactContainer.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc />
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.FactInfo`1">
-            <inheritdoc />
-        </member>
-        <member name="P:GetcuReone.FactFactory.Entities.FactInfo`1.FactName">
-            <inheritdoc />
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactInfo`1.Compare``1(``0)">
-            <inheritdoc />
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactInfo`1.ContainsContainer``1(``0)">
-            <inheritdoc />
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactInfo`1.GetNotContainedInstance">
-            <inheritdoc />
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactInfo`1.GetNoInstance">
-            <inheritdoc />
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactInfo`1.IsFactType``1">
-            <inheritdoc />
-        </member>
         <member name="T:GetcuReone.FactFactory.Entities.FactRule">
             <inheritdoc />
         </member>
@@ -495,6 +474,27 @@
             <inheritdoc />
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.RemoveAt(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:GetcuReone.FactFactory.Entities.FactType`1">
+            <inheritdoc />
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.FactType`1.FactName">
+            <inheritdoc />
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.Compare``1(``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.ContainsContainer``1(``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.GetNotContainedInstance">
+            <inheritdoc />
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.GetNoInstance">
+            <inheritdoc />
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.IsFactType``1">
             <inheritdoc />
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.WantAction">

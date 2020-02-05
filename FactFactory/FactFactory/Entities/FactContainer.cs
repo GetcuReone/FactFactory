@@ -113,7 +113,7 @@ namespace GetcuReone.FactFactory.Entities
         public bool Contains<TFact>()
             where TFact : IFact
         {
-            var factInfo = new FactInfo<TFact>();
+            var factInfo = new FactType<TFact>();
             return this.Any(fact => fact.GetFactType().Compare(factInfo));
         }
 
