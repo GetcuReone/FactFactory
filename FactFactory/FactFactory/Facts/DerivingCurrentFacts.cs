@@ -5,19 +5,19 @@ using System.Collections.ObjectModel;
 namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
-    /// Current Calculated Facts
+    /// Current calculated facts
     /// </summary>
-    public sealed class DerivingCurrentFactsFact : FactBase<ReadOnlyCollection<IFactType>>
+    public sealed class DerivingCurrentFacts : FactBase<ReadOnlyCollection<IFactType>>
     {
         /// <inheritdoc />
-        public DerivingCurrentFactsFact(ReadOnlyCollection<IFactType> fact) : base(fact)
+        public DerivingCurrentFacts(ReadOnlyCollection<IFactType> fact) : base(fact)
         {
         }
 
         /// <inheritdoc />
         public override IFactType GetFactType()
         {
-            return new FactInfo<DerivingCurrentFactsFact>();
+            return new FactInfo<DerivingCurrentFacts>();
         }
     }
 }
