@@ -71,9 +71,6 @@ namespace GetcuReone.FactFactory
                 throw FactFactoryHelper.CreateDeriveException(ErrorCode.InvalidData, "method GetCopyContainer return original container");
 
             container.Add(new StartDateOfDerive(DateTime.Now));
-            container.Add(new DerivingCurrentFacts(
-                new ReadOnlyCollection<IFactType>(
-                    WantActions.SelectMany(action => action.InputFactTypes).ToList())));
 
             var derivedTrees = new Dictionary<TWantAction, List<FactRuleTree>>();
             var notFoundFactsTrees = new Dictionary<IWantAction, Dictionary<IFactType, List<List<IFactType>>>>();

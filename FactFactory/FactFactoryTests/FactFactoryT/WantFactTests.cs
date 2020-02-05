@@ -26,7 +26,7 @@ namespace FactFactoryTests.FactFactoryT
 
                     ErrorDetail detail = ex.Details[0];
                     Assert.AreEqual(ErrorCode.InvalidData, detail.Code, "code not match");
-                    Assert.AreEqual("The CurrentFactsFindingFact is available only for the rules", detail.Reason, "reason not match");
+                    Assert.AreEqual("The DerivingCurrentFacts is available only for the rules", detail.Reason, "reason not match");
                 });
         }
 
