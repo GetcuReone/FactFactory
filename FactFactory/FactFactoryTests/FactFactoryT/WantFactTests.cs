@@ -13,25 +13,6 @@ namespace FactFactoryTests.FactFactoryT
     {
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Want not available fact")]
-        public void WantNotAvailableFactTestCase()
-        {
-            GivenCreateFactFactory()
-                .When("Want fact", factory => ExpectedException<FactFactoryException>(() => factory.WantFact((DerivingCurrentFacts fact) => { })))
-                .Then("Check error", ex =>
-                {
-                    Assert.IsNotNull(ex, "error cannot be null");
-                    Assert.IsNotNull(ex.Details, "error cannot be null");
-                    Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
-
-                    ErrorDetail detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCode.InvalidData, detail.Code, "code not match");
-                    Assert.AreEqual("The DerivingCurrentFacts is available only for the rules", detail.Reason, "reason not match");
-                });
-        }
-
-        [Timeout(Timeouts.MilliSecond.Hundred)]
-        [TestMethod]
         [Description("[fact][factory][negative] Want not contained fact")]
         public void WantNotContainedFactTestCase()
         {

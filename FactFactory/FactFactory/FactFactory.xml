@@ -651,9 +651,9 @@
             </summary>
             <param name="wantAction"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetFactTypesAvailableOnlyRules">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetDefaultFactsInContainer">
             <summary>
-            Get facts available only in rules
+            Get default facts in a container
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetRulesForWantAction(`3)">
@@ -1058,9 +1058,6 @@
         <member name="T:GetcuReone.FactFactory.Facts.StartDateOfDeriveCurrentFacts">
             <summary>
             Date of receipt of current facts
-            <para>
-            Only available for request in the rules
-            </para>
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Facts.StartDateOfDeriveCurrentFacts.#ctor(System.DateTime)">

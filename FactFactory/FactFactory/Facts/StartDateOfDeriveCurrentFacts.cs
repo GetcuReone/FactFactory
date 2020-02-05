@@ -6,9 +6,6 @@ namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
     /// Date of receipt of current facts
-    /// <para>
-    /// Only available for request in the rules
-    /// </para>
     /// </summary>
     public sealed class StartDateOfDeriveCurrentFacts : FactBase<DateTime>
     {

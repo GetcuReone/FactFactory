@@ -74,7 +74,7 @@ namespace GetcuReone.FactFactory
 
             var derivedTrees = new Dictionary<TWantAction, List<FactRuleTree>>();
             var notFoundFactsTrees = new Dictionary<IWantAction, Dictionary<IFactType, List<List<IFactType>>>>();
-            IReadOnlyCollection<IFactType> excludeFacts = GetFactTypesAvailableOnlyRules();
+            IReadOnlyCollection<IFactType> excludeFacts = GetDefaultFactsInContainer();
             List<TWantAction> wantActions = new List<TWantAction>(WantActions);
 
             foreach (TWantAction wantAction in wantActions)
@@ -123,12 +123,6 @@ namespace GetcuReone.FactFactory
             if (WantActions.IndexOf(wantAction) != -1)
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, "Action already requested");
 
-            var excludeFacts = GetFactTypesAvailableOnlyRules();
-
-            var excludeFact = wantAction.InputFactTypes.FirstOrDefault(f => excludeFacts.Any(ef => ef.Compare(f)));
-
-            if (excludeFact != null)
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"The {excludeFact.FactName} is available only for the rules");
             if (wantAction.InputFactTypes.Any(fact => fact.IsFactType<INoFact>() || fact.IsFactType<INotContainedFact>()))
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"Cannot derive for No and NotContained facts");
 
@@ -136,14 +130,15 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Get facts available only in rules
+        /// Get default facts in a container
         /// </summary>
-        protected virtual IReadOnlyCollection<IFactType> GetFactTypesAvailableOnlyRules()
+        private IReadOnlyCollection<IFactType> GetDefaultFactsInContainer()
         {
             return new ReadOnlyCollection<IFactType>(new List<IFactType> 
             {
                 GetFactInfo<DerivingCurrentFacts>(),
                 GetFactInfo<StartDateOfDeriveCurrentFacts>(),
+                GetFactInfo<StartDateOfDerive>(),
             });
         }
 
@@ -212,7 +207,7 @@ namespace GetcuReone.FactFactory
             foreach (IFactType wantFact in wantAction.InputFactTypes)
             {
                 // If fact already exists
-                if (wantFact.ContainsContainer(container))
+                if (wantFact.ContainsContainer(container) || excludeFacts.Any(factType => factType.Compare(wantFact)))
                     continue;
 
                 if (TryDeriveTreeForFactInfo(out FactRuleTree treeResult, wantFact, container, ruleCollection, excludeFacts, out List<List<IFactType>> notFoundFactSet))

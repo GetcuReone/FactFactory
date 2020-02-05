@@ -158,5 +158,27 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.IsNotNull(input7Fact, "input7Fact is not derived");
                 });
         }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][factory] Derived default facts")]
+        public void DerivedDefaultFactsTestCase()
+        {
+            StartDateOfDerive startDateOfDerive = null;
+            StartDateOfDeriveCurrentFacts startDateOfDeriveCurrentFacts = null;
+            DerivingCurrentFacts derivingCurrentFacts = null;
+
+            GivenCreateFactFactory()
+                .And("Want StartDateOfDerive", factory => factory.WantFact((StartDateOfDerive fact) => { startDateOfDerive = fact; }))
+                .And("Want StartDateOfDeriveCurrentFacts", factory => factory.WantFact((StartDateOfDeriveCurrentFacts fact) => { startDateOfDeriveCurrentFacts = fact; }))
+                .And("Want DerivingCurrentFacts", factory => factory.WantFact((DerivingCurrentFacts fact) => { derivingCurrentFacts = fact; }))
+                .When("Derive facts", factory => factory.Derive())
+                .Then("Check error", _ =>
+                {
+                    Assert.IsNotNull(startDateOfDerive, "StartDateOfDerive is not derived");
+                    Assert.IsNotNull(startDateOfDeriveCurrentFacts, "StartDateOfDeriveCurrentFacts is not derived");
+                    Assert.IsNotNull(derivingCurrentFacts, "DerivingCurrentFacts is not derived");
+                });
+        }
     }
 }
