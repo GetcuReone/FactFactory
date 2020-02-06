@@ -36,7 +36,7 @@ namespace GetcuReone.FactFactory.Facts
         /// <returns>fact type</returns>
         public override IFactType GetFactType()
         {
-            return new FactType<DerivingCurrentFacts>();
+            return new FactType<DerivingFacts>();
         }
     }
 }
