@@ -13,11 +13,45 @@ namespace InfrastructureTests
     [TestClass]
     public class InfrastructureTests : TestBase
     {
-#if DEBUG
-        private readonly string buildMode = "Debug";
-#else
-        private readonly string buildMode = "Release";
-#endif
+        private string _buildConfiguration;
+        private readonly DirectoryInfo _solutionFolder = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent;
+        private readonly List<FileInfo> _addedFiles = new List<FileInfo>();
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            _buildConfiguration = Environment.GetEnvironmentVariable("buildConfiguration");
+            if (string.IsNullOrEmpty(_buildConfiguration))
+                _buildConfiguration = "Debug";
+
+            List<FileInfo> files = InfrastructureHelper.GetAllFiles(_solutionFolder);
+            FileInfo comboPatternsFile = files.First(file => file.Name == "ComboPatterns.dll");
+            List<DirectoryInfo> projectFolders = files
+                .Where(file => file.Name.Contains(".dll")
+                    && !file.FullName.Contains("obj")
+                    && file.FullName.Contains(_buildConfiguration)
+                    && file.Name.Contains("FactFactory"))
+                .Select(file => file.Directory)
+                .DistinctByFunc((x, y) => x.FullName == y.FullName)
+                .ToList();
+
+            foreach (DirectoryInfo folder in projectFolders)
+            {
+                string filePath = Path.Combine(folder.FullName, comboPatternsFile.Name);
+                if (!File.Exists(filePath))
+                {
+                    _addedFiles.Add(
+                                comboPatternsFile.CopyTo(filePath));
+                }
+            }
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            foreach (FileInfo file in _addedFiles)
+                file.Delete();
+        }
 
         [Timeout(Timeouts.Minute.One)]
         [TestMethod]
@@ -31,7 +65,7 @@ namespace InfrastructureTests
                     currenFolder.Parent.Parent.Parent.Parent.Parent.FullName,
                     "NugetProject",
                     "bin",
-                    buildMode);
+                    _buildConfiguration);
                 return new DirectoryInfo(nugetFolderPath);
             })
                 .And("Get file .nupkg", nugetFolder =>
@@ -68,14 +102,11 @@ namespace InfrastructureTests
         [Timeout(Timeouts.Minute.One)]
         [TestMethod]
         [Description("[infrastructure] Check for all attribute Timeout tests")]
-#if DEBUG
-        [Ignore]
-#endif
         public void AllHaveTimeoutTestCase()
         {
             string partNameAssemblies = "FactFactory";
 
-            Given("Get all file", () => InfrastructureHelper.GetAllFiles(new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent))
+            Given("Get all file", () => InfrastructureHelper.GetAllFiles(_solutionFolder))
                 .And("Get all assemblies", files => files.Where(file => file.Name.Contains(".dll")))
                 .And($"Includ only {partNameAssemblies} assemblies", files => files.Where(file => file.Name.Contains(partNameAssemblies)))
                 .And($"Include only tests assemlies", 
@@ -83,7 +114,7 @@ namespace InfrastructureTests
                         .Where(file => file.Name.Contains("Tests.dll") 
                             && !file.FullName.Contains("TestAdapter.dll")
                             && !file.FullName.Contains("obj")
-                            && file.FullName.Contains(buildMode))
+                            && file.FullName.Contains(_buildConfiguration))
                         .ToList())
                 .And("Get assembly infos", files => 
                     files.Select(file => 
@@ -122,15 +153,12 @@ namespace InfrastructureTests
         [Timeout(Timeouts.Minute.One)]
         [TestMethod]
         [Description("[infrastructure] all namespaces start with GetcuReone.ComboPatterns")]
-#if DEBUG
-        [Ignore]
-#endif
         public void AllNamespacesStartWithGetcuReoneTestCase()
         {
             string beginNamespace = "GetcuReone";
             string partNameAssemblies = "FactFactory";
 
-            Given("Get all file", () => InfrastructureHelper.GetAllFiles(new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.Parent))
+            Given("Get all file", () => InfrastructureHelper.GetAllFiles(_solutionFolder))
                 .And("Get all assemblies", files => files.Where(file => file.Name.Contains(".dll")))
                 .And($"Includ only {partNameAssemblies} assemblies", files => files.Where(file => file.Name.Contains(partNameAssemblies)))
                 .And($"Include only library assemlies",
@@ -138,7 +166,7 @@ namespace InfrastructureTests
                         .Where(file => !file.Name.Contains("Tests.dll")
                             && !file.FullName.Contains("TestAdapter.dll")
                             && !file.FullName.Contains("obj")
-                            && file.FullName.Contains(buildMode)))
+                            && file.FullName.Contains(_buildConfiguration)))
                 .And($"Exclude duplicate",
                     files => files
                     .DistinctByFunc((x, y) => x.Name == y.Name)
@@ -178,8 +206,8 @@ namespace InfrastructureTests
         {
             string[] includeAssemblies = new string[]
             {
-                Path.Combine("NugetProject", "bin", buildMode, "netstandard2.0", "NugetProject.dll"),
-                Path.Combine("JwtTestAdapter", "bin", buildMode, "netstandard2.0", "JwtTestAdapter.dll"),
+                Path.Combine("NugetProject", "bin", _buildConfiguration, "netstandard2.0", "NugetProject.dll"),
+                Path.Combine("JwtTestAdapter", "bin", _buildConfiguration, "netstandard2.0", "JwtTestAdapter.dll"),
             };
             string majorVersion = Environment.GetEnvironmentVariable("majorVersion");
             string excpectedAssemblyVersion = majorVersion != null
@@ -195,7 +223,7 @@ namespace InfrastructureTests
                     files => files
                         .Where(file => !file.FullName.Contains("TestAdapter.dll")
                             && !file.FullName.Contains("obj")
-                            && file.FullName.Contains(buildMode)))
+                            && file.FullName.Contains(_buildConfiguration)))
                 .And($"Exclude duplicate",
                     files => files
                     .DistinctByFunc((x, y) => x.Name == y.Name)
