@@ -1,9 +1,9 @@
-﻿using FactFactory.Constants;
-using FactFactory.Exceptions;
-using FactFactory.Facts;
-using FactFactory.Interfaces;
-using FactFactoryTests.CommonFacts;
+﻿using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
+using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -43,23 +43,20 @@ namespace FactFactoryTests.FactFactoryT
         [Description("[fact][factory] Checking for facts when deriving")]
         public void FactsWhenDeducingTestCase()
         {
-            DateOfDeriveFact dateOfDeriveFact = null;
-            DerivingCurrentFactsFact derivingCurrentFactsFact = null;
+            StartDateOfDerive dateOfDeriveFact = null;
 
             GivenCreateFactFactory()
                 .And("Want fact DateOfDeriveFact", factory =>
                 {
-                    factory.WantFact((DateOfDeriveFact fact1, DerivingCurrentFactsFact fact2) =>
+                    factory.WantFact((StartDateOfDerive fact1) =>
                     {
                         dateOfDeriveFact = fact1;
-                        derivingCurrentFactsFact = fact2;
                     });
                 })
                 .When("Derive facts", factory => factory.Derive())
                 .Then("Check derive facts", _ =>
                 {
                     Assert.IsNotNull(dateOfDeriveFact, "dateOfDeriveFact is not derived");
-                    Assert.IsNotNull(derivingCurrentFactsFact, "DerivingCurrentFactsFact is not derived");
                 });
         }
 
@@ -105,8 +102,8 @@ namespace FactFactoryTests.FactFactoryT
                     var notFoundFactSet = detail.NotFoundFacts.Values.First();
 
                     Assert.AreEqual(2, notFoundFactSet.Count, "2 sets of facts expected");
-                    Assert.IsTrue(new FactFactory.Entities.FactInfo<Input3Fact>().Compare(notFoundFactSet[0][0]), "expected other fact");
-                    Assert.IsTrue(new FactFactory.Entities.FactInfo<Input5Fact>().Compare(notFoundFactSet[1][0]), "expected other fact");
+                    Assert.IsTrue(new GetcuReone.FactFactory.Entities.FactType<Input3Fact>().Compare(notFoundFactSet[0][0]), "expected other fact");
+                    Assert.IsTrue(new GetcuReone.FactFactory.Entities.FactType<Input5Fact>().Compare(notFoundFactSet[1][0]), "expected other fact");
                 });
         }
 
@@ -128,10 +125,10 @@ namespace FactFactoryTests.FactFactoryT
                     var detail = ex.Details[0];
                     Assert.AreEqual(ErrorCode.FactCannotCalculated, detail.Code, "code not match");
 
-                    var listFact = new List<IFactInfo>
+                    var listFact = new List<IFactType>
                     {
-                        new FactFactory.Entities.FactInfo<Input3Fact>(),
-                        new FactFactory.Entities.FactInfo<Input5Fact>()
+                        new GetcuReone.FactFactory.Entities.FactType<Input3Fact>(),
+                        new GetcuReone.FactFactory.Entities.FactType<Input5Fact>()
                     };
 
                     Assert.IsTrue(listFact.All(fact => detail.NotFoundFacts.Values.First()[0].Any(f => f.Compare(fact))), "Other facts expected");
@@ -159,6 +156,31 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.IsNotNull(input6Fact, "input6Fact is not derived");
                     Assert.IsNotNull(input16Fact, "input16Fact is not derived");
                     Assert.IsNotNull(input7Fact, "input7Fact is not derived");
+                });
+        }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][factory] Derived default facts")]
+        public void DerivedDefaultFactsTestCase()
+        {
+            StartDateOfDerive startDateOfDerive = null;
+            StartDateOfDeriveCurrentFacts startDateOfDeriveCurrentFacts = null;
+            DerivingCurrentFacts derivingCurrentFacts = null;
+            DerivingFacts derivingFacts = null;
+
+            GivenCreateFactFactory()
+                .And("Want StartDateOfDerive", factory => factory.WantFact((StartDateOfDerive fact) => { startDateOfDerive = fact; }))
+                .And("Want StartDateOfDeriveCurrentFacts", factory => factory.WantFact((StartDateOfDeriveCurrentFacts fact) => { startDateOfDeriveCurrentFacts = fact; }))
+                .And("Want DerivingCurrentFacts", factory => factory.WantFact((DerivingCurrentFacts fact) => { derivingCurrentFacts = fact; }))
+                .And("Want DerivingFacts", factory => factory.WantFact((DerivingFacts fact) => { derivingFacts = fact; }))
+                .When("Derive facts", factory => factory.Derive())
+                .Then("Check error", _ =>
+                {
+                    Assert.IsNotNull(startDateOfDerive, "StartDateOfDerive is not derived");
+                    Assert.IsNotNull(startDateOfDeriveCurrentFacts, "StartDateOfDeriveCurrentFacts is not derived");
+                    Assert.IsNotNull(derivingCurrentFacts, "DerivingCurrentFacts is not derived");
+                    Assert.IsNotNull(derivingFacts, "DerivingFacts is not derived");
                 });
         }
     }

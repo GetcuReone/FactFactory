@@ -1,5 +1,5 @@
-﻿using FactFactory.Facts;
-using FactFactoryTests.CommonFacts;
+﻿using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Facts;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

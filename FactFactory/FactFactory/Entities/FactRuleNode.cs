@@ -1,8 +1,7 @@
-﻿using ComboPatterns.Interfaces;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 
-namespace FactFactory.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     internal sealed class FactRuleNode
     {

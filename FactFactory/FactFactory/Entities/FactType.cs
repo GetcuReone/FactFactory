@@ -1,22 +1,21 @@
-﻿using FactFactory.Constants;
-using FactFactory.Facts;
-using FactFactory.Helpers;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Helpers;
+using GetcuReone.FactFactory.Interfaces;
 using System;
 
-namespace FactFactory.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     /// <inheritdoc />
-    public class FactInfo<TFact> : IFactInfo
+    public class FactType<TFact> : IFactType
         where TFact: IFact
     {
         /// <inheritdoc />
         public string FactName => typeof(TFact).Name;
 
         /// <inheritdoc />
-        public bool Compare<TFactInfo>(TFactInfo factInfo) where TFactInfo : IFactInfo
+        public bool Compare<TFactType>(TFactType factInfo) where TFactType : IFactType
         {
-            return factInfo is FactInfo<TFact>;
+            return factInfo is FactType<TFact>;
         }
 
         /// <inheritdoc />

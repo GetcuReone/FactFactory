@@ -1,15 +1,15 @@
-﻿using FactFactory.Facts;
-using FactFactory.Interfaces;
-using FactFactoryTests.CommonFacts;
+﻿using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter;
 using JwtTestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace FactFactoryTests.FactInfo
+namespace FactFactoryTests.FactType
 {
     [TestClass]
-    public sealed class FactInfoTest : TestBase
+    public sealed class FactTypeTest : TestBase
     {
         private GivenBlock<OtherFact> GivenCreateOtherFact(DateTime dateTime)
         {
@@ -19,17 +19,17 @@ namespace FactFactoryTests.FactInfo
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] successful comparison of information about one fact")]
-        public void CompareFactInfoOneFactTestCase()
+        public void CompareFactTypeOneFactTestCase()
         {
-            DateOfDeriveFact fact = null;
-            IFactInfo first = null;
-            IFactInfo second = null;
+            StartDateOfDerive fact = null;
+            IFactType first = null;
+            IFactType second = null;
 
-            Given("Create fact", () => { fact = new DateOfDeriveFact(DateTime.Now); })
+            Given("Create fact", () => { fact = new StartDateOfDerive(DateTime.Now); })
                 .When("Create fact info", _ =>
                 {
-                    first = fact.GetFactInfo();
-                    second = fact.GetFactInfo();
+                    first = fact.GetFactType();
+                    second = fact.GetFactType();
                 })
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
@@ -37,22 +37,22 @@ namespace FactFactoryTests.FactInfo
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] successful comparison of information about one fact")]
-        public void SuccessCompareFactInfoTowFactTestCase()
+        public void SuccessCompareFactTypeTowFactTestCase()
         {
-            DateOfDeriveFact firstFact = null;
-            DateOfDeriveFact secondFact = null;
-            IFactInfo first = null;
-            IFactInfo second = null;
+            StartDateOfDerive firstFact = null;
+            StartDateOfDerive secondFact = null;
+            IFactType first = null;
+            IFactType second = null;
 
             Given("Create fact", () => 
             { 
-                firstFact = new DateOfDeriveFact(DateTime.Now);
-                secondFact = new DateOfDeriveFact(DateTime.Now);
+                firstFact = new StartDateOfDerive(DateTime.Now);
+                secondFact = new StartDateOfDerive(DateTime.Now);
             })
                 .When("Create fact info", _ =>
                 {
-                    first = firstFact.GetFactInfo();
-                    second = secondFact.GetFactInfo();
+                    first = firstFact.GetFactType();
+                    second = secondFact.GetFactType();
                 })
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
@@ -60,22 +60,22 @@ namespace FactFactoryTests.FactInfo
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][info] unsuccessful comparison of two facts")]
-        public void FailedCompareFactInfoTowFactTestCase()
+        public void FailedCompareFactTypeTowFactTestCase()
         {
-            DateOfDeriveFact firstFact = null;
+            StartDateOfDerive firstFact = null;
             OtherFact secondFact = null;
-            IFactInfo first = null;
-            IFactInfo second = null;
+            IFactType first = null;
+            IFactType second = null;
 
             Given("Create fact", () =>
             {
-                firstFact = new DateOfDeriveFact(DateTime.Now);
+                firstFact = new StartDateOfDerive(DateTime.Now);
                 secondFact = new OtherFact(firstFact.Value);
             })
                 .When("Create fact info", _ =>
                 {
-                    first = firstFact.GetFactInfo();
-                    second = secondFact.GetFactInfo();
+                    first = firstFact.GetFactType();
+                    second = secondFact.GetFactType();
                 })
                 .Then("Compare factInfos", () => Assert.IsFalse(first.Compare(second), "factual information is the same"));
         }
@@ -86,7 +86,7 @@ namespace FactFactoryTests.FactInfo
         public void FactNameTestCase()
         {
             GivenCreateOtherFact(DateTime.Now)
-                .When("Create factInfo", fact => fact.GetFactInfo())
+                .When("Create factInfo", fact => fact.GetFactType())
                 .Then("Check result", factInfo => Assert.AreEqual(nameof(OtherFact), factInfo.FactName, "not expected fact name"));
         }
 
@@ -95,17 +95,17 @@ namespace FactFactoryTests.FactInfo
         [Description("[fact][info] container contains fact")]
         public void ContainsContainerTestCase()
         {
-            FactFactory.Entities.FactContainer container = null;
+            GetcuReone.FactFactory.Entities.FactContainer container = null;
 
             GivenCreateOtherFact(DateTime.Now)
                 .When("Add container", fact =>
                 {
-                    container = new FactFactory.Entities.FactContainer();
+                    container = new GetcuReone.FactFactory.Entities.FactContainer();
                     container.Add(fact);
                     return fact;
                 })
                 .Then("Check container contains fact", 
-                    fact => Assert.IsTrue(fact.GetFactInfo().ContainsContainer(container), "the container does not contain a fact"));
+                    fact => Assert.IsTrue(fact.GetFactType().ContainsContainer(container), "the container does not contain a fact"));
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
@@ -113,16 +113,16 @@ namespace FactFactoryTests.FactInfo
         [Description("[fact][info] the container does not contain a fact")]
         public void NotContainsContainerTestCase()
         {
-            FactFactory.Entities.FactContainer container = null;
+            GetcuReone.FactFactory.Entities.FactContainer container = null;
 
             GivenCreateOtherFact(DateTime.Now)
                 .When("Create container", fact =>
                 {
-                    container = new FactFactory.Entities.FactContainer();
+                    container = new GetcuReone.FactFactory.Entities.FactContainer();
                     return fact;
                 })
                 .Then("Check container contains fact",
-                    fact => Assert.IsFalse(fact.GetFactInfo().ContainsContainer(container), "container contains fact"));
+                    fact => Assert.IsFalse(fact.GetFactType().ContainsContainer(container), "container contains fact"));
         }
     }
 }

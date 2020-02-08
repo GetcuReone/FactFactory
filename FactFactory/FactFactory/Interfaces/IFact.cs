@@ -1,4 +1,4 @@
-﻿namespace FactFactory.Interfaces
+﻿namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Fact interface
@@ -9,6 +9,6 @@
         /// Return fact information as an output parameter
         /// </summary>
         /// <returns></returns>
-        IFactInfo GetFactInfo();
+        IFactType GetFactType();
     }
 }

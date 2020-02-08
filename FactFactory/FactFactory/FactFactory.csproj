@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>FactFactory.Core</PackageId>
     <DocumentationFile>FactFactory.xml</DocumentationFile>
+    <RootNamespace>GetcuReone.FactFactory</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -15,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ComboPatterns" Version="2.3.0" />
+    <PackageReference Include="ComboPatterns" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>

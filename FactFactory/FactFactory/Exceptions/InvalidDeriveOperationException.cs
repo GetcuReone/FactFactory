@@ -1,8 +1,8 @@
-﻿using FactFactory.Entities;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 
-namespace FactFactory.Exceptions
+namespace GetcuReone.FactFactory.Exceptions
 {
     /// <summary>
     /// <see cref="FactFactoryException"/> for method <see cref="IFactFactory{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>

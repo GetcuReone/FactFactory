@@ -1,6 +1,6 @@
-﻿using FactFactory.Entities;
-using FactFactory.Facts;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 
 namespace FactFactoryTests.CommonFacts
 {
@@ -10,9 +10,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactInfo<IntFact>();
+            return new FactType<IntFact>();
         }
     }
 }

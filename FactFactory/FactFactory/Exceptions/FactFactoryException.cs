@@ -1,7 +1,7 @@
-﻿using FactFactory.Entities;
+﻿using GetcuReone.FactFactory.Entities;
 using System.Collections.Generic;
 
-namespace FactFactory.Exceptions
+namespace GetcuReone.FactFactory.Exceptions
 {
     /// <summary>
     /// Base error for FactFactory

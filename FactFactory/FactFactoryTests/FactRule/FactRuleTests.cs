@@ -1,13 +1,13 @@
-﻿using FactFactory.Interfaces;
-using FactFactoryTests.CommonFacts;
+﻿using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Rule = FactFactory.Entities.FactRule;
-using Container = FactFactory.Entities.FactContainer;
-using FactFactory.Facts;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
+using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
 namespace FactFactoryTests.FactRule
 {
@@ -21,7 +21,7 @@ namespace FactFactoryTests.FactRule
         {
             GivenEmpty()
                 .When("Create factRule", _ => new Rule(ct => { return default; }, null, null))
-                .Then("Check input param", rule => Assert.AreEqual(0, rule.InputFactInfos.Count, "InputFactInfos is not empty"));
+                .Then("Check input param", rule => Assert.AreEqual(0, rule.InputFactTypes.Count, "InpuTFactTypes is not empty"));
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
@@ -35,12 +35,12 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule", factInner => 
                 {
                     fact = factInner;
-                    return new Rule(ct => { return default; }, new List<IFactInfo> { fact.GetFactInfo() }, null);
+                    return new Rule(ct => { return default; }, new List<IFactType> { fact.GetFactType() }, null);
                 })
                 .Then("Check input param", rule => 
                 {
-                    Assert.AreEqual(1, rule.InputFactInfos.Count, "InputFactInfos is empty");
-                    Assert.IsTrue(rule.InputFactInfos.First().Compare(fact.GetFactInfo()), "factual information does not match");
+                    Assert.AreEqual(1, rule.InputFactTypes.Count, "InpuTFactTypes is empty");
+                    Assert.IsTrue(rule.InputFactTypes.First().Compare(fact.GetFactType()), "factual information does not match");
                 });
         }
 
@@ -55,11 +55,11 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule", factInner =>
                 {
                     fact = factInner;
-                    return new Rule(ct => { return default; }, new List<IFactInfo> { fact.GetFactInfo(), fact.GetFactInfo(), fact.GetFactInfo() }, null);
+                    return new Rule(ct => { return default; }, new List<IFactType> { fact.GetFactType(), fact.GetFactType(), fact.GetFactType() }, null);
                 })
                 .Then("Check input param", rule =>
                 {
-                    Assert.AreEqual(3, rule.InputFactInfos.Count, "InputFactInfos is not empty");
+                    Assert.AreEqual(3, rule.InputFactTypes.Count, "InpuTFactTypes is not empty");
                 });
         }
 
@@ -74,9 +74,9 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule", factInner =>
                 {
                     fact = factInner;
-                    return new Rule(ct => { return default; }, null, fact.GetFactInfo());
+                    return new Rule(ct => { return default; }, null, fact.GetFactType());
                 })
-                .Then("Check output param", rule => Assert.IsTrue(rule.OutputFactInfo.Compare(fact.GetFactInfo()), "factual information does not match"));
+                .Then("Check output param", rule => Assert.IsTrue(rule.OutputFactType.Compare(fact.GetFactType()), "factual information does not match"));
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
@@ -94,27 +94,27 @@ namespace FactFactoryTests.FactRule
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] check method derive")]
-        public void DeriveFactRuleTestCase()
+        [Description("[fact][rule] check method calculate")]
+        public void CalculateFactRuleTestCase()
         {
             DateTime operationDate = DateTime.Now;
             var container = new Container();
 
-            Given("Add fact 1", () => container.Add(new DateOfDeriveFact(operationDate)))
+            Given("Add fact 1", () => container.Add(new StartDateOfDerive(operationDate)))
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
                     Func<IFactContainer, IFact> func = ct =>
                     {
-                        var date = ct.GetFact<DateOfDeriveFact>().Value;
+                        var date = ct.GetFact<StartDateOfDerive>().Value;
                         var number = ct.GetFact<IntFact>().Value;
 
                         return new OtherFact(date.AddDays(number));
                     };
 
-                    return new Rule(func, container.Select(fact => fact.GetFactInfo()).ToList(), new FactFactory.Entities.FactInfo<OtherFact>());
+                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactType<OtherFact>());
                 })
-                .When("Run method", rule => rule.Derive(container))
+                .When("Run method", rule => rule.Calculate(container))
                 .Then("Check result", fact =>
                 {
                     Assert.IsNotNull(fact, "fac cannot be null");
@@ -128,18 +128,18 @@ namespace FactFactoryTests.FactRule
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule] rule can be followed")]
-        public void CanDeriveFactRuleTestCase()
+        public void CanCalculateFactRuleTestCase()
         {
             var container = new Container();
-            Given("Add fact 1", () => container.Add(new DateOfDeriveFact(DateTime.Now)))
+            Given("Add fact 1", () => container.Add(new StartDateOfDerive(DateTime.Now)))
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
                     Func<IFactContainer, IFact> func = ct => default;
 
-                    return new Rule(func, container.Select(fact => fact.GetFactInfo()).ToList(), new FactFactory.Entities.FactInfo<OtherFact>());
+                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactType<OtherFact>());
                 })
-                .When("run method", rule => rule.CanDerive(container))
+                .When("run method", rule => rule.CanCalculate(container))
                 .Then("check result", result => Assert.IsTrue(result, "rule cannot be executed"));
         }
 
@@ -149,21 +149,21 @@ namespace FactFactoryTests.FactRule
         public void CanNotDeriveFactRuleTestCase()
         {
             var container = new Container();
-            var factInfos = new List<IFactInfo> 
+            var factInfos = new List<IFactType> 
             {
-                new FactFactory.Entities.FactInfo<DateTimeFact>(),
-                new FactFactory.Entities.FactInfo<IntFact>(),
+                new GetcuReone.FactFactory.Entities.FactType<DateTimeFact>(),
+                new GetcuReone.FactFactory.Entities.FactType<IntFact>(),
             };
 
-            Given("Add fact 1", () => container.Add(new DateOfDeriveFact(DateTime.Now)))
+            Given("Add fact 1", () => container.Add(new StartDateOfDerive(DateTime.Now)))
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
                     Func<IFactContainer, IFact> func = ct => default;
 
-                    return new Rule(func, factInfos, new FactFactory.Entities.FactInfo<OtherFact>());
+                    return new Rule(func, factInfos, new GetcuReone.FactFactory.Entities.FactType<OtherFact>());
                 })
-                .When("run method", rule => rule.CanDerive(container))
+                .When("run method", rule => rule.CanCalculate(container))
                 .Then("check result", result => Assert.IsFalse(result, "rule can be followed"));
         }
     }

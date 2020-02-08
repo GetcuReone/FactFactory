@@ -1,10 +1,10 @@
-﻿using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace FactFactory.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
     /// Desired action information
@@ -14,7 +14,7 @@ namespace FactFactory.Entities
         private readonly Action<IFactContainer> _action;
 
         /// <inheritdoc />
-        public IEnumerable<IFactInfo> InputFacts { get; }
+        public IEnumerable<IFactType> InputFactTypes { get; }
 
         /// <inheritdoc />
         public DateTime DateOfDerive { get; set; }
@@ -22,10 +22,10 @@ namespace FactFactory.Entities
         /// <summary>
         /// Constructor
         /// </summary>
-        public WantAction(Action<IFactContainer> action, IList<IFactInfo> factInfos)
+        public WantAction(Action<IFactContainer> action, IList<IFactType> factTypes)
         {
             _action = action ?? throw new ArgumentNullException(nameof(action));
-            InputFacts = new ReadOnlyCollection<IFactInfo>(factInfos);
+            InputFactTypes = new ReadOnlyCollection<IFactType>(factTypes);
         }
 
         /// <inheritdoc />
@@ -37,7 +37,7 @@ namespace FactFactory.Entities
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"({string.Join(", ", InputFacts.Select(f => f.FactName).ToList())})";
+            return $"({string.Join(", ", InputFactTypes.Select(f => f.FactName).ToList())})";
         }
     }
 }

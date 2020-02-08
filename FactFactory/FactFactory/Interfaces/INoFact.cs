@@ -1,4 +1,4 @@
-﻿namespace FactFactory.Interfaces
+﻿namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Not calculated fact
@@ -8,6 +8,6 @@
         /// <summary>
         /// Information about a fact that cannot be calculated
         /// </summary>
-        IFactInfo Value { get; }
+        IFactType Value { get; }
     }
 }

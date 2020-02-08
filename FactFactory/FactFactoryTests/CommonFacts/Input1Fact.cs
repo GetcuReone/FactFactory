@@ -1,5 +1,5 @@
-﻿using FactFactory.Facts;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 
 namespace FactFactoryTests.CommonFacts
 {
@@ -9,9 +9,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input1Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input1Fact>();
         }
     }
     internal sealed class Input2Fact : FactBase<int>
@@ -20,9 +20,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input2Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input2Fact>();
         }
     }
     internal sealed class Input3Fact : FactBase<int>
@@ -31,9 +31,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input3Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input3Fact>();
         }
     }
     internal sealed class Input4Fact : FactBase<int>
@@ -42,9 +42,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input4Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input4Fact>();
         }
     }
     internal sealed class Input5Fact : FactBase<int>
@@ -53,9 +53,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input5Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input5Fact>();
         }
     }
     internal sealed class Input6Fact : FactBase<int>
@@ -64,9 +64,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input6Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input6Fact>();
         }
     }
     internal sealed class Input7Fact : FactBase<int>
@@ -75,9 +75,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input7Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input7Fact>();
         }
     }
     internal sealed class Input8Fact : FactBase<int>
@@ -86,9 +86,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input8Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input8Fact>();
         }
     }
     internal sealed class Input9Fact : FactBase<int>
@@ -97,9 +97,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input9Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input9Fact>();
         }
     }
     internal sealed class Input10Fact : FactBase<int>
@@ -108,9 +108,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input10Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input10Fact>();
         }
     }
     internal sealed class Input11Fact : FactBase<int>
@@ -119,9 +119,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input11Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input11Fact>();
         }
     }
     internal sealed class Input12Fact : FactBase<int>
@@ -130,9 +130,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input12Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input12Fact>();
         }
     }
     internal sealed class Input13Fact : FactBase<int>
@@ -141,9 +141,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input13Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input13Fact>();
         }
     }
     internal sealed class Input14Fact : FactBase<int>
@@ -152,9 +152,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input14Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input14Fact>();
         }
     }
     internal sealed class Input15Fact : FactBase<int>
@@ -163,9 +163,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input15Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input15Fact>();
         }
     }
     internal sealed class Input16Fact : FactBase<int>
@@ -174,9 +174,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<Input16Fact>();
+            return new GetcuReone.FactFactory.Entities.FactType<Input16Fact>();
         }
     }
 }

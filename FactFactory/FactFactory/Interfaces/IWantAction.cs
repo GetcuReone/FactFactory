@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FactFactory.Interfaces
+namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Desired action information
@@ -11,7 +11,7 @@ namespace FactFactory.Interfaces
         /// <summary>
         /// Facts Required to Launch an Action
         /// </summary>
-        IEnumerable<IFactInfo> InputFacts { get; }
+        IEnumerable<IFactType> InputFactTypes { get; }
 
         /// <summary>
         /// Start date for fact finding for action
@@ -21,7 +21,7 @@ namespace FactFactory.Interfaces
         /// <summary>
         /// Run actioin
         /// </summary>
-        /// <typeparam name="TFactContainer">container with <see cref="InputFacts"/></typeparam>
+        /// <typeparam name="TFactContainer">container with <see cref="InputFactTypes"/></typeparam>
         /// <param name="container"></param>
         void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
     }

@@ -1,4 +1,4 @@
-﻿using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 
 namespace FactFactoryTests.FactContainer
 {

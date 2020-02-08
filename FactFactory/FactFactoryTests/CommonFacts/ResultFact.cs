@@ -1,5 +1,5 @@
-﻿using FactFactory.Facts;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 
 namespace FactFactoryTests.CommonFacts
 {
@@ -9,9 +9,9 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        public override IFactInfo GetFactInfo()
+        public override IFactType GetFactType()
         {
-            return new FactFactory.Entities.FactInfo<ResultFact>();
+            return new GetcuReone.FactFactory.Entities.FactType<ResultFact>();
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using FactFactory.Entities;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using System;
 
-namespace FactFactory.Facts
+namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
     /// Base class for fact
@@ -25,13 +25,13 @@ namespace FactFactory.Facts
         }
 
         /// <summary>
-        /// Must return FactInfo{type of your fact}();
+        /// Get fact type
         /// </summary>
-        /// <returns></returns>
-        public virtual IFactInfo GetFactInfo()
+        /// <returns>fact type</returns>
+        public virtual IFactType GetFactType()
         {
-            Type genericType = typeof(FactInfo<>).MakeGenericType(GetType());
-            return (IFactInfo)Activator.CreateInstance(genericType);
+            Type genericType = typeof(FactType<>).MakeGenericType(GetType());
+            return (IFactType)Activator.CreateInstance(genericType);
         }
     }
 }

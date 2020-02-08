@@ -1,4 +1,4 @@
-﻿namespace FactFactory.Constants
+﻿namespace GetcuReone.FactFactory.Constants
 {
     /// <summary>
     /// Error codes

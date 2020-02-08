@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FactFactory.Interfaces
+namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Rule of fact derivation
@@ -11,26 +11,26 @@ namespace FactFactory.Interfaces
         /// <summary>
         /// Information on input factacles rules
         /// </summary>
-        IReadOnlyCollection<IFactInfo> InputFactInfos { get; }
+        IReadOnlyCollection<IFactType> InputFactTypes { get; }
 
         /// <summary>
         /// Rule exit information
         /// </summary>
-        IFactInfo OutputFactInfo { get; }
+        IFactType OutputFactType { get; }
 
         /// <summary>
-        /// is it possible to derive the fact
+        /// is it possible to calculate the fact
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        bool CanDerive<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
+        bool CanCalculate<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
 
         /// <summary>
-        /// Rule of fact derive
+        /// Rule of fact calculate
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        IFact Derive<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
+        IFact Calculate<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
 
         /// <summary>
         /// Compare rules

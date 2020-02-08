@@ -1,11 +1,11 @@
-﻿using FactFactory.Exceptions;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FactFactory.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
     /// Fact collection
@@ -38,9 +38,9 @@ namespace FactFactory.Entities
         public void Add<TFact>(TFact fact)
             where TFact: IFact
         {
-            var factInfo = fact.GetFactInfo();
+            var factInfo = fact.GetFactType();
 
-            if (this.Any(f => f.GetFactInfo().Compare(factInfo)))
+            if (this.Any(f => f.GetFactType().Compare(factInfo)))
                 throw new ArgumentException($"The fact container already contains {typeof(TFact).FullName} type of fact");
 
             _container.Add(fact);
@@ -113,8 +113,8 @@ namespace FactFactory.Entities
         public bool Contains<TFact>()
             where TFact : IFact
         {
-            var factInfo = new FactInfo<TFact>();
-            return this.Any(fact => fact.GetFactInfo().Compare(factInfo));
+            var factInfo = new FactType<TFact>();
+            return this.Any(fact => fact.GetFactType().Compare(factInfo));
         }
 
         /// <inheritdoc />

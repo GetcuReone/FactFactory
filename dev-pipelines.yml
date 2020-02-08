@@ -10,13 +10,18 @@ pool:
   vmImage: 'windows-2019'
 
 variables:
-  solution: '**/*.sln'
+  solutionName: 'FactFactory'
+  solution: '**/$(solutionName).sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
   majorVersion: '1'
-  packageVersion: '1.0.0'
+  packageVersion: '$(majorVersion).0.0'
+  packageFileName: '$(solutionName).$(packageVersion).nupkg'
+  nugetProjectName: 'NugetProject'
 
 steps:
-- template: pipeline-steps/restore_build_pack.yml
+- template: pipeline_steps/step_restore_build_pack.yml
 
-- template: pipeline-steps/run_all_tests.yml
+- template: pipeline_steps/step_run_all_tests.yml
+
+- template: pipeline_steps/step_copy_nuget_to_artifacts.yml

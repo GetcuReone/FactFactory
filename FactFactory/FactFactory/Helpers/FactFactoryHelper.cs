@@ -1,11 +1,11 @@
-﻿using FactFactory.Constants;
-using FactFactory.Entities;
-using FactFactory.Exceptions;
-using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FactFactory.Helpers
+namespace GetcuReone.FactFactory.Helpers
 {
     /// <summary>
     /// Helper for <see cref="FactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
@@ -47,7 +47,7 @@ namespace FactFactory.Helpers
                 });
         }
 
-        internal static InvalidDeriveOperationException CreateDeriveException(Dictionary<IWantAction, Dictionary<IFactInfo, List<List<IFactInfo>>>> notFoundFacts)
+        internal static InvalidDeriveOperationException CreateDeriveException(Dictionary<IWantAction, Dictionary<IFactType, List<List<IFactType>>>> notFoundFacts)
         {
             List<DeriveErrorDetail> details = new List<DeriveErrorDetail>();
 
@@ -63,9 +63,9 @@ namespace FactFactory.Helpers
             return new InvalidDeriveOperationException(details);
         }
 
-        internal static IFactInfo GetFactInfo<TFact>() where TFact : IFact
+        internal static IFactType GeTFactType<TFact>() where TFact : IFact
         {
-            return new FactInfo<TFact>();
+            return new FactType<TFact>();
         }
     }
 }

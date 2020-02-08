@@ -1,17 +1,17 @@
-﻿using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 
-namespace FactFactory.Facts
+namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
     /// Information about a fact that is not contained in the container at the time of the function call <see cref="IFactFactory{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
     /// </summary>
-    public abstract class NotContainedBase : FactBase<IFactInfo>, INotContainedFact
+    public abstract class NotContainedBase : FactBase<IFactType>, INotContainedFact
     {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="fact"></param>
-        protected NotContainedBase(IFactInfo fact) : base(fact)
+        protected NotContainedBase(IFactType fact) : base(fact)
         {
         }
 

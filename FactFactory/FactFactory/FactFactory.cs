@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using GetcuReone.FactFactory.Entities;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using FactFactory.Entities;
 
-namespace FactFactory
+namespace GetcuReone.FactFactory
 {
     /// <inheritdoc />
     public class FactFactory : FactFactoryBase<FactContainer, FactRule, FactRuleCollection>

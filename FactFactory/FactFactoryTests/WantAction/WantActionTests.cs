@@ -1,9 +1,9 @@
-﻿using FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using WAction = FactFactory.Entities.WantAction;
+using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactoryTests.WantAction
 {
@@ -27,8 +27,8 @@ namespace FactFactoryTests.WantAction
         {
             bool isRun = false;
 
-            Given("Create WantAction", () => new WAction(ct => isRun = true, new List<IFactInfo>()))
-                .When("Run method", wantAction => wantAction.Invoke(new FactFactory.Entities.FactContainer()))
+            Given("Create WantAction", () => new WAction(ct => isRun = true, new List<IFactType>()))
+                .When("Run method", wantAction => wantAction.Invoke(new GetcuReone.FactFactory.Entities.FactContainer()))
                 .Then("Check result", _ => Assert.IsTrue(isRun, "Invoke not run"));
         }
     }

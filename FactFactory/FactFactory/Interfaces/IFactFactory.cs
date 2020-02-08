@@ -1,7 +1,7 @@
-﻿using ComboPatterns.Interfaces;
+﻿using GetcuReone.ComboPatterns.Interfaces;
 using System.Collections.Generic;
 
-namespace FactFactory.Interfaces
+namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Fact factory interface
