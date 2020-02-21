@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactoryTests.FactFactoryT
 {
     [TestClass]
-    public sealed class NoTests : FactFactoryTestBase
+    public sealed class NoDerivedTests : FactFactoryTestBase
     {
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
