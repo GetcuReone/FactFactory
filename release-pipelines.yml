@@ -29,6 +29,6 @@ steps:
   displayName: "NuGet push nuget.org"
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/$(solutionName)/$(packageFileName)'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/$(solutionName)/*.nupkg'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'nuget.org'
