@@ -124,7 +124,7 @@ namespace GetcuReone.FactFactory
             if (WantActions.IndexOf(wantAction) != -1)
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, "Action already requested");
 
-            if (wantAction.InputFactTypes.Any(fact => fact.IsFactType<INoFact>() || fact.IsFactType<INotContainedFact>()))
+            if (wantAction.InputFactTypes.Any(fact => fact.IsFactType<INoDerivedFact>() || fact.IsFactType<INotContainedFact>()))
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"Cannot derive for No and NotContained facts");
 
             WantActions.Add(wantAction);
@@ -171,8 +171,8 @@ namespace GetcuReone.FactFactory
 
                 includeFacts.AddRange(
                     rule.InputFactTypes
-                        .Where(factInfo => factInfo.IsFactType<INoFact>())
-                        .Select(factInfo => factInfo.GetNoInstance()));
+                        .Where(factInfo => factInfo.IsFactType<INoDerivedFact>())
+                        .Select(factInfo => factInfo.GetNoDerivedInstance()));
 
                 foreach (var includeFact in includeFacts)
                     container.Add(includeFact);
@@ -293,7 +293,7 @@ namespace GetcuReone.FactFactory
                         }
 
                         // Exclude No facts
-                        foreach (var noFactInfo in needFacts.Where(fact => fact.IsFactType<INoFact>()).ToList())
+                        foreach (var noFactInfo in needFacts.Where(fact => fact.IsFactType<INoDerivedFact>()).ToList())
                         {
                             if (!TryDeriveNoFactInfo(noFactInfo, container, ruleCollection, excludeFacts))
                                 needFacts.Remove(noFactInfo);
@@ -325,7 +325,7 @@ namespace GetcuReone.FactFactory
 
                         foreach (var needFact in needFacts)
                         {
-                            if (needFact.IsFactType<INoFact>() || needFact.IsFactType<INotContainedFact>())
+                            if (needFact.IsFactType<INoDerivedFact>() || needFact.IsFactType<INotContainedFact>())
                             {
                                 cannotDerived = RemoveRuleNodeAndCheckGoneRoot(factRuleTree, lastlevelNumber, node);
                                 j--;
@@ -523,7 +523,7 @@ namespace GetcuReone.FactFactory
         {
             try
             {
-                return TryDeriveTreeForFactInfo(out FactRuleTree _, wantFact.GetNoInstance().Value, container, ruleCollection, excludeFacts, out List<List<IFactType>> _);
+                return TryDeriveTreeForFactInfo(out FactRuleTree _, wantFact.GetNoDerivedInstance().Value, container, ruleCollection, excludeFacts, out List<List<IFactType>> _);
             }
             catch (InvalidDeriveOperationException ex)
             {

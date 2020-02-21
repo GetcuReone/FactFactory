@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     <Authors>GetcuReone</Authors>
-    <PackageId>FactFactory</PackageId>
+    <PackageId>GetcuReone.FactFactory</PackageId>
     <Product>FactFactory</Product>
     <Description>My implementation of a machine that can derive facts from other facts</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -45,13 +45,6 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\..\dev-pipelines.yml" />
-    <None Include="..\..\master-pipelines.yml" />
-    <None Include="..\..\release-pipelines.yml" />
-    <None Include="..\..\pipeline_steps\step_restore_build_pack.yml" Link="pipline_steps\step_restore_build_pack.yml" />
-    <None Include="..\..\pipeline_steps\step_run_all_tests.yml" Link="pipline_steps\step_run_all_tests.yml" />
-    <None Include="..\..\pipeline_steps\step_install_snk.yml" Link="pipline_steps\step_install_snk.yml" />
-    <None Include="..\..\pipeline_steps\step_copy_nuget_to_artifacts.yml" Link="pipline_steps\step_copy_nuget_to_artifacts.yml" />
   </ItemGroup>
 
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">

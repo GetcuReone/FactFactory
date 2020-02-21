@@ -4,15 +4,15 @@ using GetcuReone.FactFactory.Interfaces;
 namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
-    /// Class for facts that cannot be calculated
+    /// Contains information about a type of fact that cannot be calculated
     /// </summary>
-    public sealed class No<TFact> : NoBase
+    public sealed class NoDerived<TFact> : NoDerivedBase
         where TFact : IFact
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public No() : base(FactFactoryHelper.GeTFactType<TFact>())
+        public NoDerived() : base(FactFactoryHelper.GetFactType<TFact>())
         {
         }
     }

@@ -37,14 +37,14 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <inheritdoc />
-        public INoFact GetNoInstance()
+        public INoDerivedFact GetNoDerivedInstance()
         {
             var type = typeof(TFact);
 
-            if (!typeof(INoFact).IsAssignableFrom(type))
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"Fact is not a type {nameof(INoFact)}");
+            if (!typeof(INoDerivedFact).IsAssignableFrom(type))
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"Fact is not a type {nameof(INoDerivedFact)}");
 
-            return (INoFact)Activator.CreateInstance(typeof(TFact));
+            return (INoDerivedFact)Activator.CreateInstance(typeof(TFact));
         }
 
         /// <inheritdoc />

@@ -36,7 +36,7 @@ namespace FactFactoryTests.FactFactoryT
         public void WantNoFactTestCase()
         {
             GivenCreateFactFactory()
-                .When("NotContainedFact", factory => ExpectedException<FactFactoryException>(() => factory.WantFact((No<Input1Fact> _) => { })))
+                .When("NotContainedFact", factory => ExpectedException<FactFactoryException>(() => factory.WantFact((NoDerived<Input1Fact> _) => { })))
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
