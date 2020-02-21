@@ -16,7 +16,6 @@ variables:
   buildConfiguration: 'Debug'
   majorVersion: '1'
   packageVersion: '$(majorVersion).0.0'
-  packageFileName: '$(solutionName).$(packageVersion).nupkg'
   nugetProjectName: 'NugetProject'
 
 steps:
