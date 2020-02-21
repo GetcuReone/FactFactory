@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     <Authors>GetcuReone</Authors>
-    <PackageId>FactFactory</PackageId>
+    <PackageId>GetcuReone.FactFactory</PackageId>
     <Product>FactFactory</Product>
     <Description>My implementation of a machine that can derive facts from other facts</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
