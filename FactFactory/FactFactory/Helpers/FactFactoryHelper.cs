@@ -63,7 +63,7 @@ namespace GetcuReone.FactFactory.Helpers
             return new InvalidDeriveOperationException(details);
         }
 
-        internal static IFactType GeTFactType<TFact>() where TFact : IFact
+        internal static IFactType GetFactType<TFact>() where TFact : IFact
         {
             return new FactType<TFact>();
         }

@@ -38,9 +38,9 @@
         INotContainedFact GetNotContainedInstance();
 
         /// <summary>
-        /// Return an instance of a type <see cref="INoFact"/> fact in for the current fact type
+        /// Return an instance of a type <see cref="INoDerivedFact"/> fact in for the current fact type
         /// </summary>
         /// <returns></returns>
-        INoFact GetNoInstance();
+        INoDerivedFact GetNoDerivedInstance();
     }
 }

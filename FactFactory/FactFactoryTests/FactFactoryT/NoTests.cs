@@ -19,7 +19,7 @@ namespace FactFactoryTests.FactFactoryT
                 .AndRulesNotNul()
                 .And("Add rule", factory =>
                 {
-                    factory.Rules.Add((No<Input3Fact> _) => new Input2Fact(value));
+                    factory.Rules.Add((NoDerived<Input3Fact> _) => new Input2Fact(value));
                     factory.Rules.Add((Input2Fact fact) => new Input1Fact(fact.Value + 1));
                 })
                 .When("Derive fact1", factory => factory.DeriveFact<Input1Fact>())
@@ -40,7 +40,7 @@ namespace FactFactoryTests.FactFactoryT
                 .And("Add rules", factory => 
                 {
                     factory.Rules.Add((Input12Fact fact) => new Input11Fact(fact.Value + 11));
-                    factory.Rules.Add((Input14Fact fact, No<Input9Fact> no) => new Input12Fact(fact.Value + 12));
+                    factory.Rules.Add((Input14Fact fact, NoDerived<Input9Fact> no) => new Input12Fact(fact.Value + 12));
                     factory.Rules.Add((Input8Fact fact) => new Input9Fact(fact.Value + 12));
                 })
                 .And("Add container", factory => factory.Container.Add(new Input14Fact(14)))
