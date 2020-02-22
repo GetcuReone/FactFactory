@@ -153,13 +153,13 @@ namespace FactFactoryTests.FactRule
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule] rule cannot be executed")]
-        public void CanNotDeriveFactRuleTestCase()
+        public void CanNotCalculateFactRuleTestCase()
         {
             var container = new Container();
             var factInfos = new List<IFactType> 
             {
-                new GetcuReone.FactFactory.Entities.FactType<DateTimeFact>(),
-                new GetcuReone.FactFactory.Entities.FactType<IntFact>(),
+                new FactType<DateTimeFact>(),
+                new FactType<IntFact>(),
             };
 
             Given("Add fact 1", () => container.Add(new StartDateOfDerive(DateTime.Now)))
@@ -168,10 +168,28 @@ namespace FactFactoryTests.FactRule
                 {
                     Func<IFactContainer, IFact> func = ct => default;
 
-                    return new Rule(func, factInfos, new GetcuReone.FactFactory.Entities.FactType<OtherFact>());
+                    return new Rule(func, factInfos, new FactType<OtherFact>());
                 })
                 .When("run method", rule => rule.CanCalculate(container))
                 .Then("check result", result => Assert.IsFalse(result, "rule can be followed"));
+        }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][rule][negative] request entry calculated by the rule fact")]
+        public void RequestEntryCalculatedByRuleFactTestCase()
+        {
+            GivenEmpty()
+                .When("Create rule", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<IntFact>()));
+                })
+                .Then("Check error", ex => 
+                {
+                    Assert.IsNotNull(ex, "error is null");
+                    Assert.AreEqual("Cannot request a fact calculated according to the rule", ex.Message, "Another message expected");
+                });
         }
     }
 }
