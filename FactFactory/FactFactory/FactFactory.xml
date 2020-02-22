@@ -159,6 +159,14 @@
             <param name="inputFactTypes">information on input factacles rules</param>
             <param name="outputFactType">information on output fact</param>
         </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactRule.CompareFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <summary>
+            Fact Type Set Comparison
+            </summary>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRule.Calculate``1(``0)">
             <summary>
             Rule of fact calculate

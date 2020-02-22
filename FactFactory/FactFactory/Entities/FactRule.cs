@@ -43,6 +43,32 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
+        /// Fact type set comparison
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
+        protected virtual bool CompareFactTypes(IEnumerable<IFactType> first, IEnumerable<IFactType> second)
+        {
+            if (first.IsNullOrEmpty() && second.IsNullOrEmpty())
+                return true;
+            else if (first.IsNullOrEmpty() || second.IsNullOrEmpty())
+                return false;
+            else if (first.Count() != second.Count())
+                return false;
+            else
+            {
+                foreach (var fact in second)
+                {
+                    if (first.All(f => !f.Compare(fact)))
+                        return false;
+                }
+
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Rule of fact calculate
         /// </summary>
         /// <param name="container"></param>
@@ -79,22 +105,8 @@ namespace GetcuReone.FactFactory.Entities
         {
             if (!OutputFactType.Compare(factRule.OutputFactType))
                 return false;
-            else if (factRule.InputFactTypes.IsNullOrEmpty() && InputFactTypes.IsNullOrEmpty())
-                return true;
-            else if (InputFactTypes.IsNullOrEmpty() || factRule.InputFactTypes.IsNullOrEmpty())
-                return false;
-            else if (factRule.InputFactTypes.Count != InputFactTypes.Count)
-                return false;
-            else
-            {
-                foreach (var fact in factRule.InputFactTypes)
-                {
-                    if (InputFactTypes.All(f => !f.Compare(fact)))
-                        return false;
-                }
 
-                return true;
-            }
+            return CompareFactTypes(factRule.InputFactTypes, InputFactTypes);
         }
 
         /// <inheritdoc />

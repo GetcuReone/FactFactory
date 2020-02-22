@@ -41,25 +41,9 @@ namespace GetcuReone.FactFactory.Versioned.Entities
             if (!OutputFactType.Compare(versionedFactRule.OutputFactType))
                 return false;
 
-            List<IFactType> innerInputFactTypeWithoutVersion = InputFactTypes.Where(factType => !factType.IsFactType<IVersionFact>()).ToList();
-            List<IFactType> externalInputFactTypeWithoutVersion = versionedFactRule.InputFactTypes.Where(factType => !factType.IsFactType<IVersionFact>()).ToList();
-
-            if (innerInputFactTypeWithoutVersion.IsNullOrEmpty() && externalInputFactTypeWithoutVersion.IsNullOrEmpty())
-                return true;
-            else if (innerInputFactTypeWithoutVersion.IsNullOrEmpty() || externalInputFactTypeWithoutVersion.IsNullOrEmpty())
-                return false;
-            else if (innerInputFactTypeWithoutVersion.Count != externalInputFactTypeWithoutVersion.Count)
-                return false;
-            else
-            {
-                foreach (var fact in externalInputFactTypeWithoutVersion)
-                {
-                    if (innerInputFactTypeWithoutVersion.All(f => !f.Compare(fact)))
-                        return false;
-                }
-
-                return true;
-            }
+            return CompareFactTypes(
+                InputFactTypes.Where(factType => !factType.IsFactType<IVersionFact>()).ToList(),
+                versionedFactRule.InputFactTypes.Where(factType => !factType.IsFactType<IVersionFact>()).ToList());
         }
     }
 }
