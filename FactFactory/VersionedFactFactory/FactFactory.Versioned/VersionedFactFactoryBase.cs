@@ -81,7 +81,8 @@ namespace GetcuReone.FactFactory.Versioned
                             if (previousFactRuleVersion.IsMoreThan(factRuleVersion))
                                 continue;
                             else if (!previousFactRuleVersion.IsLessThan(factRuleVersion))
-                                throw FactFactoryHelper.CreateException(ErrorCode.VersionConflict, $"Found identical rules with identical versions\n{rule.ToString()}");
+                                throw FactFactoryHelper.CreateException(ErrorCode.VersionConflict, "Found facts that are no less and no more than each other." +
+                                    $"\nFirst rule :{rule.ToString()} version: {previousRule.TypeFactVersion.FactName}. Second rule: {previousRule.ToString()} version: {previousRule.TypeFactVersion.FactName}");
 
                             factRules.Remove(previousRule);
                             factRules.Add(rule);

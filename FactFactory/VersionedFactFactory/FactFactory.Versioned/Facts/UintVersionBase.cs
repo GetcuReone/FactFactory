@@ -1,11 +1,12 @@
 ﻿using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Versioned.Interfaces;
 
 namespace GetcuReone.FactFactory.Versioned.Facts
 {
     /// <summary>
     /// base class for factors determining version by number <see cref="uint"/>
     /// </summary>
-    public abstract class UintVersionBase : FactBase<uint>
+    public abstract class UintVersionBase : FactBase<uint>, IVersionFact
     {
         /// <summary>
         /// Constructor
@@ -13,6 +14,34 @@ namespace GetcuReone.FactFactory.Versioned.Facts
         /// <param name="version"></param>
         protected UintVersionBase(uint version) : base(version)
         {
+        }
+
+        /// <summary>
+        /// True - the version of the current fact is less than <paramref name="versionFact"/>
+        /// </summary>
+        /// <typeparam name="TVersionFact"></typeparam>
+        /// <param name="versionFact"></param>
+        /// <returns></returns>
+        public virtual bool IsLessThan<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact
+        {
+            if (versionFact is UintVersionBase uintVersion)
+                return Value < uintVersion.Value;
+
+            return false;
+        }
+
+        /// <summary>
+        /// True - the version of the current fact is more than <paramref name="versionFact"/>
+        /// </summary>
+        /// <typeparam name="TVersionFact"></typeparam>
+        /// <param name="versionFact"></param>
+        /// <returns></returns>
+        public virtual bool IsMoreThan<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact
+        {
+            if (versionFact is UintVersionBase uintVersion)
+                return Value > uintVersion.Value;
+
+            return false;
         }
     }
 }
