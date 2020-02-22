@@ -45,6 +45,10 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="..\..\README.md" />
+    <None Include="..\..\discription_pages\FactContainer.md" Link="discription_pages\FactContainer.md" />
+    <None Include="..\..\discription_pages\FactFactoryBase.md" Link="discription_pages\FactFactoryBase.md" />
+    <None Include="..\..\discription_pages\Rule.md" Link="discription_pages\Rule.md" />
   </ItemGroup>
 
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
