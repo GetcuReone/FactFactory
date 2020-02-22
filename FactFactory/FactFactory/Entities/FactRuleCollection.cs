@@ -7,7 +7,7 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Collection for <see cref="FactRule"/>
     /// </summary>
-    public sealed class FactRuleCollection : FactRuleCollection<FactRule>
+    public sealed class FactRuleCollection : FactRuleCollectionBase<FactRule>
     {
         /// <summary>
         /// Constructor

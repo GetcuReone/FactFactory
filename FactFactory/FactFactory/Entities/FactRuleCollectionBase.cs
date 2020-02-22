@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Base collection for <typeparamref name="TFactRule"/>
     /// </summary>
-    public abstract class FactRuleCollection<TFactRule>: IList<TFactRule>
+    public abstract class FactRuleCollectionBase<TFactRule>: IList<TFactRule>
         where TFactRule : IFactRule
     {
         private readonly List<TFactRule> _list;
@@ -37,19 +37,19 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Gets the number of rules contained in the <see cref="FactRuleCollection{TFactRule}"/>
+        /// Gets the number of rules contained in the <see cref="FactRuleCollectionBase{TFactRule}"/>
         /// </summary>
         public int Count => _list.Count;
 
         /// <summary>
-        /// Gets a value indicating whether the <see cref="FactRuleCollection{TFactRule}"/> is read-only.
+        /// Gets a value indicating whether the <see cref="FactRuleCollectionBase{TFactRule}"/> is read-only.
         /// </summary>
         public bool IsReadOnly => false;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        protected FactRuleCollection()
+        protected FactRuleCollectionBase()
         {
             _list = new List<TFactRule>();
         }
@@ -58,7 +58,7 @@ namespace GetcuReone.FactFactory.Entities
         /// Constructor
         /// </summary>
         /// <param name="factRules"></param>
-        protected FactRuleCollection(IEnumerable<TFactRule> factRules)
+        protected FactRuleCollectionBase(IEnumerable<TFactRule> factRules)
         {
             _list = new List<TFactRule>(factRules);
         }
@@ -606,9 +606,9 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Adds the elements of the specified collection to the end of the <see cref="FactRuleCollection{TFactRule}"/>
+        /// Adds the elements of the specified collection to the end of the <see cref="FactRuleCollectionBase{TFactRule}"/>
         /// </summary>
-        /// <param name="rules">The collection whose elements should be added to the end of the  <see cref="FactRuleCollection{TFactRule}"/>. 
+        /// <param name="rules">The collection whose elements should be added to the end of the  <see cref="FactRuleCollectionBase{TFactRule}"/>. 
         /// The collection itself cannot be null, but it can contain elements that are null,
         /// if type T is a reference type.</param>
         /// <exception cref="ArgumentNullException">collection is null</exception>
@@ -618,7 +618,7 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Removes all elements from the <see cref="FactRuleCollection{TFactRule}"/>
+        /// Removes all elements from the <see cref="FactRuleCollectionBase{TFactRule}"/>
         /// </summary>
         public void Clear()
         {
@@ -636,63 +636,63 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Copies the entire <see cref="FactRuleCollection{TFactRule}"/> to a compatible one-dimensional array, starting at the specified index of the target array.
+        /// Copies the entire <see cref="FactRuleCollectionBase{TFactRule}"/> to a compatible one-dimensional array, starting at the specified index of the target array.
         /// </summary>
-        /// <param name="array">The one-dimensional System.Array that is the destination of the elements copied from <see cref="FactRuleCollection{TFactRule}"/>. The System.Array must have zero-based indexing.</param>
+        /// <param name="array">The one-dimensional System.Array that is the destination of the elements copied from <see cref="FactRuleCollectionBase{TFactRule}"/>. The System.Array must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         /// <exception cref="ArgumentNullException">array is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">arrayIndex is less than 0.</exception>
-        /// <exception cref="ArgumentException">The number of elements in the source <see cref="FactRuleCollection{TFactRule}"/> is greater than the available space from arrayIndex to the end of the destination array.</exception>
+        /// <exception cref="ArgumentException">The number of elements in the source <see cref="FactRuleCollectionBase{TFactRule}"/> is greater than the available space from arrayIndex to the end of the destination array.</exception>
         public void CopyTo(TFactRule[] array, int arrayIndex)
         {
             _list.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
-        /// Returns an enumerator that iterates through the <see cref="FactRuleCollection{TFactRule}"/>.
+        /// Returns an enumerator that iterates through the <see cref="FactRuleCollectionBase{TFactRule}"/>.
         /// </summary>
-        /// <returns>A <see cref="FactRuleCollection{TFactRule}.GetEnumerator"/> for the <see cref="FactRuleCollection{TFactRule}"/>.</returns>
+        /// <returns>A <see cref="FactRuleCollectionBase{TFactRule}.GetEnumerator"/> for the <see cref="FactRuleCollectionBase{TFactRule}"/>.</returns>
         public IEnumerator<TFactRule> GetEnumerator()
         {
             return _list.GetEnumerator();
         }
 
         /// <summary>
-        /// Searches for the specified object and returns the zero-based index of the first occurrence within the entire <see cref="FactRuleCollection{TFactRule}"/>.
+        /// Searches for the specified object and returns the zero-based index of the first occurrence within the entire <see cref="FactRuleCollectionBase{TFactRule}"/>.
         /// </summary>
-        /// <param name="item">The object to locate in the <see cref="FactRuleCollection{TFactRule}"/> be null for reference types. The value can</param>
-        /// <returns>The zero-based index of the first occurrence of item within the entire <see cref="FactRuleCollection{TFactRule}"/>, if found; otherwise, –1.</returns>
+        /// <param name="item">The object to locate in the <see cref="FactRuleCollectionBase{TFactRule}"/> be null for reference types. The value can</param>
+        /// <returns>The zero-based index of the first occurrence of item within the entire <see cref="FactRuleCollectionBase{TFactRule}"/>, if found; otherwise, –1.</returns>
         public int IndexOf(TFactRule item)
         {
             return _list.IndexOf(item);
         }
 
         /// <summary>
-        /// Inserts an element into the<see cref="FactRuleCollection{TFactRule}"/> at the specified index.
+        /// Inserts an element into the<see cref="FactRuleCollectionBase{TFactRule}"/> at the specified index.
         /// </summary>
         /// <param name="index">The zero-based index at which item should be inserted.</param>
         /// <param name="item">The object to insert. The value can be null for reference types.</param>
-        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is greater than <see cref="FactRuleCollection{TFactRule}"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is greater than <see cref="FactRuleCollectionBase{TFactRule}"/>.</exception>
         public void Insert(int index, TFactRule item)
         {
             _list.Insert(index, item);
         }
 
         /// <summary>
-        /// Removes the first occurrence of a specific object from the <see cref="FactRuleCollection{TFactRule}"/>.
+        /// Removes the first occurrence of a specific object from the <see cref="FactRuleCollectionBase{TFactRule}"/>.
         /// </summary>
-        /// <param name="item">The object to remove from the <see cref="FactRuleCollection{TFactRule}"/>. The value can be null for reference types.</param>
-        /// <returns>true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the <see cref="FactRuleCollection{TFactRule}"/>.</returns>
+        /// <param name="item">The object to remove from the <see cref="FactRuleCollectionBase{TFactRule}"/>. The value can be null for reference types.</param>
+        /// <returns>true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the <see cref="FactRuleCollectionBase{TFactRule}"/>.</returns>
         public bool Remove(TFactRule item)
         {
             return _list.Remove(item);
         }
 
         /// <summary>
-        /// Removes the element at the specified index of the <see cref="FactRuleCollection{TFactRule}"/>.
+        /// Removes the element at the specified index of the <see cref="FactRuleCollectionBase{TFactRule}"/>.
         /// </summary>
         /// <param name="index">The zero-based index of the element to remove.</param>
-        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is equal to or greater than <see cref="FactRuleCollection{TFactRule}"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is equal to or greater than <see cref="FactRuleCollectionBase{TFactRule}"/>.</exception>
         public void RemoveAt(int index)
         {
             _list.RemoveAt(index);
