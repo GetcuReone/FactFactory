@@ -1,4 +1,5 @@
 ﻿using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter;
@@ -14,13 +15,19 @@ namespace FactFactoryTests.FactRule
     [TestClass]
     public sealed class FactRuleTests : TestBase
     {
+        private IFactType GetFactType<TFact>()
+            where TFact : IFact
+        {
+            return new FactType<TFact>();
+        }
+
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][rule] create FactRule without param")]
         public void CreateFactRuleWithoutParamTestCase()
         {
             GivenEmpty()
-                .When("Create factRule", _ => new Rule(ct => { return default; }, null, null))
+                .When("Create factRule", _ => new Rule(ct => { return default; }, null, GetFactType<OtherFact>()))
                 .Then("Check input param", rule => Assert.AreEqual(0, rule.InputFactTypes.Count, "InpuTFactTypes is not empty"));
         }
 
@@ -35,7 +42,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule", factInner => 
                 {
                     fact = factInner;
-                    return new Rule(ct => { return default; }, new List<IFactType> { fact.GetFactType() }, null);
+                    return new Rule(ct => { return default; }, new List<IFactType> { fact.GetFactType() }, GetFactType<OtherFact>());
                 })
                 .Then("Check input param", rule => 
                 {
@@ -55,7 +62,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule", factInner =>
                 {
                     fact = factInner;
-                    return new Rule(ct => { return default; }, new List<IFactType> { fact.GetFactType(), fact.GetFactType(), fact.GetFactType() }, null);
+                    return new Rule(ct => { return default; }, new List<IFactType> { fact.GetFactType(), fact.GetFactType(), fact.GetFactType() }, GetFactType<OtherFact>());
                 })
                 .Then("Check input param", rule =>
                 {

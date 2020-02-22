@@ -8,7 +8,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
     {
         public static Rule CreateRule(params IFactType[] factTypes)
         {
-            return new Rule(ct => { return default; }, factTypes.ToList(), null);
+            return new Rule(ct => { return default; }, factTypes.Skip(1).ToList(), factTypes.First());
         }
     }
 }
