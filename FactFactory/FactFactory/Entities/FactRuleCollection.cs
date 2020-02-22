@@ -13,27 +13,10 @@ namespace GetcuReone.FactFactory.Entities
     {
         private readonly List<FactRule> _list;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public FactRuleCollection()
-        {
-            _list = new List<FactRule>();
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="factRules"></param>
-        public FactRuleCollection(IEnumerable<FactRule> factRules)
-        {
-            _list = new List<FactRule>(factRules);
-        }
-
         /// <inheritdoc />
-        public FactRule this[int index] 
-        { 
-            get => _list[index]; 
+        public FactRule this[int index]
+        {
+            get => _list[index];
             set
             {
 
@@ -51,6 +34,33 @@ namespace GetcuReone.FactFactory.Entities
 
         /// <inheritdoc />
         public bool IsReadOnly => false;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public FactRuleCollection()
+        {
+            _list = new List<FactRule>();
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="factRules"></param>
+        public FactRuleCollection(IEnumerable<FactRule> factRules)
+        {
+            _list = new List<FactRule>(factRules);
+        }
+
+        /// <summary>
+        /// Return <see cref="IFactType"/>
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <returns></returns>
+        protected virtual IFactType GetFactType<TFact>() where TFact : IFact
+        {
+            return new FactType<TFact>();
+        }
 
         /// <inheritdoc />
         public void Add(FactRule item)
@@ -73,7 +83,7 @@ namespace GetcuReone.FactFactory.Entities
         {
             Add(new FactRule(_ => rule(),
                 null,
-                new FactType<TFactResult>()));
+                GetFactType<TFactResult>()));
         }
 
         /// <summary>
@@ -88,8 +98,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn1 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>() ),
-                new List<IFactType> { new FactType<TFactIn1>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -106,8 +116,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn2 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -126,8 +136,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn3 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -148,8 +158,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn4 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -172,8 +182,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn5 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -198,8 +208,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn6 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>(), new FactType<TFactIn6>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -226,8 +236,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn7 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>(), new FactType<TFactIn6>(), new FactType<TFactIn7>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -256,8 +266,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn8 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>(), new FactType<TFactIn6>(), new FactType<TFactIn7>(), new FactType<TFactIn8>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -288,8 +298,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn9 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>(), new FactType<TFactIn6>(), new FactType<TFactIn7>(), new FactType<TFactIn8>(), new FactType<TFactIn9>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -322,8 +332,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn10 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>(), new FactType<TFactIn6>(), new FactType<TFactIn7>(), new FactType<TFactIn8>(), new FactType<TFactIn9>(), new FactType<TFactIn10>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -358,8 +368,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn11 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>(), new FactType<TFactIn6>(), new FactType<TFactIn7>(), new FactType<TFactIn8>(), new FactType<TFactIn9>(), new FactType<TFactIn10>(), new FactType<TFactIn11>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -396,8 +406,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn12 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>(), new FactType<TFactIn6>(), new FactType<TFactIn7>(), new FactType<TFactIn8>(), new FactType<TFactIn9>(), new FactType<TFactIn10>(), new FactType<TFactIn11>(), new FactType<TFactIn12>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -436,8 +446,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn13 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>(), new FactType<TFactIn6>(), new FactType<TFactIn7>(), new FactType<TFactIn8>(), new FactType<TFactIn9>(), new FactType<TFactIn10>(), new FactType<TFactIn11>(), new FactType<TFactIn12>(), new FactType<TFactIn13>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -478,8 +488,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn14 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>(), ct.GetFact<TFactIn14>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>(), new FactType<TFactIn6>(), new FactType<TFactIn7>(), new FactType<TFactIn8>(), new FactType<TFactIn9>(), new FactType<TFactIn10>(), new FactType<TFactIn11>(), new FactType<TFactIn12>(), new FactType<TFactIn13>(), new FactType<TFactIn14>()},
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>()},
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -522,8 +532,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn15 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>(), ct.GetFact<TFactIn14>(), ct.GetFact<TFactIn15>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>(), new FactType<TFactIn6>(), new FactType<TFactIn7>(), new FactType<TFactIn8>(), new FactType<TFactIn9>(), new FactType<TFactIn10>(), new FactType<TFactIn11>(), new FactType<TFactIn12>(), new FactType<TFactIn13>(), new FactType<TFactIn14>(), new FactType<TFactIn15>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
@@ -568,8 +578,8 @@ namespace GetcuReone.FactFactory.Entities
             where TFactIn16 : IFact
         {
             Add(new FactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>(), ct.GetFact<TFactIn14>(), ct.GetFact<TFactIn15>(), ct.GetFact<TFactIn16>()),
-                new List<IFactType> { new FactType<TFactIn1>(), new FactType<TFactIn2>(), new FactType<TFactIn3>(), new FactType<TFactIn4>(), new FactType<TFactIn5>(), new FactType<TFactIn6>(), new FactType<TFactIn7>(), new FactType<TFactIn8>(), new FactType<TFactIn9>(), new FactType<TFactIn10>(), new FactType<TFactIn11>(), new FactType<TFactIn12>(), new FactType<TFactIn13>(), new FactType<TFactIn14>(), new FactType<TFactIn15>(), new FactType<TFactIn16>() },
-                new FactType<TFactOut>()));
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>(), GetFactType<TFactIn16>() },
+                GetFactType<TFactOut>()));
         }
 
         /// <summary>
