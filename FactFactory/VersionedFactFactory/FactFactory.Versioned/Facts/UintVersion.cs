@@ -6,13 +6,13 @@ namespace GetcuReone.FactFactory.Versioned.Facts
     /// <summary>
     /// base class for factors determining version by number <see cref="uint"/>
     /// </summary>
-    public abstract class UintVersionBase : FactBase<uint>, IVersionFact
+    public abstract class UintVersion : FactBase<uint>, IVersionFact
     {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="version"></param>
-        protected UintVersionBase(uint version) : base(version)
+        protected UintVersion(uint version) : base(version)
         {
         }
 
@@ -24,7 +24,7 @@ namespace GetcuReone.FactFactory.Versioned.Facts
         /// <returns></returns>
         public virtual bool IsLessThan<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact
         {
-            if (versionFact is UintVersionBase uintVersion)
+            if (versionFact is UintVersion uintVersion)
                 return Value < uintVersion.Value;
 
             return false;
@@ -38,7 +38,7 @@ namespace GetcuReone.FactFactory.Versioned.Facts
         /// <returns></returns>
         public virtual bool IsMoreThan<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact
         {
-            if (versionFact is UintVersionBase uintVersion)
+            if (versionFact is UintVersion uintVersion)
                 return Value > uintVersion.Value;
 
             return false;
