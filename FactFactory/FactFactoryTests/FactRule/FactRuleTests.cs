@@ -96,7 +96,11 @@ namespace FactFactoryTests.FactRule
                 {
                     return ExpectedException<ArgumentNullException>(() => new Rule(null, null, null));
                 })
-                .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
+                .Then("Check error", ex => 
+                {
+                    Assert.IsNotNull(ex, "error is null");
+                    Assert.AreEqual("func", ex.ParamName, "Another parameter name expected");
+                });
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
