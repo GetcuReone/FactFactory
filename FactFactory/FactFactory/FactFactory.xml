@@ -161,7 +161,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRule.CompareFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
-            Fact Type Set Comparison
+            Fact type set comparison
             </summary>
             <param name="first"></param>
             <param name="second"></param>
