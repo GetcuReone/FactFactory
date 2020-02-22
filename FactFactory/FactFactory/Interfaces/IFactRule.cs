@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
-    /// Rule of fact derivation
+    /// Rule of fact calculation
     /// </summary>
     public interface IFactRule
     {
@@ -14,7 +14,7 @@ namespace GetcuReone.FactFactory.Interfaces
         IReadOnlyCollection<IFactType> InputFactTypes { get; }
 
         /// <summary>
-        /// Rule exit information
+        /// Information on output fact
         /// </summary>
         IFactType OutputFactType { get; }
 

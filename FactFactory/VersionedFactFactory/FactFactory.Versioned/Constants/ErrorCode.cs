@@ -14,5 +14,10 @@
         /// Version conflict
         /// </summary>
         public static string VersionConflict => "VersionConflict";
+
+        /// <summary>
+        /// There should be only one version fact
+        /// </summary>
+        public static string OnlyOneVersionFact => "OnlyOneVersionFact";
     }
 }

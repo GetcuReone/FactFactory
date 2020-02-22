@@ -21,5 +21,17 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
 
             return versionFacts.First() as IVersionFact;
         }
+
+        internal static IFactType SingleOrNullFactVersion(this IEnumerable<IFactType> factTypes)
+        {
+            List<IFactType> typeFacts = factTypes.Where(factType => factType.IsFactType<IVersionFact>()).ToList();
+
+            if (typeFacts.IsNullOrEmpty())
+                return null;
+            else if (typeFacts.Count > 1)
+                throw FactFactoryHelper.CreateException(ErrorCode.OnlyOneVersionFact, $"You cannot specify more than one version fact\nInputFactTypes: ({string.Join(", ", factTypes)})");
+
+            return typeFacts[0];
+        }
     }
 }

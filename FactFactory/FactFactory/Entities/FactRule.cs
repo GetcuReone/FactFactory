@@ -7,18 +7,29 @@ using System.Linq;
 
 namespace GetcuReone.FactFactory.Entities
 {
-    /// <inheritdoc />
-    public sealed class FactRule : IFactRule
+    /// <summary>
+    /// Rule of fact calculation
+    /// </summary>
+    public class FactRule : IFactRule
     {
         private readonly Func<IFactContainer, IFact> _func;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Information on input factacles rules
+        /// </summary>
         public IReadOnlyCollection<IFactType> InputFactTypes { get; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Information on output fact
+        /// </summary>
         public IFactType OutputFactType { get; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="func">func for calculate</param>
+        /// <param name="inputFactTypes">information on input factacles rules</param>
+        /// <param name="outputFactType">information on output fact</param>
         public FactRule(Func<IFactContainer, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
@@ -28,8 +39,12 @@ namespace GetcuReone.FactFactory.Entities
             OutputFactType = outputFactType;
         }
 
-        /// <inheritdoc />
-        public IFact Calculate<TFactContainer>(TFactContainer container) 
+        /// <summary>
+        /// Rule of fact calculate
+        /// </summary>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public virtual IFact Calculate<TFactContainer>(TFactContainer container) 
             where TFactContainer : IFactContainer
         {
             IFact fact = _func(container);
@@ -40,14 +55,23 @@ namespace GetcuReone.FactFactory.Entities
             return fact;
         }
 
-        /// <inheritdoc />
-        public bool CanCalculate<TFactContainer>(TFactContainer container) 
+        /// <summary>
+        /// is it possible to calculate the fact
+        /// </summary>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public virtual bool CanCalculate<TFactContainer>(TFactContainer container) 
             where TFactContainer : IFactContainer
         {
             return InputFactTypes.All(factInfo => factInfo.ContainsContainer(container));
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Compare rules
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <param name="factRule"></param>
+        /// <returns></returns>
         public bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule
         {
             if (!OutputFactType.Compare(factRule.OutputFactType))

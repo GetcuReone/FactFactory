@@ -1,5 +1,4 @@
-﻿using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.Helpers;
+﻿using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Helpers;
@@ -15,7 +14,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// </summary>
     public abstract class VersionedFactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
         where TFactContainer : class, IFactContainer
-        where TFactRule : class, IFactRule, IFactTypeVersionInformation
+        where TFactRule : class, IVersionedFactRule
         where TFactRuleCollection : class, IList<TFactRule>
         where TWantAction : class, IWantAction, IFactTypeVersionInformation
     {
@@ -49,7 +48,7 @@ namespace GetcuReone.FactFactory.Versioned
                     if (factRuleVersion.IsMoreThan(versionFact))
                         continue;
 
-                    TFactRule previousRule = factRules.SingleOrDefault(r => r.Compare(rule));
+                    TFactRule previousRule = factRules.SingleOrDefault(r => r.CompareWithoutVersion(rule));
 
                     if (previousRule != null)
                     {
@@ -70,7 +69,7 @@ namespace GetcuReone.FactFactory.Versioned
                     {
                         IVersionFact factRuleVersion = readOnlyFactContainer.GetVersionFact(rule.TypeFactVersion);
 
-                        TFactRule previousRule = factRules.SingleOrDefault(r => r.Compare(rule));
+                        TFactRule previousRule = factRules.SingleOrDefault(r => r.CompareWithoutVersion(rule));
 
                         if (previousRule != null)
                         {
@@ -92,7 +91,7 @@ namespace GetcuReone.FactFactory.Versioned
                     }
                     else
                     {
-                        TFactRule previousRule = factRules.SingleOrDefault(r => r.Compare(rule));
+                        TFactRule previousRule = factRules.SingleOrDefault(r => r.CompareWithoutVersion(rule));
 
                         if (previousRule != null)
                         {
