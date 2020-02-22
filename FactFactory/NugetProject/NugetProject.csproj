@@ -13,6 +13,7 @@
     <PackageTags>factfactory fact getcureone combopatterns</PackageTags>
     <PackageReleaseNotes>publish project to GitHub</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/GetcuReone/FactFactory</PackageProjectUrl>
     <Copyright>Copyright © 2020 GetcuReone</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
