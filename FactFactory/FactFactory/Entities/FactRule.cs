@@ -36,7 +36,7 @@ namespace GetcuReone.FactFactory.Entities
             InputFactTypes = inputFactTypes != null 
                 ? new ReadOnlyCollection<IFactType>(inputFactTypes)
                 : new ReadOnlyCollection<IFactType>(new List<IFactType>());
-            OutputFactType = outputFactType;
+            OutputFactType = outputFactType ?? throw new ArgumentNullException(nameof(outputFactType));
         }
 
         /// <summary>
