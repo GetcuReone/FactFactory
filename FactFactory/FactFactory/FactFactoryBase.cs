@@ -149,8 +149,10 @@ namespace GetcuReone.FactFactory
         /// <summary>
         /// Return a list with the appropriate rules at the time of the derive of the facts
         /// </summary>
+        /// <param name="readOnlyFactContainer">read-only fact container</param>
+        /// <param name="wantAction"></param>
         /// <returns></returns>
-        protected virtual IReadOnlyCollection<TFactRule> GetRulesForWantAction(TWantAction wantAction)
+        protected virtual IReadOnlyCollection<TFactRule> GetRulesForWantAction(TWantAction wantAction, IReadOnlyCollection<IFact> readOnlyFactContainer)
         {
             return new ReadOnlyCollection<TFactRule>(Rules);
         }
@@ -201,7 +203,9 @@ namespace GetcuReone.FactFactory
         /// <returns></returns>
         private bool TryDeriveTreesForWantAction(out List<FactRuleTree> treesResult, TWantAction wantAction, TFactContainer container, IReadOnlyCollection<IFactType> excludeFacts, out Dictionary<IFactType, List<List<IFactType>>> notFoundFacts)
         {
-            IReadOnlyCollection<TFactRule> ruleCollection = GetRulesForWantAction(wantAction);
+            IReadOnlyCollection<TFactRule> ruleCollection = GetRulesForWantAction(
+                wantAction,
+                new ReadOnlyCollection<IFact>(container.ToList()));
             wantAction.DateOfDerive = DateTime.Now;
             treesResult = new List<FactRuleTree>();
             notFoundFacts = new Dictionary<IFactType, List<List<IFactType>>>();

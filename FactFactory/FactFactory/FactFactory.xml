@@ -9,27 +9,27 @@
             Error codes
             </summary>
         </member>
-        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.InvalidData">
+        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidData">
             <summary>
             Invalid data
             </summary>
         </member>
-        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.FactCannotCalculated">
+        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.FactCannotCalculated">
             <summary>
             Fact cannot be calculated
             </summary>
         </member>
-        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.EmptyRuleCollection">
+        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.EmptyRuleCollection">
             <summary>
             Collection of rules for calculating the fact is empty
             </summary>
         </member>
-        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.RuleNotFound">
+        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.RuleNotFound">
             <summary>
             Rule not found
             </summary>
         </member>
-        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.InvalidFactType">
+        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidFactType">
             <summary>
             The fact is of the invalid type
             </summary>
@@ -491,7 +491,7 @@
         <member name="M:GetcuReone.FactFactory.Entities.FactType`1.GetNotContainedInstance">
             <inheritdoc />
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.GetNoInstance">
+        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.GetNoDerivedInstance">
             <inheritdoc />
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactType`1.IsFactType``1">
@@ -584,10 +584,12 @@
             Derive the facts
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactory.GetRulesForWantAction(GetcuReone.FactFactory.Entities.WantAction)">
+        <member name="M:GetcuReone.FactFactory.FactFactory.GetRulesForWantAction(GetcuReone.FactFactory.Entities.WantAction,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Return a list with the appropriate rules at the time of the derive of the facts
             </summary>
+            <param name="readOnlyFactContainer">read-only fact container</param>
+            <param name="wantAction"></param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactory.GetContainerForDerive">
@@ -656,10 +658,12 @@
             Get default facts in a container
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetRulesForWantAction(`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetRulesForWantAction(`3,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Return a list with the appropriate rules at the time of the derive of the facts
             </summary>
+            <param name="readOnlyFactContainer">read-only fact container</param>
+            <param name="wantAction"></param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CalculateFact(`1,`0)">
@@ -1017,6 +1021,27 @@
             </summary>
             <returns>fact type</returns>
         </member>
+        <member name="T:GetcuReone.FactFactory.Facts.NoDerived`1">
+            <summary>
+            Contains information about a type of fact that cannot be calculated
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facts.NoDerived`1.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Facts.NoDerivedBase">
+            <summary>
+            Base class for facts that cannot be calculated
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facts.NoDerivedBase.#ctor(GetcuReone.FactFactory.Interfaces.IFactType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="fact"></param>
+        </member>
         <member name="T:GetcuReone.FactFactory.Facts.NotContained`1">
             <summary>
             Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.Derive"/>
@@ -1046,27 +1071,6 @@
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Facts.No`1">
-            <summary>
-            Class for facts that cannot be calculated
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facts.No`1.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Facts.NoBase">
-            <summary>
-            Base class for facts that cannot be calculated
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facts.NoBase.#ctor(GetcuReone.FactFactory.Interfaces.IFactType)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="fact"></param>
-        </member>
         <member name="T:GetcuReone.FactFactory.Facts.StartDateOfDerive">
             <summary>
             Start date for deriving of all facts
@@ -1093,6 +1097,14 @@
             <summary>
             Helper for <see cref="T:GetcuReone.FactFactory.FactFactoryBase`4"/>
             </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Helpers.FactFactoryHelper.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            True - <paramref name="items"/> is null or empty
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="items"></param>
+            <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Helpers.FactFactoryHelper.CreateException(System.String,System.String)">
             <summary>
@@ -1275,18 +1287,18 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.GetNoInstance">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.GetNoDerivedInstance">
             <summary>
-            Return an instance of a type <see cref="T:GetcuReone.FactFactory.Interfaces.INoFact"/> fact in for the current fact type
+            Return an instance of a type <see cref="T:GetcuReone.FactFactory.Interfaces.INoDerivedFact"/> fact in for the current fact type
             </summary>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.INoFact">
+        <member name="T:GetcuReone.FactFactory.Interfaces.INoDerivedFact">
             <summary>
-            Not calculated fact
+            interface for fact that cannot be calculated
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.INoFact.Value">
+        <member name="P:GetcuReone.FactFactory.Interfaces.INoDerivedFact.Value">
             <summary>
             Information about a fact that cannot be calculated
             </summary>

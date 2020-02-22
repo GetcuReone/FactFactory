@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -34,8 +35,10 @@ namespace GetcuReone.FactFactory
         /// <summary>
         /// Return a list with the appropriate rules at the time of the derive of the facts
         /// </summary>
+        /// <param name="readOnlyFactContainer">read-only fact container</param>
+        /// <param name="wantAction"></param>
         /// <returns></returns>
-        protected override IReadOnlyCollection<FactRule> GetRulesForWantAction(WantAction wantAction)
+        protected override IReadOnlyCollection<FactRule> GetRulesForWantAction(WantAction wantAction, IReadOnlyCollection<IFact> readOnlyFactContainer)
         {
             return _tempRule;
         }

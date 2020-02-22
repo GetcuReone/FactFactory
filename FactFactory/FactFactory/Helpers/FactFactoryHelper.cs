@@ -10,9 +10,15 @@ namespace GetcuReone.FactFactory.Helpers
     /// <summary>
     /// Helper for <see cref="FactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
     /// </summary>
-    internal static class FactFactoryHelper
+    public static class FactFactoryHelper
     {
-        internal static bool IsNullOrEmpty<TItem>(this IEnumerable<TItem> items)
+        /// <summary>
+        /// True - <paramref name="items"/> is null or empty
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty<TItem>(this IEnumerable<TItem> items)
         {
             return items == null || !items.Any();
         }
@@ -23,7 +29,7 @@ namespace GetcuReone.FactFactory.Helpers
         /// <param name="code">error code</param>
         /// <param name="reason">error reason</param>
         /// <returns></returns>
-        internal static FactFactoryException CreateException(string code, string reason)
+        public static FactFactoryException CreateException(string code, string reason)
         {
             return new FactFactoryException(
                 new List<ErrorDetail>
