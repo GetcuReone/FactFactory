@@ -189,6 +189,15 @@
             Collection fo <see cref="T:GetcuReone.FactFactory.Entities.FactRule"/>
             </summary>
         </member>
+        <member name="P:GetcuReone.FactFactory.Entities.FactRuleCollection.Item(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.FactRuleCollection.Count">
+            <inheritdoc />
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.FactRuleCollection.IsReadOnly">
+            <inheritdoc />
+        </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor">
             <summary>
             Constructor
@@ -200,14 +209,12 @@
             </summary>
             <param name="factRules"></param>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.FactRuleCollection.Item(System.Int32)">
-            <inheritdoc />
-        </member>
-        <member name="P:GetcuReone.FactFactory.Entities.FactRuleCollection.Count">
-            <inheritdoc />
-        </member>
-        <member name="P:GetcuReone.FactFactory.Entities.FactRuleCollection.IsReadOnly">
-            <inheritdoc />
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.GetFactType``1">
+            <summary>
+            Return <see cref="T:GetcuReone.FactFactory.Interfaces.IFactType"/>
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.Add(GetcuReone.FactFactory.Entities.FactRule)">
             <inheritdoc />
