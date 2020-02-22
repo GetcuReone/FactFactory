@@ -57,5 +57,20 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .When("Compare rules without version", _ => firstRule.CompareWithoutVersion(secondRule))
                 .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][versioned][rule] Compare the same rules with versions")]
+        public void CompareSameRulesWithVersionsTestCase()
+        {
+            Rule firstRule = null;
+            Rule secondRule = null;
+
+            Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<V1>(), GetFactType<Fact1>()))
+                .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<V1>(), GetFactType<Fact1>()))
+                .And("Compare rules", _ => Assert.IsTrue(firstRule.Compare(secondRule), "rules are not equal"))
+                .When("Compare rules without version", _ => firstRule.CompareWithoutVersion(secondRule))
+                .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
+        }
     }
 }
