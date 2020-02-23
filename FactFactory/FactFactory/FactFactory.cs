@@ -1,12 +1,13 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace GetcuReone.FactFactory
 {
     /// <inheritdoc />
-    public class FactFactory : FactFactoryBase<FactContainer, FactRule, FactRuleCollection>
+    public class FactFactory : FactFactoryBase<FactContainer, FactRule, FactRuleCollection, WantAction>
     {
         private ReadOnlyCollection<FactRule> _tempRule;
 
@@ -50,6 +51,17 @@ namespace GetcuReone.FactFactory
         protected override FactContainer GetContainerForDerive()
         {
             return new FactContainer(Container);
+        }
+
+        /// <summary>
+        /// creation method <see cref="IWantAction"/>
+        /// </summary>
+        /// <param name="wantAction">action taken after deriving a fact</param>
+        /// <param name="factTypes">facts required to launch an action</param>
+        /// <returns></returns>
+        protected override WantAction CreateWantAction(Action<IFactContainer> wantAction, IList<IFactType> factTypes)
+        {
+            return new WantAction(wantAction, factTypes);
         }
     }
 }

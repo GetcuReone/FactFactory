@@ -1031,24 +1031,4 @@ namespace GetcuReone.FactFactory
 
         #endregion
     }
-
-    /// <summary>
-    /// Base class for fact factory
-    /// </summary>
-    public abstract class FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection> : FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection, WantAction>
-        where TFactContainer : class, IFactContainer
-        where TFactRule : class, IFactRule
-        where TFactRuleCollection : class, IList<TFactRule>
-    {
-        /// <summary>
-        /// creation method <see cref="IWantAction"/>
-        /// </summary>
-        /// <param name="wantAction">action taken after deriving a fact</param>
-        /// <param name="factTypes">facts required to launch an action</param>
-        /// <returns></returns>
-        protected override WantAction CreateWantAction(Action<IFactContainer> wantAction, IList<IFactType> factTypes)
-        {
-            return new WantAction(wantAction, factTypes);
-        }
-    }
 }

@@ -730,6 +730,14 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <summary>
+            creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>
+            </summary>
+            <param name="wantAction">action taken after deriving a fact</param>
+            <param name="factTypes">facts required to launch an action</param>
+            <returns></returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.FactFactoryBase`4">
             <summary>
             Base class for fact factory
@@ -1079,19 +1087,6 @@
             <typeparam name="TFact15">type fact</typeparam>
             <typeparam name="TFact16">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
-        </member>
-        <member name="T:GetcuReone.FactFactory.FactFactoryBase`3">
-            <summary>
-            Base class for fact factory
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <summary>
-            creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>
-            </summary>
-            <param name="wantAction">action taken after deriving a fact</param>
-            <param name="factTypes">facts required to launch an action</param>
-            <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Facts.DerivingCurrentFacts">
             <summary>
