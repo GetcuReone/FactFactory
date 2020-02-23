@@ -28,5 +28,18 @@ namespace FactFactory.VersionedTests.VersionedWantAction
                     Assert.IsTrue(GetFactType<V1>().Compare(wantAction.VersionType), $"{nameof(wantAction.VersionType)} does not store version information");
                 });
         }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][versioned][rule] create wantAction without version")]
+        public void CreateWantActionWithoutVersionTestCase()
+        {
+            GivenEmpty()
+                .When("Create wantAction without version", _ => CreateVersionedWantAction(GetFactType<Fact1>()))
+                .Then("Check result", wantAction =>
+                {
+                    Assert.IsNull(wantAction.VersionType, "The rule does not contain version information");
+                });
+        }
     }
 }
