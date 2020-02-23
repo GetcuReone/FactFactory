@@ -635,7 +635,7 @@
             <summary>
             Constructor
             </summary>
-            <param name="action">action taken after finding a fact</param>
+            <param name="wantAction">action taken after deriving a fact</param>
             <param name="factTypes">facts required to launch an action</param>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.WantAction.Invoke``1(``0)">

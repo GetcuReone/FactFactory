@@ -19,7 +19,11 @@ namespace FactFactoryTests.WantAction
         {
             GivenEmpty()
                 .When("Create WantAction", _ => ExpectedException<ArgumentNullException>(() => new WAction(null, null)))
-                .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
+                .Then("Check error", ex => 
+                {
+                    Assert.IsNotNull(ex, "error is null");
+                    Assert.AreEqual("wantAction", ex.ParamName, "Expectend another property name");
+                });
         }
 
         [Timeout(Timeouts.MilliSecond.Hundred)]

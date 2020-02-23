@@ -27,11 +27,11 @@ namespace GetcuReone.FactFactory.Entities
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="action">action taken after finding a fact</param>
+        /// <param name="wantAction">action taken after deriving a fact</param>
         /// <param name="factTypes">facts required to launch an action</param>
-        public WantAction(Action<IFactContainer> action, IList<IFactType> factTypes)
+        public WantAction(Action<IFactContainer> wantAction, IList<IFactType> factTypes)
         {
-            _action = action ?? throw new ArgumentNullException(nameof(action));
+            _action = wantAction ?? throw new ArgumentNullException(nameof(wantAction));
 
             if (factTypes.IsNullOrEmpty())
                 throw new ArgumentException("factTypes cannot be empty. The desired action should request a fact on entry");
