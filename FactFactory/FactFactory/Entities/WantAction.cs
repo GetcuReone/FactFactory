@@ -33,7 +33,7 @@ namespace GetcuReone.FactFactory.Entities
         {
             _action = action ?? throw new ArgumentNullException(nameof(action));
 
-            if (InputFactTypes.IsNullOrEmpty())
+            if (factTypes.IsNullOrEmpty())
                 throw new ArgumentException("factTypes cannot be empty. The desired action should request a fact on entry");
 
             InputFactTypes = new ReadOnlyCollection<IFactType>(factTypes);
