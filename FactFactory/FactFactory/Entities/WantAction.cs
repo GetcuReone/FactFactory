@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Helpers;
+using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,6 +32,10 @@ namespace GetcuReone.FactFactory.Entities
         public WantAction(Action<IFactContainer> action, IList<IFactType> factTypes)
         {
             _action = action ?? throw new ArgumentNullException(nameof(action));
+
+            if (InputFactTypes.IsNullOrEmpty())
+                throw new ArgumentException("factTypes cannot be empty. The desired action should request a fact on entry");
+
             InputFactTypes = new ReadOnlyCollection<IFactType>(factTypes);
         }
 
