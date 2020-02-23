@@ -34,7 +34,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <returns></returns>
         protected override VersionedFactRule CreateFactRule(Func<IFactContainer, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
-            throw new NotImplementedException();
+            return new VersionedFactRule(func, inputFactTypes, outputFactType);
         }
     }
 }
