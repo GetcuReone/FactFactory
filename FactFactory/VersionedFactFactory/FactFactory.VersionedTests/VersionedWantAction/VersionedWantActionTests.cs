@@ -21,11 +21,11 @@ namespace FactFactory.VersionedTests.VersionedWantAction
         public void CreateWantActionWithVersionTestCase()
         {
             GivenEmpty()
-                .When("Create wantAction with version", _ => CreateVersionedWantAction(GetFactType<V1>(), GetFactType<Fact1>()))
+                .When("Create wantAction with version", _ => CreateVersionedWantAction(GetFactType<Version1>(), GetFactType<Fact1>()))
                 .Then("Check result", wantAction =>
                 {
                     Assert.IsNotNull(wantAction.VersionType, "The rule does not contain version information");
-                    Assert.IsTrue(GetFactType<V1>().Compare(wantAction.VersionType), $"{nameof(wantAction.VersionType)} does not store version information");
+                    Assert.IsTrue(GetFactType<Version1>().Compare(wantAction.VersionType), $"{nameof(wantAction.VersionType)} does not store version information");
                 });
         }
 

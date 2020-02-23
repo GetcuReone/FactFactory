@@ -2,9 +2,9 @@
 
 namespace FactFactory.VersionedTests.CommonFacts
 {
-    public sealed class V2 : GetcuReone.FactFactory.Versioned.Facts.UintVersion
+    public sealed class Version2 : GetcuReone.FactFactory.Versioned.Facts.UintVersion
     {
-        public V2() : base(2)
+        public Version2() : base(2)
         {
         }
     }

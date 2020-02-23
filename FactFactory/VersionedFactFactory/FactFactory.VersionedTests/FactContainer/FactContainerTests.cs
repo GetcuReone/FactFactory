@@ -24,10 +24,10 @@ namespace FactFactory.VersionedTests.FactContainer
         public void AddVersionedFactContainerTestCase()
         {
             GivenCreateContainer()
-                .When("added versioned fact", container => container.Add(new V1()))
+                .When("added versioned fact", container => container.Add(new Version1()))
                 .Then("Check result", container =>
                 {
-                    Assert.IsTrue(container.Contains<V1>(), "Version fact not contained in container");
+                    Assert.IsTrue(container.Contains<Version1>(), "Version fact not contained in container");
                 });
         }
 
@@ -39,13 +39,13 @@ namespace FactFactory.VersionedTests.FactContainer
             GivenCreateContainer()
                 .When("added versioned fact", container => 
                 {
-                    container.Add(new V1());
-                    container.Add(new V2());
+                    container.Add(new Version1());
+                    container.Add(new Version2());
                 })
                 .Then("Check result", container =>
                 {
-                    Assert.IsTrue(container.Contains<V1>(), "Version fact not contained in container");
-                    Assert.IsTrue(container.Contains<V2>(), "Version fact not contained in container");
+                    Assert.IsTrue(container.Contains<Version1>(), "Version fact not contained in container");
+                    Assert.IsTrue(container.Contains<Version2>(), "Version fact not contained in container");
                 });
         }
 
@@ -55,12 +55,12 @@ namespace FactFactory.VersionedTests.FactContainer
         public void AddTwoIdenticalVersionedFactsContainerTestCase()
         {
             GivenCreateContainer()
-                .And("first addition of versioned fact", container => container.Add(new V1()))
-                .When("second addition of versioned fact", container => ExpectedException<ArgumentException>(() => container.Add(new V1())))
+                .And("first addition of versioned fact", container => container.Add(new Version1()))
+                .When("second addition of versioned fact", container => ExpectedException<ArgumentException>(() => container.Add(new Version1())))
                 .Then("Check result", error =>
                 {
                     Assert.IsNotNull(error, "error can't should be null");
-                    Assert.AreEqual($"The fact container already contains {typeof(V1).FullName} type of fact.", error.Message, "Expected another message");
+                    Assert.AreEqual($"The fact container already contains {typeof(Version1).FullName} type of fact.", error.Message, "Expected another message");
                 });
         }
     }

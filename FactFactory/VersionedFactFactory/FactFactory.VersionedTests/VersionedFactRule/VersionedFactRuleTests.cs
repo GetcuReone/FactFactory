@@ -15,11 +15,11 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         public void CreateRuleWithVersionTestCase()
         {
             GivenEmpty()
-                .When("Create rule with version", _ => VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<V1>(), GetFactType<Fact1>()))
+                .When("Create rule with version", _ => VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
                 .Then("Check result", rule =>
                 {
                     Assert.IsNotNull(rule.VersionType, "The rule does not contain version information");
-                    Assert.IsTrue(GetFactType<V1>().Compare(rule.VersionType), $"{nameof(Rule.VersionType)} does not store version information");
+                    Assert.IsTrue(GetFactType<Version1>().Compare(rule.VersionType), $"{nameof(Rule.VersionType)} does not store version information");
                 });
         }
 
@@ -59,8 +59,8 @@ namespace FactFactory.VersionedTests.VersionedFactRule
             Rule firstRule = null;
             Rule secondRule = null;
 
-            Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<V1>(), GetFactType<Fact1>()))
-                .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<V1>(), GetFactType<Fact1>()))
+            Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
+                .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
                 .And("Compare rules", _ => Assert.IsTrue(firstRule.Compare(secondRule), "rules are not equal"))
                 .When("Compare rules without version", _ => firstRule.CompareWithoutVersion(secondRule))
                 .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
@@ -74,8 +74,8 @@ namespace FactFactory.VersionedTests.VersionedFactRule
             Rule firstRule = null;
             Rule secondRule = null;
 
-            Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<V1>(), GetFactType<Fact1>()))
-                .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<V2>(), GetFactType<Fact1>()))
+            Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
+                .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version2>(), GetFactType<Fact1>()))
                 .And("Compare rules", _ => Assert.IsFalse(firstRule.Compare(secondRule), "rules are not equal"))
                 .When("Compare rules without version", _ => firstRule.CompareWithoutVersion(secondRule))
                 .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
@@ -89,7 +89,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
             Rule firstRule = null;
             Rule secondRule = null;
 
-            Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<V1>(), GetFactType<Fact1>()))
+            Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
                 .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
                 .And("Compare rules", _ => Assert.IsFalse(firstRule.Compare(secondRule), "rules are not equal"))
                 .When("Compare rules without version", _ => firstRule.CompareWithoutVersion(secondRule))
