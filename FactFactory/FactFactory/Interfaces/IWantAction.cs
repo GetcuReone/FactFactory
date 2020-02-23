@@ -9,17 +9,17 @@ namespace GetcuReone.FactFactory.Interfaces
     public interface IWantAction
     {
         /// <summary>
-        /// Facts Required to Launch an Action
+        /// Facts required to launch an action
         /// </summary>
         IEnumerable<IFactType> InputFactTypes { get; }
 
         /// <summary>
-        /// Start date for fact finding for action
+        /// Start date for fact deriving for action
         /// </summary>
         DateTime DateOfDerive { get; set; }
 
         /// <summary>
-        /// Run actioin
+        /// Run action
         /// </summary>
         /// <typeparam name="TFactContainer">container with <see cref="InputFactTypes"/></typeparam>
         /// <param name="container"></param>
