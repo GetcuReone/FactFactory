@@ -30,8 +30,8 @@ namespace GetcuReone.FactFactory.Versioned
             // If the version is not requested, then we consider that the last is necessary
             IVersionFact versionFact = null;
 
-            if (wantAction.TypeFactVersion != null)
-                versionFact = readOnlyFactContainer.GetVersionFact(wantAction.TypeFactVersion);
+            if (wantAction.VersionType != null)
+                versionFact = readOnlyFactContainer.GetVersionFact(wantAction.VersionType);
 
             var factRules = new List<TFactRule>();
 
@@ -40,10 +40,10 @@ namespace GetcuReone.FactFactory.Versioned
                 if (versionFact != null)
                 {
                     // No version means the highest possible version
-                    if (rule.TypeFactVersion == null)
+                    if (rule.VersionType == null)
                         continue;
 
-                    IVersionFact factRuleVersion = readOnlyFactContainer.GetVersionFact(rule.TypeFactVersion);
+                    IVersionFact factRuleVersion = readOnlyFactContainer.GetVersionFact(rule.VersionType);
 
                     if (factRuleVersion.IsMoreThan(versionFact))
                         continue;
@@ -52,7 +52,7 @@ namespace GetcuReone.FactFactory.Versioned
 
                     if (previousRule != null)
                     {
-                        IVersionFact previousFactRuleVersion = readOnlyFactContainer.GetVersionFact(previousRule.TypeFactVersion);
+                        IVersionFact previousFactRuleVersion = readOnlyFactContainer.GetVersionFact(previousRule.VersionType);
 
                         if (previousFactRuleVersion.IsMoreThan(factRuleVersion))
                             continue;
@@ -65,24 +65,24 @@ namespace GetcuReone.FactFactory.Versioned
                 }
                 else
                 {
-                    if (rule.TypeFactVersion != null)
+                    if (rule.VersionType != null)
                     {
-                        IVersionFact factRuleVersion = readOnlyFactContainer.GetVersionFact(rule.TypeFactVersion);
+                        IVersionFact factRuleVersion = readOnlyFactContainer.GetVersionFact(rule.VersionType);
 
                         TFactRule previousRule = factRules.SingleOrDefault(r => r.CompareWithoutVersion(rule));
 
                         if (previousRule != null)
                         {
-                            if (previousRule.TypeFactVersion == null)
+                            if (previousRule.VersionType == null)
                                 continue;
 
-                            IVersionFact previousFactRuleVersion = readOnlyFactContainer.GetVersionFact(previousRule.TypeFactVersion);
+                            IVersionFact previousFactRuleVersion = readOnlyFactContainer.GetVersionFact(previousRule.VersionType);
 
                             if (previousFactRuleVersion.IsMoreThan(factRuleVersion))
                                 continue;
                             else if (!previousFactRuleVersion.IsLessThan(factRuleVersion))
                                 throw FactFactoryHelper.CreateException(ErrorCode.VersionConflict, "Found facts that are no less and no more than each other." +
-                                    $"\nFirst rule :{rule.ToString()} version: {previousRule.TypeFactVersion.FactName}. Second rule: {previousRule.ToString()} version: {previousRule.TypeFactVersion.FactName}");
+                                    $"\nFirst rule :{rule.ToString()} version: {previousRule.VersionType.FactName}. Second rule: {previousRule.ToString()} version: {previousRule.VersionType.FactName}");
 
                             factRules.Remove(previousRule);
                             factRules.Add(rule);
@@ -96,7 +96,7 @@ namespace GetcuReone.FactFactory.Versioned
 
                         if (previousRule != null)
                         {
-                            if (previousRule.TypeFactVersion == null)
+                            if (previousRule.VersionType == null)
                                 throw FactFactoryHelper.CreateException(ErrorCode.VersionConflict, $"Same rules found without versions\n{rule.ToString()}");
 
                             factRules.Remove(previousRule);

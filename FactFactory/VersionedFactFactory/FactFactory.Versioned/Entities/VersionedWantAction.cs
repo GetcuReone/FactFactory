@@ -19,12 +19,12 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <param name="factTypes">facts required to launch an action</param>
         public VersionedWantAction(Action<IFactContainer> wantAction, IList<IFactType> factTypes) : base(wantAction, factTypes)
         {
-            TypeFactVersion = factTypes.SingleOrNullFactVersion();
+            VersionType = factTypes.SingleOrNullFactVersion();
         }
 
         /// <summary>
         /// Type fact version
         /// </summary>
-        public IFactType TypeFactVersion { get; }
+        public IFactType VersionType { get; }
     }
 }

@@ -17,7 +17,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <summary>
         /// Type of fact with rule version
         /// </summary>
-        public IFactType TypeFactVersion { get; }
+        public IFactType VersionType { get; }
 
         /// <summary>
         /// 
@@ -27,7 +27,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <param name="outputFactType"></param>
         public VersionedFactRule(Func<IFactContainer, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType) : base(func, inputFactTypes, outputFactType)
         {
-            TypeFactVersion = inputFactTypes?.SingleOrNullFactVersion();
+            VersionType = inputFactTypes?.SingleOrNullFactVersion();
         }
 
         /// <summary>

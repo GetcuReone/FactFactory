@@ -10,6 +10,6 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
         /// <summary>
         /// Type fact version
         /// </summary>
-        IFactType TypeFactVersion { get; }
+        IFactType VersionType { get; }
     }
 }

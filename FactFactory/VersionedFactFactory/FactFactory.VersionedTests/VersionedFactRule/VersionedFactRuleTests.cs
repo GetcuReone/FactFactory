@@ -18,8 +18,8 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .When("Create rule with version", _ => VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<V1>(), GetFactType<Fact1>()))
                 .Then("Check result", rule =>
                 {
-                    Assert.IsNotNull(rule.TypeFactVersion, "The rule does not contain version information");
-                    Assert.IsTrue(GetFactType<V1>().Compare(rule.TypeFactVersion), $"{nameof(Rule.TypeFactVersion)} does not store version information");
+                    Assert.IsNotNull(rule.VersionType, "The rule does not contain version information");
+                    Assert.IsTrue(GetFactType<V1>().Compare(rule.VersionType), $"{nameof(Rule.VersionType)} does not store version information");
                 });
         }
 
@@ -32,7 +32,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .When("Create rule with version", _ => VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
                 .Then("Check result", rule =>
                 {
-                    Assert.IsNull(rule.TypeFactVersion, "The rule contain version information");
+                    Assert.IsNull(rule.VersionType, "The rule contain version information");
                 });
         }
 
