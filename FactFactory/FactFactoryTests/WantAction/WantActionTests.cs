@@ -37,5 +37,19 @@ namespace FactFactoryTests.WantAction
                 .When("Run method", wantAction => wantAction.Invoke(new GetcuReone.FactFactory.Entities.FactContainer()))
                 .Then("Check result", _ => Assert.IsTrue(isRun, "Invoke not run"));
         }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][action][negative] create WantAction without input facts")]
+        public void CreateWantActionWithoutInputFactsTestCase()
+        {
+            GivenEmpty()
+                .When("Create WantAction", _ => ExpectedException<ArgumentException>(() => new WAction(ct => { }, null)))
+                .Then("Check error", ex =>
+                {
+                    Assert.IsNotNull(ex, "error is null");
+                    Assert.AreEqual("factTypes cannot be empty. The desired action should request a fact on entry.", ex.Message, "Expectend another message");
+                });
+        }
     }
 }
