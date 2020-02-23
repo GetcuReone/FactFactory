@@ -15,19 +15,19 @@ namespace FactFactory.VersionedTests.VersionedFactRule
             return new FactType<TFact>();
         }
 
-        //[Timeout(Timeouts.MilliSecond.Hundred)]
-        //[TestMethod]
-        //[Description("[fact][versioned][rule] create rule with version")]
-        //public void CreateRuleWithVersionTestCase()
-        //{
-        //    GivenEmpty()
-        //        .When("Create rule with version", _ => VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<V1>(), GetFactType<Fact1>()))
-        //        .Then("Check result", rule =>
-        //        {
-        //            Assert.IsNotNull(rule.TypeFactVersion, "The rule does not contain version information");
-        //            Assert.IsTrue(GetFactType<V1>().Compare(rule.TypeFactVersion), $"{nameof(Rule.TypeFactVersion)} does not store version information");
-        //        });
-        //}
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][versioned][rule] create rule with version")]
+        public void CreateRuleWithVersionTestCase()
+        {
+            GivenEmpty()
+                .When("Create rule with version", _ => VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<V1>(), GetFactType<Fact1>()))
+                .Then("Check result", rule =>
+                {
+                    Assert.IsNotNull(rule.TypeFactVersion, "The rule does not contain version information");
+                    Assert.IsTrue(GetFactType<V1>().Compare(rule.TypeFactVersion), $"{nameof(Rule.TypeFactVersion)} does not store version information");
+                });
+        }
 
         //[Timeout(Timeouts.MilliSecond.Hundred)]
         //[TestMethod]
