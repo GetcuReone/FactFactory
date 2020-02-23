@@ -30,5 +30,23 @@ namespace FactFactory.VersionedTests.FactContainer
                     Assert.IsTrue(container.Contains<V1>(), "Version fact not contained in container");
                 });
         }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[versioned][rule][container] add two versioned facts to the container")]
+        public void AddTwoVersionedFactsContainerTestCase()
+        {
+            GivenCreateContainer()
+                .When("added versioned fact", container => 
+                {
+                    container.Add(new V1());
+                    container.Add(new V2());
+                })
+                .Then("Check result", container =>
+                {
+                    Assert.IsTrue(container.Contains<V1>(), "Version fact not contained in container");
+                    Assert.IsTrue(container.Contains<V2>(), "Version fact not contained in container");
+                });
+        }
     }
 }
