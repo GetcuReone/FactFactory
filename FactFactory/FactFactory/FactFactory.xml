@@ -750,7 +750,7 @@
             Collection of rules for derive facts
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetFactInfo``1">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetFactType``1">
             <summary>
             Get fact type
             </summary>
