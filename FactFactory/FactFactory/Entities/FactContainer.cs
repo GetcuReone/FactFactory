@@ -41,7 +41,7 @@ namespace GetcuReone.FactFactory.Entities
             var factInfo = fact.GetFactType();
 
             if (this.Any(f => f.GetFactType().Compare(factInfo)))
-                throw new ArgumentException($"The fact container already contains {typeof(TFact).FullName} type of fact");
+                throw new ArgumentException($"The fact container already contains {typeof(TFact).FullName} type of fact.");
 
             _container.Add(fact);
         }

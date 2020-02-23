@@ -60,7 +60,7 @@ namespace FactFactory.VersionedTests.FactContainer
                 .Then("Check result", error =>
                 {
                     Assert.IsNotNull(error, "error can't should be null");
-                    Assert.AreEqual($"The fact container already contains {typeof(V1).FullName} type of fact", error.Message, "Expected another message");
+                    Assert.AreEqual($"The fact container already contains {typeof(V1).FullName} type of fact.", error.Message, "Expected another message");
                 });
         }
     }

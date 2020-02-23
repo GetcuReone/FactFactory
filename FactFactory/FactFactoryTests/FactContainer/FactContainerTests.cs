@@ -48,6 +48,7 @@ namespace FactFactoryTests.FactContainer
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error can't should be null");
+                    Assert.AreEqual($"The fact container already contains {typeof(IntFact).FullName} type of fact.", ex.Message, "Expected another message");
                 });
         }
 
