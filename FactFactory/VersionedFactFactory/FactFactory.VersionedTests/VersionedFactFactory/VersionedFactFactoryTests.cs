@@ -7,6 +7,7 @@ using JwtTestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using V_FactFactory = GetcuReone.FactFactory.Versioned.VersionedFactFactory;
+using V_Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
@@ -35,7 +36,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             GivenCreateVersionedFactFactory()
                 .And("Added rule", versionedFactFactory =>
                 {
-                    versionedFactFactory.Rules.AddRange(new VersionedFactRuleCollection
+                    versionedFactFactory.Rules.AddRange(new V_Collection
                     {
                         () => new Fact1(0),
                         (Fact1 fact) => new FactResult(fact.Value + 1),
