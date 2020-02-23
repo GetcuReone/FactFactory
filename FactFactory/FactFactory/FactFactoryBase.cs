@@ -40,7 +40,7 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
         /// <returns></returns>
-        protected IFactType GetFactInfo<TFact>() where TFact : IFact
+        protected IFactType GetFactType<TFact>() where TFact : IFact
         {
             return new FactType<TFact>();
         }
@@ -122,7 +122,7 @@ namespace GetcuReone.FactFactory
 
             WantFact(CreateWantAction(
                 container => fact = container.GetFact<TFact>(),
-                new List<IFactType> { GetFactInfo<TFact>() }));
+                new List<IFactType> { GetFactType<TFact>() }));
 
             Derive();
 
@@ -153,10 +153,10 @@ namespace GetcuReone.FactFactory
         {
             return new ReadOnlyCollection<IFactType>(new List<IFactType> 
             {
-                GetFactInfo<DerivingCurrentFacts>(),
-                GetFactInfo<StartDateOfDeriveCurrentFacts>(),
-                GetFactInfo<StartDateOfDerive>(),
-                GetFactInfo<DerivingFacts>(),
+                GetFactType<DerivingCurrentFacts>(),
+                GetFactType<StartDateOfDeriveCurrentFacts>(),
+                GetFactType<StartDateOfDerive>(),
+                GetFactType<DerivingFacts>(),
             });
         }
 
