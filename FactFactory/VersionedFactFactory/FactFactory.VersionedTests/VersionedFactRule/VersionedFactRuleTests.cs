@@ -1,6 +1,5 @@
 ﻿using FactFactory.VersionedTests.CommonFacts;
-using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Interfaces;
+using FactFactoryTestsCommon;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
@@ -8,13 +7,8 @@ using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
 namespace FactFactory.VersionedTests.VersionedFactRule
 {
     [TestClass]
-    public sealed class VersionedFactRuleTests : TestBase
+    public sealed class VersionedFactRuleTests : CommonTestBase
     {
-        private IFactType GetFactType<TFact>() where TFact : IFact
-        {
-            return new FactType<TFact>();
-        }
-
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
         [Description("[fact][versioned][rule] create rule with version")]

@@ -1,4 +1,6 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using FactFactoryTests.CommonFacts;
+using FactFactoryTestsCommon;
+using GetcuReone.FactFactory.Interfaces;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -8,7 +10,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactoryTests.WantAction
 {
     [TestClass]
-    public sealed class WantActionTests : TestBase
+    public sealed class WantActionTests : CommonTestBase
     {
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
@@ -27,7 +29,7 @@ namespace FactFactoryTests.WantAction
         {
             bool isRun = false;
 
-            Given("Create WantAction", () => new WAction(ct => isRun = true, new List<IFactType>()))
+            Given("Create WantAction", () => new WAction(ct => isRun = true, new List<IFactType> { GetFactType<OtherFact>() }))
                 .When("Run method", wantAction => wantAction.Invoke(new GetcuReone.FactFactory.Entities.FactContainer()))
                 .Then("Check result", _ => Assert.IsTrue(isRun, "Invoke not run"));
         }

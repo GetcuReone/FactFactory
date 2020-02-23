@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\JwtTestAdapter\JwtTestAdapter.csproj" />
+    <ProjectReference Include="..\..\FactFactoryTestsCommon\FactFactoryTestsCommon.csproj" />
     <ProjectReference Include="..\FactFactory.Versioned\FactFactory.Versioned.csproj" />
   </ItemGroup>
 
