@@ -779,12 +779,6 @@
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact(`3)">
-            <summary>
-            Requesting a desired fact through action
-            </summary>
-            <param name="wantAction"></param>
-        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetDefaultFactsInContainer">
             <summary>
             Get default facts in a container
@@ -848,27 +842,20 @@
             <param name="computedNodes"></param>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.FactFactoryBase`3">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact(`3)">
             <summary>
-            Base class for fact factory
+            Requesting a desired fact through action
             </summary>
+            <param name="wantAction"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <summary>
-            creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>
-            </summary>
-            <param name="wantAction">action taken after deriving a fact</param>
-            <param name="factTypes">facts required to launch an action</param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``1(System.Action{``0})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``1(System.Action{``0})">
             <summary>
             Requesting desired facts through action
             </summary>
             <typeparam name="TFact"></typeparam>
             <param name="wantFactAction"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``2(System.Action{``0,``1})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``2(System.Action{``0,``1})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -876,7 +863,7 @@
             <typeparam name="TFact2"></typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``3(System.Action{``0,``1,``2})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``3(System.Action{``0,``1,``2})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -885,7 +872,7 @@
             <typeparam name="TFact3">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``4(System.Action{``0,``1,``2,``3})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``4(System.Action{``0,``1,``2,``3})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -895,7 +882,7 @@
             <typeparam name="TFact4">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``5(System.Action{``0,``1,``2,``3,``4})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``5(System.Action{``0,``1,``2,``3,``4})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -906,7 +893,7 @@
             <typeparam name="TFact5">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``6(System.Action{``0,``1,``2,``3,``4,``5})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``6(System.Action{``0,``1,``2,``3,``4,``5})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -918,7 +905,7 @@
             <typeparam name="TFact6">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``7(System.Action{``0,``1,``2,``3,``4,``5,``6})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``7(System.Action{``0,``1,``2,``3,``4,``5,``6})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -931,7 +918,7 @@
             <typeparam name="TFact7">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``8(System.Action{``0,``1,``2,``3,``4,``5,``6,``7})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``8(System.Action{``0,``1,``2,``3,``4,``5,``6,``7})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -945,7 +932,7 @@
             <typeparam name="TFact8">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``9(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``9(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -960,7 +947,7 @@
             <typeparam name="TFact9">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``10(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``10(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -976,7 +963,7 @@
             <typeparam name="TFact10">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``11(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``11(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -993,7 +980,7 @@
             <typeparam name="TFact11">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``12(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``12(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -1011,7 +998,7 @@
             <typeparam name="TFact12">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``13(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``13(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -1030,7 +1017,7 @@
             <typeparam name="TFact13">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``14(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``14(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -1050,7 +1037,7 @@
             <typeparam name="TFact14">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``15(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``15(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -1071,7 +1058,7 @@
             <typeparam name="TFact15">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``16(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFact``16(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15})">
             <summary>
             Requesting desired facts through action
             </summary>
@@ -1092,6 +1079,19 @@
             <typeparam name="TFact15">type fact</typeparam>
             <typeparam name="TFact16">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="T:GetcuReone.FactFactory.FactFactoryBase`3">
+            <summary>
+            Base class for fact factory
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <summary>
+            creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>
+            </summary>
+            <param name="wantAction">action taken after deriving a fact</param>
+            <param name="factTypes">facts required to launch an action</param>
+            <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Facts.DerivingCurrentFacts">
             <summary>
