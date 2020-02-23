@@ -48,5 +48,20 @@ namespace FactFactory.VersionedTests.FactContainer
                     Assert.IsTrue(container.Contains<V2>(), "Version fact not contained in container");
                 });
         }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[versioned][rule][container][negative] add two identical versioned facts to the container")]
+        public void AddTwoIdenticalVersionedFactsContainerTestCase()
+        {
+            GivenCreateContainer()
+                .And("first addition of versioned fact", container => container.Add(new V1()))
+                .When("second addition of versioned fact", container => ExpectedException<ArgumentException>(() => container.Add(new V1())))
+                .Then("Check result", error =>
+                {
+                    Assert.IsNotNull(error, "error can't should be null");
+                    Assert.AreEqual($"The fact container already contains {typeof(V1).FullName} type of fact", error.Message, "Expected another message");
+                });
+        }
     }
 }
