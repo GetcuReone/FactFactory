@@ -29,7 +29,7 @@
             Version rule for calculating a fact
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule.TypeFactVersion">
+        <member name="P:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule.VersionType">
             <summary>
             Type of fact with rule version
             </summary>
@@ -75,6 +75,23 @@
             <param name="outputFactType">information on output fact</param>
             <returns></returns>
         </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction">
+            <summary>
+            Information about the desired action with the version
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="wantAction">action taken after deriving a fact</param>
+            <param name="factTypes">facts required to launch an action</param>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction.VersionType">
+            <summary>
+            Type fact version
+            </summary>
+        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Facts.UintVersion">
             <summary>
             base class for factors determining version by number <see cref="T:System.UInt32"/>
@@ -112,7 +129,7 @@
             Fact type version information. Contains information about the type of fact with the desired version.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.Interfaces.IFactTypeVersionInformation.TypeFactVersion">
+        <member name="P:GetcuReone.FactFactory.Versioned.Interfaces.IFactTypeVersionInformation.VersionType">
             <summary>
             Type fact version
             </summary>
