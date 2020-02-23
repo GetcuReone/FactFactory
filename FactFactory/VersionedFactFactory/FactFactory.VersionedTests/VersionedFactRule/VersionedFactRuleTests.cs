@@ -10,8 +10,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
     [TestClass]
     public sealed class VersionedFactRuleTests : TestBase
     {
-        private IFactType GetFactType<TFact>()
-            where TFact : IFact
+        private IFactType GetFactType<TFact>() where TFact : IFact
         {
             return new FactType<TFact>();
         }
