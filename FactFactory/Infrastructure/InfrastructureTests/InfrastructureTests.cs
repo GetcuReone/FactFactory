@@ -159,6 +159,10 @@ namespace InfrastructureTests
         {
             string beginNamespace = "GetcuReone";
             string partNameAssemblies = "FactFactory";
+            string[] excludeAssemblies = new string[]
+            {
+                "FactFactoryTestsCommon.dll"
+            };
 
             Given("Get all file", () => InfrastructureHelper.GetAllFiles(_solutionFolder))
                 .And("Get all assemblies", files => files.Where(file => file.Name.Contains(".dll")))
@@ -168,7 +172,8 @@ namespace InfrastructureTests
                         .Where(file => !file.Name.Contains("Tests.dll")
                             && !file.FullName.Contains("TestAdapter.dll")
                             && !file.FullName.Contains("obj")
-                            && file.FullName.Contains(_buildConfiguration)))
+                            && file.FullName.Contains(_buildConfiguration)
+                            && excludeAssemblies.All(ass => ass != file.Name)))
                 .And($"Exclude duplicate",
                     files => files
                     .DistinctByFunc((x, y) => x.Name == y.Name)
