@@ -790,6 +790,14 @@
             Get default facts in a container
             </summary>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <summary>
+            creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>
+            </summary>
+            <param name="wantAction">action taken after deriving a fact</param>
+            <param name="factTypes">facts required to launch an action</param>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetRulesForWantAction(`3,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Return a list with the appropriate rules at the time of the derive of the facts
@@ -845,11 +853,12 @@
             Base class for fact factory
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.DeriveFact``1">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
-            Derive <typeparamref name="TFact"/>
+            creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>
             </summary>
-            <typeparam name="TFact"></typeparam>
+            <param name="wantAction">action taken after deriving a fact</param>
+            <param name="factTypes">facts required to launch an action</param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`3.WantFact``1(System.Action{``0})">

@@ -113,7 +113,23 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
         /// <returns></returns>
-        public abstract TFact DeriveFact<TFact>() where TFact : IFact;
+        public virtual TFact DeriveFact<TFact>() where TFact : IFact
+        {
+            TFact fact = default;
+
+            var wantActions = new List<TWantAction>(WantActions);
+            WantActions.Clear();
+
+            WantFact(CreateWantAction(
+                container => fact = container.GetFact<TFact>(),
+                new List<IFactType> { GetFactInfo<TFact>() }));
+
+            Derive();
+
+            WantActions.AddRange(wantActions);
+
+            return fact;
+        }
 
         /// <summary>
         /// Requesting a desired fact through action
@@ -145,6 +161,14 @@ namespace GetcuReone.FactFactory
         }
 
         #region methods for derive
+
+        /// <summary>
+        /// creation method <see cref="IWantAction"/>
+        /// </summary>
+        /// <param name="wantAction">action taken after deriving a fact</param>
+        /// <param name="factTypes">facts required to launch an action</param>
+        /// <returns></returns>
+        protected abstract TWantAction CreateWantAction(Action<IFactContainer> wantAction, IList<IFactType> factTypes);
 
         /// <summary>
         /// Return a list with the appropriate rules at the time of the derive of the facts
@@ -550,23 +574,14 @@ namespace GetcuReone.FactFactory
         where TFactRuleCollection : class, IList<TFactRule>
     {
         /// <summary>
-        /// Derive <typeparamref name="TFact"/>
+        /// creation method <see cref="IWantAction"/>
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
+        /// <param name="wantAction">action taken after deriving a fact</param>
+        /// <param name="factTypes">facts required to launch an action</param>
         /// <returns></returns>
-        public override TFact DeriveFact<TFact>()
+        protected override WantAction CreateWantAction(Action<IFactContainer> wantAction, IList<IFactType> factTypes)
         {
-            TFact fact = default;
-
-            var wantActions = new List<WantAction>(WantActions);
-            WantActions.Clear();
-
-            WantFact((TFact factInner) => fact = factInner);
-            Derive();
-
-            WantActions.AddRange(wantActions);
-
-            return fact;
+            return new WantAction(wantAction, factTypes);
         }
 
         /// <summary>
