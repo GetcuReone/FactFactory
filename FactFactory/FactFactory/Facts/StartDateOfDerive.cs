@@ -10,8 +10,8 @@ namespace GetcuReone.FactFactory.Facts
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="fact"></param>
-        public StartDateOfDerive(DateTime fact) : base(fact)
+        /// <param name="value"></param>
+        public StartDateOfDerive(DateTime value) : base(value)
         {
         }
     }
