@@ -1,8 +1,10 @@
 ﻿using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Facts;
 using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -23,7 +25,7 @@ namespace FactFactoryTests.FactFactoryT
         public void RulesCannotBeEmptyTestCase()
         {
             Given("Set rules", () => FactFactory.Rules.Clear())
-                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException>(() => FactFactory.DeriveFact<Input10Fact>()))
+                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => FactFactory.DeriveFact<Input10Fact>()))
                 .Then("Check error", ex => 
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
@@ -127,7 +129,7 @@ namespace FactFactoryTests.FactFactoryT
         public void GetOriginalContainerTestCase()
         {
             Given("Create factory", () => new Env.FactFactoryWithoutRules())
-                .When("Run derive", factory => ExpectedException<InvalidDeriveOperationException>(() => factory.DeriveFact<OtherFact>()))
+                .When("Run derive", factory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => factory.DeriveFact<OtherFact>()))
                 .Then("Check error", ex => 
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
