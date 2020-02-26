@@ -4,6 +4,7 @@ using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace GetcuReone.FactFactory
 {
@@ -31,6 +32,13 @@ namespace GetcuReone.FactFactory
         {
             _tempRule = new ReadOnlyCollection<FactRule>(Rules);
 
+            if (Container.TryGetFact<StartDateOfDerive>(out var fact))
+                Container.Remove(fact);
+            if (Container.TryGetFact<DerivingFacts>(out var fact1))
+                Container.Remove(fact1);
+
+            Container.Add(new StartDateOfDerive(DateTime.Now));
+            Container.Add(new DerivingFacts(WantActions.SelectMany(w => w.InputFactTypes).ToList()));
             base.Derive();
 
             _tempRule = null;

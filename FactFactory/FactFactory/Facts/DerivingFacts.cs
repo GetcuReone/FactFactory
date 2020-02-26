@@ -1,31 +1,19 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 
 namespace GetcuReone.FactFactory.Facts
 {
     /// <summary>
     /// All deriving facts
     /// </summary>
-    public sealed class DerivingFacts : FactBase<ReadOnlyCollection<IFactType>>
+    public sealed class DerivingFacts : FactBase<List<IFactType>>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="factTypes"></param>
-        public DerivingFacts(ReadOnlyCollection<IFactType> factTypes) : base(factTypes)
-        {
-
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="factTypes"></param>
-        public DerivingFacts(IList<IFactType> factTypes) : this(new ReadOnlyCollection<IFactType>(factTypes))
+        public DerivingFacts(List<IFactType> factTypes) : base(factTypes)
         {
 
         }
