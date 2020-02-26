@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Constants;
+﻿using GetcuReone.ComboPatterns.Factory;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
@@ -14,9 +15,10 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Base class for fact factory
     /// </summary>
-    public abstract class FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IFactFactory<TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
-        where TFactContainer : class, IFactContainer
-        where TFactRule : class, IFactRule
+    public abstract class FactFactoryBase<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactoryBase, IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
+        where TFact : IFact
+        where TFactContainer : class, IFactContainer<TFact>
+        where TFactRule : class, IFactRule<TFact, TFactContainer>
         where TFactRuleCollection : class, IList<TFactRule>
         where TWantAction : class, IWantAction
     {
@@ -38,27 +40,9 @@ namespace GetcuReone.FactFactory
         /// <summary>
         /// Get fact type
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
+        /// <typeparam name="TGetFact"></typeparam>
         /// <returns></returns>
-        protected IFactType GetFactType<TFact>() where TFact : IFact
-        {
-            return new FactType<TFact>();
-        }
-
-        /// <summary>
-        /// Object creation method
-        /// </summary>
-        /// <typeparam name="TParameters"></typeparam>
-        /// <typeparam name="TObj"></typeparam>
-        /// <param name="factoryFunc"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        public virtual TObj CreateObject<TParameters, TObj>(Func<TParameters, TObj> factoryFunc, TParameters parameters)
-        {
-            return factoryFunc != null
-                ? factoryFunc(parameters)
-                : throw new ArgumentNullException(nameof(factoryFunc));
-        }
+        protected abstract IFactType GetFactType<TGetFact>() where TGetFact : IFact;
 
         /// <summary>
         /// Derive the facts
@@ -109,13 +93,13 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Derive <typeparamref name="TFact"/>
+        /// Derive <typeparamref name="TWantFact"/>
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
+        /// <typeparam name="TWantFact">Type of desired fact</typeparam>
         /// <returns></returns>
-        public virtual TFact DeriveFact<TFact>() where TFact : IFact
+        public virtual TWantFact DeriveFact<TWantFact>() where TWantFact : TFact
         {
-            TFact fact = default;
+            TWantFact fact = default;
 
             var wantActions = new List<TWantAction>(WantActions);
             WantActions.Clear();
@@ -153,7 +137,7 @@ namespace GetcuReone.FactFactory
         /// <param name="wantAction">action taken after deriving a fact</param>
         /// <param name="factTypes">facts required to launch an action</param>
         /// <returns></returns>
-        protected abstract TWantAction CreateWantAction(Action<IFactContainer> wantAction, IList<IFactType> factTypes);
+        protected abstract TWantAction CreateWantAction(Action<TFactContainer> wantAction, IList<IFactType> factTypes);
 
         /// <summary>
         /// Return a list with the appropriate rules at the time of the derive of the facts
@@ -555,6 +539,7 @@ namespace GetcuReone.FactFactory
         /// Requesting a desired fact through action
         /// </summary>
         /// <param name="wantAction"></param>
+        /// <exception cref="FactFactoryException">The action has already been requested before. Or facts requested <see cref="INoDerivedFact"/> or <see cref="INotContainedFact"/></exception>
         public virtual void WantFact(TWantAction wantAction)
         {
             if (WantActions.IndexOf(wantAction) != -1)
@@ -569,13 +554,13 @@ namespace GetcuReone.FactFactory
         /// <summary>
         /// Requesting desired facts through action
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
+        /// <typeparam name="TFact1"></typeparam>
         /// <param name="wantFactAction"></param>
-        public virtual void WantFact<TFact>(
-            Action<TFact> wantFactAction) where TFact : IFact
+        public virtual void WantFact<TFact1>(
+            Action<TFact1> wantFactAction) where TFact1 : TFact
         {
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact>()),
+                container => wantFactAction(container.GetFact<TFact1>()),
                 new List<IFactType> { GetFactType<TFact>() }));
         }
 
@@ -587,8 +572,8 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2>(
             Action<TFact1, TFact2> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>()),
@@ -604,9 +589,9 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3>(
             Action<TFact1, TFact2, TFact3> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>()),
@@ -623,10 +608,10 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4>(
             Action<TFact1, TFact2, TFact3, TFact4> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>()),
@@ -644,11 +629,11 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>()),
@@ -667,12 +652,12 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
-            where TFact6 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
+            where TFact6 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>()),
@@ -692,13 +677,13 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
-            where TFact6 : IFact
-            where TFact7 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
+            where TFact6 : TFact
+            where TFact7 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>()),
@@ -719,14 +704,14 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
-            where TFact6 : IFact
-            where TFact7 : IFact
-            where TFact8 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
+            where TFact6 : TFact
+            where TFact7 : TFact
+            where TFact8 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>()),
@@ -748,15 +733,15 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
-            where TFact6 : IFact
-            where TFact7 : IFact
-            where TFact8 : IFact
-            where TFact9 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
+            where TFact6 : TFact
+            where TFact7 : TFact
+            where TFact8 : TFact
+            where TFact9 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>()),
@@ -779,16 +764,16 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
-            where TFact6 : IFact
-            where TFact7 : IFact
-            where TFact8 : IFact
-            where TFact9 : IFact
-            where TFact10 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
+            where TFact6 : TFact
+            where TFact7 : TFact
+            where TFact8 : TFact
+            where TFact9 : TFact
+            where TFact10 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>()),
@@ -812,17 +797,17 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
-            where TFact6 : IFact
-            where TFact7 : IFact
-            where TFact8 : IFact
-            where TFact9 : IFact
-            where TFact10 : IFact
-            where TFact11 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
+            where TFact6 : TFact
+            where TFact7 : TFact
+            where TFact8 : TFact
+            where TFact9 : TFact
+            where TFact10 : TFact
+            where TFact11 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>()),
@@ -847,18 +832,18 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
-            where TFact6 : IFact
-            where TFact7 : IFact
-            where TFact8 : IFact
-            where TFact9 : IFact
-            where TFact10 : IFact
-            where TFact11 : IFact
-            where TFact12 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
+            where TFact6 : TFact
+            where TFact7 : TFact
+            where TFact8 : TFact
+            where TFact9 : TFact
+            where TFact10 : TFact
+            where TFact11 : TFact
+            where TFact12 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>(), container.GetFact<TFact12>()),
@@ -884,19 +869,19 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
-            where TFact6 : IFact
-            where TFact7 : IFact
-            where TFact8 : IFact
-            where TFact9 : IFact
-            where TFact10 : IFact
-            where TFact11 : IFact
-            where TFact12 : IFact
-            where TFact13 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
+            where TFact6 : TFact
+            where TFact7 : TFact
+            where TFact8 : TFact
+            where TFact9 : TFact
+            where TFact10 : TFact
+            where TFact11 : TFact
+            where TFact12 : TFact
+            where TFact13 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>(), container.GetFact<TFact12>(), container.GetFact<TFact13>()),
@@ -923,20 +908,20 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
-            where TFact6 : IFact
-            where TFact7 : IFact
-            where TFact8 : IFact
-            where TFact9 : IFact
-            where TFact10 : IFact
-            where TFact11 : IFact
-            where TFact12 : IFact
-            where TFact13 : IFact
-            where TFact14 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
+            where TFact6 : TFact
+            where TFact7 : TFact
+            where TFact8 : TFact
+            where TFact9 : TFact
+            where TFact10 : TFact
+            where TFact11 : TFact
+            where TFact12 : TFact
+            where TFact13 : TFact
+            where TFact14 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>(), container.GetFact<TFact12>(), container.GetFact<TFact13>(), container.GetFact<TFact14>()),
@@ -964,21 +949,21 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
-            where TFact6 : IFact
-            where TFact7 : IFact
-            where TFact8 : IFact
-            where TFact9 : IFact
-            where TFact10 : IFact
-            where TFact11 : IFact
-            where TFact12 : IFact
-            where TFact13 : IFact
-            where TFact14 : IFact
-            where TFact15 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
+            where TFact6 : TFact
+            where TFact7 : TFact
+            where TFact8 : TFact
+            where TFact9 : TFact
+            where TFact10 : TFact
+            where TFact11 : TFact
+            where TFact12 : TFact
+            where TFact13 : TFact
+            where TFact14 : TFact
+            where TFact15 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>(), container.GetFact<TFact12>(), container.GetFact<TFact13>(), container.GetFact<TFact14>(), container.GetFact<TFact15>()),
@@ -1007,22 +992,22 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16> wantFactAction)
-            where TFact1 : IFact
-            where TFact2 : IFact
-            where TFact3 : IFact
-            where TFact4 : IFact
-            where TFact5 : IFact
-            where TFact6 : IFact
-            where TFact7 : IFact
-            where TFact8 : IFact
-            where TFact9 : IFact
-            where TFact10 : IFact
-            where TFact11 : IFact
-            where TFact12 : IFact
-            where TFact13 : IFact
-            where TFact14 : IFact
-            where TFact15 : IFact
-            where TFact16 : IFact
+            where TFact1 : TFact
+            where TFact2 : TFact
+            where TFact3 : TFact
+            where TFact4 : TFact
+            where TFact5 : TFact
+            where TFact6 : TFact
+            where TFact7 : TFact
+            where TFact8 : TFact
+            where TFact9 : TFact
+            where TFact10 : TFact
+            where TFact11 : TFact
+            where TFact12 : TFact
+            where TFact13 : TFact
+            where TFact14 : TFact
+            where TFact15 : TFact
+            where TFact16 : TFact
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>(), container.GetFact<TFact12>(), container.GetFact<TFact13>(), container.GetFact<TFact14>(), container.GetFact<TFact15>(), container.GetFact<TFact16>()),
