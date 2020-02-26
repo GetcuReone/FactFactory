@@ -39,9 +39,11 @@ namespace GetcuReone.FactFactory.Entities
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
             OutputFactType = outputFactType ?? throw new ArgumentNullException(nameof(outputFactType));
+            new List<IFactType> { OutputFactType }.CheckArgumentFacts<TFact>();
 
             if (inputFactTypes != null)
             {
+                inputFactTypes.CheckArgumentFacts<TFact>();
                 if (inputFactTypes.Any(factType => factType.Compare(outputFactType)))
                     throw new ArgumentException("Cannot request a fact calculated according to the rule");
 
@@ -49,6 +51,7 @@ namespace GetcuReone.FactFactory.Entities
             }
             else
                 InputFactTypes = new ReadOnlyCollection<IFactType>(new List<IFactType>());
+
         }
 
         /// <summary>

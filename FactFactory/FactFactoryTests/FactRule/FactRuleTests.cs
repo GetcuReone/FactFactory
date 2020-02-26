@@ -195,5 +195,41 @@ namespace FactFactoryTests.FactRule
                     Assert.AreEqual("Cannot request a fact calculated according to the rule", ex.Message, "Another message expected");
                 });
         }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][rule][negative] request an invalid fact")]
+        public void Rule_RequestInvalidFactTestCase()
+        {
+            GivenEmpty()
+                .When("Create rule", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<InvalidFact>()));
+                })
+                .Then("Check error", ex =>
+                {
+                    Assert.IsNotNull(ex, "error is null");
+                    Assert.AreEqual("InvalidFact types are not inherited from GetcuReone.FactFactory.Facts.FactBase", ex.Message, "Another message expected");
+                });
+        }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[fact][rule][negative] request entry is not a valid fact")]
+        public void Rule_RequestEntryInvalidFactTestCase()
+        {
+            GivenEmpty()
+                .When("Create rule", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<InvalidFact>() }, GetFactType<IntFact>()));
+                })
+                .Then("Check error", ex =>
+                {
+                    Assert.IsNotNull(ex, "error is null");
+                    Assert.AreEqual("InvalidFact types are not inherited from GetcuReone.FactFactory.Facts.FactBase", ex.Message, "Another message expected");
+                });
+        }
     }
 }

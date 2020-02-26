@@ -85,5 +85,14 @@ namespace GetcuReone.FactFactory.Helpers
         {
             return container.Any(fact => fact.GetFactType().Compare(factType));
         }
+
+        internal static void CheckArgumentFacts<TFact>(this IEnumerable<IFactType> factTypes)
+            where TFact : IFact
+        {
+            var invalidTypes = factTypes.Where(type => !type.IsFactType<TFact>()).ToList();
+
+            if (!invalidTypes.IsNullOrEmpty())
+                throw new ArgumentException($"{string.Join(", ", invalidTypes.ConvertAll(type => type.FactName))} types are not inherited from {typeof(TFact).FullName}");
+        }
     }
 }
