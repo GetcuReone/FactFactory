@@ -17,14 +17,6 @@
         string FactName { get; }
 
         /// <summary>
-        /// Is in the container
-        /// </summary>
-        /// <typeparam name="TFactContainer">type container</typeparam>
-        /// <param name="container">container</param>
-        /// <returns></returns>
-        bool ContainsContainer<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
-
-        /// <summary>
         /// Is it possible to convert a fact type to a <typeparamref name="TFact"/>
         /// </summary>
         /// <typeparam name="TFact"></typeparam>

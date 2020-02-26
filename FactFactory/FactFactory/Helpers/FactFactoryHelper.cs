@@ -73,5 +73,12 @@ namespace GetcuReone.FactFactory.Helpers
         {
             return new FactType<TFact>();
         }
+
+        internal static bool ContainsContainer<TFact, TFactContainer>(this IFactType factType, TFactContainer container)
+            where TFact : IFact
+            where TFactContainer : IFactContainer<TFact>
+        {
+            return container.Any(fact => fact.GetFactType().Compare(factType));
+        }
     }
 }
