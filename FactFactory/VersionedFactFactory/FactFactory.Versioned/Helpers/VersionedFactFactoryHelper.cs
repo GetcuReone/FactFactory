@@ -12,7 +12,8 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
     /// </summary>
     internal static class VersionedFactFactoryHelper
     {
-        internal static IVersionFact GetVersionFact(this IEnumerable<IFact> facts, IFactType factTypeVersion)
+        internal static IVersionFact GetVersionFact<TFact>(this IEnumerable<TFact> facts, IFactType factTypeVersion)
+            where TFact : IVersionedFact
         {
             var versionFacts = facts.Where(fact => fact.GetFactType().Compare(factTypeVersion)).ToList();
 

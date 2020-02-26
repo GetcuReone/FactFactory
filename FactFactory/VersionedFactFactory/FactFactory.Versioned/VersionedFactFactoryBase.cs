@@ -12,11 +12,12 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Base class for versioned fact factory
     /// </summary>
-    public abstract class VersionedFactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactFactoryBase<TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
-        where TFactContainer : class, IFactContainer
-        where TFactRule : class, IVersionedFactRule
+    public abstract class VersionedFactFactoryBase<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactFactoryBase<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
+        where TFact : IVersionedFact
+        where TFactContainer : class, IFactContainer<TFact>
+        where TFactRule : class, IVersionedFactRule<TFact>
         where TFactRuleCollection : class, IList<TFactRule>
-        where TWantAction : class, IWantAction, IFactTypeVersionInformation
+        where TWantAction : class, IWantAction<TFact>, IFactTypeVersionInformation
     {
         /// <summary>
         /// Returns only those lambdas that fit the requested version
@@ -24,7 +25,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="wantAction"></param>
         /// <param name="readOnlyFactContainer"></param>
         /// <returns></returns>
-        protected override IReadOnlyCollection<TFactRule> GetRulesForWantAction(TWantAction wantAction, IReadOnlyCollection<IFact> readOnlyFactContainer)
+        protected override IReadOnlyCollection<TFactRule> GetRulesForWantAction(TWantAction wantAction, IReadOnlyCollection<TFact> readOnlyFactContainer)
         {
             // We find out the version that we will focus on
             // If the version is not requested, then we consider that the last is necessary
