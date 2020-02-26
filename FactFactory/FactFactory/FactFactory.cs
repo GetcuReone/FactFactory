@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -6,8 +7,10 @@ using System.Collections.ObjectModel;
 
 namespace GetcuReone.FactFactory
 {
-    /// <inheritdoc />
-    public class FactFactory : FactFactoryBase<FactContainer, FactRule, FactRuleCollection, WantAction>
+    /// <summary>
+    /// Factory default implementation
+    /// </summary>
+    public class FactFactory : FactFactoryBase<FactBase, FactContainer, FactRule, FactRuleCollection, WantAction>
     {
         private ReadOnlyCollection<FactRule> _tempRule;
 
@@ -39,7 +42,7 @@ namespace GetcuReone.FactFactory
         /// <param name="readOnlyFactContainer">read-only fact container</param>
         /// <param name="wantAction"></param>
         /// <returns></returns>
-        protected override IReadOnlyCollection<FactRule> GetRulesForWantAction(WantAction wantAction, IReadOnlyCollection<IFact> readOnlyFactContainer)
+        protected override IReadOnlyCollection<FactRule> GetRulesForWantAction(WantAction wantAction, IReadOnlyCollection<FactBase> readOnlyFactContainer)
         {
             return _tempRule;
         }
@@ -59,9 +62,19 @@ namespace GetcuReone.FactFactory
         /// <param name="wantAction">action taken after deriving a fact</param>
         /// <param name="factTypes">facts required to launch an action</param>
         /// <returns></returns>
-        protected override WantAction CreateWantAction(Action<IFactContainer> wantAction, IList<IFactType> factTypes)
+        protected override WantAction CreateWantAction(Action<IFactContainer<FactBase>> wantAction, IList<IFactType> factTypes)
         {
             return new WantAction(wantAction, factTypes);
+        }
+
+        /// <summary>
+        /// Get fact type
+        /// </summary>
+        /// <typeparam name="TGetFact"></typeparam>
+        /// <returns></returns>
+        protected override IFactType GetFactType<TGetFact>()
+        {
+            return new FactType<TGetFact>();
         }
     }
 }

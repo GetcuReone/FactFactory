@@ -9,8 +9,9 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Base collection for <typeparamref name="TFactRule"/>
     /// </summary>
-    public abstract class FactRuleCollectionBase<TFactRule>: IList<TFactRule>
-        where TFactRule : IFactRule
+    public abstract class FactRuleCollectionBase<TFact, TFactRule>: IList<TFactRule>
+        where TFact : IFact
+        where TFactRule : IFactRule<TFact>
     {
         private readonly List<TFactRule> _list;
 
@@ -37,12 +38,12 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Gets the number of rules contained in the <see cref="FactRuleCollectionBase{TFactRule}"/>
+        /// Gets the number of rules contained in the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>
         /// </summary>
         public int Count => _list.Count;
 
         /// <summary>
-        /// Gets a value indicating whether the <see cref="FactRuleCollectionBase{TFactRule}"/> is read-only.
+        /// Gets a value indicating whether the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> is read-only.
         /// </summary>
         public bool IsReadOnly => false;
 
@@ -66,11 +67,11 @@ namespace GetcuReone.FactFactory.Entities
         /// <summary>
         /// Return <see cref="IFactType"/>
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
+        /// <typeparam name="TGetFact"></typeparam>
         /// <returns></returns>
-        protected virtual IFactType GetFactType<TFact>() where TFact : IFact
+        protected virtual IFactType GetFactType<TGetFact>() where TGetFact : TFact
         {
-            return new FactType<TFact>();
+            return new FactType<TGetFact>();
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="inputFactTypes">information on input factacles rules</param>
         /// <param name="outputFactType">information on output fact</param>
         /// <returns></returns>
-        protected abstract TFactRule CreateFactRule(Func<IFactContainer, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType);
+        protected abstract TFactRule CreateFactRule(Func<IFactContainer<TFact>, TFact> func, List<IFactType> inputFactTypes, IFactType outputFactType);
 
         /// <summary>
         /// Add rule
@@ -102,7 +103,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <typeparam name="TFactResult">type of fact result</typeparam>
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactResult>(Func<TFactResult> rule)
-            where TFactResult: IFact
+            where TFactResult: TFact
         {
             Add(CreateFactRule(_ => rule(),
                 null,
@@ -117,8 +118,8 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactOut>(
             Func<TFactIn1, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>() ),
                 new List<IFactType> { GetFactType<TFactIn1>() },
@@ -134,9 +135,9 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>() },
@@ -153,10 +154,10 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>() },
@@ -174,11 +175,11 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>() },
@@ -197,12 +198,12 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>() },
@@ -222,13 +223,13 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
-            where TFactIn6 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
+            where TFactIn6 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>() },
@@ -249,14 +250,14 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
-            where TFactIn6 : IFact
-            where TFactIn7 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
+            where TFactIn6 : TFact
+            where TFactIn7 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>() },
@@ -278,15 +279,15 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
-            where TFactIn6 : IFact
-            where TFactIn7 : IFact
-            where TFactIn8 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
+            where TFactIn6 : TFact
+            where TFactIn7 : TFact
+            where TFactIn8 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>() },
@@ -309,16 +310,16 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
-            where TFactIn6 : IFact
-            where TFactIn7 : IFact
-            where TFactIn8 : IFact
-            where TFactIn9 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
+            where TFactIn6 : TFact
+            where TFactIn7 : TFact
+            where TFactIn8 : TFact
+            where TFactIn9 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>() },
@@ -342,17 +343,17 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
-            where TFactIn6 : IFact
-            where TFactIn7 : IFact
-            where TFactIn8 : IFact
-            where TFactIn9 : IFact
-            where TFactIn10 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
+            where TFactIn6 : TFact
+            where TFactIn7 : TFact
+            where TFactIn8 : TFact
+            where TFactIn9 : TFact
+            where TFactIn10 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>() },
@@ -377,18 +378,18 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
-            where TFactIn6 : IFact
-            where TFactIn7 : IFact
-            where TFactIn8 : IFact
-            where TFactIn9 : IFact
-            where TFactIn10 : IFact
-            where TFactIn11 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
+            where TFactIn6 : TFact
+            where TFactIn7 : TFact
+            where TFactIn8 : TFact
+            where TFactIn9 : TFact
+            where TFactIn10 : TFact
+            where TFactIn11 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>() },
@@ -414,19 +415,19 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
-            where TFactIn6 : IFact
-            where TFactIn7 : IFact
-            where TFactIn8 : IFact
-            where TFactIn9 : IFact
-            where TFactIn10 : IFact
-            where TFactIn11 : IFact
-            where TFactIn12 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
+            where TFactIn6 : TFact
+            where TFactIn7 : TFact
+            where TFactIn8 : TFact
+            where TFactIn9 : TFact
+            where TFactIn10 : TFact
+            where TFactIn11 : TFact
+            where TFactIn12 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>() },
@@ -453,20 +454,20 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
-            where TFactIn6 : IFact
-            where TFactIn7 : IFact
-            where TFactIn8 : IFact
-            where TFactIn9 : IFact
-            where TFactIn10 : IFact
-            where TFactIn11 : IFact
-            where TFactIn12 : IFact
-            where TFactIn13 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
+            where TFactIn6 : TFact
+            where TFactIn7 : TFact
+            where TFactIn8 : TFact
+            where TFactIn9 : TFact
+            where TFactIn10 : TFact
+            where TFactIn11 : TFact
+            where TFactIn12 : TFact
+            where TFactIn13 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>() },
@@ -494,21 +495,21 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
-            where TFactIn6 : IFact
-            where TFactIn7 : IFact
-            where TFactIn8 : IFact
-            where TFactIn9 : IFact
-            where TFactIn10 : IFact
-            where TFactIn11 : IFact
-            where TFactIn12 : IFact
-            where TFactIn13 : IFact
-            where TFactIn14 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
+            where TFactIn6 : TFact
+            where TFactIn7 : TFact
+            where TFactIn8 : TFact
+            where TFactIn9 : TFact
+            where TFactIn10 : TFact
+            where TFactIn11 : TFact
+            where TFactIn12 : TFact
+            where TFactIn13 : TFact
+            where TFactIn14 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>(), ct.GetFact<TFactIn14>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>()},
@@ -537,22 +538,22 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
-            where TFactIn6 : IFact
-            where TFactIn7 : IFact
-            where TFactIn8 : IFact
-            where TFactIn9 : IFact
-            where TFactIn10 : IFact
-            where TFactIn11 : IFact
-            where TFactIn12 : IFact
-            where TFactIn13 : IFact
-            where TFactIn14 : IFact
-            where TFactIn15 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
+            where TFactIn6 : TFact
+            where TFactIn7 : TFact
+            where TFactIn8 : TFact
+            where TFactIn9 : TFact
+            where TFactIn10 : TFact
+            where TFactIn11 : TFact
+            where TFactIn12 : TFact
+            where TFactIn13 : TFact
+            where TFactIn14 : TFact
+            where TFactIn15 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>(), ct.GetFact<TFactIn14>(), ct.GetFact<TFactIn15>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>() },
@@ -582,23 +583,23 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="rule">rule of fact derivation</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, TFactOut> rule)
-            where TFactOut : IFact
-            where TFactIn1 : IFact
-            where TFactIn2 : IFact
-            where TFactIn3 : IFact
-            where TFactIn4 : IFact
-            where TFactIn5 : IFact
-            where TFactIn6 : IFact
-            where TFactIn7 : IFact
-            where TFactIn8 : IFact
-            where TFactIn9 : IFact
-            where TFactIn10 : IFact
-            where TFactIn11 : IFact
-            where TFactIn12 : IFact
-            where TFactIn13 : IFact
-            where TFactIn14 : IFact
-            where TFactIn15 : IFact
-            where TFactIn16 : IFact
+            where TFactOut : TFact
+            where TFactIn1 : TFact
+            where TFactIn2 : TFact
+            where TFactIn3 : TFact
+            where TFactIn4 : TFact
+            where TFactIn5 : TFact
+            where TFactIn6 : TFact
+            where TFactIn7 : TFact
+            where TFactIn8 : TFact
+            where TFactIn9 : TFact
+            where TFactIn10 : TFact
+            where TFactIn11 : TFact
+            where TFactIn12 : TFact
+            where TFactIn13 : TFact
+            where TFactIn14 : TFact
+            where TFactIn15 : TFact
+            where TFactIn16 : TFact
         {
             Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>(), ct.GetFact<TFactIn14>(), ct.GetFact<TFactIn15>(), ct.GetFact<TFactIn16>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>(), GetFactType<TFactIn16>() },
@@ -606,9 +607,9 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Adds the elements of the specified collection to the end of the <see cref="FactRuleCollectionBase{TFactRule}"/>
+        /// Adds the elements of the specified collection to the end of the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>
         /// </summary>
-        /// <param name="rules">The collection whose elements should be added to the end of the  <see cref="FactRuleCollectionBase{TFactRule}"/>. 
+        /// <param name="rules">The collection whose elements should be added to the end of the  <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>. 
         /// The collection itself cannot be null, but it can contain elements that are null,
         /// if type T is a reference type.</param>
         /// <exception cref="ArgumentNullException">collection is null</exception>
@@ -618,7 +619,7 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Removes all elements from the <see cref="FactRuleCollectionBase{TFactRule}"/>
+        /// Removes all elements from the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>
         /// </summary>
         public void Clear()
         {
@@ -626,7 +627,7 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Determines whether an element is in the <typeparamref name="TFactRule"/>. Use method <see cref="IFactRule.Compare{TFactRule}(TFactRule)"/>
+        /// Determines whether an element is in the <typeparamref name="TFactRule"/>. Use method <see cref="IFactRule{TFact}.Compare{TFactRule}(TFactRule)"/>.
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -636,63 +637,63 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Copies the entire <see cref="FactRuleCollectionBase{TFactRule}"/> to a compatible one-dimensional array, starting at the specified index of the target array.
+        /// Copies the entire <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> to a compatible one-dimensional array, starting at the specified index of the target array.
         /// </summary>
-        /// <param name="array">The one-dimensional System.Array that is the destination of the elements copied from <see cref="FactRuleCollectionBase{TFactRule}"/>. The System.Array must have zero-based indexing.</param>
+        /// <param name="array">The one-dimensional System.Array that is the destination of the elements copied from <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>. The System.Array must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         /// <exception cref="ArgumentNullException">array is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">arrayIndex is less than 0.</exception>
-        /// <exception cref="ArgumentException">The number of elements in the source <see cref="FactRuleCollectionBase{TFactRule}"/> is greater than the available space from arrayIndex to the end of the destination array.</exception>
+        /// <exception cref="ArgumentException">The number of elements in the source <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> is greater than the available space from arrayIndex to the end of the destination array.</exception>
         public void CopyTo(TFactRule[] array, int arrayIndex)
         {
             _list.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
-        /// Returns an enumerator that iterates through the <see cref="FactRuleCollectionBase{TFactRule}"/>.
+        /// Returns an enumerator that iterates through the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.
         /// </summary>
-        /// <returns>A <see cref="FactRuleCollectionBase{TFactRule}.GetEnumerator"/> for the <see cref="FactRuleCollectionBase{TFactRule}"/>.</returns>
+        /// <returns>A <see cref="IEnumerator{TFactRule}"/> for the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.</returns>
         public IEnumerator<TFactRule> GetEnumerator()
         {
             return _list.GetEnumerator();
         }
 
         /// <summary>
-        /// Searches for the specified object and returns the zero-based index of the first occurrence within the entire <see cref="FactRuleCollectionBase{TFactRule}"/>.
+        /// Searches for the specified object and returns the zero-based index of the first occurrence within the entire <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.
         /// </summary>
-        /// <param name="item">The object to locate in the <see cref="FactRuleCollectionBase{TFactRule}"/> be null for reference types. The value can</param>
-        /// <returns>The zero-based index of the first occurrence of item within the entire <see cref="FactRuleCollectionBase{TFactRule}"/>, if found; otherwise, –1.</returns>
+        /// <param name="item">The object to locate in the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> be null for reference types. The value can</param>
+        /// <returns>The zero-based index of the first occurrence of item within the entire <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>, if found; otherwise, –1.</returns>
         public int IndexOf(TFactRule item)
         {
             return _list.IndexOf(item);
         }
 
         /// <summary>
-        /// Inserts an element into the<see cref="FactRuleCollectionBase{TFactRule}"/> at the specified index.
+        /// Inserts an element into the<see cref="FactRuleCollectionBase{TFact, TFactRule}"/> at the specified index.
         /// </summary>
         /// <param name="index">The zero-based index at which item should be inserted.</param>
         /// <param name="item">The object to insert. The value can be null for reference types.</param>
-        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is greater than <see cref="FactRuleCollectionBase{TFactRule}"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is greater than <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.</exception>
         public void Insert(int index, TFactRule item)
         {
             _list.Insert(index, item);
         }
 
         /// <summary>
-        /// Removes the first occurrence of a specific object from the <see cref="FactRuleCollectionBase{TFactRule}"/>.
+        /// Removes the first occurrence of a specific object from the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.
         /// </summary>
-        /// <param name="item">The object to remove from the <see cref="FactRuleCollectionBase{TFactRule}"/>. The value can be null for reference types.</param>
-        /// <returns>true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the <see cref="FactRuleCollectionBase{TFactRule}"/>.</returns>
+        /// <param name="item">The object to remove from the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>. The value can be null for reference types.</param>
+        /// <returns>true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.</returns>
         public bool Remove(TFactRule item)
         {
             return _list.Remove(item);
         }
 
         /// <summary>
-        /// Removes the element at the specified index of the <see cref="FactRuleCollectionBase{TFactRule}"/>.
+        /// Removes the element at the specified index of the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.
         /// </summary>
         /// <param name="index">The zero-based index of the element to remove.</param>
-        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is equal to or greater than <see cref="FactRuleCollectionBase{TFactRule}"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is equal to or greater than <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.</exception>
         public void RemoveAt(int index)
         {
             _list.RemoveAt(index);

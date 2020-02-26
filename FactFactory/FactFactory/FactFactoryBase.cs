@@ -113,7 +113,7 @@ namespace GetcuReone.FactFactory
         /// <param name="wantAction">action taken after deriving a fact</param>
         /// <param name="factTypes">facts required to launch an action</param>
         /// <returns></returns>
-        protected abstract TWantAction CreateWantAction(Action<TFactContainer> wantAction, IList<IFactType> factTypes);
+        protected abstract TWantAction CreateWantAction(Action<IFactContainer<TFact>> wantAction, IList<IFactType> factTypes);
 
         /// <summary>
         /// Return a list with the appropriate rules at the time of the derive of the facts
@@ -174,7 +174,6 @@ namespace GetcuReone.FactFactory
             IReadOnlyCollection<TFactRule> ruleCollection = GetRulesForWantAction(
                 wantAction,
                 new ReadOnlyCollection<TFact>(container.ToList()));
-            wantAction.DateOfDerive = DateTime.Now;
             treesResult = new List<FactRuleTree<TFact, TFactRule>>();
             notFoundFacts = new Dictionary<IFactType, List<List<IFactType>>>();
 

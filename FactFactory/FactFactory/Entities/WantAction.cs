@@ -1,10 +1,7 @@
 ﻿using GetcuReone.FactFactory.Facts;
-using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace GetcuReone.FactFactory.Entities
 {
