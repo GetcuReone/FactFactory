@@ -60,7 +60,6 @@ namespace GetcuReone.FactFactory
 
             foreach (TWantAction wantAction in wantActions)
             {
-
                 if (TryDeriveTreesForWantAction(out List<FactRuleTree<TFact, TFactRule>> result, wantAction, container, out Dictionary<IFactType, List<List<IFactType>>> notFoundFacts))
                     forestry.Add(wantAction, result);
                 else
@@ -535,7 +534,7 @@ namespace GetcuReone.FactFactory
         {
             WantFact(CreateWantAction(
                 container => wantFactAction(container.GetFact<TFact1>()),
-                new List<IFactType> { GetFactType<TFact>() }));
+                new List<IFactType> { GetFactType<TFact1>() }));
         }
 
         /// <summary>

@@ -39,6 +39,7 @@ namespace GetcuReone.FactFactory
 
             Container.Add(new StartDateOfDerive(DateTime.Now));
             Container.Add(new DerivingFacts(WantActions.SelectMany(w => w.InputFactTypes).ToList()));
+
             base.Derive();
 
             _tempRule = null;
