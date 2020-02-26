@@ -119,5 +119,11 @@ namespace GetcuReone.FactFactory.Entities
 
             return CompareFactTypes(factRule.InputFactTypes, InputFactTypes);
         }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"({string.Join(", ", InputFactTypes.Select(f => f.FactName).ToList())}) => ({OutputFactType.FactName})";
+        }
     }
 }
