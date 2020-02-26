@@ -5,7 +5,8 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
     /// <summary>
     /// Version rule for calculating a fact
     /// </summary>
-    public interface IVersionedFactRule : IFactRule, IFactTypeVersionInformation
+    public interface IVersionedFactRule<TFact> : IFactRule<TFact>, IFactTypeVersionInformation
+        where TFact : IFact
     {
         /// <summary>
         /// Comparison of rules for calculating facts without regard to version
@@ -13,6 +14,6 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
         /// <typeparam name="TVersionedFactRule"></typeparam>
         /// <param name="versionedFactRule"></param>
         /// <returns></returns>
-        bool CompareWithoutVersion<TVersionedFactRule>(TVersionedFactRule versionedFactRule) where TVersionedFactRule : IVersionedFactRule;
+        bool CompareWithoutVersion<TVersionedFactRule>(TVersionedFactRule versionedFactRule) where TVersionedFactRule : IVersionedFactRule<TFact>;
     }
 }
