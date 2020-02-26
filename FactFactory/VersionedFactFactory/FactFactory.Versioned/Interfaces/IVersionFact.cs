@@ -5,7 +5,7 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
     /// <summary>
     /// Fact containing version information
     /// </summary>
-    public interface IVersionFact : IFact
+    public interface IVersionFact : IVersionedFact
     {
         /// <summary>
         /// True - the version of the current fact is less than <paramref name="versionFact"/>
