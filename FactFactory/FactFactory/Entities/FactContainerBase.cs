@@ -45,7 +45,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="fact">Fact.</param>
         /// <typeparam name="TAddFact">Type of fact to add.</typeparam>
         /// <exception cref="ArgumentException">Attempt to add an existing fact.</exception>
-        public void Add<TAddFact>(TAddFact fact) where TAddFact : TFact
+        public virtual void Add<TAddFact>(TAddFact fact) where TAddFact : TFact
         {
             if (Contains<TAddFact>())
                 throw new ArgumentException($"The fact container already contains {typeof(TFact).FullName} type of fact.");
@@ -58,7 +58,7 @@ namespace GetcuReone.FactFactory.Entities
         /// </summary>
         /// <typeparam name="TContainsFact">type of fact to check for.</typeparam>
         /// <returns></returns>
-        public bool Contains<TContainsFact>() where TContainsFact : TFact
+        public virtual bool Contains<TContainsFact>() where TContainsFact : TFact
         {
             IFactType factType = GetFactType<TContainsFact>();
             return _container.Any(fact => fact.GetFactType().Compare(factType));
@@ -68,7 +68,7 @@ namespace GetcuReone.FactFactory.Entities
         /// Returns an enumerator that iterates through the <see cref="FactContainerBase{TFact}"/>.
         /// </summary>
         /// <returns>A <see cref="IEnumerator"/> for the <see cref="FactContainerBase{TFact}"/></returns>
-        public IEnumerator<TFact> GetEnumerator()
+        public virtual IEnumerator<TFact> GetEnumerator()
         {
             return _container.GetEnumerator();
         }
@@ -79,7 +79,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <typeparam name="TGetFact">Type of fact to return.</typeparam>
         /// <exception cref="FactNotFoundException{TFact}">Did not find fact type <typeparamref name="TGetFact"/></exception>
         /// <returns></returns>
-        public TGetFact GetFact<TGetFact>() where TGetFact : TFact
+        public virtual TGetFact GetFact<TGetFact>() where TGetFact : TFact
         {
             if (TryGetFact<TGetFact>(out var fact))
             {
@@ -93,7 +93,7 @@ namespace GetcuReone.FactFactory.Entities
         /// Remove fact.
         /// </summary>
         /// <typeparam name="TRemoveFact">Type of fact to delete.</typeparam>
-        public void Remove<TRemoveFact>() where TRemoveFact : TFact
+        public virtual void Remove<TRemoveFact>() where TRemoveFact : TFact
         {
             if (TryGetFact<TRemoveFact>(out var fact))
                 _container.Remove(fact);
@@ -104,7 +104,7 @@ namespace GetcuReone.FactFactory.Entities
         /// </summary>
         /// <param name="fact"></param>
         /// <typeparam name="TRemoveFact">Type of fact to delete.</typeparam>
-        public void Remove<TRemoveFact>(TRemoveFact fact) where TRemoveFact : TFact
+        public virtual void Remove<TRemoveFact>(TRemoveFact fact) where TRemoveFact : TFact
         {
             _container.Remove(fact);
         }
@@ -115,7 +115,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <typeparam name="TGetFact">Type of fact to return.</typeparam>
         /// <param name="fact"></param>
         /// <returns></returns>
-        public bool TryGetFact<TGetFact>(out TGetFact fact) where TGetFact : TFact
+        public virtual bool TryGetFact<TGetFact>(out TGetFact fact) where TGetFact : TFact
         {
             TFact innerFact = _container.SingleOrDefault(item => item is TGetFact);
 
