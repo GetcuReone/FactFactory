@@ -1,4 +1,4 @@
-﻿using GetcuReone.FactFactory.Facts;
+﻿using GetcuReone.FactFactory.Versioned.Facts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 
 namespace FactFactory.VersionedTests.UintVersion.Env
@@ -6,7 +6,7 @@ namespace FactFactory.VersionedTests.UintVersion.Env
     /// <summary>
     /// base class for factors determining version by number <see cref="uint"/>
     /// </summary>
-    public class IntVersion : FactBase<int>, IVersionFact
+    public class IntVersion : VersionedFactBase<int>, IVersionFact
     {
         /// <summary>
         /// Constructor
