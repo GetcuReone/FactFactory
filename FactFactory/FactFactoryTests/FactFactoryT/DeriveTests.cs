@@ -8,6 +8,7 @@ using JwtTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
+using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -68,7 +69,7 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .And("Set rules", factory => factory.Rules.AddRange(RuleCollectionHelper.GetInputFactRules()))
                 .And("Want fact", factory => factory.WantFact((OtherFact fact) => { }))
-                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException>(() => factory.Derive()))
+                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => factory.Derive()))
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
@@ -88,7 +89,7 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .And("Set rules", factory => factory.Rules.AddRange(RuleCollectionHelper.GetInputFactRules()))
                 .And("Want fact", factory => factory.WantFact((Input4Fact fact) => { }))
-                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException>(() => factory.Derive()))
+                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => factory.Derive()))
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
@@ -115,7 +116,7 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .And("Set rules", factory => factory.Rules.AddRange(RuleCollectionHelper.GetRulesForNotAvailableInput6Fact()))
                 .And("Want fact", factory => factory.WantFact((Input6Fact fact) => { }))
-                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException>(() => factory.Derive()))
+                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => factory.Derive()))
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
@@ -165,21 +166,15 @@ namespace FactFactoryTests.FactFactoryT
         public void DerivedDefaultFactsTestCase()
         {
             StartDateOfDerive startDateOfDerive = null;
-            StartDateOfDeriveCurrentFacts startDateOfDeriveCurrentFacts = null;
-            DerivingCurrentFacts derivingCurrentFacts = null;
             DerivingFacts derivingFacts = null;
 
             GivenCreateFactFactory()
                 .And("Want StartDateOfDerive", factory => factory.WantFact((StartDateOfDerive fact) => { startDateOfDerive = fact; }))
-                .And("Want StartDateOfDeriveCurrentFacts", factory => factory.WantFact((StartDateOfDeriveCurrentFacts fact) => { startDateOfDeriveCurrentFacts = fact; }))
-                .And("Want DerivingCurrentFacts", factory => factory.WantFact((DerivingCurrentFacts fact) => { derivingCurrentFacts = fact; }))
                 .And("Want DerivingFacts", factory => factory.WantFact((DerivingFacts fact) => { derivingFacts = fact; }))
                 .When("Derive facts", factory => factory.Derive())
                 .Then("Check error", _ =>
                 {
                     Assert.IsNotNull(startDateOfDerive, "StartDateOfDerive is not derived");
-                    Assert.IsNotNull(startDateOfDeriveCurrentFacts, "StartDateOfDeriveCurrentFacts is not derived");
-                    Assert.IsNotNull(derivingCurrentFacts, "DerivingCurrentFacts is not derived");
                     Assert.IsNotNull(derivingFacts, "DerivingFacts is not derived");
                 });
         }
