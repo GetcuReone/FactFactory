@@ -7,13 +7,15 @@ namespace GetcuReone.FactFactory.Exceptions
     /// <summary>
     /// <see cref="FactFactoryException"/> for method <see cref="IFactFactory{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
     /// </summary>
-    public class InvalidDeriveOperationException : FactFactoryExceptionBase<DeriveErrorDetail>
+    public class InvalidDeriveOperationException<TFact, TWantAction> : FactFactoryExceptionBase<DeriveErrorDetail<TFact, TWantAction>>
+        where TFact : IFact
+        where TWantAction : IWantAction<TFact>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="details"></param>
-        public InvalidDeriveOperationException(List<DeriveErrorDetail> details) : base(details)
+        public InvalidDeriveOperationException(List<DeriveErrorDetail<TFact, TWantAction>> details) : base(details)
         {
         }
     }

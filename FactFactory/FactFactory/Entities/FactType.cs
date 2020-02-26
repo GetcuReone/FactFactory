@@ -19,13 +19,6 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <inheritdoc />
-        public bool ContainsContainer<TFactContainer>(TFactContainer container)
-            where TFactContainer : IFactContainer
-        {
-            return container.Contains<TFact>();
-        }
-
-        /// <inheritdoc />
         public INotContainedFact GetNotContainedInstance()
         {
             var type = typeof(TFact);

@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -44,29 +45,33 @@ namespace GetcuReone.FactFactory.Helpers
         /// <param name="code"></param>
         /// <param name="reason"></param>
         /// <returns></returns>
-        internal static InvalidDeriveOperationException CreateDeriveException(string code, string reason)
+        internal static InvalidDeriveOperationException<TFact, TWantAction> CreateDeriveException<TFact, TWantAction>(string code, string reason)
+            where TFact : IFact
+            where TWantAction : IWantAction<TFact>
         {
-            return new InvalidDeriveOperationException(
-                new List<DeriveErrorDetail>
+            return new InvalidDeriveOperationException<TFact, TWantAction>(
+                new List<DeriveErrorDetail<TFact, TWantAction>>
                 {
-                    new DeriveErrorDetail(code, reason, null, null)
+                    new DeriveErrorDetail<TFact, TWantAction>(code, reason, default, null)
                 });
         }
 
-        internal static InvalidDeriveOperationException CreateDeriveException(Dictionary<IWantAction, Dictionary<IFactType, List<List<IFactType>>>> notFoundFacts)
+        internal static InvalidDeriveOperationException<TFact, TWantAction> CreateDeriveException<TFact, TWantAction>(Dictionary<TWantAction, Dictionary<IFactType, List<List<IFactType>>>> notFoundFacts)
+            where TFact : IFact
+            where TWantAction : IWantAction<TFact>
         {
-            List<DeriveErrorDetail> details = new List<DeriveErrorDetail>();
+            List<DeriveErrorDetail<TFact, TWantAction>> details = new List<DeriveErrorDetail<TFact, TWantAction>>();
 
             foreach(var keyAction in notFoundFacts.Keys)
             {
-                details.Add(new DeriveErrorDetail(
+                details.Add(new DeriveErrorDetail<TFact, TWantAction>(
                     ErrorCode.FactCannotCalculated,
                     $"facts {string.Join(", ", notFoundFacts[keyAction].Keys.Select(k => k.FactName))} cannot be calculated for action {keyAction.ToString()}",
                     keyAction,
                     notFoundFacts[keyAction]));
             }
 
-            return new InvalidDeriveOperationException(details);
+            return new InvalidDeriveOperationException<TFact, TWantAction>(details);
         }
 
         internal static IFactType GetFactType<TFact>() where TFact : IFact

@@ -6,10 +6,8 @@ namespace GetcuReone.FactFactory.Interfaces
     /// Rule of fact calculation.
     /// </summary>
     /// <typeparam name="TFact">The type of fact from which the facts in the container should be inherited.</typeparam>
-    /// <typeparam name="TFactContainer">The type of container that will be input to the rule.</typeparam>
-    public interface IFactRule<TFact, TFactContainer>
+    public interface IFactRule<TFact>
         where TFact : IFact
-        where TFactContainer : IFactContainer<TFact>
     {
         /// <summary>
         /// Information on input factacles rules.
@@ -27,7 +25,7 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <param name="container"></param>
         /// <typeparam name="TContainer"></typeparam>
         /// <returns></returns>
-        bool CanCalculate<TContainer>(TContainer container) where TContainer : TFactContainer;
+        bool CanCalculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFact>;
 
         /// <summary>
         /// Rule of fact calculate.
@@ -35,7 +33,7 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <param name="container"></param>
         /// <typeparam name="TContainer"></typeparam>
         /// <returns></returns>
-        TFact Calculate<TContainer>(TContainer container) where TContainer : TFactContainer;
+        TFact Calculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFact>;
 
         /// <summary>
         /// Compare rules.
@@ -43,6 +41,6 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <typeparam name="TFactRule"></typeparam>
         /// <param name="factRule"></param>
         /// <returns></returns>
-        bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule<TFact, TFactContainer>;
+        bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule<TFact>;
     }
 }
