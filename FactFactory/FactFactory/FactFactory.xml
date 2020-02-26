@@ -49,7 +49,7 @@
         </member>
         <member name="P:GetcuReone.FactFactory.Entities.DeriveErrorDetail`2.NotFoundFacts">
             <summary>
-            The sets of facts which were not enough to calculate. The presence of any of these sets allows you to calculate <see cref="!:DeriveErrorDetail.Action"/>
+            The sets of facts which were not enough to calculate. The presence of any of these sets allows you to calculate <see cref="P:GetcuReone.FactFactory.Entities.DeriveErrorDetail`2.Action"/>
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.ErrorDetail">
@@ -749,7 +749,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`2">
             <summary>
-            <see cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException"/> for method <see cref="!:IFactFactory&lt;TFactContainer, TFactRule, TFactRuleCollection, TWantAction&gt;.Derive"/>
+            <see cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException"/> for method <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`2.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Entities.DeriveErrorDetail{`0,`1}})">
@@ -794,7 +794,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Facts.FactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
-            creation method <see cref="!:IWantAction"/>
+            creation method <see cref="T:GetcuReone.FactFactory.Entities.WantAction"/>
             </summary>
             <param name="wantAction">action taken after deriving a fact</param>
             <param name="factTypes">facts required to launch an action</param>
@@ -1216,7 +1216,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Facts.NotContained`1">
             <summary>
-            Information about a fact that is not contained in the container at the time of the function call <see cref="!:IFactFactory&lt;TFactContainer, TFactRule, TFactRuleCollection, TWantAction&gt;.Derive"/>
+            Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Facts.NotContained`1.#ctor">
@@ -1257,7 +1257,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Helpers.FactFactoryHelper">
             <summary>
-            Helper for <see cref="!:FactFactoryBase&lt;TFactContainer, TFactRule, TFactRuleCollection, TWantAction&gt;"/>
+            Helper for <see cref="T:GetcuReone.FactFactory.FactFactoryBase`5"/>
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Helpers.FactFactoryHelper.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
@@ -1278,7 +1278,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Helpers.FactFactoryHelper.CreateDeriveException``2(System.String,System.String)">
             <summary>
-            Create <see cref="!:InvalidDeriveOperationException"/>
+            Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`2"/>
             </summary>
             <param name="code"></param>
             <param name="reason"></param>

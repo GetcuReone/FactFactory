@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Exceptions
 {
     /// <summary>
-    /// <see cref="FactFactoryException"/> for method <see cref="IFactFactory{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
+    /// <see cref="FactFactoryException"/> for method <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
     /// </summary>
     public class InvalidDeriveOperationException<TFact, TWantAction> : FactFactoryExceptionBase<DeriveErrorDetail<TFact, TWantAction>>
         where TFact : IFact

@@ -23,7 +23,7 @@ namespace GetcuReone.FactFactory.Entities
         public TWantAction Action { get; }
 
         /// <summary>
-        /// The sets of facts which were not enough to calculate. The presence of any of these sets allows you to calculate <see cref="DeriveErrorDetail.Action"/>
+        /// The sets of facts which were not enough to calculate. The presence of any of these sets allows you to calculate <see cref="DeriveErrorDetail{TFcat, TWantAction}.Action"/>
         /// </summary>
         public Dictionary<IFactType, List<List<IFactType>>> NotFoundFacts { get; }
     }

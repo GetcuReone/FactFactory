@@ -9,7 +9,7 @@ using System.Linq;
 namespace GetcuReone.FactFactory.Helpers
 {
     /// <summary>
-    /// Helper for <see cref="FactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
+    /// Helper for <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
     /// </summary>
     public static class FactFactoryHelper
     {
@@ -40,7 +40,7 @@ namespace GetcuReone.FactFactory.Helpers
         }
 
         /// <summary>
-        /// Create <see cref="InvalidDeriveOperationException"/>
+        /// Create <see cref="InvalidDeriveOperationException{TFact, TWantAction}"/>
         /// </summary>
         /// <param name="code"></param>
         /// <param name="reason"></param>
