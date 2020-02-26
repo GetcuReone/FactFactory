@@ -1,18 +1,19 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 
 namespace FactFactoryTests.FactContainer
 {
     public static class FactContainerHelper
     {
-        public static IFactContainer AddAndReturn<TFact>(this IFactContainer container, TFact fact)
-            where TFact: IFact
+        public static IFactContainer<FactBase> AddAndReturn<TFact>(this IFactContainer<FactBase> container, TFact fact)
+            where TFact: FactBase
         {
             container.Add(fact);
             return container;
         }
 
-        public static IFactContainer RemoveAndReturn<TFact>(this IFactContainer container)
-            where TFact : IFact
+        public static IFactContainer<FactBase> RemoveAndReturn<TFact>(this IFactContainer<FactBase> container)
+            where TFact : FactBase
         {
             container.Remove<TFact>();
             return container;

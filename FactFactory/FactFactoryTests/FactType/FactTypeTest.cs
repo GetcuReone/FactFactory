@@ -89,40 +89,5 @@ namespace FactFactoryTests.FactType
                 .When("Create factInfo", fact => fact.GetFactType())
                 .Then("Check result", factInfo => Assert.AreEqual(nameof(OtherFact), factInfo.FactName, "not expected fact name"));
         }
-
-        [Timeout(Timeouts.MilliSecond.Hundred)]
-        [TestMethod]
-        [Description("[fact][info] container contains fact")]
-        public void ContainsContainerTestCase()
-        {
-            GetcuReone.FactFactory.Entities.FactContainer container = null;
-
-            GivenCreateOtherFact(DateTime.Now)
-                .When("Add container", fact =>
-                {
-                    container = new GetcuReone.FactFactory.Entities.FactContainer();
-                    container.Add(fact);
-                    return fact;
-                })
-                .Then("Check container contains fact", 
-                    fact => Assert.IsTrue(fact.GetFactType().ContainsContainer(container), "the container does not contain a fact"));
-        }
-
-        [Timeout(Timeouts.MilliSecond.Hundred)]
-        [TestMethod]
-        [Description("[fact][info] the container does not contain a fact")]
-        public void NotContainsContainerTestCase()
-        {
-            GetcuReone.FactFactory.Entities.FactContainer container = null;
-
-            GivenCreateOtherFact(DateTime.Now)
-                .When("Create container", fact =>
-                {
-                    container = new GetcuReone.FactFactory.Entities.FactContainer();
-                    return fact;
-                })
-                .Then("Check container contains fact",
-                    fact => Assert.IsFalse(fact.GetFactType().ContainsContainer(container), "container contains fact"));
-        }
     }
 }
