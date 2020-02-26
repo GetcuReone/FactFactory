@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Entities
@@ -6,7 +7,7 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Fact collection
     /// </summary>
-    public class FactContainer : FactContainerBase<IFact>
+    public class FactContainer : FactContainerBase<FactBase>
     {
         /// <summary>
         /// Constructor
@@ -17,7 +18,7 @@ namespace GetcuReone.FactFactory.Entities
         /// Constructor
         /// </summary>
         /// <param name="facts">an array of facts to add to the container</param>
-        public FactContainer(IEnumerable<IFact> facts) : base(facts) { }
+        public FactContainer(IEnumerable<FactBase> facts) : base(facts) { }
 
         /// <summary>
         /// Return fact type information.
