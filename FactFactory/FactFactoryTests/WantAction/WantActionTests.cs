@@ -14,7 +14,7 @@ namespace FactFactoryTests.WantAction
     {
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][action][negative] create WantAction without action")]
+        [Description("[want_action][negative] create WantAction without action")]
         public void CreateWantActionWithoutActionTestCase()
         {
             GivenEmpty()
@@ -28,7 +28,7 @@ namespace FactFactoryTests.WantAction
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][action][negative] run invoke")]
+        [Description("[want_action][negative] run invoke")]
         public void InvokeTestCase()
         {
             bool isRun = false;
@@ -40,7 +40,7 @@ namespace FactFactoryTests.WantAction
 
         [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][action][negative] create WantAction without input facts")]
+        [Description("[want_action][negative] create WantAction without input facts")]
         public void CreateWantActionWithoutInputFactsTestCase()
         {
             GivenEmpty()
@@ -49,6 +49,24 @@ namespace FactFactoryTests.WantAction
                 {
                     Assert.IsNotNull(ex, "error is null");
                     Assert.AreEqual("factTypes cannot be empty. The desired action should request a fact on entry.", ex.Message, "Expectend another message");
+                });
+        }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[want_action][negative] request entry is not a valid fact")]
+        public void WantAction_RequestEntryInvalidFactTestCase()
+        {
+            GivenEmpty()
+                .When("Create rule", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new WAction(ct => { }, new List<IFactType> { GetFactType<InvalidFact>() }));
+                })
+                .Then("Check error", ex =>
+                {
+                    Assert.IsNotNull(ex, "error is null");
+                    Assert.AreEqual("InvalidFact types are not inherited from GetcuReone.FactFactory.Facts.FactBase", ex.Message, "Another message expected");
                 });
         }
     }
