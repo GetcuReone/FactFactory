@@ -115,7 +115,7 @@ namespace FactFactoryTests.FactRule
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
-                    Func<IFactContainer, IFact> func = ct =>
+                    Func<IFactContainer<FactBase>, FactBase> func = ct =>
                     {
                         var date = ct.GetFact<StartDateOfDerive>().Value;
                         var number = ct.GetFact<IntFact>().Value;
@@ -146,7 +146,7 @@ namespace FactFactoryTests.FactRule
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
-                    Func<IFactContainer, IFact> func = ct => default;
+                    Func<IFactContainer<FactBase>, FactBase> func = ct => default;
 
                     return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactType<OtherFact>());
                 })
@@ -170,7 +170,7 @@ namespace FactFactoryTests.FactRule
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
-                    Func<IFactContainer, IFact> func = ct => default;
+                    Func<IFactContainer<FactBase>, FactBase> func = ct => default;
 
                     return new Rule(func, factInfos, new FactType<OtherFact>());
                 })

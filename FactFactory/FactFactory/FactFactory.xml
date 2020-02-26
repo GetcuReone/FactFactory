@@ -1147,13 +1147,7 @@
             All deriving facts
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facts.DerivingFacts.#ctor(System.Collections.ObjectModel.ReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <summary>
-            Constructor
-            </summary>
-            <param name="factTypes"></param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facts.DerivingFacts.#ctor(System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Facts.DerivingFacts.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor
             </summary>
