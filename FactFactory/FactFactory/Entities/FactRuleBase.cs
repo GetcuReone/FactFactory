@@ -48,7 +48,7 @@ namespace GetcuReone.FactFactory.Entities
                 InputFactTypes = new ReadOnlyCollection<IFactType>(inputFactTypes);
             }
             else
-                InputFactTypes = new ReadOnlyCollection<IFactType>(inputFactTypes);
+                InputFactTypes = new ReadOnlyCollection<IFactType>(new List<IFactType>());
         }
 
         /// <summary>
