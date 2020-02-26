@@ -1,12 +1,11 @@
-﻿using GetcuReone.FactFactory.Facts;
-using GetcuReone.FactFactory.Versioned.Interfaces;
+﻿using GetcuReone.FactFactory.Versioned.Interfaces;
 
 namespace GetcuReone.FactFactory.Versioned.Facts
 {
     /// <summary>
     /// base class for factors determining version by number <see cref="uint"/>
     /// </summary>
-    public abstract class UintVersion : FactBase<uint>, IVersionFact
+    public abstract class UintVersion : VersionedFactBase<uint>, IVersionFact
     {
         /// <summary>
         /// Constructor
