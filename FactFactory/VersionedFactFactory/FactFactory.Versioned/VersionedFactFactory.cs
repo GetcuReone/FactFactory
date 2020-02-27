@@ -1,6 +1,7 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Entities;
+using GetcuReone.FactFactory.Versioned.Facts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
     /// </summary>
-    public class VersionedFactFactory : VersionedFactFactoryBase<FactContainer, VersionedFactRule, VersionedFactRuleCollection, VersionedWantAction>
+    public class VersionedFactFactory : VersionedFactFactoryBase<VersionedFactBase, FactContainer, VersionedFactRule, VersionedFactRuleCollection, VersionedWantAction>
     {
         private readonly Func<IEnumerable<IVersionFact>> _getAllVersionFactsFunc;
 
@@ -41,7 +42,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="wantAction">action taken after deriving a fact</param>
         /// <param name="factTypes">facts required to launch an action</param>
         /// <returns></returns>
-        protected override VersionedWantAction CreateWantAction(Action<IFactContainer> wantAction, IList<IFactType> factTypes)
+        protected override VersionedWantAction CreateWantAction(Action<IFactContainer<VersionedFactBase>> wantAction, IList<IFactType> factTypes)
         {
             return new VersionedWantAction(wantAction, factTypes);
         }

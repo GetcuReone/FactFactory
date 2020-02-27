@@ -8,7 +8,7 @@ using System.Linq;
 namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
-    /// Base class for fact container
+    /// Base class for fact container.
     /// </summary>
     public abstract class FactContainerBase<TFact> : IFactContainer<TFact>
         where TFact : IFact
@@ -16,7 +16,7 @@ namespace GetcuReone.FactFactory.Entities
         private readonly List<TFact> _container;
 
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         protected FactContainerBase()
         {
@@ -24,7 +24,7 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         /// <param name="facts">an array of facts to add to the container</param>
         protected FactContainerBase(IEnumerable<TFact> facts)
