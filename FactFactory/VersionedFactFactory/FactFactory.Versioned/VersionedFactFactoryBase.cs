@@ -19,6 +19,9 @@ namespace GetcuReone.FactFactory.Versioned
         where TFactRuleCollection : class, IList<TFactRule>
         where TWantAction : class, IWantAction<TFact>, IFactTypeVersionInformation
     {
+        private List<IFactType> _calculatedFactTypes;
+        private TWantAction _calculatingWantAction;
+
         /// <summary>
         /// Returns only those lambdas that fit the requested version
         /// </summary>
@@ -109,6 +112,64 @@ namespace GetcuReone.FactFactory.Versioned
             }
 
             return new ReadOnlyCollection<TFactRule>(factRules);
+        }
+
+        /// <summary>
+        /// Calculate fact.
+        /// </summary>
+        /// <param name="rule">Rule for calculating the fact.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
+        /// <remarks>True - fact calculate. False - fact already exists</remarks>
+        protected override bool CalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction)
+        {
+            if (_calculatingWantAction == null)
+                _calculatingWantAction = wantAction;
+            else if (_calculatingWantAction != wantAction)
+            {
+                _calculatedFactTypes.Clear();
+                _calculatingWantAction = wantAction;
+            }
+
+            // Recalculate fact if
+            // 1. Versions of rule and fact are different
+            // 2. Input fact has been recalculate
+            TFact fact = container.FirstOrDefault(f => f.GetFactType().Compare(rule.OutputFactType));
+
+            if (fact != null)
+            {
+                if (rule.VersionType != null)
+                {
+                    IVersionFact version = container.GetVersionFact(rule.VersionType);
+                    if (version.IsLessThan(fact.Version) || version.IsMoreThan(fact.Version))
+                        container.Remove(fact);
+                }
+                else if (fact.Version != null)
+                    container.Remove(fact);
+
+                if (rule.InputFactTypes.Any(type => _calculatedFactTypes.Any(calculatedFactType => calculatedFactType.Compare(type))))
+                    container.Remove(fact);
+            }
+
+            bool result = base.CalculateFact(rule, container, wantAction);
+
+            if (result)
+                _calculatedFactTypes.Add(rule.OutputFactType);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Derive the facts
+        /// </summary>
+        public override void Derive()
+        {
+            _calculatedFactTypes = new List<IFactType>();
+
+            base.Derive();
+
+            _calculatedFactTypes.Clear();
+            _calculatedFactTypes = null;
         }
     }
 }

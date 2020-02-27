@@ -75,7 +75,7 @@ namespace GetcuReone.FactFactory
             foreach (var key in forestry.Keys)
             {
                 foreach (var tree in forestry[key])
-                    DeriveNode(tree.Root, container);
+                    DeriveNode(tree.Root, container, key);
 
                 key.Invoke(container);
             }
@@ -126,11 +126,13 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Calculate fact
+        /// Calculate fact.
         /// </summary>
-        /// <param name="rule">rule for calculating the fact</param>
-        /// <param name="container">fact container</param>
-        protected virtual void CalculateFact(TFactRule rule, TFactContainer container)
+        /// <param name="rule">Rule for calculating the fact.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
+        /// <remarks>True - fact calculate. False - fact already exists</remarks>
+        protected virtual bool CalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction)
         {
             if (!rule.OutputFactType.ContainsContainer<TFact, TFactContainer>(container))
             {
@@ -151,7 +153,11 @@ namespace GetcuReone.FactFactory
 
                 foreach (var includeFact in includeFacts)
                     container.Remove(includeFact);
+
+                return true;
             }
+
+            return false;
         }
 
         /// <summary>
@@ -481,12 +487,12 @@ namespace GetcuReone.FactFactory
                 return RemoveRuleNodeAndCheckGoneRoot(factRuleTree, level - 1, parent);
         }
 
-        private void DeriveNode(FactRuleNode<TFact, TFactRule> node, TFactContainer container)
+        private void DeriveNode(FactRuleNode<TFact, TFactRule> node, TFactContainer container, TWantAction wantAction)
         {
             foreach (FactRuleNode<TFact, TFactRule> child in node.Childs)
-                DeriveNode(child, container);
+                DeriveNode(child, container, wantAction);
 
-            CalculateFact(node.FactRule, container);
+            CalculateFact(node.FactRule, container, wantAction);
         }
 
         private bool TryDeriveNoFactInfo(IFactType wantFact, TFactContainer container, IReadOnlyCollection<TFactRule> ruleCollection)

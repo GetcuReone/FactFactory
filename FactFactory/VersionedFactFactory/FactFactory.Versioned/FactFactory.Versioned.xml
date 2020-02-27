@@ -292,5 +292,19 @@
             <param name="readOnlyFactContainer"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.CalculateFact(`2,`1,`4)">
+            <summary>
+            Calculate fact.
+            </summary>
+            <param name="rule">Rule for calculating the fact.</param>
+            <param name="container">Fact container.</param>
+            <param name="wantAction">The initial action for which the parameters are calculated.</param>
+            <remarks>True - fact calculate. False - fact already exists</remarks>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.Derive">
+            <summary>
+            Derive the facts
+            </summary>
+        </member>
     </members>
 </doc>

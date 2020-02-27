@@ -862,12 +862,14 @@
             <param name="wantAction"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CalculateFact(`2,`1)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CalculateFact(`2,`1,`4)">
             <summary>
-            Calculate fact
+            Calculate fact.
             </summary>
-            <param name="rule">rule for calculating the fact</param>
-            <param name="container">fact container</param>
+            <param name="rule">Rule for calculating the fact.</param>
+            <param name="container">Fact container.</param>
+            <param name="wantAction">The initial action for which the parameters are calculated.</param>
+            <remarks>True - fact calculate. False - fact already exists</remarks>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetContainerForDerive">
             <summary>

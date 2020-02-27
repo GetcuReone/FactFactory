@@ -15,7 +15,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
         internal static IVersionFact GetVersionFact<TFact>(this IEnumerable<TFact> facts, IFactType factTypeVersion)
             where TFact : IVersionedFact
         {
-            var versionFacts = facts.Where(fact => fact.GetFactType().Compare(factTypeVersion)).ToList();
+            var versionFacts = facts.Where(fact => fact is IVersionFact && fact.GetFactType().Compare(factTypeVersion)).ToList();
 
             if (versionFacts.IsNullOrEmpty())
                 throw FactFactoryHelper.CreateException(ErrorCode.VersionNotFound, $"No version fact '{factTypeVersion.FactName}' found");
