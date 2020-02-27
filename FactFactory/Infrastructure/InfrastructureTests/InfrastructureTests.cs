@@ -161,7 +161,7 @@ namespace InfrastructureTests
             string partNameAssemblies = "FactFactory";
             string[] excludeAssemblies = new string[]
             {
-                "FactFactoryTestsCommon.dll"
+                "FactFactory.TestsCommon.dll"
             };
 
             Given("Get all file", () => InfrastructureHelper.GetAllFiles(_solutionFolder))
