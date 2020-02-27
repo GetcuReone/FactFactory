@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using FactFactory.TestsCommon;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Facts;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,9 +10,10 @@ namespace FactFactoryTests.Fact
     [TestClass]
     public sealed class FactTests : TestBase
     {
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact] set value fact")]
+        [TestCategory(TC.Objects.Fact)]
+        [Description("Set value fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void SetValueFactTestCase()
         {
             DateTime operationDate = DateTime.Now;
@@ -21,9 +23,10 @@ namespace FactFactoryTests.Fact
                 .Then("Check value fact", fact => Assert.AreEqual(operationDate, fact.Value, "a different value of the fact was expected"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact] check method GeTFactType")]
+        [TestCategory(TC.Objects.Fact)]
+        [Description("Check method GeTFactType")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GeTFactTypeTestCase()
         {
             Given("Create fact", () => new StartDateOfDerive(DateTime.Now))
