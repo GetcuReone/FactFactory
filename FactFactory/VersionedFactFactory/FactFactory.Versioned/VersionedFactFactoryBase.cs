@@ -6,6 +6,7 @@ using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using CommonErrorCode = GetcuReone.FactFactory.Constants.ErrorCode;
 
 namespace GetcuReone.FactFactory.Versioned
 {
@@ -160,11 +161,34 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
+        /// Returns instances of all used versions
+        /// </summary>
+        /// <returns></returns>
+        protected abstract List<IVersionFact> GetAllVersions();
+
+        /// <summary>
         /// Derive the facts
         /// </summary>
         public override void Derive()
         {
             _calculatedFactTypes = new List<IFactType>();
+
+            // Get the version
+            List<IVersionFact> versions = GetAllVersions();
+            var invalidFacts = versions.Where(fact => !(fact is TFact)).ToList();
+
+            if (!invalidFacts.IsNullOrEmpty())
+                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(
+                    CommonErrorCode.InvalidData,
+                    $"{string.Join(", ", invalidFacts.ConvertAll(f => f.GetType().Name))} not inherited from type {typeof(TFact).FullName}");
+
+            foreach (IVersionFact versionFact in versions)
+            {
+                if (versionFact.GetFactType().TryGetFact(Container, out TFact fact))
+                    Container.Remove(fact);
+
+                Container.Add((TFact)versionFact);
+            }
 
             base.Derive();
 

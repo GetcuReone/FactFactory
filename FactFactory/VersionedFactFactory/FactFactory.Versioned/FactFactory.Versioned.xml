@@ -252,7 +252,7 @@
             Rule collection
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact}})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.#ctor(System.Func{System.Collections.Generic.List{GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact}})">
             <summary>
             Constructor
             </summary>
@@ -279,6 +279,12 @@
             <typeparam name="TGetFact"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetAllVersions">
+            <summary>
+            Returns instances of all used versions
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5">
             <summary>
             Base class for versioned fact factory
@@ -300,6 +306,12 @@
             <param name="container">Fact container.</param>
             <param name="wantAction">The initial action for which the parameters are calculated.</param>
             <remarks>True - fact calculate. False - fact already exists</remarks>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetAllVersions">
+            <summary>
+            Returns instances of all used versions
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.Derive">
             <summary>

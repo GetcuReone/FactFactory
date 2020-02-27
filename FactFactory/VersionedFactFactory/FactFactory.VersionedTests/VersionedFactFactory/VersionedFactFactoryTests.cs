@@ -59,7 +59,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Create wantAction with version")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        //[Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveFactWithtVersionedRuleTestCase()
         {
             GivenCreateVersionedFactFactory()

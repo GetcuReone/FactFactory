@@ -15,12 +15,10 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
         internal static IVersionFact GetVersionFact<TFact>(this IEnumerable<TFact> facts, IFactType factTypeVersion)
             where TFact : IVersionedFact
         {
-            var versionFacts = facts.Where(fact => fact is IVersionFact && fact.GetFactType().Compare(factTypeVersion)).ToList();
-
-            if (versionFacts.IsNullOrEmpty())
+            if (!factTypeVersion.TryGetFact(facts, out TFact fact))
                 throw FactFactoryHelper.CreateException(ErrorCode.VersionNotFound, $"No version fact '{factTypeVersion.FactName}' found");
 
-            return versionFacts.First() as IVersionFact;
+            return fact as IVersionFact;
         }
 
         internal static IFactType SingleOrNullFactVersion(this IEnumerable<IFactType> factTypes)

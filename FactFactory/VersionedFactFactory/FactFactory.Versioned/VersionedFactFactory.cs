@@ -16,7 +16,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// </summary>
     public class VersionedFactFactory : VersionedFactFactoryBase<VersionedFactBase, VersionedFactContainer, VersionedFactRule, VersionedFactRuleCollection, VersionedWantAction>
     {
-        private readonly Func<IEnumerable<IVersionFact>> _getAllVersionFactsFunc;
+        private readonly Func<List<IVersionFact>> _getAllVersionFactsFunc;
 
         /// <summary>
         /// Fact container
@@ -32,7 +32,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// Constructor
         /// </summary>
         /// <param name="getAllVersionFactsFunc">function that returns all versioned facts used in the rules</param>
-        public VersionedFactFactory(Func<IEnumerable<IVersionFact>> getAllVersionFactsFunc)
+        public VersionedFactFactory(Func<List<IVersionFact>> getAllVersionFactsFunc)
         {
             _getAllVersionFactsFunc = getAllVersionFactsFunc;
             Container = new VersionedFactContainer();
@@ -56,23 +56,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <returns>copy of the container filled with version facts</returns>
         protected override VersionedFactContainer GetContainerForDerive()
         {
-            var container = new VersionedFactContainer(Container);
-
-            if (_getAllVersionFactsFunc != null)
-            {
-                List<IVersionFact> versions = _getAllVersionFactsFunc().ToList();
-                var invalidFacts = versions.Where(fact => !(fact is VersionedFactBase)).ToList();
-
-                if (!invalidFacts.IsNullOrEmpty())
-                    throw FactFactoryHelper.CreateDeriveException<VersionedFactBase, VersionedWantAction>(
-                        ErrorCode.InvalidData,
-                        $"{string.Join(", ", invalidFacts.ConvertAll(f => f.GetType().Name))} not inherited from type {typeof(VersionedFactBase).FullName}");
-
-                foreach (IVersionFact versionFact in versions)
-                    container.Add((VersionedFactBase)versionFact);
-            }
-
-            return container;
+           return new VersionedFactContainer(Container);
         }
 
         /// <summary>
@@ -83,6 +67,15 @@ namespace GetcuReone.FactFactory.Versioned
         protected override IFactType GetFactType<TGetFact>()
         {
             return new FactType<TGetFact>();
+        }
+
+        /// <summary>
+        /// Returns instances of all used versions
+        /// </summary>
+        /// <returns></returns>
+        protected override List<IVersionFact> GetAllVersions()
+        {
+            return _getAllVersionFactsFunc();
         }
     }
 }
