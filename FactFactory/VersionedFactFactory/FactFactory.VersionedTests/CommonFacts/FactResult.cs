@@ -2,9 +2,9 @@
 
 namespace FactFactory.VersionedTests.CommonFacts
 {
-    public sealed class FactResult : VersionedFactBase<int>
+    public sealed class FactResult : VersionedFactBase<long>
     {
-        public FactResult(int fact) : base(fact)
+        public FactResult(long fact) : base(fact)
         {
         }
     }

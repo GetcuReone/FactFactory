@@ -34,18 +34,62 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         public void DeriveFactWithoutVersionedRuleTestCase()
         {
             GivenCreateVersionedFactFactory()
-                .And("Added rule", versionedFactFactory =>
+                .And("Added rule", factFactory =>
                 {
-                    versionedFactFactory.Rules.AddRange(new V_Collection
+                    factFactory.Rules.AddRange(new V_Collection
                     {
-                        () => new Fact1(0),
-                        (Fact1 fact) => new FactResult(fact.Value + 1),
+                        //without version
+                        () => new Fact1(1_000),
+                        (Fact1 fact) => new FactResult(fact.Value),
+                        // version 1
+                        (Version1 version) => new Fact1(10),
+                        (Version1 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
+                        // version 1
+                        (Version2 version) => new Fact1(10),
+                        (Version2 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
                     });
                 })
-                .When("Derive fact", versionedFactFactory => versionedFactFactory.DeriveFact<FactResult>())
+                .When("Derive fact", factFactory => factFactory.DeriveFact<FactResult>())
                 .Then("Check result", fact =>
                 {
-                    Assert.AreEqual(1, fact.Value, "expecten another fact value");
+                    Assert.AreEqual(1_000, fact.Value, "expecten another fact value");
+                });
+        }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[versioned][fact_factory][versioned_fact_factory] create wantAction with version")]
+        public void DeriveFactWithtVersionedRuleTestCase()
+        {
+            FactResult result = null;
+
+            GivenCreateVersionedFactFactory()
+                .And("Added rule", factFactory =>
+                {
+                    factFactory.Rules.AddRange(new V_Collection
+                    {
+                        //without version
+                        () => new Fact1(1_000),
+                        (Fact1 fact) => new FactResult(fact.Value + 1),
+                        // version 1
+                        (Version1 version) => new Fact1(10),
+                        (Version1 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
+                        // version 2
+                        (Version2 version) => new Fact1(100),
+                        (Version2 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
+                    });
+                })
+                .And("Want fact", factFactory => 
+                {
+                    factFactory.WantFact((Version1 _, FactResult fact) =>
+                    {
+                        result = fact;
+                    });
+                })
+                .When("Derive fact", versionedFactFactory => versionedFactFactory.Derive())
+                .Then("Check result", fact =>
+                {
+                    Assert.AreEqual(10, result.Value, "expecten another fact value");
                 });
         }
     }
