@@ -1,4 +1,5 @@
-﻿using FactFactoryTests.CommonFacts;
+﻿using FactFactory.TestsCommon;
+using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Facts;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,9 +9,10 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class NoDerivedTests : FactFactoryTestBase
     {
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] derive the fact through the rule with the NoFact")]
+        [TestCategory(TC.Objects.NoDerived), TestCategory(TC.Objects.Factory)]
+        [Description("Derive the fact through the rule with the NoDerived fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveUseRuleWithNoFactTestCase()
         {
             int value = 2;
@@ -30,9 +32,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] derive with NoFact")]
+        [TestCategory(TC.Objects.NoDerived), TestCategory(TC.Objects.Factory)]
+        [Description("Derive with NoDerived fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveWithNoFactTestCase()
         {
             GivenCreateFactFactory()

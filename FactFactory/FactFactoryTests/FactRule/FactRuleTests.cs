@@ -1,4 +1,5 @@
-﻿using FactFactoryTests.CommonFacts;
+﻿using FactFactory.TestsCommon;
+using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
@@ -13,17 +14,12 @@ using Rule = GetcuReone.FactFactory.Entities.FactRule;
 namespace FactFactoryTests.FactRule
 {
     [TestClass]
-    public sealed class FactRuleTests : TestBase
+    public sealed class FactRuleTests : CommonTestBase
     {
-        private IFactType GetFactType<TFact>()
-            where TFact : IFact
-        {
-            return new FactType<TFact>();
-        }
-
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] create FactRule without param")]
+        [TestCategory(TC.Objects.Rule)]
+        [Description("Create FactRule without param")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateFactRuleWithoutParamTestCase()
         {
             GivenEmpty()
@@ -31,9 +27,10 @@ namespace FactFactoryTests.FactRule
                 .Then("Check input param", rule => Assert.AreEqual(0, rule.InputFactTypes.Count, "InpuTFactTypes is not empty"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] create a rule with one input parameter")]
+        [TestCategory(TC.Objects.Rule)]
+        [Description("Create a rule with one input parameter")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateFactRuleOneInputParamTestCase()
         {
             IntFact fact = null;
@@ -51,9 +48,10 @@ namespace FactFactoryTests.FactRule
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] create a rule with several input parameters")]
+        [TestCategory(TC.Objects.Rule)]
+        [Description("Create a rule with several input parameters")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateFactRuleSeveralInputParamTestCase()
         {
             IntFact fact = null;
@@ -70,9 +68,10 @@ namespace FactFactoryTests.FactRule
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] create a rule with output parameter")]
+        [TestCategory(TC.Objects.Rule)]
+        [Description("Create a rule with output parameter")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateFactRuleOutputParamTestCase()
         {
             IntFact fact = null;
@@ -86,9 +85,10 @@ namespace FactFactoryTests.FactRule
                 .Then("Check output param", rule => Assert.IsTrue(rule.OutputFactType.Compare(fact.GetFactType()), "factual information does not match"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][negative] create a rule without param")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
+        [Description("Create a rule without param")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateFactRuleWithoutFuncTestCase()
         {
             GivenEmpty()
@@ -103,9 +103,10 @@ namespace FactFactoryTests.FactRule
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] check method calculate")]
+        [TestCategory(TC.Objects.Rule)]
+        [Description("Check method calculate")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CalculateFactRuleTestCase()
         {
             DateTime operationDate = DateTime.Now;
@@ -136,9 +137,10 @@ namespace FactFactoryTests.FactRule
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] rule can be followed")]
+        [TestCategory(TC.Objects.Rule)]
+        [Description("Rule can be followed")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CanCalculateFactRuleTestCase()
         {
             var container = new Container();
@@ -154,9 +156,10 @@ namespace FactFactoryTests.FactRule
                 .Then("check result", result => Assert.IsTrue(result, "rule cannot be executed"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule] rule cannot be executed")]
+        [TestCategory(TC.Objects.Rule)]
+        [Description("Rule cannot be executed")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CanNotCalculateFactRuleTestCase()
         {
             var container = new Container();
@@ -178,9 +181,10 @@ namespace FactFactoryTests.FactRule
                 .Then("check result", result => Assert.IsFalse(result, "rule can be followed"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][negative] request entry calculated by the rule fact")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
+        [Description("Request entry calculated by the rule fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RequestEntryCalculatedByRuleFactTestCase()
         {
             GivenEmpty()
@@ -196,9 +200,10 @@ namespace FactFactoryTests.FactRule
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][negative] request an invalid fact")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
+        [Description("Request an invalid fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Rule_RequestInvalidFactTestCase()
         {
             GivenEmpty()
@@ -214,9 +219,10 @@ namespace FactFactoryTests.FactRule
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][negative] request entry is not a valid fact")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
+        [Description("Request entry is not a valid fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Rule_RequestEntryInvalidFactTestCase()
         {
             GivenEmpty()

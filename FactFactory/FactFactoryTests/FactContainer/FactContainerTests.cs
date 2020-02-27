@@ -1,4 +1,5 @@
-﻿using FactFactoryTests.CommonFacts;
+﻿using FactFactory.TestsCommon;
+using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
 using GivenWhenThen.TestAdapter;
@@ -17,9 +18,10 @@ namespace FactFactoryTests.FactContainer
             return Given("Create container", () => new GetcuReone.FactFactory.Entities.FactContainer());
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][container] add fact")]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Add fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddFactContainerTestCase()
         {
             DateTime operationDate = DateTime.Now;
@@ -37,9 +39,10 @@ namespace FactFactoryTests.FactContainer
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][container][negative] add an existing fact")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Container)]
+        [Description("Add an existing fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddAnExistingFactTestCase()
         {
             GivenCreateContainer()
@@ -52,9 +55,10 @@ namespace FactFactoryTests.FactContainer
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][container] contains fact")]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Contains fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ContainsFactTestCase()
         {
             GivenCreateContainer()
@@ -63,9 +67,10 @@ namespace FactFactoryTests.FactContainer
                 .Then("Check result", result => Assert.IsTrue(result, "fact not contained"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][container] not contains fact")]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Not contains fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void NotContainsFactTestCase()
         {
             GivenCreateContainer()
@@ -73,9 +78,10 @@ namespace FactFactoryTests.FactContainer
                 .Then("Check result", result => Assert.IsFalse(result, "fact contained"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][container] remove fact")]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Remove fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RemoveFactTestCase()
         {
             GivenCreateContainer()
@@ -84,9 +90,10 @@ namespace FactFactoryTests.FactContainer
                 .Then("Check fact", container => Assert.IsFalse(container.Contains<IntFact>()));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][container] try get existing fact")]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Try get existing fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void TryGetValueExistingFactTestCase()
         {
             var fact = new IntFact(0);
@@ -105,9 +112,10 @@ namespace FactFactoryTests.FactContainer
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][container] try get an existing fact")]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Try get an existing fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void TryGetValueAnExistingFactTestCase()
         {
             GivenCreateContainer()
@@ -123,9 +131,10 @@ namespace FactFactoryTests.FactContainer
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][container] get existing fact")]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Get existing fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetValueExistingFactTestCase()
         {
             var fact = new IntFact(0);
@@ -139,9 +148,10 @@ namespace FactFactoryTests.FactContainer
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][container][negative] get an existing fact")]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Get an existing fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetValueAnExistingFactTestCase()
         {
             GivenCreateContainer()

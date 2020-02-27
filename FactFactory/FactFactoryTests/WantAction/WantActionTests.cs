@@ -12,9 +12,10 @@ namespace FactFactoryTests.WantAction
     [TestClass]
     public sealed class WantActionTests : CommonTestBase
     {
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[want_action][negative] create WantAction without action")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
+        [Description("Create WantAction without action")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateWantActionWithoutActionTestCase()
         {
             GivenEmpty()
@@ -26,9 +27,10 @@ namespace FactFactoryTests.WantAction
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[want_action][negative] run invoke")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
+        [Description("Run invoke")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void InvokeTestCase()
         {
             bool isRun = false;
@@ -38,9 +40,10 @@ namespace FactFactoryTests.WantAction
                 .Then("Check result", _ => Assert.IsTrue(isRun, "Invoke not run"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[want_action][negative] create WantAction without input facts")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
+        [Description("Create WantAction without input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateWantActionWithoutInputFactsTestCase()
         {
             GivenEmpty()

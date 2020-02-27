@@ -1,4 +1,5 @@
-﻿using FactFactoryTests.CommonFacts;
+﻿using FactFactory.TestsCommon;
+using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
@@ -19,9 +20,10 @@ namespace FactFactoryTests.FactFactoryT
             FactFactory = new GetcuReone.FactFactory.FactFactory();
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] rules cannot be empty")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [Description("Rules cannot be empty")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RulesCannotBeEmptyTestCase()
         {
             Given("Set rules", () => FactFactory.Rules.Clear())
@@ -37,9 +39,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] rules cannot be empty")]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Choosing the shortest way")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ChoosingShortestWayTestCase()
         {
             Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
@@ -73,9 +76,10 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check result", f => Assert.AreEqual(5, f.Value, "Another number of rules worked"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] Derivation of only necessary facts")]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Derivation of only necessary facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DerivationOnlyNecessaryFactsTestCase()
         {
             int counter = 0;
@@ -123,9 +127,10 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check result", f => Assert.AreEqual(5, counter, "It had to work out 5 rules"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] get original container")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [Description("Get original container")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetOriginalContainerTestCase()
         {
             Given("Create factory", () => new Env.FactFactoryWithoutRules())
@@ -142,9 +147,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] check method DeriveFact")]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Check method DeriveFact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveFactTestCase()
         {
             Given("Add rule", () => FactFactory.Rules.Add(() => new Input10Fact(10)))
@@ -156,9 +162,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] get fact from container")]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Get fact from container")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetFactFromContainerTastCase()
         {
             var input6Fact = new Input6Fact(6);
@@ -168,9 +175,10 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check fact", fact => Assert.AreEqual(input6Fact, fact, "facts must match"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] derive only one fact")]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Derive only one fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveOnlyOneFactTestCase()
         {
             Input6Fact fact6 = null;
@@ -200,9 +208,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        //[Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] derive facts after run method DeriveFact")]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Derive facts after run method DeriveFact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveFactsAfterRunDeriveFactTestCase()
         {
             Input6Fact fact6 = null;

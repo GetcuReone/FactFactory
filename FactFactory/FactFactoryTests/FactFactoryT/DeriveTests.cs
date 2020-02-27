@@ -1,4 +1,5 @@
-﻿using FactFactoryTests.CommonFacts;
+﻿using FactFactory.TestsCommon;
+using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
@@ -15,9 +16,11 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class DeriveTests : FactFactoryTestBase
     {
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+
         [TestMethod]
-        [Description("[fact][factory] check method Derive")]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Check method Derive")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveTestCase()
         {
             Input16Fact fact16 = null;
@@ -39,9 +42,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] Checking for facts when deriving")]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Checking for facts when deriving")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void FactsWhenDeducingTestCase()
         {
             StartDateOfDerive dateOfDeriveFact = null;
@@ -61,9 +65,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Want a fact for which there is no rule")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [Description("Want a fact for which there is no rule")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void NotExistsRuleForFactTestCase()
         {
             GivenCreateFactFactory()
@@ -81,9 +86,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Want a fact that cannot be derived")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [Description("Want a fact that cannot be derived")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CannotDerivedOneFactFromOne1TestCase()
         {
             GivenCreateFactFactory()
@@ -108,9 +114,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Want a fact that cannot be derived")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [Description("Want a fact that cannot be derived")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CannotDerivedOneFactFromOne2TestCase()
         {
             GivenCreateFactFactory()
@@ -136,9 +143,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] Derived tow facts")]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Derived tow facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DerivedTwoFactsTestCase()
         {
             Input6Fact input6Fact = null;
@@ -160,9 +168,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory] Derived default facts")]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Derived default facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DerivedDefaultFactsTestCase()
         {
             StartDateOfDerive startDateOfDerive = null;

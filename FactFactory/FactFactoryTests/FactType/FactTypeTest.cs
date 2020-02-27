@@ -1,4 +1,5 @@
-﻿using FactFactoryTests.CommonFacts;
+﻿using FactFactory.TestsCommon;
+using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
@@ -16,9 +17,10 @@ namespace FactFactoryTests.FactType
             return Given("Create OthreFact", () => new OtherFact(dateTime));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][info] successful comparison of information about one fact")]
+        [TestCategory(TC.Objects.FactType)]
+        [Description("Successful comparison of information about one fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CompareFactTypeOneFactTestCase()
         {
             StartDateOfDerive fact = null;
@@ -34,9 +36,10 @@ namespace FactFactoryTests.FactType
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][info] successful comparison of information about one fact")]
+        [TestCategory(TC.Objects.FactType)]
+        [Description("Successful comparison of information about one fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void SuccessCompareFactTypeTowFactTestCase()
         {
             StartDateOfDerive firstFact = null;
@@ -57,9 +60,10 @@ namespace FactFactoryTests.FactType
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][info] unsuccessful comparison of two facts")]
+        [TestCategory(TC.Objects.FactType)]
+        [Description("Unsuccessful comparison of two facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void FailedCompareFactTypeTowFactTestCase()
         {
             StartDateOfDerive firstFact = null;
@@ -80,9 +84,10 @@ namespace FactFactoryTests.FactType
                 .Then("Compare factInfos", () => Assert.IsFalse(first.Compare(second), "factual information is the same"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][info] check fact name")]
+        [TestCategory(TC.Objects.FactType)]
+        [Description("Check fact name")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void FactNameTestCase()
         {
             GivenCreateOtherFact(DateTime.Now)

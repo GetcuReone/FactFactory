@@ -1,4 +1,5 @@
-﻿using FactFactoryTests.CommonFacts;
+﻿using FactFactory.TestsCommon;
+using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
@@ -21,9 +22,10 @@ namespace FactFactoryTests.FactRuleCollection
             Collection = new Collection();
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule without input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule without input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWithoutInputFactsTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -35,9 +37,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 1 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 1 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith1InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -61,9 +64,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 2 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 2 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith2InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -88,9 +92,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 3 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 3 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith3InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -116,9 +121,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 4 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 4 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith4InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -145,9 +151,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 5 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 5 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith5InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -175,9 +182,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 6 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 6 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith6InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -206,9 +214,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 7 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 7 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith7InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -238,9 +247,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 8 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 8 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith8InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -271,9 +281,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 9 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 9 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith9InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -305,9 +316,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 10 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 10 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith10InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -340,9 +352,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 11 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 11 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith11InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -376,9 +389,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 16 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 12 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith12InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -413,9 +427,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 13 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 13 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith13InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -451,9 +466,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 14 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 14 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith14InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -490,9 +506,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 15 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 15 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith15InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -530,9 +547,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][coolection] Add a rule with 16 input facts")]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with 16 input facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith16InputFactTestCase()
         {
             Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
@@ -571,9 +589,10 @@ namespace FactFactoryTests.FactRuleCollection
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][negative][coolection] create a rule without param")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
+        [Description("Create a rule without param")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleAlreadyContainsTestCase()
         {
             GivenEmpty()
@@ -585,9 +604,10 @@ namespace FactFactoryTests.FactRuleCollection
                 .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][rule][negative][coolection] add a rule with a NotContained on the output")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add a rule with a NotContained on the output")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWithNotContainedOutTestCase()
         {
             GivenEmpty()
