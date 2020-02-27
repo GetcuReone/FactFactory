@@ -27,9 +27,10 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             };
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][fact_factory][versioned_fact_factory] create wantAction without version")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [Description("Create wantAction without version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveFactWithoutVersionedRuleTestCase()
         {
             GivenCreateVersionedFactFactory()
@@ -55,9 +56,10 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][fact_factory][versioned_fact_factory] create wantAction with version")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [Description("Create wantAction with version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveFactWithtVersionedRuleTestCase()
         {
             FactResult result = null;

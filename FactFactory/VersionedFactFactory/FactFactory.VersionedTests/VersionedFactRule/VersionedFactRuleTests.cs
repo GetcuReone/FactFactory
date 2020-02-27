@@ -12,9 +12,10 @@ namespace FactFactory.VersionedTests.VersionedFactRule
     [TestClass]
     public sealed class VersionedFactRuleTests : CommonTestBase
     {
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][rule] create rule with version")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule)]
+        [Description("Create rule with version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateRuleWithVersionTestCase()
         {
             GivenEmpty()
@@ -26,9 +27,10 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][rule] create rule without version")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule)]
+        [Description("Create rule without version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateRuleWithoutVersionTestCase()
         {
             GivenEmpty()
@@ -39,9 +41,10 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][rule] compare the same rules without versions")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule)]
+        [Description("Compare the same rules without versions")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CompareSameRulesWithoutVersionsTestCase()
         {
             Rule firstRule = null;
@@ -54,9 +57,10 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][rule] compare the same rules with versions")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule)]
+        [Description("Compare the same rules with versions")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CompareSameRulesWithVersionsTestCase()
         {
             Rule firstRule = null;
@@ -69,9 +73,10 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][rule] compare the same rules with different versions")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule)]
+        [Description("Compare the same rules with different versions")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CompareSameRulesWithDifferentVersionsTestCase()
         {
             Rule firstRule = null;
@@ -84,9 +89,10 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][rule] comparison of the same rules where one without version")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule)]
+        [Description("Comparison of the same rules where one without version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ComparisonSameRulesWhereOneWithoutVersionTestCase()
         {
             Rule firstRule = null;
@@ -99,9 +105,10 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][rule] calculate fact")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule)]
+        [Description("Calculate fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void VersionedFactRule_CalculateTestCase()
         {
             Container container = null;
@@ -121,9 +128,10 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][rule] calculate fact without version")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule)]
+        [Description("Calculate fact without version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void VersionedFactRule_CalculateWithoutVersionTestCase()
         {
             Container container = null;

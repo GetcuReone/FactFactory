@@ -15,9 +15,10 @@ namespace FactFactory.VersionedTests.VersionedWantAction
             return new VWantAction(ct => { }, factTypes);
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][versioned][rule] create wantAction with version")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.WantAction)]
+        [Description("Create wantAction with version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateWantActionWithVersionTestCase()
         {
             GivenEmpty()
@@ -29,9 +30,10 @@ namespace FactFactory.VersionedTests.VersionedWantAction
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][versioned][rule] create wantAction without version")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.WantAction)]
+        [Description("Create wantAction without version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateWantActionWithoutVersionTestCase()
         {
             GivenEmpty()

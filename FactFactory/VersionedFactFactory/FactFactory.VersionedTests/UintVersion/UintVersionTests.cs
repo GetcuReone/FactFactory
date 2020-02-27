@@ -1,4 +1,5 @@
-﻿using FactFactory.VersionedTests.CommonFacts;
+﻿using FactFactory.TestsCommon;
+using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.UintVersion.Env;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,9 +9,10 @@ namespace FactFactory.VersionedTests.UintVersion
     [TestClass]
     public class UintVersionTests : TestBase
     {
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][versioned] The first version is less than the second")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [Description("The first version is less than the second")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void FirstVersionLessThanSecondTestCase()
         {
             Version1 v1 = null;
@@ -22,9 +24,10 @@ namespace FactFactory.VersionedTests.UintVersion
                 .Then("Check result", result => Assert.IsTrue(result, "The first version is not less than the second"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][versioned] The second version is more than the first")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [Description("The second version is more than the first")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void SecondVersionMoreThanFirstTestCase()
         {
             Version1 v1 = null;
@@ -36,9 +39,10 @@ namespace FactFactory.VersionedTests.UintVersion
                 .Then("Check result", result => Assert.IsTrue(result, "The first version is not more than the second"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][versioned] The uint version is not less than the int")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [Description("The uint version is not less than the int")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void UintVersionNotLessThanIntTestCase()
         {
             Version1 v1 = null;
@@ -50,9 +54,10 @@ namespace FactFactory.VersionedTests.UintVersion
                 .Then("Check result", result => Assert.IsFalse(result, "The uint version is less than the int"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][versioned] The uint version is not more than the int")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [Description("The uint version is not more than the int")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void UintVersionNotMoreThanIntTestCase()
         {
             Version1 v1 = null;

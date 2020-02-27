@@ -15,9 +15,10 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
             return Given("Create collection", () => new Collection());
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][fact_rule_collection][versioned_fact_rule_collection] add rule")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add rule")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleTestCase()
         {
             GivenCreateCollection()

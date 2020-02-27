@@ -16,9 +16,10 @@ namespace FactFactory.VersionedTests.FactContainer
             return Given("Create container", () => new Container());
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][rule][container] add versioned fact to container")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [Description("Add versioned fact to container")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddVersionedFactContainerTestCase()
         {
             GivenCreateContainer()
@@ -29,9 +30,10 @@ namespace FactFactory.VersionedTests.FactContainer
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][rule][container] add two versioned facts to the container")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [Description("Add two versioned facts to the container")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddTwoVersionedFactsContainerTestCase()
         {
             GivenCreateContainer()
@@ -47,9 +49,10 @@ namespace FactFactory.VersionedTests.FactContainer
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[versioned][rule][container][negative] add two identical versioned facts to the container")]
+        [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [Description("Add two identical versioned facts to the container")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddTwoIdenticalVersionedFactsContainerTestCase()
         {
             GivenCreateContainer()
