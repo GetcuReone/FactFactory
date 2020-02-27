@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.Facts;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +9,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
     /// <summary>
     /// Collection of versioned rules for facts
     /// </summary>
-    public sealed class VersionedFactRuleCollection : FactRuleCollectionBase<VersionedFactRule>
+    public sealed class VersionedFactRuleCollection : FactRuleCollectionBase<VersionedFactBase, VersionedFactRule>
     {
         /// <summary>
         /// Constructor
@@ -32,7 +33,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <param name="inputFactTypes">information on input factacles rules</param>
         /// <param name="outputFactType">information on output fact</param>
         /// <returns></returns>
-        protected override VersionedFactRule CreateFactRule(Func<IFactContainer, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+        protected override VersionedFactRule CreateFactRule(Func<IFactContainer<VersionedFactBase>, VersionedFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
             return new VersionedFactRule(func, inputFactTypes, outputFactType);
         }

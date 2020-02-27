@@ -12,7 +12,7 @@ namespace GetcuReone.FactFactory.Entities
     /// </summary>
     /// <typeparam name="TFact">The type of fact from which the facts in the container should be inherited</typeparam>
     /// <typeparam name="TFactContainer">The type of container that will be input to the rule.</typeparam>
-    public abstract class FactRuleBase<TFact, TFactContainer> : IFactRule<TFact>
+    public abstract class FactRuleBase<TFact> : IFactRule<TFact>
         where TFact : IFact
     {
         private readonly Func<IFactContainer<TFact>, TFact> _func;

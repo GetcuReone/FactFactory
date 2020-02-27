@@ -99,17 +99,17 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.FactContainerBase`1">
             <summary>
-            Base class for fact container
+            Base class for fact container.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactContainerBase`1.#ctor">
             <summary>
-            Constructor
+            Constructor.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
-            Constructor
+            Constructor.
             </summary>
             <param name="facts">an array of facts to add to the container</param>
         </member>
@@ -185,24 +185,24 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
             <exception cref="T:System.ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.FactRuleBase`2">
+        <member name="T:GetcuReone.FactFactory.Entities.FactRuleBase`1">
             <summary>
             Base class for rules.
             </summary>
             <typeparam name="TFact">The type of fact from which the facts in the container should be inherited</typeparam>
             <typeparam name="TFactContainer">The type of container that will be input to the rule.</typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.FactRuleBase`2.InputFactTypes">
+        <member name="P:GetcuReone.FactFactory.Entities.FactRuleBase`1.InputFactTypes">
             <summary>
             Information on input factacles rules.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.FactRuleBase`2.OutputFactType">
+        <member name="P:GetcuReone.FactFactory.Entities.FactRuleBase`1.OutputFactType">
             <summary>
             Information on output fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`2.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{`0},`0},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`1.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{`0},`0},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Constructor.
             </summary>
@@ -212,7 +212,7 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
             <exception cref="T:System.ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`2.CompareFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`1.CompareFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Fact type set comparison
             </summary>
@@ -220,7 +220,7 @@
             <param name="second"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`2.Calculate``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`1.Calculate``1(``0)">
             <summary>
             Rule of fact calculate.
             </summary>
@@ -229,7 +229,7 @@
             <exception cref="T:System.InvalidOperationException">The rule did not return a fact.</exception>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`2.CanCalculate``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`1.CanCalculate``1(``0)">
             <summary>
             is it possible to calculate the fact.
             </summary>
@@ -237,7 +237,7 @@
             <typeparam name="TContainer"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`2.Compare``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`1.Compare``1(``0)">
             <summary>
             Compare rules.
             </summary>
@@ -245,7 +245,7 @@
             <param name="factRule"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`2.ToString">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`1.ToString">
             <inheritdoc />
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.FactRuleCollection">

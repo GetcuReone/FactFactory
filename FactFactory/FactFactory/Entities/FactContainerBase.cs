@@ -47,7 +47,9 @@ namespace GetcuReone.FactFactory.Entities
         /// <exception cref="ArgumentException">Attempt to add an existing fact.</exception>
         public virtual void Add<TAddFact>(TAddFact fact) where TAddFact : TFact
         {
-            if (Contains<TAddFact>())
+            IFactType factType = fact.GetFactType();
+
+            if (_container.Any(f => f.GetFactType().Compare(factType)))
                 throw new ArgumentException($"The fact container already contains {typeof(TAddFact).FullName} type of fact.");
 
             _container.Add(fact);

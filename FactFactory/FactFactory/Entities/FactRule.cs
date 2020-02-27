@@ -8,7 +8,7 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Rule of fact calculation
     /// </summary>
-    public class FactRule : FactRuleBase<FactBase, IFactContainer<FactBase>>
+    public class FactRule : FactRuleBase<FactBase>
     {
         /// <summary>
         /// Constructor.

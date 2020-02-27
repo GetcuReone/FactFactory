@@ -1,10 +1,13 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Entities;
 using GetcuReone.FactFactory.Versioned.Facts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GetcuReone.FactFactory.Versioned
 {
@@ -18,7 +21,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <summary>
         /// Fact container
         /// </summary>
-        public override FactContainer Container { get; }
+        public override VersionedFactContainer Container { get; }
 
         /// <summary>
         /// Rule collection
@@ -32,7 +35,7 @@ namespace GetcuReone.FactFactory.Versioned
         public VersionedFactFactory(Func<IEnumerable<IVersionFact>> getAllVersionFactsFunc)
         {
             _getAllVersionFactsFunc = getAllVersionFactsFunc;
-            Container = new FactContainer();
+            Container = new VersionedFactContainer();
             Rules = new VersionedFactRuleCollection();
         }
 
@@ -51,15 +54,35 @@ namespace GetcuReone.FactFactory.Versioned
         /// Returns a copy of the container filled with version facts
         /// </summary>
         /// <returns>copy of the container filled with version facts</returns>
-        protected override FactContainer GetContainerForDerive()
+        protected override VersionedFactContainer GetContainerForDerive()
         {
-            var container = new FactContainer(Container);
+            var container = new VersionedFactContainer(Container);
 
             if (_getAllVersionFactsFunc != null)
-                foreach (IVersionFact versionFact in _getAllVersionFactsFunc())
-                    container.Add(versionFact);
+            {
+                List<IVersionFact> versions = _getAllVersionFactsFunc().ToList();
+                var invalidFacts = versions.Where(fact => !(fact is VersionedFactBase)).ToList();
+
+                if (!invalidFacts.IsNullOrEmpty())
+                    throw FactFactoryHelper.CreateDeriveException<VersionedFactBase, VersionedWantAction>(
+                        ErrorCode.InvalidData,
+                        $"{string.Join(", ", invalidFacts.ConvertAll(f => f.GetType().Name))} not inherited from type {typeof(VersionedFactBase).FullName}");
+
+                foreach (IVersionFact versionFact in versions)
+                    container.Add((VersionedFactBase)versionFact);
+            }
 
             return container;
+        }
+
+        /// <summary>
+        /// Get fact type
+        /// </summary>
+        /// <typeparam name="TGetFact"></typeparam>
+        /// <returns></returns>
+        protected override IFactType GetFactType<TGetFact>()
+        {
+            return new FactType<TGetFact>();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace GetcuReone.FactFactory.Helpers
         /// <param name="code"></param>
         /// <param name="reason"></param>
         /// <returns></returns>
-        internal static InvalidDeriveOperationException<TFact, TWantAction> CreateDeriveException<TFact, TWantAction>(string code, string reason)
+        public static InvalidDeriveOperationException<TFact, TWantAction> CreateDeriveException<TFact, TWantAction>(string code, string reason)
             where TFact : IFact
             where TWantAction : IWantAction<TFact>
         {

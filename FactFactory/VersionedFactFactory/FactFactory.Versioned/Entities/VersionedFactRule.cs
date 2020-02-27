@@ -1,6 +1,7 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.Facts;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
@@ -12,7 +13,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
     /// <summary>
     /// Version rule for calculating a fact
     /// </summary>
-    public class VersionedFactRule : FactRule, IVersionedFactRule
+    public class VersionedFactRule : FactRuleBase<VersionedFactBase>, IVersionedFactRule<VersionedFactBase>
     {
         /// <summary>
         /// Type of fact with rule version
@@ -25,7 +26,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <param name="func"></param>
         /// <param name="inputFactTypes"></param>
         /// <param name="outputFactType"></param>
-        public VersionedFactRule(Func<IFactContainer, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType) : base(func, inputFactTypes, outputFactType)
+        public VersionedFactRule(Func<IFactContainer<VersionedFactBase>, VersionedFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType) : base(func, inputFactTypes, outputFactType)
         {
             VersionType = inputFactTypes?.SingleOrNullFactVersion();
         }
@@ -36,7 +37,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <typeparam name="TVersionedFactRule"></typeparam>
         /// <param name="versionedFactRule"></param>
         /// <returns></returns>
-        public bool CompareWithoutVersion<TVersionedFactRule>(TVersionedFactRule versionedFactRule) where TVersionedFactRule : IVersionedFactRule
+        public bool CompareWithoutVersion<TVersionedFactRule>(TVersionedFactRule versionedFactRule) where TVersionedFactRule : IVersionedFactRule<VersionedFactBase>
         {
             if (!OutputFactType.Compare(versionedFactRule.OutputFactType))
                 return false;
