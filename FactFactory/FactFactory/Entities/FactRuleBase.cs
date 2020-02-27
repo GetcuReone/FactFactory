@@ -87,7 +87,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <typeparam name="TContainer"></typeparam>
         /// <exception cref="InvalidOperationException">The rule did not return a fact.</exception>
         /// <returns></returns>
-        public TFact Calculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFact>
+        public virtual TFact Calculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFact>
         {
             TFact fact = _func(container);
 
@@ -103,7 +103,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="container"></param>
         /// <typeparam name="TContainer"></typeparam>
         /// <returns></returns>
-        public bool CanCalculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFact>
+        public virtual bool CanCalculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFact>
         {
             return InputFactTypes.All(factInfo => factInfo.ContainsContainer<TFact, TContainer>(container));
         }
@@ -114,7 +114,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <typeparam name="TFactRule"></typeparam>
         /// <param name="factRule"></param>
         /// <returns></returns>
-        public bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule<TFact>
+        public virtual bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule<TFact>
         {
             if (!OutputFactType.Compare(factRule.OutputFactType))
                 return false;
