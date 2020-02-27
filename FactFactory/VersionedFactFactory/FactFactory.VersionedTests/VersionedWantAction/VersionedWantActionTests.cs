@@ -1,7 +1,7 @@
 ﻿using FactFactory.VersionedTests.CommonFacts;
 using FactFactoryTestsCommon;
 using GetcuReone.FactFactory.Interfaces;
-using JwtTestAdapter;
+using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VWantAction = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 

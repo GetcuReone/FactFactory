@@ -1,7 +1,7 @@
 ﻿using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
-using JwtTestAdapter;
+using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

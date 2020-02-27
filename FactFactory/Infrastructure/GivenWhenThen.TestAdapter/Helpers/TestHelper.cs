@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JwtTestAdapter.Helpers
+namespace GivenWhenThen.TestAdapter.Helpers
 {
     public static class TestHelper
     {
@@ -13,7 +13,7 @@ namespace JwtTestAdapter.Helpers
 
             return collection.Distinct(new Entities.EqualityComparer<TObj>(
                 equalsFunc,
-                obj => 
+                obj =>
                 {
                     if (obj == null)
                         return 0;

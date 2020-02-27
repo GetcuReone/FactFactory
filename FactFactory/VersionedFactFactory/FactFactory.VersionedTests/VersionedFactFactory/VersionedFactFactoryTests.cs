@@ -1,8 +1,8 @@
 ﻿using FactFactory.VersionedTests.CommonFacts;
 using FactFactoryTestsCommon;
 using GetcuReone.FactFactory.Versioned.Interfaces;
-using JwtTestAdapter;
-using JwtTestAdapter.Entities;
+using GivenWhenThen.TestAdapter;
+using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using V_Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;

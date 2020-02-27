@@ -1,5 +1,5 @@
-using JwtTestAdapter;
-using JwtTestAdapter.Helpers;
+using GivenWhenThen.TestAdapter;
+using GivenWhenThen.TestAdapter.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

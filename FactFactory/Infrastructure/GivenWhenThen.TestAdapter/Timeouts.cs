@@ -1,4 +1,4 @@
-﻿namespace JwtTestAdapter
+﻿namespace GivenWhenThen.TestAdapter
 {
     public static class Timeouts
     {

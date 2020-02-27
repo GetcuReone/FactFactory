@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace JwtTestAdapter.Entities
+namespace GivenWhenThen.TestAdapter.Entities
 {
     internal sealed class EqualityComparer<TObj> : IEqualityComparer<TObj>
     {

@@ -1,9 +1,9 @@
-﻿using JwtTestAdapter.Entities;
-using JwtTestAdapter.Helpers;
+﻿using GivenWhenThen.TestAdapter.Entities;
+using GivenWhenThen.TestAdapter.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace JwtTestAdapter
+namespace GivenWhenThen.TestAdapter
 {
     [TestClass]
     public abstract class TestBase
@@ -36,13 +36,13 @@ namespace JwtTestAdapter
         }
 
         protected virtual TException ExpectedException<TException>(Action action)
-            where TException: Exception
+            where TException : Exception
         {
             try
             {
                 action();
             }
-            catch(TException e)
+            catch (TException e)
             {
                 return e;
             }

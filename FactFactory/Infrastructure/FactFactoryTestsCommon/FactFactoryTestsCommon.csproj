@@ -13,8 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FactFactory\FactFactory.csproj" />
-    <ProjectReference Include="..\Infrastructure\JwtTestAdapter\JwtTestAdapter.csproj" />
+    <ProjectReference Include="..\..\FactFactory\FactFactory.csproj" />
+    <ProjectReference Include="..\GivenWhenThen.TestAdapter\GivenWhenThen.TestAdapter.csproj" />
   </ItemGroup>
 
 </Project>

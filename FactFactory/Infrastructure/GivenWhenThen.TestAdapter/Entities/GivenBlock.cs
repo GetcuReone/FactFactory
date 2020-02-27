@@ -1,7 +1,7 @@
-﻿using JwtTestAdapter.Helpers;
+﻿using GivenWhenThen.TestAdapter.Helpers;
 using System;
 
-namespace JwtTestAdapter.Entities
+namespace GivenWhenThen.TestAdapter.Entities
 {
     public class GivenBlock<TResult> : BlockBase<TResult>
     {

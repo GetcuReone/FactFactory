@@ -1,11 +1,9 @@
 ﻿using FactFactory.VersionedTests.CommonFacts;
 using FactFactoryTestsCommon;
-using JwtTestAdapter;
-using JwtTestAdapter.Entities;
+using GivenWhenThen.TestAdapter;
+using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactory.VersionedTests.FactContainer

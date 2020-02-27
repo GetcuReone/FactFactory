@@ -1,13 +1,13 @@
-﻿using JwtTestAdapter.Helpers;
+﻿using GivenWhenThen.TestAdapter.Helpers;
 using System;
 
-namespace JwtTestAdapter.Entities
+namespace GivenWhenThen.TestAdapter.Entities
 {
-    public class WhenBlock<TResult> : BlockBase<TResult>
+    public class ThenBlock<TResult> : BlockBase<TResult>
     {
-        internal WhenBlock() { }
+        internal ThenBlock() { }
 
-        public virtual ThenBlock<TResult> Then(string description, Action action)
+        public virtual ThenBlock<TResult> And(string description, Action action)
         {
             LoggingHelper.Info($"[then] (start) {description}");
 
@@ -18,7 +18,7 @@ namespace JwtTestAdapter.Entities
             return new ThenBlock<TResult> { Result = Result };
         }
 
-        public virtual ThenBlock<TResult> Then(string description, Action<TResult> action)
+        public virtual ThenBlock<TResult> And(string description, Action<TResult> action)
         {
             LoggingHelper.Info($"[then] (start) {description}");
 
@@ -29,7 +29,7 @@ namespace JwtTestAdapter.Entities
             return new ThenBlock<TResult> { Result = Result };
         }
 
-        public virtual ThenBlock<TResult1> Then<TResult1>(string description, Func<TResult1> func)
+        public virtual ThenBlock<TResult1> And<TResult1>(string description, Func<TResult1> func)
         {
             LoggingHelper.Info($"[then] (start) {description}");
 
@@ -40,7 +40,7 @@ namespace JwtTestAdapter.Entities
             return then;
         }
 
-        public virtual ThenBlock<TResult1> Then<TResult1>(string description, Func<TResult, TResult1> func)
+        public virtual ThenBlock<TResult1> And<TResult1>(string description, Func<TResult, TResult1> func)
         {
             LoggingHelper.Info($"[then] (start) {description}");
 

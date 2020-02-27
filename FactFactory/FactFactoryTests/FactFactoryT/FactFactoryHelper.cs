@@ -1,4 +1,4 @@
-﻿using JwtTestAdapter.Entities;
+﻿using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactoryTests.FactFactoryT

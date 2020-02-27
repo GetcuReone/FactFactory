@@ -1,6 +1,6 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Facts;
-using JwtTestAdapter;
+using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

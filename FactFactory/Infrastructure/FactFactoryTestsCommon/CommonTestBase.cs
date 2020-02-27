@@ -1,6 +1,6 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
-using JwtTestAdapter;
+using GivenWhenThen.TestAdapter;
 
 namespace FactFactoryTestsCommon
 {

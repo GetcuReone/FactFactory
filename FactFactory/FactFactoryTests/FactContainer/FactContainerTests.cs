@@ -1,8 +1,8 @@
 ﻿using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
-using JwtTestAdapter;
-using JwtTestAdapter.Entities;
+using GivenWhenThen.TestAdapter;
+using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

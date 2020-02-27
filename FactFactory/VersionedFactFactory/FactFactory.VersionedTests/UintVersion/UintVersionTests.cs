@@ -1,6 +1,6 @@
 ﻿using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.UintVersion.Env;
-using JwtTestAdapter;
+using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.VersionedTests.UintVersion
