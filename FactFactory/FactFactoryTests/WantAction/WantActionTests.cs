@@ -55,9 +55,10 @@ namespace FactFactoryTests.WantAction
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[want_action][negative] request entry is not a valid fact")]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
+        [Description("Request entry is not a valid fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void WantAction_RequestEntryInvalidFactTestCase()
         {
             GivenEmpty()
