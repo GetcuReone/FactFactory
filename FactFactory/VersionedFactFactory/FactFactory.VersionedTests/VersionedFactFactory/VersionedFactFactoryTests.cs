@@ -1,13 +1,12 @@
 ﻿using FactFactory.VersionedTests.CommonFacts;
 using FactFactoryTestsCommon;
-using GetcuReone.FactFactory.Versioned.Entities;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using JwtTestAdapter;
 using JwtTestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using V_FactFactory = GetcuReone.FactFactory.Versioned.VersionedFactFactory;
 using V_Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
+using V_FactFactory = GetcuReone.FactFactory.Versioned.VersionedFactFactory;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
