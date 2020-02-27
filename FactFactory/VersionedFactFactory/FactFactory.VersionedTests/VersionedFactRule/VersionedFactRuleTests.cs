@@ -120,5 +120,22 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                         Assert.Fail("Version is not Version2");
                 });
         }
+
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [TestMethod]
+        [Description("[versioned][rule] calculate fact without version")]
+        public void VersionedFactRule_CalculateWithoutVersionTestCase()
+        {
+            Container container = null;
+
+            Given("Create container", () => container = new Container())
+                .And("Create rule", () => new Rule(ct => new FactResult(1), new List<IFactType> { }, GetFactType<FactResult>()))
+                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container), "cannot calculate"))
+                .When("Run calculate", rule => rule.Calculate(container))
+                .Then("Check result", fact =>
+                {
+                    Assert.IsNull(fact.Version, "Version must be null");
+                });
+        }
     }
 }
