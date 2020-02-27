@@ -12,7 +12,7 @@ using System.Linq;
 namespace GetcuReone.FactFactory.Versioned
 {
     /// <summary>
-    /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
+    /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
     /// </summary>
     public class VersionedFactFactory : VersionedFactFactoryBase<VersionedFactBase, VersionedFactContainer, VersionedFactRule, VersionedFactRuleCollection, VersionedWantAction>
     {
@@ -40,7 +40,7 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// creation method <see cref="IWantAction"/>
+        /// creation method <see cref="IWantAction{TFact}"/>
         /// </summary>
         /// <param name="wantAction">action taken after deriving a fact</param>
         /// <param name="factTypes">facts required to launch an action</param>

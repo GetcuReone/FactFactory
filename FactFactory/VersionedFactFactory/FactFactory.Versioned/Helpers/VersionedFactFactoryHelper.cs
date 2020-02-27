@@ -8,7 +8,7 @@ using System.Linq;
 namespace GetcuReone.FactFactory.Versioned.Helpers
 {
     /// <summary>
-    /// Helper for <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
+    /// Helper for <see cref="VersionedFactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
     /// </summary>
     internal static class VersionedFactFactoryHelper
     {
