@@ -2,7 +2,7 @@
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 
-namespace FactFactoryTestsCommon
+namespace FactFactory.TestsCommon
 {
     public abstract class CommonTestBase : TestBase
     {

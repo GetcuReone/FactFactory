@@ -1,5 +1,5 @@
-﻿using FactFactory.VersionedTests.CommonFacts;
-using FactFactoryTestsCommon;
+﻿using FactFactory.TestsCommon;
+using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GivenWhenThen.TestAdapter;
 using GivenWhenThen.TestAdapter.Entities;

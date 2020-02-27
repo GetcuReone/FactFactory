@@ -1,5 +1,5 @@
-﻿using FactFactoryTests.CommonFacts;
-using FactFactoryTestsCommon;
+﻿using FactFactory.TestsCommon;
+using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

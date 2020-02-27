@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.VersionedTests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GivenWhenThen.TestAdapter", "Infrastructure\GivenWhenThen.TestAdapter\GivenWhenThen.TestAdapter.csproj", "{18928614-5610-4F21-B0E4-B52E46420353}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactoryTestsCommon", "Infrastructure\FactFactoryTestsCommon\FactFactoryTestsCommon.csproj", "{3AC49AB3-93F2-4A96-A408-7CBC3B12B130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.TestsCommon", "Infrastructure\FactFactory.TestsCommon\FactFactory.TestsCommon.csproj", "{3AC49AB3-93F2-4A96-A408-7CBC3B12B130}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
