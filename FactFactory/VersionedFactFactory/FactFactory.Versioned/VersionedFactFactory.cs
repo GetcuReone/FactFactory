@@ -11,7 +11,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
     /// </summary>
-    public class VersionedFactFactory : VersionedFactFactoryBase<VersionedFactBase, FactContainer, VersionedFactRule, VersionedFactRuleCollection, VersionedWantAction>
+    public class VersionedFactFactory : VersionedFactFactoryBase<VersionedFactBase, VersionedFactContainer, VersionedFactRule, VersionedFactRuleCollection, VersionedWantAction>
     {
         private readonly Func<IEnumerable<IVersionFact>> _getAllVersionFactsFunc;
 
