@@ -1,6 +1,4 @@
-﻿using GetcuReone.FactFactory.Versioned.Facts;
-
-namespace FactFactory.VersionedTests.CommonFacts
+﻿namespace FactFactory.VersionedTests.CommonFacts
 {
     /// <summary>
     /// Version 1

@@ -1,8 +1,8 @@
-﻿using GetcuReone.FactFactory.Facts;
+﻿using GetcuReone.FactFactory.Versioned.Facts;
 
 namespace FactFactory.VersionedTests.CommonFacts
 {
-    public sealed class FactResult : FactBase<int>
+    public sealed class FactResult : VersionedFactBase<int>
     {
         public FactResult(int fact) : base(fact)
         {
