@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\FactFactory.TestsCommon\FactFactory.TestsCommon.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\FactFactoryTestsCommon\FactFactory.TestsCommon.csproj" />
     <ProjectReference Include="..\FactFactory.Versioned\FactFactory.Versioned.csproj" />
   </ItemGroup>
 
