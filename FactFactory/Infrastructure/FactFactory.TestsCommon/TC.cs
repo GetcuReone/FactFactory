@@ -60,6 +60,16 @@
             /// <see cref="GetcuReone.FactFactory.Interfaces.INoDerivedFact"/>
             /// </summary>
             public const string NoDerived = "no_derived";
+
+            /// <summary>
+            /// <see cref="GetcuReone.FactFactory.Interfaces.IFact"/>
+            /// </summary>
+            public const string Fact = "fact";
+
+            /// <summary>
+            /// <see cref="GetcuReone.FactFactory.Interfaces.IFactType"/>
+            /// </summary>
+            public const string FactType = "fact_type";
         }
     }
 }
