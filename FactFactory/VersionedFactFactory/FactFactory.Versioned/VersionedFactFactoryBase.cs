@@ -171,5 +171,31 @@ namespace GetcuReone.FactFactory.Versioned
             _calculatedFactTypes.Clear();
             _calculatedFactTypes = null;
         }
+
+        /// <summary>
+        /// Derive <typeparamref name="TWantFact"/> with version.
+        /// </summary>
+        /// <typeparam name="TWantFact">Type of desired fact.</typeparam>
+        /// <typeparam name="TVersion">Type of version fact.</typeparam>
+        /// <returns></returns>
+        public virtual TWantFact DeriveFact<TWantFact, TVersion>()
+            where TWantFact : TFact
+            where TVersion : TFact, IVersionFact
+        {
+            TWantFact fact = default;
+
+            var wantActions = new List<TWantAction>(WantActions);
+            WantActions.Clear();
+
+            WantFact(CreateWantAction(
+                container => fact = container.GetFact<TWantFact>(),
+                new List<IFactType> { GetFactType<TVersion>(), GetFactType<TWantFact>() }));
+
+            Derive();
+
+            WantActions.AddRange(wantActions);
+
+            return fact;
+        }
     }
 }

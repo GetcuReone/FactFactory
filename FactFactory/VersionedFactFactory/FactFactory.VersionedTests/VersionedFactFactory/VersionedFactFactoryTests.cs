@@ -62,8 +62,6 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveFactWithtVersionedRuleTestCase()
         {
-            FactResult result = null;
-
             GivenCreateVersionedFactFactory()
                 .And("Added rule", factFactory =>
                 {
@@ -80,17 +78,10 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                         (Version2 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
                     });
                 })
-                .And("Want fact", factFactory => 
-                {
-                    factFactory.WantFact((Version1 _, FactResult fact) =>
-                    {
-                        result = fact;
-                    });
-                })
-                .When("Derive fact", versionedFactFactory => versionedFactFactory.Derive())
+                .When("Derive fact", factFactory => factFactory.DeriveFact<FactResult, Version1>())
                 .Then("Check result", fact =>
                 {
-                    Assert.AreEqual(10, result.Value, "expecten another fact value");
+                    Assert.AreEqual(10, fact.Value, "expecten another fact value");
                 });
         }
     }
