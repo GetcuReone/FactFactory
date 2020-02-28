@@ -8,7 +8,7 @@
     <PackageId>GetcuReone.FactFactory</PackageId>
     <Product>FactFactory</Product>
     <Description>My implementation of a machine that can derive facts from other facts</Description>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageLicenseExpression></PackageLicenseExpression>
     <RepositoryUrl>https://github.com/GetcuReone/FactFactory.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>factfactory fact getcureone combopatterns</PackageTags>
@@ -17,6 +17,7 @@
     <PackageProjectUrl>https://github.com/GetcuReone/FactFactory</PackageProjectUrl>
     <Copyright>Copyright © 2020 GetcuReone</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageLicenseFile>LICENSE-2.0.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
