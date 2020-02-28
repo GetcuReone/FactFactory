@@ -93,7 +93,7 @@ namespace InfrastructureTests
                         "lib/netstandard2.0/FactFactory.xml",
                         "lib/netstandard2.0/FactFactory.Versioned.dll",
                         "lib/netstandard2.0/FactFactory.Versioned.xml",
-                        "LICENSE-2.0.txt"
+                        "LICENSE.txt"
                     };
 
                     foreach (string file in files)
