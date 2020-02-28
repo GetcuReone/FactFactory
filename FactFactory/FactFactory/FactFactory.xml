@@ -666,13 +666,13 @@
             </summary>
             <param name="factInfo"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.GetNotContainedInstance">
+        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.CreateNotContained">
             <summary>
             Return fact. The current fact is not contained in the container.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.GetNoDerivedInstance">
+        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.CreateNoDerived">
             <summary>
             Return an instance of a type <see cref="T:GetcuReone.FactFactory.Interfaces.INoDerivedFact"/> fact in for the current fact type
             </summary>
@@ -691,7 +691,8 @@
             </summary>
             <typeparam name="TFact1">Type base class for facts.</typeparam>
             <param name="facts">Set fact.</param>
-            <returns>Fact.</returns>
+            <param name="fact">Fact.</param>
+            <returns>True - fact found.</returns>
             <exception cref="T:System.InvalidOperationException">There are more than one type of inheriting <typeparamref name="TFact"/> type.</exception>
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.WantAction">
@@ -1224,17 +1225,6 @@
             Constructor
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Facts.NoDerivedBase">
-            <summary>
-            Base class for facts that cannot be calculated
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facts.NoDerivedBase.#ctor(GetcuReone.FactFactory.Interfaces.IFactType)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="fact"></param>
-        </member>
         <member name="T:GetcuReone.FactFactory.Facts.NotContained`1">
             <summary>
             Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>
@@ -1245,22 +1235,11 @@
             Constructor
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Facts.NotContainedBase">
-            <summary>
-            Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facts.NotContainedBase.#ctor(GetcuReone.FactFactory.Interfaces.IFactType)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="fact"></param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facts.NotContainedBase.IsFactContained``2(``1)">
+        <member name="M:GetcuReone.FactFactory.Facts.NotContained`1.IsFactContained``2(``1)">
             <summary>
             Is the fact contained in the container.
             </summary>
-            <typeparam name="TFact"></typeparam>
+            <typeparam name="TFact1"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
             <param name="container"></param>
             <returns></returns>
@@ -1465,13 +1444,13 @@
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.GetNotContainedInstance">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.CreateNotContained">
             <summary>
             Return fact. The current fact is not contained in the container.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.GetNoDerivedInstance">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.CreateNoDerived">
             <summary>
             Return an instance of a type <see cref="T:GetcuReone.FactFactory.Interfaces.INoDerivedFact"/> fact in for the current fact type
             </summary>

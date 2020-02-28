@@ -71,7 +71,8 @@ namespace GetcuReone.FactFactory.Entities
         /// </summary>
         /// <typeparam name="TFact1">Type base class for facts.</typeparam>
         /// <param name="facts">Set fact.</param>
-        /// <returns>Fact.</returns>
+        /// <param name="fact">Fact.</param>
+        /// <returns>True - fact found.</returns>
         /// <exception cref="InvalidOperationException">There are more than one type of inheriting <typeparamref name="TFact"/> type.</exception>
         public bool TryGetFact<TFact1>(IEnumerable<TFact1> facts, out TFact1 fact) where TFact1 : IFact
         {
