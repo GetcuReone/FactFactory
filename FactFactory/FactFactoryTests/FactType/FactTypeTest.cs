@@ -1,5 +1,9 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
+using FactFactoryTests.FactType.Env;
+using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
@@ -15,6 +19,12 @@ namespace FactFactoryTests.FactType
         private GivenBlock<OtherFact> GivenCreateOtherFact(DateTime dateTime)
         {
             return Given("Create OthreFact", () => new OtherFact(dateTime));
+        }
+
+        private GivenBlock<FactType<TFact>> GivenCreateFactType<TFact>()
+            where TFact : IFact
+        {
+            return Given($"Create fact type for {typeof(TFact).Name}", () => new FactType<TFact>());
         }
 
         [TestMethod]
@@ -93,6 +103,59 @@ namespace FactFactoryTests.FactType
             GivenCreateOtherFact(DateTime.Now)
                 .When("Create factInfo", fact => fact.GetFactType())
                 .Then("Check result", factInfo => Assert.AreEqual(nameof(OtherFact), factInfo.FactName, "not expected fact name"));
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived)]
+        [Description("Create NoDerived fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void CreateNoDerivedFactTestCase()
+        {
+            GivenCreateFactType<NoDerived<OtherFact>>()
+                .When("Create NoDerived fact", factType => factType.CreateNoDerived())
+                .Then("Check result", fact =>
+                {
+                    Assert.IsNotNull(fact, "fact cannot be null");
+                    Assert.IsTrue(fact is NoDerived<OtherFact>, "Expected another type");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived)]
+        [Description("Create a NoDerived fact using the wrong type")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void CreateNoDerivedUsingWrongTypeTestCase()
+        {
+            GivenCreateFactType<OtherFact>()
+                .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateNoDerived()))
+                .Then("Check result", error =>
+                {
+                    Assert.IsNotNull(error, "error cannot be null");
+                    Assert.AreEqual(1, error.Details.Count);
+
+                    ErrorDetail detail = error.Details[0];
+                    Assert.AreEqual(ErrorCode.InvalidFactType, detail.Code, "Expected another code");
+                    Assert.AreEqual($"{typeof(OtherFact).FullName} does not implement {typeof(INoDerivedFact).FullName} type.", detail.Reason, "Expected another message");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived)]
+        [Description("Create a NoDerived fact without default constructor")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void CreateNoDerivedWithoutDefaultConstructorTestCase()
+        {
+            GivenCreateFactType<NoDerivedWithoutConstructor>()
+                .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateNoDerived()))
+                .Then("Check result", error =>
+                {
+                    Assert.IsNotNull(error, "error cannot be null");
+                    Assert.AreEqual(1, error.Details.Count);
+
+                    ErrorDetail detail = error.Details[0];
+                    Assert.AreEqual(ErrorCode.InvalidFactType, detail.Code, "Expected another code");
+                    Assert.AreEqual($"{typeof(NoDerivedWithoutConstructor).FullName} doesn't have a default constructor.", detail.Reason, "Expected another message");
+                });
         }
     }
 }

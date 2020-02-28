@@ -87,9 +87,9 @@ namespace GetcuReone.FactFactory.Entities
             var resultType = typeof(TFactResult);
 
             if (!resultType.IsAssignableFrom(type))
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} does not implement {resultType.FullName} type");
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} does not implement {resultType.FullName} type.");
             else if (type.GetConstructor(Type.EmptyTypes) == null)
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} doesn't have a default constructor");
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} doesn't have a default constructor.");
 
 
             return (TFactResult)Activator.CreateInstance(type, false);
