@@ -139,12 +139,12 @@ namespace GetcuReone.FactFactory
                 List<TFact> includeFacts = new List<TFact>(
                 rule.InputFactTypes
                     .Where(factInfo => factInfo.IsFactType<INotContainedFact>())
-                    .Select(factInfo => (TFact)factInfo.GetNotContainedInstance()));
+                    .Select(factInfo => (TFact)factInfo.CreateNotContained()));
 
                 includeFacts.AddRange(
                     rule.InputFactTypes
                         .Where(factInfo => factInfo.IsFactType<INoDerivedFact>())
-                        .Select(factInfo => (TFact)factInfo.GetNoDerivedInstance()));
+                        .Select(factInfo => (TFact)factInfo.CreateNoDerived()));
 
                 foreach (var includeFact in includeFacts)
                     container.Add(includeFact);
@@ -262,7 +262,7 @@ namespace GetcuReone.FactFactory
                         // Exclude NotContained facts
                         foreach (var notContainedFactInfo in needFacts.Where(fact => fact.IsFactType<INotContainedFact>()).ToList())
                         {
-                            INotContainedFact notContainedFact = notContainedFactInfo.GetNotContainedInstance();
+                            INotContainedFact notContainedFact = notContainedFactInfo.CreateNotContained();
 
                             if (container.All(fact => !notContainedFact.IsFactContained<TFact, TFactContainer>(container))) 
                                 needFacts.Remove(notContainedFactInfo);
@@ -499,7 +499,7 @@ namespace GetcuReone.FactFactory
         {
             try
             {
-                return TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> _, wantFact.GetNoDerivedInstance().Value, container, ruleCollection, out List<List<IFactType>> _);
+                return TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> _, wantFact.CreateNoDerived().Value, container, ruleCollection, out List<List<IFactType>> _);
             }
             catch (InvalidDeriveOperationException<TFact, TWantAction> ex)
             {

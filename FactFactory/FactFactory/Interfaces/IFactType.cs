@@ -29,13 +29,13 @@ namespace GetcuReone.FactFactory.Interfaces
         /// Return fact. The current fact is not contained in the container.
         /// </summary>
         /// <returns></returns>
-        INotContainedFact GetNotContainedInstance();
+        INotContainedFact CreateNotContained();
 
         /// <summary>
         /// Return an instance of a type <see cref="INoDerivedFact"/> fact in for the current fact type
         /// </summary>
         /// <returns></returns>
-        INoDerivedFact GetNoDerivedInstance();
+        INoDerivedFact CreateNoDerived();
 
         /// <summary>
         /// Try to get a fact from the container.

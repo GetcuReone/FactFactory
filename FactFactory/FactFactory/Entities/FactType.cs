@@ -31,7 +31,7 @@ namespace GetcuReone.FactFactory.Entities
         /// Return fact. The current fact is not contained in the container.
         /// </summary>
         /// <returns></returns>
-        public INotContainedFact GetNotContainedInstance()
+        public INotContainedFact CreateNotContained()
         {
             var type = typeof(TFact);
 
@@ -45,7 +45,7 @@ namespace GetcuReone.FactFactory.Entities
         /// Return an instance of a type <see cref="INoDerivedFact"/> fact in for the current fact type
         /// </summary>
         /// <returns></returns>
-        public INoDerivedFact GetNoDerivedInstance()
+        public INoDerivedFact CreateNoDerived()
         {
             var type = typeof(TFact);
 
