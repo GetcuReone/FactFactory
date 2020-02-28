@@ -33,12 +33,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <returns></returns>
         public INotContainedFact CreateNotContained()
         {
-            var type = typeof(TFact);
-
-            if (!typeof(INotContainedFact).IsAssignableFrom(type))
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"Fact is not a type {nameof(INotContainedFact)}");
-
-            return (INotContainedFact) Activator.CreateInstance(typeof(TFact));
+            return CreateFact<INotContainedFact>();
         }
 
         /// <summary>
@@ -47,12 +42,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <returns></returns>
         public INoDerivedFact CreateNoDerived()
         {
-            var type = typeof(TFact);
-
-            if (!typeof(INoDerivedFact).IsAssignableFrom(type))
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"Fact is not a type {nameof(INoDerivedFact)}");
-
-            return (INoDerivedFact)Activator.CreateInstance(typeof(TFact));
+            return CreateFact<INoDerivedFact>();
         }
 
         /// <summary>
@@ -88,6 +78,21 @@ namespace GetcuReone.FactFactory.Entities
             }
 
             throw new InvalidOperationException($"There is more than one fact with type {FactName} in the array of facts");
+        }
+
+        private TFactResult CreateFact<TFactResult>()
+            where TFactResult : IFact
+        {
+            var type = typeof(TFact);
+            var resultType = typeof(TFactResult);
+
+            if (!resultType.IsAssignableFrom(type))
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} does not implement {resultType.FullName} type");
+            else if (type.GetConstructor(Type.EmptyTypes) == null)
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} doesn't have a default constructor");
+
+
+            return (TFactResult)Activator.CreateInstance(type, false);
         }
     }
 }
