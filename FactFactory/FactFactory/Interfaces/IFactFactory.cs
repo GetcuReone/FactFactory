@@ -13,10 +13,10 @@ namespace GetcuReone.FactFactory.Interfaces
     /// <typeparam name="TWantAction">Type 'want action'</typeparam>
     public interface IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IAbstractFactory
         where TFact : IFact
-        where TFactContainer : class, IFactContainer<TFact>
-        where TFactRule : class, IFactRule<TFact>
-        where TFactRuleCollection : class, IList<TFactRule>
-        where TWantAction : class, IWantAction<TFact>
+        where TFactContainer : IFactContainer<TFact>
+        where TFactRule : IFactRule<TFact>
+        where TFactRuleCollection : IList<TFactRule>
+        where TWantAction : IWantAction<TFact>
     {
         /// <summary>
         /// Fact container
