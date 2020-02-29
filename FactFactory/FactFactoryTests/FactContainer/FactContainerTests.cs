@@ -169,7 +169,7 @@ namespace FactFactoryTests.FactContainer
         [TestCategory(TC.Objects.Container)]
         [Description("Get copied container")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
-        public void GetCopiedFactContainerTestCase()
+        public void FactContainer_GetCopiedContainerTestCase()
         {
             Input1Fact input1Fact = new Input1Fact(1);
             Input2Fact input2Fact = new Input2Fact(2);
