@@ -124,6 +124,34 @@
             Type fact version
             </summary>
         </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Facts.DerivingFacts">
+            <summary>
+            All deriving facts.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.DerivingFacts.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="factTypes"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.DerivingFacts.GetFactType">
+            <summary>
+            Get fact type.
+            </summary>
+            <returns>fact type</returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Facts.StartDateOfDerive">
+            <summary>
+            Start date for deriving of all facts
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.StartDateOfDerive.#ctor(System.DateTime)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="value"></param>
+        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Facts.UintVersion">
             <summary>
             base class for factors determining version by number <see cref="T:System.UInt32"/>

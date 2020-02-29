@@ -143,7 +143,7 @@ namespace InfrastructureTests
                 })
                 .Then("Check timeouts", methods =>
                 {
-                    List<MemberInfo> invalidMethods = methods.Where(method => method.GetCustomAttribute(typeof(TestMethodAttribute)) == null).ToList();
+                    List<MemberInfo> invalidMethods = methods.Where(method => method.GetCustomAttribute(typeof(TimeoutAttribute)) == null).ToList();
 
                     if (invalidMethods.Count != 0)
                     {

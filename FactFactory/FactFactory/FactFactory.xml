@@ -1172,18 +1172,18 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Facts.DerivingFacts">
             <summary>
-            All deriving facts
+            All deriving facts.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Facts.DerivingFacts.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
-            Constructor
+            Constructor.
             </summary>
             <param name="factTypes"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.Facts.DerivingFacts.GetFactType">
             <summary>
-            Get fact type
+            Get fact type.
             </summary>
             <returns>fact type</returns>
         </member>
@@ -1254,6 +1254,12 @@
             Constructor
             </summary>
             <param name="value"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facts.StartDateOfDerive.GetFactType">
+            <summary>
+            Get fact type.
+            </summary>
+            <returns>fact type</returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Helpers.FactFactoryHelper">
             <summary>

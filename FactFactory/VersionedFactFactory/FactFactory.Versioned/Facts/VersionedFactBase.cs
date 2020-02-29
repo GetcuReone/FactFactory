@@ -11,7 +11,7 @@ namespace GetcuReone.FactFactory.Versioned.Facts
         /// <summary>
         /// Version of the rule that calculated the fact.
         /// </summary>
-        public IVersionFact Version { get; set; }
+        public virtual IVersionFact Version { get; set; }
     }
 
     /// <summary>

@@ -1,4 +1,6 @@
 ﻿using System;
+using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 
 namespace GetcuReone.FactFactory.Facts
 {
@@ -13,6 +15,15 @@ namespace GetcuReone.FactFactory.Facts
         /// <param name="value"></param>
         public StartDateOfDerive(DateTime value) : base(value)
         {
+        }
+
+        /// <summary>
+        /// Get fact type.
+        /// </summary>
+        /// <returns>fact type</returns>
+        public override IFactType GetFactType()
+        {
+            return new FactType<StartDateOfDerive>();
         }
     }
 }

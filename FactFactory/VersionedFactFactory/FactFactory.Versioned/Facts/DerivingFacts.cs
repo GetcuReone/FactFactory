@@ -2,12 +2,12 @@
 using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.Facts
+namespace GetcuReone.FactFactory.Versioned.Facts
 {
     /// <summary>
     /// All deriving facts.
     /// </summary>
-    public sealed class DerivingFacts : FactBase<List<IFactType>>
+    public sealed class DerivingFacts : VersionedFactBase<List<IFactType>>
     {
         /// <summary>
         /// Constructor.
