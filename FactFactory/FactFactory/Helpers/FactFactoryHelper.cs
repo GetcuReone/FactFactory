@@ -89,11 +89,10 @@ namespace GetcuReone.FactFactory.Helpers
             return new FactType<TFact>();
         }
 
-        internal static bool ContainsContainer<TFact, TFactContainer>(this IFactType factType, TFactContainer container)
+        internal static bool ContainsContainer<TFact>(this IFactType factType, IFactContainer<TFact> container)
             where TFact : IFact
-            where TFactContainer : IFactContainer<TFact>
         {
-            return factType.TryGetFact(container, out TFact _);//container.Any(fact => fact.GetFactType().Compare(factType));
+            return factType.TryGetFact(container, out TFact _);
         }
 
         internal static void CheckArgumentFacts<TFact>(this IEnumerable<IFactType> factTypes)

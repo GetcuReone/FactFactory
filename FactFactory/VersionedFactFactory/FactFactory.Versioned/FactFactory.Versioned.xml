@@ -332,12 +332,6 @@
             <param name="factTypes">facts required to launch an action</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetContainerForDerive">
-            <summary>
-            Returns a copy of the container filled with version facts
-            </summary>
-            <returns>copy of the container filled with version facts</returns>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetFactType``1">
             <summary>
             Get fact type
@@ -365,7 +359,7 @@
             <param name="wantAction">Current wantAction</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.CalculateFact(`2,`1,`4)">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.CalculateFact(`2,GetcuReone.FactFactory.Interfaces.IFactContainer{`0},`4)">
             <summary>
             Calculate fact.
             </summary>

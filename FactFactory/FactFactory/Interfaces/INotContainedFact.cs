@@ -12,8 +12,6 @@
         /// <typeparam name="TFact"></typeparam>
         /// <param name="container"></param>
         /// <returns></returns>
-        bool IsFactContained<TFact, TFactContainer>(TFactContainer container)
-            where TFact : IFact
-            where TFactContainer : IFactContainer<TFact>;
+        bool IsFactContained<TFact>(IFactContainer<TFact> container) where TFact : IFact;
     }
 }

@@ -2,11 +2,8 @@
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Exceptions;
-using GetcuReone.FactFactory.Facts;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WAction = GetcuReone.FactFactory.Entities.WantAction;
 using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
 namespace FactFactoryTests.FactFactoryT
@@ -127,9 +124,13 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetOriginalContainerTestCase()
         {
-            Given("Create factory", () => new FactFactoryWithoutRules())
+            Given("Create factory", () => new FactFactoryCustom())
+                .And("Change container", factFactory =>
+                {
+                    factFactory.container = new FactContainerGetOriginal();
+                })
                 .When("Run derive", factory => ExpectedDeriveException(() => factory.DeriveFact<OtherFact>()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, "method GetCopyContainer return original container");
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
         }
 
         [TestMethod]

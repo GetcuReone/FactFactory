@@ -8,11 +8,6 @@ namespace FactFactoryTests.FactFactoryT.Env
 {
     internal sealed class FactFactoryWithoutRules : GetcuReone.FactFactory.FactFactory
     {
-        protected override GetcuReone.FactFactory.Entities.FactContainer GetContainerForDerive()
-        {
-            return Container;
-        }
-
         protected override IList<GetcuReone.FactFactory.Entities.FactRule> GetRulesForWantAction(WAction wantAction, IFactContainer<FactBase> container, FactRuleCollectionBase<FactBase, GetcuReone.FactFactory.Entities.FactRule> rules)
         {
             return default;

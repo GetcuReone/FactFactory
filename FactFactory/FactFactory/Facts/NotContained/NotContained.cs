@@ -20,14 +20,12 @@ namespace GetcuReone.FactFactory.Facts
         /// Is the fact contained in the container.
         /// </summary>
         /// <typeparam name="TFact1"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="container"></param>
         /// <returns></returns>
-        public bool IsFactContained<TFact1, TFactContainer>(TFactContainer container)
+        public bool IsFactContained<TFact1>(IFactContainer<TFact1> container)
             where TFact1 : IFact
-            where TFactContainer : IFactContainer<TFact1>
         {
-            return Value.ContainsContainer<TFact1, TFactContainer>(container);
+            return Value.ContainsContainer(container);
         }
     }
 }

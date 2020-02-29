@@ -150,7 +150,11 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetOriginalsRulesForDerive()
         {
-            Given("Create custom factory", () => new FactFactoryCustomCollection<FactRuleCollectionGetOriginal>())
+            Given("Create custom factory", () => new FactFactoryCustom())
+                .And("Change rules", factFactory => 
+                {
+                    factFactory.collection = new FactRuleCollectionGetOriginal();
+                })
                 .When("Derive fact", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
         }

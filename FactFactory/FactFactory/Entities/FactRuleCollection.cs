@@ -8,7 +8,7 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Collection for <see cref="FactRule"/>
     /// </summary>
-    public sealed class FactRuleCollection : FactRuleCollectionBase<FactBase, FactRule>
+    public class FactRuleCollection : FactRuleCollectionBase<FactBase, FactRule>
     {
         /// <summary>
         /// Constructor
@@ -41,7 +41,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="inputFactTypes">information on input factacles rules</param>
         /// <param name="outputFactType">information on output fact</param>
         /// <returns>fact rule</returns>
-        protected override FactRule CreateFactRule(Func<IFactContainer<FactBase>, FactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+        protected sealed override FactRule CreateFactRule(Func<IFactContainer<FactBase>, FactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
             return new FactRule(func, inputFactTypes, outputFactType);
         }

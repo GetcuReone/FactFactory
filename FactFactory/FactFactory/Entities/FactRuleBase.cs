@@ -104,7 +104,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <returns></returns>
         public virtual bool CanCalculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFact>
         {
-            return InputFactTypes.All(factInfo => factInfo.ContainsContainer<TFact, TContainer>(container));
+            return InputFactTypes.All(factInfo => factInfo.ContainsContainer(container));
         }
 
         /// <summary>

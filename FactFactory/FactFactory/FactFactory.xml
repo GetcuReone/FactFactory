@@ -823,12 +823,6 @@
             Collection of rules for derive facts
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactory.GetContainerForDerive">
-            <summary>
-            Get copy container
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Facts.FactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             creation method <see cref="T:GetcuReone.FactFactory.Entities.WantAction"/>
@@ -907,7 +901,7 @@
             <param name="wantAction">Current wantAction</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CalculateFact(`2,`1,`4)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CalculateFact(`2,GetcuReone.FactFactory.Interfaces.IFactContainer{`0},`4)">
             <summary>
             Calculate fact.
             </summary>
@@ -916,13 +910,7 @@
             <param name="wantAction">The initial action for which the parameters are calculated.</param>
             <remarks>True - fact calculate. False - fact already exists</remarks>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetContainerForDerive">
-            <summary>
-            Get container for derive
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.TreeEntities.FactRuleTree{`0,`2}}@,`4,`1,GetcuReone.FactFactory.Entities.FactRuleCollectionBase{`0,`2},System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.List{System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}}}@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.TreeEntities.FactRuleTree{`0,`2}}@,`4,GetcuReone.FactFactory.Interfaces.IFactContainer{`0},GetcuReone.FactFactory.Entities.FactRuleCollectionBase{`0,`2},System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.List{System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}}}@)">
             <summary>
             We are trying to calculate a tree by which we find a fact
             </summary>
@@ -1238,12 +1226,11 @@
             Constructor
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facts.NotContained`1.IsFactContained``2(``1)">
+        <member name="M:GetcuReone.FactFactory.Facts.NotContained`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
             <summary>
             Is the fact contained in the container.
             </summary>
             <typeparam name="TFact1"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
             <param name="container"></param>
             <returns></returns>
         </member>
@@ -1484,7 +1471,7 @@
             Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.INotContainedFact.IsFactContained``2(``1)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.INotContainedFact.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
             <summary>
             Is the fact contained in the container
             </summary>

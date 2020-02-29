@@ -123,7 +123,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="container">Fact container.</param>
         /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
         /// <remarks>True - fact calculate. False - fact already exists</remarks>
-        protected override bool CalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction)
+        protected override bool CalculateFact(TFactRule rule, IFactContainer<TFact> container, TWantAction wantAction)
         {
             if (_calculatingWantAction == null)
                 _calculatingWantAction = wantAction;

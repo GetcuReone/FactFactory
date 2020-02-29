@@ -24,15 +24,6 @@ namespace GetcuReone.FactFactory
         public override FactRuleCollection Rules { get; } = new FactRuleCollection();
 
         /// <summary>
-        /// Get copy container
-        /// </summary>
-        /// <returns></returns>
-        protected override FactContainer GetContainerForDerive()
-        {
-            return new FactContainer(Container);
-        }
-
-        /// <summary>
         /// creation method <see cref="WantAction"/>
         /// </summary>
         /// <param name="wantAction">action taken after deriving a fact</param>

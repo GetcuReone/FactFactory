@@ -49,15 +49,6 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Returns a copy of the container filled with version facts
-        /// </summary>
-        /// <returns>copy of the container filled with version facts</returns>
-        protected override VersionedFactContainer GetContainerForDerive()
-        {
-            return new VersionedFactContainer(Container); ;
-        }
-
-        /// <summary>
         /// Get fact type
         /// </summary>
         /// <typeparam name="TGetFact"></typeparam>
