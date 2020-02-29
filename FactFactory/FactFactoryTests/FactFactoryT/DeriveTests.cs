@@ -3,14 +3,12 @@ using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
-using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -75,7 +73,7 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .And("Set rules", factory => factory.Rules.AddRange(RuleCollectionHelper.GetInputFactRules()))
                 .And("Want fact", factory => factory.WantFact((OtherFact fact) => { }))
-                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => factory.Derive()))
+                .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
@@ -96,7 +94,7 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .And("Set rules", factory => factory.Rules.AddRange(RuleCollectionHelper.GetInputFactRules()))
                 .And("Want fact", factory => factory.WantFact((Input4Fact fact) => { }))
-                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => factory.Derive()))
+                .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
@@ -124,7 +122,7 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .And("Set rules", factory => factory.Rules.AddRange(RuleCollectionHelper.GetRulesForNotAvailableInput6Fact()))
                 .And("Want fact", factory => factory.WantFact((Input6Fact fact) => { }))
-                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => factory.Derive()))
+                .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error cannot be null");
@@ -196,7 +194,7 @@ namespace FactFactoryTests.FactFactoryT
         public void GetOriginalsRulesForDerive()
         {
             Given("Create custom factory", () => new FactFactoryCustomCollection<FactRuleCollectionGetOriginal>())
-                .When("Derive fact", factFactory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => factFactory.Derive()))
+                .When("Derive fact", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
         }
     }

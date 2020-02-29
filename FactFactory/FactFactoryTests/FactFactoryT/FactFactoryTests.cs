@@ -1,16 +1,18 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
+using FactFactoryTests.FactFactoryT.Env;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WAction = GetcuReone.FactFactory.Entities.WantAction;
+using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
 namespace FactFactoryTests.FactFactoryT
 {
     [TestClass]
-    public sealed class FactFactoryTests : TestBase
+    public sealed class FactFactoryTests : FactFactoryTestBase
     {
         private GetcuReone.FactFactory.FactFactory FactFactory { get; set; }
 
@@ -27,16 +29,8 @@ namespace FactFactoryTests.FactFactoryT
         public void RulesCannotBeEmptyTestCase()
         {
             Given("Set rules", () => FactFactory.Rules.Clear())
-                .When("Derive facts", factory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => FactFactory.DeriveFact<Input10Fact>()))
-                .Then("Check error", ex => 
-                {
-                    Assert.IsNotNull(ex, "error cannot be null");
-                    Assert.IsNotNull(ex.Details, "error cannot be null");
-                    Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
-
-                    var detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCode.EmptyRuleCollection, detail.Code, "code not match");
-                });
+                .When("Derive facts", factory => ExpectedDeriveException(() => FactFactory.DeriveFact<Input10Fact>()))
+                .ThenAssertErrorDetail(ErrorCode.EmptyRuleCollection, "Rules cannot be null");
         }
 
         [TestMethod]
@@ -133,18 +127,9 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetOriginalContainerTestCase()
         {
-            Given("Create factory", () => new Env.FactFactoryWithoutRules())
-                .When("Run derive", factory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => factory.DeriveFact<OtherFact>()))
-                .Then("Check error", ex => 
-                {
-                    Assert.IsNotNull(ex, "error cannot be null");
-                    Assert.IsNotNull(ex.Details, "error cannot be null");
-                    Assert.AreEqual(1, ex.Details.Count, "Details must contain 1 detail");
-
-                    var detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCode.InvalidData, detail.Code, "code not match");
-                    Assert.AreEqual("method GetCopyContainer return original container", detail.Reason, "reason not match");
-                });
+            Given("Create factory", () => new FactFactoryWithoutRules())
+                .When("Run derive", factory => ExpectedDeriveException(() => factory.DeriveFact<OtherFact>()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, "method GetCopyContainer return original container");
         }
 
         [TestMethod]
@@ -244,6 +229,23 @@ namespace FactFactoryTests.FactFactoryT
 
                     Assert.AreNotEqual(fact, fact7, "fact and fact7 must be different");
                 });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [Description("Add a fact while the Derive method is running.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void AddFactDuringDeriveTestCase()
+        {
+            Rule rule = null;
+            Given("Create fact factory", () => new FactFactoryAddRule())
+                .And("Save rule", factFactory =>
+                {
+                    rule = factFactory.NewRule;
+                })
+                .And("Add rule", factFactory => factFactory.Rules.Add(() => new Input10Fact(10)))
+                .When("Derive fact", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<Input10Fact>()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, $"GetRulesForWantAction method returned a new rule {rule.ToString()}");
         }
     }
 }

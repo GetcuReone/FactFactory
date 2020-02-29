@@ -195,25 +195,20 @@ namespace GetcuReone.FactFactory
         /// <returns></returns>
         private bool TryDeriveTreesForWantAction(out List<FactRuleTree<TFact, TFactRule>> treesResult, TWantAction wantAction, TFactContainer container, FactRuleCollectionBase<TFact, TFactRule> rules, out Dictionary<IFactType, List<List<IFactType>>> notFoundFacts)
         {
-            FactRuleCollectionBase<TFact, TFactRule> copyRules = rules.Copy();
-            IList<TFactRule> rulesForDerive = GetRulesForWantAction(wantAction, container.Copy(), copyRules);
+            IList<TFactRule> rulesForDerive = GetRulesForWantAction(wantAction, container.Copy(), rules.Copy());
 
             // We check that we were not slipped into the new rules
-            if (!rulesForDerive.Equals(rulesForDerive))
+            List<TFactRule> addedRules = new List<TFactRule>();
+            foreach (TFactRule rule in rulesForDerive)
             {
-                List<TFactRule> addedRules = new List<TFactRule>();
-
-                foreach(TFactRule rule in rulesForDerive)
-                {
-                    if (rules.All(r => r != rule))
-                        addedRules.Add(rule);
-                }
-
-                if (addedRules.Count != 0)
-                    throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(addedRules
-                        .Select(rule => new KeyValuePair<string, string>(ErrorCode.InvalidData, $"GetRulesForWantAction method returned a new rule {rule.ToString()}"))
-                        .ToList());
+                if (rules.All(r => r != rule))
+                    addedRules.Add(rule);
             }
+
+            if (addedRules.Count != 0)
+                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(addedRules
+                    .Select(rule => new KeyValuePair<string, string>(ErrorCode.InvalidData, $"GetRulesForWantAction method returned a new rule {rule.ToString()}"))
+                    .ToList());
 
             treesResult = new List<FactRuleTree<TFact, TFactRule>>();
             notFoundFacts = new Dictionary<IFactType, List<List<IFactType>>>();
