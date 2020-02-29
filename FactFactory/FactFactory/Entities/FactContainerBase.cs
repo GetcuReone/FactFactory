@@ -137,5 +137,11 @@ namespace GetcuReone.FactFactory.Entities
         {
             return _container.GetEnumerator();
         }
+
+        /// <summary>
+        /// Get copy container.
+        /// </summary>
+        /// <returns></returns>
+        public abstract IFactContainer<TFact> Copy();
     }
 }

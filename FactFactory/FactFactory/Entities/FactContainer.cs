@@ -21,6 +21,15 @@ namespace GetcuReone.FactFactory.Entities
         public FactContainer(IEnumerable<FactBase> facts) : base(facts) { }
 
         /// <summary>
+        /// Get copy container.
+        /// </summary>
+        /// <returns></returns>
+        public override IFactContainer<FactBase> Copy()
+        {
+            return new FactContainer(this);
+        }
+
+        /// <summary>
         /// Return fact type information.
         /// </summary>
         /// <typeparam name="TGetFact">The type of fact to return information about.</typeparam>

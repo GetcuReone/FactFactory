@@ -90,6 +90,12 @@
             </summary>
             <param name="facts">an array of facts to add to the container</param>
         </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.Copy">
+            <summary>
+            Get copy container.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactContainer.GetFactType``1">
             <summary>
             Return fact type information.
@@ -168,6 +174,12 @@
             </summary>
             <typeparam name="TGetFact">Type of fact to return.</typeparam>
             <param name="fact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactContainerBase`1.Copy">
+            <summary>
+            Get copy container.
+            </summary>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.FactRule">
@@ -1347,6 +1359,12 @@
             Is this type of fact contained.
             </summary>
             <typeparam name="TContainsFact">type of fact to check for.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Copy">
+            <summary>
+            Get copy container.
+            </summary>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactFactory`5">
