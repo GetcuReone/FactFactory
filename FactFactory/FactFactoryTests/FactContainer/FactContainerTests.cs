@@ -2,10 +2,13 @@
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactoryTests.FactContainer
 {
@@ -13,9 +16,9 @@ namespace FactFactoryTests.FactContainer
     public sealed class FactContainerTests : TestBase
     {
         // TODO: Make container copy test
-        private GivenBlock<GetcuReone.FactFactory.Entities.FactContainer> GivenCreateContainer()
+        private GivenBlock<Container> GivenCreateContainer()
         {
-            return Given("Create container", () => new GetcuReone.FactFactory.Entities.FactContainer());
+            return Given("Create container", () => new Container());
         }
 
         [TestMethod]
@@ -149,7 +152,7 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Container)]
         [Description("Get an existing fact")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetValueAnExistingFactTestCase()
@@ -159,6 +162,44 @@ namespace FactFactoryTests.FactContainer
                 .Then("Check result", ex =>
                 {
                     Assert.IsNotNull(ex, "error is null");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Get copied container")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void GetCopiedFactContainerTestCase()
+        {
+            Input1Fact input1Fact = new Input1Fact(1);
+            Input2Fact input2Fact = new Input2Fact(2);
+            Input3Fact input3Fact = new Input3Fact(3);
+
+            Container originalContainer = null;
+            IFactContainer<FactBase> copyContainer = null;
+
+            Given("Create container", () => originalContainer = new Container())
+                .And("Add facts", _ =>
+                {
+                    originalContainer.Add(input1Fact);
+                    originalContainer.Add(input2Fact);
+                    originalContainer.Add(input3Fact);
+                })
+                .When("Get value", _ => copyContainer = originalContainer.Copy())
+                .Then("Check result", _ =>
+                {
+                    Assert.IsNotNull(copyContainer, "container cannot be null");
+                    Assert.AreNotEqual(originalContainer, copyContainer, "Containers should not be equal");
+                    Assert.AreEqual(originalContainer.Count(), copyContainer.Count(), "Containers should have the same amount of facts");
+
+                    Assert.IsTrue(copyContainer.TryGetFact(out Input1Fact fact1), $"{nameof(Input1Fact)} must be contained in a container");
+                    Assert.AreEqual(input1Fact, fact1, $"Original copy of {nameof(Input1Fact)} fact expected");
+
+                    Assert.IsTrue(copyContainer.TryGetFact(out Input2Fact fact2), $"{nameof(Input2Fact)} must be contained in a container");
+                    Assert.AreEqual(input2Fact, fact2, $"Original copy of {nameof(Input2Fact)} fact expected");
+
+                    Assert.IsTrue(copyContainer.TryGetFact(out Input3Fact fact3), $"{nameof(Input3Fact)} must be contained in a container");
+                    Assert.AreEqual(input3Fact, fact3, $"Original copy of {nameof(Input3Fact)} fact expected");
                 });
         }
     }
