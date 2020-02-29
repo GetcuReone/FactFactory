@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Helpers;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Helpers;
@@ -17,7 +18,7 @@ namespace GetcuReone.FactFactory.Versioned
         where TFact : class, IVersionedFact
         where TFactContainer : class, IFactContainer<TFact>
         where TFactRule : class, IVersionedFactRule<TFact>
-        where TFactRuleCollection : class, IList<TFactRule>
+        where TFactRuleCollection : FactRuleCollectionBase<TFact, TFactRule>
         where TWantAction : class, IWantAction<TFact>, IFactTypeVersionInformation
     {
         private List<IFactType> _calculatedFactTypes;
