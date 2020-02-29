@@ -26,6 +26,15 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         }
 
         /// <summary>
+        /// Get copy container.
+        /// </summary>
+        /// <returns></returns>
+        public override IFactContainer<VersionedFactBase> Copy()
+        {
+            return new VersionedFactContainer(this);
+        }
+
+        /// <summary>
         /// Return fact type information.
         /// </summary>
         /// <typeparam name="TGetFact">The type of fact to return information about.</typeparam>
