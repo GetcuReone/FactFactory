@@ -112,19 +112,19 @@ namespace FactFactoryTests.FactRule
             DateTime operationDate = DateTime.Now;
             var container = new Container();
 
-            Given("Add fact 1", () => container.Add(new StartDateOfDerive(operationDate)))
+            Given("Add fact 1", () => container.Add(new DateTimeFact(operationDate)))
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
                     Func<IFactContainer<FactBase>, FactBase> func = ct =>
                     {
-                        var date = ct.GetFact<StartDateOfDerive>().Value;
+                        var date = ct.GetFact<DateTimeFact>().Value;
                         var number = ct.GetFact<IntFact>().Value;
 
                         return new OtherFact(date.AddDays(number));
                     };
 
-                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactType<OtherFact>());
+                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), GetFactType<OtherFact>());
                 })
                 .When("Run method", rule => rule.Calculate(container))
                 .Then("Check result", fact =>
@@ -144,13 +144,13 @@ namespace FactFactoryTests.FactRule
         public void CanCalculateFactRuleTestCase()
         {
             var container = new Container();
-            Given("Add fact 1", () => container.Add(new StartDateOfDerive(DateTime.Now)))
+            Given("Add fact 1", () => container.Add(new DateTimeFact(DateTime.Now)))
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
                     Func<IFactContainer<FactBase>, FactBase> func = ct => default;
 
-                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), new GetcuReone.FactFactory.Entities.FactType<OtherFact>());
+                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), GetFactType<OtherFact>());
                 })
                 .When("run method", rule => rule.CanCalculate(container))
                 .Then("check result", result => Assert.IsTrue(result, "rule cannot be executed"));
@@ -165,17 +165,17 @@ namespace FactFactoryTests.FactRule
             var container = new Container();
             var factInfos = new List<IFactType> 
             {
-                new FactType<DateTimeFact>(),
-                new FactType<IntFact>(),
+                GetFactType<Input10Fact>(),
+                GetFactType<IntFact>(),
             };
 
-            Given("Add fact 1", () => container.Add(new StartDateOfDerive(DateTime.Now)))
+            Given("Add fact 1", () => container.Add(new DateTimeFact(DateTime.Now)))
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
                     Func<IFactContainer<FactBase>, FactBase> func = ct => default;
 
-                    return new Rule(func, factInfos, new FactType<OtherFact>());
+                    return new Rule(func, factInfos, GetFactType<OtherFact>());
                 })
                 .When("run method", rule => rule.CanCalculate(container))
                 .Then("check result", result => Assert.IsFalse(result, "rule can be followed"));

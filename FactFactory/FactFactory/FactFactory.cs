@@ -29,17 +29,7 @@ namespace GetcuReone.FactFactory
         /// <returns></returns>
         protected override FactContainer GetContainerForDerive()
         {
-            var container = new FactContainer(Container);
-
-            if (container.TryGetFact<StartDateOfDerive>(out var fact))
-                container.Remove(fact);
-            if (container.TryGetFact<DerivingFacts>(out var fact1))
-                container.Remove(fact1);
-
-            container.Add(new StartDateOfDerive(DateTime.Now));
-            container.Add(new DerivingFacts(WantActions.SelectMany(w => w.InputFactTypes).ToList()));
-
-            return container;
+            return new FactContainer(Container);
         }
 
         /// <summary>

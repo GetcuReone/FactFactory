@@ -33,11 +33,11 @@ namespace FactFactoryTests.FactType
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CompareFactTypeOneFactTestCase()
         {
-            StartDateOfDerive fact = null;
+            DateTimeFact fact = null;
             IFactType first = null;
             IFactType second = null;
 
-            Given("Create fact", () => { fact = new StartDateOfDerive(DateTime.Now); })
+            Given("Create fact", () => { fact = new DateTimeFact(DateTime.Now); })
                 .When("Create fact info", _ =>
                 {
                     first = fact.GetFactType();
@@ -52,15 +52,15 @@ namespace FactFactoryTests.FactType
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void SuccessCompareFactTypeTowFactTestCase()
         {
-            StartDateOfDerive firstFact = null;
-            StartDateOfDerive secondFact = null;
+            DateTimeFact firstFact = null;
+            DateTimeFact secondFact = null;
             IFactType first = null;
             IFactType second = null;
 
             Given("Create fact", () => 
             { 
-                firstFact = new StartDateOfDerive(DateTime.Now);
-                secondFact = new StartDateOfDerive(DateTime.Now);
+                firstFact = new DateTimeFact(DateTime.Now);
+                secondFact = new DateTimeFact(DateTime.Now);
             })
                 .When("Create fact info", _ =>
                 {
@@ -76,14 +76,14 @@ namespace FactFactoryTests.FactType
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void FailedCompareFactTypeTowFactTestCase()
         {
-            StartDateOfDerive firstFact = null;
+            DateTimeFact firstFact = null;
             OtherFact secondFact = null;
             IFactType first = null;
             IFactType second = null;
 
             Given("Create fact", () =>
             {
-                firstFact = new StartDateOfDerive(DateTime.Now);
+                firstFact = new DateTimeFact(DateTime.Now);
                 secondFact = new OtherFact(firstFact.Value);
             })
                 .When("Create fact info", _ =>

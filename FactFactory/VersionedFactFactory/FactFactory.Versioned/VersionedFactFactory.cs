@@ -54,17 +54,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <returns>copy of the container filled with version facts</returns>
         protected override VersionedFactContainer GetContainerForDerive()
         {
-            var container = new VersionedFactContainer(Container);
-
-            if (container.TryGetFact<StartDateOfDerive>(out var fact))
-                container.Remove(fact);
-            if (container.TryGetFact<DerivingFacts>(out var fact1))
-                container.Remove(fact1);
-
-            container.Add(new StartDateOfDerive(DateTime.Now));
-            container.Add(new DerivingFacts(WantActions.SelectMany(w => w.InputFactTypes).ToList()));
-
-            return container;
+            return new VersionedFactContainer(Container); ;
         }
 
         /// <summary>
