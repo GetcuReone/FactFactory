@@ -1,7 +1,7 @@
 ﻿using GetcuReone.ComboPatterns.Factory;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
-using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.TreeEntities;
@@ -19,7 +19,7 @@ namespace GetcuReone.FactFactory
         where TFact : class, IFact
         where TFactContainer : class, IFactContainer<TFact>
         where TFactRule : class, IFactRule<TFact>
-        where TFactRuleCollection : class, IList<TFactRule>
+        where TFactRuleCollection : FactRuleCollectionBase<TFact, TFactRule>
         where TWantAction : class, IWantAction<TFact>
     {
         /// <summary>
