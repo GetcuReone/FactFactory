@@ -8,7 +8,6 @@
         /// <summary>
         /// Is the fact contained in the container
         /// </summary>
-        /// <typeparam name="TFactContainer"></typeparam>
         /// <typeparam name="TFact"></typeparam>
         /// <param name="container"></param>
         /// <returns></returns>
