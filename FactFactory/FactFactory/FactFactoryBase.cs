@@ -49,10 +49,15 @@ namespace GetcuReone.FactFactory
         /// </summary>
         public virtual void Derive()
         {
+            // Get a copy of the container
             TFactContainer container = GetContainerForDerive();
-
             if (container.Equals(Container))
                 throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, "method GetCopyContainer return original container");
+
+            // Get a copy of the rules
+            FactRuleCollectionBase<TFact, TFactRule> rules = Rules.Copy();
+            if (rules.Equals(Rules))
+                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, "method FactRuleCollectionBase.Copy return original rule collection");
 
             var forestry = new Dictionary<TWantAction, List<FactRuleTree<TFact, TFactRule>>>();
             var notFoundFactsTrees = new Dictionary<TWantAction, Dictionary<IFactType, List<List<IFactType>>>>();
