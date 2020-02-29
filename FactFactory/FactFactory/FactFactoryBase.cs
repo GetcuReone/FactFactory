@@ -259,20 +259,30 @@ namespace GetcuReone.FactFactory
                             .Where(fact => !fact.ContainsContainer<TFact, TFactContainer>(container))
                             .ToList();
 
-                        // Exclude NotContained facts
-                        foreach (var notContainedFactInfo in needFacts.Where(fact => fact.IsFactType<INotContainedFact>()).ToList())
+                        // Exclude special facts
+                        for (int factIndex = needFacts.Count - 1; factIndex >= 0; factIndex--)
                         {
-                            INotContainedFact notContainedFact = notContainedFactInfo.CreateNotContained();
+                            IFactType needFactType = needFacts[factIndex];
+                            bool needRemove = false;
 
-                            if (container.All(fact => !notContainedFact.IsFactContained<TFact, TFactContainer>(container))) 
-                                needFacts.Remove(notContainedFactInfo);
-                        }
+                            // Check INotContainedFact fact
+                            if (needFactType.IsFactType<INotContainedFact>())
+                            {
+                                INotContainedFact notContainedFact = needFactType.CreateNotContained();
 
-                        // Exclude No facts
-                        foreach (var noFactInfo in needFacts.Where(fact => fact.IsFactType<INoDerivedFact>()).ToList())
-                        {
-                            if (!TryDeriveNoFactInfo(noFactInfo, container, ruleCollection))
-                                needFacts.Remove(noFactInfo);
+                                if (container.All(fact => !notContainedFact.IsFactContained<TFact, TFactContainer>(container)))
+                                    needRemove = true;
+                            }
+
+                            // Check INoDerivedFact fact
+                            if (needFactType.IsFactType<INoDerivedFact>())
+                            {
+                                if (!TryDeriveNoFactInfo(needFactType, container, ruleCollection))
+                                    needRemove = true;
+                            }
+
+                            if (needRemove)
+                                needFacts.Remove(needFactType);
                         }
 
                         // If the rule can be calculated from the parameters in the container, then add the node to the list of complete
