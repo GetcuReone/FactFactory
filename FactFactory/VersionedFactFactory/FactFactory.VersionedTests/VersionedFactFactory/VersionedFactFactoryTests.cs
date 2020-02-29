@@ -1,5 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
+using GetcuReone.FactFactory.Versioned.Facts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GivenWhenThen.TestAdapter;
 using GivenWhenThen.TestAdapter.Entities;
@@ -82,6 +83,58 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 .Then("Check result", fact =>
                 {
                     Assert.AreEqual(10, fact.Value, "expecten another fact value");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [Description("Derive default facts without using version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DeriveDefaultFactsWithoutVersionTestCase()
+        {
+            DerivingFacts derivingFacts = null;
+            StartDateOfDerive startDateOfDerive = null;
+
+            GivenCreateVersionedFactFactory()
+                .And("Require default facts", factFactory =>
+                {
+                    factFactory.WantFact((DerivingFacts fact1, StartDateOfDerive fact2) =>
+                    {
+                        derivingFacts = fact1;
+                        startDateOfDerive = fact2;
+                    });
+                })
+                .When("Derive fact", factFactory => factFactory.Derive())
+                .Then("Check result", _ =>
+                {
+                    Assert.IsNotNull(startDateOfDerive, "StartDateOfDerive is not derived");
+                    Assert.IsNotNull(derivingFacts, "DerivingFacts is not derived");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [Description("Derive default facts without using version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DeriveDefaultFactsWithVersionTestCase()
+        {
+            DerivingFacts derivingFacts = null;
+            StartDateOfDerive startDateOfDerive = null;
+
+            GivenCreateVersionedFactFactory()
+                .And("Require default facts", factFactory =>
+                {
+                    factFactory.WantFact((Version1 _, DerivingFacts fact1, StartDateOfDerive fact2) =>
+                    {
+                        derivingFacts = fact1;
+                        startDateOfDerive = fact2;
+                    });
+                })
+                .When("Derive fact", factFactory => factFactory.Derive())
+                .Then("Check result", _ =>
+                {
+                    Assert.IsNotNull(startDateOfDerive, "StartDateOfDerive is not derived");
+                    Assert.IsNotNull(derivingFacts, "DerivingFacts is not derived");
                 });
         }
     }
