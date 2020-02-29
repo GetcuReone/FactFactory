@@ -212,6 +212,60 @@
             </summary>
             <param name="value">Fact value.</param>
         </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Facts.Versions.DateTimeVersionBase">
+            <summary>
+            Base class for <see cref="T:System.DateTime"/> based version facts
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.DateTimeVersionBase.#ctor(System.DateTime)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.DateTimeVersionBase.IsLessThan``1(``0)">
+            <summary>
+            True - the version of the current fact is less than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.DateTimeVersionBase.IsMoreThan``1(``0)">
+            <summary>
+            True - the version of the current fact is more than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Facts.Versions.VersionBase`1">
+            <summary>
+            Base class for version facts.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.VersionBase`1.#ctor(`0)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.VersionBase`1.IsLessThan``1(``0)">
+            <summary>
+            True - the version of the current fact is less than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.VersionBase`1.IsMoreThan``1(``0)">
+            <summary>
+            True - the version of the current fact is more than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Helpers.VersionedFactFactoryHelper">
             <summary>
             Helper for <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5"/>
@@ -257,7 +311,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact.IsLessThan``1(``0)">
             <summary>
-            True - the version of the current fact is less than <paramref name="versionFact"/>
+            True - the version of the current fact is less than <paramref name="versionFact"/>.
             </summary>
             <typeparam name="TVersionFact"></typeparam>
             <param name="versionFact"></param>
@@ -265,7 +319,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact.IsMoreThan``1(``0)">
             <summary>
-            True - the version of the current fact is more than <paramref name="versionFact"/>
+            True - the version of the current fact is more than <paramref name="versionFact"/>.
             </summary>
             <typeparam name="TVersionFact"></typeparam>
             <param name="versionFact"></param>

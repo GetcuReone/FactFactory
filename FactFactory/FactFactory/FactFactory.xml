@@ -884,6 +884,13 @@
             <typeparam name="TWantFact">Type of desired fact</typeparam>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnWantActionCalculated(`4,GetcuReone.FactFactory.Interfaces.IFactContainer{`0})">
+            <summary>
+            Action calculation completion handler
+            </summary>
+            <param name="wantAction"></param>
+            <param name="container"></param>
+        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{`0}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             creation method <typeparamref name="TWantAction"/>
