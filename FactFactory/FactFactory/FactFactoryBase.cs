@@ -57,7 +57,7 @@ namespace GetcuReone.FactFactory
             // Get a copy of the rules
             FactRuleCollectionBase<TFact, TFactRule> rules = Rules.Copy();
             if (rules.Equals(Rules))
-                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, "method FactRuleCollectionBase.Copy return original rule collection");
+                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
 
             var forestry = new Dictionary<TWantAction, List<FactRuleTree<TFact, TFactRule>>>();
             var notFoundFactsTrees = new Dictionary<TWantAction, Dictionary<IFactType, List<List<IFactType>>>>();

@@ -2,6 +2,7 @@
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
@@ -186,6 +187,17 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.IsNotNull(startDateOfDerive, "StartDateOfDerive is not derived");
                     Assert.IsNotNull(derivingFacts, "DerivingFacts is not derived");
                 });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [Description("Get the original rules for the Derive")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void GetOriginalsRulesForDerive()
+        {
+            Given("Create custom factory", () => new FactFactoryCustomCollection<FactRuleCollectionGetOriginal>())
+                .When("Derive fact", factFactory => ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(() => factFactory.Derive()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
         }
     }
 }
