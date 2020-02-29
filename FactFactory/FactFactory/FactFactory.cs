@@ -32,14 +32,6 @@ namespace GetcuReone.FactFactory
         {
             _tempRule = new ReadOnlyCollection<FactRule>(Rules);
 
-            if (Container.TryGetFact<StartDateOfDerive>(out var fact))
-                Container.Remove(fact);
-            if (Container.TryGetFact<DerivingFacts>(out var fact1))
-                Container.Remove(fact1);
-
-            Container.Add(new StartDateOfDerive(DateTime.Now));
-            Container.Add(new DerivingFacts(WantActions.SelectMany(w => w.InputFactTypes).ToList()));
-
             base.Derive();
 
             _tempRule = null;
@@ -62,7 +54,17 @@ namespace GetcuReone.FactFactory
         /// <returns></returns>
         protected override FactContainer GetContainerForDerive()
         {
-            return new FactContainer(Container);
+            var container = new FactContainer(Container);
+
+            if (container.TryGetFact<StartDateOfDerive>(out var fact))
+                container.Remove(fact);
+            if (container.TryGetFact<DerivingFacts>(out var fact1))
+                container.Remove(fact1);
+
+            container.Add(new StartDateOfDerive(DateTime.Now));
+            container.Add(new DerivingFacts(WantActions.SelectMany(w => w.InputFactTypes).ToList()));
+
+            return container;
         }
 
         /// <summary>
