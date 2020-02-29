@@ -78,6 +78,8 @@ namespace GetcuReone.FactFactory
                     DeriveNode(tree.Root, container, key);
 
                 key.Invoke(container);
+
+                OnWantActionCalculated(key, container);
             }
         }
 
@@ -102,6 +104,16 @@ namespace GetcuReone.FactFactory
             WantActions.AddRange(wantActions);
 
             return fact;
+        }
+
+        /// <summary>
+        /// Action calculation completion handler
+        /// </summary>
+        /// <param name="wantAction"></param>
+        /// <param name="container"></param>
+        protected virtual void OnWantActionCalculated(TWantAction wantAction, IFactContainer<TFact> container)
+        {
+
         }
 
         #region methods for derive
