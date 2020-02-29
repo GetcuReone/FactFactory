@@ -8,11 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
+using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
 namespace FactFactoryTests.FactRuleCollection
 {
     [TestClass]
-    public sealed class FactRuleCollectionTests : TestBase
+    public sealed class FactRuleCollectionTests : CommonTestBase
     {
         private Collection Collection { get; set; }
 
@@ -616,6 +617,27 @@ namespace FactFactoryTests.FactRuleCollection
                     return ExpectedException<ArgumentException>(() => Collection.Add(() => new NotContained<Input10Fact>()));
                 })
                 .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.RuleCollection)]
+        [Description("Get copied collection")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void GetCopiedCollectionTestCase()
+        {
+            Rule factRule = null;
+
+            Given("Create rule", () => factRule = new Rule(ct => default, new List<IFactType>(), GetFactType<Input1Fact>()))
+                .And("Add rule", _ => Collection.Add(factRule))
+                .When("Get copied", _ => Collection.Copy())
+                .Then("Check result", copyCollection =>
+                {
+                    Assert.IsNotNull(copyCollection, "collection cannot be null");
+                    Assert.AreNotEqual(Collection, copyCollection, "Collections should not be equal");
+                    Assert.AreEqual(Collection.Count(), copyCollection.Count(), "Collections should have the same amount of rules");
+
+                    Assert.AreEqual(factRule, copyCollection[0], "The collection contains another rule.");
+                });
         }
     }
 }

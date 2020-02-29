@@ -104,6 +104,12 @@
             </summary>
             <param name="factRules"></param>
         </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.Copy">
+            <summary>
+            <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollectionBase`2"/> copy method.
+            </summary>
+            <returns>Copied <see cref="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection"/>.</returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase},GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Creation method <see cref="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule"/>

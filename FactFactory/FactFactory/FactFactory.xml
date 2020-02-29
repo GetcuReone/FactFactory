@@ -271,9 +271,15 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule})">
             <summary>
-            Constructor
+            Constructor.
             </summary>
             <param name="factRules"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.Copy">
+            <summary>
+            <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollectionBase`2"/> copy method.
+            </summary>
+            <returns>Copied <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollection"/>.</returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Facts.FactBase},GetcuReone.FactFactory.Facts.FactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
@@ -661,6 +667,12 @@
             </summary>
             <param name="index">The zero-based index of the element to remove.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">index is less than 0. -or- index is equal to or greater than <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollectionBase`2"/>.</exception>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollectionBase`2.Copy">
+            <summary>
+            <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollectionBase`2"/> copy method.
+            </summary>
+            <returns>Copied <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollectionBase`2"/>.</returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.FactType`1">
             <summary>
@@ -1309,6 +1321,18 @@
             <param name="reason"></param>
             <returns></returns>
         </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.ICopy`1">
+            <summary>
+            Interface for copying objects.
+            </summary>
+            <typeparam name="TCopyObj">Type of object to copy.</typeparam>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.ICopy`1.Copy">
+            <summary>
+            Object copy method
+            </summary>
+            <returns>Copied object.</returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFact">
             <summary>
             Fact interface
@@ -1366,12 +1390,6 @@
             Is this type of fact contained.
             </summary>
             <typeparam name="TContainsFact">type of fact to check for.</typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Copy">
-            <summary>
-            Get copy container.
-            </summary>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactFactory`5">

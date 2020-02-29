@@ -18,11 +18,20 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         /// <param name="factRules"></param>
         public FactRuleCollection(IEnumerable<FactRule> factRules) : base(factRules)
         {
+        }
+
+        /// <summary>
+        /// <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> copy method.
+        /// </summary>
+        /// <returns>Copied <see cref="FactRuleCollection"/>.</returns>
+        public override FactRuleCollectionBase<FactBase, FactRule> Copy()
+        {
+            return new FactRuleCollection(this);
         }
 
         /// <summary>

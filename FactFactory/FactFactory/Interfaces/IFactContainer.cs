@@ -6,7 +6,7 @@ namespace GetcuReone.FactFactory.Interfaces
     /// Container interface with facts for deriving other facts.
     /// </summary>
     /// <typeparam name="TFact">The type from which all facts in this container should be inherited.</typeparam>
-    public interface IFactContainer<TFact> : IEnumerable<TFact>
+    public interface IFactContainer<TFact> : IEnumerable<TFact>, ICopy<IFactContainer<TFact>>
         where TFact : IFact
     {
         /// <summary>
@@ -50,11 +50,5 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <typeparam name="TContainsFact">type of fact to check for.</typeparam>
         /// <returns></returns>
         bool Contains<TContainsFact>() where TContainsFact : TFact;
-
-        /// <summary>
-        /// Get copy container.
-        /// </summary>
-        /// <returns></returns>
-        IFactContainer<TFact> Copy();
     }
 }

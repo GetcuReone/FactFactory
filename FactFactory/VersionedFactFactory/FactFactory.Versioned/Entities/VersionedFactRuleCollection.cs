@@ -27,6 +27,15 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         }
 
         /// <summary>
+        /// <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> copy method.
+        /// </summary>
+        /// <returns>Copied <see cref="VersionedFactRuleCollection"/>.</returns>
+        public override FactRuleCollectionBase<VersionedFactBase, VersionedFactRule> Copy()
+        {
+            return new VersionedFactRuleCollection(this);
+        }
+
+        /// <summary>
         /// Creation method <see cref="VersionedFactRule"/>
         /// </summary>
         /// <param name="func">func for calculate</param>

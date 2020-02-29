@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Base collection for <typeparamref name="TFactRule"/>
     /// </summary>
-    public abstract class FactRuleCollectionBase<TFact, TFactRule>: IList<TFactRule>
+    public abstract class FactRuleCollectionBase<TFact, TFactRule>: IList<TFactRule>, ICopy<FactRuleCollectionBase<TFact, TFactRule>>
         where TFact : IFact
         where TFactRule : IFactRule<TFact>
     {
@@ -703,5 +703,11 @@ namespace GetcuReone.FactFactory.Entities
         {
             return GetEnumerator();
         }
+
+        /// <summary>
+        /// <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> copy method.
+        /// </summary>
+        /// <returns>Copied <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.</returns>
+        public abstract FactRuleCollectionBase<TFact, TFactRule> Copy();
     }
 }
