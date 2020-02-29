@@ -25,23 +25,24 @@ namespace GetcuReone.FactFactory.Versioned
         private TWantAction _calculatingWantAction;
 
         /// <summary>
-        /// Returns only those lambdas that fit the requested version
+        /// Returns only those lambdas that fit the requested version.
         /// </summary>
-        /// <param name="wantAction"></param>
-        /// <param name="readOnlyFactContainer"></param>
+        /// <param name="rules">Current set of rules.</param>
+        /// <param name="container">Current fact set.</param>
+        /// <param name="wantAction">Current wantAction</param>
         /// <returns></returns>
-        protected override IReadOnlyCollection<TFactRule> GetRulesForWantAction(TWantAction wantAction, IReadOnlyCollection<TFact> readOnlyFactContainer)
+        protected override IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, IFactContainer<TFact> container, FactRuleCollectionBase<TFact, TFactRule> rules)
         {
             // We find out the version that we will focus on
             // If the version is not requested, then we consider that the last is necessary
             IVersionFact versionFact = null;
 
             if (wantAction.VersionType != null)
-                versionFact = readOnlyFactContainer.GetVersionFact(wantAction.VersionType);
+                versionFact = container.GetVersionFact(wantAction.VersionType);
 
             var factRules = new List<TFactRule>();
 
-            foreach(TFactRule rule in Rules)
+            foreach (TFactRule rule in rules)
             {
                 if (versionFact != null)
                 {
@@ -49,7 +50,7 @@ namespace GetcuReone.FactFactory.Versioned
                     if (rule.VersionType == null)
                         continue;
 
-                    IVersionFact factRuleVersion = readOnlyFactContainer.GetVersionFact(rule.VersionType);
+                    IVersionFact factRuleVersion = container.GetVersionFact(rule.VersionType);
 
                     if (factRuleVersion.IsMoreThan(versionFact))
                         continue;
@@ -58,7 +59,7 @@ namespace GetcuReone.FactFactory.Versioned
 
                     if (previousRule != null)
                     {
-                        IVersionFact previousFactRuleVersion = readOnlyFactContainer.GetVersionFact(previousRule.VersionType);
+                        IVersionFact previousFactRuleVersion = container.GetVersionFact(previousRule.VersionType);
 
                         if (previousFactRuleVersion.IsMoreThan(factRuleVersion))
                             continue;
@@ -73,7 +74,7 @@ namespace GetcuReone.FactFactory.Versioned
                 {
                     if (rule.VersionType != null)
                     {
-                        IVersionFact factRuleVersion = readOnlyFactContainer.GetVersionFact(rule.VersionType);
+                        IVersionFact factRuleVersion = container.GetVersionFact(rule.VersionType);
 
                         TFactRule previousRule = factRules.SingleOrDefault(r => r.CompareWithoutVersion(rule));
 
@@ -82,7 +83,7 @@ namespace GetcuReone.FactFactory.Versioned
                             if (previousRule.VersionType == null)
                                 continue;
 
-                            IVersionFact previousFactRuleVersion = readOnlyFactContainer.GetVersionFact(previousRule.VersionType);
+                            IVersionFact previousFactRuleVersion = container.GetVersionFact(previousRule.VersionType);
 
                             if (previousFactRuleVersion.IsMoreThan(factRuleVersion))
                                 continue;
@@ -113,7 +114,7 @@ namespace GetcuReone.FactFactory.Versioned
                 }
             }
 
-            return new ReadOnlyCollection<TFactRule>(factRules);
+            return factRules;
         }
 
         /// <summary>

@@ -56,6 +56,16 @@ namespace GetcuReone.FactFactory.Helpers
                 });
         }
 
+        internal static InvalidDeriveOperationException<TFact, TWantAction> CreateDeriveException<TFact, TWantAction>(List<KeyValuePair<string, string>> codeReasonPairs)
+            where TFact : IFact
+            where TWantAction : IWantAction<TFact>
+        {
+            return new InvalidDeriveOperationException<TFact, TWantAction>(codeReasonPairs
+                .Select(
+                    pair => new DeriveErrorDetail<TFact, TWantAction>(pair.Key, pair.Value, default, null))
+                .ToList());
+        }
+
         internal static InvalidDeriveOperationException<TFact, TWantAction> CreateDeriveException<TFact, TWantAction>(Dictionary<TWantAction, Dictionary<IFactType, List<List<IFactType>>>> notFoundFacts)
             where TFact : IFact
             where TWantAction : IWantAction<TFact>
