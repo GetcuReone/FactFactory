@@ -3,6 +3,8 @@ using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rule = GetcuReone.FactFactory.Entities.FactRule;
@@ -231,6 +233,70 @@ namespace FactFactoryTests.FactFactoryT
 
                     Assert.AreNotEqual(fact, fact7, "fact and fact7 must be different");
                 });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived)]
+        [Description("Add a special fact to the container")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void AddSpecialFactContainer()
+        {
+            string expectedMessage = $"In the container there should be no facts realizing types {nameof(INotContainedFact)} and {nameof(INoDerivedFact)}";
+
+            Given("Create factory", () => new FactFactoryCustom())
+                .AndAddFact(new NoDerived<OtherFact>())
+                .When("Run derive", factory => ExpectedDeriveException(() => factory.DeriveFact<OtherFact>()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedMessage);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NotContained)]
+        [Description("Successful derive NotContained")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void SuccessfulDeriveNotContainedTestCase()
+        {
+            Given("Create factory", () => new FactFactoryCustom())
+                .When("Run Derive", factFactory => factFactory.DeriveFact<NotContained<OtherFact>>())
+                .Then("Check fact", fact => Assert.IsNotNull(fact, "fact cannot be null"));
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NotContained)]
+        [Description("Unsuccessful derive NotContained")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void UnsuccessfulDeriveNotContainedTestCase()
+        {
+            string expectedMessage = $"facts {typeof(NotContained<OtherFact>).Name} cannot be calculated for action ({typeof(NotContained<OtherFact>).Name})";
+
+            Given("Create factory", () => new FactFactoryCustom())
+                .AndAddFact(new OtherFact(default))
+                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<NotContained<OtherFact>>()))
+                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedMessage);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived)]
+        [Description("Successful derive NotContained")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void SuccessfulDeriveNoDerivedTestCase()
+        {
+            Given("Create factory", () => new FactFactoryCustom())
+                .When("Run Derive", factFactory => factFactory.DeriveFact<NoDerived<OtherFact>>())
+                .Then("Check fact", fact => Assert.IsNotNull(fact, "fact cannot be null"));
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived)]
+        [Description("Unsuccessful derive NoDerived")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void UnsuccessfulDeriveNoDerivedTestCase()
+        {
+            string expectedMessage = $"facts {typeof(NoDerived<OtherFact>).Name} cannot be calculated for action ({typeof(NoDerived<OtherFact>).Name})";
+
+            Given("Create factory", () => new FactFactoryCustom())
+                .AndAddFact(new OtherFact(default))
+                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<NoDerived<OtherFact>>()))
+                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedMessage);
         }
     }
 }

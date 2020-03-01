@@ -238,9 +238,10 @@ namespace GetcuReone.FactFactory
                 }
                 else if (wantFact.IsFactType<INoDerivedFact>())
                 {
-                    if (!TryDeriveNoFactInfo(wantFact, container, rules))
+                    INoDerivedFact noDerivedFact = wantFact.CreateNoDerived();
+                    if (!noDerivedFact.Value.ContainsContainer(container) && !TryDeriveNoFactInfo(wantFact, container, rules))
                     {
-                        TFact specialFact = wantFact.CreateNoDerived().ConvertFact<TFact, TWantAction>();
+                        TFact specialFact = noDerivedFact.ConvertFact<TFact, TWantAction>();
                         specialFacts.Add(specialFact);
                         continue;
                     }
@@ -608,8 +609,11 @@ namespace GetcuReone.FactFactory
             }
             catch (InvalidDeriveOperationException<TFact, TWantAction> ex)
             {
-                if (ex.Details != null && ex.Details.Count == 1 && ex.Details[0].Code == ErrorCode.RuleNotFound)
-                    return false;
+                if (ex.Details != null && ex.Details.Count == 1)
+                {
+                    if (ex.Details[0].Code == ErrorCode.RuleNotFound || ex.Details[0].Code == ErrorCode.EmptyRuleCollection)
+                        return false;
+                }
 
                 throw;
             }
@@ -628,9 +632,6 @@ namespace GetcuReone.FactFactory
         {
             if (WantActions.IndexOf(wantAction) != -1)
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, "Action already requested");
-
-            if (wantAction.InputFactTypes.Any(fact => fact.IsFactType<INoDerivedFact>() || fact.IsFactType<INotContainedFact>()))
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"Cannot derive for No and NotContained facts");
 
             WantActions.Add(wantAction);
         }

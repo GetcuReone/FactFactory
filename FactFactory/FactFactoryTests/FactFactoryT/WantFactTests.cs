@@ -13,46 +13,6 @@ namespace FactFactoryTests.FactFactoryT
     public sealed class WantFactTests : FactFactoryTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Want not contained fact")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
-        public void WantNotContainedFactTestCase()
-        {
-            GivenCreateFactFactory()
-                .When("NotContainedFact", factory => ExpectedException<FactFactoryException>(() => factory.WantFact((NotContained<Input1Fact> _) => { })))
-                .Then("Check error", ex =>
-                {
-                    Assert.IsNotNull(ex, "error cannot be null");
-                    Assert.IsNotNull(ex.Details, "Details cannot be null");
-                    Assert.AreEqual(1, ex.Details.Count, "there must be one detail");
-
-                    ErrorDetail detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCode.InvalidData, detail.Code, "code not match");
-                    Assert.AreEqual("Cannot derive for No and NotContained facts", detail.Reason, "reason not match");
-                });
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Want no fact")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
-        public void WantNoFactTestCase()
-        {
-            GivenCreateFactFactory()
-                .When("NotContainedFact", factory => ExpectedException<FactFactoryException>(() => factory.WantFact((NoDerived<Input1Fact> _) => { })))
-                .Then("Check error", ex =>
-                {
-                    Assert.IsNotNull(ex, "error cannot be null");
-                    Assert.IsNotNull(ex.Details, "Details cannot be null");
-                    Assert.AreEqual(1, ex.Details.Count, "there must be one detail");
-
-                    ErrorDetail detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCode.InvalidData, detail.Code, "code not match");
-                    Assert.AreEqual("Cannot derive for No and NotContained facts", detail.Reason, "reason not match");
-                });
-        }
-
-        [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
         [Description("Request 1 facts")]
         [Timeout(Timeouts.MilliSecond.Hundred)]

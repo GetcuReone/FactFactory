@@ -3,7 +3,11 @@ using GetcuReone.FactFactory.Facts;
 using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Factory = GetcuReone.FactFactory.FactFactory;
+using Action = GetcuReone.FactFactory.Entities.WantAction;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 using Rule = GetcuReone.FactFactory.Entities.FactRule;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
+using GetcuReone.FactFactory;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -18,10 +22,16 @@ namespace FactFactoryTests.FactFactoryT
             });
         }
 
-        public static GivenBlock<Factory> AndAddRules(this GivenBlock<Factory> givenBlock, FactRuleCollectionBase<FactBase, Rule> factRules)
-
+        public static GivenBlock<TFactory> AndAddRules<TFactory>(this GivenBlock<TFactory> givenBlock, FactRuleCollectionBase<FactBase, Rule> factRules)
+            where TFactory : FactFactoryBase<FactBase, Container, Rule, Collection, Action>
         {
             return givenBlock.And("Add rules", factory => factory.Rules.AddRange(factRules));
+        }
+
+        public static GivenBlock<TFactory> AndAddFact<TFactory>(this GivenBlock<TFactory> givenBlock, FactBase fact)
+            where TFactory : FactFactoryBase<FactBase, Container, Rule, Collection, Action>
+        {
+            return givenBlock.And("Add fact", factory => factory.Container.Add(fact));
         }
     }
 }
