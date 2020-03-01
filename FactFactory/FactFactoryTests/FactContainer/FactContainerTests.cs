@@ -1,5 +1,7 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
@@ -13,12 +15,12 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace FactFactoryTests.FactContainer
 {
     [TestClass]
-    public sealed class FactContainerTests : TestBase
+    public sealed class FactContainerTests : CommonTestBase
     {
         // TODO: Make container copy test
-        private GivenBlock<Container> GivenCreateContainer()
+        private GivenBlock<Container> GivenCreateContainer(bool isReadOnly = false)
         {
-            return Given("Create container", () => new Container());
+            return Given("Create container", () => new Container(null, isReadOnly));
         }
 
         [TestMethod]
@@ -180,6 +182,28 @@ namespace FactFactoryTests.FactContainer
                     Assert.IsTrue(copyContainer.TryGetFact(out Input3Fact fact3), $"{nameof(Input3Fact)} must be contained in a container");
                     Assert.AreEqual(input3Fact, fact3, $"Original copy of {nameof(Input3Fact)} fact expected");
                 });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Add fact to read-only container")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void AddFactReadOnlyContainerTestCase()
+        {
+            GivenCreateContainer(true)
+                .When("Add fact", container => ExpectedFactFactoryException(() => container.Add(new Input10Fact(10))))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, $"Fact container is read-only.");
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Remove fact to read-only container")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void RemoveFactReadOnlyContainerTestCase()
+        {
+            GivenCreateContainer(true)
+                .When("Remove fact", container => ExpectedFactFactoryException(() => container.Remove(new Input10Fact(10))))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, $"Fact container is read-only.");
         }
     }
 }
