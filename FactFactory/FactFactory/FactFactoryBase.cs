@@ -46,8 +46,9 @@ namespace GetcuReone.FactFactory
         /// <summary>
         /// Return the fact set that will be contained in the default container.
         /// </summary>
+        /// <param name="container"></param>
         /// <returns></returns>
-        protected virtual IEnumerable<TFact> GetDefaultFacts()
+        protected virtual IEnumerable<TFact> GetDefaultFacts(FactContainerBase<TFact> container)
         {
             return Enumerable.Empty<TFact>();
         }
@@ -61,9 +62,10 @@ namespace GetcuReone.FactFactory
             FactContainerBase<TFact> container = Container.Copy();
             if (container.Equals(Container))
                 throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
+            container.IsReadOnly = true;
 
             List<IFactType> defaultFacts = new List<IFactType>();
-            foreach(TFact fact in GetDefaultFacts() ?? Enumerable.Empty<TFact>())
+            foreach(TFact fact in GetDefaultFacts(container) ?? Enumerable.Empty<TFact>())
             {
                 IFactType type = fact.GetFactType();
 
@@ -81,8 +83,6 @@ namespace GetcuReone.FactFactory
 
             if (container.Any(fact => fact.IsSpecialFact()))
                 throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, $"In the container there should be no facts realizing types {nameof(INotContainedFact)} and {nameof(INoDerivedFact)}");
-
-              container.IsReadOnly = true;
 
             // Get a copy of the rules
             FactRuleCollectionBase<TFact, TFactRule> rules = Rules.Copy();

@@ -29,7 +29,7 @@ namespace FactFactoryTests.FactFactoryT.Env
         {
             return new FactType<TGetFact>();
         }
-        protected override IEnumerable<FactBase> GetDefaultFacts()
+        protected override IEnumerable<FactBase> GetDefaultFacts(FactContainerBase<FactBase> container)
         {
             return DefaultFacts;
         }

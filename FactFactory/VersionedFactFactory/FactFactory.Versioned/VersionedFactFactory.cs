@@ -62,7 +62,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// Returns instances of all used versions
         /// </summary>
         /// <returns></returns>
-        protected override List<IVersionFact> GetAllVersions()
+        protected override IEnumerable<IVersionFact> GetAllVersions()
         {
             return _getAllVersionFactsFunc();
         }

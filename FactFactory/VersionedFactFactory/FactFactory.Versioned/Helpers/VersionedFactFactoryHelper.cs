@@ -5,6 +5,7 @@ using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommonErrorCode = GetcuReone.FactFactory.Constants.ErrorCode;
 
 namespace GetcuReone.FactFactory.Versioned.Helpers
 {
@@ -41,6 +42,18 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
                 throw new ArgumentException($"Parameter {paramName} should not be converted into {typeof(TFact).FullName}");
 
             return type;
+        }
+
+        internal static TFact ConvertFact<TFact, TWantAction>(this IFact fact)
+            where TFact : IFact
+            where TWantAction : IWantAction<TFact>
+        {
+            if (fact is TFact fact1)
+                return fact1;
+
+            throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(
+                    CommonErrorCode.InvalidFactType, 
+                    $"Fact {fact.GetFactType().FactName} should not be converted into {typeof(TFact).FullName}");
         }
     }
 }

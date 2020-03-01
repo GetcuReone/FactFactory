@@ -16,6 +16,14 @@ namespace FactFactory.VersionedTests.UintVersion.Env
         {
         }
 
+        public bool EqualVersion<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact
+        {
+            if (versionFact is IntVersion uintVersion)
+                return Value == uintVersion.Value;
+
+            return false;
+        }
+
         /// <summary>
         /// True - the version of the current fact is less than <paramref name="versionFact"/>
         /// </summary>

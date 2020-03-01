@@ -16,6 +16,20 @@ namespace GetcuReone.FactFactory.Versioned.Facts.Versions
         }
 
         /// <summary>
+        /// True - the version of the current fact is equal <paramref name="versionFact"/>
+        /// </summary>
+        /// <typeparam name="TVersionFact"></typeparam>
+        /// <param name="versionFact"></param>
+        /// <returns></returns>
+        public override bool EqualVersion<TVersionFact>(TVersionFact versionFact)
+        {
+            if (versionFact is VersionedFactBase<DateTime> factDateTime)
+                return Value == factDateTime.Value;
+
+            return false;
+        }
+
+        /// <summary>
         /// True - the version of the current fact is less than <paramref name="versionFact"/>.
         /// </summary>
         /// <typeparam name="TVersionFact"></typeparam>

@@ -1,9 +1,11 @@
 ﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CommonErrorCode = GetcuReone.FactFactory.Constants.ErrorCode;
@@ -120,7 +122,58 @@ namespace GetcuReone.FactFactory.Versioned
         /// Returns instances of all used versions
         /// </summary>
         /// <returns></returns>
-        protected abstract List<IVersionFact> GetAllVersions();
+        protected abstract IEnumerable<IVersionFact> GetAllVersions();
+
+        /// <summary>
+        /// Return the fact set that will be contained in the default container.
+        /// </summary>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        protected override IEnumerable<TFact> GetDefaultFacts(FactContainerBase<TFact> container)
+        {
+            IEnumerable<TFact> allVersionFacts = GetAllVersions()?.Select(version => version.ConvertFact<TFact, TWantAction>()) ?? Enumerable.Empty<TFact>();
+
+            List<IVersionFact> defaultVersions = container.Where(version => version is IVersionFact).Select(version => (IVersionFact)version).ToList();
+            List<IFactType> defaultVersionTypes = defaultVersions.ConvertAll(version => version.GetFactType());
+
+            foreach(var version in allVersionFacts)
+            {
+                if (defaultVersionTypes.All(defaultVersion => !defaultVersion.Compare(version.GetFactType())))
+                    defaultVersions.Add((IVersionFact)version);
+            }
+
+            List<DeriveErrorDetail<TFact, TWantAction>> errorDetails = new List<DeriveErrorDetail<TFact, TWantAction>>();
+
+            foreach(var version1 in defaultVersions)
+            {
+                foreach(var version2 in defaultVersions)
+                {
+                    if (version1 == version2)
+                        continue;
+
+                    bool[] resultComparison = new bool[3]
+                    {
+                        version1.IsLessThan(version2),
+                        version1.IsMoreThan(version2),
+                        version1.EqualVersion(version2),
+                    };
+
+                    if (resultComparison.All(result => result == false) || resultComparison.Count(result => result == true) > 1)
+                    {
+                        errorDetails.Add(new DeriveErrorDetail<TFact, TWantAction>(
+                        CommonErrorCode.InvalidData,
+                        $"For version {version1.GetFactType().FactName} and {version2.GetFactType().FactName}, comparison operations did not work correctly.",
+                        null,
+                        null));
+                    }
+                }
+            }
+
+            if (errorDetails.Count != 0)
+                throw new InvalidDeriveOperationException<TFact, TWantAction>(errorDetails);
+
+            return defaultVersions.Select(version => (TFact)version);
+        }
 
         /// <summary>
         /// The method determines whether the fact should be recounted.
@@ -196,23 +249,6 @@ namespace GetcuReone.FactFactory.Versioned
         public override void Derive()
         {
             _calculatedFactTypes = new List<IFactType>();
-
-            // Get the version
-            List<IVersionFact> versions = GetAllVersions();
-            var invalidFacts = versions.Where(fact => !(fact is TFact)).ToList();
-
-            if (!invalidFacts.IsNullOrEmpty())
-                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(
-                    CommonErrorCode.InvalidData,
-                    $"{string.Join(", ", invalidFacts.ConvertAll(f => f.GetType().Name))} not inherited from type {typeof(TFact).FullName}");
-
-            foreach (IVersionFact versionFact in versions)
-            {
-                if (versionFact.GetFactType().TryGetFact(Container, out TFact fact))
-                    Container.Remove(fact);
-
-                Container.Add((TFact)versionFact);
-            }
 
             base.Derive();
 

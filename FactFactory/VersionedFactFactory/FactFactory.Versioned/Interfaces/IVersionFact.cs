@@ -22,5 +22,13 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
         /// <param name="versionFact"></param>
         /// <returns></returns>
         bool IsMoreThan<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact;
+
+        /// <summary>
+        /// True - the version of the current fact is equal <paramref name="versionFact"/>
+        /// </summary>
+        /// <typeparam name="TVersionFact"></typeparam>
+        /// <param name="versionFact"></param>
+        /// <returns></returns>
+        bool EqualVersion<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact;
     }
 }

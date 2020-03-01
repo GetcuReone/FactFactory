@@ -161,6 +161,14 @@
             </summary>
             <param name="version"></param>
         </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.UintVersion.EqualVersion``1(``0)">
+            <summary>
+            True - the version of the current fact is equal <paramref name="versionFact"/>
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Facts.UintVersion.IsLessThan``1(``0)">
             <summary>
             True - the version of the current fact is less than <paramref name="versionFact"/>
@@ -215,6 +223,14 @@
             </summary>
             <param name="version">version</param>
         </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.DateTimeVersionBase.EqualVersion``1(``0)">
+            <summary>
+            True - the version of the current fact is equal <paramref name="versionFact"/>
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.DateTimeVersionBase.IsLessThan``1(``0)">
             <summary>
             True - the version of the current fact is less than <paramref name="versionFact"/>.
@@ -241,6 +257,14 @@
             Constructor.
             </summary>
             <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.VersionBase`1.EqualVersion``1(``0)">
+            <summary>
+            True - the version of the current fact is equal <paramref name="versionFact"/>
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.VersionBase`1.IsLessThan``1(``0)">
             <summary>
@@ -317,6 +341,14 @@
             <param name="versionFact"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact.EqualVersion``1(``0)">
+            <summary>
+            True - the version of the current fact is equal <paramref name="versionFact"/>
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactFactory">
             <summary>
             Default implementation of versioned fact factory <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5"/>
@@ -377,6 +409,13 @@
             <summary>
             Returns instances of all used versions
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetDefaultFacts(GetcuReone.FactFactory.Entities.FactContainerBase{`0})">
+            <summary>
+            Return the fact set that will be contained in the default container.
+            </summary>
+            <param name="container"></param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.NeedRecalculateFact(`2,GetcuReone.FactFactory.Entities.FactContainerBase{`0},`4)">

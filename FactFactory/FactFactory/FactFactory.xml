@@ -909,10 +909,11 @@
             <typeparam name="TGetFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetDefaultFacts">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetDefaultFacts(GetcuReone.FactFactory.Entities.FactContainerBase{`0})">
             <summary>
             Return the fact set that will be contained in the default container.
             </summary>
+            <param name="container"></param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive">
