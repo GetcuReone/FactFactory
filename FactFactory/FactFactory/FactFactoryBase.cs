@@ -326,44 +326,45 @@ namespace GetcuReone.FactFactory
                         {
                             IFactType needFactType = needFacts[factIndex];
                             bool needRemove = false;
+                            bool isAddedFact = false;
+                            bool isNotContained = needFactType.IsFactType<INotContainedFact>();
+                            bool isNoDerive = needFactType.IsFactType<INoDerivedFact>();
 
-                            // Check INotContainedFact fact
-                            if (needFactType.IsFactType<INotContainedFact>())
+                            if (isNoDerive || isNotContained)
                             {
                                 if (specialFacts.Any(fact => fact.GetFactType().Compare(needFactType)))
                                 {
-                                    needRemove = true;
+                                    needFacts.Remove(needFactType);
+                                    continue;
                                 }
-                                else
-                                {
-                                    INotContainedFact notContainedFact = needFactType.CreateNotContained();
+                            }
 
-                                    if (container.All(fact => !notContainedFact.IsFactContained(container)))
-                                    {
-                                        specialFacts.Add(notContainedFact.ConvertFact<TFact, TWantAction>());
-                                        needRemove = true;
-                                    }
+                            // Check INotContainedFact fact
+                            if (isNotContained)
+                            {
+                                INotContainedFact notContainedFact = needFactType.CreateNotContained();
+
+                                if (container.All(fact => !notContainedFact.IsFactContained(container)))
+                                {
+                                    specialFacts.Add(notContainedFact.ConvertFact<TFact, TWantAction>());
+                                    isAddedFact = true;
+                                    needRemove = true;
                                 }
                             }
 
                             // Check INoDerivedFact fact
                             if (needFactType.IsFactType<INoDerivedFact>())
                             {
-                                TFact noDerive = specialFacts.SingleOrDefault(fact => fact.GetFactType().Compare(needFactType));
+                                INoDerivedFact noDerivedFact = needFactType.CreateNoDerived();
 
-                                if (noDerive != null)
+                                if (!TryDeriveNoFactInfo(noDerivedFact, container, ruleCollection))
                                 {
-                                    needRemove = true;
-                                }
-                                else
-                                {
-                                    INoDerivedFact noDerivedFact = needFactType.CreateNoDerived();
-
-                                    if (!TryDeriveNoFactInfo(noDerivedFact, container, ruleCollection))
+                                    if (!isAddedFact)
                                     {
                                         specialFacts.Add(noDerivedFact.ConvertFact<TFact, TWantAction>());
-                                        needRemove = true;
+                                        isAddedFact = true;
                                     }
+                                    needRemove = true;
                                 }
                             }
 
