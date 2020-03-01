@@ -82,7 +82,7 @@ namespace GetcuReone.FactFactory.Entities
         private void CheckReadOnly()
         {
             if (IsReadOnly)
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidOperation, $"Rule collection is read-only");
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidOperation, $"Rule collection is read-only.");
         }
 
         /// <summary>
@@ -638,9 +638,8 @@ namespace GetcuReone.FactFactory.Entities
         /// <exception cref="ArgumentNullException">collection is null</exception>
         public void AddRange(IEnumerable<TFactRule> rules)
         {
-            CheckReadOnly();
-
-            _list.AddRange(rules);
+            foreach (TFactRule rule in rules)
+                Add(rule);
         }
 
         /// <summary>

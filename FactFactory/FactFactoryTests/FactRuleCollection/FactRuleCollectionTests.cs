@@ -1,8 +1,11 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
+using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -16,6 +19,11 @@ namespace FactFactoryTests.FactRuleCollection
     public sealed class FactRuleCollectionTests : CommonTestBase
     {
         private Collection Collection { get; set; }
+
+        private GivenBlock<Collection> GivenCreateCollection(bool isReadOnly)
+        {
+            return Given("Create collection", () => new Collection(null, isReadOnly));
+        }
 
         [TestInitialize]
         public void Initialize()
@@ -638,6 +646,72 @@ namespace FactFactoryTests.FactRuleCollection
 
                     Assert.AreEqual(factRule, copyCollection[0], "The collection contains another rule.");
                 });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add rule to read-only collection")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void AddRuleReadOnlyCollectionTestCase()
+        {
+            GivenCreateCollection(true)
+                .When("Add rule", rules => ExpectedFactFactoryException(() => rules.Add(null)))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
+        [Description("Remove rule to read-only collection")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void RemoveRuleReadOnlyCollectionTestCase()
+        {
+            GivenCreateCollection(true)
+                .When("Remove rule", rules => ExpectedFactFactoryException(() => rules.Remove(null)))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
+        [Description("Clear read-only collection")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void ClearReadOnlyCollectionTestCase()
+        {
+            GivenCreateCollection(true)
+                .When("Clear", rules => ExpectedFactFactoryException(() => rules.Clear()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
+        [Description("Insert rule to read-only collection")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void InsertRuleReadOnlyCollectionTestCase()
+        {
+            GivenCreateCollection(true)
+                .When("Insert rule", rules => ExpectedFactFactoryException(() => rules.Insert(0, null)))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
+        [Description("RemoveAt rule to read-only collection")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void RemoveAtRuleReadOnlyCollectionTestCase()
+        {
+            GivenCreateCollection(true)
+                .When("RemoveAt rule", rules => ExpectedFactFactoryException(() => rules.RemoveAt(0)))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
+        [Description("Add by index rule to read-only collection")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void AddByIndexRuleReadOnlyCollectionTestCase()
+        {
+            GivenCreateCollection(true)
+                .When("Add by index", rules => ExpectedFactFactoryException(() => rules[0] = null))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
         }
     }
 }
