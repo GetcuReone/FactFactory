@@ -103,5 +103,15 @@ namespace GetcuReone.FactFactory.Helpers
             if (!invalidTypes.IsNullOrEmpty())
                 throw new ArgumentException($"{string.Join(", ", invalidTypes.ConvertAll(type => type.FactName))} types are not inherited from {typeof(TFact).FullName}");
         }
+
+        internal static TFact ConvertFact<TFact, TWantAction>(this IFact fact)
+            where TFact : IFact
+            where TWantAction : IWantAction<TFact>
+        {
+            if (fact is TFact fact1)
+                return fact1;
+
+            throw CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidFactType, $"Type {fact.GetFactType().FactName} cannot be converted {typeof(TFact).Name}");
+        }
     }
 }

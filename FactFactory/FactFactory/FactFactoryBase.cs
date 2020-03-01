@@ -519,20 +519,24 @@ namespace GetcuReone.FactFactory
             TFactRule rule = node.FactRule;
 
             // 1. Add the special facts necessary for the rule to the container
-            List<TFact> includeFacts = new List<TFact>(
-                rule.InputFactTypes
-                    .Where(factInfo => factInfo.IsFactType<INotContainedFact>())
-                    .Select(factInfo => (TFact)factInfo.CreateNotContained()));
-
-            includeFacts.AddRange(
-                rule.InputFactTypes
-                    .Where(factInfo => factInfo.IsFactType<INoDerivedFact>())
-                    .Select(factInfo => (TFact)factInfo.CreateNoDerived()));
-
             container.IsReadOnly = false;
+            List<TFact> needRemoveFact = new List<TFact>();
 
-            foreach (var includeFact in includeFacts)
-                container.Add(includeFact);
+            foreach(IFactType type in rule.InputFactTypes)
+            {
+                if (type.IsFactType<INotContainedFact>() && !type.TryGetFact(container, out TFact _))
+                {
+                    TFact includFact = type.CreateNotContained().ConvertFact<TFact, TWantAction>();
+                    needRemoveFact.Add(includFact);
+                    container.Add(includFact);
+                }
+                else if (type.IsFactType<INoDerivedFact>() && !type.TryGetFact(container, out TFact _))
+                {
+                    TFact includFact = type.CreateNoDerived().ConvertFact<TFact, TWantAction>();
+                    needRemoveFact.Add(includFact);
+                    container.Add(includFact);
+                }
+            }
 
             // 2. We decide whether the fact will be calculated at all
             if (rule.OutputFactType.TryGetFact(container, out TFact fact))
@@ -549,7 +553,7 @@ namespace GetcuReone.FactFactory
             container.Add(CreateObject(ct => rule.Calculate(container), container));
 
             // 4. Remove special facts from the container
-            foreach (var includeFact in includeFacts)
+            foreach (var includeFact in needRemoveFact)
                 container.Remove(includeFact);
 
             container.IsReadOnly = true;
