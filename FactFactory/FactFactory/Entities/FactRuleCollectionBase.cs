@@ -29,7 +29,7 @@ namespace GetcuReone.FactFactory.Entities
             get => _list[index];
             set
             {
-
+                CheckReadOnly();
                 if (value.Equals(_list[index]))
                     return;
                 else if (Contains(value))
