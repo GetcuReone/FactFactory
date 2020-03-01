@@ -239,7 +239,7 @@ namespace FactFactoryTests.FactRule
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.NoDerived)]
         [Description("Return NoDerive fact")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ReturnNoDeriveFactTestCase()
@@ -257,7 +257,7 @@ namespace FactFactoryTests.FactRule
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.NotContained)]
         [Description("Return NotContained fact")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ReturnNoNotContainedFactTestCase()

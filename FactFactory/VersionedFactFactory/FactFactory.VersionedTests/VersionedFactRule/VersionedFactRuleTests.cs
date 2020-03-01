@@ -1,8 +1,10 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
@@ -143,6 +145,26 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .Then("Check result", fact =>
                 {
                     Assert.IsNull(fact.Version, "Version must be null");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.NotContained)]
+        [Description("Return version fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void ReturnVersiondFactTestCase()
+        {
+            string expectedReason = $"Parameter outputFactType should not be converted into {typeof(IVersionFact).FullName}";
+
+            GivenEmpty()
+                .When("Create rule", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<Fact1>() }, GetFactType<Version1>()));
+                })
+                .Then("Check error", ex =>
+                {
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
                 });
         }
     }

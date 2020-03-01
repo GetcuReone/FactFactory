@@ -28,6 +28,8 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <param name="outputFactType"></param>
         public VersionedFactRule(Func<IFactContainer<VersionedFactBase>, VersionedFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType) : base(func, inputFactTypes, outputFactType)
         {
+            outputFactType.CannotIsType<IVersionFact>(nameof(outputFactType));
+
             VersionType = inputFactTypes?.SingleOrNullFactVersion();
         }
 

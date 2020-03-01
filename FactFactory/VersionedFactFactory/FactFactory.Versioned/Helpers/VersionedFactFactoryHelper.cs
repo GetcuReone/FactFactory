@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,6 +32,15 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
                 throw FactFactoryHelper.CreateException(ErrorCode.OnlyOneVersionFact, $"You cannot specify more than one version fact\nInputFactTypes: ({string.Join(", ", factTypes)})");
 
             return typeFacts[0];
+        }
+
+        internal static IFactType CannotIsType<TFact>(this IFactType type, string paramName)
+            where TFact : IFact
+        {
+            if (type.IsFactType<TFact>())
+                throw new ArgumentException($"Parameter {paramName} should not be converted into {typeof(TFact).FullName}");
+
+            return type;
         }
     }
 }
