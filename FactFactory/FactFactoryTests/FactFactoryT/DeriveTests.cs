@@ -1,15 +1,14 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
-using FactFactory.TestsCommon.Helpers;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -26,7 +25,7 @@ namespace FactFactoryTests.FactFactoryT
             Input16Fact fact16 = null;
 
             GivenCreateFactFactory()
-                .And("Set rules", factory => factory.Rules.AddRange(RuleCollectionHelper.GetInputFactRules()))
+                .AndAddRules(RuleCollectionHelper.GetInputFactRules())
                 .And("Want fact", factory =>
                 {
                     factory.WantFact((Input16Fact fact) =>
@@ -49,7 +48,7 @@ namespace FactFactoryTests.FactFactoryT
         public void NotExistsRuleForFactTestCase()
         {
             GivenCreateFactFactory()
-                .And("Set rules", factory => factory.Rules.AddRange(RuleCollectionHelper.GetInputFactRules()))
+                .AndAddRules(RuleCollectionHelper.GetInputFactRules())
                 .And("Want fact", factory => factory.WantFact((OtherFact fact) => { }))
                 .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
                 .Then("Check error", ex =>
@@ -70,7 +69,7 @@ namespace FactFactoryTests.FactFactoryT
         public void CannotDerivedOneFactFromOne1TestCase()
         {
             GivenCreateFactFactory()
-                .And("Set rules", factory => factory.Rules.AddRange(RuleCollectionHelper.GetInputFactRules()))
+                .AndAddRules(RuleCollectionHelper.GetInputFactRules())
                 .And("Want fact", factory => factory.WantFact((Input4Fact fact) => { }))
                 .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
                 .Then("Check error", ex =>
@@ -98,7 +97,7 @@ namespace FactFactoryTests.FactFactoryT
         public void CannotDerivedOneFactFromOne2TestCase()
         {
             GivenCreateFactFactory()
-                .And("Set rules", factory => factory.Rules.AddRange(RuleCollectionHelper.GetRulesForNotAvailableInput6Fact()))
+                .AndAddRules(RuleCollectionHelper.GetRulesForNotAvailableInput6Fact())
                 .And("Want fact", factory => factory.WantFact((Input6Fact fact) => { }))
                 .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
                 .Then("Check error", ex =>
@@ -131,7 +130,7 @@ namespace FactFactoryTests.FactFactoryT
             Input7Fact input7Fact = null;
 
             GivenCreateFactFactory()
-                .And("Set rules", factory => factory.Rules.AddRange(RuleCollectionHelper.GetInputFactRules()))
+                .AndAddRules(RuleCollectionHelper.GetInputFactRules())
                 .And("Want fact6", factory => factory.WantFact((Input6Fact fact) => { input6Fact = fact; }))
                 .And("Want fact16", factory => factory.WantFact((Input16Fact fact) => { input16Fact = fact; }))
                 .And("Want fact16", factory => factory.WantFact((Input7Fact fact) => { input7Fact = fact; }))

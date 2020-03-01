@@ -1,9 +1,11 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using GetcuReone.FactFactory;
 
 namespace FactFactory.TestsCommon.Helpers
 {
