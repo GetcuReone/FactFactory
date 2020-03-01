@@ -6,9 +6,13 @@ namespace GetcuReone.FactFactory.Interfaces
     /// Container interface with facts for deriving other facts.
     /// </summary>
     /// <typeparam name="TFact">The type from which all facts in this container should be inherited.</typeparam>
-    public interface IFactContainer<TFact> : IEnumerable<TFact>, ICopy<IFactContainer<TFact>>
+    public interface IFactContainer<TFact> : IEnumerable<TFact>
         where TFact : IFact
     {
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="IFactContainer{TFact}"/> is read-only.
+        /// </summary>
+        bool IsReadOnly { get; }
         /// <summary>
         /// Add fact.
         /// </summary>

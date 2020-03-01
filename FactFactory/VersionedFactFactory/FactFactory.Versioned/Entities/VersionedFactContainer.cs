@@ -20,8 +20,17 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="facts">an array of facts to add to the container</param>
+        /// <param name="facts">An array of facts to add to the container.</param>
         public VersionedFactContainer(IEnumerable<VersionedFactBase> facts) : base(facts)
+        {
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="facts">An array of facts to add to the container.</param>
+        /// <param name="isReadOnly"></param>
+        public VersionedFactContainer(IEnumerable<VersionedFactBase> facts, bool isReadOnly) : base(facts, isReadOnly)
         {
         }
 
@@ -29,9 +38,9 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// Get copy container.
         /// </summary>
         /// <returns></returns>
-        public override IFactContainer<VersionedFactBase> Copy()
+        public override FactContainerBase<VersionedFactBase> Copy()
         {
-            return new VersionedFactContainer(this);
+            return new VersionedFactContainer(this, false);
         }
 
         /// <summary>

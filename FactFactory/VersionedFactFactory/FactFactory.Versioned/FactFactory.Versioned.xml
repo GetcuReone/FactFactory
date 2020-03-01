@@ -38,7 +38,14 @@
             <summary>
             Constructor.
             </summary>
-            <param name="facts">an array of facts to add to the container</param>
+            <param name="facts">An array of facts to add to the container.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase},System.Boolean)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="facts">An array of facts to add to the container.</param>
+            <param name="isReadOnly"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.Copy">
             <summary>
@@ -95,14 +102,21 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.#ctor">
             <summary>
-            Constructor
+            Constructor.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule})">
             <summary>
-            Constructor
+            Constructor.
             </summary>
             <param name="factRules"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule},System.Boolean)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="factRules"></param>
+            <param name="isReadOnly"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.Copy">
             <summary>
@@ -350,7 +364,7 @@
             Base class for versioned fact factory
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetRulesForWantAction(`4,GetcuReone.FactFactory.Interfaces.IFactContainer{`0},GetcuReone.FactFactory.Entities.FactRuleCollectionBase{`0,`2})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetRulesForWantAction(`4,GetcuReone.FactFactory.Entities.FactContainerBase{`0},GetcuReone.FactFactory.Entities.FactRuleCollectionBase{`0,`2})">
             <summary>
             Returns only those lambdas that fit the requested version.
             </summary>
@@ -359,7 +373,7 @@
             <param name="wantAction">Current wantAction</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.CalculateFact(`2,GetcuReone.FactFactory.Interfaces.IFactContainer{`0},`4)">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.CalculateFact(`2,GetcuReone.FactFactory.Entities.FactContainerBase{`0},`4)">
             <summary>
             Calculate fact.
             </summary>

@@ -8,7 +8,7 @@ namespace FactFactoryTests.FactFactoryT.Env
 {
     internal sealed class FactFactoryWithoutRules : GetcuReone.FactFactory.FactFactory
     {
-        protected override IList<GetcuReone.FactFactory.Entities.FactRule> GetRulesForWantAction(WAction wantAction, IFactContainer<FactBase> container, FactRuleCollectionBase<FactBase, GetcuReone.FactFactory.Entities.FactRule> rules)
+        protected override IList<GetcuReone.FactFactory.Entities.FactRule> GetRulesForWantAction(WAction wantAction, FactContainerBase<FactBase> container, FactRuleCollectionBase<FactBase, GetcuReone.FactFactory.Entities.FactRule> rules)
         {
             return default;
         }

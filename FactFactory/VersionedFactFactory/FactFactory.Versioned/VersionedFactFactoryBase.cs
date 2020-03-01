@@ -15,7 +15,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// </summary>
     public abstract class VersionedFactFactoryBase<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactFactoryBase<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
         where TFact : class, IVersionedFact
-        where TFactContainer : class, IFactContainer<TFact>
+        where TFactContainer : FactContainerBase<TFact>
         where TFactRule : class, IVersionedFactRule<TFact>
         where TFactRuleCollection : FactRuleCollectionBase<TFact, TFactRule>
         where TWantAction : class, IWantAction<TFact>, IFactTypeVersionInformation
@@ -30,7 +30,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="container">Current fact set.</param>
         /// <param name="wantAction">Current wantAction</param>
         /// <returns></returns>
-        protected override IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, IFactContainer<TFact> container, FactRuleCollectionBase<TFact, TFactRule> rules)
+        protected override IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, FactContainerBase<TFact> container, FactRuleCollectionBase<TFact, TFactRule> rules)
         {
             // We find out the version that we will focus on
             // If the version is not requested, then we consider that the last is necessary
@@ -123,7 +123,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="container">Fact container.</param>
         /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
         /// <remarks>True - fact calculate. False - fact already exists</remarks>
-        protected override bool CalculateFact(TFactRule rule, IFactContainer<TFact> container, TWantAction wantAction)
+        protected override bool CalculateFact(TFactRule rule, FactContainerBase<TFact> container, TWantAction wantAction)
         {
             if (_calculatingWantAction == null)
                 _calculatingWantAction = wantAction;

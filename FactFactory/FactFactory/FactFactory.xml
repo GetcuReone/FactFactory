@@ -92,14 +92,21 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactContainer.#ctor">
             <summary>
-            Constructor
+            Constructor.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Facts.FactBase})">
             <summary>
-            Constructor
+            Constructor.
             </summary>
-            <param name="facts">an array of facts to add to the container</param>
+            <param name="facts">An array of facts to add to the container.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Facts.FactBase},System.Boolean)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="facts">An array of facts to add to the container.</param>
+            <param name="isReadOnly"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactContainer.Copy">
             <summary>
@@ -119,6 +126,11 @@
             Base class for fact container.
             </summary>
         </member>
+        <member name="P:GetcuReone.FactFactory.Entities.FactContainerBase`1.IsReadOnly">
+            <summary>
+            Gets a value indicating whether the <see cref="T:GetcuReone.FactFactory.Interfaces.IFactContainer`1"/> is read-only.
+            </summary>
+        </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactContainerBase`1.#ctor">
             <summary>
             Constructor.
@@ -128,7 +140,14 @@
             <summary>
             Constructor.
             </summary>
-            <param name="facts">an array of facts to add to the container</param>
+            <param name="facts">An array of facts to add to the container.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="facts">An array of facts to add to the container.</param>
+            <param name="isReadOnly"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactContainerBase`1.GetFactType``1">
             <summary>
@@ -917,7 +936,7 @@
             <param name="factTypes">facts required to launch an action</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetRulesForWantAction(`4,GetcuReone.FactFactory.Interfaces.IFactContainer{`0},GetcuReone.FactFactory.Entities.FactRuleCollectionBase{`0,`2})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetRulesForWantAction(`4,GetcuReone.FactFactory.Entities.FactContainerBase{`0},GetcuReone.FactFactory.Entities.FactRuleCollectionBase{`0,`2})">
             <summary>
             Return a list with the appropriate rules at the time of the derive of the facts.
             </summary>
@@ -926,7 +945,7 @@
             <param name="wantAction">Current wantAction</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CalculateFact(`2,GetcuReone.FactFactory.Interfaces.IFactContainer{`0},`4)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CalculateFact(`2,GetcuReone.FactFactory.Entities.FactContainerBase{`0},`4)">
             <summary>
             Calculate fact.
             </summary>
@@ -935,7 +954,7 @@
             <param name="wantAction">The initial action for which the parameters are calculated.</param>
             <remarks>True - fact calculate. False - fact already exists</remarks>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.TreeEntities.FactRuleTree{`0,`2}}@,`4,GetcuReone.FactFactory.Interfaces.IFactContainer{`0},GetcuReone.FactFactory.Entities.FactRuleCollectionBase{`0,`2},System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.List{System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}}}@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.TreeEntities.FactRuleTree{`0,`2}}@,`4,GetcuReone.FactFactory.Entities.FactContainerBase{`0},GetcuReone.FactFactory.Entities.FactRuleCollectionBase{`0,`2},System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.List{System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}}}@)">
             <summary>
             We are trying to calculate a tree by which we find a fact
             </summary>
@@ -1316,6 +1335,11 @@
             Container interface with facts for deriving other facts.
             </summary>
             <typeparam name="TFact">The type from which all facts in this container should be inherited.</typeparam>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactContainer`1.IsReadOnly">
+            <summary>
+            Gets a value indicating whether the <see cref="T:GetcuReone.FactFactory.Interfaces.IFactContainer`1"/> is read-only.
+            </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Add``1(``0)">
             <summary>

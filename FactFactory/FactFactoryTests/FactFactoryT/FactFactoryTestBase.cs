@@ -15,10 +15,5 @@ namespace FactFactoryTests.FactFactoryT
         {
             return Given("Create fact factory", () => new GetcuReone.FactFactory.FactFactory());
         }
-
-        protected InvalidDeriveOperationException<FactBase, WAction> ExpectedDeriveException(Action action)
-        {
-            return ExpectedException<InvalidDeriveOperationException<FactBase, WAction>>(action);
-        }
     }
 }

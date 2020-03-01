@@ -10,23 +10,32 @@ namespace GetcuReone.FactFactory.Entities
     public class FactContainer : FactContainerBase<FactBase>
     {
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         public FactContainer() { }
 
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
-        /// <param name="facts">an array of facts to add to the container</param>
+        /// <param name="facts">An array of facts to add to the container.</param>
         public FactContainer(IEnumerable<FactBase> facts) : base(facts) { }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="facts">An array of facts to add to the container.</param>
+        /// <param name="isReadOnly"></param>
+        public FactContainer(IEnumerable<FactBase> facts, bool isReadOnly) : base(facts, isReadOnly)
+        {
+        }
 
         /// <summary>
         /// Get copy container.
         /// </summary>
         /// <returns></returns>
-        public override IFactContainer<FactBase> Copy()
+        public override FactContainerBase<FactBase> Copy()
         {
-            return new FactContainer(this);
+            return new FactContainer(this, IsReadOnly);
         }
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿using GetcuReone.FactFactory.Exceptions;
+﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections;
@@ -10,26 +12,50 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Base class for fact container.
     /// </summary>
-    public abstract class FactContainerBase<TFact> : IFactContainer<TFact>
+    public abstract class FactContainerBase<TFact> : IFactContainer<TFact>, ICopy<FactContainerBase<TFact>>
         where TFact : IFact
     {
         private readonly List<TFact> _container;
 
         /// <summary>
+        /// Gets a value indicating whether the <see cref="IFactContainer{TFact}"/> is read-only.
+        /// </summary>
+        public bool IsReadOnly { get; internal set; }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
-        protected FactContainerBase()
+        protected FactContainerBase() : this(null)
         {
-            _container = new List<TFact>();
         }
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="facts">an array of facts to add to the container</param>
-        protected FactContainerBase(IEnumerable<TFact> facts)
+        /// <param name="facts">An array of facts to add to the container.</param>
+        protected FactContainerBase(IEnumerable<TFact> facts) : this(facts, false) 
         {
-            _container = new List<TFact>(facts);
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="facts">An array of facts to add to the container.</param>
+        /// <param name="isReadOnly"></param>
+        protected FactContainerBase(IEnumerable<TFact> facts, bool isReadOnly)
+        {
+            if (facts.IsNullOrEmpty())
+                _container = new List<TFact>();
+            else
+                _container = new List<TFact>(facts);
+
+            IsReadOnly = isReadOnly;
+        }
+
+        private void CheckReadOnly()
+        {
+            if (IsReadOnly)
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidOperation, $"Fact container is read-only.");
         }
 
         /// <summary>
@@ -47,6 +73,8 @@ namespace GetcuReone.FactFactory.Entities
         /// <exception cref="ArgumentException">Attempt to add an existing fact.</exception>
         public virtual void Add<TAddFact>(TAddFact fact) where TAddFact : TFact
         {
+            CheckReadOnly();
+
             IFactType factType = fact.GetFactType();
 
             if (_container.Any(f => f.GetFactType().Compare(factType)))
@@ -108,6 +136,8 @@ namespace GetcuReone.FactFactory.Entities
         /// <typeparam name="TRemoveFact">Type of fact to delete.</typeparam>
         public virtual void Remove<TRemoveFact>(TRemoveFact fact) where TRemoveFact : TFact
         {
+            CheckReadOnly();
+
             _container.Remove(fact);
         }
 
@@ -142,6 +172,6 @@ namespace GetcuReone.FactFactory.Entities
         /// Get copy container.
         /// </summary>
         /// <returns></returns>
-        public abstract IFactContainer<TFact> Copy();
+        public abstract FactContainerBase<TFact> Copy();
     }
 }
