@@ -15,7 +15,7 @@ namespace FactFactoryTests.WantAction
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
         [Description("Create WantAction without action")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.FiveHundred)]
         public void CreateWantActionWithoutActionTestCase()
         {
             GivenEmpty()
