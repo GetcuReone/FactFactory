@@ -239,7 +239,7 @@ namespace GetcuReone.FactFactory
                 else if (wantFact.IsFactType<INoDerivedFact>())
                 {
                     INoDerivedFact noDerivedFact = wantFact.CreateNoDerived();
-                    if (!noDerivedFact.Value.ContainsContainer(container) && !TryDeriveNoFactInfo(wantFact, container, rules))
+                    if (!noDerivedFact.Value.ContainsContainer(container) && !TryDeriveNoFactInfo(noDerivedFact, container, rules))
                     {
                         TFact specialFact = noDerivedFact.ConvertFact<TFact, TWantAction>();
                         specialFacts.Add(specialFact);
@@ -349,14 +349,21 @@ namespace GetcuReone.FactFactory
                             // Check INoDerivedFact fact
                             if (needFactType.IsFactType<INoDerivedFact>())
                             {
-                                if (specialFacts.Any(fact => fact.GetFactType().Compare(needFactType)))
+                                TFact noDerive = specialFacts.SingleOrDefault(fact => fact.GetFactType().Compare(needFactType));
+
+                                if (noDerive != null)
                                 {
                                     needRemove = true;
                                 }
-                                else if (!TryDeriveNoFactInfo(needFactType, container, ruleCollection))
+                                else
                                 {
-                                    specialFacts.Add(needFactType.CreateNoDerived().ConvertFact<TFact, TWantAction>());
-                                    needRemove = true;
+                                    INoDerivedFact noDerivedFact = needFactType.CreateNoDerived();
+
+                                    if (!TryDeriveNoFactInfo(noDerivedFact, container, ruleCollection))
+                                    {
+                                        specialFacts.Add(noDerivedFact.ConvertFact<TFact, TWantAction>());
+                                        needRemove = true;
+                                    }
                                 }
                             }
 
@@ -601,11 +608,11 @@ namespace GetcuReone.FactFactory
             OnFactCalculatedForWantAction(rule.OutputFactType, container, wantAction);
         }
 
-        private bool TryDeriveNoFactInfo(IFactType wantFact, FactContainerBase<TFact> container, IList<TFactRule> ruleCollection)
+        private bool TryDeriveNoFactInfo(INoDerivedFact noDerivedFact, FactContainerBase<TFact> container, IList<TFactRule> ruleCollection)
         {
             try
             {
-                return TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> _, wantFact.CreateNoDerived().Value, container, ruleCollection, new List<TFact>(), out List<List<IFactType>> _);
+                return TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> _, noDerivedFact.Value, container, ruleCollection, new List<TFact>(), out List<List<IFactType>> _);
             }
             catch (InvalidDeriveOperationException<TFact, TWantAction> ex)
             {
