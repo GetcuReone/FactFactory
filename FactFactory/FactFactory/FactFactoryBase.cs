@@ -17,7 +17,7 @@ namespace GetcuReone.FactFactory
     public abstract class FactFactoryBase<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactoryBase, IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
         where TFact : class, IFact
         where TFactContainer : FactContainerBase<TFact>
-        where TFactRule : class, IFactRule<TFact>
+        where TFactRule : FactRuleBase<TFact>
         where TFactRuleCollection : FactRuleCollectionBase<TFact, TFactRule>
         where TWantAction : class, IWantAction<TFact>
     {
