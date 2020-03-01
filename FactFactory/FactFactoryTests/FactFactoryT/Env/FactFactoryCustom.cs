@@ -18,6 +18,8 @@ namespace FactFactoryTests.FactFactoryT.Env
         public override Collection Rules => collection;
         internal Collection collection = new Collection();
 
+        internal List<FactBase> DefaultFacts { get; } = new List<FactBase>();
+
         protected override GetcuReone.FactFactory.Entities.WantAction CreateWantAction(Action<IFactContainer<FactBase>> wantAction, IList<IFactType> factTypes)
         {
             return new Action(wantAction, factTypes);
@@ -26,6 +28,10 @@ namespace FactFactoryTests.FactFactoryT.Env
         protected override IFactType GetFactType<TGetFact>()
         {
             return new FactType<TGetFact>();
+        }
+        protected override IEnumerable<FactBase> GetDefaultFacts()
+        {
+            return DefaultFacts;
         }
     }
 }

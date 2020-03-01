@@ -7,7 +7,7 @@ using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rule = GetcuReone.FactFactory.Entities.FactRule;
+using System.Linq;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -261,7 +261,7 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NotContained)]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NotContained)]
         [Description("Unsuccessful derive NotContained")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void UnsuccessfulDeriveNotContainedTestCase()
@@ -286,7 +286,7 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived)]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived)]
         [Description("Unsuccessful derive NoDerived")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void UnsuccessfulDeriveNoDerivedTestCase()
@@ -297,6 +297,39 @@ namespace FactFactoryTests.FactFactoryT
                 .AndAddFact(new OtherFact(default))
                 .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<NoDerived<OtherFact>>()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedMessage);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived)]
+        [Description("Add default fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void AddDefaultFactTestCase()
+        {
+            DefaultFact defaultFact = new DefaultFact(10);
+            FactFactoryCustom factFactoryCustom = null;
+
+            Given("Create factory", () => factFactoryCustom = new FactFactoryCustom())
+                .And("Add default fact", factFactory => factFactory.DefaultFacts.Add(defaultFact))
+                .When("Run Derive", factFactory => factFactory.DeriveFact<DefaultFact>())
+                .Then("Check fact", fact => 
+                {
+                    Assert.AreEqual(defaultFact, fact, "Expected anothe fact.");
+                    Assert.AreEqual(0, factFactoryCustom.Container.Count(), "Container must be empty");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived)]
+        [Description("Add 2 default facts with the same types")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void AddTwoDefaultFactsWithSameTypesTestCase()
+        {
+            string expectedReason = $"GetDefaultFacts method return more than two {GetFactType<DefaultFact>().FactName} facts";
+            Given("Create factory", () => new FactFactoryCustom())
+                .And("Add default fact", factFactory => factFactory.DefaultFacts.Add(new DefaultFact(10)))
+                .And("Add default fact", factFactory => factFactory.DefaultFacts.Add(new DefaultFact(10)))
+                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<DefaultFact>()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
     }
 }
