@@ -921,12 +921,20 @@
             <typeparam name="TWantFact">Type of desired fact</typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnWantActionCalculated(`4,GetcuReone.FactFactory.Interfaces.IFactContainer{`0})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnWantActionCalculated(`4,GetcuReone.FactFactory.Entities.FactContainerBase{`0})">
             <summary>
             Action calculation completion handler
             </summary>
             <param name="wantAction"></param>
             <param name="container"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Entities.FactContainerBase{`0},`4)">
+            <summary>
+            Fact calculation event handler for an <paramref name="wantAction"/>.
+            </summary>
+            <param name="factType">Type calculated fact.</param>
+            <param name="container">Container.</param>
+            <param name="wantAction">The action for which the fact was calculated.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{`0}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
@@ -945,14 +953,14 @@
             <param name="wantAction">Current wantAction</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CalculateFact(`2,GetcuReone.FactFactory.Entities.FactContainerBase{`0},`4)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.NeedRecalculateFact(`2,GetcuReone.FactFactory.Entities.FactContainerBase{`0},`4)">
             <summary>
-            Calculate fact.
+            The method determines whether the fact should be recounted.
             </summary>
             <param name="rule">Rule for calculating the fact.</param>
             <param name="container">Fact container.</param>
             <param name="wantAction">The initial action for which the parameters are calculated.</param>
-            <remarks>True - fact calculate. False - fact already exists</remarks>
+            <returns>True - fact needs to be recalculated.</returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.TreeEntities.FactRuleTree{`0,`2}}@,`4,GetcuReone.FactFactory.Entities.FactContainerBase{`0},GetcuReone.FactFactory.Entities.FactRuleCollectionBase{`0,`2},System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.List{System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}}}@)">
             <summary>

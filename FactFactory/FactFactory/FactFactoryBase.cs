@@ -117,7 +117,18 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <param name="wantAction"></param>
         /// <param name="container"></param>
-        protected virtual void OnWantActionCalculated(TWantAction wantAction, IFactContainer<TFact> container)
+        protected virtual void OnWantActionCalculated(TWantAction wantAction, FactContainerBase<TFact> container)
+        {
+
+        }
+
+        /// <summary>
+        /// Fact calculation event handler for an <paramref name="wantAction"/>.
+        /// </summary>
+        /// <param name="factType">Type calculated fact.</param>
+        /// <param name="container">Container.</param>
+        /// <param name="wantAction">The action for which the fact was calculated.</param>
+        protected virtual void OnFactCalculatedForWantAction(IFactType factType, FactContainerBase<TFact> container, TWantAction wantAction)
         {
 
         }
@@ -145,37 +156,14 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Calculate fact.
+        /// The method determines whether the fact should be recounted.
         /// </summary>
         /// <param name="rule">Rule for calculating the fact.</param>
         /// <param name="container">Fact container.</param>
         /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
-        /// <remarks>True - fact calculate. False - fact already exists</remarks>
-        protected virtual bool CalculateFact(TFactRule rule, FactContainerBase<TFact> container, TWantAction wantAction)
+        /// <returns>True - fact needs to be recalculated.</returns>
+        protected virtual bool NeedRecalculateFact(TFactRule rule, FactContainerBase<TFact> container, TWantAction wantAction)
         {
-            if (!rule.OutputFactType.ContainsContainer(container))
-            {
-                List<TFact> includeFacts = new List<TFact>(
-                rule.InputFactTypes
-                    .Where(factInfo => factInfo.IsFactType<INotContainedFact>())
-                    .Select(factInfo => (TFact)factInfo.CreateNotContained()));
-
-                includeFacts.AddRange(
-                    rule.InputFactTypes
-                        .Where(factInfo => factInfo.IsFactType<INoDerivedFact>())
-                        .Select(factInfo => (TFact)factInfo.CreateNoDerived()));
-
-                foreach (var includeFact in includeFacts)
-                    container.Add(includeFact);
-
-                container.Add(CreateObject(ct => rule.Calculate(container), container));
-
-                foreach (var includeFact in includeFacts)
-                    container.Remove(includeFact);
-
-                return true;
-            }
-
             return false;
         }
 
@@ -528,9 +516,44 @@ namespace GetcuReone.FactFactory
             foreach (FactRuleNode<TFact, TFactRule> child in node.Childs)
                 DeriveNode(child, container, wantAction);
 
+            TFactRule rule = node.FactRule;
+
+            // 1. Add the special facts necessary for the rule to the container
+            List<TFact> includeFacts = new List<TFact>(
+                rule.InputFactTypes
+                    .Where(factInfo => factInfo.IsFactType<INotContainedFact>())
+                    .Select(factInfo => (TFact)factInfo.CreateNotContained()));
+
+            includeFacts.AddRange(
+                rule.InputFactTypes
+                    .Where(factInfo => factInfo.IsFactType<INoDerivedFact>())
+                    .Select(factInfo => (TFact)factInfo.CreateNoDerived()));
+
             container.IsReadOnly = false;
-            CalculateFact(node.FactRule, container, wantAction);
+
+            foreach (var includeFact in includeFacts)
+                container.Add(includeFact);
+
+            // 2. We decide whether the fact will be calculated at all
+            if (rule.OutputFactType.TryGetFact(container, out TFact fact))
+            {
+                container.IsReadOnly = true;
+                if (!NeedRecalculateFact(rule, container, wantAction))
+                    return;
+
+                container.IsReadOnly = false;
+                container.Remove(fact);
+            }
+
+            // 3. Calculete fact
+            container.Add(CreateObject(ct => rule.Calculate(container), container));
+
+            // 4. Remove special facts from the container
+            foreach (var includeFact in includeFacts)
+                container.Remove(includeFact);
+
             container.IsReadOnly = true;
+            OnFactCalculatedForWantAction(rule.OutputFactType, container, wantAction);
         }
 
         private bool TryDeriveNoFactInfo(IFactType wantFact, FactContainerBase<TFact> container, IList<TFactRule> ruleCollection)

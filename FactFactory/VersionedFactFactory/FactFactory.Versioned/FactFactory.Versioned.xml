@@ -373,20 +373,28 @@
             <param name="wantAction">Current wantAction</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.CalculateFact(`2,GetcuReone.FactFactory.Entities.FactContainerBase{`0},`4)">
-            <summary>
-            Calculate fact.
-            </summary>
-            <param name="rule">Rule for calculating the fact.</param>
-            <param name="container">Fact container.</param>
-            <param name="wantAction">The initial action for which the parameters are calculated.</param>
-            <remarks>True - fact calculate. False - fact already exists</remarks>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetAllVersions">
             <summary>
             Returns instances of all used versions
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.NeedRecalculateFact(`2,GetcuReone.FactFactory.Entities.FactContainerBase{`0},`4)">
+            <summary>
+            The method determines whether the fact should be recounted.
+            </summary>
+            <param name="rule">Rule for calculating the fact.</param>
+            <param name="container">Fact container.</param>
+            <param name="wantAction">The initial action for which the parameters are calculated.</param>
+            <returns>True - fact needs to be recalculated.</returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Entities.FactContainerBase{`0},`4)">
+            <summary>
+            Fact calculation event handler for an <paramref name="wantAction"/>.
+            </summary>
+            <param name="factType">Type calculated fact.</param>
+            <param name="container">Container.</param>
+            <param name="wantAction">The action for which the fact was calculated.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.Derive">
             <summary>

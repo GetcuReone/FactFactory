@@ -117,13 +117,67 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Calculate fact.
+        /// Returns instances of all used versions
+        /// </summary>
+        /// <returns></returns>
+        protected abstract List<IVersionFact> GetAllVersions();
+
+        /// <summary>
+        /// The method determines whether the fact should be recounted.
         /// </summary>
         /// <param name="rule">Rule for calculating the fact.</param>
         /// <param name="container">Fact container.</param>
         /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
-        /// <remarks>True - fact calculate. False - fact already exists</remarks>
-        protected override bool CalculateFact(TFactRule rule, FactContainerBase<TFact> container, TWantAction wantAction)
+        /// <returns>True - fact needs to be recalculated.</returns>
+        protected override bool NeedRecalculateFact(TFactRule rule, FactContainerBase<TFact> container, TWantAction wantAction)
+        {
+            // The last fact that is accepted or given by the rule
+            IFactType lastSuitableFactType = _calculatedFactTypes.LastOrDefault(type => type.Compare(rule.OutputFactType) || rule.InputFactTypes.Any(t => t.Compare(type)));
+
+            if (lastSuitableFactType != null)
+            {
+                // If the last time one of the input facts was recounted
+                return !lastSuitableFactType.Compare(rule.OutputFactType);
+            }
+
+            // The extraction must always be successful.
+            rule.OutputFactType.TryGetFact(container, out TFact containedFact);
+
+            // If the maximum version is not specified
+            if (wantAction.VersionType == null)
+            {
+                if (containedFact.Version == null)
+                    return false;
+                else if (rule.VersionType == null)
+                    return true;
+
+                // If less rule version
+                IVersionFact ruleVersion = container.GetVersionFact(rule.VersionType);
+                return containedFact.Version.IsLessThan(ruleVersion);
+            }
+            else
+            {
+                if (containedFact.Version == null)
+                    return true;
+
+                // If more than the maximum allowable version
+                IVersionFact maxVersion = container.GetVersionFact(wantAction.VersionType);
+                if (containedFact.Version.IsMoreThan(maxVersion))
+                    return true;
+
+                // If less rule version
+                IVersionFact ruleVersion = container.GetVersionFact(rule.VersionType);
+                return containedFact.Version.IsLessThan(ruleVersion);
+            }
+        }
+
+        /// <summary>
+        /// Fact calculation event handler for an <paramref name="wantAction"/>.
+        /// </summary>
+        /// <param name="factType">Type calculated fact.</param>
+        /// <param name="container">Container.</param>
+        /// <param name="wantAction">The action for which the fact was calculated.</param>
+        protected override void OnFactCalculatedForWantAction(IFactType factType, FactContainerBase<TFact> container, TWantAction wantAction)
         {
             if (_calculatingWantAction == null)
                 _calculatingWantAction = wantAction;
@@ -133,39 +187,8 @@ namespace GetcuReone.FactFactory.Versioned
                 _calculatingWantAction = wantAction;
             }
 
-            // Recalculate fact if
-            // 1. Versions of rule and fact are different
-            // 2. Input fact has been recalculate
-            TFact fact = container.FirstOrDefault(f => f.GetFactType().Compare(rule.OutputFactType));
-
-            if (fact != null)
-            {
-                if (rule.VersionType != null)
-                {
-                    IVersionFact version = container.GetVersionFact(rule.VersionType);
-                    if (version.IsLessThan(fact.Version) || version.IsMoreThan(fact.Version))
-                        container.Remove(fact);
-                }
-                else if (fact.Version != null)
-                    container.Remove(fact);
-
-                if (rule.InputFactTypes.Any(type => _calculatedFactTypes.Any(calculatedFactType => calculatedFactType.Compare(type))))
-                    container.Remove(fact);
-            }
-
-            bool result = base.CalculateFact(rule, container, wantAction);
-
-            if (result)
-                _calculatedFactTypes.Add(rule.OutputFactType);
-
-            return result;
+            _calculatedFactTypes.Add(factType);
         }
-
-        /// <summary>
-        /// Returns instances of all used versions
-        /// </summary>
-        /// <returns></returns>
-        protected abstract List<IVersionFact> GetAllVersions();
 
         /// <summary>
         /// Derive the facts
