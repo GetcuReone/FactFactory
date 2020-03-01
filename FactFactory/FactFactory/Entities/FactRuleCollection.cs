@@ -40,7 +40,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <returns>Copied <see cref="FactRuleCollection"/>.</returns>
         public override FactRuleCollectionBase<FactBase, FactRule> Copy()
         {
-            return new FactRuleCollection(this);
+            return new FactRuleCollection(this, IsReadOnly);
         }
 
         /// <summary>

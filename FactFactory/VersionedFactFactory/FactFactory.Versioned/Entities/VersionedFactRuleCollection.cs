@@ -12,17 +12,26 @@ namespace GetcuReone.FactFactory.Versioned.Entities
     public sealed class VersionedFactRuleCollection : FactRuleCollectionBase<VersionedFactBase, VersionedFactRule>
     {
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         public VersionedFactRuleCollection()
         {
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         /// <param name="factRules"></param>
         public VersionedFactRuleCollection(IEnumerable<VersionedFactRule> factRules) : base(factRules)
+        {
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="factRules"></param>
+        /// <param name="isReadOnly"></param>
+        public VersionedFactRuleCollection(IEnumerable<VersionedFactRule> factRules, bool isReadOnly) : base(factRules, isReadOnly)
         {
         }
 
@@ -32,7 +41,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <returns>Copied <see cref="VersionedFactRuleCollection"/>.</returns>
         public override FactRuleCollectionBase<VersionedFactBase, VersionedFactRule> Copy()
         {
-            return new VersionedFactRuleCollection(this);
+            return new VersionedFactRuleCollection(this, IsReadOnly);
         }
 
         /// <summary>
