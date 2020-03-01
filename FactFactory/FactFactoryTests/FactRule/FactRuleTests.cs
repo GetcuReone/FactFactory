@@ -237,5 +237,41 @@ namespace FactFactoryTests.FactRule
                     Assert.AreEqual("InvalidFact types are not inherited from GetcuReone.FactFactory.Facts.FactBase", ex.Message, "Another message expected");
                 });
         }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
+        [Description("Return NoDerive fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void ReturnNoDeriveFactTestCase()
+        {
+            GivenEmpty()
+                .When("Create rule", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<NoDerived<Input10Fact>>()));
+                })
+                .Then("Check error", ex =>
+                {
+                    Assert.AreEqual($"Parameter outputFactType should not be converted into {typeof(INoDerivedFact).FullName}", ex.Message, "Another message expected");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
+        [Description("Return NotContained fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void ReturnNoNotContainedFactTestCase()
+        {
+            GivenEmpty()
+                .When("Create rule", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<NotContained<Input10Fact>>()));
+                })
+                .Then("Check error", ex =>
+                {
+                    Assert.AreEqual($"Parameter outputFactType should not be converted into {typeof(INotContainedFact).FullName}", ex.Message, "Another message expected");
+                });
+        }
     }
 }
