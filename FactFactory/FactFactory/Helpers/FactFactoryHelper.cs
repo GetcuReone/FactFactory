@@ -113,5 +113,26 @@ namespace GetcuReone.FactFactory.Helpers
 
             throw CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidFactType, $"Type {fact.GetFactType().FactName} cannot be converted {typeof(TFact).Name}");
         }
+
+        internal static bool IsSpecialFact(this IFact fact)
+        {
+            return fact is INoDerivedFact 
+                || fact is INotContainedFact;
+        }
+
+        internal static IgnoreReadOnlySpace<TFact> CreateIgnoreReadOnlySpace<TFact>(this FactContainerBase<TFact> container)
+            where TFact : IFact
+        {
+            return new IgnoreReadOnlySpace<TFact>(container);
+        }
+
+        internal static IFactType CannotIsType<TFact>(this IFactType type, string paramName)
+            where TFact : IFact
+        {
+            if (type.IsFactType<TFact>())
+                throw new ArgumentException($"Parameter {paramName} should not be converted into {typeof(TFact).FullName}");
+
+            return type;
+        }
     }
 }

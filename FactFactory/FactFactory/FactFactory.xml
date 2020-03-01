@@ -962,7 +962,7 @@
             <param name="wantAction">The initial action for which the parameters are calculated.</param>
             <returns>True - fact needs to be recalculated.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.TreeEntities.FactRuleTree{`0,`2}}@,`4,GetcuReone.FactFactory.Entities.FactContainerBase{`0},GetcuReone.FactFactory.Entities.FactRuleCollectionBase{`0,`2},System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.List{System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}}}@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.TreeEntities.FactRuleTree{`0,`2}}@,`4,GetcuReone.FactFactory.Entities.FactContainerBase{`0},GetcuReone.FactFactory.Entities.FactRuleCollectionBase{`0,`2},System.Collections.Generic.List{`0}@,System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.List{System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}}}@)">
             <summary>
             We are trying to calculate a tree by which we find a fact
             </summary>
@@ -971,6 +971,7 @@
             <param name="container">fact container</param>
             <param name="rules">rule collection</param>
             <param name="notFoundFacts"></param>
+            <param name="specialFacts"></param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetFactRuleTrees(GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.IList{`2})">

@@ -37,7 +37,13 @@ namespace GetcuReone.FactFactory.Entities
         protected FactRuleBase(Func<IFactContainer<TFact>, TFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
-            OutputFactType = outputFactType ?? throw new ArgumentNullException(nameof(outputFactType));
+            if (outputFactType == null)
+                throw new ArgumentNullException(nameof(outputFactType));
+
+            OutputFactType = outputFactType
+                .CannotIsType<INoDerivedFact>(nameof(outputFactType))
+                .CannotIsType<INotContainedFact>(nameof(outputFactType));
+
             new List<IFactType> { OutputFactType }.CheckArgumentFacts<TFact>();
 
             if (inputFactTypes != null)
