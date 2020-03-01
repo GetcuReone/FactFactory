@@ -286,6 +286,13 @@
             </summary>
             <param name="factRules"></param>
         </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule},System.Boolean)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="factRules"></param>
+            <param name="isReadOnly"></param>
+        </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.Copy">
             <summary>
             <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollectionBase`2"/> copy method.
@@ -335,6 +342,13 @@
             Constructor
             </summary>
             <param name="factRules"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollectionBase`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="factRules"></param>
+            <param name="isReadOnly"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollectionBase`2.GetFactType``1">
             <summary>

@@ -9,6 +9,7 @@ using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
+using FactFactory.TestsCommon.Helpers;
 
 namespace FactFactoryTests.FactFactoryT
 {

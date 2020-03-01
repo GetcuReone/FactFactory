@@ -15,7 +15,8 @@ namespace GetcuReone.FactFactory.Exceptions
         /// <param name="details"></param>
         protected FactFactoryExceptionBase(List<TDetail> details) : base(details[0].ToString())
         {
-            Details = new ReadOnlyCollection<TDetail>(details);
+            if (details != null)
+                Details = new ReadOnlyCollection<TDetail>(details);
         }
 
         /// <summary>

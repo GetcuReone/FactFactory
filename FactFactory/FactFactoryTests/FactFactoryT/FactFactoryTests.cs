@@ -1,4 +1,5 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using GetcuReone.FactFactory.Constants;
@@ -230,23 +231,6 @@ namespace FactFactoryTests.FactFactoryT
 
                     Assert.AreNotEqual(fact, fact7, "fact and fact7 must be different");
                 });
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
-        [Description("Add a fact while the Derive method is running.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
-        public void AddFactDuringDeriveTestCase()
-        {
-            Rule rule = null;
-            Given("Create fact factory", () => new FactFactoryAddRule())
-                .And("Save rule", factFactory =>
-                {
-                    rule = factFactory.NewRule;
-                })
-                .And("Add rule", factFactory => factFactory.Rules.Add(() => new Input10Fact(10)))
-                .When("Derive fact", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<Input10Fact>()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, $"GetRulesForWantAction method returned a new rule {rule.ToString()}");
         }
     }
 }
