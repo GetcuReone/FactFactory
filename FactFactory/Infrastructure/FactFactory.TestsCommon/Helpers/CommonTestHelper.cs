@@ -24,7 +24,9 @@ namespace FactFactory.TestsCommon.Helpers
             Assert.AreEqual(errorMessage, detail.Reason, "Expected another reason");
         }
 
-        public static ThenBlock<InvalidDeriveOperationException<FactBase, WantAction>> ThenAssertErrorDetail(this WhenBlock<InvalidDeriveOperationException<FactBase, WantAction>> whenBlock, string errorCode, string errorMessage)
+        public static ThenBlock<InvalidDeriveOperationException<TFact, TAction>> ThenAssertErrorDetail<TFact, TAction>(this WhenBlock<InvalidDeriveOperationException<TFact, TAction>> whenBlock, string errorCode, string errorMessage)
+            where TFact : IFact
+            where TAction : IWantAction<TFact>
         {
             return whenBlock.Then($"Check error with code {errorCode}", error =>
             {

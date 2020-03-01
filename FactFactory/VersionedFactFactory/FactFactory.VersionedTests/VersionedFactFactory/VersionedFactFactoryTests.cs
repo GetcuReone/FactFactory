@@ -1,5 +1,8 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
+using FactFactory.VersionedTests.VersionedFactFactory.Env;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Versioned.Facts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GivenWhenThen.TestAdapter;
@@ -12,13 +15,8 @@ using V_FactFactory = GetcuReone.FactFactory.Versioned.VersionedFactFactory;
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
     [TestClass]
-    public sealed class VersionedFactFactoryTests : CommonTestBase
+    public sealed class VersionedFactFactoryTests : VersionedFactFactoryTestBase
     {
-        private GivenBlock<V_FactFactory> GivenCreateVersionedFactFactory()
-        {
-            return Given("Create versioned fact factory", () => new V_FactFactory(GetVersionFacts));
-        }
-
         private List<IVersionFact> GetVersionFacts()
         {
             return new List<IVersionFact>
@@ -34,7 +32,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveFactWithoutVersionedRuleTestCase()
         {
-            GivenCreateVersionedFactFactory()
+            GivenCreateVersionedFactFactory(GetVersionFacts())
                 .And("Added rule", factFactory =>
                 {
                     factFactory.Rules.AddRange(new V_Collection
@@ -63,7 +61,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveFactWithtVersionedRuleTestCase()
         {
-            GivenCreateVersionedFactFactory()
+            GivenCreateVersionedFactFactory(GetVersionFacts())
                 .And("Added rule", factFactory =>
                 {
                     factFactory.Rules.AddRange(new V_Collection
@@ -84,6 +82,42 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 {
                     Assert.AreEqual(10, fact.Value, "expecten another fact value");
                 });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [Description("Derive with invalid version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DeriveWihtInvalidVersion_1_TestCase()
+        {
+            string expectedReason = $"For versions {GetFactType<CastumVersion>().FactName} and {GetFactType<CastumVersion>().FactName}, comparison operations did not work correctly.";
+            var versions = new List<IVersionFact>
+            {
+                new CastumVersion(true, false, false),
+                new CastumVersion(false, false, false),
+            };
+
+            GivenCreateVersionedFactFactory(versions)
+                .When("Derive", factory => ExpectedDeriveException(() => factory.Derive()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [Description("Derive with invalid version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DeriveWihtInvalidVersion_2_TestCase()
+        {
+            string expectedReason = $"For versions {GetFactType<CastumVersion>().FactName} and {GetFactType<CastumVersion>().FactName}, comparison operations did not work correctly.";
+            var versions = new List<IVersionFact>
+            {
+                new CastumVersion(true, false, false),
+                new CastumVersion(true, true, false),
+            };
+
+            GivenCreateVersionedFactFactory(versions)
+                .When("Derive", factory => ExpectedDeriveException(() => factory.Derive()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
     }
 }

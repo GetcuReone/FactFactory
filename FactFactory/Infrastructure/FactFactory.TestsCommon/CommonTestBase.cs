@@ -19,9 +19,11 @@ namespace FactFactory.TestsCommon
             return ExpectedException<FactFactoryException>(action);
         }
 
-        protected InvalidDeriveOperationException<FactBase, WantAction> ExpectedDeriveException(Action action)
+        protected InvalidDeriveOperationException<TFact, TAction> ExpectedDeriveException<TFact, TAction>(Action action)
+            where TFact : IFact
+            where TAction : IWantAction<TFact>
         {
-            return ExpectedException<InvalidDeriveOperationException<FactBase, WantAction>>(action);
+            return ExpectedException<InvalidDeriveOperationException<TFact, TAction>>(action);
         }
     }
 }

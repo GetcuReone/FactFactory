@@ -162,7 +162,7 @@ namespace GetcuReone.FactFactory.Versioned
                     {
                         errorDetails.Add(new DeriveErrorDetail<TFact, TWantAction>(
                         CommonErrorCode.InvalidData,
-                        $"For version {version1.GetFactType().FactName} and {version2.GetFactType().FactName}, comparison operations did not work correctly.",
+                        $"For versions {version1.GetFactType().FactName} and {version2.GetFactType().FactName}, comparison operations did not work correctly.",
                         null,
                         null));
                     }
