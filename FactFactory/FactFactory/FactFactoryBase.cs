@@ -44,6 +44,15 @@ namespace GetcuReone.FactFactory
         protected abstract IFactType GetFactType<TGetFact>() where TGetFact : IFact;
 
         /// <summary>
+        /// Return the fact set that will be contained in the default container.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual IEnumerable<TFact> GetDefaultFacts()
+        {
+            return Enumerable.Empty<TFact>();
+        }
+
+        /// <summary>
         /// Derive the facts
         /// </summary>
         public virtual void Derive()
@@ -52,7 +61,25 @@ namespace GetcuReone.FactFactory
             FactContainerBase<TFact> container = Container.Copy();
             if (container.Equals(Container))
                 throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
-            else if (container.Any(fact => fact.IsSpecialFact()))
+
+            List<IFactType> defaultFacts = new List<IFactType>();
+            foreach(TFact fact in GetDefaultFacts() ?? Enumerable.Empty<TFact>())
+            {
+                IFactType type = fact.GetFactType();
+
+                if (defaultFacts.Any(dType => dType.Compare(type)))
+                    throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, $"GetDefaultFacts method return more than two {type.FactName} facts");
+
+                if (!type.ContainsContainer(container))
+                {
+                    using (container.CreateIgnoreReadOnlySpace())
+                        container.Add(fact);
+
+                    defaultFacts.Add(type);
+                }
+            }
+
+            if (container.Any(fact => fact.IsSpecialFact()))
                 throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, $"In the container there should be no facts realizing types {nameof(INotContainedFact)} and {nameof(INoDerivedFact)}");
 
               container.IsReadOnly = true;
@@ -87,9 +114,9 @@ namespace GetcuReone.FactFactory
 
             foreach (var key in forestry.Keys)
             {
-                using (container.CreateIgnoreReadOnlySpace())
+                foreach (TFact fact in needSpecialFacts[key])
                 {
-                    foreach (TFact fact in needSpecialFacts[key])
+                    using (container.CreateIgnoreReadOnlySpace())
                         container.Add(fact);
                 }
 
@@ -100,9 +127,18 @@ namespace GetcuReone.FactFactory
 
                 OnWantActionCalculated(key, container);
 
-                using (container.CreateIgnoreReadOnlySpace())
+                foreach (TFact fact in needSpecialFacts[key])
                 {
-                    foreach (TFact fact in needSpecialFacts[key])
+                    using(container.CreateIgnoreReadOnlySpace())
+                        container.Remove(fact);
+                }
+            }
+
+            foreach(var type in defaultFacts)
+            {
+                if (type.TryGetFact(container, out TFact fact))
+                {
+                    using (container.CreateIgnoreReadOnlySpace())
                         container.Remove(fact);
                 }
             }
