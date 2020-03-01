@@ -1,10 +1,6 @@
 ﻿using FactFactory.TestsCommon;
-using GetcuReone.FactFactory.Exceptions;
-using GetcuReone.FactFactory.Facts;
 using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactoryTests.FactFactoryT
 {
