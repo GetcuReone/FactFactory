@@ -58,6 +58,7 @@ namespace GetcuReone.FactFactory
             FactRuleCollectionBase<TFact, TFactRule> rules = Rules.Copy();
             if (rules.Equals(Rules))
                 throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
+            rules.IsReadOnly = true;
 
             var forestry = new Dictionary<TWantAction, List<FactRuleTree<TFact, TFactRule>>>();
             var notFoundFactsTrees = new Dictionary<TWantAction, Dictionary<IFactType, List<List<IFactType>>>>();
@@ -189,7 +190,7 @@ namespace GetcuReone.FactFactory
         /// <returns></returns>
         private bool TryDeriveTreesForWantAction(out List<FactRuleTree<TFact, TFactRule>> treesResult, TWantAction wantAction, IFactContainer<TFact> container, FactRuleCollectionBase<TFact, TFactRule> rules, out Dictionary<IFactType, List<List<IFactType>>> notFoundFacts)
         {
-            IList<TFactRule> rulesForDerive = GetRulesForWantAction(wantAction, container.Copy(), rules.Copy());
+            IList<TFactRule> rulesForDerive = GetRulesForWantAction(wantAction, container.Copy(), rules);
 
             // We check that we were not slipped into the new rules
             List<TFactRule> addedRules = new List<TFactRule>();

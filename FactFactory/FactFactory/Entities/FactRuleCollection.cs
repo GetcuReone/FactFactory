@@ -26,6 +26,15 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="factRules"></param>
+        /// <param name="isReadOnly"></param>
+        public FactRuleCollection(IEnumerable<FactRule> factRules, bool isReadOnly) : base(factRules, isReadOnly)
+        {
+        }
+
+        /// <summary>
         /// <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> copy method.
         /// </summary>
         /// <returns>Copied <see cref="FactRuleCollection"/>.</returns>

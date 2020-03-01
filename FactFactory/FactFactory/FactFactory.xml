@@ -34,6 +34,11 @@
             The fact is of the invalid type
             </summary>
         </member>
+        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidOperation">
+            <summary>
+            Invalid operation
+            </summary>
+        </member>
         <member name="T:GetcuReone.FactFactory.Entities.DeriveErrorDetail`2">
             <summary>
             Error detail for method <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>
@@ -73,6 +78,12 @@
             <summary>
             Error reason
             </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.ErrorDetail.ToString">
+            <summary>
+            String representation of an object
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.FactContainer">
             <summary>
@@ -1475,7 +1486,6 @@
             <summary>
             Is the fact contained in the container
             </summary>
-            <typeparam name="TFactContainer"></typeparam>
             <typeparam name="TFact"></typeparam>
             <param name="container"></param>
             <returns></returns>

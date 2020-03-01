@@ -29,5 +29,10 @@
         /// The fact is of the invalid type
         /// </summary>
         public static string InvalidFactType => "InvalidFactType";
+
+        /// <summary>
+        /// Invalid operation
+        /// </summary>
+        public static string InvalidOperation => "InvalidOperation";
     }
 }

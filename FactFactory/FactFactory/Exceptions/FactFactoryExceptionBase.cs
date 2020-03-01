@@ -13,7 +13,7 @@ namespace GetcuReone.FactFactory.Exceptions
         /// Constructor
         /// </summary>
         /// <param name="details"></param>
-        protected FactFactoryExceptionBase(List<TDetail> details)
+        protected FactFactoryExceptionBase(List<TDetail> details) : base(details[0].ToString())
         {
             Details = new ReadOnlyCollection<TDetail>(details);
         }

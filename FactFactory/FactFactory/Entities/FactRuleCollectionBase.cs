@@ -1,4 +1,6 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Helpers;
+using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,23 +47,42 @@ namespace GetcuReone.FactFactory.Entities
         /// <summary>
         /// Gets a value indicating whether the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> is read-only.
         /// </summary>
-        public bool IsReadOnly => false;
+        public bool IsReadOnly { get; internal set; }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        protected FactRuleCollectionBase()
+        protected FactRuleCollectionBase() : this(null)
         {
-            _list = new List<TFactRule>();
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="factRules"></param>
-        protected FactRuleCollectionBase(IEnumerable<TFactRule> factRules)
+        protected FactRuleCollectionBase(IEnumerable<TFactRule> factRules) : this(factRules, false)
         {
-            _list = new List<TFactRule>(factRules);
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="factRules"></param>
+        /// <param name="isReadOnly"></param>
+        protected FactRuleCollectionBase(IEnumerable<TFactRule> factRules, bool isReadOnly)
+        {
+            if (factRules != null)
+                _list = new List<TFactRule>(factRules);
+            else
+                _list = new List<TFactRule>();
+
+            IsReadOnly = isReadOnly;
+        }
+
+        private void CheckReadOnly()
+        {
+            if (IsReadOnly)
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidOperation, $"Rule collection is read-only");
         }
 
         /// <summary>
@@ -89,6 +110,8 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="item"></param>
         public void Add(TFactRule item)
         {
+            CheckReadOnly();
+
             if (item.OutputFactType.IsFactType<INotContainedFact>())
                 throw new ArgumentException($"A rule cannot return a {item.OutputFactType.FactName}");
             if (Contains(item))
@@ -615,6 +638,8 @@ namespace GetcuReone.FactFactory.Entities
         /// <exception cref="ArgumentNullException">collection is null</exception>
         public void AddRange(IEnumerable<TFactRule> rules)
         {
+            CheckReadOnly();
+
             _list.AddRange(rules);
         }
 
@@ -623,6 +648,8 @@ namespace GetcuReone.FactFactory.Entities
         /// </summary>
         public void Clear()
         {
+            CheckReadOnly();
+
             _list.Clear();
         }
 
@@ -676,6 +703,8 @@ namespace GetcuReone.FactFactory.Entities
         /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is greater than <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.</exception>
         public void Insert(int index, TFactRule item)
         {
+            CheckReadOnly();
+
             _list.Insert(index, item);
         }
 
@@ -686,6 +715,8 @@ namespace GetcuReone.FactFactory.Entities
         /// <returns>true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.</returns>
         public bool Remove(TFactRule item)
         {
+            CheckReadOnly();
+
             return _list.Remove(item);
         }
 
@@ -696,6 +727,8 @@ namespace GetcuReone.FactFactory.Entities
         /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is equal to or greater than <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.</exception>
         public void RemoveAt(int index)
         {
+            CheckReadOnly();
+
             _list.RemoveAt(index);
         }
 

@@ -25,5 +25,14 @@
         /// Error reason
         /// </summary>
         public string Reason { get; }
+
+        /// <summary>
+        /// String representation of an object
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"[{Code}] {Reason}";
+        }
     }
 }
