@@ -3,14 +3,11 @@ using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Env;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Versioned.Facts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GivenWhenThen.TestAdapter;
-using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using V_Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
-using V_FactFactory = GetcuReone.FactFactory.Versioned.VersionedFactFactory;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
