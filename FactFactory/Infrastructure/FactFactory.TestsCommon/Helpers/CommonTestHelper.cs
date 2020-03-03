@@ -15,17 +15,28 @@ namespace FactFactory.TestsCommon.Helpers
             Assert.IsNotNull(error.Details, "error cannot be null");
             Assert.AreNotEqual(0, error.Details.Count, "Details must contain 0 detail");
 
-            ErrorDetail detail = error.Details.FirstOrDefault(d => d.Code == errorCode);
-
-            if (detail == null)
-                Assert.Fail($"Expected {errorCode} code.");
-            Assert.AreEqual(errorMessage, detail.Reason, "Expected another reason");
+            if (!error.Details.Any(detail => detail.Code == errorCode && detail.Reason == errorMessage))
+                Assert.Fail($"Expected '{errorCode}' code and reason '{errorMessage}'.");
         }
 
         public static ThenBlock<InvalidDeriveOperationException<TFact>> ThenAssertErrorDetail<TFact>(this WhenBlock<InvalidDeriveOperationException<TFact>> whenBlock, string errorCode, string errorMessage)
             where TFact : IFact
         {
             return whenBlock.Then($"Check error with code {errorCode}", error =>
+            {
+                if (error == null)
+                    AssertErrorDetail(null, errorCode, errorMessage);
+                else if (error.Details == null)
+                    new FactFactoryException(null);
+
+                new FactFactoryException(error.Details.Select(detail => (ErrorDetail)detail).ToList()).AssertErrorDetail(errorCode, errorMessage);
+            });
+        }
+
+        public static ThenBlock<InvalidDeriveOperationException<TFact>> AndAssertErrorDetail<TFact>(this ThenBlock<InvalidDeriveOperationException<TFact>> whenBlock, string errorCode, string errorMessage)
+            where TFact : IFact
+        {
+            return whenBlock.And($"Check error with code {errorCode}", error =>
             {
                 if (error == null)
                     AssertErrorDetail(null, errorCode, errorMessage);

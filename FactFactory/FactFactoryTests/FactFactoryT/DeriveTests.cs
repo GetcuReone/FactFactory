@@ -3,7 +3,6 @@ using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
@@ -11,6 +10,7 @@ using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -128,10 +128,13 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .AndAddRules(RuleCollectionHelper.GetInputFactRules())
                 .And("Want fact", factory => factory.WantFact((Input4Fact fact) => { }))
+                .And("Want fact", factory => factory.WantFact((Input4Fact fact) => { }))
                 .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedReason)
                 .And("Check error", error =>
                 {
+                    Assert.AreEqual(2, error.Details.Count, "Expceted another count details");
+
                     foreach (DeriveErrorDetail<FactBase> detail in error.Details)
                     {
                         Assert.AreEqual(setNeedFacts.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
@@ -148,6 +151,83 @@ namespace FactFactoryTests.FactFactoryT
                             for (int j = 0; i < expectedNeedFacts.Count; i++)
                                 Assert.IsTrue(expectedNeedFacts[j].Compare(needFacts[j]), "Another missing fact was expected.");
                         } 
+                    }
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [Description("Two facts cannot be derive.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void TwoFactsCannotDeriveTestCase()
+        {
+            IFactType wantFact1 = GetFactType<Input1Fact>();
+            string expectedReason1 = $"Failed to calculate one or more facts for the action ({wantFact1.FactName}).";
+
+            var setNeedFacts1 = new List<List<IFactType>>
+            {
+                new List<IFactType>
+                {
+                    GetFactType<Input3Fact>(),
+                },
+            };
+
+            IFactType wantFact2 = GetFactType<Input2Fact>();
+            string expectedReason2 = $"Failed to calculate one or more facts for the action ({wantFact2.FactName}).";
+
+            var setNeedFacts2 = new List<List<IFactType>>
+            {
+                new List<IFactType>
+                {
+                    GetFactType<Input4Fact>(),
+                },
+            };
+
+            GivenCreateFactFactory()
+                .AndAddRules(new Collection 
+                {
+                    (Input3Fact fact) => new Input1Fact(fact.Value),
+                    (Input4Fact fact) => new Input2Fact(fact.Value)
+                })
+                .And("Want fact1", factory => factory.WantFact((Input1Fact fact) => { }))
+                .And("Want fact2", factory => factory.WantFact((Input2Fact fact) => { }))
+                .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
+                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedReason1)
+                .And("Check error detail 1", error =>
+                {
+                    DeriveErrorDetail<FactBase> detail = error.Details.First();
+                    Assert.AreEqual(setNeedFacts1.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
+                    List<DeriveFactErrorDetail> factDetails = detail.RequiredFacts.ToList();
+
+                    for (int i = 0; i < setNeedFacts1.Count; i++)
+                    {
+                        DeriveFactErrorDetail factDetail = factDetails[i];
+                        Assert.IsTrue(wantFact1.Compare(factDetail.RequiredFact), "They expected another fact to be required.");
+
+                        List<IFactType> expectedNeedFacts = setNeedFacts1[i];
+                        List<IFactType> needFacts = factDetail.NeedFacts.ToList();
+
+                        for (int j = 0; i < expectedNeedFacts.Count; i++)
+                            Assert.IsTrue(expectedNeedFacts[j].Compare(needFacts[j]), "Another missing fact was expected.");
+                    }
+                })
+                .AndAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedReason2)
+                .And("Check error detail", error =>
+                {
+                    DeriveErrorDetail<FactBase> detail = error.Details.Skip(1).First();
+                    Assert.AreEqual(setNeedFacts2.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
+                    List<DeriveFactErrorDetail> factDetails = detail.RequiredFacts.ToList();
+
+                    for (int i = 0; i < setNeedFacts2.Count; i++)
+                    {
+                        DeriveFactErrorDetail factDetail = factDetails[i];
+                        Assert.IsTrue(wantFact2.Compare(factDetail.RequiredFact), "They expected another fact to be required.");
+
+                        List<IFactType> expectedNeedFacts = setNeedFacts2[i];
+                        List<IFactType> needFacts = factDetail.NeedFacts.ToList();
+
+                        for (int j = 0; i < expectedNeedFacts.Count; i++)
+                            Assert.IsTrue(expectedNeedFacts[j].Compare(needFacts[j]), "Another missing fact was expected.");
                     }
                 });
         }
