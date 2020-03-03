@@ -150,5 +150,51 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     Assert.AreEqual(2, result2.Value, "Expected another value.");
                 });
         }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [Description("Do not overshoot the fact once again")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DoNotOvershootFactOnceAgainTestCase()
+        {
+            int counterFact2 = 0;
+            int counterFact1 = 0;
+
+            GivenCreateVersionedFactFactory(GetVersionFacts())
+                .AndAddRules(new V_Collection
+                {
+                    (Version1 v) =>
+                    {
+                        counterFact2++;
+                        return  new Fact2(v.Value);
+                    },
+
+                    (Version1 v, Fact2 fact) =>
+                    {
+                        counterFact1++;
+                        return new Fact1(fact.Value);
+                    },
+                    (Version2 v, Fact2 fact) =>
+                    {
+                        counterFact1++;
+                        return new Fact1(fact.Value);
+                    },
+
+                    (Version1 v, Fact1 fact) => new FactResult(fact.Value),
+                    (Version2 v, Fact1 fact) => new FactResult(fact.Value),
+
+                })
+                .And("Want fact", factory =>
+                {
+                    factory.WantFact((Version1 _, FactResult fact) => { });
+                    factory.WantFact((Version2 _, FactResult fact) => { });
+                })
+                .When("Derive", factory => factory.Derive())
+                .Then("Check result", _ =>
+                {
+                    Assert.AreEqual(1, counterFact2, "Fact2 was supposed to pay 1 time");
+                    Assert.AreEqual(2, counterFact1, "Fact1 was supposed to pay 2 times");
+                });
+        }
     }
 }
