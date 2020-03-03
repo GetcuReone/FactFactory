@@ -188,11 +188,9 @@ namespace GetcuReone.FactFactory.Versioned
             // The last fact that is accepted or given by the rule
             IFactType lastSuitableFactType = _calculatedFactTypes.LastOrDefault(type => type.Compare(rule.OutputFactType) || rule.InputFactTypes.Any(t => t.Compare(type)));
 
-            if (lastSuitableFactType != null)
-            {
-                // If the last time one of the input facts was recounted
-                return !lastSuitableFactType.Compare(rule.OutputFactType);
-            }
+            // If the last time one of the input facts was recounted
+            if (lastSuitableFactType != null && !lastSuitableFactType.Compare(rule.OutputFactType))
+                return true;
 
             // The extraction must always be successful.
             rule.OutputFactType.TryGetFact(container, out TFact containedFact);
