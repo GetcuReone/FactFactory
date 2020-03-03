@@ -2,6 +2,7 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Env;
+using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GivenWhenThen.TestAdapter;
@@ -115,6 +116,39 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             GivenCreateVersionedFactFactory(versions)
                 .When("Derive", factory => ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [Description("Recount facts with a different version")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void RecountFactsWithDifferentVersionTestCase()
+        {
+            FactResult result1 = null;
+            FactResult result2 = null;
+
+            GivenCreateVersionedFactFactory(GetVersionFacts())
+                .AndAddRules(new V_Collection
+                {
+                    (Version1 v, Fact1 fact) => new FactResult(fact.Value),
+
+                    (Version1 v) => new Fact1(v.Value),
+                    (Version2 v) => new Fact1(v.Value),
+                })
+                .And("Want fact", factory =>
+                {
+                    factory.WantFact((Version1 _, FactResult fact) => result1 = fact);
+                    factory.WantFact((Version2 _, FactResult fact) => result2 = fact);
+                })
+                .When("Derive", factory => factory.Derive())
+                .Then("Check result", _ =>
+                {
+                    Assert.IsNotNull(result1, "result1 cannot be null.");
+                    Assert.IsNotNull(result2, "result2 cannot be null.");
+
+                    Assert.AreEqual(1, result1.Value, "Expected another value.");
+                    Assert.AreEqual(2, result2.Value, "Expected another value.");
+                });
         }
     }
 }
