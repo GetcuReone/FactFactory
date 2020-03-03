@@ -1,11 +1,9 @@
-﻿using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Exceptions;
-using GetcuReone.FactFactory.Facts;
+﻿using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using GetcuReone.FactFactory;
 
 namespace FactFactory.TestsCommon.Helpers
 {
@@ -24,9 +22,8 @@ namespace FactFactory.TestsCommon.Helpers
             Assert.AreEqual(errorMessage, detail.Reason, "Expected another reason");
         }
 
-        public static ThenBlock<InvalidDeriveOperationException<TFact, TAction>> ThenAssertErrorDetail<TFact, TAction>(this WhenBlock<InvalidDeriveOperationException<TFact, TAction>> whenBlock, string errorCode, string errorMessage)
+        public static ThenBlock<InvalidDeriveOperationException<TFact>> ThenAssertErrorDetail<TFact>(this WhenBlock<InvalidDeriveOperationException<TFact>> whenBlock, string errorCode, string errorMessage)
             where TFact : IFact
-            where TAction : IWantAction<TFact>
         {
             return whenBlock.Then($"Check error with code {errorCode}", error =>
             {

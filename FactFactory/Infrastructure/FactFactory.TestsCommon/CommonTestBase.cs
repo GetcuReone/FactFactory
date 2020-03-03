@@ -1,13 +1,13 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
-using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using System;
 
 namespace FactFactory.TestsCommon
 {
-    public abstract class CommonTestBase : TestBase
+    public abstract class CommonTestBase<TFactBase> : TestBase
+        where TFactBase : IFact
     {
         protected virtual IFactType GetFactType<TFact>() where TFact : IFact
         {
@@ -19,11 +19,9 @@ namespace FactFactory.TestsCommon
             return ExpectedException<FactFactoryException>(action);
         }
 
-        protected InvalidDeriveOperationException<TFact, TAction> ExpectedDeriveException<TFact, TAction>(Action action)
-            where TFact : IFact
-            where TAction : IWantAction<TFact>
+        protected InvalidDeriveOperationException<TFactBase> ExpectedDeriveException(Action action)
         {
-            return ExpectedException<InvalidDeriveOperationException<TFact, TAction>>(action);
+            return ExpectedException<InvalidDeriveOperationException<TFactBase>>(action);
         }
     }
 }

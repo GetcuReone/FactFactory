@@ -30,7 +30,7 @@ namespace FactFactoryTests.FactFactoryT
         {
             Given("Set rules", () => FactFactory.Rules.Clear())
                 .When("Derive facts", factory => ExpectedDeriveException(() => FactFactory.DeriveFact<Input10Fact>()))
-                .ThenAssertErrorDetail(ErrorCode.EmptyRuleCollection, "Rules cannot be null");
+                .ThenAssertErrorDetail(ErrorCode.EmptyRuleCollection, "Rules cannot be null.");
         }
 
         [TestMethod]
@@ -266,7 +266,7 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void UnsuccessfulDeriveNotContainedTestCase()
         {
-            string expectedMessage = $"facts {typeof(NotContained<OtherFact>).Name} cannot be calculated for action ({typeof(NotContained<OtherFact>).Name})";
+            string expectedMessage = $"Failed to calculate one or more facts for the action ({typeof(NotContained<OtherFact>).Name}).";
 
             Given("Create factory", () => new FactFactoryCustom())
                 .AndAddFact(new OtherFact(default))
@@ -291,7 +291,7 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void UnsuccessfulDeriveNoDerivedTestCase()
         {
-            string expectedMessage = $"facts {typeof(NoDerived<OtherFact>).Name} cannot be calculated for action ({typeof(NoDerived<OtherFact>).Name})";
+            string expectedMessage = $"Failed to calculate one or more facts for the action ({typeof(NoDerived<OtherFact>).Name}).";
 
             Given("Create factory", () => new FactFactoryCustom())
                 .AndAddFact(new OtherFact(default))

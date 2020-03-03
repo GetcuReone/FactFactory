@@ -15,7 +15,7 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace FactFactoryTests.FactContainer
 {
     [TestClass]
-    public sealed class FactContainerTests : CommonTestBase
+    public sealed class FactContainerTests : CommonTestBase<FactBase>
     {
         // TODO: Make container copy test
         private GivenBlock<Container> GivenCreateContainer(bool isReadOnly = false)
@@ -138,12 +138,11 @@ namespace FactFactoryTests.FactContainer
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetValueAnExistingFactTestCase()
         {
+            string expectedReason = $"Not found type fact with type {GetFactType<IntFact>().FactName}.";
+
             GivenCreateContainer()
-                .When("Get value", ct => ExpectedException<FactNotFoundException<IntFact>>(() => ct.GetFact<IntFact>()))
-                .Then("Check result", ex =>
-                {
-                    Assert.IsNotNull(ex, "error is null");
-                });
+                .When("Get value", ct => ExpectedFactFactoryException(() => ct.GetFact<IntFact>()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
         [TestMethod]

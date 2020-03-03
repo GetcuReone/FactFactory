@@ -1,9 +1,11 @@
 ﻿using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace GetcuReone.FactFactory.Helpers
@@ -25,6 +27,17 @@ namespace GetcuReone.FactFactory.Helpers
         }
 
         /// <summary>
+        /// Convert list to <see cref="ReadOnlyCollection{TItem}"/>
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        public static ReadOnlyCollection<TItem> ToReadOnlyCollection<TItem>(this IList<TItem> items)
+        {
+            return new ReadOnlyCollection<TItem>(items);
+        }
+
+        /// <summary>
         /// Create <see cref="FactFactoryException"/>
         /// </summary>
         /// <param name="code">error code</param>
@@ -36,52 +49,73 @@ namespace GetcuReone.FactFactory.Helpers
                 new List<ErrorDetail>
                 {
                     new ErrorDetail(code, reason)
-                });
+                }.ToReadOnlyCollection());
         }
 
         /// <summary>
-        /// Create <see cref="InvalidDeriveOperationException{TFact, TWantAction}"/>
+        /// Create <see cref="InvalidDeriveOperationException{TFact}"/>.
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="reason"></param>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="details"></param>
         /// <returns></returns>
-        public static InvalidDeriveOperationException<TFact, TWantAction> CreateDeriveException<TFact, TWantAction>(string code, string reason)
+        public static InvalidDeriveOperationException<TFact> CreateDeriveException<TFact>(IReadOnlyCollection<DeriveErrorDetail<TFact>> details)
             where TFact : IFact
-            where TWantAction : IWantAction<TFact>
         {
-            return new InvalidDeriveOperationException<TFact, TWantAction>(
-                new List<DeriveErrorDetail<TFact, TWantAction>>
-                {
-                    new DeriveErrorDetail<TFact, TWantAction>(code, reason, default, null)
-                });
+            return new InvalidDeriveOperationException<TFact>(details);
         }
 
-        internal static InvalidDeriveOperationException<TFact, TWantAction> CreateDeriveException<TFact, TWantAction>(List<KeyValuePair<string, string>> codeReasonPairs)
+        /// <summary>
+        /// Create <see cref="InvalidDeriveOperationException{TFact}"/>.
+        /// </summary>
+        /// <typeparam name="TFact">Base class for facts.</typeparam>
+        /// <param name="code">Error code.</param>
+        /// <param name="reason">Error reason.</param>
+        /// <returns></returns>
+        public static InvalidDeriveOperationException<TFact> CreateDeriveException<TFact>(string code, string reason)
             where TFact : IFact
-            where TWantAction : IWantAction<TFact>
         {
-            return new InvalidDeriveOperationException<TFact, TWantAction>(codeReasonPairs
-                .Select(
-                    pair => new DeriveErrorDetail<TFact, TWantAction>(pair.Key, pair.Value, default, null))
-                .ToList());
+            return CreateDeriveException(code, reason, (IWantAction<TFact>)null);
         }
 
-        internal static InvalidDeriveOperationException<TFact, TWantAction> CreateDeriveException<TFact, TWantAction>(Dictionary<TWantAction, Dictionary<IFactType, List<List<IFactType>>>> notFoundFacts)
+        /// <summary>
+        /// Create <see cref="InvalidDeriveOperationException{TFact}"/>.
+        /// </summary>
+        /// <typeparam name="TFact">Base class for facts.</typeparam>
+        /// <param name="code">Error code.</param>
+        /// <param name="reason">Error reason.</param>
+        /// <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
+        /// <returns></returns>
+        public static InvalidDeriveOperationException<TFact> CreateDeriveException<TFact>(string code, string reason, IWantAction<TFact> requiredAction)
             where TFact : IFact
-            where TWantAction : IWantAction<TFact>
         {
-            List<DeriveErrorDetail<TFact, TWantAction>> details = new List<DeriveErrorDetail<TFact, TWantAction>>();
+            return CreateDeriveException(code, reason, requiredAction, null);
+        }
 
-            foreach(var keyAction in notFoundFacts.Keys)
+        /// <summary>
+        /// Create <see cref="InvalidDeriveOperationException{TFact}"/>.
+        /// </summary>
+        /// <typeparam name="TFact">Base class for facts.</typeparam>
+        /// <param name="code">Error code.</param>
+        /// <param name="reason">Error reason.</param>
+        /// <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
+        /// <param name="requiredFacts">The facts that tried to derive.</param>
+        /// <returns></returns>
+        public static InvalidDeriveOperationException<TFact> CreateDeriveException<TFact>(string code, string reason, IWantAction<TFact> requiredAction, IReadOnlyCollection<DeriveFactErrorDetail> requiredFacts)
+            where TFact : IFact
+        {
+            return new InvalidDeriveOperationException<TFact>(new List<DeriveErrorDetail<TFact>>
             {
-                details.Add(new DeriveErrorDetail<TFact, TWantAction>(
-                    ErrorCode.FactCannotCalculated,
-                    $"facts {string.Join(", ", notFoundFacts[keyAction].Keys.Select(k => k.FactName))} cannot be calculated for action {keyAction.ToString()}",
-                    keyAction,
-                    notFoundFacts[keyAction]));
-            }
+                new DeriveErrorDetail<TFact>(code, reason, requiredAction, requiredFacts),
+            }.ToReadOnlyCollection());
+        }
 
-            return new InvalidDeriveOperationException<TFact, TWantAction>(details);
+        internal static InvalidDeriveOperationException<TFact> CreateDeriveException<TFact>(List<KeyValuePair<string, string>> codeReasonPairs, IWantAction<TFact> requiredAction)
+            where TFact : IFact
+        {
+            return new InvalidDeriveOperationException<TFact>(codeReasonPairs
+                .Select(
+                    pair => new DeriveErrorDetail<TFact>(pair.Key, pair.Value, requiredAction, null))
+                .ToList().ToReadOnlyCollection());
         }
 
         internal static IFactType GetFactType<TFact>() where TFact : IFact
@@ -104,14 +138,13 @@ namespace GetcuReone.FactFactory.Helpers
                 throw new ArgumentException($"{string.Join(", ", invalidTypes.ConvertAll(type => type.FactName))} types are not inherited from {typeof(TFact).FullName}");
         }
 
-        internal static TFact ConvertFact<TFact, TWantAction>(this IFact fact)
+        internal static TFact ConvertFact<TFact>(this IFact fact)
             where TFact : IFact
-            where TWantAction : IWantAction<TFact>
         {
             if (fact is TFact fact1)
                 return fact1;
 
-            throw CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidFactType, $"Type {fact.GetFactType().FactName} cannot be converted {typeof(TFact).Name}");
+            throw CreateDeriveException<TFact>(ErrorCode.InvalidFactType, $"Type {fact.GetFactType().FactName} cannot be converted {typeof(TFact).Name}");
         }
 
         internal static bool IsSpecialFact(this IFact fact)

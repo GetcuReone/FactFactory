@@ -1,5 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,7 +11,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactoryTests.WantAction
 {
     [TestClass]
-    public sealed class WantActionTests : CommonTestBase
+    public sealed class WantActionTests : CommonTestBase<FactBase>
     {
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]

@@ -1,4 +1,8 @@
-﻿namespace GetcuReone.FactFactory.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace GetcuReone.FactFactory.Exceptions.Entities
 {
     /// <summary>
     /// Error detail
@@ -6,10 +10,10 @@
     public class ErrorDetail
     {
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="reason"></param>
+        /// <param name="code">Error code.</param>
+        /// <param name="reason">Error reason.</param>
         public ErrorDetail(string code, string reason)
         {
             Code = code;
@@ -17,17 +21,17 @@
         }
 
         /// <summary>
-        /// Error code
+        /// Error code.
         /// </summary>
         public string Code { get; }
 
         /// <summary>
-        /// Error reason
+        /// Error reason.
         /// </summary>
         public string Reason { get; }
 
         /// <summary>
-        /// String representation of an object
+        /// String representation of an object.
         /// </summary>
         /// <returns></returns>
         public override string ToString()

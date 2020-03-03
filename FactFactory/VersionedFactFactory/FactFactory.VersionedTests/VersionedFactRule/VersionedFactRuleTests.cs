@@ -1,6 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.Facts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,7 +13,7 @@ using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
 namespace FactFactory.VersionedTests.VersionedFactRule
 {
     [TestClass]
-    public sealed class VersionedFactRuleTests : CommonTestBase
+    public sealed class VersionedFactRuleTests : CommonTestBase<VersionedFactBase>
     {
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule)]

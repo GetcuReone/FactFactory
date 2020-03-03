@@ -16,7 +16,7 @@ using Rule = GetcuReone.FactFactory.Entities.FactRule;
 namespace FactFactoryTests.FactRuleCollection
 {
     [TestClass]
-    public sealed class FactRuleCollectionTests : CommonTestBase
+    public sealed class FactRuleCollectionTests : CommonTestBase<FactBase>
     {
         private Collection Collection { get; set; }
 

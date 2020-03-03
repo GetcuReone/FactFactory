@@ -12,7 +12,7 @@ using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContain
 namespace FactFactory.VersionedTests.VersionedFactContainer
 {
     [TestClass]
-    public sealed class VersionedFactContainerTests : CommonTestBase
+    public sealed class VersionedFactContainerTests : CommonTestBase<VersionedFactBase>
     {
         private GivenBlock<Container> GivenCreateContainer()
         {

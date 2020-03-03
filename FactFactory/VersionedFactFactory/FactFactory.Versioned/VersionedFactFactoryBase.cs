@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Constants;
@@ -131,7 +132,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <returns></returns>
         protected override IEnumerable<TFact> GetDefaultFacts(FactContainerBase<TFact> container)
         {
-            IEnumerable<TFact> allVersionFacts = GetAllVersions()?.Select(version => version.ConvertFact<TFact, TWantAction>()) ?? Enumerable.Empty<TFact>();
+            IEnumerable<TFact> allVersionFacts = GetAllVersions()?.Select(version => version.ConvertFact<TFact>()) ?? Enumerable.Empty<TFact>();
 
             List<IVersionFact> defaultVersions = container.Where(version => version is IVersionFact).Select(version => (IVersionFact)version).ToList();
             List<IFactType> defaultVersionTypes = defaultVersions.ConvertAll(version => version.GetFactType());
@@ -142,7 +143,7 @@ namespace GetcuReone.FactFactory.Versioned
                     defaultVersions.Add((IVersionFact)version);
             }
 
-            List<DeriveErrorDetail<TFact, TWantAction>> errorDetails = new List<DeriveErrorDetail<TFact, TWantAction>>();
+            List<DeriveErrorDetail<TFact>> errorDetails = new List<DeriveErrorDetail<TFact>>();
 
             foreach(var version1 in defaultVersions)
             {
@@ -160,7 +161,7 @@ namespace GetcuReone.FactFactory.Versioned
 
                     if (resultComparison.All(result => result == false) || resultComparison.Count(result => result == true) > 1)
                     {
-                        errorDetails.Add(new DeriveErrorDetail<TFact, TWantAction>(
+                        errorDetails.Add(new DeriveErrorDetail<TFact>(
                         CommonErrorCode.InvalidData,
                         $"For versions {version1.GetFactType().FactName} and {version2.GetFactType().FactName}, comparison operations did not work correctly.",
                         null,
@@ -170,7 +171,7 @@ namespace GetcuReone.FactFactory.Versioned
             }
 
             if (errorDetails.Count != 0)
-                throw new InvalidDeriveOperationException<TFact, TWantAction>(errorDetails);
+                throw new InvalidDeriveOperationException<TFact>(errorDetails);
 
             return defaultVersions.Select(version => (TFact)version);
         }

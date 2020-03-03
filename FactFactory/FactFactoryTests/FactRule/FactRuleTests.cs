@@ -14,7 +14,7 @@ using Rule = GetcuReone.FactFactory.Entities.FactRule;
 namespace FactFactoryTests.FactRule
 {
     [TestClass]
-    public sealed class FactRuleTests : CommonTestBase
+    public sealed class FactRuleTests : CommonTestBase<FactBase>
     {
         [TestMethod]
         [TestCategory(TC.Objects.Rule)]

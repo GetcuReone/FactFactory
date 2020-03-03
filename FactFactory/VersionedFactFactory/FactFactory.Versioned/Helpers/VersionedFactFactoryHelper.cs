@@ -44,14 +44,13 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             return type;
         }
 
-        internal static TFact ConvertFact<TFact, TWantAction>(this IFact fact)
+        internal static TFact ConvertFact<TFact>(this IFact fact)
             where TFact : IFact
-            where TWantAction : IWantAction<TFact>
         {
             if (fact is TFact fact1)
                 return fact1;
 
-            throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(
+            throw FactFactoryHelper.CreateDeriveException<TFact>(
                     CommonErrorCode.InvalidFactType, 
                     $"Fact {fact.GetFactType().FactName} should not be converted into {typeof(TFact).FullName}");
         }

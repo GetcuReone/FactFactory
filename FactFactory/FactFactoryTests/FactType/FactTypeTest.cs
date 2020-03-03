@@ -1,4 +1,5 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactType.Env;
 using GetcuReone.FactFactory.Constants;
@@ -126,17 +127,11 @@ namespace FactFactoryTests.FactType
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateNoDerivedUsingWrongTypeTestCase()
         {
+            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(INoDerivedFact).FullName} type.";
+
             GivenCreateFactType<OtherFact>()
                 .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateNoDerived()))
-                .Then("Check result", error =>
-                {
-                    Assert.IsNotNull(error, "error cannot be null");
-                    Assert.AreEqual(1, error.Details.Count);
-
-                    ErrorDetail detail = error.Details[0];
-                    Assert.AreEqual(ErrorCode.InvalidFactType, detail.Code, "Expected another code");
-                    Assert.AreEqual($"{typeof(OtherFact).FullName} does not implement {typeof(INoDerivedFact).FullName} type.", detail.Reason, "Expected another message");
-                });
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
         [TestMethod]
@@ -145,17 +140,11 @@ namespace FactFactoryTests.FactType
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateNoDerivedWithoutDefaultConstructorTestCase()
         {
+            string expectedReason = $"{typeof(NoDerivedWithoutConstructor).FullName} doesn't have a default constructor.";
+
             GivenCreateFactType<NoDerivedWithoutConstructor>()
                 .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateNoDerived()))
-                .Then("Check result", error =>
-                {
-                    Assert.IsNotNull(error, "error cannot be null");
-                    Assert.AreEqual(1, error.Details.Count);
-
-                    ErrorDetail detail = error.Details[0];
-                    Assert.AreEqual(ErrorCode.InvalidFactType, detail.Code, "Expected another code");
-                    Assert.AreEqual($"{typeof(NoDerivedWithoutConstructor).FullName} doesn't have a default constructor.", detail.Reason, "Expected another message");
-                });
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
         [TestMethod]
@@ -179,17 +168,11 @@ namespace FactFactoryTests.FactType
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateNotContainedUsingWrongTypeTestCase()
         {
+            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(INotContainedFact).FullName} type.";
+
             GivenCreateFactType<OtherFact>()
                 .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateNotContained()))
-                .Then("Check result", error =>
-                {
-                    Assert.IsNotNull(error, "error cannot be null");
-                    Assert.AreEqual(1, error.Details.Count);
-
-                    ErrorDetail detail = error.Details[0];
-                    Assert.AreEqual(ErrorCode.InvalidFactType, detail.Code, "Expected another code");
-                    Assert.AreEqual($"{typeof(OtherFact).FullName} does not implement {typeof(INotContainedFact).FullName} type.", detail.Reason, "Expected another message");
-                });
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
         [TestMethod]
@@ -198,17 +181,11 @@ namespace FactFactoryTests.FactType
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateNotContainedWithoutDefaultConstructorTestCase()
         {
+            string expectedReason = $"{typeof(NotContainedWithoutConstructor).FullName} doesn't have a default constructor.";
+
             GivenCreateFactType<NotContainedWithoutConstructor>()
                 .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateNotContained()))
-                .Then("Check result", error =>
-                {
-                    Assert.IsNotNull(error, "error cannot be null");
-                    Assert.AreEqual(1, error.Details.Count);
-
-                    ErrorDetail detail = error.Details[0];
-                    Assert.AreEqual(ErrorCode.InvalidFactType, detail.Code, "Expected another code");
-                    Assert.AreEqual($"{typeof(NotContainedWithoutConstructor).FullName} doesn't have a default constructor.", detail.Reason, "Expected another message");
-                });
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
     }
 }

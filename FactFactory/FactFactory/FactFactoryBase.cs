@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.TreeEntities;
@@ -61,7 +62,7 @@ namespace GetcuReone.FactFactory
             // Get a copy of the container
             FactContainerBase<TFact> container = Container.Copy();
             if (container.Equals(Container))
-                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
+                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
             container.IsReadOnly = true;
 
             List<IFactType> defaultFacts = new List<IFactType>();
@@ -70,7 +71,7 @@ namespace GetcuReone.FactFactory
                 IFactType type = fact.GetFactType();
 
                 if (defaultFacts.Any(dType => dType.Compare(type)))
-                    throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, $"GetDefaultFacts method return more than two {type.FactName} facts");
+                    throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, $"GetDefaultFacts method return more than two {type.FactName} facts");
 
                 if (!type.ContainsContainer(container))
                 {
@@ -82,35 +83,32 @@ namespace GetcuReone.FactFactory
             }
 
             if (container.Any(fact => fact.IsSpecialFact()))
-                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, $"In the container there should be no facts realizing types {nameof(INotContainedFact)} and {nameof(INoDerivedFact)}");
+                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, $"In the container there should be no facts realizing types {nameof(INotContainedFact)} and {nameof(INoDerivedFact)}");
 
             // Get a copy of the rules
             FactRuleCollectionBase<TFact, TFactRule> rules = Rules.Copy();
             if (rules.Equals(Rules))
-                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
+                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
             rules.IsReadOnly = true;
 
             var forestry = new Dictionary<TWantAction, List<FactRuleTree<TFact, TFactRule>>>();
-            var notFoundFactsTrees = new Dictionary<TWantAction, Dictionary<IFactType, List<List<IFactType>>>>();
+            List<DeriveErrorDetail<TFact>> deriveErrorDetails = new List<DeriveErrorDetail<TFact>>();
             var needSpecialFacts = new Dictionary<TWantAction, List<TFact>>();
             List<TWantAction> wantActions = new List<TWantAction>(WantActions);
 
             foreach (TWantAction wantAction in wantActions)
             {
-                if (TryDeriveTreesForWantAction(out List<FactRuleTree<TFact, TFactRule>> result, wantAction, container, rules, out List<TFact> specialFacts, out Dictionary<IFactType, List<List<IFactType>>> notFoundFacts))
+                if (TryDeriveTreesForWantAction(out List<FactRuleTree<TFact, TFactRule>> result, wantAction, container, rules, out List<TFact> specialFacts, out DeriveErrorDetail<TFact> detail))
                 {
                     forestry.Add(wantAction, result);
                     needSpecialFacts.Add(wantAction, specialFacts);
                 }
                 else
-                {
-                    foreach (var key in notFoundFacts.Keys)
-                        notFoundFactsTrees.Add(wantAction, notFoundFacts);
-                }
+                    deriveErrorDetails.Add(detail);
             }
 
-            if (notFoundFactsTrees.Count != 0)
-                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(notFoundFactsTrees);
+            if (deriveErrorDetails.Count != 0)
+                throw FactFactoryHelper.CreateDeriveException(deriveErrorDetails);
 
             foreach (var key in forestry.Keys)
             {
@@ -229,10 +227,10 @@ namespace GetcuReone.FactFactory
         /// <param name="wantAction">desired action information</param>
         /// <param name="container">fact container</param>
         /// <param name="rules">rule collection</param>
-        /// <param name="notFoundFacts"></param>
+        /// <param name="deriveErrorDetail"></param>
         /// <param name="specialFacts"></param>
         /// <returns></returns>
-        private bool TryDeriveTreesForWantAction(out List<FactRuleTree<TFact, TFactRule>> treesResult, TWantAction wantAction, FactContainerBase<TFact> container, FactRuleCollectionBase<TFact, TFactRule> rules, out List<TFact> specialFacts, out Dictionary<IFactType, List<List<IFactType>>> notFoundFacts)
+        private bool TryDeriveTreesForWantAction(out List<FactRuleTree<TFact, TFactRule>> treesResult, TWantAction wantAction, FactContainerBase<TFact> container, FactRuleCollectionBase<TFact, TFactRule> rules, out List<TFact> specialFacts, out DeriveErrorDetail<TFact> deriveErrorDetail)
         {
             IList<TFactRule> rulesForDerive = GetRulesForWantAction(wantAction, container, rules);
 
@@ -245,12 +243,15 @@ namespace GetcuReone.FactFactory
             }
 
             if (addedRules.Count != 0)
-                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(addedRules
-                    .Select(rule => new KeyValuePair<string, string>(ErrorCode.InvalidData, $"GetRulesForWantAction method returned a new rule {rule.ToString()}"))
-                    .ToList());
+                throw FactFactoryHelper.CreateDeriveException(
+                    addedRules
+                        .Select(rule => new KeyValuePair<string, string>(ErrorCode.InvalidData, $"GetRulesForWantAction method returned a new rule {rule.ToString()}"))
+                        .ToList(),
+                    wantAction);
 
             treesResult = new List<FactRuleTree<TFact, TFactRule>>();
-            notFoundFacts = new Dictionary<IFactType, List<List<IFactType>>>();
+            var deriveFactErrorDetails = new List<DeriveFactErrorDetail>();
+            deriveErrorDetail = null;
             specialFacts = new List<TFact>();
 
             foreach (IFactType wantFact in wantAction.InputFactTypes)
@@ -264,12 +265,12 @@ namespace GetcuReone.FactFactory
 
                     if (!notContainedFact.IsFactContained(container))
                     {
-                        TFact specialFact = notContainedFact.ConvertFact<TFact, TWantAction>();
+                        TFact specialFact = notContainedFact.ConvertFact<TFact>();
                         specialFacts.Add(specialFact);
                         continue;
                     }
 
-                    notFoundFacts.Add(wantFact, null);
+                    deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
                     continue;
                 }
                 else if (wantFact.IsFactType<INoDerivedFact>())
@@ -277,32 +278,38 @@ namespace GetcuReone.FactFactory
                     INoDerivedFact noDerivedFact = wantFact.CreateNoDerived();
                     if (!noDerivedFact.Value.ContainsContainer(container) && !TryDeriveNoFactInfo(noDerivedFact, container, rules))
                     {
-                        TFact specialFact = noDerivedFact.ConvertFact<TFact, TWantAction>();
+                        TFact specialFact = noDerivedFact.ConvertFact<TFact>();
                         specialFacts.Add(specialFact);
                         continue;
                     }
 
-                    notFoundFacts.Add(wantFact, null);
+                    deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
                     continue;
                 }
 
-                if (TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> treeResult, wantFact, container, rulesForDerive, specialFacts, out List<List<IFactType>> notFoundFactSet))
+                if (TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> treeResult, wantFact, container, rulesForDerive, specialFacts, out List<DeriveFactErrorDetail> details))
                 {
                     treesResult.Add(treeResult);
                 }
                 else
                 {
-                    notFoundFacts.Add(wantFact, notFoundFactSet);
+                    deriveFactErrorDetails.AddRange(details);
                 }
             }
 
-            return notFoundFacts.Count == 0;
+            if (deriveFactErrorDetails.Count != 0)
+            {
+                deriveErrorDetail = new DeriveErrorDetail<TFact>(ErrorCode.FactCannotCalculated, $"Failed to calculate one or more facts for the action {wantAction.ToString()}.", wantAction, deriveFactErrorDetails);
+                return false;
+            }
+
+            return true;
         }
 
-        private bool TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> treeResult, IFactType wantFact, FactContainerBase<TFact> container, IList<TFactRule> ruleCollection, List<TFact> specialFacts, out List<List<IFactType>> notFoundFactSet)
+        private bool TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> treeResult, IFactType wantFact, FactContainerBase<TFact> container, IList<TFactRule> ruleCollection, List<TFact> specialFacts, out List<DeriveFactErrorDetail> deriveFactErrorDetails)
         {
             treeResult = null;
-            notFoundFactSet = null;
+            deriveFactErrorDetails = null;
 
             // find the rules that can calculate the fact
             List<FactRuleTree<TFact, TFactRule>> factRuleTrees = GetFactRuleTrees(wantFact, ruleCollection);
@@ -316,8 +323,7 @@ namespace GetcuReone.FactFactory
                 return true;
             }
 
-            // create the necessary number of sets of missing facts
-            notFoundFactSet = factRuleTrees.ConvertAll(item => new List<IFactType>());
+            List<List<IFactType>> notFoundFactSet = factRuleTrees.ConvertAll(item => new List<IFactType>());
             List<FactRuleNode<TFact, TFactRule>> allCompletedNodes = new List<FactRuleNode<TFact, TFactRule>>();
 
             while (true)
@@ -382,7 +388,7 @@ namespace GetcuReone.FactFactory
 
                                 if (container.All(fact => !notContainedFact.IsFactContained(container)))
                                 {
-                                    specialFacts.Add(notContainedFact.ConvertFact<TFact, TWantAction>());
+                                    specialFacts.Add(notContainedFact.ConvertFact<TFact>());
                                     isAddedFact = true;
                                     needRemove = true;
                                 }
@@ -397,7 +403,7 @@ namespace GetcuReone.FactFactory
                                 {
                                     if (!isAddedFact)
                                     {
-                                        specialFacts.Add(noDerivedFact.ConvertFact<TFact, TWantAction>());
+                                        specialFacts.Add(noDerivedFact.ConvertFact<TFact>());
                                         isAddedFact = true;
                                     }
                                     needRemove = true;
@@ -504,6 +510,11 @@ namespace GetcuReone.FactFactory
                 }
             }
 
+            deriveFactErrorDetails = new List<DeriveFactErrorDetail>();
+
+            foreach (var factSet in notFoundFactSet)
+                deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, factSet.ToReadOnlyCollection()));
+
             return false;
         }
 
@@ -516,7 +527,7 @@ namespace GetcuReone.FactFactory
         private List<FactRuleTree<TFact, TFactRule>> GetFactRuleTrees(IFactType wantFact, IList<TFactRule> rules)
         {
             if (rules.IsNullOrEmpty())
-                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.EmptyRuleCollection, "Rules cannot be null");
+                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.EmptyRuleCollection, "Rules cannot be null.");
 
             List<FactRuleTree<TFact, TFactRule>> factRuleTrees = rules?.Where(rule => rule.OutputFactType.Compare(wantFact))
                     .Select(rule =>
@@ -531,7 +542,7 @@ namespace GetcuReone.FactFactory
                     .ToList();
 
             if (factRuleTrees.IsNullOrEmpty())
-                throw FactFactoryHelper.CreateDeriveException<TFact, TWantAction>(ErrorCode.RuleNotFound, $"There is no rule that can deduce a {wantFact.FactName}");
+                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.RuleNotFound, $"No rules found able to calculate fact {wantFact.FactName}.");
 
             return factRuleTrees;
         }
@@ -649,13 +660,15 @@ namespace GetcuReone.FactFactory
         {
             try
             {
-                return TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> _, noDerivedFact.Value, container, ruleCollection, new List<TFact>(), out List<List<IFactType>> _);
+                return TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> _, noDerivedFact.Value, container, ruleCollection, new List<TFact>(), out var _);
             }
-            catch (InvalidDeriveOperationException<TFact, TWantAction> ex)
+            catch (InvalidDeriveOperationException<TFact> ex)
             {
                 if (ex.Details != null && ex.Details.Count == 1)
                 {
-                    if (ex.Details[0].Code == ErrorCode.RuleNotFound || ex.Details[0].Code == ErrorCode.EmptyRuleCollection)
+                    DeriveErrorDetail<TFact> detail = ex.Details.First();
+
+                    if (detail.Code == ErrorCode.RuleNotFound || detail.Code == ErrorCode.EmptyRuleCollection)
                         return false;
                 }
 

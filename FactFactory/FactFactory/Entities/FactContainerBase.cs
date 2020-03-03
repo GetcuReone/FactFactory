@@ -107,7 +107,7 @@ namespace GetcuReone.FactFactory.Entities
         /// Get fact.
         /// </summary>
         /// <typeparam name="TGetFact">Type of fact to return.</typeparam>
-        /// <exception cref="FactNotFoundException{TFact}">Did not find fact type <typeparamref name="TGetFact"/></exception>
+        /// <exception cref="FactFactoryException">Did not find fact type <typeparamref name="TGetFact"/></exception>
         /// <returns></returns>
         public virtual TGetFact GetFact<TGetFact>() where TGetFact : TFact
         {
@@ -116,7 +116,7 @@ namespace GetcuReone.FactFactory.Entities
                 return fact;
             }
 
-            throw new FactNotFoundException<TGetFact>();
+            throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"Not found type fact with type {GetFactType<TGetFact>().FactName}.");
         }
 
         /// <summary>

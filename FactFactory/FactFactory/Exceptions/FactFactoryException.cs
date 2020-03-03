@@ -1,4 +1,4 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.Exceptions.Entities;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Exceptions
@@ -12,7 +12,7 @@ namespace GetcuReone.FactFactory.Exceptions
         /// Constructor
         /// </summary>
         /// <param name="details"></param>
-        public FactFactoryException(List<ErrorDetail> details) : base(details)
+        public FactFactoryException(IReadOnlyCollection<ErrorDetail> details) : base(details)
         {
         }
     }
