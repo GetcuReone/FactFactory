@@ -200,7 +200,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Do not recalculate calculated fact")]
-        //[Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DoNotRecalculateCalculatedFactTestCase()
         {
             int counter = 0;
