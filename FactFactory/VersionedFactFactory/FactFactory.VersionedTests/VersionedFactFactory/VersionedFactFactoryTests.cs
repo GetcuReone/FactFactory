@@ -200,7 +200,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Do not recalculate calculated fact")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        //[Timeout(Timeouts.MilliSecond.Hundred)]
         public void DoNotRecalculateCalculatedFactTestCase()
         {
             int counter = 0;
@@ -208,13 +208,13 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             GivenCreateVersionedFactFactory(GetVersionFacts())
                 .AndAddRules(new V_Collection
                 {
-                    (Version1 v, Fact1 fact) => 
+                    (Version1 v, Fact1 fact) => new FactResult(fact.Value),
+
+                    (Version1 v) => 
                     {
                         counter++;
-                        return new FactResult(fact.Value);
+                        return new Fact1(v.Value);
                     },
-
-                    (Version1 v) => new Fact1(v.Value),
                     (Version2 v) => new Fact1(v.Value),
                 })
                 .And("Want fact", factory =>
@@ -226,7 +226,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 .When("Derive", factory => factory.Derive())
                 .Then("Check result", _ =>
                 {
-                    Assert.AreEqual(2, counter, "The fact should have been calculated 2 times.");
+                    Assert.AreEqual(1, counter, "The Fact1 should have been calculated 1 time.");
                 });
         }
     }

@@ -110,6 +110,7 @@ namespace GetcuReone.FactFactory
             if (deriveErrorDetails.Count != 0)
                 throw FactFactoryHelper.CreateDeriveException(deriveErrorDetails);
 
+            var calculatedFacts = new List<TFact>();
             foreach (var key in forestry.Keys)
             {
                 foreach (TFact fact in needSpecialFacts[key])
@@ -119,7 +120,7 @@ namespace GetcuReone.FactFactory
                 }
 
                 foreach (var tree in forestry[key])
-                    DeriveNode(tree.Root, container, key);
+                    DeriveNode(tree.Root, container, key, calculatedFacts);
 
                 key.Invoke(container);
 
@@ -631,10 +632,10 @@ namespace GetcuReone.FactFactory
                 return RemoveRuleNodeAndCheckGoneRoot(factRuleTree, level - 1, parent);
         }
 
-        private void DeriveNode(FactRuleNode<TFact, TFactRule> node, FactContainerBase<TFact> container, TWantAction wantAction)
+        private void DeriveNode(FactRuleNode<TFact, TFactRule> node, FactContainerBase<TFact> container, TWantAction wantAction, List<TFact> calculatedFacts)
         {
             foreach (FactRuleNode<TFact, TFactRule> child in node.Childs)
-                DeriveNode(child, container, wantAction);
+                DeriveNode(child, container, wantAction, calculatedFacts);
 
             TFactRule rule = node.FactRule;
 
@@ -646,12 +647,26 @@ namespace GetcuReone.FactFactory
 
                 using (container.CreateIgnoreReadOnlySpace())
                     container.Remove(fact);
+
+                // We ask about recalculation for all facts of the current type, which we calculated
+                foreach (TFact calculatedFact in calculatedFacts.Where(f => f.GetFactType().Compare(rule.OutputFactType) && f != fact))
+                {
+                    using (container.CreateIgnoreReadOnlySpace())
+                        container.Add(calculatedFact);
+
+                    if (!NeedRecalculateFact(rule, container, wantAction))
+                        return;
+
+                    using (container.CreateIgnoreReadOnlySpace())
+                        container.Remove(calculatedFact);
+                }
             }
 
             // 2. Calculete fact
-            TFact calculateFact = CreateObject(ct => rule.Calculate(container), container);
+            TFact calculateFact = CreateObject(ct => rule.Calculate(ct), container);
             using (container.CreateIgnoreReadOnlySpace())
                 container.Add(calculateFact);
+            calculatedFacts.Add(calculateFact);
 
             OnFactCalculatedForWantAction(rule.OutputFactType, container, wantAction);
         }
