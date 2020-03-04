@@ -196,5 +196,38 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     Assert.AreEqual(2, counterFact1, "Fact1 was supposed to pay 2 times");
                 });
         }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [Description("Do not recalculate calculated fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DoNotRecalculateCalculatedFactTestCase()
+        {
+            int counter = 0;
+
+            GivenCreateVersionedFactFactory(GetVersionFacts())
+                .AndAddRules(new V_Collection
+                {
+                    (Version1 v, Fact1 fact) => 
+                    {
+                        counter++;
+                        return new FactResult(fact.Value);
+                    },
+
+                    (Version1 v) => new Fact1(v.Value),
+                    (Version2 v) => new Fact1(v.Value),
+                })
+                .And("Want fact", factory =>
+                {
+                    factory.WantFact((Version1 _, FactResult fact) => { });
+                    factory.WantFact((Version2 _, FactResult fact) => { });
+                    factory.WantFact((Version1 _, FactResult fact) => { });
+                })
+                .When("Derive", factory => factory.Derive())
+                .Then("Check result", _ =>
+                {
+                    Assert.AreEqual(2, counter, "The fact should have been calculated 2 times.");
+                });
+        }
     }
 }
