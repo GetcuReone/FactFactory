@@ -5,7 +5,6 @@ using GetcuReone.FactFactory.Versioned.Facts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace GetcuReone.FactFactory.Versioned
 {
