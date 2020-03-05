@@ -6,7 +6,6 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CommonErrorCode = GetcuReone.FactFactory.Constants.ErrorCode;
@@ -21,7 +20,7 @@ namespace GetcuReone.FactFactory.Versioned
         where TFactContainer : FactContainerBase<TFact>
         where TFactRule : FactRuleBase<TFact>, IVersionedFactRule<TFact>
         where TFactRuleCollection : FactRuleCollectionBase<TFact, TFactRule>
-        where TWantAction : class, IWantAction<TFact>, IFactTypeVersionInformation
+        where TWantAction : WantActionBase<TFact>, IFactTypeVersionInformation
     {
         private List<IFactType> _calculatedFactTypes;
         private TWantAction _calculatingWantAction;

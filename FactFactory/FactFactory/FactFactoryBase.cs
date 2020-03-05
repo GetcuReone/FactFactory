@@ -20,7 +20,7 @@ namespace GetcuReone.FactFactory
         where TFactContainer : FactContainerBase<TFact>
         where TFactRule : FactRuleBase<TFact>
         where TFactRuleCollection : FactRuleCollectionBase<TFact, TFactRule>
-        where TWantAction : class, IWantAction<TFact>
+        where TWantAction : WantActionBase<TFact>
     {
         /// <summary>
         /// Want actions
