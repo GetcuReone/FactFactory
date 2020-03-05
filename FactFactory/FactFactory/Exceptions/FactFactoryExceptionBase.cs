@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace GetcuReone.FactFactory.Exceptions
 {
@@ -13,14 +13,14 @@ namespace GetcuReone.FactFactory.Exceptions
         /// Constructor
         /// </summary>
         /// <param name="details"></param>
-        protected FactFactoryExceptionBase(List<TDetail> details)
+        protected FactFactoryExceptionBase(IReadOnlyCollection<TDetail> details) : base(details?.FirstOrDefault()?.ToString() ?? string.Empty)
         {
-            Details = new ReadOnlyCollection<TDetail>(details);
+            Details = details;
         }
 
         /// <summary>
         /// More info exception
         /// </summary>
-        public ReadOnlyCollection<TDetail> Details { get; }
+        public IReadOnlyCollection<TDetail> Details { get; }
     }
 }

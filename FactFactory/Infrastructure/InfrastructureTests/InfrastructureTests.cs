@@ -1,5 +1,5 @@
-using JwtTestAdapter;
-using JwtTestAdapter.Helpers;
+using GivenWhenThen.TestAdapter;
+using GivenWhenThen.TestAdapter.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -91,7 +91,9 @@ namespace InfrastructureTests
                     {
                         "lib/netstandard2.0/FactFactory.dll",
                         "lib/netstandard2.0/FactFactory.xml",
-                        "LICENSE-2.0.txt"
+                        "lib/netstandard2.0/FactFactory.Versioned.dll",
+                        "lib/netstandard2.0/FactFactory.Versioned.xml",
+                        "LICENSE.txt"
                     };
 
                     foreach (string file in files)
@@ -141,7 +143,7 @@ namespace InfrastructureTests
                 })
                 .Then("Check timeouts", methods =>
                 {
-                    List<MemberInfo> invalidMethods = methods.Where(method => method.GetCustomAttribute(typeof(TestMethodAttribute)) == null).ToList();
+                    List<MemberInfo> invalidMethods = methods.Where(method => method.GetCustomAttribute(typeof(TimeoutAttribute)) == null).ToList();
 
                     if (invalidMethods.Count != 0)
                     {
@@ -157,6 +159,10 @@ namespace InfrastructureTests
         {
             string beginNamespace = "GetcuReone";
             string partNameAssemblies = "FactFactory";
+            string[] excludeAssemblies = new string[]
+            {
+                "FactFactory.TestsCommon.dll"
+            };
 
             Given("Get all file", () => InfrastructureHelper.GetAllFiles(_solutionFolder))
                 .And("Get all assemblies", files => files.Where(file => file.Name.Contains(".dll")))
@@ -166,7 +172,8 @@ namespace InfrastructureTests
                         .Where(file => !file.Name.Contains("Tests.dll")
                             && !file.FullName.Contains("TestAdapter.dll")
                             && !file.FullName.Contains("obj")
-                            && file.FullName.Contains(_buildConfiguration)))
+                            && file.FullName.Contains(_buildConfiguration)
+                            && excludeAssemblies.All(ass => ass != file.Name)))
                 .And($"Exclude duplicate",
                     files => files
                     .DistinctByFunc((x, y) => x.Name == y.Name)

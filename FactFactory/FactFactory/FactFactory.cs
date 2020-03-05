@@ -1,14 +1,18 @@
 ﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace GetcuReone.FactFactory
 {
-    /// <inheritdoc />
-    public class FactFactory : FactFactoryBase<FactContainer, FactRule, FactRuleCollection>
+    /// <summary>
+    /// Factory default implementation
+    /// </summary>
+    public class FactFactory : FactFactoryBase<FactBase, FactContainer, FactRule, FactRuleCollection, WantAction>
     {
-        private ReadOnlyCollection<FactRule> _tempRule;
-
         /// <summary>
         /// Fact container
         /// </summary>
@@ -20,33 +24,24 @@ namespace GetcuReone.FactFactory
         public override FactRuleCollection Rules { get; } = new FactRuleCollection();
 
         /// <summary>
-        /// Derive the facts
+        /// creation method <see cref="WantAction"/>
         /// </summary>
-        public override void Derive()
+        /// <param name="wantAction">action taken after deriving a fact</param>
+        /// <param name="factTypes">facts required to launch an action</param>
+        /// <returns></returns>
+        protected override WantAction CreateWantAction(Action<IFactContainer<FactBase>> wantAction, IList<IFactType> factTypes)
         {
-            _tempRule = new ReadOnlyCollection<FactRule>(Rules);
-
-            base.Derive();
-
-            _tempRule = null;
+            return new WantAction(wantAction, factTypes);
         }
 
         /// <summary>
-        /// Return a list with the appropriate rules at the time of the derive of the facts
+        /// Get fact type
         /// </summary>
+        /// <typeparam name="TGetFact"></typeparam>
         /// <returns></returns>
-        protected override IReadOnlyCollection<FactRule> GetRulesForWantAction(WantAction wantAction)
+        protected override IFactType GetFactType<TGetFact>()
         {
-            return _tempRule;
-        }
-
-        /// <summary>
-        /// Get copy container
-        /// </summary>
-        /// <returns></returns>
-        protected override FactContainer GetContainerForDerive()
-        {
-            return new FactContainer(Container);
+            return new FactType<TGetFact>();
         }
     }
 }

@@ -4,25 +4,22 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
-    /// Desired action information
+    /// Desired action information.
     /// </summary>
-    public interface IWantAction
+    /// <typeparam name="TFact"></typeparam>
+    public interface IWantAction<TFact>
+        where TFact : IFact
     {
         /// <summary>
-        /// Facts Required to Launch an Action
+        /// Facts required to launch an action.
         /// </summary>
-        IEnumerable<IFactType> InputFactTypes { get; }
+        IReadOnlyCollection<IFactType> InputFactTypes { get; }
 
         /// <summary>
-        /// Start date for fact finding for action
+        /// Run action.
         /// </summary>
-        DateTime DateOfDerive { get; set; }
-
-        /// <summary>
-        /// Run actioin
-        /// </summary>
-        /// <typeparam name="TFactContainer">container with <see cref="InputFactTypes"/></typeparam>
+        /// <typeparam name="TFactContainer">container with <see cref="InputFactTypes"/>.</typeparam>
         /// <param name="container"></param>
-        void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
+        void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer<TFact>;
     }
 }

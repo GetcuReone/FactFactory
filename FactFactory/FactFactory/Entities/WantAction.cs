@@ -1,43 +1,22 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
     /// Desired action information
     /// </summary>
-    public sealed class WantAction : IWantAction
+    public class WantAction : WantActionBase<FactBase>
     {
-        private readonly Action<IFactContainer> _action;
-
-        /// <inheritdoc />
-        public IEnumerable<IFactType> InputFactTypes { get; }
-
-        /// <inheritdoc />
-        public DateTime DateOfDerive { get; set; }
-
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
-        public WantAction(Action<IFactContainer> action, IList<IFactType> factTypes)
+        /// <param name="wantAction">Action taken after deriving a fact.</param>
+        /// <param name="factTypes">Facts required to launch an action.</param>
+        public WantAction(Action<IFactContainer<FactBase>> wantAction, IList<IFactType> factTypes) : base(wantAction, factTypes)
         {
-            _action = action ?? throw new ArgumentNullException(nameof(action));
-            InputFactTypes = new ReadOnlyCollection<IFactType>(factTypes);
-        }
-
-        /// <inheritdoc />
-        public void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer
-        {
-            _action(container);
-        }
-
-        /// <inheritdoc />
-        public override string ToString()
-        {
-            return $"({string.Join(", ", InputFactTypes.Select(f => f.FactName).ToList())})";
         }
     }
 }

@@ -6,7 +6,7 @@ namespace GetcuReone.FactFactory.Facts
     /// <summary>
     /// Contains information about a type of fact that cannot be calculated
     /// </summary>
-    public sealed class NoDerived<TFact> : NoDerivedBase
+    public sealed class NoDerived<TFact> : FactBase<IFactType>, INoDerivedFact
         where TFact : IFact
     {
         /// <summary>

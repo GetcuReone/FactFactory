@@ -4,13 +4,19 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
-    /// Fact factory interface
+    /// Fact factory interface.
     /// </summary>
-    public interface IFactFactory<TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IAbstractFactory
-        where TFactContainer : class, IFactContainer
-        where TFactRule : class, IFactRule
-        where TFactRuleCollection : class, IList<TFactRule>
-        where TWantAction : class, IWantAction
+    /// <typeparam name="TFact">All facts that the fact factory works with should be inherited from this type.</typeparam>
+    /// <typeparam name="TFactContainer">Type fact container.</typeparam>
+    /// <typeparam name="TFactRule">Type fact rule</typeparam>
+    /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
+    /// <typeparam name="TWantAction">Type 'want action'</typeparam>
+    public interface IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IAbstractFactory
+        where TFact : IFact
+        where TFactContainer : IFactContainer<TFact>
+        where TFactRule : IFactRule<TFact>
+        where TFactRuleCollection : IList<TFactRule>
+        where TWantAction : IWantAction<TFact>
     {
         /// <summary>
         /// Fact container
@@ -28,11 +34,11 @@ namespace GetcuReone.FactFactory.Interfaces
         void Derive();
 
         /// <summary>
-        /// Derive <typeparamref name="TFact"/>
+        /// Derive <typeparamref name="TWantFact"/>
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
+        /// <typeparam name="TWantFact">Type of desired fact</typeparam>
         /// <returns></returns>
-        TFact DeriveFact<TFact>() where TFact : IFact;
+        TWantFact DeriveFact<TWantFact>() where TWantFact : TFact;
 
         /// <summary>
         /// Requesting a desired fact through action

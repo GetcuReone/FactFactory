@@ -1,5 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
-using JwtTestAdapter.Entities;
+using GivenWhenThen.TestAdapter.Entities;
 
 namespace FactFactoryTests.FactType
 {

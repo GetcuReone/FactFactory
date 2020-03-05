@@ -1,132 +1,51 @@
-﻿using GetcuReone.FactFactory.Exceptions;
+﻿using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
     /// Fact collection
     /// </summary>
-    public class FactContainer : IFactContainer
+    public class FactContainer : FactContainerBase<FactBase>
     {
-        private readonly List<IFact> _container;
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public FactContainer() { }
 
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
-        public FactContainer()
+        /// <param name="facts">An array of facts to add to the container.</param>
+        public FactContainer(IEnumerable<FactBase> facts) : base(facts) { }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="facts">An array of facts to add to the container.</param>
+        /// <param name="isReadOnly"></param>
+        public FactContainer(IEnumerable<FactBase> facts, bool isReadOnly) : base(facts, isReadOnly)
         {
-            _container = new List<IFact>();
         }
 
         /// <summary>
-        /// Constructor
+        /// Get copy container.
         /// </summary>
-        public FactContainer(IEnumerable<IFact> facts)
-        {
-            _container = new List<IFact>(facts);
-        }
-
-        /// <summary>
-        /// Add fact
-        /// </summary>
-        /// <typeparam name="TFact">type fact</typeparam>
-        /// <param name="fact">fact</param>
-        public void Add<TFact>(TFact fact)
-            where TFact: IFact
-        {
-            var factInfo = fact.GetFactType();
-
-            if (this.Any(f => f.GetFactType().Compare(factInfo)))
-                throw new ArgumentException($"The fact container already contains {typeof(TFact).FullName} type of fact");
-
-            _container.Add(fact);
-        }
-
-        /// <summary>
-        /// Remove fact
-        /// </summary>
-        /// <typeparam name="TFact">type fact</typeparam>
-        public void Remove<TFact>(TFact fact)
-            where TFact : IFact
-        {
-            _container.Remove(fact);
-        }
-
-        /// <summary>
-        /// Remove fact
-        /// </summary>
-        /// <typeparam name="TFact">type fact</typeparam>
-        public void Remove<TFact>()
-            where TFact : IFact
-        {
-            _container.RemoveAll(fact => fact is TFact);
-        }
-
-        /// <summary>
-        /// Try get fact
-        /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <param name="fact"></param>
         /// <returns></returns>
-        public bool TryGetFact<TFact>(out TFact fact)
-            where TFact: IFact
+        public override FactContainerBase<FactBase> Copy()
         {
-            IFact innerFact = _container.SingleOrDefault(item => item is TFact);
-
-            if (innerFact == null)
-            {
-                fact = default;
-                return false;
-            }
-            else
-            {
-                fact = (TFact)innerFact;
-                return true;
-            }
+            return new FactContainer(this, IsReadOnly);
         }
 
         /// <summary>
-        /// Get fact
+        /// Return fact type information.
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
+        /// <typeparam name="TGetFact">The type of fact to return information about.</typeparam>
         /// <returns></returns>
-        public TFact GetFact<TFact>()
-            where TFact : IFact
+        protected override IFactType GetFactType<TGetFact>()
         {
-            if (TryGetFact<TFact>(out var fact))
-            {
-                return fact;
-            }
-
-            throw new FactNotFoundException<TFact>();
-        }
-
-        /// <summary>
-        /// Is this type of fact contained
-        /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <returns></returns>
-        public bool Contains<TFact>()
-            where TFact : IFact
-        {
-            var factInfo = new FactType<TFact>();
-            return this.Any(fact => fact.GetFactType().Compare(factInfo));
-        }
-
-        /// <inheritdoc />
-        public IEnumerator<IFact> GetEnumerator()
-        {
-            return _container.GetEnumerator();
-        }
-
-        /// <inheritdoc />
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _container.GetEnumerator();
+            return new FactType<TGetFact>();
         }
     }
 }

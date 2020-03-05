@@ -1,11 +1,12 @@
-﻿using JwtTestAdapter;
-using JwtTestAdapter.Entities;
+﻿using FactFactory.TestsCommon;
+using GetcuReone.FactFactory.Facts;
+using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactoryTests.FactFactoryT
 {
     [TestClass]
-    public abstract class FactFactoryTestBase : TestBase
+    public abstract class FactFactoryTestBase : CommonTestBase<FactBase>
     {
         protected GivenBlock<GetcuReone.FactFactory.FactFactory> GivenCreateFactFactory()
         {

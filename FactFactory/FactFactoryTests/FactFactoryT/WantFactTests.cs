@@ -1,9 +1,10 @@
-﻿using FactFactoryTests.CommonFacts;
+﻿using FactFactory.TestsCommon;
+using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
-using JwtTestAdapter;
+using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactoryTests.FactFactoryT
@@ -11,47 +12,10 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class WantFactTests : FactFactoryTestBase
     {
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Want not contained fact")]
-        public void WantNotContainedFactTestCase()
-        {
-            GivenCreateFactFactory()
-                .When("NotContainedFact", factory => ExpectedException<FactFactoryException>(() => factory.WantFact((NotContained<Input1Fact> _) => { })))
-                .Then("Check error", ex =>
-                {
-                    Assert.IsNotNull(ex, "error cannot be null");
-                    Assert.IsNotNull(ex.Details, "Details cannot be null");
-                    Assert.AreEqual(1, ex.Details.Count, "there must be one detail");
-
-                    ErrorDetail detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCode.InvalidData, detail.Code, "code not match");
-                    Assert.AreEqual("Cannot derive for No and NotContained facts", detail.Reason, "reason not match");
-                });
-        }
-
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 1 facts")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
-        [TestMethod]
-        [Description("[fact][factory][negative] Want no fact")]
-        public void WantNoFactTestCase()
-        {
-            GivenCreateFactFactory()
-                .When("NotContainedFact", factory => ExpectedException<FactFactoryException>(() => factory.WantFact((NoDerived<Input1Fact> _) => { })))
-                .Then("Check error", ex =>
-                {
-                    Assert.IsNotNull(ex, "error cannot be null");
-                    Assert.IsNotNull(ex.Details, "Details cannot be null");
-                    Assert.AreEqual(1, ex.Details.Count, "there must be one detail");
-
-                    ErrorDetail detail = ex.Details[0];
-                    Assert.AreEqual(ErrorCode.InvalidData, detail.Code, "code not match");
-                    Assert.AreEqual("Cannot derive for No and NotContained facts", detail.Reason, "reason not match");
-                });
-        }
-
-        [Timeout(Timeouts.MilliSecond.Hundred)]
-        [TestMethod]
-        [Description("[fact][factory][negative] Request 1 facts")]
         public void Want1FactsTestCase()
         {
             int startValue = 4;
@@ -78,9 +42,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 2 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 2 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want2FactsTestCase()
         {
             int startValue = 4;
@@ -112,9 +77,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 3 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 3 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want3FactsTestCase()
         {
             int startValue = 4;
@@ -151,9 +117,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 4 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 4 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want4FactsTestCase()
         {
             int startValue = 4;
@@ -195,9 +162,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 5 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 5 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want5FactsTestCase()
         {
             int startValue = 4;
@@ -244,9 +212,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 10 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 6 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want6FactsTestCase()
         {
             int startValue = 4;
@@ -299,9 +268,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 7 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 7 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want7FactsTestCase()
         {
             int startValue = 4;
@@ -359,9 +329,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 8 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 8 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want8FactsTestCase()
         {
             int startValue = 4;
@@ -424,9 +395,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 9 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 9 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want9FactsTestCase()
         {
             int startValue = 4;
@@ -494,9 +466,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 10 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 10 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want10FactsTestCase()
         {
             int startValue = 4;
@@ -569,9 +542,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 11 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 11 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want11FactsTestCase()
         {
             int startValue = 4;
@@ -649,9 +623,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 12 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 12 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want12FactsTestCase()
         {
             int startValue = 4;
@@ -734,9 +709,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 13 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 13 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want13FactsTestCase()
         {
             int startValue = 4;
@@ -824,9 +800,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 14 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 14 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want14FactsTestCase()
         {
             int startValue = 4;
@@ -919,9 +896,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 15 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 15 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want15FactsTestCase()
         {
             int startValue = 4;
@@ -1018,9 +996,10 @@ namespace FactFactoryTests.FactFactoryT
                 });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][factory][negative] Request 16 facts")]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
+        [Description("Request 16 facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want16FactsTestCase()
         {
             int startValue = 4;

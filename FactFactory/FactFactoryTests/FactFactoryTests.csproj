@@ -25,7 +25,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FactFactory\FactFactory.csproj" />
-    <ProjectReference Include="..\Infrastructure\JwtTestAdapter\JwtTestAdapter.csproj" />
+    <ProjectReference Include="..\Infrastructure\FactFactory.TestsCommon\FactFactory.TestsCommon.csproj" />
+    <ProjectReference Include="..\Infrastructure\GivenWhenThen.TestAdapter\GivenWhenThen.TestAdapter.csproj" />
   </ItemGroup>
 
 </Project>

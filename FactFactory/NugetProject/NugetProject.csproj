@@ -3,18 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+
     <Authors>GetcuReone</Authors>
     <PackageId>GetcuReone.FactFactory</PackageId>
     <Product>FactFactory</Product>
     <Description>My implementation of a machine that can derive facts from other facts</Description>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageLicenseExpression></PackageLicenseExpression>
     <RepositoryUrl>https://github.com/GetcuReone/FactFactory.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>factfactory fact getcureone combopatterns</PackageTags>
     <PackageReleaseNotes>publish project to GitHub</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/GetcuReone/FactFactory</PackageProjectUrl>
     <Copyright>Copyright © 2020 GetcuReone</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -38,10 +41,14 @@
       <PrivateAssets>All</PrivateAssets>
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\VersionedFactFactory\FactFactory.Versioned\FactFactory.Versioned.csproj">
+      <PrivateAssets>All</PrivateAssets>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE-2.0.txt">
+    <None Include="..\..\LICENSE.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

@@ -1,8 +1,14 @@
-﻿using FactFactoryTests.CommonFacts;
+﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
+using FactFactoryTests.CommonFacts;
+using FactFactoryTests.FactType.Env;
+using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
-using JwtTestAdapter;
-using JwtTestAdapter.Entities;
+using GivenWhenThen.TestAdapter;
+using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -16,16 +22,23 @@ namespace FactFactoryTests.FactType
             return Given("Create OthreFact", () => new OtherFact(dateTime));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        private GivenBlock<FactType<TFact>> GivenCreateFactType<TFact>()
+            where TFact : IFact
+        {
+            return Given($"Create fact type for {typeof(TFact).Name}", () => new FactType<TFact>());
+        }
+
         [TestMethod]
-        [Description("[fact][info] successful comparison of information about one fact")]
+        [TestCategory(TC.Objects.FactType)]
+        [Description("Successful comparison of information about one fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CompareFactTypeOneFactTestCase()
         {
-            StartDateOfDerive fact = null;
+            DateTimeFact fact = null;
             IFactType first = null;
             IFactType second = null;
 
-            Given("Create fact", () => { fact = new StartDateOfDerive(DateTime.Now); })
+            Given("Create fact", () => { fact = new DateTimeFact(DateTime.Now); })
                 .When("Create fact info", _ =>
                 {
                     first = fact.GetFactType();
@@ -34,20 +47,21 @@ namespace FactFactoryTests.FactType
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][info] successful comparison of information about one fact")]
+        [TestCategory(TC.Objects.FactType)]
+        [Description("Successful comparison of information about one fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void SuccessCompareFactTypeTowFactTestCase()
         {
-            StartDateOfDerive firstFact = null;
-            StartDateOfDerive secondFact = null;
+            DateTimeFact firstFact = null;
+            DateTimeFact secondFact = null;
             IFactType first = null;
             IFactType second = null;
 
             Given("Create fact", () => 
             { 
-                firstFact = new StartDateOfDerive(DateTime.Now);
-                secondFact = new StartDateOfDerive(DateTime.Now);
+                firstFact = new DateTimeFact(DateTime.Now);
+                secondFact = new DateTimeFact(DateTime.Now);
             })
                 .When("Create fact info", _ =>
                 {
@@ -57,19 +71,20 @@ namespace FactFactoryTests.FactType
                 .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][info] unsuccessful comparison of two facts")]
+        [TestCategory(TC.Objects.FactType)]
+        [Description("Unsuccessful comparison of two facts")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void FailedCompareFactTypeTowFactTestCase()
         {
-            StartDateOfDerive firstFact = null;
+            DateTimeFact firstFact = null;
             OtherFact secondFact = null;
             IFactType first = null;
             IFactType second = null;
 
             Given("Create fact", () =>
             {
-                firstFact = new StartDateOfDerive(DateTime.Now);
+                firstFact = new DateTimeFact(DateTime.Now);
                 secondFact = new OtherFact(firstFact.Value);
             })
                 .When("Create fact info", _ =>
@@ -80,9 +95,10 @@ namespace FactFactoryTests.FactType
                 .Then("Compare factInfos", () => Assert.IsFalse(first.Compare(second), "factual information is the same"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][info] check fact name")]
+        [TestCategory(TC.Objects.FactType)]
+        [Description("Check fact name")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
         public void FactNameTestCase()
         {
             GivenCreateOtherFact(DateTime.Now)
@@ -90,39 +106,86 @@ namespace FactFactoryTests.FactType
                 .Then("Check result", factInfo => Assert.AreEqual(nameof(OtherFact), factInfo.FactName, "not expected fact name"));
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][info] container contains fact")]
-        public void ContainsContainerTestCase()
+        [TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived)]
+        [Description("Create NoDerived fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void CreateNoDerivedFactTestCase()
         {
-            GetcuReone.FactFactory.Entities.FactContainer container = null;
-
-            GivenCreateOtherFact(DateTime.Now)
-                .When("Add container", fact =>
+            GivenCreateFactType<NoDerived<OtherFact>>()
+                .When("Create NoDerived fact", factType => factType.CreateNoDerived())
+                .Then("Check result", fact =>
                 {
-                    container = new GetcuReone.FactFactory.Entities.FactContainer();
-                    container.Add(fact);
-                    return fact;
-                })
-                .Then("Check container contains fact", 
-                    fact => Assert.IsTrue(fact.GetFactType().ContainsContainer(container), "the container does not contain a fact"));
+                    Assert.IsNotNull(fact, "fact cannot be null");
+                    Assert.IsTrue(fact is NoDerived<OtherFact>, "Expected another type");
+                });
         }
 
-        [Timeout(Timeouts.MilliSecond.Hundred)]
         [TestMethod]
-        [Description("[fact][info] the container does not contain a fact")]
-        public void NotContainsContainerTestCase()
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived)]
+        [Description("Create a NoDerived fact using the wrong type")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void CreateNoDerivedUsingWrongTypeTestCase()
         {
-            GetcuReone.FactFactory.Entities.FactContainer container = null;
+            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(INoDerivedFact).FullName} type.";
 
-            GivenCreateOtherFact(DateTime.Now)
-                .When("Create container", fact =>
+            GivenCreateFactType<OtherFact>()
+                .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateNoDerived()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived)]
+        [Description("Create a NoDerived fact without default constructor")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void CreateNoDerivedWithoutDefaultConstructorTestCase()
+        {
+            string expectedReason = $"{typeof(NoDerivedWithoutConstructor).FullName} doesn't have a default constructor.";
+
+            GivenCreateFactType<NoDerivedWithoutConstructor>()
+                .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateNoDerived()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NotContained)]
+        [Description("Create NotContained fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void CreateNotContainedFactTestCase()
+        {
+            GivenCreateFactType<NotContained<OtherFact>>()
+                .When("Create NotContained fact", factType => factType.CreateNotContained())
+                .Then("Check result", fact =>
                 {
-                    container = new GetcuReone.FactFactory.Entities.FactContainer();
-                    return fact;
-                })
-                .Then("Check container contains fact",
-                    fact => Assert.IsFalse(fact.GetFactType().ContainsContainer(container), "container contains fact"));
+                    Assert.IsNotNull(fact, "fact cannot be null");
+                    Assert.IsTrue(fact is NotContained<OtherFact>, "Expected another type");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NotContained)]
+        [Description("Create a NotContained fact using the wrong type")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void CreateNotContainedUsingWrongTypeTestCase()
+        {
+            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(INotContainedFact).FullName} type.";
+
+            GivenCreateFactType<OtherFact>()
+                .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateNotContained()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NotContained)]
+        [Description("Create a NotContained fact without default constructor")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void CreateNotContainedWithoutDefaultConstructorTestCase()
+        {
+            string expectedReason = $"{typeof(NotContainedWithoutConstructor).FullName} doesn't have a default constructor.";
+
+            GivenCreateFactType<NotContainedWithoutConstructor>()
+                .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateNotContained()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
     }
 }

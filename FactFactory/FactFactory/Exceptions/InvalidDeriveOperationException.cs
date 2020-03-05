@@ -1,19 +1,20 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Exceptions
 {
     /// <summary>
-    /// <see cref="FactFactoryException"/> for method <see cref="IFactFactory{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
+    /// <see cref="FactFactoryException"/> for method <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
     /// </summary>
-    public class InvalidDeriveOperationException : FactFactoryExceptionBase<DeriveErrorDetail>
+    public class InvalidDeriveOperationException<TFact> : FactFactoryExceptionBase<DeriveErrorDetail<TFact>>
+        where TFact : IFact
     {
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         /// <param name="details"></param>
-        public InvalidDeriveOperationException(List<DeriveErrorDetail> details) : base(details)
+        public InvalidDeriveOperationException(IReadOnlyCollection<DeriveErrorDetail<TFact>> details) : base(details)
         {
         }
     }
