@@ -224,9 +224,11 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .And("Want fact", factory =>
                 {
-                    factory.WantFact((Version1 _, FactResult fact) => { });
-                    factory.WantFact((Version2 _, FactResult fact) => { });
-                    factory.WantFact((Version1 _, FactResult fact) => { });
+                    for (int i = 0; i < 10; i++)
+                    {
+                        factory.WantFact((Version1 _, FactResult fact) => { });
+                        factory.WantFact((Version2 _, FactResult fact) => { }); 
+                    }
                 })
                 .When("Derive", factory => factory.Derive())
                 .Then("Check result", _ =>
