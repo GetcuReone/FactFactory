@@ -206,6 +206,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int counterFact1 = 0;
             int counterFact2 = 0;
             int counterResult = 0;
+            int counterAction1 = 0;
+            int counterAction2 = 0;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
                 .AndAddRules(new V_Collection
@@ -231,8 +233,14 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 {
                     for (int i = 0; i < 10; i++)
                     {
-                        factory.WantFact((Version1 _, FactResult fact) => { });
-                        factory.WantFact((Version2 _, FactResult fact) => { }); 
+                        factory.WantFact((Version1 _, FactResult fact) => 
+                        {
+                            counterAction1++;
+                        });
+                        factory.WantFact((Version2 _, FactResult fact) => 
+                        {
+                            counterAction2++;
+                        });
                     }
                 })
                 .When("Derive", factory => factory.Derive())
@@ -240,7 +248,11 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 {
                     Assert.AreEqual(1, counterFact1, "The Fact1 should have been calculated 1 time.");
                     Assert.AreEqual(1, counterFact2, "The Fact2 should have been calculated 1 time.");
+
                     Assert.AreEqual(2, counterResult, "The Fact1 should have been calculated 2 times.");
+
+                    Assert.AreEqual(10, counterAction1, "Expected another value counterAction1.");
+                    Assert.AreEqual(10, counterAction2, "Expected another value counterAction2.");
                 });
         }
     }
