@@ -239,7 +239,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 .Then("Check result", _ =>
                 {
                     Assert.AreEqual(1, counterFact1, "The Fact1 should have been calculated 1 time.");
-                    Assert.AreEqual(1, counterFact2, "The Fact1 should have been calculated 1 time.");
+                    Assert.AreEqual(1, counterFact2, "The Fact2 should have been calculated 1 time.");
                     Assert.AreEqual(2, counterResult, "The Fact1 should have been calculated 2 times.");
                 });
         }
