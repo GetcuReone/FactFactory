@@ -208,6 +208,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int counterResult = 0;
             int counterAction1 = 0;
             int counterAction2 = 0;
+            int counterAction3 = 0;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
                 .AndAddRules(new V_Collection
@@ -241,6 +242,11 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                         {
                             counterAction2++;
                         });
+                        factory.WantFact((Fact1 fact) =>
+                        {
+                            Assert.IsTrue(fact.Version is Version2, "The fact must be calculated using the rule of version 2.");
+                            counterAction3++;
+                        });
                     }
                 })
                 .When("Derive", factory => factory.Derive())
@@ -253,6 +259,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
                     Assert.AreEqual(10, counterAction1, "Expected another value counterAction1.");
                     Assert.AreEqual(10, counterAction2, "Expected another value counterAction2.");
+                    Assert.AreEqual(10, counterAction3, "Expected another value counterAction3.");
                 });
         }
     }
