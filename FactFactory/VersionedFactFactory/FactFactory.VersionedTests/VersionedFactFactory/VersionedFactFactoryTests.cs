@@ -203,7 +203,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DoNotRecalculateCalculatedFactTestCase()
         {
-            int counterFact = 0;
+            int counterFact1 = 0;
+            int counterFact2 = 0;
             int counterResult = 0;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
@@ -217,10 +218,14 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
                     (Version1 v) => 
                     {
-                        counterFact++;
+                        counterFact1++;
                         return new Fact1(v.Value);
                     },
-                    (Version2 v) => new Fact1(v.Value),
+                    (Version2 v) =>
+                    {
+                        counterFact2++;
+                        return new Fact1(v.Value);
+                    },
                 })
                 .And("Want fact", factory =>
                 {
@@ -233,7 +238,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 .When("Derive", factory => factory.Derive())
                 .Then("Check result", _ =>
                 {
-                    Assert.AreEqual(1, counterFact, "The Fact1 should have been calculated 1 time.");
+                    Assert.AreEqual(1, counterFact1, "The Fact1 should have been calculated 1 time.");
+                    Assert.AreEqual(1, counterFact2, "The Fact1 should have been calculated 1 time.");
                     Assert.AreEqual(2, counterResult, "The Fact1 should have been calculated 2 times.");
                 });
         }
