@@ -264,9 +264,10 @@ namespace GetcuReone.FactFactory
                 // If fact already exists
                 if (wantFact.ContainsContainer(container))
                     continue;
-                else if (wantFact.IsFactType<INotContainedFact>())
+
+                if (wantFact.IsFactType<INotContainedFact>())
                 {
-                    INotContainedFact notContainedFact = wantFact.CreateNotContained();
+                    INotContainedFact notContainedFact = wantFact.CreateSpecialFact<INotContainedFact>();
 
                     if (!notContainedFact.IsFactContained(container))
                     {
@@ -278,9 +279,10 @@ namespace GetcuReone.FactFactory
                     deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
                     continue;
                 }
-                else if (wantFact.IsFactType<INoDerivedFact>())
+
+                if (wantFact.IsFactType<INoDerivedFact>())
                 {
-                    INoDerivedFact noDerivedFact = wantFact.CreateNoDerived();
+                    INoDerivedFact noDerivedFact = wantFact.CreateSpecialFact<INoDerivedFact>();
                     if (!noDerivedFact.Value.ContainsContainer(container) && !TryDeriveNoFactInfo(noDerivedFact, container, rules))
                     {
                         TFact specialFact = noDerivedFact.ConvertFact<TFact>();
@@ -389,7 +391,7 @@ namespace GetcuReone.FactFactory
                             // Check INotContainedFact fact
                             if (isNotContained)
                             {
-                                INotContainedFact notContainedFact = needFactType.CreateNotContained();
+                                INotContainedFact notContainedFact = needFactType.CreateSpecialFact<INotContainedFact>();
 
                                 if (container.All(fact => !notContainedFact.IsFactContained(container)))
                                 {
@@ -402,7 +404,7 @@ namespace GetcuReone.FactFactory
                             // Check INoDerivedFact fact
                             if (needFactType.IsFactType<INoDerivedFact>())
                             {
-                                INoDerivedFact noDerivedFact = needFactType.CreateNoDerived();
+                                INoDerivedFact noDerivedFact = needFactType.CreateSpecialFact<INoDerivedFact>();
 
                                 if (!TryDeriveNoFactInfo(noDerivedFact, container, ruleCollection))
                                 {

@@ -28,21 +28,22 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Return fact. The current fact is not contained in the container.
+        /// Create an fact of this type. Method created for special facts.
         /// </summary>
+        /// <typeparam name="TFactResult"></typeparam>
         /// <returns></returns>
-        public INotContainedFact CreateNotContained()
+        public TFactResult CreateSpecialFact<TFactResult>() where TFactResult : IFact
         {
-            return CreateFact<INotContainedFact>();
-        }
+            var type = typeof(TFact);
+            var resultType = typeof(TFactResult);
 
-        /// <summary>
-        /// Return an instance of a type <see cref="INoDerivedFact"/> fact in for the current fact type
-        /// </summary>
-        /// <returns></returns>
-        public INoDerivedFact CreateNoDerived()
-        {
-            return CreateFact<INoDerivedFact>();
+            if (!resultType.IsAssignableFrom(type))
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} does not implement {resultType.FullName} type.");
+            else if (type.GetConstructor(Type.EmptyTypes) == null)
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} doesn't have a default constructor.");
+
+
+            return (TFactResult)Activator.CreateInstance(type, false);
         }
 
         /// <summary>
@@ -78,21 +79,6 @@ namespace GetcuReone.FactFactory.Entities
             }
 
             throw new InvalidOperationException($"There is more than one fact with type {FactName} in the array of facts");
-        }
-
-        private TFactResult CreateFact<TFactResult>()
-            where TFactResult : IFact
-        {
-            var type = typeof(TFact);
-            var resultType = typeof(TFactResult);
-
-            if (!resultType.IsAssignableFrom(type))
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} does not implement {resultType.FullName} type.");
-            else if (type.GetConstructor(Type.EmptyTypes) == null)
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} doesn't have a default constructor.");
-
-
-            return (TFactResult)Activator.CreateInstance(type, false);
         }
     }
 }
