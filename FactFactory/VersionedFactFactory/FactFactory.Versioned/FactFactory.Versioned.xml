@@ -92,7 +92,6 @@
             </summary>
             <param name="container"></param>
             <typeparam name="TContainer"></typeparam>
-            <exception cref="T:System.InvalidOperationException">The rule did not return a fact.</exception>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection">

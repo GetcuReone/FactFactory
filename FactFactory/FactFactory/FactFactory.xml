@@ -221,7 +221,6 @@
             </summary>
             <param name="container"></param>
             <typeparam name="TContainer"></typeparam>
-            <exception cref="T:System.InvalidOperationException">The rule did not return a fact.</exception>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`1.CanCalculate``1(``0)">

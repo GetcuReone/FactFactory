@@ -668,6 +668,10 @@ namespace GetcuReone.FactFactory
 
             // 2. Calculete fact
             TFact calculateFact = CreateObject(ct => rule.Calculate(ct), container);
+
+            if (calculateFact == null)
+                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidOperation, $"Rule {rule.ToString()} return null");
+
             using (container.CreateIgnoreReadOnlySpace())
                 container.Add(calculateFact);
             calculatedFacts.Add(calculateFact);
