@@ -14,7 +14,7 @@
     <PackageTags>factfactory fact getcureone combopatterns</PackageTags>
     <PackageReleaseNotes>publish project to GitHub</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageProjectUrl>https://github.com/GetcuReone/FactFactory</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>
     <Copyright>Copyright © 2020 GetcuReone</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
@@ -53,9 +53,6 @@
       <PackagePath></PackagePath>
     </None>
     <None Include="..\..\README.md" />
-    <None Include="..\..\discription_pages\FactContainer.md" Link="discription_pages\FactContainer.md" />
-    <None Include="..\..\discription_pages\FactFactoryBase.md" Link="discription_pages\FactFactoryBase.md" />
-    <None Include="..\..\discription_pages\Rule.md" Link="discription_pages\Rule.md" />
   </ItemGroup>
 
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">

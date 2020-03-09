@@ -1,19 +1,32 @@
-# GetcuReone.FactFactory
+# Welcome to the GetcuReone.FactFactory
 
-This library contains a machine for deriving facts from facts. This library is a member of the GetcuReone library family.
+Welcome to my Factory of Facts project. In this project, I realized my vision of a fact factory.
 
-## Fact
+## Basic concepts
 
-Fact, any information that is taken for granted. By fact, this library means any object with data inherited from the [IFact](FactFactory/FactFactory/Interfaces/IFact.cs) interface.
+### Fact
 
-## Rule
+Some information about something.
+The factory cannot alter the facts in any way. She can only manipulate them.
 
-The rule. A set of instructions that are used to calculate another fact. More [here](discription_pages/Rule.md)
+### Rule
 
-## FactFactoryBase
+A rule is a set of instructions that can calculate a fact.
+A rule may use one or more existing facts for calculation or not use them at all.
 
-The base class that implements the logic of the fact factory. More [here](discription_pages/FactFactoryBase.md)
+### Fact factrory
 
-## FactFactory
+In the framework of the current project, a fact factory is a machine that can receive other facts based on certain facts.
+In fact, a factory cannot somehow alter or create facts. She only controls their mixing.
+If we reduce the capabilities of the factory to simple actions, then it can:
 
-Default implementation FactFactoryBase. More [here](FactFactory/FactFactory/FactFactory.cs).
+- Find out if you can calculate the fact by the rule
+- Perform fact calculation through the rule;
+- Extract computed fact from rule;
+- Return requested facts.
+
+Using these 4 simple steps as a basis, I was able to implement a machine that can calculate a fact for you or say what facts are not enough to calculate it.
+
+I would also like to note that this project is only one of GetcuReone projects.
+
+You can find more information on [the project wiki](https://github.com/GetcuReone/FactFactory/wiki)
