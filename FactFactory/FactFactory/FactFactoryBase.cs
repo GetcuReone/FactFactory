@@ -479,7 +479,7 @@ namespace GetcuReone.FactFactory
 
                         foreach (var needFact in needFacts)
                         {
-                            if (needFact.IsFactType<INoDerivedFact>() || needFact.IsFactType<INotContainedFact>())
+                            if (needFact.IsFactType<ISpecialFact>())
                             {
                                 cannotDerived = RemoveRuleNodeAndCheckGoneRoot(factRuleTree, lastlevelNumber, node);
                                 j--;

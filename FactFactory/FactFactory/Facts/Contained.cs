@@ -6,7 +6,7 @@ namespace GetcuReone.FactFactory.Facts
     /// <summary>
     /// Information about a fact that is contained in the container at the time of the function call <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
     /// </summary>
-    public sealed class Contained<TFact> : FactBase<IFactType>, INotContainedFact
+    public sealed class Contained<TFact> : FactBase<IFactType>, IContainedFact
         where TFact : IFact
     {
         /// <summary>

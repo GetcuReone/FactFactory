@@ -244,6 +244,8 @@ namespace FactFactoryTests.FactRule
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ReturnNoDeriveFactTestCase()
         {
+            string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
+
             GivenEmpty()
                 .When("Create rule", _ =>
                 {
@@ -252,7 +254,7 @@ namespace FactFactoryTests.FactRule
                 })
                 .Then("Check error", ex =>
                 {
-                    Assert.AreEqual($"Parameter outputFactType should not be converted into {typeof(INoDerivedFact).FullName}", ex.Message, "Another message expected");
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
                 });
         }
 
@@ -260,8 +262,10 @@ namespace FactFactoryTests.FactRule
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.NotContained)]
         [Description("Return NotContained fact")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
-        public void ReturnNoNotContainedFactTestCase()
+        public void ReturnNotContainedFactTestCase()
         {
+            string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
+
             GivenEmpty()
                 .When("Create rule", _ =>
                 {
@@ -270,7 +274,27 @@ namespace FactFactoryTests.FactRule
                 })
                 .Then("Check error", ex =>
                 {
-                    Assert.AreEqual($"Parameter outputFactType should not be converted into {typeof(INotContainedFact).FullName}", ex.Message, "Another message expected");
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.Contained)]
+        [Description("Return Contained fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void ReturnContainedFactTestCase()
+        {
+            string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
+
+            GivenEmpty()
+                .When("Create rule", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<Contained<Input10Fact>>()));
+                })
+                .Then("Check error", ex =>
+                {
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
                 });
         }
     }

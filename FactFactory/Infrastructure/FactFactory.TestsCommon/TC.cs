@@ -52,6 +52,11 @@
             public const string RuleCollection = "rule_collection";
 
             /// <summary>
+            /// <see cref="GetcuReone.FactFactory.Interfaces.IContainedFact"/>
+            /// </summary>
+            public const string Contained = "contained";
+
+            /// <summary>
             /// <see cref="GetcuReone.FactFactory.Interfaces.INotContainedFact"/>
             /// </summary>
             public const string NotContained = "not_contained";
