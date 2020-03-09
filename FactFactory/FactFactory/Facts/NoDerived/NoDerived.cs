@@ -15,5 +15,17 @@ namespace GetcuReone.FactFactory.Facts
         public NoDerived() : base(FactFactoryHelper.GetFactType<TFact>())
         {
         }
+
+        /// <summary>
+        /// Is the fact contained in the container.
+        /// </summary>
+        /// <typeparam name="TFact1"></typeparam>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public bool IsFactContained<TFact1>(IFactContainer<TFact1> container)
+            where TFact1 : IFact
+        {
+            return Value.ContainsContainer(container);
+        }
     }
 }

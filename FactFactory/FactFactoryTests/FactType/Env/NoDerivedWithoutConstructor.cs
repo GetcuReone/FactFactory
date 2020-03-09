@@ -16,5 +16,10 @@ namespace FactFactoryTests.FactType.Env
         {
             throw new NotImplementedException();
         }
+
+        public bool IsFactContained<TFact>(IFactContainer<TFact> container) where TFact : IFact
+        {
+            throw new NotImplementedException();
+        }
     }
 }
