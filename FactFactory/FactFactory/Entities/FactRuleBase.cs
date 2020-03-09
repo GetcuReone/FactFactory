@@ -40,9 +40,7 @@ namespace GetcuReone.FactFactory.Entities
             if (outputFactType == null)
                 throw new ArgumentNullException(nameof(outputFactType));
 
-            OutputFactType = outputFactType
-                .CannotIsType<INoDerivedFact>(nameof(outputFactType))
-                .CannotIsType<INotContainedFact>(nameof(outputFactType));
+            OutputFactType = outputFactType.CannotIsType<ISpecialFact>(nameof(outputFactType));
 
             new List<IFactType> { OutputFactType }.CheckArgumentFacts<TFact>();
 

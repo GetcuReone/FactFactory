@@ -26,16 +26,11 @@ namespace GetcuReone.FactFactory.Interfaces
         bool IsFactType<TFact>() where TFact : IFact;
 
         /// <summary>
-        /// Return fact. The current fact is not contained in the container.
+        /// Create an fact of this type. Method created for special facts.
         /// </summary>
+        /// <typeparam name="TFact"></typeparam>
         /// <returns></returns>
-        INotContainedFact CreateNotContained();
-
-        /// <summary>
-        /// Return an instance of a type <see cref="INoDerivedFact"/> fact in for the current fact type
-        /// </summary>
-        /// <returns></returns>
-        INoDerivedFact CreateNoDerived();
+        TFact CreateSpecialFact<TFact>() where TFact : IFact;
 
         /// <summary>
         /// Try to get a fact from the container.

@@ -687,16 +687,11 @@
             </summary>
             <param name="factInfo"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.CreateNotContained">
+        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.CreateSpecialFact``1">
             <summary>
-            Return fact. The current fact is not contained in the container.
+            Create an fact of this type. Method created for special facts.
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.CreateNoDerived">
-            <summary>
-            Return an instance of a type <see cref="T:GetcuReone.FactFactory.Interfaces.INoDerivedFact"/> fact in for the current fact type
-            </summary>
+            <typeparam name="TFactResult"></typeparam>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactType`1.IsFactType``1">
@@ -1264,6 +1259,24 @@
             <typeparam name="TFact16">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
         </member>
+        <member name="T:GetcuReone.FactFactory.Facts.Contained`1">
+            <summary>
+            Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facts.Contained`1.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facts.Contained`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
+            <summary>
+            Is the fact contained in the container.
+            </summary>
+            <typeparam name="TFact1"></typeparam>
+            <param name="container"></param>
+            <returns></returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.Facts.FactBase">
             <summary>
             Base class for fact.
@@ -1301,6 +1314,14 @@
             <summary>
             Constructor
             </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facts.NoDerived`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
+            <summary>
+            Is the fact contained in the container.
+            </summary>
+            <typeparam name="TFact1"></typeparam>
+            <param name="container"></param>
+            <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Facts.NotContained`1">
             <summary>
@@ -1386,6 +1407,11 @@
             <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
             <param name="requiredFacts">The facts that tried to derive.</param>
             <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.IContainedFact">
+            <summary>
+            Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>
+            </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.ICopy`1">
             <summary>
@@ -1564,16 +1590,11 @@
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.CreateNotContained">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.CreateSpecialFact``1">
             <summary>
-            Return fact. The current fact is not contained in the container.
+            Create an fact of this type. Method created for special facts.
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.CreateNoDerived">
-            <summary>
-            Return an instance of a type <see cref="T:GetcuReone.FactFactory.Interfaces.INoDerivedFact"/> fact in for the current fact type
-            </summary>
+            <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.TryGetFact``1(System.Collections.Generic.IEnumerable{``0},``0@)">
@@ -1600,7 +1621,12 @@
             Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.INotContainedFact.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
+        <member name="T:GetcuReone.FactFactory.Interfaces.ISpecialFact">
+            <summary>
+            Basic interface for special facts.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.ISpecialFact.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
             <summary>
             Is the fact contained in the container
             </summary>
