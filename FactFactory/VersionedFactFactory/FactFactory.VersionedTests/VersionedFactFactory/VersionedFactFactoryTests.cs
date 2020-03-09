@@ -203,8 +203,12 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DoNotRecalculateCalculatedFactTestCase()
         {
-            int counterFact = 0;
+            int counterFact1 = 0;
+            int counterFact2 = 0;
             int counterResult = 0;
+            int counterAction1 = 0;
+            int counterAction2 = 0;
+            int counterAction3 = 0;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
                 .AndAddRules(new V_Collection
@@ -217,24 +221,45 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
                     (Version1 v) => 
                     {
-                        counterFact++;
+                        counterFact1++;
                         return new Fact1(v.Value);
                     },
-                    (Version2 v) => new Fact1(v.Value),
+                    (Version2 v) =>
+                    {
+                        counterFact2++;
+                        return new Fact1(v.Value);
+                    },
                 })
                 .And("Want fact", factory =>
                 {
                     for (int i = 0; i < 10; i++)
                     {
-                        factory.WantFact((Version1 _, FactResult fact) => { });
-                        factory.WantFact((Version2 _, FactResult fact) => { }); 
+                        factory.WantFact((Version1 _, FactResult fact) => 
+                        {
+                            counterAction1++;
+                        });
+                        factory.WantFact((Version2 _, FactResult fact) => 
+                        {
+                            counterAction2++;
+                        });
+                        factory.WantFact((Fact1 fact) =>
+                        {
+                            Assert.IsTrue(fact.Version is Version2, "The fact must be calculated using the rule of version 2.");
+                            counterAction3++;
+                        });
                     }
                 })
                 .When("Derive", factory => factory.Derive())
                 .Then("Check result", _ =>
                 {
-                    Assert.AreEqual(1, counterFact, "The Fact1 should have been calculated 1 time.");
+                    Assert.AreEqual(1, counterFact1, "The Fact1 should have been calculated 1 time.");
+                    Assert.AreEqual(1, counterFact2, "The Fact2 should have been calculated 1 time.");
+
                     Assert.AreEqual(2, counterResult, "The Fact1 should have been calculated 2 times.");
+
+                    Assert.AreEqual(10, counterAction1, "Expected another value counterAction1.");
+                    Assert.AreEqual(10, counterAction2, "Expected another value counterAction2.");
+                    Assert.AreEqual(10, counterAction3, "Expected another value counterAction3.");
                 });
         }
     }

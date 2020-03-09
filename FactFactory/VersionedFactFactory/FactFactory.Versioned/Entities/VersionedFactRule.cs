@@ -54,7 +54,6 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// </summary>
         /// <param name="container"></param>
         /// <typeparam name="TContainer"></typeparam>
-        /// <exception cref="InvalidOperationException">The rule did not return a fact.</exception>
         /// <returns></returns>
         public override VersionedFactBase Calculate<TContainer>(TContainer container)
         {

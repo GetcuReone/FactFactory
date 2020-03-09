@@ -90,16 +90,10 @@ namespace GetcuReone.FactFactory.Entities
         /// </summary>
         /// <param name="container"></param>
         /// <typeparam name="TContainer"></typeparam>
-        /// <exception cref="InvalidOperationException">The rule did not return a fact.</exception>
         /// <returns></returns>
         public virtual TFact Calculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFact>
         {
-            TFact fact = _func(container);
-
-            if (fact == null)
-                throw new InvalidOperationException("Rule cannot return null");
-
-            return fact;
+            return _func(container);
         }
 
         /// <summary>

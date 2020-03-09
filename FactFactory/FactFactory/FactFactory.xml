@@ -221,7 +221,6 @@
             </summary>
             <param name="container"></param>
             <typeparam name="TContainer"></typeparam>
-            <exception cref="T:System.InvalidOperationException">The rule did not return a fact.</exception>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRuleBase`1.CanCalculate``1(``0)">
@@ -961,6 +960,14 @@
             <param name="factType">Type calculated fact.</param>
             <param name="container">Container.</param>
             <param name="wantAction">The action for which the fact was calculated.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnDeriveFinished(System.Collections.Generic.List{`4},GetcuReone.FactFactory.Entities.FactContainerBase{`0},System.Collections.Generic.List{`0})">
+            <summary>
+            Event handler method 'derive finished'. It is executed at the end of the <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/> method.
+            </summary>
+            <param name="wantActions">List of desired actions.</param>
+            <param name="container">Container.</param>
+            <param name="calculatedFacts">List of all calculated facts.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{`0}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>

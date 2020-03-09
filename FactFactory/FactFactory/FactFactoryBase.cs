@@ -133,6 +133,8 @@ namespace GetcuReone.FactFactory
                 }
             }
 
+            OnDeriveFinished(wantActions, container, calculatedFacts);
+
             foreach(var type in defaultFacts)
             {
                 if (type.TryGetFact(container, out TFact fact))
@@ -171,10 +173,7 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <param name="wantAction"></param>
         /// <param name="container"></param>
-        protected virtual void OnWantActionCalculated(TWantAction wantAction, FactContainerBase<TFact> container)
-        {
-
-        }
+        protected virtual void OnWantActionCalculated(TWantAction wantAction, FactContainerBase<TFact> container) { }
 
         /// <summary>
         /// Fact calculation event handler for an <paramref name="wantAction"/>.
@@ -182,10 +181,15 @@ namespace GetcuReone.FactFactory
         /// <param name="factType">Type calculated fact.</param>
         /// <param name="container">Container.</param>
         /// <param name="wantAction">The action for which the fact was calculated.</param>
-        protected virtual void OnFactCalculatedForWantAction(IFactType factType, FactContainerBase<TFact> container, TWantAction wantAction)
-        {
+        protected virtual void OnFactCalculatedForWantAction(IFactType factType, FactContainerBase<TFact> container, TWantAction wantAction) { }
 
-        }
+        /// <summary>
+        /// Event handler method 'derive finished'. It is executed at the end of the <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/> method.
+        /// </summary>
+        /// <param name="wantActions">List of desired actions.</param>
+        /// <param name="container">Container.</param>
+        /// <param name="calculatedFacts">List of all calculated facts.</param>
+        protected virtual void OnDeriveFinished(List<TWantAction> wantActions, FactContainerBase<TFact> container, List<TFact> calculatedFacts) { }
 
         #region methods for derive
 
@@ -664,6 +668,10 @@ namespace GetcuReone.FactFactory
 
             // 2. Calculete fact
             TFact calculateFact = CreateObject(ct => rule.Calculate(ct), container);
+
+            if (calculateFact == null)
+                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidOperation, $"Rule {rule.ToString()} return null");
+
             using (container.CreateIgnoreReadOnlySpace())
                 container.Add(calculateFact);
             calculatedFacts.Add(calculateFact);
