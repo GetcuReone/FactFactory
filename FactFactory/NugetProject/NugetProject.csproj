@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    <!--<IncludeBuildOutput>false</IncludeBuildOutput>-->
 
     <Authors>GetcuReone</Authors>
     <PackageId>GetcuReone.FactFactory</PackageId>
@@ -48,11 +49,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE.txt">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\..\README.md" />
+    <None Include="..\..\LICENSE.txt" Pack="True" PackagePath=""/>
+    <None Include="..\..\README.md" Pack="True" PackagePath=""/>
   </ItemGroup>
 
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
