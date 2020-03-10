@@ -17,6 +17,26 @@
     <Copyright>Copyright © 2020 GetcuReone</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+
+    <NuspecFile>.nuspec</NuspecFile>
+    <!--General Information Transfer-->
+    <NuspecProperties>$(NuspecProperties);id=$(PackageId)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);author=$(Authors)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);Description=$(Description)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);PackageTags=$(PackageTags)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);PackageReleaseNotes=$(PackageReleaseNotes)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);NeutralLanguage=$(NeutralLanguage)</NuspecProperties>
+    <!--Transfer project information-->
+    <NuspecProperties>$(NuspecProperties);PackageProjectUrl=$(PackageProjectUrl)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);RepositoryType=$(RepositoryType)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);RepositoryUrl=$(RepositoryUrl)</NuspecProperties>
+    <!--Transfer license information-->
+    <NuspecProperties>$(NuspecProperties);PackageLicenseFile=$(PackageLicenseFile)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);PackageRequireLicenseAcceptance=$(PackageRequireLicenseAcceptance)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);Copyright=$(Copyright)</NuspecProperties>
+    <!--Transfer another information-->
+    <NuspecProperties>$(NuspecProperties);Configuration=$(Configuration)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);TargetFramework=$(TargetFramework)</NuspecProperties>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -25,15 +45,14 @@
     <DelaySign>false</DelaySign>
     <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
     <FileVersion>$(majorVersion).0.0.0</FileVersion>
+    <NuspecProperties>$(NuspecProperties);version=$(packageVersion)</NuspecProperties>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <packageVersion>1.0.0</packageVersion>
+    <NuspecProperties>$(NuspecProperties);version=$(packageVersion)</NuspecProperties>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="ComboPatterns" Version="3.0.1" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FactFactory\FactFactory.csproj">
@@ -48,10 +67,11 @@
 
   <ItemGroup>
     <None Include="..\..\LICENSE.txt">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\README.md" />
+    <None Include="..\..\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
