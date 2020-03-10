@@ -34,6 +34,9 @@ namespace GetcuReone.FactFactory.Entities
 
             factTypes.CheckArgumentFacts<TFact>();
 
+            foreach (IFactType type in factTypes)
+                type.CheckSpecialFactType();
+
             InputFactTypes = new ReadOnlyCollection<IFactType>(factTypes);
         }
 

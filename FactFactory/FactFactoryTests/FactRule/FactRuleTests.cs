@@ -1,6 +1,7 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
-using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
@@ -296,6 +297,26 @@ namespace FactFactoryTests.FactRule
                 {
                     Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
                 });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.Contained)]
+        [Description("Create rule with invalid input fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void CreateRuleWithInvalidInputFactTypeTestCase()
+        {
+            IFactType invalidFactType = GetFactType<InvalidSpecialFact>();
+            string expectedReason = $"{invalidFactType.FactName} implements more than one special fact interface";
+
+            GivenEmpty()
+                .When("Create wantAction", _ =>
+                {
+                    return ExpectedFactFactoryException(() => new Rule(
+                        ct => { return default; },
+                        new List<IFactType> { invalidFactType },
+                        GetFactType<IntFact>()));
+                })
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
     }
 }

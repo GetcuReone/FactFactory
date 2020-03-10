@@ -167,5 +167,23 @@ namespace GetcuReone.FactFactory.Helpers
 
             return type;
         }
+
+        internal static void CheckSpecialFactType(this IFactType type)
+        {
+            if (type.IsFactType<ISpecialFact>())
+            {
+                var specialResult = new bool[]
+                {
+                    type.IsFactType<INotContainedFact>(),
+                    type.IsFactType<IContainedFact>(),
+                    type.IsFactType<INoDerivedFact>(),
+                };
+
+                if (specialResult.Count(result => result == true) > 1)
+                {
+                    throw CreateException(ErrorCode.InvalidFactType, $"{type.FactName} implements more than one special fact interface");
+                }
+            }
+        }
     }
 }
