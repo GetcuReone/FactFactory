@@ -21,4 +21,4 @@ steps:
   inputs:
     solution: '$(Build.Repository.LocalPath)/**/$(nugetProjectName).csproj'
     configuration: '$(buildConfiguration)'
-    msbuildArguments: '/t:pack /p:PackageVersion=$(packageVersion) /p:IncludeBuildOutputInPackage=false'
+    msbuildArguments: '/t:pack /p:PackageVersion=$(packageVersion)'

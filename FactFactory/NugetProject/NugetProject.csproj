@@ -8,6 +8,7 @@
     <PackageId>GetcuReone.FactFactory</PackageId>
     <Product>FactFactory</Product>
     <Description>My implementation of a machine that can derive facts from other facts</Description>
+    <PackageLicenseExpression></PackageLicenseExpression>
     <RepositoryUrl>https://github.com/GetcuReone/FactFactory.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>factfactory fact getcureone combopatterns</PackageTags>
