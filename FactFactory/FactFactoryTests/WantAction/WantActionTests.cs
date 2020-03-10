@@ -1,5 +1,7 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
@@ -63,7 +65,7 @@ namespace FactFactoryTests.WantAction
         public void WantAction_RequestEntryInvalidFactTestCase()
         {
             GivenEmpty()
-                .When("Create rule", _ =>
+                .When("Create wantAction", _ =>
                 {
                     return ExpectedException<ArgumentException>(
                         () => new WAction(ct => { }, new List<IFactType> { GetFactType<InvalidFact>() }));
@@ -73,6 +75,24 @@ namespace FactFactoryTests.WantAction
                     Assert.IsNotNull(ex, "error is null");
                     Assert.AreEqual("InvalidFact types are not inherited from GetcuReone.FactFactory.Facts.FactBase", ex.Message, "Another message expected");
                 });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
+        [Description("Request invalid special fact")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void RequestInvalidSpecialFactTestCase()
+        {
+            IFactType invalidFactType = GetFactType<InvalidSpecialFact>();
+            string expectedReason = $"{invalidFactType.FactName} implements more than one special fact interface";
+
+            GivenEmpty()
+                .When("Create wantAction", _ =>
+                {
+                    return ExpectedFactFactoryException(
+                        () => new WAction(ct => { }, new List<IFactType> { invalidFactType }));
+                })
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
     }
 }
