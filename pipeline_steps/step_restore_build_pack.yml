@@ -16,15 +16,9 @@ steps:
     msbuildArguments: '/t:build'
     clean: false
 
-- task: DeleteFiles@1
-  displayName: 'Delete $(nugetProjectName).dll'
-  inputs:
-    SourceFolder: '$(Build.Repository.LocalPath)/**/$(nugetProjectName)/**/$(buildConfiguration)/netstandard2.0'
-    Contents: '$(nugetProjectName).dll'
-
 - task: MSBuild@1
   displayName: 'MS nuget pack'
   inputs:
     solution: '$(Build.Repository.LocalPath)/**/$(nugetProjectName).csproj'
     configuration: '$(buildConfiguration)'
-    msbuildArguments: '/t:pack /p:PackageVersion=$(packageVersion)'
+    msbuildArguments: '/t:pack /p:PackageVersion=$(packageVersion) /p:IncludeBuildOutputInPackage=false'
