@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ComboPatterns" Version="3.0.1" />
+    <PackageReference Include="ComboPatterns" Version="3.0.2" />
   </ItemGroup>
 
   <ItemGroup>

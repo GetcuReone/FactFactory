@@ -17,7 +17,10 @@
     <Copyright>Copyright © 2020 GetcuReone</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+  </PropertyGroup>
 
+  <PropertyGroup>
+    <!--Transfer information to a nuspec file-->
     <NuspecFile>.nuspec</NuspecFile>
     <!--General Information Transfer-->
     <NuspecProperties>$(NuspecProperties);id=$(PackageId)</NuspecProperties>

@@ -93,8 +93,11 @@ namespace InfrastructureTests
                         "lib/netstandard2.0/FactFactory.xml",
                         "lib/netstandard2.0/FactFactory.Versioned.dll",
                         "lib/netstandard2.0/FactFactory.Versioned.xml",
-                        "LICENSE.txt"
+                        "LICENSE.txt",
+                        "README.md",
                     };
+
+                    Assert.AreEqual(files.Length + 4, fileNames.Length, "Expected a different number of files in the package.");
 
                     foreach (string file in files)
                         Assert.IsTrue(fileNames.Any(fileFullName => fileFullName == file), $"The archive does not contain a file {file}");
