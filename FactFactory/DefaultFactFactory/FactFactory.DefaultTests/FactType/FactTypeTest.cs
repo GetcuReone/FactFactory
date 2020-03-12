@@ -5,7 +5,7 @@ using FactFactoryTests.FactType.Env;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
-using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Default;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using GivenWhenThen.TestAdapter.Entities;

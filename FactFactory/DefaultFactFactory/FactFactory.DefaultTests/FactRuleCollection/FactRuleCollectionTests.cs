@@ -2,7 +2,7 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Default;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using GivenWhenThen.TestAdapter.Entities;
@@ -10,8 +10,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
-using Rule = GetcuReone.FactFactory.Entities.FactRule;
+using Collection = GetcuReone.FactFactory.Default.Entities.FactRuleCollection;
+using Rule = GetcuReone.FactFactory.Default.Entities.FactRule;
 
 namespace FactFactoryTests.FactRuleCollection
 {

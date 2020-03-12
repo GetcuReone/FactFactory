@@ -2,13 +2,13 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Default;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using WAction = GetcuReone.FactFactory.Entities.WantAction;
+using WAction = GetcuReone.FactFactory.Default.Entities.WantAction;
 
 namespace FactFactoryTests.WantAction
 {
@@ -39,7 +39,7 @@ namespace FactFactoryTests.WantAction
             bool isRun = false;
 
             Given("Create WantAction", () => new WAction(ct => isRun = true, new List<IFactType> { GetFactType<OtherFact>() }))
-                .When("Run method", wantAction => wantAction.Invoke(new GetcuReone.FactFactory.Entities.FactContainer()))
+                .When("Run method", wantAction => wantAction.Invoke(new GetcuReone.FactFactory.Default.Entities.FactContainer()))
                 .Then("Check result", _ => Assert.IsTrue(isRun, "Invoke not run"));
         }
 
@@ -64,6 +64,8 @@ namespace FactFactoryTests.WantAction
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void WantAction_RequestEntryInvalidFactTestCase()
         {
+            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}";
+
             GivenEmpty()
                 .When("Create wantAction", _ =>
                 {
@@ -73,7 +75,7 @@ namespace FactFactoryTests.WantAction
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error is null");
-                    Assert.AreEqual("InvalidFact types are not inherited from GetcuReone.FactFactory.Facts.FactBase", ex.Message, "Another message expected");
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
                 });
         }
 
