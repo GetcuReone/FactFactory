@@ -15,6 +15,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\FactFactory\FactFactory.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="GetcuReone.FactFactory.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
