@@ -5,6 +5,7 @@ using FactFactoryTests.FactFactoryT.Env;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Default;
+using GetcuReone.FactFactory.Default.SpecialFacts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
