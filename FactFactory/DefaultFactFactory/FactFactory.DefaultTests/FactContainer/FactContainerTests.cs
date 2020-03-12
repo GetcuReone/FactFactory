@@ -2,15 +2,14 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Exceptions;
-using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Default;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
-using Container = GetcuReone.FactFactory.Entities.FactContainer;
+using Container = GetcuReone.FactFactory.Default.Entities.FactContainer;
 
 namespace FactFactoryTests.FactContainer
 {
@@ -30,8 +29,8 @@ namespace FactFactoryTests.FactContainer
         public void AddAnExistingFactTestCase()
         {
             GivenCreateContainer()
-                .And("Add fact", container => container.AddAndReturn(new IntFact(0)))
-                .When("Add an existing fact", container => ExpectedException<ArgumentException>(() => container.AddAndReturn(new IntFact(0))))
+                .And("Add fact", container => container.Add(new IntFact(0)))
+                .When("Add an existing fact", container => ExpectedException<ArgumentException>(() => container.Add(new IntFact(0))))
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error can't should be null");
@@ -46,7 +45,7 @@ namespace FactFactoryTests.FactContainer
         public void ContainsFactTestCase()
         {
             GivenCreateContainer()
-                .And("Add fact", container => container.AddAndReturn(new IntFact(0)))
+                .And("Add fact", container => container.Add(new IntFact(0)))
                 .When("Contains", container => container.Contains<IntFact>())
                 .Then("Check result", result => Assert.IsTrue(result, "fact not contained"));
         }
@@ -69,8 +68,8 @@ namespace FactFactoryTests.FactContainer
         public void RemoveFactTestCase()
         {
             GivenCreateContainer()
-                .And("Add fact", container => container.AddAndReturn(new IntFact(0)))
-                .When("Remove fact", container => container.RemoveAndReturn<IntFact>())
+                .And("Add fact", container => container.Add(new IntFact(0)))
+                .When("Remove fact", container => container.Remove<IntFact>())
                 .Then("Check fact", container => Assert.IsFalse(container.Contains<IntFact>()));
         }
 
@@ -83,7 +82,7 @@ namespace FactFactoryTests.FactContainer
             var fact = new IntFact(0);
 
             GivenCreateContainer()
-                .And("Add fact", container => container.AddAndReturn(fact))
+                .And("Add fact", container => container.Add(fact))
                 .When("Get value", ct =>
                 {
                     bool isFind = ct.TryGetFact(out IntFact result);
@@ -124,7 +123,7 @@ namespace FactFactoryTests.FactContainer
             var fact = new IntFact(0);
 
             GivenCreateContainer()
-                .And("Add fact", container => container.AddAndReturn(fact))
+                .And("Add fact", container => container.Add(fact))
                 .When("Get value", ct => ct.GetFact<IntFact>())
                 .Then("Check result", result =>
                 {

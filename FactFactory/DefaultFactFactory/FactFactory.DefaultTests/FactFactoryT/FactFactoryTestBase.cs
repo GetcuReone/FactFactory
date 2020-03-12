@@ -1,16 +1,17 @@
 ﻿using FactFactory.TestsCommon;
-using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Default;
 using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Factory = GetcuReone.FactFactory.Default.FactFactory;
 
 namespace FactFactoryTests.FactFactoryT
 {
     [TestClass]
     public abstract class FactFactoryTestBase : CommonTestBase<FactBase>
     {
-        protected GivenBlock<GetcuReone.FactFactory.FactFactory> GivenCreateFactFactory()
+        protected GivenBlock<Factory> GivenCreateFactFactory()
         {
-            return Given("Create fact factory", () => new GetcuReone.FactFactory.FactFactory());
+            return Given("Create fact factory", () => new Factory());
         }
     }
 }

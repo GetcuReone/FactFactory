@@ -1,5 +1,4 @@
-﻿using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Helpers;
+﻿using GetcuReone.FactFactory.Default.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 
 namespace GetcuReone.FactFactory.Default
@@ -20,7 +19,7 @@ namespace GetcuReone.FactFactory.Default
         /// </summary>
         public NotContained() : base(null)
         {
-            Value = GetFactType();
+            Value = DefaultFactFactoryHelper.GetFactType<TFact>();
         }
 
         /// <summary>
@@ -29,7 +28,7 @@ namespace GetcuReone.FactFactory.Default
         /// <returns>fact type</returns>
         public override IFactType GetFactType()
         {
-            return new FactType<NotContained<TFact>>();
+            return DefaultFactFactoryHelper.GetFactType<NotContained<TFact>>();
         }
 
         /// <summary>

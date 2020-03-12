@@ -1,6 +1,6 @@
-﻿using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Facts;
-using Container = GetcuReone.FactFactory.Entities.FactContainer;
+﻿using GetcuReone.FactFactory.Default;
+using GetcuReone.FactFactory.Entities;
+using Container = GetcuReone.FactFactory.Default.Entities.FactContainer;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {

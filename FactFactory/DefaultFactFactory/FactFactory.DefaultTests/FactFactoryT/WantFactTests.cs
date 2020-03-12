@@ -3,7 +3,7 @@ using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
-using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Default;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

@@ -1,12 +1,13 @@
 ﻿using FactFactoryTests.CommonFacts;
+using Collection = GetcuReone.FactFactory.Default.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {
     public static class RuleCollectionHelper
     {
-        public static GetcuReone.FactFactory.Entities.FactRuleCollection GetInputFactRules()
+        public static Collection GetInputFactRules()
         {
-            return new GetcuReone.FactFactory.Entities.FactRuleCollection
+            return new Collection
             {
                 (Input15Fact firstFact, Input14Fact secondFact) => new Input16Fact(firstFact.Value + secondFact.Value - 3),
                 (Input2Fact secondFact) => new Input14Fact(secondFact.Value + 14),
@@ -21,9 +22,9 @@ namespace FactFactoryTests.FactFactoryT.Env
             };
         }
 
-        public static GetcuReone.FactFactory.Entities.FactRuleCollection GetRulesForNotAvailableInput6Fact()
+        public static Collection GetRulesForNotAvailableInput6Fact()
         {
-            return new GetcuReone.FactFactory.Entities.FactRuleCollection
+            return new Collection
             {
                 (Input15Fact firstFact, Input14Fact secondFact) => new Input16Fact(firstFact.Value + secondFact.Value - 3),
                 (Input2Fact secondFact) => new Input14Fact(secondFact.Value + 14),

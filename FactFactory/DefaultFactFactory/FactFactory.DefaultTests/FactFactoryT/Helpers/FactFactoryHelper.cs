@@ -1,15 +1,15 @@
 ﻿using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Default;
 using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Factory = GetcuReone.FactFactory.FactFactory;
-using Action = GetcuReone.FactFactory.Entities.WantAction;
-using Container = GetcuReone.FactFactory.Entities.FactContainer;
-using Rule = GetcuReone.FactFactory.Entities.FactRule;
-using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
+using Factory = GetcuReone.FactFactory.Default.FactFactory;
+using Action = GetcuReone.FactFactory.Default.Entities.WantAction;
+using Container = GetcuReone.FactFactory.Default.Entities.FactContainer;
+using Rule = GetcuReone.FactFactory.Default.Entities.FactRule;
+using Collection = GetcuReone.FactFactory.Default.Entities.FactRuleCollection;
 using GetcuReone.FactFactory;
 
-namespace FactFactoryTests.FactFactoryT
+namespace FactFactoryTests.FactFactoryT.Helpers
 {
     internal static class FactFactoryHelper
     {

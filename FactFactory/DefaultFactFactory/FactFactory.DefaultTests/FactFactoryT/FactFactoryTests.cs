@@ -2,8 +2,9 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
+using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Default;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,12 +15,12 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class FactFactoryTests : FactFactoryTestBase
     {
-        private GetcuReone.FactFactory.FactFactory FactFactory { get; set; }
+        private GetcuReone.FactFactory.Default.FactFactory FactFactory { get; set; }
 
         [TestInitialize]
         public void Initialize()
         {
-            FactFactory = new GetcuReone.FactFactory.FactFactory();
+            FactFactory = new GetcuReone.FactFactory.Default.FactFactory();
         }
 
         [TestMethod]

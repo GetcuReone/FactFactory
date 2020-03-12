@@ -1,4 +1,4 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.Default.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 
 namespace GetcuReone.FactFactory.Default
@@ -19,7 +19,7 @@ namespace GetcuReone.FactFactory.Default
         /// </summary>
         public NoDerived() : base(null)
         {
-            Value = GetFactType();
+            Value = DefaultFactFactoryHelper.GetFactType<TFact>();
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace GetcuReone.FactFactory.Default
         /// <returns>fact type</returns>
         public override IFactType GetFactType()
         {
-            return new FactType<NoDerived<TFact>>();
+            return DefaultFactFactoryHelper.GetFactType<NoDerived<TFact>>();
         }
 
         /// <summary>

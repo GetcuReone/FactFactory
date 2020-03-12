@@ -1,13 +1,13 @@
 ﻿using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Default;
 using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
-using Action = GetcuReone.FactFactory.Entities.WantAction;
-using Container = GetcuReone.FactFactory.Entities.FactContainer;
-using Rule = GetcuReone.FactFactory.Entities.FactRule;
-using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
+using Action = GetcuReone.FactFactory.Default.Entities.WantAction;
+using Container = GetcuReone.FactFactory.Default.Entities.FactContainer;
+using Rule = GetcuReone.FactFactory.Default.Entities.FactRule;
+using Collection = GetcuReone.FactFactory.Default.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {
@@ -20,7 +20,7 @@ namespace FactFactoryTests.FactFactoryT.Env
 
         internal List<FactBase> DefaultFacts { get; } = new List<FactBase>();
 
-        protected override GetcuReone.FactFactory.Entities.WantAction CreateWantAction(Action<IFactContainer<FactBase>> wantAction, IList<IFactType> factTypes)
+        protected override Action CreateWantAction(Action<IFactContainer<FactBase>> wantAction, IList<IFactType> factTypes)
         {
             return new Action(wantAction, factTypes);
         }
