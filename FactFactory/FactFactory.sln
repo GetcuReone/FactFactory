@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DefaultFactFactory", "Defau
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactFactory.Default", "DefaultFactFactory\FactFactory.Default\FactFactory.Default.csproj", "{973542AF-7330-409C-B261-B54C16E08CCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactFactory.DefaultTests", "DefaultFactFactory\FactFactory.DefaultTests\FactFactory.DefaultTests.csproj", "{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{973542AF-7330-409C-B261-B54C16E08CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{973542AF-7330-409C-B261-B54C16E08CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{973542AF-7330-409C-B261-B54C16E08CCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +104,7 @@ Global
 		{3AC49AB3-93F2-4A96-A408-7CBC3B12B130} = {F59B953D-A6E3-435D-BCDD-4D1F22B2A036}
 		{2BDF734D-0AC8-4B81-823F-D208EF6F7836} = {05F728D2-803F-4056-82AB-1262419DDD08}
 		{973542AF-7330-409C-B261-B54C16E08CCC} = {9890ABE3-D733-42A3-9F3C-680FE09CEAA5}
+		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69} = {9890ABE3-D733-42A3-9F3C-680FE09CEAA5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FC41382-9108-4BAA-806E-C2CFE2D98DB2}
