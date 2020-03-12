@@ -29,9 +29,19 @@ namespace GetcuReone.FactFactory.Versioned
         /// Constructor.
         /// </summary>
         /// <param name="value">Fact value.</param>
-        protected VersionedFactBase(TFactValue value)
+        protected VersionedFactBase(TFactValue value) : this(value, null)
+        {
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="version"></param>
+        protected VersionedFactBase(TFactValue value, IVersionFact version)
         {
             Value = value;
+            Version = version;
         }
     }
 }
