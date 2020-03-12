@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Helpers;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
@@ -53,6 +54,11 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             throw FactFactoryHelper.CreateDeriveException<TFact>(
                     CommonErrorCode.InvalidFactType, 
                     $"Fact {fact.GetFactType().FactName} should not be converted into {typeof(TFact).FullName}");
+        }
+
+        internal static IFactType GetFactType<TFact>() where TFact : IFact
+        {
+            return new FactType<TFact>();
         }
     }
 }

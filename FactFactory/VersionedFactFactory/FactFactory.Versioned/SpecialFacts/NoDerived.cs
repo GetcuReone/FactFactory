@@ -1,12 +1,13 @@
 ﻿using GetcuReone.FactFactory.Default.Helpers;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.Helpers;
 
-namespace GetcuReone.FactFactory.Default
+namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
     /// <summary>
     /// Contains information about a type of fact that cannot be calculated
     /// </summary>
-    public sealed class NoDerived<TFact> : FactBase<IFactType>, INoDerivedFact
+    public sealed class NoDerived<TFact> : VersionedFactBase<IFactType>, INoDerivedFact
         where TFact : IFact
     {
         /// <summary>
@@ -19,7 +20,7 @@ namespace GetcuReone.FactFactory.Default
         /// </summary>
         public NoDerived() : base(null)
         {
-            Value = DefaultFactFactoryHelper.GetFactType<TFact>();
+            Value = VersionedFactFactoryHelper.GetFactType<TFact>();
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace GetcuReone.FactFactory.Default
         /// <returns>fact type</returns>
         public override IFactType GetFactType()
         {
-            return DefaultFactFactoryHelper.GetFactType<NoDerived<TFact>>();
+            return VersionedFactFactoryHelper.GetFactType<NoDerived<TFact>>();
         }
 
         /// <summary>

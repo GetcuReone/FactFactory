@@ -1,12 +1,12 @@
-﻿using GetcuReone.FactFactory.Default.Helpers;
-using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.Helpers;
 
-namespace GetcuReone.FactFactory.Default
+namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
     /// <summary>
-    /// Information about a fact that is not contained in the container at the time of the function call <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
+    /// Information about a fact that is contained in the container at the time of the function call <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
     /// </summary>
-    public sealed class NotContained<TFact> : FactBase<IFactType>, INotContainedFact
+    public sealed class Contained<TFact> : VersionedFactBase<IFactType>, IContainedFact
         where TFact : IFact
     {
         /// <summary>
@@ -17,9 +17,9 @@ namespace GetcuReone.FactFactory.Default
         /// <summary>
         /// Constructor.
         /// </summary>
-        public NotContained() : base(null)
+        public Contained() : base(null)
         {
-            Value = DefaultFactFactoryHelper.GetFactType<TFact>();
+            Value = VersionedFactFactoryHelper.GetFactType<TFact>();
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace GetcuReone.FactFactory.Default
         /// <returns>fact type</returns>
         public override IFactType GetFactType()
         {
-            return DefaultFactFactoryHelper.GetFactType<NotContained<TFact>>();
+            return VersionedFactFactoryHelper.GetFactType<Contained<TFact>>();
         }
 
         /// <summary>
