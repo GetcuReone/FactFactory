@@ -34,13 +34,13 @@
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase})">
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Versioned.VersionedFactBase})">
             <summary>
             Constructor.
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase},System.Boolean)">
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Versioned.VersionedFactBase},System.Boolean)">
             <summary>
             Constructor.
             </summary>
@@ -70,7 +70,7 @@
             Type of fact with rule version
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase},GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase},GetcuReone.FactFactory.Versioned.VersionedFactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             
             </summary>
@@ -123,7 +123,7 @@
             </summary>
             <returns>Copied <see cref="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection"/>.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase},GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase},GetcuReone.FactFactory.Versioned.VersionedFactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Creation method <see cref="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule"/>
             </summary>
@@ -137,7 +137,7 @@
             Information about the desired action with the version
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor
             </summary>
@@ -148,243 +148,6 @@
             <summary>
             Type fact version
             </summary>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase">
-            <summary>
-            Base class for versioned facts
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase.Version">
-            <summary>
-            Version of the rule that calculated the fact.
-            </summary>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase`1">
-            <summary>
-            Base class for versioned typed facts.
-            </summary>
-            <typeparam name="TFactValue">Type fact value.</typeparam>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase`1.Value">
-            <summary>
-            Value fact.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase`1.#ctor(`0)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="value">Fact value.</param>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Facts.Versions.DateTimeVersionBase">
-            <summary>
-            Base class for <see cref="T:System.DateTime"/> based version facts
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.DateTimeVersionBase.#ctor(System.DateTime)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="version">version</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.DateTimeVersionBase.EqualVersion``1(``0)">
-            <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.DateTimeVersionBase.IsLessThan``1(``0)">
-            <summary>
-            True - the version of the current fact is less than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.DateTimeVersionBase.IsMoreThan``1(``0)">
-            <summary>
-            True - the version of the current fact is more than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Facts.Versions.IntVersionBase">
-            <summary>
-            Base class for <see cref="T:System.Int32"/> based version facts
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.IntVersionBase.#ctor(System.Int32)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="version">version</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.IntVersionBase.EqualVersion``1(``0)">
-            <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.IntVersionBase.IsLessThan``1(``0)">
-            <summary>
-            True - the version of the current fact is less than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.IntVersionBase.IsMoreThan``1(``0)">
-            <summary>
-            True - the version of the current fact is more than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Facts.Versions.LongVersionBase">
-            <summary>
-            Base class for <see cref="T:System.Int64"/> based version facts
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.LongVersionBase.#ctor(System.Int64)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="version">version</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.LongVersionBase.EqualVersion``1(``0)">
-            <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.LongVersionBase.IsLessThan``1(``0)">
-            <summary>
-            True - the version of the current fact is less than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.LongVersionBase.IsMoreThan``1(``0)">
-            <summary>
-            True - the version of the current fact is more than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Facts.Versions.UintVersionBase">
-            <summary>
-            Base class for <see cref="T:System.UInt32"/> based version facts
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.UintVersionBase.#ctor(System.UInt32)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="version">version</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.UintVersionBase.EqualVersion``1(``0)">
-            <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.UintVersionBase.IsLessThan``1(``0)">
-            <summary>
-            True - the version of the current fact is less than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.UintVersionBase.IsMoreThan``1(``0)">
-            <summary>
-            True - the version of the current fact is more than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Facts.Versions.UlongVersionBase">
-            <summary>
-            Base class for <see cref="T:System.UInt64"/> based version facts
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.UlongVersionBase.#ctor(System.UInt64)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="version">version</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.UlongVersionBase.EqualVersion``1(``0)">
-            <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.UlongVersionBase.IsLessThan``1(``0)">
-            <summary>
-            True - the version of the current fact is less than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.UlongVersionBase.IsMoreThan``1(``0)">
-            <summary>
-            True - the version of the current fact is more than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Facts.Versions.VersionBase`1">
-            <summary>
-            Base class for version facts.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.VersionBase`1.#ctor(`0)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="version">version</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.VersionBase`1.EqualVersion``1(``0)">
-            <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.VersionBase`1.IsLessThan``1(``0)">
-            <summary>
-            True - the version of the current fact is less than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facts.Versions.VersionBase`1.IsMoreThan``1(``0)">
-            <summary>
-            True - the version of the current fact is more than <paramref name="versionFact"/>.
-            </summary>
-            <typeparam name="TVersionFact"></typeparam>
-            <param name="versionFact"></param>
-            <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Helpers.VersionedFactFactoryHelper">
             <summary>
@@ -453,6 +216,33 @@
             <param name="versionFact"></param>
             <returns></returns>
         </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactBase">
+            <summary>
+            Base class for versioned facts
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Versioned.VersionedFactBase.Version">
+            <summary>
+            Version of the rule that calculated the fact.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactBase`1">
+            <summary>
+            Base class for versioned typed facts.
+            </summary>
+            <typeparam name="TFactValue">Type fact value.</typeparam>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Versioned.VersionedFactBase`1.Value">
+            <summary>
+            Value fact.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactBase`1.#ctor(`0)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="value">Fact value.</param>
+        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactFactory">
             <summary>
             Default implementation of versioned fact factory <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5"/>
@@ -474,7 +264,7 @@
             </summary>
             <param name="getAllVersionFactsFunc">function that returns all versioned facts used in the rules</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.Facts.VersionedFactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction`1"/>
             </summary>
@@ -550,6 +340,216 @@
             </summary>
             <typeparam name="TWantFact">Type of desired fact.</typeparam>
             <typeparam name="TVersion">Type of version fact.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Versions.DateTimeVersionBase">
+            <summary>
+            Base class for <see cref="T:System.DateTime"/> based version facts
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.DateTimeVersionBase.#ctor(System.DateTime)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.DateTimeVersionBase.EqualVersion``1(``0)">
+            <summary>
+            True - the version of the current fact is equal <paramref name="versionFact"/>
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.DateTimeVersionBase.IsLessThan``1(``0)">
+            <summary>
+            True - the version of the current fact is less than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.DateTimeVersionBase.IsMoreThan``1(``0)">
+            <summary>
+            True - the version of the current fact is more than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Versions.IntVersionBase">
+            <summary>
+            Base class for <see cref="T:System.Int32"/> based version facts
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.IntVersionBase.#ctor(System.Int32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.IntVersionBase.EqualVersion``1(``0)">
+            <summary>
+            True - the version of the current fact is equal <paramref name="versionFact"/>
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.IntVersionBase.IsLessThan``1(``0)">
+            <summary>
+            True - the version of the current fact is less than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.IntVersionBase.IsMoreThan``1(``0)">
+            <summary>
+            True - the version of the current fact is more than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Versions.LongVersionBase">
+            <summary>
+            Base class for <see cref="T:System.Int64"/> based version facts
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.LongVersionBase.#ctor(System.Int64)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.LongVersionBase.EqualVersion``1(``0)">
+            <summary>
+            True - the version of the current fact is equal <paramref name="versionFact"/>
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.LongVersionBase.IsLessThan``1(``0)">
+            <summary>
+            True - the version of the current fact is less than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.LongVersionBase.IsMoreThan``1(``0)">
+            <summary>
+            True - the version of the current fact is more than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Versions.UintVersionBase">
+            <summary>
+            Base class for <see cref="T:System.UInt32"/> based version facts
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UintVersionBase.#ctor(System.UInt32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UintVersionBase.EqualVersion``1(``0)">
+            <summary>
+            True - the version of the current fact is equal <paramref name="versionFact"/>
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UintVersionBase.IsLessThan``1(``0)">
+            <summary>
+            True - the version of the current fact is less than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UintVersionBase.IsMoreThan``1(``0)">
+            <summary>
+            True - the version of the current fact is more than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Versions.UlongVersionBase">
+            <summary>
+            Base class for <see cref="T:System.UInt64"/> based version facts
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UlongVersionBase.#ctor(System.UInt64)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UlongVersionBase.EqualVersion``1(``0)">
+            <summary>
+            True - the version of the current fact is equal <paramref name="versionFact"/>
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UlongVersionBase.IsLessThan``1(``0)">
+            <summary>
+            True - the version of the current fact is less than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UlongVersionBase.IsMoreThan``1(``0)">
+            <summary>
+            True - the version of the current fact is more than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Versions.VersionBase`1">
+            <summary>
+            Base class for version facts.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.VersionBase`1.#ctor(`0)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.VersionBase`1.EqualVersion``1(``0)">
+            <summary>
+            True - the version of the current fact is equal <paramref name="versionFact"/>
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.VersionBase`1.IsLessThan``1(``0)">
+            <summary>
+            True - the version of the current fact is less than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Versions.VersionBase`1.IsMoreThan``1(``0)">
+            <summary>
+            True - the version of the current fact is more than <paramref name="versionFact"/>.
+            </summary>
+            <typeparam name="TVersionFact"></typeparam>
+            <param name="versionFact"></param>
             <returns></returns>
         </member>
     </members>
