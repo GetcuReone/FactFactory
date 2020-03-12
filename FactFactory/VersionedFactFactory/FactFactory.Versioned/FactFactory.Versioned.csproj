@@ -15,6 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\DefaultFactFactory\FactFactory.Default\FactFactory.Default.csproj" />
     <ProjectReference Include="..\..\FactFactory\FactFactory.csproj" />
   </ItemGroup>
 

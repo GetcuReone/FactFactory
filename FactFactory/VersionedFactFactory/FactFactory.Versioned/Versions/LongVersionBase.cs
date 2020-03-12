@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace GetcuReone.FactFactory.Versioned.Facts.Versions
+namespace GetcuReone.FactFactory.Versioned.Versions
 {
     /// <summary>
-    /// Base class for <see cref="uint"/> based version facts
+    /// Base class for <see cref="long"/> based version facts
     /// </summary>
-    public abstract class UintVersionBase : VersionBase<uint>
+    public abstract class LongVersionBase : VersionBase<long>
     {
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="version">version</param>
-        protected UintVersionBase(uint version) : base(version)
+        protected LongVersionBase(long version) : base(version)
         {
         }
 
@@ -34,7 +32,9 @@ namespace GetcuReone.FactFactory.Versioned.Facts.Versions
                 case VersionedFactBase<uint> version:
                     return Value == version.Value;
                 case VersionedFactBase<ulong> version:
-                    return Value == version.Value;
+                    if (Value < 0)
+                        return false;
+                    return Convert.ToUInt64(Value) == version.Value;
                 default:
                     return false;
             }
@@ -57,7 +57,9 @@ namespace GetcuReone.FactFactory.Versioned.Facts.Versions
                 case VersionedFactBase<uint> version:
                     return Value < version.Value;
                 case VersionedFactBase<ulong> version:
-                    return Value < version.Value;
+                    if (Value < 0)
+                        return true;
+                    return Convert.ToUInt64(Value) < version.Value;
                 default:
                     return false;
             }
@@ -80,7 +82,9 @@ namespace GetcuReone.FactFactory.Versioned.Facts.Versions
                 case VersionedFactBase<uint> version:
                     return Value > version.Value;
                 case VersionedFactBase<ulong> version:
-                    return Value > version.Value;
+                    if (Value < 0)
+                        return false;
+                    return Convert.ToUInt64(Value) > version.Value;
                 default:
                     return false;
             }

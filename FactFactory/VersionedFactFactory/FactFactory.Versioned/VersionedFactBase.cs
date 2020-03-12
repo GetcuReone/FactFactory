@@ -1,7 +1,7 @@
-﻿using GetcuReone.FactFactory.Facts;
+﻿using GetcuReone.FactFactory.Default;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 
-namespace GetcuReone.FactFactory.Versioned.Facts
+namespace GetcuReone.FactFactory.Versioned
 {
     /// <summary>
     /// Base class for versioned facts

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GetcuReone.FactFactory.Versioned.Facts.Versions
+namespace GetcuReone.FactFactory.Versioned.Versions
 {
     /// <summary>
     /// Base class for <see cref="int"/> based version facts

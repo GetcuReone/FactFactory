@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace GetcuReone.FactFactory.Versioned.Facts.Versions
+namespace GetcuReone.FactFactory.Versioned.Versions
 {
     /// <summary>
-    /// Base class for <see cref="long"/> based version facts
+    /// Base class for <see cref="ulong"/> based version facts
     /// </summary>
-    public abstract class LongVersionBase : VersionBase<long>
+    public abstract class UlongVersionBase : VersionBase<ulong>
     {
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="version">version</param>
-        protected LongVersionBase(long version) : base(version)
+        protected UlongVersionBase(ulong version) : base(version)
         {
         }
 
@@ -26,15 +28,17 @@ namespace GetcuReone.FactFactory.Versioned.Facts.Versions
             switch (versionFact)
             {
                 case VersionedFactBase<int> version:
-                    return Value == version.Value;
+                    if (version.Value < 0)
+                        return false;
+                    return Value == Convert.ToUInt64(version.Value);
                 case VersionedFactBase<long> version:
-                    return Value == version.Value;
+                    if (version.Value < 0)
+                        return false;
+                    return Value == Convert.ToUInt64(version.Value);
                 case VersionedFactBase<uint> version:
                     return Value == version.Value;
                 case VersionedFactBase<ulong> version:
-                    if (Value < 0)
-                        return false;
-                    return Convert.ToUInt64(Value) == version.Value;
+                    return Value == version.Value;
                 default:
                     return false;
             }
@@ -51,15 +55,17 @@ namespace GetcuReone.FactFactory.Versioned.Facts.Versions
             switch (versionFact)
             {
                 case VersionedFactBase<int> version:
-                    return Value < version.Value;
+                    if (version.Value < 0)
+                        return false;
+                    return Value < Convert.ToUInt64(version.Value);
                 case VersionedFactBase<long> version:
-                    return Value < version.Value;
+                    if (version.Value < 0)
+                        return false;
+                    return Value < Convert.ToUInt64(version.Value);
                 case VersionedFactBase<uint> version:
                     return Value < version.Value;
                 case VersionedFactBase<ulong> version:
-                    if (Value < 0)
-                        return true;
-                    return Convert.ToUInt64(Value) < version.Value;
+                    return Value < version.Value;
                 default:
                     return false;
             }
@@ -76,15 +82,17 @@ namespace GetcuReone.FactFactory.Versioned.Facts.Versions
             switch (versionFact)
             {
                 case VersionedFactBase<int> version:
-                    return Value > version.Value;
+                    if (version.Value < 0)
+                        return true;
+                    return Value > Convert.ToUInt64(version.Value);
                 case VersionedFactBase<long> version:
-                    return Value > version.Value;
+                    if (version.Value < 0)
+                        return true;
+                    return Value > Convert.ToUInt64(version.Value);
                 case VersionedFactBase<uint> version:
                     return Value > version.Value;
                 case VersionedFactBase<ulong> version:
-                    if (Value < 0)
-                        return false;
-                    return Convert.ToUInt64(Value) > version.Value;
+                    return Value > version.Value;
                 default:
                     return false;
             }
