@@ -2,15 +2,15 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Facts;
+using GetcuReone.FactFactory.Default;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Container = GetcuReone.FactFactory.Entities.FactContainer;
-using Rule = GetcuReone.FactFactory.Entities.FactRule;
+using Container = GetcuReone.FactFactory.Default.Entities.FactContainer;
+using Rule = GetcuReone.FactFactory.Default.Entities.FactRule;
 
 namespace FactFactoryTests.FactRule
 {
@@ -207,6 +207,8 @@ namespace FactFactoryTests.FactRule
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Rule_RequestInvalidFactTestCase()
         {
+            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}";
+
             GivenEmpty()
                 .When("Create rule", _ =>
                 {
@@ -216,7 +218,7 @@ namespace FactFactoryTests.FactRule
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error is null");
-                    Assert.AreEqual("InvalidFact types are not inherited from GetcuReone.FactFactory.Facts.FactBase", ex.Message, "Another message expected");
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
                 });
         }
 
@@ -226,16 +228,19 @@ namespace FactFactoryTests.FactRule
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Rule_RequestEntryInvalidFactTestCase()
         {
+            IFactType inputType = GetFactType<InvalidFact>();
+            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}";
+
             GivenEmpty()
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<InvalidFact>() }, GetFactType<IntFact>()));
+                        () => new Rule(ct => { return default; }, new List<IFactType> { inputType }, GetFactType<IntFact>()));
                 })
                 .Then("Check error", ex =>
                 {
                     Assert.IsNotNull(ex, "error is null");
-                    Assert.AreEqual("InvalidFact types are not inherited from GetcuReone.FactFactory.Facts.FactBase", ex.Message, "Another message expected");
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
                 });
         }
 
