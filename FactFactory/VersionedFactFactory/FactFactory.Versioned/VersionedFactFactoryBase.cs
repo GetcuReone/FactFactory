@@ -20,7 +20,7 @@ namespace GetcuReone.FactFactory.Versioned
         where TFactContainer : FactContainerBase<TFact>
         where TFactRule : FactRuleBase<TFact>, IVersionedFactRule<TFact>
         where TFactRuleCollection : FactRuleCollectionBase<TFact, TFactRule>
-        where TWantAction : WantActionBase<TFact>, IFactTypeVersionInformation
+        where TWantAction : WantActionBase<TFact>, IFactTypeVersionInfo
     {
         private List<IFactType> _calculatedFactTypes;
         private TWantAction _calculatingWantAction;

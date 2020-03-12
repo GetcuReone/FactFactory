@@ -5,7 +5,7 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
     /// <summary>
     /// Fact type version information. Contains information about the type of fact with the desired version.
     /// </summary>
-    public interface IFactTypeVersionInformation
+    public interface IFactTypeVersionInfo
     {
         /// <summary>
         /// Type fact version

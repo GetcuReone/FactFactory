@@ -10,7 +10,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
     /// <summary>
     /// Information about the desired action with the version
     /// </summary>
-    public class VersionedWantAction : WantActionBase<VersionedFactBase>, IFactTypeVersionInformation
+    public class VersionedWantAction : WantActionBase<VersionedFactBase>, IFactTypeVersionInfo
     {
         /// <summary>
         /// Constructor
