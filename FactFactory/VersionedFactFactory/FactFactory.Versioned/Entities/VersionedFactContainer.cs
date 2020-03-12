@@ -1,6 +1,5 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Versioned.Facts;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Versioned.Entities

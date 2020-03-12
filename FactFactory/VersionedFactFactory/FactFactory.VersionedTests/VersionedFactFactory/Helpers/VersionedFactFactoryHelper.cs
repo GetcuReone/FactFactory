@@ -1,6 +1,5 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Versioned;
-using GetcuReone.FactFactory.Versioned.Facts;
 using GivenWhenThen.TestAdapter.Entities;
 using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 using Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;

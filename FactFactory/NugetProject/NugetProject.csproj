@@ -58,6 +58,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DefaultFactFactory\FactFactory.Default\FactFactory.Default.csproj">
+      <PrivateAssets>All</PrivateAssets>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="..\FactFactory\FactFactory.csproj">
       <PrivateAssets>All</PrivateAssets>
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
