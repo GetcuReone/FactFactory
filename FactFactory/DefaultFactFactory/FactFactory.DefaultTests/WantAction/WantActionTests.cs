@@ -17,7 +17,7 @@ namespace FactFactoryTests.WantAction
     {
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
-        [Description("Create WantAction without action")]
+        [Description("Create WantAction without action.")]
         [Timeout(Timeouts.MilliSecond.FiveHundred)]
         public void CreateWantActionWithoutActionTestCase()
         {
@@ -32,7 +32,7 @@ namespace FactFactoryTests.WantAction
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
-        [Description("Run invoke")]
+        [Description("Run invoke.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void InvokeTestCase()
         {
@@ -45,7 +45,7 @@ namespace FactFactoryTests.WantAction
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
-        [Description("Create WantAction without input facts")]
+        [Description("Create WantAction without input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateWantActionWithoutInputFactsTestCase()
         {
@@ -60,7 +60,7 @@ namespace FactFactoryTests.WantAction
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
-        [Description("Request entry is not a valid fact")]
+        [Description("Request entry is not a valid fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void WantAction_RequestEntryInvalidFactTestCase()
         {
@@ -81,7 +81,7 @@ namespace FactFactoryTests.WantAction
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
-        [Description("Request invalid special fact")]
+        [Description("Request invalid special fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RequestInvalidSpecialFactTestCase()
         {

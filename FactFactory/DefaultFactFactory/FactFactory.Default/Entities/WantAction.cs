@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
-    /// Desired action information
+    /// Desired action information.
     /// </summary>
     public class WantAction : WantActionBase<FactBase>
     {

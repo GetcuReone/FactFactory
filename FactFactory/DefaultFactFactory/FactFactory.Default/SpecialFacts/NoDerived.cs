@@ -4,7 +4,7 @@ using GetcuReone.FactFactory.Interfaces;
 namespace GetcuReone.FactFactory.SpecialFacts
 {
     /// <summary>
-    /// Contains information about a type of fact that cannot be calculated
+    /// Contains information about a type of fact that cannot be calculated.
     /// </summary>
     public sealed class NoDerived<TFact> : FactBase<IFactType>, INoDerivedFact
         where TFact : IFact
@@ -25,7 +25,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
         /// <summary>
         /// Get fact type.
         /// </summary>
-        /// <returns>fact type</returns>
+        /// <returns>Fact type.</returns>
         public override IFactType GetFactType()
         {
             return DefaultFactFactoryHelper.GetFactType<NoDerived<TFact>>();

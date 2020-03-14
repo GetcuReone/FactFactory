@@ -21,7 +21,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.Factory)]
-        [Description("Check method Derive")]
+        [Description("Check method Derive.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveTestCase()
         {
@@ -46,7 +46,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
-        [Description("Want a fact for which there is no rule")]
+        [Description("Want a fact for which there is no rule.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void NotExistsRuleForFactTestCase()
         {
@@ -61,7 +61,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
-        [Description("Want a fact that cannot be derived")]
+        [Description("Want a fact that cannot be derived.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CannotDerivedOneFactFromOne1TestCase()
         {
@@ -289,7 +289,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
-        [Description("Want a fact that cannot be derived")]
+        [Description("Want a fact that cannot be derived.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CannotDerivedOneFactFromOne2TestCase()
         {
@@ -324,7 +324,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.Factory)]
-        [Description("Derived tow facts")]
+        [Description("Derived tow facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DerivedTwoFactsTestCase()
         {
@@ -349,7 +349,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
-        [Description("Get the original rules for the Derive")]
+        [Description("Get the original rules for the Derive.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetOriginalsRulesForDerive()
         {

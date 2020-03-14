@@ -20,7 +20,7 @@ namespace FactFactoryTests.FactRule
     {
         [TestMethod]
         [TestCategory(TC.Objects.Rule)]
-        [Description("Create FactRule without param")]
+        [Description("Create FactRule without param.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateFactRuleWithoutParamTestCase()
         {
@@ -31,7 +31,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Objects.Rule)]
-        [Description("Create a rule with one input parameter")]
+        [Description("Create a rule with one input parameter.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateFactRuleOneInputParamTestCase()
         {
@@ -52,7 +52,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Objects.Rule)]
-        [Description("Create a rule with several input parameters")]
+        [Description("Create a rule with several input parameters.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateFactRuleSeveralInputParamTestCase()
         {
@@ -72,7 +72,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Objects.Rule)]
-        [Description("Create a rule with output parameter")]
+        [Description("Create a rule with output parameter.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateFactRuleOutputParamTestCase()
         {
@@ -89,7 +89,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
-        [Description("Create a rule without param")]
+        [Description("Create a rule without param.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateFactRuleWithoutFuncTestCase()
         {
@@ -107,7 +107,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Objects.Rule)]
-        [Description("Check method calculate")]
+        [Description("Check method calculate.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CalculateFactRuleTestCase()
         {
@@ -141,7 +141,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Objects.Rule)]
-        [Description("Rule can be followed")]
+        [Description("Rule can be followed.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CanCalculateFactRuleTestCase()
         {
@@ -160,7 +160,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Objects.Rule)]
-        [Description("Rule cannot be executed")]
+        [Description("Rule cannot be executed.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CanNotCalculateFactRuleTestCase()
         {
@@ -185,7 +185,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
-        [Description("Request entry calculated by the rule fact")]
+        [Description("Request entry calculated by the rule fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RequestEntryCalculatedByRuleFactTestCase()
         {
@@ -204,7 +204,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
-        [Description("Request an invalid fact")]
+        [Description("Request an invalid fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Rule_RequestInvalidFactTestCase()
         {
@@ -225,7 +225,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule)]
-        [Description("Request entry is not a valid fact")]
+        [Description("Request entry is not a valid fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Rule_RequestEntryInvalidFactTestCase()
         {
@@ -247,7 +247,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.NoDerived)]
-        [Description("Return NoDerive fact")]
+        [Description("Return NoDerive fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ReturnNoDeriveFactTestCase()
         {
@@ -267,7 +267,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.NotContained)]
-        [Description("Return NotContained fact")]
+        [Description("Return NotContained fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ReturnNotContainedFactTestCase()
         {
@@ -287,7 +287,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.Contained)]
-        [Description("Return Contained fact")]
+        [Description("Return Contained fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ReturnContainedFactTestCase()
         {
@@ -307,7 +307,7 @@ namespace FactFactoryTests.FactRule
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.Contained)]
-        [Description("Create rule with invalid input fact")]
+        [Description("Create rule with invalid input fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateRuleWithInvalidInputFactTypeTestCase()
         {

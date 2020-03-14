@@ -12,7 +12,7 @@ namespace FactFactoryTests.FactFactoryT
     {
         [TestMethod]
         [TestCategory(TC.Objects.NotContained), TestCategory(TC.Objects.Factory)]
-        [Description("Rule challenge with facts NotContained")]
+        [Description("Rule challenge with facts NotContained.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RunRuleWithTwoInputNotContainedFactTestCase()
         {
@@ -33,7 +33,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.NotContained), TestCategory(TC.Objects.Factory)]
-        [Description("Rule challenge with fact NotContained")]
+        [Description("Rule challenge with fact NotContained.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RunRuleWithInputNotContainedFactTestCase()
         {

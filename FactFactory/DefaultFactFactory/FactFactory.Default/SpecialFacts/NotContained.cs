@@ -25,7 +25,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
         /// <summary>
         /// Get fact type.
         /// </summary>
-        /// <returns>fact type</returns>
+        /// <returns>Fact type.</returns>
         public override IFactType GetFactType()
         {
             return DefaultFactFactoryHelper.GetFactType<NotContained<TFact>>();

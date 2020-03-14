@@ -13,7 +13,7 @@ namespace FactFactoryTests.FactFactoryT
     {
         [TestMethod]
         [TestCategory(TC.Objects.Contained), TestCategory(TC.Objects.Factory)]
-        [Description("Create a ResultFact if the Input1Fact is contained in the container")]
+        [Description("Create a ResultFact if the Input1Fact is contained in the container.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateResultFactIfInput1FactContainedTestCase()
         {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
-    /// Fact collection
+    /// Fact collection.
     /// </summary>
     public class FactContainer : FactContainerBase<FactBase>
     {

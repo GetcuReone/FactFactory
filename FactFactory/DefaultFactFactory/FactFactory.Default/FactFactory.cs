@@ -6,12 +6,12 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory
 {
     /// <summary>
-    /// Factory default implementation
+    /// Factory default implementation.
     /// </summary>
     public class FactFactory : FactFactoryBase<FactBase, FactContainer, FactRule, FactRuleCollection, WantAction>
     {
         /// <summary>
-        /// Fact container
+        /// Fact container.
         /// </summary>
         public override FactContainer Container { get; } = new FactContainer();
 
@@ -23,8 +23,8 @@ namespace GetcuReone.FactFactory
         /// <summary>
         /// creation method <see cref="WantAction"/>
         /// </summary>
-        /// <param name="wantAction">action taken after deriving a fact</param>
-        /// <param name="factTypes">facts required to launch an action</param>
+        /// <param name="wantAction">Action taken after deriving a fact.</param>
+        /// <param name="factTypes">Facts required to launch an action.</param>
         /// <returns></returns>
         protected override WantAction CreateWantAction(Action<IFactContainer<FactBase>> wantAction, IList<IFactType> factTypes)
         {
@@ -32,10 +32,10 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Get fact type
+        /// Get fact type.
         /// </summary>
         /// <typeparam name="TGetFact"></typeparam>
-        /// <returns></returns>
+        /// <returns>Fact type.</returns>
         protected override IFactType GetFactType<TGetFact>()
         {
             return new FactType<TGetFact>();

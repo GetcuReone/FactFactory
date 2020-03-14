@@ -34,7 +34,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule without input facts")]
+        [Description("Add a rule without input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWithoutInputFactsTestCase()
         {
@@ -49,7 +49,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 1 input facts")]
+        [Description("Add a rule with 1 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith1InputFactTestCase()
         {
@@ -76,7 +76,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 2 input facts")]
+        [Description("Add a rule with 2 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith2InputFactTestCase()
         {
@@ -104,7 +104,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 3 input facts")]
+        [Description("Add a rule with 3 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith3InputFactTestCase()
         {
@@ -133,7 +133,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 4 input facts")]
+        [Description("Add a rule with 4 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith4InputFactTestCase()
         {
@@ -163,7 +163,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 5 input facts")]
+        [Description("Add a rule with 5 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith5InputFactTestCase()
         {
@@ -194,7 +194,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 6 input facts")]
+        [Description("Add a rule with 6 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith6InputFactTestCase()
         {
@@ -226,7 +226,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 7 input facts")]
+        [Description("Add a rule with 7 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith7InputFactTestCase()
         {
@@ -259,7 +259,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 8 input facts")]
+        [Description("Add a rule with 8 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith8InputFactTestCase()
         {
@@ -293,7 +293,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 9 input facts")]
+        [Description("Add a rule with 9 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith9InputFactTestCase()
         {
@@ -328,7 +328,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 10 input facts")]
+        [Description("Add a rule with 10 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith10InputFactTestCase()
         {
@@ -364,7 +364,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 11 input facts")]
+        [Description("Add a rule with 11 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith11InputFactTestCase()
         {
@@ -401,7 +401,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 12 input facts")]
+        [Description("Add a rule with 12 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith12InputFactTestCase()
         {
@@ -439,7 +439,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 13 input facts")]
+        [Description("Add a rule with 13 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith13InputFactTestCase()
         {
@@ -478,7 +478,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 14 input facts")]
+        [Description("Add a rule with 14 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith14InputFactTestCase()
         {
@@ -518,7 +518,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 15 input facts")]
+        [Description("Add a rule with 15 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith15InputFactTestCase()
         {
@@ -559,7 +559,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with 16 input facts")]
+        [Description("Add a rule with 16 input facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWith16InputFactTestCase()
         {
@@ -601,7 +601,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
-        [Description("Create a rule without param")]
+        [Description("Create a rule without param.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleAlreadyContainsTestCase()
         {
@@ -616,7 +616,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add a rule with a NotContained on the output")]
+        [Description("Add a rule with a NotContained on the output.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleWithNotContainedOutTestCase()
         {
@@ -630,7 +630,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Get copied collection")]
+        [Description("Get copied collection.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetCopiedCollectionTestCase()
         {
@@ -651,7 +651,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add rule to read-only collection")]
+        [Description("Add rule to read-only collection.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleReadOnlyCollectionTestCase()
         {
@@ -662,7 +662,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
-        [Description("Remove rule to read-only collection")]
+        [Description("Remove rule to read-only collection.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RemoveRuleReadOnlyCollectionTestCase()
         {
@@ -673,7 +673,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
-        [Description("Clear read-only collection")]
+        [Description("Clear read-only collection.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ClearReadOnlyCollectionTestCase()
         {
@@ -684,7 +684,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
-        [Description("Insert rule to read-only collection")]
+        [Description("Insert rule to read-only collection.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void InsertRuleReadOnlyCollectionTestCase()
         {
@@ -695,7 +695,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
-        [Description("RemoveAt rule to read-only collection")]
+        [Description("RemoveAt rule to read-only collection.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RemoveAtRuleReadOnlyCollectionTestCase()
         {
@@ -706,7 +706,7 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add by index rule to read-only collection")]
+        [Description("Add by index rule to read-only collection.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddByIndexRuleReadOnlyCollectionTestCase()
         {

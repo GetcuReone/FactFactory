@@ -4,7 +4,7 @@ using GetcuReone.FactFactory.Interfaces;
 namespace GetcuReone.FactFactory.SpecialFacts
 {
     /// <summary>
-    /// Information about a fact that is contained in the container at the time of the function call <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
+    /// Information about a fact that is contained in the container at the time of the function call <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>.
     /// </summary>
     public sealed class Contained<TFact> : FactBase<IFactType>, IContainedFact
         where TFact : IFact
@@ -25,7 +25,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
         /// <summary>
         /// Get fact type.
         /// </summary>
-        /// <returns>fact type</returns>
+        /// <returns>Fact type.</returns>
         public override IFactType GetFactType()
         {
             return DefaultFactFactoryHelper.GetFactType<Contained<TFact>>();
