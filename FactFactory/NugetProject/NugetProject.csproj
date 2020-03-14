@@ -14,7 +14,7 @@
     <PackageReleaseNotes>publish project to GitHub</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>
-    <Copyright>Copyright © 2020 GetcuReone</Copyright>
+    <Copyright>Copyright © 2020 Itua Juel-Gaben</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
