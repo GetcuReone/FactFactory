@@ -1,4 +1,4 @@
-﻿using GetcuReone.FactFactory.Default;
+﻿using GetcuReone.FactFactory;
 
 namespace MovieServiceExample.Facts
 {

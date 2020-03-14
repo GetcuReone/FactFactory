@@ -1,7 +1,7 @@
-﻿using GetcuReone.FactFactory.Default.Helpers;
+﻿using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 
-namespace GetcuReone.FactFactory.Default.SpecialFacts
+namespace GetcuReone.FactFactory.SpecialFacts
 {
     /// <summary>
     /// Contains information about a type of fact that cannot be calculated

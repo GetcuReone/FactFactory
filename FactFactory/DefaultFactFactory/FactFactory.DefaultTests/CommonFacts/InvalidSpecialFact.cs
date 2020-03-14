@@ -1,4 +1,4 @@
-﻿using GetcuReone.FactFactory.Default;
+﻿using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Interfaces;
 using System;
 

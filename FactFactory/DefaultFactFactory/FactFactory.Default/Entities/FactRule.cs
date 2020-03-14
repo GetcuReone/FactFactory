@@ -3,7 +3,7 @@ using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.Default.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
     /// Rule of fact calculation

@@ -1,7 +1,7 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using System;
 
-namespace GetcuReone.FactFactory.Default
+namespace GetcuReone.FactFactory
 {
     /// <summary>
     /// Base class for fact.

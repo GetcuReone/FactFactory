@@ -2,7 +2,7 @@
 using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.Default.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
     /// Fact collection

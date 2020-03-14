@@ -1,5 +1,4 @@
-﻿using GetcuReone.FactFactory.Default;
-using GetcuReone.FactFactory.Versioned.Interfaces;
+﻿using GetcuReone.FactFactory.Versioned.Interfaces;
 
 namespace GetcuReone.FactFactory.Versioned
 {

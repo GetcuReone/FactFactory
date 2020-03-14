@@ -1,5 +1,5 @@
 ﻿using FactFactoryTests.CommonFacts;
-using Collection = GetcuReone.FactFactory.Default.Entities.FactRuleCollection;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {

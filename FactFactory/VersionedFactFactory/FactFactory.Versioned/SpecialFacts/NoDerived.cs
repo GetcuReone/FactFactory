@@ -1,5 +1,4 @@
-﻿using GetcuReone.FactFactory.Default.Helpers;
-using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Helpers;
 
 namespace GetcuReone.FactFactory.Versioned.SpecialFacts
