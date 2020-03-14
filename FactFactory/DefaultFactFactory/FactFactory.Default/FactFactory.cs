@@ -38,7 +38,7 @@ namespace GetcuReone.FactFactory.Default
         /// <returns></returns>
         protected override IFactType GetFactType<TGetFact>()
         {
-            return new GetcuReone.FactFactory.Entities.FactType<TGetFact>();
+            return new FactType<TGetFact>();
         }
     }
 }

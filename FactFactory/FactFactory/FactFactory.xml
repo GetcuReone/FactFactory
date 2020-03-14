@@ -612,46 +612,6 @@
             Invalid operation
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.FactType`1">
-            <summary>
-            Fact type
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Entities.FactType`1.FactName">
-            <summary>
-            Fact name
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.Compare``1(``0)">
-            <summary>
-            Compare <see cref="T:GetcuReone.FactFactory.Interfaces.IFactType"/>
-            </summary>
-            <param name="factInfo"></param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.CreateSpecialFact``1">
-            <summary>
-            Create an fact of this type. Method created for special facts.
-            </summary>
-            <typeparam name="TFactResult"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.IsFactType``1">
-            <summary>
-            Is it possible to convert a fact type to a <typeparamref name="TFact"/>
-            </summary>
-            <typeparam name="TFact1"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactType`1.TryGetFact``1(System.Collections.Generic.IEnumerable{``0},``0@)">
-            <summary>
-            Try to get a fact from the container.
-            </summary>
-            <typeparam name="TFact1">Type base class for facts.</typeparam>
-            <param name="facts">Set fact.</param>
-            <param name="fact">Fact.</param>
-            <returns>True - fact found.</returns>
-            <exception cref="T:System.InvalidOperationException">There are more than one type of inheriting <typeparamref name="TFact"/> type.</exception>
-        </member>
         <member name="T:GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail`1">
             <summary>
             Detailed information about the calculation error action
@@ -1127,6 +1087,46 @@
             <typeparam name="TFact15">type fact</typeparam>
             <typeparam name="TFact16">type fact</typeparam>
             <param name="wantFactAction">Desired action</param>
+        </member>
+        <member name="T:GetcuReone.FactFactory.FactType`1">
+            <summary>
+            Fact type
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.FactType`1.FactName">
+            <summary>
+            Fact name
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactType`1.Compare``1(``0)">
+            <summary>
+            Compare <see cref="T:GetcuReone.FactFactory.Interfaces.IFactType"/>
+            </summary>
+            <param name="factInfo"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactType`1.CreateSpecialFact``1">
+            <summary>
+            Create an fact of this type. Method created for special facts.
+            </summary>
+            <typeparam name="TFactResult"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactType`1.IsFactType``1">
+            <summary>
+            Is it possible to convert a fact type to a <typeparamref name="TFact"/>
+            </summary>
+            <typeparam name="TFact1"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactType`1.TryGetFact``1(System.Collections.Generic.IEnumerable{``0},``0@)">
+            <summary>
+            Try to get a fact from the container.
+            </summary>
+            <typeparam name="TFact1">Type base class for facts.</typeparam>
+            <param name="facts">Set fact.</param>
+            <param name="fact">Fact.</param>
+            <returns>True - fact found.</returns>
+            <exception cref="T:System.InvalidOperationException">There are more than one type of inheriting <typeparamref name="TFact"/> type.</exception>
         </member>
         <member name="T:GetcuReone.FactFactory.Helpers.FactFactoryHelper">
             <summary>

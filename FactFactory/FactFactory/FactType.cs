@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GetcuReone.FactFactory.Entities
+namespace GetcuReone.FactFactory
 {
     /// <summary>
     /// Fact type

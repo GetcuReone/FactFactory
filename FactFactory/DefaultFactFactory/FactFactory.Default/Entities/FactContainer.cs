@@ -1,5 +1,4 @@
 ﻿using GetcuReone.FactFactory.BaseEntities;
-using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 
