@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <DocumentationFile>FactFactory.Default.xml</DocumentationFile>
-    <RootNamespace>GetcuReone.FactFactory.Default</RootNamespace>
+    <RootNamespace>GetcuReone.FactFactory</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
