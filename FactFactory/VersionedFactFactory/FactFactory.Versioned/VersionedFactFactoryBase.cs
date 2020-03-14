@@ -3,6 +3,7 @@ using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.BaseEntities;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
@@ -15,12 +16,12 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Base class for versioned fact factory
     /// </summary>
-    public abstract class VersionedFactFactoryBase<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactFactoryBase<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
+    public abstract class VersionedFactFactoryBase<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactFactoryBase<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>, IVersionedFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
         where TFact : class, IVersionedFact
         where TFactContainer : FactContainerBase<TFact>
         where TFactRule : FactRuleBase<TFact>, IVersionedFactRule<TFact>
         where TFactRuleCollection : FactRuleCollectionBase<TFact, TFactRule>
-        where TWantAction : WantActionBase<TFact>, IFactTypeVersionInfo
+        where TWantAction : VersionedWantActionBase<TFact>
     {
         private List<IFactType> _calculatedFactTypes;
         private TWantAction _calculatingWantAction;
