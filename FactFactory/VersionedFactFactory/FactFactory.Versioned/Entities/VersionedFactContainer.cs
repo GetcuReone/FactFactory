@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.BaseEntities;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Versioned.Entities
@@ -7,7 +8,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
     /// <summary>
     /// Versioned fact container.
     /// </summary>
-    public class VersionedFactContainer : FactContainerBase<VersionedFactBase>
+    public class VersionedFactContainer : VersionedFactContainerBase<VersionedFactBase>
     {
         /// <summary>
         /// Constructor.
