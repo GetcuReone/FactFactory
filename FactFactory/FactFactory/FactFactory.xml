@@ -158,7 +158,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2">
             <summary>
-            Base collection for <typeparamref name="TFactRule"/>
+            Base collection for <typeparamref name="TFactRule"/>.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Item(System.Int32)">
@@ -182,12 +182,12 @@
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.#ctor">
             <summary>
-            Constructor
+            Constructor.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.#ctor(System.Collections.Generic.IEnumerable{`1})">
             <summary>
-            Constructor
+            Constructor.
             </summary>
             <param name="factRules"></param>
         </member>
@@ -1282,9 +1282,9 @@
             </summary>
             <typeparam name="TFact">All facts that the fact factory works with should be inherited from this type.</typeparam>
             <typeparam name="TFactContainer">Type fact container.</typeparam>
-            <typeparam name="TFactRule">Type fact rule</typeparam>
+            <typeparam name="TFactRule">Type fact rule.</typeparam>
             <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
-            <typeparam name="TWantAction">Type 'want action'</typeparam>
+            <typeparam name="TWantAction">Type 'want action'.</typeparam>
         </member>
         <member name="P:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Container">
             <summary>
@@ -1303,9 +1303,9 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.DeriveFact``1">
             <summary>
-            Derive <typeparamref name="TWantFact"/>
+            Derive <typeparamref name="TWantFact"/>.
             </summary>
-            <typeparam name="TWantFact">Type of desired fact</typeparam>
+            <typeparam name="TWantFact">Type of desired fact.</typeparam>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.WantFact(`4)">
