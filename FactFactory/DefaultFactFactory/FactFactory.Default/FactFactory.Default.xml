@@ -80,7 +80,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Default.Entities.FactRuleCollection.Copy">
             <summary>
-            <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollectionBase`2"/> copy method.
+            <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/> copy method.
             </summary>
             <returns>Copied <see cref="T:GetcuReone.FactFactory.Default.Entities.FactRuleCollection"/>.</returns>
         </member>

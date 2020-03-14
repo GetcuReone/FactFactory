@@ -1,13 +1,14 @@
 ﻿using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Default;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
 using Action = GetcuReone.FactFactory.Default.Entities.WantAction;
+using Collection = GetcuReone.FactFactory.Default.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Default.Entities.FactContainer;
 using Rule = GetcuReone.FactFactory.Default.Entities.FactRule;
-using Collection = GetcuReone.FactFactory.Default.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {

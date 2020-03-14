@@ -1,8 +1,6 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GetcuReone.FactFactory.Helpers
 {

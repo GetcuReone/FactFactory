@@ -1,4 +1,4 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Default;
 using Rule = GetcuReone.FactFactory.Default.Entities.FactRule;
 

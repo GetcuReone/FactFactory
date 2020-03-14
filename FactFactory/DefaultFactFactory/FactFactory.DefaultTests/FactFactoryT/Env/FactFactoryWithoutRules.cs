@@ -1,8 +1,8 @@
-﻿using GetcuReone.FactFactory.Default;
-using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory.Default;
 using System.Collections.Generic;
-using WAction = GetcuReone.FactFactory.Default.Entities.WantAction;
 using Rule = GetcuReone.FactFactory.Default.Entities.FactRule;
+using WAction = GetcuReone.FactFactory.Default.Entities.WantAction;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {

@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Constants;
+﻿using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;

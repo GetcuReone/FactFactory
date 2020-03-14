@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using System;
@@ -6,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GetcuReone.FactFactory.Entities
+namespace GetcuReone.FactFactory.BaseEntities
 {
     /// <summary>
     /// Base collection for <typeparamref name="TFactRule"/>

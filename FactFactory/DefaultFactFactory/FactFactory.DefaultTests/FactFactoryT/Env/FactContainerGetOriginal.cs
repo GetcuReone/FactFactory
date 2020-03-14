@@ -1,5 +1,5 @@
-﻿using GetcuReone.FactFactory.Default;
-using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory.Default;
 using Container = GetcuReone.FactFactory.Default.Entities.FactContainer;
 
 namespace FactFactoryTests.FactFactoryT.Env
