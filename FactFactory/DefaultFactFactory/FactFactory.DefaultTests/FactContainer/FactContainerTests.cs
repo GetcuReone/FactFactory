@@ -16,7 +16,6 @@ namespace FactFactoryTests.FactContainer
     [TestClass]
     public sealed class FactContainerTests : CommonTestBase<FactBase>
     {
-        // TODO: Make container copy test
         private GivenBlock<Container> GivenCreateContainer(bool isReadOnly = false)
         {
             return Given("Create container", () => new Container(null, isReadOnly));
