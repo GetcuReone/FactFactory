@@ -16,7 +16,7 @@ namespace GetcuReone.FactFactory.Versioned.Versions
         }
 
         /// <summary>
-        /// True - the version of the current fact is equal <paramref name="versionFact"/>
+        /// True - the version of the current fact is equal <paramref name="versionFact"/>.
         /// </summary>
         /// <typeparam name="TVersionFact"></typeparam>
         /// <param name="versionFact"></param>

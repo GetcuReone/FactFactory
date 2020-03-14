@@ -3,7 +3,7 @@
 namespace FactFactory.VersionedTests.CommonFacts
 {
     /// <summary>
-    /// Version 1
+    /// Version 1.
     /// </summary>
     public sealed class Version1 : IntVersionBase
     {

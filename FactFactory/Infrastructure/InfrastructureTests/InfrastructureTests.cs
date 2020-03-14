@@ -55,7 +55,7 @@ namespace InfrastructureTests
 
         [Timeout(Timeouts.Minute.One)]
         [TestMethod]
-        [Description("[infrastructure] Checking the presence of all the necessary files in the nugget package")]
+        [Description("[infrastructure] Checking the presence of all the necessary files in the nugget package.")]
         public void NugetHaveNeedFilesTestCase()
         {
             Given("Get folder with .nupkg", () =>
@@ -108,7 +108,7 @@ namespace InfrastructureTests
 
         [Timeout(Timeouts.Minute.One)]
         [TestMethod]
-        [Description("[infrastructure] Check for all attribute Timeout tests")]
+        [Description("[infrastructure] Check for all attribute Timeout tests.")]
         public void AllHaveTimeoutTestCase()
         {
             string partNameAssemblies = "FactFactory";
@@ -159,7 +159,7 @@ namespace InfrastructureTests
 
         [Timeout(Timeouts.Minute.One)]
         [TestMethod]
-        [Description("[infrastructure] all namespaces start with GetcuReone.ComboPatterns")]
+        [Description("[infrastructure] all namespaces start with GetcuReone.ComboPatterns.")]
         public void AllNamespacesStartWithGetcuReoneTestCase()
         {
             string beginNamespace = "GetcuReone";
@@ -213,7 +213,7 @@ namespace InfrastructureTests
 
         [Timeout(Timeouts.Minute.One)]
         [TestMethod]
-        [Description("[infrastructure] assemblies have major version")]
+        [Description("[infrastructure] assemblies have major version.")]
         public void AssembliesHaveMajorVersionTestCase()
         {
             string[] includeAssemblies = new string[]

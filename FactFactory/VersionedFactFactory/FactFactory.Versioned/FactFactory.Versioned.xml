@@ -108,22 +108,22 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Constants.ErrorCode">
             <summary>
-            Codes for errors in work <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5"/>
+            Codes for errors in work <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5"/>.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.Constants.ErrorCode.VersionNotFound">
             <summary>
-            'VersionNotFound'. No fact was found in the container with information about the required version
+            'VersionNotFound'. No fact was found in the container with information about the required version.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.Constants.ErrorCode.VersionConflict">
             <summary>
-            Version conflict
+            Version conflict.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.Constants.ErrorCode.OnlyOneVersionFact">
             <summary>
-            There should be only one version fact
+            There should be only one version fact.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer">
@@ -177,7 +177,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection">
             <summary>
-            Collection of versioned rules for facts
+            Collection of versioned rules for facts.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.#ctor">
@@ -206,11 +206,11 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase},GetcuReone.FactFactory.Versioned.VersionedFactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
-            Creation method <see cref="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule"/>
+            Creation method <see cref="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule"/>.
             </summary>
             <param name="func">func for calculate</param>
-            <param name="inputFactTypes">information on input factacles rules</param>
-            <param name="outputFactType">information on output fact</param>
+            <param name="inputFactTypes">information on input factacles rules.</param>
+            <param name="outputFactType">information on output fact.</param>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction">
@@ -237,7 +237,7 @@
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.Interfaces.IFactTypeVersionInfo.VersionType">
             <summary>
-            Type fact version
+            Type fact version.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFact">
@@ -270,12 +270,12 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactRule`1">
             <summary>
-            Version rule for calculating a fact
+            Version rule for calculating a fact.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactRule`1.CompareWithoutVersion``1(``0)">
             <summary>
-            Comparison of rules for calculating facts without regard to version
+            Comparison of rules for calculating facts without regard to version.
             </summary>
             <typeparam name="TVersionedFactRule"></typeparam>
             <param name="versionedFactRule"></param>
@@ -283,7 +283,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact">
             <summary>
-            Fact containing version information
+            Fact containing version information.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact.IsLessThan``1(``0)">
@@ -304,7 +304,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact.EqualVersion``1(``0)">
             <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
+            True - the version of the current fact is equal <paramref name="versionFact"/>.
             </summary>
             <typeparam name="TVersionFact"></typeparam>
             <param name="versionFact"></param>
@@ -312,7 +312,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.Contained`1">
             <summary>
-            Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>
+            Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.SpecialFacts.Contained`1.Value">
@@ -341,7 +341,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.NoDerived`1">
             <summary>
-            Contains information about a type of fact that cannot be calculated
+            Contains information about a type of fact that cannot be calculated.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.SpecialFacts.NoDerived`1.Value">
@@ -370,7 +370,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.NotContained`1">
             <summary>
-            Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>
+            Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.SpecialFacts.NotContained`1.Value">
@@ -399,7 +399,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactBase">
             <summary>
-            Base class for versioned facts
+            Base class for versioned facts.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.VersionedFactBase.Version">
@@ -433,49 +433,49 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactFactory">
             <summary>
-            Default implementation of versioned fact factory <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5"/>
+            Default implementation of versioned fact factory <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5"/>.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.VersionedFactFactory.Container">
             <summary>
-            Fact container
+            Fact container.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.VersionedFactFactory.Rules">
             <summary>
-            Rule collection
+            Rule collection.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.#ctor(System.Func{System.Collections.Generic.List{GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact}})">
             <summary>
-            Constructor
+            Constructor.
             </summary>
-            <param name="getAllVersionFactsFunc">function that returns all versioned facts used in the rules</param>
+            <param name="getAllVersionFactsFunc">Function that returns all versioned facts used in the rules.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
-            creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction`1"/>
+            Creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction`1"/>.
             </summary>
-            <param name="wantAction">action taken after deriving a fact</param>
-            <param name="factTypes">facts required to launch an action</param>
+            <param name="wantAction">action taken after deriving a fact.</param>
+            <param name="factTypes">facts required to launch an action.</param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetFactType``1">
             <summary>
-            Get fact type
+            Get fact type.
             </summary>
             <typeparam name="TGetFact"></typeparam>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetAllVersions">
             <summary>
-            Returns instances of all used versions
+            Returns instances of all used versions.
             </summary>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5">
             <summary>
-            Base class for versioned fact factory
+            Base class for versioned fact factory.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetRulesForWantAction(`4,GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0},GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{`0,`2})">
@@ -489,7 +489,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetAllVersions">
             <summary>
-            Returns instances of all used versions
+            Returns instances of all used versions.
             </summary>
             <returns></returns>
         </member>
@@ -519,7 +519,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.Derive">
             <summary>
-            Derive the facts
+            Derive the facts.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.DeriveFact``2">
@@ -532,7 +532,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Versions.DateTimeVersionBase">
             <summary>
-            Base class for <see cref="T:System.DateTime"/> based version facts
+            Base class for <see cref="T:System.DateTime"/> based version facts.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Versions.DateTimeVersionBase.#ctor(System.DateTime)">
@@ -543,7 +543,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Versions.DateTimeVersionBase.EqualVersion``1(``0)">
             <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
+            True - the version of the current fact is equal <paramref name="versionFact"/>.
             </summary>
             <typeparam name="TVersionFact"></typeparam>
             <param name="versionFact"></param>
@@ -567,7 +567,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Versions.IntVersionBase">
             <summary>
-            Base class for <see cref="T:System.Int32"/> based version facts
+            Base class for <see cref="T:System.Int32"/> based version facts.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Versions.IntVersionBase.#ctor(System.Int32)">
@@ -578,7 +578,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Versions.IntVersionBase.EqualVersion``1(``0)">
             <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
+            True - the version of the current fact is equal <paramref name="versionFact"/>.
             </summary>
             <typeparam name="TVersionFact"></typeparam>
             <param name="versionFact"></param>
@@ -602,7 +602,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Versions.LongVersionBase">
             <summary>
-            Base class for <see cref="T:System.Int64"/> based version facts
+            Base class for <see cref="T:System.Int64"/> based version facts.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Versions.LongVersionBase.#ctor(System.Int64)">
@@ -613,7 +613,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Versions.LongVersionBase.EqualVersion``1(``0)">
             <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
+            True - the version of the current fact is equal <paramref name="versionFact"/>.
             </summary>
             <typeparam name="TVersionFact"></typeparam>
             <param name="versionFact"></param>
@@ -637,7 +637,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Versions.UintVersionBase">
             <summary>
-            Base class for <see cref="T:System.UInt32"/> based version facts
+            Base class for <see cref="T:System.UInt32"/> based version facts.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Versions.UintVersionBase.#ctor(System.UInt32)">
@@ -648,7 +648,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Versions.UintVersionBase.EqualVersion``1(``0)">
             <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
+            True - the version of the current fact is equal <paramref name="versionFact"/>.
             </summary>
             <typeparam name="TVersionFact"></typeparam>
             <param name="versionFact"></param>
@@ -672,7 +672,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Versions.UlongVersionBase">
             <summary>
-            Base class for <see cref="T:System.UInt64"/> based version facts
+            Base class for <see cref="T:System.UInt64"/> based version facts.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Versions.UlongVersionBase.#ctor(System.UInt64)">
@@ -683,7 +683,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Versions.UlongVersionBase.EqualVersion``1(``0)">
             <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
+            True - the version of the current fact is equal <paramref name="versionFact"/>.
             </summary>
             <typeparam name="TVersionFact"></typeparam>
             <param name="versionFact"></param>
@@ -718,7 +718,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Versions.VersionBase`1.EqualVersion``1(``0)">
             <summary>
-            True - the version of the current fact is equal <paramref name="versionFact"/>
+            True - the version of the current fact is equal <paramref name="versionFact"/>.
             </summary>
             <typeparam name="TVersionFact"></typeparam>
             <param name="versionFact"></param>

@@ -3,7 +3,7 @@
 namespace GetcuReone.FactFactory.Versioned.Interfaces
 {
     /// <summary>
-    /// Fact containing version information
+    /// Fact containing version information.
     /// </summary>
     public interface IVersionFact : IVersionedFact
     {
@@ -24,7 +24,7 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
         bool IsMoreThan<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact;
 
         /// <summary>
-        /// True - the version of the current fact is equal <paramref name="versionFact"/>
+        /// True - the version of the current fact is equal <paramref name="versionFact"/>.
         /// </summary>
         /// <typeparam name="TVersionFact"></typeparam>
         /// <param name="versionFact"></param>

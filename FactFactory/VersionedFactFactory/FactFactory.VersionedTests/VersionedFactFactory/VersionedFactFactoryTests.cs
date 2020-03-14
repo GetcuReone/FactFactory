@@ -26,7 +26,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
-        [Description("Create wantAction without version")]
+        [Description("Create wantAction without version.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveFactWithoutVersionedRuleTestCase()
         {
@@ -55,7 +55,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
-        [Description("Create wantAction with version")]
+        [Description("Create wantAction with version.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveFactWithtVersionedRuleTestCase()
         {
@@ -84,7 +84,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
-        [Description("Derive with invalid version")]
+        [Description("Derive with invalid version.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveWihtInvalidVersion_1_TestCase()
         {
@@ -102,7 +102,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
-        [Description("Derive with invalid version")]
+        [Description("Derive with invalid version.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveWihtInvalidVersion_2_TestCase()
         {
@@ -120,7 +120,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
-        [Description("Recount facts with a different version")]
+        [Description("Recount facts with a different version.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RecountFactsWithDifferentVersionTestCase()
         {
@@ -153,7 +153,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
-        [Description("Do not overshoot the fact once again")]
+        [Description("Do not overshoot the fact once again.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DoNotOvershootFactOnceAgainTestCase()
         {
@@ -199,7 +199,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
-        [Description("Do not recalculate calculated fact")]
+        [Description("Do not recalculate calculated fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DoNotRecalculateCalculatedFactTestCase()
         {

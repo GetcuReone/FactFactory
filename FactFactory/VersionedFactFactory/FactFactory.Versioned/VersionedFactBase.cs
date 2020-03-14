@@ -3,7 +3,7 @@
 namespace GetcuReone.FactFactory.Versioned
 {
     /// <summary>
-    /// Base class for versioned facts
+    /// Base class for versioned facts.
     /// </summary>
     public abstract class VersionedFactBase : FactBase, IVersionedFact
     {
