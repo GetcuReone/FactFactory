@@ -4,7 +4,7 @@ using GetcuReone.FactFactory.Versioned.Helpers;
 namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
     /// <summary>
-    /// Contains information about a type of fact that cannot be calculated
+    /// Contains information about a type of fact that cannot be calculated.
     /// </summary>
     public sealed class NoDerived<TFact> : VersionedFactBase<IFactType>, INoDerivedFact
         where TFact : IFact

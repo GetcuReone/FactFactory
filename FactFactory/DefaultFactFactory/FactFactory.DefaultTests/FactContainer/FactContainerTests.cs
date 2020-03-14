@@ -16,7 +16,6 @@ namespace FactFactoryTests.FactContainer
     [TestClass]
     public sealed class FactContainerTests : CommonTestBase<FactBase>
     {
-        // TODO: Make container copy test
         private GivenBlock<Container> GivenCreateContainer(bool isReadOnly = false)
         {
             return Given("Create container", () => new Container(null, isReadOnly));
@@ -24,7 +23,7 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Container)]
-        [Description("Add an existing fact")]
+        [Description("Add an existing fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddAnExistingFactTestCase()
         {
@@ -40,7 +39,7 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Objects.Container)]
-        [Description("Contains fact")]
+        [Description("Contains fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ContainsFactTestCase()
         {
@@ -52,7 +51,7 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Objects.Container)]
-        [Description("Not contains fact")]
+        [Description("Not contains fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void NotContainsFactTestCase()
         {
@@ -63,7 +62,7 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Objects.Container)]
-        [Description("Remove fact")]
+        [Description("Remove fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RemoveFactTestCase()
         {
@@ -75,7 +74,7 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Objects.Container)]
-        [Description("Try get existing fact")]
+        [Description("Try get existing fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void TryGetValueExistingFactTestCase()
         {
@@ -97,7 +96,7 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Objects.Container)]
-        [Description("Try get an existing fact")]
+        [Description("Try get an existing fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void TryGetValueAnExistingFactTestCase()
         {
@@ -116,7 +115,7 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Objects.Container)]
-        [Description("Get existing fact")]
+        [Description("Get existing fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetValueExistingFactTestCase()
         {
@@ -133,7 +132,7 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.Container)]
-        [Description("Get an existing fact")]
+        [Description("Get an existing fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void GetValueAnExistingFactTestCase()
         {
@@ -146,7 +145,7 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Objects.Container)]
-        [Description("Get copied container")]
+        [Description("Get copied container.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void FactContainer_GetCopiedContainerTestCase()
         {
@@ -184,7 +183,7 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Objects.Container)]
-        [Description("Add fact to read-only container")]
+        [Description("Add fact to read-only container.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddFactReadOnlyContainerTestCase()
         {
@@ -195,7 +194,7 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Objects.Container)]
-        [Description("Remove fact to read-only container")]
+        [Description("Remove fact to read-only container.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void RemoveFactReadOnlyContainerTestCase()
         {

@@ -10,7 +10,7 @@ namespace FactFactory.VersionedTests.Fact
     {
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
-        [Description("Set fact value")]
+        [Description("Set fact value.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Versioned_SetValueTestCase()
         {

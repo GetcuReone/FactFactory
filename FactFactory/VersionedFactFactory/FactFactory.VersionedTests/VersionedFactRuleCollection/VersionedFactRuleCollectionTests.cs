@@ -22,7 +22,7 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.RuleCollection)]
-        [Description("Add rule")]
+        [Description("Add rule.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddRuleTestCase()
         {
@@ -36,7 +36,7 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
 
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection)]
-        [Description("Get copied collection")]
+        [Description("Get copied collection.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Versioned_GetCopiedCollectionTestCase()
         {

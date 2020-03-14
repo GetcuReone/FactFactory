@@ -12,7 +12,7 @@ namespace FactFactoryTests.Fact
     {
         [TestMethod]
         [TestCategory(TC.Objects.Fact)]
-        [Description("Set value fact")]
+        [Description("Set value fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void SetValueFactTestCase()
         {
@@ -25,9 +25,9 @@ namespace FactFactoryTests.Fact
 
         [TestMethod]
         [TestCategory(TC.Objects.Fact)]
-        [Description("Check method GeTFactType")]
+        [Description("Check method GetFactType.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
-        public void GeTFactTypeTestCase()
+        public void GetFactTypeTestCase()
         {
             Given("Create fact", () => new DateTimeFact(DateTime.Now))
                 .When("Run method", fact => fact.GetFactType())

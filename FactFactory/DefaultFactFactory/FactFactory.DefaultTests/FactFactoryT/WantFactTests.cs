@@ -10,7 +10,7 @@ namespace FactFactoryTests.FactFactoryT
     {
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 1 facts")]
+        [Description("Request 1 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want1FactsTestCase()
         {
@@ -40,7 +40,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 2 facts")]
+        [Description("Request 2 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want2FactsTestCase()
         {
@@ -75,7 +75,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 3 facts")]
+        [Description("Request 3 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want3FactsTestCase()
         {
@@ -115,7 +115,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 4 facts")]
+        [Description("Request 4 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want4FactsTestCase()
         {
@@ -160,7 +160,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 5 facts")]
+        [Description("Request 5 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want5FactsTestCase()
         {
@@ -210,7 +210,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 6 facts")]
+        [Description("Request 6 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want6FactsTestCase()
         {
@@ -266,7 +266,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 7 facts")]
+        [Description("Request 7 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want7FactsTestCase()
         {
@@ -327,7 +327,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 8 facts")]
+        [Description("Request 8 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want8FactsTestCase()
         {
@@ -393,7 +393,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 9 facts")]
+        [Description("Request 9 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want9FactsTestCase()
         {
@@ -464,7 +464,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 10 facts")]
+        [Description("Request 10 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want10FactsTestCase()
         {
@@ -540,7 +540,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 11 facts")]
+        [Description("Request 11 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want11FactsTestCase()
         {
@@ -621,7 +621,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 12 facts")]
+        [Description("Request 12 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want12FactsTestCase()
         {
@@ -707,7 +707,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 13 facts")]
+        [Description("Request 13 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want13FactsTestCase()
         {
@@ -798,7 +798,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 14 facts")]
+        [Description("Request 14 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want14FactsTestCase()
         {
@@ -894,7 +894,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 15 facts")]
+        [Description("Request 15 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want15FactsTestCase()
         {
@@ -994,7 +994,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory)]
-        [Description("Request 16 facts")]
+        [Description("Request 16 facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void Want16FactsTestCase()
         {

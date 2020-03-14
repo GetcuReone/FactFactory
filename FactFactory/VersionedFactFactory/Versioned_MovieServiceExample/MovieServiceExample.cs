@@ -125,8 +125,8 @@ namespace Versioned_MovieServiceExample
         }
 
         [TestMethod]
-        [Description("Calculate the cost of a 'My Hero Academia: Heroes Rising' movie for a 'Judy Gonzalez' user")]
-        public void CalculatingCcostBuyingMovie_1()
+        [Description("Calculate the cost of a 'My Hero Academia: Heroes Rising' movie for a 'Judy Gonzalez' user.")]
+        public void CalculatingCostBuyingMovie_1()
         {
             // We have information about the user's mail and the identifier of the film, what he wants to buy.
             string email = "judy_gonzalez@example.com";
@@ -144,8 +144,8 @@ namespace Versioned_MovieServiceExample
         }
 
         [TestMethod]
-        [Description("Calculate the cost of a 'My Hero Academia: Heroes Rising' movie for a 'John Cornero' user")]
-        public void CalculatingCcostBuyingMovie_2()
+        [Description("Calculate the cost of a 'My Hero Academia: Heroes Rising' movie for a 'John Cornero' user.")]
+        public void CalculatingCostBuyingMovie_2()
         {
             // We have information about the user's mail and the identifier of the film, what he wants to buy.
             string email = "john_cornero@example.com";
@@ -163,8 +163,8 @@ namespace Versioned_MovieServiceExample
         }
 
         [TestMethod]
-        [Description("Calculate the cost of the movie 'My Hero's Academy: Rise of the Heroes' for the user 'Judy Gonzalez' according to the new rule")]
-        public void CalculatingCcostBuyingMovie_3()
+        [Description("Calculate the cost of the movie 'My Hero's Academy: Rise of the Heroes' for the user 'Judy Gonzalez' according to the new rule.")]
+        public void CalculatingCostBuyingMovie_3()
         {
             // We have information about the user's mail and the identifier of the film, what he wants to buy.
             string email = "judy_gonzalez@example.com";

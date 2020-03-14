@@ -8,7 +8,7 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
     public interface IFactTypeVersionInfo
     {
         /// <summary>
-        /// Type fact version
+        /// Type fact version.
         /// </summary>
         IFactType VersionType { get; }
     }

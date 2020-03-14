@@ -30,7 +30,7 @@ namespace FactFactoryTests.FactType
 
         [TestMethod]
         [TestCategory(TC.Objects.FactType)]
-        [Description("Successful comparison of information about one fact")]
+        [Description("Successful comparison of information about one fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CompareFactTypeOneFactTestCase()
         {
@@ -49,7 +49,7 @@ namespace FactFactoryTests.FactType
 
         [TestMethod]
         [TestCategory(TC.Objects.FactType)]
-        [Description("Successful comparison of information about one fact")]
+        [Description("Successful comparison of information about one fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void SuccessCompareFactTypeTowFactTestCase()
         {
@@ -73,7 +73,7 @@ namespace FactFactoryTests.FactType
 
         [TestMethod]
         [TestCategory(TC.Objects.FactType)]
-        [Description("Unsuccessful comparison of two facts")]
+        [Description("Unsuccessful comparison of two facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void FailedCompareFactTypeTowFactTestCase()
         {
@@ -97,7 +97,7 @@ namespace FactFactoryTests.FactType
 
         [TestMethod]
         [TestCategory(TC.Objects.FactType)]
-        [Description("Check fact name")]
+        [Description("Check fact name.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void FactNameTestCase()
         {
@@ -108,7 +108,7 @@ namespace FactFactoryTests.FactType
 
         [TestMethod]
         [TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived)]
-        [Description("Create NoDerived fact")]
+        [Description("Create NoDerived fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateNoDerivedFactTestCase()
         {
@@ -123,7 +123,7 @@ namespace FactFactoryTests.FactType
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived)]
-        [Description("Create a NoDerived fact using the wrong type")]
+        [Description("Create a NoDerived fact using the wrong type.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateNoDerivedUsingWrongTypeTestCase()
         {
@@ -136,7 +136,7 @@ namespace FactFactoryTests.FactType
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived)]
-        [Description("Create a NoDerived fact without default constructor")]
+        [Description("Create a NoDerived fact without default constructor.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateNoDerivedWithoutDefaultConstructorTestCase()
         {
@@ -149,7 +149,7 @@ namespace FactFactoryTests.FactType
 
         [TestMethod]
         [TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NotContained)]
-        [Description("Create NotContained fact")]
+        [Description("Create NotContained fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateNotContainedFactTestCase()
         {
@@ -164,7 +164,7 @@ namespace FactFactoryTests.FactType
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NotContained)]
-        [Description("Create a NotContained fact using the wrong type")]
+        [Description("Create a NotContained fact using the wrong type.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateNotContainedUsingWrongTypeTestCase()
         {
@@ -177,7 +177,7 @@ namespace FactFactoryTests.FactType
 
         [TestMethod]
         [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NotContained)]
-        [Description("Create a NotContained fact without default constructor")]
+        [Description("Create a NotContained fact without default constructor.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void CreateNotContainedWithoutDefaultConstructorTestCase()
         {

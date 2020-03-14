@@ -4,7 +4,7 @@ using GetcuReone.FactFactory.Versioned.Helpers;
 namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
     /// <summary>
-    /// Information about a fact that is contained in the container at the time of the function call <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
+    /// Information about a fact that is contained in the container at the time of the function call <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>.
     /// </summary>
     public sealed class Contained<TFact> : VersionedFactBase<IFactType>, IContainedFact
         where TFact : IFact

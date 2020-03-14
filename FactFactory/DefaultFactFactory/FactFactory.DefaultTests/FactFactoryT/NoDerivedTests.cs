@@ -12,7 +12,7 @@ namespace FactFactoryTests.FactFactoryT
     {
         [TestMethod]
         [TestCategory(TC.Objects.NoDerived), TestCategory(TC.Objects.Factory)]
-        [Description("Derive the fact through the rule with the NoDerived fact")]
+        [Description("Derive the fact through the rule with the NoDerived fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveUseRuleWithNoFactTestCase()
         {
@@ -35,7 +35,7 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.NoDerived), TestCategory(TC.Objects.Factory)]
-        [Description("Derive with NoDerived fact")]
+        [Description("Derive with NoDerived fact.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveWithNoFactTestCase()
         {

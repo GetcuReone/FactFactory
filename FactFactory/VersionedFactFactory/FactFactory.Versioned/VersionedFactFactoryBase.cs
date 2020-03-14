@@ -14,7 +14,7 @@ using CommonErrorCode = GetcuReone.FactFactory.Constants.ErrorCode;
 namespace GetcuReone.FactFactory.Versioned
 {
     /// <summary>
-    /// Base class for versioned fact factory
+    /// Base class for versioned fact factory.
     /// </summary>
     public abstract class VersionedFactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>, IVersionedFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
         where TFactBase : class, IVersionedFact
@@ -120,7 +120,7 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Returns instances of all used versions
+        /// Returns instances of all used versions.
         /// </summary>
         /// <returns></returns>
         protected abstract IEnumerable<IVersionFact> GetAllVersions();
@@ -243,7 +243,7 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Derive the facts
+        /// Derive the facts.
         /// </summary>
         public override void Derive()
         {

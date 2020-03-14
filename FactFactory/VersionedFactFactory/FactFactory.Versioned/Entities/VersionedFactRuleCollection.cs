@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Versioned.Entities
 {
     /// <summary>
-    /// Collection of versioned rules for facts
+    /// Collection of versioned rules for facts.
     /// </summary>
     public sealed class VersionedFactRuleCollection : VersionedFactRuleCollectionBase<VersionedFactBase, VersionedFactRule>
     {
@@ -45,11 +45,11 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         }
 
         /// <summary>
-        /// Creation method <see cref="VersionedFactRule"/>
+        /// Creation method <see cref="VersionedFactRule"/>.
         /// </summary>
         /// <param name="func">func for calculate</param>
-        /// <param name="inputFactTypes">information on input factacles rules</param>
-        /// <param name="outputFactType">information on output fact</param>
+        /// <param name="inputFactTypes">information on input factacles rules.</param>
+        /// <param name="outputFactType">information on output fact.</param>
         /// <returns></returns>
         protected override VersionedFactRule CreateFactRule(Func<IFactContainer<VersionedFactBase>, VersionedFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {

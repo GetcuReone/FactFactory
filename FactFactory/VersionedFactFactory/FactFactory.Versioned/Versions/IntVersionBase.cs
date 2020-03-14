@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GetcuReone.FactFactory.Versioned.Versions
 {
     /// <summary>
-    /// Base class for <see cref="int"/> based version facts
+    /// Base class for <see cref="int"/> based version facts.
     /// </summary>
     public abstract class IntVersionBase : VersionBase<int>
     {
@@ -18,7 +16,7 @@ namespace GetcuReone.FactFactory.Versioned.Versions
         }
 
         /// <summary>
-        /// True - the version of the current fact is equal <paramref name="versionFact"/>
+        /// True - the version of the current fact is equal <paramref name="versionFact"/>.
         /// </summary>
         /// <typeparam name="TVersionFact"></typeparam>
         /// <param name="versionFact"></param>

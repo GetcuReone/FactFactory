@@ -6,12 +6,12 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
-    /// Collection for <see cref="FactRule"/>
+    /// Collection for <see cref="FactRule"/>.
     /// </summary>
     public class FactRuleCollection : FactRuleCollectionBase<FactBase, FactRule>
     {
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         public FactRuleCollection()
         {
@@ -44,11 +44,11 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <summary>
-        /// Creation method <see cref="FactRule"/>
+        /// Creation method <see cref="FactRule"/>.
         /// </summary>
-        /// <param name="func">func for calculate</param>
-        /// <param name="inputFactTypes">information on input factacles rules</param>
-        /// <param name="outputFactType">information on output fact</param>
+        /// <param name="func">func for calculate.</param>
+        /// <param name="inputFactTypes">information on input factacles rules.</param>
+        /// <param name="outputFactType">information on output fact.</param>
         /// <returns>fact rule</returns>
         protected sealed override FactRule CreateFactRule(Func<IFactContainer<FactBase>, FactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
