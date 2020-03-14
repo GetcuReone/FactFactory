@@ -2,16 +2,16 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Default;
-using GetcuReone.FactFactory.Default.SpecialFacts;
+using GetcuReone.FactFactory;
+using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Container = GetcuReone.FactFactory.Default.Entities.FactContainer;
-using Rule = GetcuReone.FactFactory.Default.Entities.FactRule;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
+using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
 namespace FactFactoryTests.FactRule
 {

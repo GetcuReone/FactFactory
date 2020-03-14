@@ -8,9 +8,9 @@ namespace GetcuReone.FactFactory.Interfaces
     /// </summary>
     /// <typeparam name="TFact">All facts that the fact factory works with should be inherited from this type.</typeparam>
     /// <typeparam name="TFactContainer">Type fact container.</typeparam>
-    /// <typeparam name="TFactRule">Type fact rule</typeparam>
+    /// <typeparam name="TFactRule">Type fact rule.</typeparam>
     /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
-    /// <typeparam name="TWantAction">Type 'want action'</typeparam>
+    /// <typeparam name="TWantAction">Type 'want action'.</typeparam>
     public interface IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IAbstractFactory
         where TFact : IFact
         where TFactContainer : IFactContainer<TFact>
@@ -34,9 +34,9 @@ namespace GetcuReone.FactFactory.Interfaces
         void Derive();
 
         /// <summary>
-        /// Derive <typeparamref name="TWantFact"/>
+        /// Derive <typeparamref name="TWantFact"/>.
         /// </summary>
-        /// <typeparam name="TWantFact">Type of desired fact</typeparam>
+        /// <typeparam name="TWantFact">Type of desired fact.</typeparam>
         /// <returns></returns>
         TWantFact DeriveFact<TWantFact>() where TWantFact : TFact;
 

@@ -1,4 +1,4 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Versioned;
 using GivenWhenThen.TestAdapter.Entities;
 using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;

@@ -1,30 +1,23 @@
-﻿using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Versioned.Helpers;
-using GetcuReone.FactFactory.Versioned.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.BaseEntities;
 using System;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Versioned.Entities
 {
     /// <summary>
-    /// Information about the desired action with the version
+    /// Information about the desired action with the version.
     /// </summary>
-    public class VersionedWantAction : WantActionBase<VersionedFactBase>, IFactTypeVersionInfo
+    public class VersionedWantAction : VersionedWantActionBase<VersionedFactBase>
     {
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
-        /// <param name="wantAction">action taken after deriving a fact</param>
-        /// <param name="factTypes">facts required to launch an action</param>
+        /// <param name="wantAction">action taken after deriving a fact.</param>
+        /// <param name="factTypes">facts required to launch an action.</param>
         public VersionedWantAction(Action<IFactContainer<VersionedFactBase>> wantAction, IList<IFactType> factTypes) : base(wantAction, factTypes)
         {
-            VersionType = factTypes.SingleOrNullFactVersion();
         }
 
-        /// <summary>
-        /// Type fact version
-        /// </summary>
-        public IFactType VersionType { get; }
     }
 }

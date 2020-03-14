@@ -1,12 +1,12 @@
-﻿using GetcuReone.FactFactory.Default;
-using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory;
 using System.Collections.Generic;
-using WAction = GetcuReone.FactFactory.Default.Entities.WantAction;
-using Rule = GetcuReone.FactFactory.Default.Entities.FactRule;
+using Rule = GetcuReone.FactFactory.Entities.FactRule;
+using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {
-    internal sealed class FactFactoryWithoutRules : GetcuReone.FactFactory.Default.FactFactory
+    internal sealed class FactFactoryWithoutRules : GetcuReone.FactFactory.FactFactory
     {
         protected override IList<Rule> GetRulesForWantAction(WAction wantAction, FactContainerBase<FactBase> container, FactRuleCollectionBase<FactBase, Rule> rules)
         {

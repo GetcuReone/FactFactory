@@ -1,8 +1,8 @@
 ﻿using FactFactory.TestsCommon;
-using GetcuReone.FactFactory.Default;
+using GetcuReone.FactFactory;
 using GivenWhenThen.TestAdapter.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Factory = GetcuReone.FactFactory.Default.FactFactory;
+using Factory = GetcuReone.FactFactory.FactFactory;
 
 namespace FactFactoryTests.FactFactoryT
 {

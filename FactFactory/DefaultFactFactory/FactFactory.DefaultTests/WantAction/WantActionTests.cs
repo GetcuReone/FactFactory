@@ -2,13 +2,13 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Default;
+using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using WAction = GetcuReone.FactFactory.Default.Entities.WantAction;
+using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactoryTests.WantAction
 {
@@ -39,7 +39,7 @@ namespace FactFactoryTests.WantAction
             bool isRun = false;
 
             Given("Create WantAction", () => new WAction(ct => isRun = true, new List<IFactType> { GetFactType<OtherFact>() }))
-                .When("Run method", wantAction => wantAction.Invoke(new GetcuReone.FactFactory.Default.Entities.FactContainer()))
+                .When("Run method", wantAction => wantAction.Invoke(new GetcuReone.FactFactory.Entities.FactContainer()))
                 .Then("Check result", _ => Assert.IsTrue(isRun, "Invoke not run"));
         }
 

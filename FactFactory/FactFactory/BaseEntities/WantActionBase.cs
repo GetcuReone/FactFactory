@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace GetcuReone.FactFactory.Entities
+namespace GetcuReone.FactFactory.BaseEntities
 {
     /// <summary>
     /// Base class for <see cref="IWantAction{TFact}"/>.

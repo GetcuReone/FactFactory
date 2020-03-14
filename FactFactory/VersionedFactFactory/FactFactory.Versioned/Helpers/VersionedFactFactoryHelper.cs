@@ -1,5 +1,4 @@
-﻿using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Helpers;
+﻿using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;

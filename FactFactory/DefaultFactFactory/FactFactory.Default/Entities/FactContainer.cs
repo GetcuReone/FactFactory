@@ -1,8 +1,8 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.Default.Entities
+namespace GetcuReone.FactFactory.Entities
 {
     /// <summary>
     /// Fact collection

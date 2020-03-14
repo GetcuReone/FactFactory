@@ -4,8 +4,8 @@ using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Default;
-using GetcuReone.FactFactory.Default.SpecialFacts;
+using GetcuReone.FactFactory;
+using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.FactFactory.Interfaces;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,12 +16,12 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class FactFactoryTests : FactFactoryTestBase
     {
-        private GetcuReone.FactFactory.Default.FactFactory FactFactory { get; set; }
+        private GetcuReone.FactFactory.FactFactory FactFactory { get; set; }
 
         [TestInitialize]
         public void Initialize()
         {
-            FactFactory = new GetcuReone.FactFactory.Default.FactFactory();
+            FactFactory = new GetcuReone.FactFactory.FactFactory();
         }
 
         [TestMethod]

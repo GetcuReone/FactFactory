@@ -1,10 +1,10 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Helpers;
-using GetcuReone.FactFactory.Default.SpecialFacts;
+using GetcuReone.FactFactory.SpecialFacts;
 using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Collection = GetcuReone.FactFactory.Default.Entities.FactRuleCollection;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactFactoryT
 {

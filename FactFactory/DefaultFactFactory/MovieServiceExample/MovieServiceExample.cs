@@ -1,5 +1,5 @@
-using GetcuReone.FactFactory.Default;
-using GetcuReone.FactFactory.Default.Entities;
+using GetcuReone.FactFactory;
+using GetcuReone.FactFactory.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MovieServiceExample.Entities;
 using MovieServiceExample.Facts;

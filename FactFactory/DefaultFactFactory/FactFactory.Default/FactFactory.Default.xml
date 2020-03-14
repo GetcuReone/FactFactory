@@ -4,48 +4,48 @@
         <name>FactFactory.Default</name>
     </assembly>
     <members>
-        <member name="T:GetcuReone.FactFactory.Default.Entities.FactContainer">
+        <member name="T:GetcuReone.FactFactory.Entities.FactContainer">
             <summary>
             Fact collection
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.FactContainer.#ctor">
+        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.#ctor">
             <summary>
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Default.FactBase})">
+        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.FactBase})">
             <summary>
             Constructor.
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Default.FactBase},System.Boolean)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.FactBase},System.Boolean)">
             <summary>
             Constructor.
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
             <param name="isReadOnly"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.FactContainer.Copy">
+        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.Copy">
             <summary>
             Get copy container.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.FactContainer.GetFactType``1">
+        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.GetFactType``1">
             <summary>
             Return fact type information.
             </summary>
             <typeparam name="TGetFact">The type of fact to return information about.</typeparam>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Default.Entities.FactRule">
+        <member name="T:GetcuReone.FactFactory.Entities.FactRule">
             <summary>
             Rule of fact calculation
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.FactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Default.FactBase},GetcuReone.FactFactory.Default.FactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.FactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Constructor.
             </summary>
@@ -55,136 +55,136 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
             <exception cref="T:System.ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
         </member>
-        <member name="T:GetcuReone.FactFactory.Default.Entities.FactRuleCollection">
+        <member name="T:GetcuReone.FactFactory.Entities.FactRuleCollection">
             <summary>
-            Collection for <see cref="T:GetcuReone.FactFactory.Default.Entities.FactRule"/>
+            Collection for <see cref="T:GetcuReone.FactFactory.Entities.FactRule"/>
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.FactRuleCollection.#ctor">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor">
             <summary>
             Constructor
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Default.Entities.FactRule})">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule})">
             <summary>
             Constructor.
             </summary>
             <param name="factRules"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Default.Entities.FactRule},System.Boolean)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule},System.Boolean)">
             <summary>
             Constructor.
             </summary>
             <param name="factRules"></param>
             <param name="isReadOnly"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.FactRuleCollection.Copy">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.Copy">
             <summary>
-            <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollectionBase`2"/> copy method.
+            <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/> copy method.
             </summary>
-            <returns>Copied <see cref="T:GetcuReone.FactFactory.Default.Entities.FactRuleCollection"/>.</returns>
+            <returns>Copied <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollection"/>.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.FactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Default.FactBase},GetcuReone.FactFactory.Default.FactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.FactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
-            Creation method <see cref="T:GetcuReone.FactFactory.Default.Entities.FactRule"/>
+            Creation method <see cref="T:GetcuReone.FactFactory.Entities.FactRule"/>
             </summary>
             <param name="func">func for calculate</param>
             <param name="inputFactTypes">information on input factacles rules</param>
             <param name="outputFactType">information on output fact</param>
             <returns>fact rule</returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Default.Entities.WantAction">
+        <member name="T:GetcuReone.FactFactory.Entities.WantAction">
             <summary>
             Desired action information
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.Entities.WantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Default.FactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Entities.WantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor.
             </summary>
             <param name="wantAction">Action taken after deriving a fact.</param>
             <param name="factTypes">Facts required to launch an action.</param>
         </member>
-        <member name="T:GetcuReone.FactFactory.Default.FactBase">
+        <member name="T:GetcuReone.FactFactory.FactBase">
             <summary>
             Base class for fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.FactBase.GetFactType">
+        <member name="M:GetcuReone.FactFactory.FactBase.GetFactType">
             <summary>
             Get fact type.
             </summary>
             <returns>fact type</returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Default.FactBase`1">
+        <member name="T:GetcuReone.FactFactory.FactBase`1">
             <summary>
             Base class for typed facts.
             </summary>
             <typeparam name="TFactValue">Type fact value.</typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Default.FactBase`1.Value">
+        <member name="P:GetcuReone.FactFactory.FactBase`1.Value">
             <summary>
             Value fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.FactBase`1.#ctor(`0)">
+        <member name="M:GetcuReone.FactFactory.FactBase`1.#ctor(`0)">
             <summary>
             Constructor.
             </summary>
             <param name="value">Fact value.</param>
         </member>
-        <member name="T:GetcuReone.FactFactory.Default.FactFactory">
+        <member name="T:GetcuReone.FactFactory.FactFactory">
             <summary>
             Factory default implementation
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Default.FactFactory.Container">
+        <member name="P:GetcuReone.FactFactory.FactFactory.Container">
             <summary>
             Fact container
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Default.FactFactory.Rules">
+        <member name="P:GetcuReone.FactFactory.FactFactory.Rules">
             <summary>
             Collection of rules for derive facts
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.FactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Default.FactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
-            creation method <see cref="T:GetcuReone.FactFactory.Default.Entities.WantAction"/>
+            creation method <see cref="T:GetcuReone.FactFactory.Entities.WantAction"/>
             </summary>
             <param name="wantAction">action taken after deriving a fact</param>
             <param name="factTypes">facts required to launch an action</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.FactFactory.GetFactType``1">
+        <member name="M:GetcuReone.FactFactory.FactFactory.GetFactType``1">
             <summary>
             Get fact type
             </summary>
             <typeparam name="TGetFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Default.SpecialFacts.Contained`1">
+        <member name="T:GetcuReone.FactFactory.SpecialFacts.Contained`1">
             <summary>
             Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Default.SpecialFacts.Contained`1.Value">
+        <member name="P:GetcuReone.FactFactory.SpecialFacts.Contained`1.Value">
             <summary>
             Value fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.SpecialFacts.Contained`1.#ctor">
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.Contained`1.#ctor">
             <summary>
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.SpecialFacts.Contained`1.GetFactType">
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.Contained`1.GetFactType">
             <summary>
             Get fact type.
             </summary>
             <returns>fact type</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.SpecialFacts.Contained`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.Contained`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
             <summary>
             Is the fact contained in the container.
             </summary>
@@ -192,28 +192,28 @@
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Default.SpecialFacts.NoDerived`1">
+        <member name="T:GetcuReone.FactFactory.SpecialFacts.NoDerived`1">
             <summary>
             Contains information about a type of fact that cannot be calculated
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Default.SpecialFacts.NoDerived`1.Value">
+        <member name="P:GetcuReone.FactFactory.SpecialFacts.NoDerived`1.Value">
             <summary>
             Value fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.SpecialFacts.NoDerived`1.#ctor">
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.NoDerived`1.#ctor">
             <summary>
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.SpecialFacts.NoDerived`1.GetFactType">
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.NoDerived`1.GetFactType">
             <summary>
             Get fact type.
             </summary>
             <returns>fact type</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.SpecialFacts.NoDerived`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.NoDerived`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
             <summary>
             Is the fact contained in the container.
             </summary>
@@ -221,28 +221,28 @@
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Default.SpecialFacts.NotContained`1">
+        <member name="T:GetcuReone.FactFactory.SpecialFacts.NotContained`1">
             <summary>
             Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Default.SpecialFacts.NotContained`1.Value">
+        <member name="P:GetcuReone.FactFactory.SpecialFacts.NotContained`1.Value">
             <summary>
             Value fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.SpecialFacts.NotContained`1.#ctor">
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.NotContained`1.#ctor">
             <summary>
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.SpecialFacts.NotContained`1.GetFactType">
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.NotContained`1.GetFactType">
             <summary>
             Get fact type.
             </summary>
             <returns>fact type</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Default.SpecialFacts.NotContained`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.NotContained`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
             <summary>
             Is the fact contained in the container.
             </summary>

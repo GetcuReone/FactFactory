@@ -1,7 +1,7 @@
-﻿using GetcuReone.FactFactory.Default.Helpers;
+﻿using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 
-namespace GetcuReone.FactFactory.Default.SpecialFacts
+namespace GetcuReone.FactFactory.SpecialFacts
 {
     /// <summary>
     /// Information about a fact that is contained in the container at the time of the function call <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>

@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GetcuReone.FactFactory.Entities
+namespace GetcuReone.FactFactory.BaseEntities
 {
     /// <summary>
     /// Base class for fact container.

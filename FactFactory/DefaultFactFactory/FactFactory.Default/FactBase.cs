@@ -1,10 +1,7 @@
-﻿using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace GetcuReone.FactFactory.Default
+namespace GetcuReone.FactFactory
 {
     /// <summary>
     /// Base class for fact.

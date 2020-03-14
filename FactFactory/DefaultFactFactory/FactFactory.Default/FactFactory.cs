@@ -1,9 +1,9 @@
-﻿using GetcuReone.FactFactory.Default.Entities;
+﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.Default
+namespace GetcuReone.FactFactory
 {
     /// <summary>
     /// Factory default implementation
@@ -38,7 +38,7 @@ namespace GetcuReone.FactFactory.Default
         /// <returns></returns>
         protected override IFactType GetFactType<TGetFact>()
         {
-            return new GetcuReone.FactFactory.Entities.FactType<TGetFact>();
+            return new FactType<TGetFact>();
         }
     }
 }

@@ -1,5 +1,6 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.BaseEntities;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +9,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
     /// <summary>
     /// Collection of versioned rules for facts
     /// </summary>
-    public sealed class VersionedFactRuleCollection : FactRuleCollectionBase<VersionedFactBase, VersionedFactRule>
+    public sealed class VersionedFactRuleCollection : VersionedFactRuleCollectionBase<VersionedFactBase, VersionedFactRule>
     {
         /// <summary>
         /// Constructor.

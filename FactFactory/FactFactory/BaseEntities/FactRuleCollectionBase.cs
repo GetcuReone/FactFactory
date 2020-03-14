@@ -6,10 +6,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GetcuReone.FactFactory.Entities
+namespace GetcuReone.FactFactory.BaseEntities
 {
     /// <summary>
-    /// Base collection for <typeparamref name="TFactRule"/>
+    /// Base collection for <typeparamref name="TFactRule"/>.
     /// </summary>
     public abstract class FactRuleCollectionBase<TFact, TFactRule>: IList<TFactRule>, ICopy<FactRuleCollectionBase<TFact, TFactRule>>
         where TFact : IFact
@@ -50,14 +50,14 @@ namespace GetcuReone.FactFactory.Entities
         public bool IsReadOnly { get; internal set; }
 
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         protected FactRuleCollectionBase() : this(null)
         {
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         /// <param name="factRules"></param>
         protected FactRuleCollectionBase(IEnumerable<TFactRule> factRules) : this(factRules, false)

@@ -1,10 +1,10 @@
-﻿using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Default;
-using Rule = GetcuReone.FactFactory.Default.Entities.FactRule;
+﻿using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory;
+using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {
-    internal sealed class FactRuleCollectionGetOriginal : GetcuReone.FactFactory.Default.Entities.FactRuleCollection
+    internal sealed class FactRuleCollectionGetOriginal : GetcuReone.FactFactory.Entities.FactRuleCollection
     {
         public override FactRuleCollectionBase<FactBase, Rule> Copy()
         {
