@@ -90,7 +90,7 @@ namespace MovieServiceExample
 
         [TestMethod]
         [Description("Calculate the cost of a 'My Hero Academia: Heroes Rising' movie for a 'Judy Gonzalez' user.")]
-        public void CalculatingCcostBuyingMovie_1()
+        public void CalculatingCostBuyingMovie_1()
         {
             // We have information about the user's mail and the identifier of the film, what he wants to buy.
             string email = "judy_gonzalez@example.com";
@@ -109,7 +109,7 @@ namespace MovieServiceExample
 
         [TestMethod]
         [Description("Calculate the cost of a 'My Hero Academia: Heroes Rising' movie for a 'John Cornero' user.")]
-        public void CalculatingCcostBuyingMovie_2()
+        public void CalculatingCostBuyingMovie_2()
         {
             // We have information about the user's mail and the identifier of the film, what he wants to buy.
             string email = "john_cornero@example.com";
