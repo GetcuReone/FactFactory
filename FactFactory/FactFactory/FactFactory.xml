@@ -95,6 +95,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Clear">
+            <summary>
+            Clear this container.
+            </summary>
+        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1">
             <summary>
             Base class for rules.
@@ -1275,6 +1280,11 @@
             </summary>
             <typeparam name="TContainsFact">type of fact to check for.</typeparam>
             <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Clear">
+            <summary>
+            Clear this container.
+            </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactFactory`5">
             <summary>
