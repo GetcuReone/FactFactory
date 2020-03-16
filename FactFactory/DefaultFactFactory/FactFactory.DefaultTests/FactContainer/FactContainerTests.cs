@@ -202,5 +202,20 @@ namespace FactFactoryTests.FactContainer
                 .When("Remove fact", container => ExpectedFactFactoryException(() => container.Remove(new Input10Fact(10))))
                 .ThenAssertErrorDetail(ErrorCode.InvalidOperation, $"Fact container is read-only.");
         }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Container)]
+        [Description("Clear container.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void ClearContainerTestCase()
+        {
+            GivenCreateContainer()
+                .And("Add fact", container => container.Add(new IntFact(0)))
+                .When("Clear", container => container.Clear())
+                .Then("Check result",container => 
+                {
+                    Assert.AreEqual(0, container.Count(), "Container must be empty.");
+                });
+        }
     }
 }
