@@ -173,5 +173,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <returns></returns>
         public abstract FactContainerBase<TFact> Copy();
+
+        /// <summary>
+        /// Clear this container.
+        /// </summary>
+        public virtual void Clear()
+        {
+            _container.Clear();
+        }
     }
 }
