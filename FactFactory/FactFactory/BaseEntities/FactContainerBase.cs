@@ -90,8 +90,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <returns></returns>
         public virtual bool Contains<TContainsFact>() where TContainsFact : TFact
         {
-            IFactType factType = GetFactType<TContainsFact>();
-            return _container.Any(fact => fact.GetFactType().Compare(factType));
+            return TryGetFact(out TContainsFact _);
         }
 
         /// <summary>
