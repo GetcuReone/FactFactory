@@ -70,7 +70,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <param name="fact">Fact.</param>
         /// <typeparam name="TAddFact">Type of fact to add.</typeparam>
-        /// <exception cref="ArgumentException">Attempt to add an existing fact.</exception>
+        /// <exception cref="FactFactoryException">Attempt to add an existing fact.</exception>
         public virtual void Add<TAddFact>(TAddFact fact) where TAddFact : TFact
         {
             CheckReadOnly();
@@ -78,7 +78,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             IFactType factType = fact.GetFactType();
 
             if (_container.Any(f => f.GetFactType().Compare(factType)))
-                throw new ArgumentException($"The fact container already contains {typeof(TAddFact).FullName} type of fact.");
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"The fact container already contains {typeof(TAddFact).FullName} type of fact.");
 
             _container.Add(fact);
         }

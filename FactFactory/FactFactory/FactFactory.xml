@@ -45,7 +45,7 @@
             </summary>
             <param name="fact">Fact.</param>
             <typeparam name="TAddFact">Type of fact to add.</typeparam>
-            <exception cref="T:System.ArgumentException">Attempt to add an existing fact.</exception>
+            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Attempt to add an existing fact.</exception>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Contains``1">
             <summary>
