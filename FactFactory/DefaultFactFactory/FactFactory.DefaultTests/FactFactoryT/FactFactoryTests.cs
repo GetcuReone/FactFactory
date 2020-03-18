@@ -325,10 +325,25 @@ namespace FactFactoryTests.FactFactoryT
         public void AddTwoDefaultFactsWithSameTypesTestCase()
         {
             string expectedReason = $"GetDefaultFacts method return more than two {GetFactType<DefaultFact>().FactName} facts";
+
             Given("Create factory", () => new FactFactoryCustom())
                 .And("Add default fact", factFactory => factFactory.DefaultFacts.Add(new DefaultFact(10)))
                 .And("Add default fact", factFactory => factFactory.DefaultFacts.Add(new DefaultFact(10)))
                 .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<DefaultFact>()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [Description("Derive with empty container.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DeriveWithEmptyContainerTestCase()
+        {
+            string expectedReason = "Container cannot be null.";
+
+            Given("Create factory", () => new FactFactoryCustom())
+                .And("Empty container.", factFactory => { factFactory.container = null; })
+                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
     }

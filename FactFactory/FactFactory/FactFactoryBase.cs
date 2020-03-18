@@ -60,6 +60,9 @@ namespace GetcuReone.FactFactory
         public virtual void Derive()
         {
             // Get a copy of the container
+            if (Container == null)
+                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "Container cannot be null.");
+
             FactContainerBase<TFact> containerCopy = Container.Copy();
             if (Container.Equals(containerCopy))
                 throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
