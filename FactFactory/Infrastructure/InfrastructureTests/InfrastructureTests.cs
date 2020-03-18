@@ -54,9 +54,10 @@ namespace InfrastructureTests
                 file.Delete();
         }
 
-        [Timeout(Timeouts.Minute.One)]
         [TestMethod]
-        [Description("[infrastructure] Checking the presence of all the necessary files in the nugget package.")]
+        [TestCategory(TC.Projects.Infrastructure)]
+        [Description("Checking the presence of all the necessary files in the nugget package.")]
+        [Timeout(Timeouts.Minute.One)]
         public void NugetHaveNeedFilesTestCase()
         {
             Given("Get folder with .nupkg", () =>
@@ -107,9 +108,10 @@ namespace InfrastructureTests
                 });
         }
 
-        [Timeout(Timeouts.Minute.One)]
         [TestMethod]
-        [Description("[infrastructure] Check for all attribute Timeout tests.")]
+        [TestCategory(TC.Projects.Infrastructure)]
+        [Description("Check for all attribute Timeout tests.")]
+        [Timeout(Timeouts.Minute.One)]
         public void AllHaveTimeoutTestCase()
         {
             string partNameAssemblies = "FactFactory";
@@ -158,9 +160,10 @@ namespace InfrastructureTests
                 });
         }
 
-        [Timeout(Timeouts.Minute.One)]
         [TestMethod]
-        [Description("[infrastructure] all namespaces start with GetcuReone.ComboPatterns.")]
+        [TestCategory(TC.Projects.Infrastructure)]
+        [Description("All namespaces start with GetcuReone.ComboPatterns.")]
+        [Timeout(Timeouts.Minute.One)]
         public void AllNamespacesStartWithGetcuReoneTestCase()
         {
             string beginNamespace = "GetcuReone";
@@ -212,9 +215,11 @@ namespace InfrastructureTests
                 });
         }
 
-        [Timeout(Timeouts.Minute.One)]
+        
         [TestMethod]
-        [Description("[infrastructure] assemblies have major version.")]
+        [TestCategory(TC.Projects.Infrastructure)]
+        [Description("Assemblies have major version.")]
+        [Timeout(Timeouts.Minute.One)]
         public void AssembliesHaveMajorVersionTestCase()
         {
             string[] includeAssemblies = new string[]
