@@ -15,7 +15,10 @@ namespace GetcuReone.FactFactory.BaseEntities
     public abstract class FactContainerBase<TFact> : IFactContainer<TFact>, ICopy<FactContainerBase<TFact>>
         where TFact : IFact
     {
-        private readonly List<TFact> _container;
+        /// <summary>
+        /// List storing facts.
+        /// </summary>
+        protected List<TFact> ContainerList { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="IFactContainer{TFact}"/> is read-only.
@@ -45,14 +48,18 @@ namespace GetcuReone.FactFactory.BaseEntities
         protected FactContainerBase(IEnumerable<TFact> facts, bool isReadOnly)
         {
             if (facts.IsNullOrEmpty())
-                _container = new List<TFact>();
+                ContainerList = new List<TFact>();
             else
-                _container = new List<TFact>(facts);
+                ContainerList = new List<TFact>(facts);
 
             IsReadOnly = isReadOnly;
         }
 
-        private void CheckReadOnly()
+        /// <summary>
+        /// If <see cref="IsReadOnly"/> is true then throw <see cref="FactFactoryException"/>.
+        /// </summary>
+        /// <exception cref="FactFactoryException">If <see cref="IsReadOnly"/> is true.</exception>
+        protected void CheckReadOnly()
         {
             if (IsReadOnly)
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidOperation, $"Fact container is read-only.");
@@ -77,10 +84,10 @@ namespace GetcuReone.FactFactory.BaseEntities
 
             IFactType factType = fact.GetFactType();
 
-            if (_container.Any(f => f.GetFactType().Compare(factType)))
+            if (ContainerList.Any(f => f.GetFactType().Compare(factType)))
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"The fact container already contains {typeof(TAddFact).FullName} type of fact.");
 
-            _container.Add(fact);
+            ContainerList.Add(fact);
         }
 
         /// <summary>
@@ -99,7 +106,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <returns>A <see cref="IEnumerator"/> for the <see cref="FactContainerBase{TFact}"/></returns>
         public virtual IEnumerator<TFact> GetEnumerator()
         {
-            return _container.GetEnumerator();
+            return ContainerList.GetEnumerator();
         }
 
         /// <summary>
@@ -125,7 +132,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         public virtual void Remove<TRemoveFact>() where TRemoveFact : TFact
         {
             if (TryGetFact<TRemoveFact>(out var fact))
-                _container.Remove(fact);
+                ContainerList.Remove(fact);
         }
 
         /// <summary>
@@ -137,7 +144,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             CheckReadOnly();
 
-            _container.Remove(fact);
+            ContainerList.Remove(fact);
         }
 
         /// <summary>
@@ -148,7 +155,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <returns></returns>
         public virtual bool TryGetFact<TGetFact>(out TGetFact fact) where TGetFact : TFact
         {
-            TFact innerFact = _container.SingleOrDefault(item => item is TGetFact);
+            TFact innerFact = ContainerList.SingleOrDefault(item => item is TGetFact);
 
             if (innerFact == null)
             {
@@ -164,7 +171,7 @@ namespace GetcuReone.FactFactory.BaseEntities
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _container.GetEnumerator();
+            return ContainerList.GetEnumerator();
         }
 
         /// <summary>
@@ -178,7 +185,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         public virtual void Clear()
         {
-            _container.Clear();
+            ContainerList.Clear();
         }
     }
 }
