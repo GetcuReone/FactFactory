@@ -69,7 +69,7 @@ namespace GetcuReone.FactFactory
             if (Container.Equals(containerCopy))
                 throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
             if (!(containerCopy is TFactContainer))
-                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method return returned a different type of container");
+                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method returned a different type of container.");
 
             TFactContainer container = (TFactContainer)containerCopy;
             container.IsReadOnly = true;

@@ -360,5 +360,19 @@ namespace FactFactoryTests.FactFactoryT
                 .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container)]
+        [Description("Derive with container returning a different type of container.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DeriveWithContainerReturningDifferentTypeContainerTestCase()
+        {
+            string expectedReason = "IFactContainer.Copy method returned a different type of container.";
+
+            Given("Create factory", () => new FactFactoryCustom())
+                .And("Empty container.", factFactory => { factFactory.container = new FactContainerGetDifferent(); })
+                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+        }
     }
 }
