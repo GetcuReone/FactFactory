@@ -64,6 +64,8 @@ namespace GetcuReone.FactFactory
                 throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "Container cannot be null.");
 
             FactContainerBase<TFact> containerCopy = Container.Copy();
+            if (containerCopy == null)
+                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method return null.");
             if (Container.Equals(containerCopy))
                 throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
             if (!(containerCopy is TFactContainer))
