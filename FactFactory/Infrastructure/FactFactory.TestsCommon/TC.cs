@@ -19,6 +19,11 @@
             /// Refers to the FactFactory.Versioned project
             /// </summary>
             public const string Versioned = "versioned";
+
+            /// <summary>
+            /// Infrastructure test.
+            /// </summary>
+            public const string Infrastructure = "Infra";
         }
 
         /// <summary>

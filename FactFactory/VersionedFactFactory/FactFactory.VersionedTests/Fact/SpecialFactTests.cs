@@ -2,7 +2,7 @@
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.SpecialFacts;
-using GivenWhenThen.TestAdapter;
+using GetcuReone.GwtTestFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.DefaultTests.Fact

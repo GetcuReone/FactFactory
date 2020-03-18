@@ -20,7 +20,7 @@
 
     <dependencies>
       <group targetFramework=".$TargetFramework$">
-        <dependency id="ComboPatterns" version="3.0.2" />
+        <dependency id="ComboPatterns" version="[3.0.2,4)" />
       </group>
     </dependencies>
   </metadata>

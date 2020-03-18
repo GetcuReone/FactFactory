@@ -1,10 +1,9 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
-using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
-using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

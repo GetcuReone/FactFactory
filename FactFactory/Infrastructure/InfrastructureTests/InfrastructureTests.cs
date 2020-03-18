@@ -1,5 +1,6 @@
-using GivenWhenThen.TestAdapter;
-using GivenWhenThen.TestAdapter.Helpers;
+using FactFactory.TestsCommon;
+using GetcuReone.GwtTestFramework;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -53,9 +54,10 @@ namespace InfrastructureTests
                 file.Delete();
         }
 
-        [Timeout(Timeouts.Minute.One)]
         [TestMethod]
-        [Description("[infrastructure] Checking the presence of all the necessary files in the nugget package.")]
+        [TestCategory(TC.Projects.Infrastructure)]
+        [Description("Checking the presence of all the necessary files in the nugget package.")]
+        [Timeout(Timeouts.Minute.One)]
         public void NugetHaveNeedFilesTestCase()
         {
             Given("Get folder with .nupkg", () =>
@@ -106,9 +108,10 @@ namespace InfrastructureTests
                 });
         }
 
-        [Timeout(Timeouts.Minute.One)]
         [TestMethod]
-        [Description("[infrastructure] Check for all attribute Timeout tests.")]
+        [TestCategory(TC.Projects.Infrastructure)]
+        [Description("Check for all attribute Timeout tests.")]
+        [Timeout(Timeouts.Minute.One)]
         public void AllHaveTimeoutTestCase()
         {
             string partNameAssemblies = "FactFactory";
@@ -126,7 +129,7 @@ namespace InfrastructureTests
                 .And("Get assembly infos", files => 
                     files.Select(file => 
                     {
-                        LoggingHelper.Info($"test assembly {file.FullName}");
+                        LoggingHelper.ConsoleInfo($"test assembly {file.FullName}");
                         return Assembly.LoadFrom(file.FullName);
                     }).ToList())
                 .And("Get types", assemblies => assemblies.SelectMany(assembly => assembly.GetTypes()))
@@ -140,7 +143,7 @@ namespace InfrastructureTests
                         foreach (var method in cl.GetMethods().Where(method => method.GetCustomAttribute(typeof(TestMethodAttribute)) != null))
                         {
                             result.Add(method);
-                            LoggingHelper.Info($"test method {cl.FullName}.{method.Name}()");
+                            LoggingHelper.ConsoleInfo($"test method {cl.FullName}.{method.Name}()");
                         }
                     }
 
@@ -157,9 +160,10 @@ namespace InfrastructureTests
                 });
         }
 
-        [Timeout(Timeouts.Minute.One)]
         [TestMethod]
-        [Description("[infrastructure] all namespaces start with GetcuReone.ComboPatterns.")]
+        [TestCategory(TC.Projects.Infrastructure)]
+        [Description("All namespaces start with GetcuReone.ComboPatterns.")]
+        [Timeout(Timeouts.Minute.One)]
         public void AllNamespacesStartWithGetcuReoneTestCase()
         {
             string beginNamespace = "GetcuReone";
@@ -187,7 +191,7 @@ namespace InfrastructureTests
                     files =>
                         files.Select(file =>
                         {
-                            LoggingHelper.Info($"test assembly {file.FullName}");
+                            LoggingHelper.ConsoleInfo($"test assembly {file.FullName}");
                             return Assembly.LoadFrom(file.FullName);
                         }).ToList())
 
@@ -211,9 +215,11 @@ namespace InfrastructureTests
                 });
         }
 
-        [Timeout(Timeouts.Minute.One)]
+        
         [TestMethod]
-        [Description("[infrastructure] assemblies have major version.")]
+        [TestCategory(TC.Projects.Infrastructure)]
+        [Description("Assemblies have major version.")]
+        [Timeout(Timeouts.Minute.One)]
         public void AssembliesHaveMajorVersionTestCase()
         {
             string[] includeAssemblies = new string[]
@@ -244,7 +250,7 @@ namespace InfrastructureTests
                     files =>
                         files.Select(file =>
                         {
-                            LoggingHelper.Info($"test assembly {file.FullName}");
+                            LoggingHelper.ConsoleInfo($"test assembly {file.FullName}");
                             return Assembly.LoadFrom(file.FullName);
                         }).ToList())
                 .Then("Checke assembly version", assemblies =>

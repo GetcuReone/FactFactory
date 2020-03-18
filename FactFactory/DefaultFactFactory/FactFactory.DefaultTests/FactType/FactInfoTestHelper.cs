@@ -1,5 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
-using GivenWhenThen.TestAdapter.Entities;
+using GetcuReone.GwtTestFramework.Entities;
 
 namespace FactFactoryTests.FactType
 {

@@ -1,25 +1,26 @@
 steps:
 - task: VSTest@2
-  displayName: 'VS run Infrastructure tests'
+  displayName: 'VS run Infra tests'
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
-      **\InfrastructureTests.dll
+      **\*Tests*.dll
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     testRunTitle: 'VS run tests'
     configuration: '$(buildConfiguration)'
+    testFiltercriteria: 'TestCategory=Infra'
 
 - task: VSTest@2
   displayName: 'VS run tests'
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
-      **\*Tests.dll
-      !**\InfrastructureTests.dll
+      **\*Tests*.dll
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     testRunTitle: 'VS run tests'
     configuration: '$(buildConfiguration)'
+    testFiltercriteria: 'TestCategory!=Infra'

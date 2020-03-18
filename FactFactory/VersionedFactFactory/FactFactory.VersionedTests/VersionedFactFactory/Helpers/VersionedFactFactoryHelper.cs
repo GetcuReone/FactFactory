@@ -1,6 +1,6 @@
 ﻿using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Versioned;
-using GivenWhenThen.TestAdapter.Entities;
+using GetcuReone.GwtTestFramework.Entities;
 using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 using Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;

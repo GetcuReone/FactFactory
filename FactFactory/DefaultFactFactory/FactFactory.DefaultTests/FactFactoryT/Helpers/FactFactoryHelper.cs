@@ -1,6 +1,6 @@
 ﻿using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.BaseEntities;
-using GivenWhenThen.TestAdapter.Entities;
+using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Action = GetcuReone.FactFactory.Entities.WantAction;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;

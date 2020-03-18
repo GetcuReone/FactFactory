@@ -1,4 +1,8 @@
-﻿namespace GivenWhenThen.TestAdapter
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace FactFactory.TestsCommon
 {
     public static class Timeouts
     {
