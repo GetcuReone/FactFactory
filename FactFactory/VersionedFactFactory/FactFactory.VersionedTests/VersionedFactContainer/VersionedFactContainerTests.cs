@@ -1,5 +1,7 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GwtTestFramework.Entities;
@@ -57,14 +59,12 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddTwoIdenticalVersionedFactsContainerTestCase()
         {
+            string expectedReason = $"The fact container already contains {typeof(Version1).FullName} type of fact.";
+
             GivenCreateContainer()
                 .And("first addition of versioned fact", container => container.Add(new Version1()))
-                .When("second addition of versioned fact", container => ExpectedException<ArgumentException>(() => container.Add(new Version1())))
-                .Then("Check result", error =>
-                {
-                    Assert.IsNotNull(error, "error can't should be null");
-                    Assert.AreEqual($"The fact container already contains {typeof(Version1).FullName} type of fact.", error.Message, "Expected another message");
-                });
+                .When("second addition of versioned fact", container => ExpectedFactFactoryException(() => container.Add(new Version1())))
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
         [TestMethod]

@@ -34,5 +34,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         protected VersionedFactContainerBase(IEnumerable<TFactBase> facts, bool isReadOnly) : base(facts, isReadOnly)
         {
         }
+
+        
     }
 }
