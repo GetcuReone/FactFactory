@@ -9,6 +9,11 @@
             Base class for fact container.
             </summary>
         </member>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.ContainerList">
+            <summary>
+            List storing facts.
+            </summary>
+        </member>
         <member name="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.IsReadOnly">
             <summary>
             Gets a value indicating whether the <see cref="T:GetcuReone.FactFactory.Interfaces.IFactContainer`1"/> is read-only.
@@ -31,6 +36,12 @@
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
             <param name="isReadOnly"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.CheckReadOnly">
+            <summary>
+            If <see cref="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.IsReadOnly"/> is true then throw <see cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException"/>.
+            </summary>
+            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">If <see cref="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.IsReadOnly"/> is true.</exception>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.GetFactType``1">
             <summary>

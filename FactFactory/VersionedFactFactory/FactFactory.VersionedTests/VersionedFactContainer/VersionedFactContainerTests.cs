@@ -59,12 +59,26 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddTwoIdenticalVersionedFactsContainerTestCase()
         {
-            string expectedReason = $"The fact container already contains {typeof(Version1).FullName} type of fact.";
+            string expectedReason = $"The container already contains fact type {typeof(Version1).FullName} without version.";
 
             GivenCreateContainer()
                 .And("first addition of versioned fact", container => container.Add(new Version1()))
                 .When("second addition of versioned fact", container => ExpectedFactFactoryException(() => container.Add(new Version1())))
-                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [Description("Add two facts with identical versions to the container.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void AddTwoFactsWithIdenticalVersionsContainerTestCase()
+        {
+            string expectedReason = $"The container already contains fact type {typeof(FactResult).FullName} with version equal to version {typeof(Version1).FullName}.";
+
+            GivenCreateContainer()
+                .And("first addition of versioned fact", container => container.Add(new FactResult(0, new Version1())))
+                .When("second addition of versioned fact", container => ExpectedFactFactoryException(() => container.Add(new FactResult(0, new Version1()))))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
         [TestMethod]
