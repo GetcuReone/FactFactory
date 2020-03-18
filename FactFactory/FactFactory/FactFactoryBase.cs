@@ -60,9 +60,13 @@ namespace GetcuReone.FactFactory
         public virtual void Derive()
         {
             // Get a copy of the container
-            FactContainerBase<TFact> container = Container.Copy();
-            if (container.Equals(Container))
+            FactContainerBase<TFact> containerCopy = Container.Copy();
+            if (Container.Equals(containerCopy))
                 throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
+            if (!(containerCopy is TFactContainer))
+                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method return returned a different type of container");
+
+            TFactContainer container = (TFactContainer)containerCopy;
             container.IsReadOnly = true;
 
             List<IFactType> defaultFacts = new List<IFactType>();
