@@ -334,7 +334,7 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container)]
         [Description("Derive with empty container.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void DeriveWithEmptyContainerTestCase()
@@ -343,6 +343,20 @@ namespace FactFactoryTests.FactFactoryT
 
             Given("Create factory", () => new FactFactoryCustom())
                 .And("Empty container.", factFactory => { factFactory.container = null; })
+                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container)]
+        [Description("Derive with container returning a blank copy.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DeriveWithContainerReturningBlankCopyTestCase()
+        {
+            string expectedReason = "IFactContainer.Copy method return null.";
+
+            Given("Create factory", () => new FactFactoryCustom())
+                .And("Empty container.", factFactory => { factFactory.container = new FactContainerGetNull(); })
                 .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
