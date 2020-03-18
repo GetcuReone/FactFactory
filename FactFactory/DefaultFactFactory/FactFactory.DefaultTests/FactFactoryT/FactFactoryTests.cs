@@ -4,10 +4,8 @@ using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.FactFactory.Interfaces;
-using GivenWhenThen.TestAdapter;
+using GetcuReone.FactFactory.SpecialFacts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 

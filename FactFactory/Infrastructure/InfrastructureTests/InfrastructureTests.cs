@@ -1,5 +1,6 @@
-using GivenWhenThen.TestAdapter;
-using GivenWhenThen.TestAdapter.Helpers;
+using FactFactory.TestsCommon;
+using GetcuReone.GwtTestFramework;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -126,7 +127,7 @@ namespace InfrastructureTests
                 .And("Get assembly infos", files => 
                     files.Select(file => 
                     {
-                        LoggingHelper.Info($"test assembly {file.FullName}");
+                        LoggingHelper.ConsoleInfo($"test assembly {file.FullName}");
                         return Assembly.LoadFrom(file.FullName);
                     }).ToList())
                 .And("Get types", assemblies => assemblies.SelectMany(assembly => assembly.GetTypes()))
@@ -140,7 +141,7 @@ namespace InfrastructureTests
                         foreach (var method in cl.GetMethods().Where(method => method.GetCustomAttribute(typeof(TestMethodAttribute)) != null))
                         {
                             result.Add(method);
-                            LoggingHelper.Info($"test method {cl.FullName}.{method.Name}()");
+                            LoggingHelper.ConsoleInfo($"test method {cl.FullName}.{method.Name}()");
                         }
                     }
 
@@ -187,7 +188,7 @@ namespace InfrastructureTests
                     files =>
                         files.Select(file =>
                         {
-                            LoggingHelper.Info($"test assembly {file.FullName}");
+                            LoggingHelper.ConsoleInfo($"test assembly {file.FullName}");
                             return Assembly.LoadFrom(file.FullName);
                         }).ToList())
 
@@ -244,7 +245,7 @@ namespace InfrastructureTests
                     files =>
                         files.Select(file =>
                         {
-                            LoggingHelper.Info($"test assembly {file.FullName}");
+                            LoggingHelper.ConsoleInfo($"test assembly {file.FullName}");
                             return Assembly.LoadFrom(file.FullName);
                         }).ToList())
                 .Then("Checke assembly version", assemblies =>

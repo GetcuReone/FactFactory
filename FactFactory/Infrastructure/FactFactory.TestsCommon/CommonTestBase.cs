@@ -1,7 +1,7 @@
 ﻿using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Interfaces;
-using GivenWhenThen.TestAdapter;
+using GetcuReone.GwtTestFramework;
 using System;
 
 namespace FactFactory.TestsCommon

@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\FactFactory.TestsCommon\FactFactory.TestsCommon.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\GivenWhenThen.TestAdapter\GivenWhenThen.TestAdapter.csproj" />
     <ProjectReference Include="..\FactFactory.Default\FactFactory.Default.csproj" />
   </ItemGroup>
 

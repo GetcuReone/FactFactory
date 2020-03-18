@@ -3,7 +3,6 @@ using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.FactFactory.Versioned.Interfaces;
-using GivenWhenThen.TestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

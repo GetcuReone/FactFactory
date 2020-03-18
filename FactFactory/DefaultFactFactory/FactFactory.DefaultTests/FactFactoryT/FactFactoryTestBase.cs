@@ -1,6 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using GetcuReone.FactFactory;
-using GivenWhenThen.TestAdapter.Entities;
+using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Factory = GetcuReone.FactFactory.FactFactory;
 

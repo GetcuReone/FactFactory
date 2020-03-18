@@ -1,7 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.FactFactory.Versioned.Interfaces;
-using GivenWhenThen.TestAdapter.Entities;
+using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using V_FactFactory = GetcuReone.FactFactory.Versioned.VersionedFactFactory;

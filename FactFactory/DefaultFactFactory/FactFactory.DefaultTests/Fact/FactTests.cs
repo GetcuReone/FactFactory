@@ -1,7 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory;
-using GivenWhenThen.TestAdapter;
+using GetcuReone.GwtTestFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
