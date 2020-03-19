@@ -68,24 +68,35 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         }
 
         /// <summary>
-        /// We are trying to return a fact of type <typeparamref name="TFact"/> with a maximum version that is not higher than the requested <paramref name="version"/>.
+        /// We are trying to return a fact of type <typeparamref name="TGetFact"/> with a maximum version that is not higher than the requested <paramref name="version"/>.
         /// </summary>
-        /// <typeparam name="TFact">Type of fact you need.</typeparam>
+        /// <typeparam name="TGetFact">Type of fact you need.</typeparam>
         /// <param name="fact">fact.</param>
         /// <param name="version">Version.</param>
-        public virtual bool TryGetFactByVersion<TFact>(out TFact fact, IVersionFact version)
-            where TFact : TFactBase
+        public virtual bool TryGetFactByVersion<TGetFact>(out TGetFact fact, IVersionFact version)
+            where TGetFact : TFactBase
         {
             fact = default;
-            TFactBase searchFact = this.GetFactOrDefaultByVersion(GetFactType<TFact>(), version);
+            TFactBase searchFact = this.GetFactOrDefaultByVersion(GetFactType<TGetFact>(), version);
 
             if (searchFact != null)
             {
-                fact = (TFact)searchFact;
+                fact = (TGetFact)searchFact;
                 return true;
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Try get fact with max version. 
+        /// </summary>
+        /// <typeparam name="TGetFact">Type of fact to return.</typeparam>
+        /// <param name="fact"></param>
+        /// <returns></returns>
+        public override bool TryGetFact<TGetFact>(out TGetFact fact)
+        {
+            return TryGetFactByVersion(out fact, null);
         }
     }
 }
