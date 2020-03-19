@@ -137,8 +137,8 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
                 return fact;
 
             string reason = version != null
-                ? $"Fact with type {GetFactType<TFact>().FactName} and version {version.GetFactType().FactName} not found"
-                : $"Fact with type {GetFactType<TFact>().FactName} and without version";
+                ? $"Fact with type {GetFactType<TFact>().FactName} and version {version.GetFactType().FactName} not found."
+                : $"Fact with type {GetFactType<TFact>().FactName} and without version.";
 
             throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, reason);
         }
