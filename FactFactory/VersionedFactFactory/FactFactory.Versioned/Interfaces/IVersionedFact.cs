@@ -5,7 +5,7 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
     /// <summary>
     /// Versioned <see cref="IFact"/>.
     /// </summary>
-    public interface IVersionedFact : IFact
+    public interface IVersionFact : IFact
     {
         /// <summary>
         /// Version of the rule that calculated the fact.

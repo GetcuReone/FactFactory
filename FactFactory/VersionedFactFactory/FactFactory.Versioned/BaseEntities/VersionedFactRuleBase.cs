@@ -13,7 +13,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     /// </summary>
     /// <typeparam name="TFactBase">Base class for facts.</typeparam>
     public abstract class VersionedFactRuleBase<TFactBase> : FactRuleBase<TFactBase>, IVersionedFactRule<TFactBase>
-        where TFactBase : IVersionedFact
+        where TFactBase : IVersionFact
     {
         /// <summary>
         /// Type of fact with rule version.

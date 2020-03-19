@@ -12,13 +12,13 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Base class for fact container.
     /// </summary>
-    public abstract class FactContainerBase<TFact> : IFactContainer<TFact>, ICopy<FactContainerBase<TFact>>
-        where TFact : IFact
+    public abstract class FactContainerBase<TFactBase> : IFactContainer<TFactBase>, ICopy<FactContainerBase<TFactBase>>
+        where TFactBase : IFact
     {
         /// <summary>
         /// List storing facts.
         /// </summary>
-        protected List<TFact> ContainerList { get; private set; }
+        protected List<TFactBase> ContainerList { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="IFactContainer{TFact}"/> is read-only.
@@ -36,7 +36,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Constructor.
         /// </summary>
         /// <param name="facts">An array of facts to add to the container.</param>
-        protected FactContainerBase(IEnumerable<TFact> facts) : this(facts, false) 
+        protected FactContainerBase(IEnumerable<TFactBase> facts) : this(facts, false) 
         {
         }
 
@@ -45,12 +45,12 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <param name="facts">An array of facts to add to the container.</param>
         /// <param name="isReadOnly"></param>
-        protected FactContainerBase(IEnumerable<TFact> facts, bool isReadOnly)
+        protected FactContainerBase(IEnumerable<TFactBase> facts, bool isReadOnly)
         {
             if (facts.IsNullOrEmpty())
-                ContainerList = new List<TFact>();
+                ContainerList = new List<TFactBase>();
             else
-                ContainerList = new List<TFact>(facts);
+                ContainerList = new List<TFactBase>(facts);
 
             IsReadOnly = isReadOnly;
         }
@@ -70,22 +70,22 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <typeparam name="TGetFact">The type of fact to return information about.</typeparam>
         /// <returns></returns>
-        protected abstract IFactType GetFactType<TGetFact>() where TGetFact : TFact;
+        protected abstract IFactType GetFactType<TGetFact>() where TGetFact : TFactBase;
 
         /// <summary>
         /// Add fact.
         /// </summary>
         /// <param name="fact">Fact.</param>
-        /// <typeparam name="TAddFact">Type of fact to add.</typeparam>
+        /// <typeparam name="TFact">Type of fact to add.</typeparam>
         /// <exception cref="FactFactoryException">Attempt to add an existing fact.</exception>
-        public virtual void Add<TAddFact>(TAddFact fact) where TAddFact : TFact
+        public virtual void Add<TFact>(TFact fact) where TFact : TFactBase
         {
             CheckReadOnly();
 
             IFactType factType = fact.GetFactType();
 
             if (ContainerList.Any(f => f.GetFactType().Compare(factType)))
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"The fact container already contains {typeof(TAddFact).FullName} type of fact.");
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"The fact container already contains {typeof(TFact).FullName} type of fact.");
 
             ContainerList.Add(fact);
         }
@@ -93,18 +93,18 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Is this type of fact contained.
         /// </summary>
-        /// <typeparam name="TContainsFact">type of fact to check for.</typeparam>
+        /// <typeparam name="TFact">type of fact to check for.</typeparam>
         /// <returns></returns>
-        public virtual bool Contains<TContainsFact>() where TContainsFact : TFact
+        public virtual bool Contains<TFact>() where TFact : TFactBase
         {
-            return TryGetFact(out TContainsFact _);
+            return TryGetFact(out TFact _);
         }
 
         /// <summary>
         /// Returns an enumerator that iterates through the <see cref="FactContainerBase{TFact}"/>.
         /// </summary>
         /// <returns>A <see cref="IEnumerator"/> for the <see cref="FactContainerBase{TFact}"/></returns>
-        public virtual IEnumerator<TFact> GetEnumerator()
+        public virtual IEnumerator<TFactBase> GetEnumerator()
         {
             return ContainerList.GetEnumerator();
         }
@@ -112,26 +112,26 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Get fact.
         /// </summary>
-        /// <typeparam name="TGetFact">Type of fact to return.</typeparam>
-        /// <exception cref="FactFactoryException">Did not find fact type <typeparamref name="TGetFact"/></exception>
+        /// <typeparam name="TFact">Type of fact to return.</typeparam>
+        /// <exception cref="FactFactoryException">Did not find fact type <typeparamref name="TFact"/></exception>
         /// <returns></returns>
-        public virtual TGetFact GetFact<TGetFact>() where TGetFact : TFact
+        public virtual TFact GetFact<TFact>() where TFact : TFactBase
         {
-            if (TryGetFact<TGetFact>(out var fact))
+            if (TryGetFact<TFact>(out var fact))
             {
                 return fact;
             }
 
-            throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"Not found type fact with type {GetFactType<TGetFact>().FactName}.");
+            throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"Not found type fact with type {GetFactType<TFact>().FactName}.");
         }
 
         /// <summary>
         /// Remove fact.
         /// </summary>
-        /// <typeparam name="TRemoveFact">Type of fact to delete.</typeparam>
-        public virtual void Remove<TRemoveFact>() where TRemoveFact : TFact
+        /// <typeparam name="TFact">Type of fact to delete.</typeparam>
+        public virtual void Remove<TFact>() where TFact : TFactBase
         {
-            if (TryGetFact<TRemoveFact>(out var fact))
+            if (TryGetFact<TFact>(out var fact))
                 ContainerList.Remove(fact);
         }
 
@@ -139,8 +139,8 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Remove fact.
         /// </summary>
         /// <param name="fact"></param>
-        /// <typeparam name="TRemoveFact">Type of fact to delete.</typeparam>
-        public virtual void Remove<TRemoveFact>(TRemoveFact fact) where TRemoveFact : TFact
+        /// <typeparam name="TFact">Type of fact to delete.</typeparam>
+        public virtual void Remove<TFact>(TFact fact) where TFact : TFactBase
         {
             CheckReadOnly();
 
@@ -150,12 +150,12 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Try get fact.
         /// </summary>
-        /// <typeparam name="TGetFact">Type of fact to return.</typeparam>
+        /// <typeparam name="TFact">Type of fact to return.</typeparam>
         /// <param name="fact"></param>
         /// <returns></returns>
-        public virtual bool TryGetFact<TGetFact>(out TGetFact fact) where TGetFact : TFact
+        public virtual bool TryGetFact<TFact>(out TFact fact) where TFact : TFactBase
         {
-            TFact innerFact = ContainerList.SingleOrDefault(item => item is TGetFact);
+            TFactBase innerFact = ContainerList.SingleOrDefault(item => item is TFact);
 
             if (innerFact == null)
             {
@@ -164,7 +164,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             }
             else
             {
-                fact = (TGetFact)innerFact;
+                fact = (TFact)innerFact;
                 return true;
             }
         }
@@ -178,7 +178,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Get copy container.
         /// </summary>
         /// <returns></returns>
-        public abstract FactContainerBase<TFact> Copy();
+        public abstract FactContainerBase<TFactBase> Copy();
 
         /// <summary>
         /// Clear this container.

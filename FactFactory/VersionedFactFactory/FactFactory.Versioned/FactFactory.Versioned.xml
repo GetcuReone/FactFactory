@@ -38,7 +38,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.TryGetFactByVersion``1(``0@,GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
             <summary>
-            We are trying to return a fact of type <typeparamref name="TGetFact"/> with a maximum version that is not higher than the requested <paramref name="version"/>.
+            Try to return a fact of <typeparamref name="TGetFact"/> type with version equal to <paramref name="version"/>.
             </summary>
             <typeparam name="TGetFact">Type of fact you need.</typeparam>
             <param name="fact">fact.</param>
@@ -46,7 +46,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.TryGetFact``1(``0@)">
             <summary>
-            Try get fact with max version. 
+            Try get fact without version. 
             </summary>
             <typeparam name="TGetFact">Type of fact to return.</typeparam>
             <param name="fact"></param>

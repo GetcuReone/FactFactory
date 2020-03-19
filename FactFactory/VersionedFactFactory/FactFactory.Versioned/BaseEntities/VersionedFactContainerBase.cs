@@ -15,7 +15,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     /// </summary>
     /// <typeparam name="TFactBase"></typeparam>
     public abstract class VersionedFactContainerBase<TFactBase> : FactContainerBase<TFactBase>
-        where TFactBase : IVersionedFact
+        where TFactBase : IVersionFact
     {
         /// <summary>
         /// Constructor.
@@ -45,9 +45,9 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// Add fact.
         /// </summary>
         /// <param name="fact">Fact.</param>
-        /// <typeparam name="TAddFact">Type of fact to add.</typeparam>
+        /// <typeparam name="TFact">Type of fact to add.</typeparam>
         /// <exception cref="FactFactoryException">Attempt to add an existing fact.</exception>
-        public override void Add<TAddFact>(TAddFact fact)
+        public override void Add<TFact>(TFact fact)
         {
             CheckReadOnly();
 
@@ -56,47 +56,74 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             if (fact.Version == null)
             {
                 if (ContainerList.Any(f => f.GetFactType().Compare(factType) && f.Version == null))
-                    throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {typeof(TAddFact).FullName} without version.");
+                    throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {typeof(TFact).FullName} without version.");
             }
             else
             {
                 if (ContainerList.Any(f => f.GetFactType().Compare(factType) && f.Version != null && f.Version.EqualVersion(fact.Version)))
-                    throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {typeof(TAddFact).FullName} with version equal to version {fact.Version.GetType().FullName}.");
+                    throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {typeof(TFact).FullName} with version equal to version {fact.Version.GetType().FullName}.");
             }
 
             ContainerList.Add(fact);
         }
 
         /// <summary>
-        /// We are trying to return a fact of type <typeparamref name="TGetFact"/> with a maximum version that is not higher than the requested <paramref name="version"/>.
+        /// Try to return a fact of <typeparamref name="TFact"/> type with version equal to <paramref name="version"/>.
         /// </summary>
-        /// <typeparam name="TGetFact">Type of fact you need.</typeparam>
+        /// <typeparam name="TFact">Type of fact you need.</typeparam>
         /// <param name="fact">fact.</param>
         /// <param name="version">Version.</param>
-        public virtual bool TryGetFactByVersion<TGetFact>(out TGetFact fact, IVersionFact version)
-            where TGetFact : TFactBase
+        public virtual bool TryGetFactByVersion<TFact>(out TFact fact, IVersionFact version)
+            where TFact : TFactBase
         {
-            fact = default;
-            TFactBase searchFact = this.GetFactOrDefaultByVersion(GetFactType<TGetFact>(), version);
+            IFactType type = GetFactType<TFact>();
+            TFactBase factBase = version != null
+                ? ContainerList.FirstOrDefault(f => f.GetFactType().Compare(type) && f.Version != null && f.Version.EqualVersion(version))
+                : ContainerList.FirstOrDefault(f => f.GetFactType().Compare(type) && f.Version == null);
 
-            if (searchFact != null)
+            if (factBase != null)
             {
-                fact = (TGetFact)searchFact;
+                fact = (TFact)factBase;
                 return true;
             }
-
-            return false;
+            else
+            {
+                fact = default;
+                return false;
+            }
         }
 
         /// <summary>
-        /// Try get fact with max version. 
+        /// Try get fact without version. 
         /// </summary>
-        /// <typeparam name="TGetFact">Type of fact to return.</typeparam>
+        /// <typeparam name="TFact">Type of fact to return.</typeparam>
         /// <param name="fact"></param>
         /// <returns></returns>
-        public override bool TryGetFact<TGetFact>(out TGetFact fact)
+        public override bool TryGetFact<TFact>(out TFact fact)
         {
             return TryGetFactByVersion(out fact, null);
+        }
+
+        /// <summary>
+        /// Does an <typeparamref name="TFact"/> type fact with version <paramref name="version"/>.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        public virtual bool ContainsByVersion<TFact>(IVersionFact version)
+            where TFact : TFactBase
+        {
+            return TryGetFactByVersion(out TFact _, version);
+        }
+
+        /// <summary>
+        /// Does an <typeparamref name="TFact"/> type fact without version.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <returns></returns>
+        public override bool Contains<TFact>()
+        {
+            return ContainsByVersion<TFact>(null);
         }
     }
 }

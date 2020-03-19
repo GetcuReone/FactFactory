@@ -6,7 +6,7 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
     /// Version rule for calculating a fact.
     /// </summary>
     public interface IVersionedFactRule<TFact> : IFactRule<TFact>, IFactTypeVersionInfo
-        where TFact : IVersionedFact
+        where TFact : IVersionFact
     {
         /// <summary>
         /// Comparison of rules for calculating facts without regard to version.

@@ -5,7 +5,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Base class for versioned facts.
     /// </summary>
-    public abstract class VersionedFactBase : FactBase, IVersionedFact
+    public abstract class VersionedFactBase : FactBase, IVersionFact
     {
         /// <summary>
         /// Version of the rule that calculated the fact.
