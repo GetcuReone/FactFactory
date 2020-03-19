@@ -4,6 +4,7 @@ using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactContainer.Env;
 using GetcuReone.FactFactory.Constants;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace FactFactory.VersionedTests.VersionedFactContainer
 {
@@ -69,6 +70,33 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 .And("first addition of versioned fact", container => container.Add(new FactResult(0, new Version1())))
                 .When("second addition of versioned fact", container => ExpectedFactFactoryException(() => container.Add(new FactResult(0, new Version1()))))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [Description("Add one fact with different versions.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void AddOneFactWithDifferentVersionsTestCase()
+        {
+            GivenCreateContainer()
+                .When("added versioned fact", container =>
+                {
+                    container.Add(new FactResult(0, new Version1()));
+                    container.Add(new FactResult(0, new Version2()));
+                })
+                .Then("Check result", container =>
+                {
+                    Assert.AreEqual(2, container.Count(), "The container must contain two facts.");
+
+                    foreach (var fact in container)
+                        Assert.IsTrue(fact is FactResult, "Only one type of fact was expected.");
+
+                    var fact1 = container.First();
+                    var fact2 = container.Last();
+
+                    Assert.IsTrue(fact1.Version is Version1, "FactResult with 1 version not contained in container");
+                    Assert.IsTrue(fact2.Version is Version2, "FactResult with 2 version not contained in container");
+                });
         }
     }
 }
