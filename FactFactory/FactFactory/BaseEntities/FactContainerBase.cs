@@ -132,7 +132,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         public virtual void Remove<TFact>() where TFact : TFactBase
         {
             if (TryGetFact<TFact>(out var fact))
-                ContainerList.Remove(fact);
+                Remove(fact);
         }
 
         /// <summary>

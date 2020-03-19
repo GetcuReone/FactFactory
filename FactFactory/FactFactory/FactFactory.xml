@@ -55,14 +55,14 @@
             Add fact.
             </summary>
             <param name="fact">Fact.</param>
-            <typeparam name="TAddFact">Type of fact to add.</typeparam>
+            <typeparam name="TFact">Type of fact to add.</typeparam>
             <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Attempt to add an existing fact.</exception>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Contains``1">
             <summary>
             Is this type of fact contained.
             </summary>
-            <typeparam name="TContainsFact">type of fact to check for.</typeparam>
+            <typeparam name="TFact">type of fact to check for.</typeparam>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.GetEnumerator">
@@ -75,28 +75,28 @@
             <summary>
             Get fact.
             </summary>
-            <typeparam name="TGetFact">Type of fact to return.</typeparam>
-            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Did not find fact type <typeparamref name="TGetFact"/></exception>
+            <typeparam name="TFact">Type of fact to return.</typeparam>
+            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Did not find fact type <typeparamref name="TFact"/></exception>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Remove``1">
             <summary>
             Remove fact.
             </summary>
-            <typeparam name="TRemoveFact">Type of fact to delete.</typeparam>
+            <typeparam name="TFact">Type of fact to delete.</typeparam>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Remove``1(``0)">
             <summary>
             Remove fact.
             </summary>
             <param name="fact"></param>
-            <typeparam name="TRemoveFact">Type of fact to delete.</typeparam>
+            <typeparam name="TFact">Type of fact to delete.</typeparam>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.TryGetFact``1(``0@)">
             <summary>
             Try get fact.
             </summary>
-            <typeparam name="TGetFact">Type of fact to return.</typeparam>
+            <typeparam name="TFact">Type of fact to return.</typeparam>
             <param name="fact"></param>
             <returns></returns>
         </member>
