@@ -59,8 +59,13 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         {
             TFactBase versionedFact = base.Calculate(container);
 
-            if (VersionType != null)
-                versionedFact.Version = (IVersionFact)container.First(fact => fact is IVersionFact && fact.GetFactType().Compare(VersionType));
+            if (versionedFact != null)
+            {
+                if (VersionType != null)
+                    versionedFact.Version = (IVersionFact)container.First(fact => fact is IVersionFact && fact.GetFactType().Compare(VersionType));
+
+                versionedFact.CalculatedByRule = true;
+            }
 
             return versionedFact;
         }
