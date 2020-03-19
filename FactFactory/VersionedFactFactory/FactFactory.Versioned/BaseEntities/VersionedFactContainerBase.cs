@@ -3,7 +3,6 @@ using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     /// </summary>
     /// <typeparam name="TFactBase"></typeparam>
     public abstract class VersionedFactContainerBase<TFactBase> : FactContainerBase<TFactBase>
-        where TFactBase : IVersionFact
+        where TFactBase : IVersionedFact
     {
         /// <summary>
         /// Constructor.
