@@ -1,6 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
+using FactFactory.VersionedTests.VersionedFactContainer.Env;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned;
@@ -13,13 +14,8 @@ using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContain
 namespace FactFactory.VersionedTests.VersionedFactContainer
 {
     [TestClass]
-    public sealed class VersionedFactContainerTests : CommonTestBase<VersionedFactBase>
+    public sealed class GetVersionedFactTests : VersionedFactContrainerTestBase
     {
-        private GivenBlock<Container> GivenCreateContainer()
-        {
-            return Given("Create container", () => new Container());
-        }
-
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("Get copied container.")]
