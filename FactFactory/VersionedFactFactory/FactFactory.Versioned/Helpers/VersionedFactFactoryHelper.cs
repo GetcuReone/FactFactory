@@ -59,5 +59,46 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
         {
             return new FactType<TFact>();
         }
+
+        internal static TFactBase GetFactOrDefaultByVersion<TFactBase>(this IFactContainer<TFactBase> container, IFactType searchFactType, IVersionFact version)
+            where TFactBase : IVersionedFact
+        {
+            List<TFactBase> facts = container.Where(fact => fact.GetFactType().Compare(searchFactType)).ToList();
+
+            if (facts.Count == 0)
+                return default;
+
+            if (version == null)
+            {
+                var defaultMaxFact = facts.FirstOrDefault(f => f.Version == null);
+
+                if (defaultMaxFact != null)
+                    return defaultMaxFact;
+
+                foreach (var fact in facts)
+                {
+                    if (facts.All(f => fact.Version.IsMoreThan(f.Version) || fact.Equals(f)))
+                        return fact;
+                }
+            }
+            else
+            {
+                List<TFactBase> scopeSearch = new List<TFactBase>();
+
+                foreach(var fact in facts)
+                {
+                    if (fact.Version != null && !fact.Version.IsMoreThan(version))
+                        scopeSearch.Add(fact);
+                }
+
+                foreach(var fact in scopeSearch)
+                {
+                    if (scopeSearch.All(f => fact.Version.IsMoreThan(f.Version) || fact.Equals(f)))
+                        return fact;
+                }
+            }
+
+            return default;
+        }
     }
 }

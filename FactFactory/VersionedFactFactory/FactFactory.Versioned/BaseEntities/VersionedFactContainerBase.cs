@@ -3,6 +3,7 @@ using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +65,27 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             }
 
             ContainerList.Add(fact);
+        }
+
+        /// <summary>
+        /// We are trying to return a fact of type <typeparamref name="TFact"/> with a maximum version that is not higher than the requested <paramref name="version"/>.
+        /// </summary>
+        /// <typeparam name="TFact">Type of fact you need.</typeparam>
+        /// <param name="fact">fact.</param>
+        /// <param name="version">Version.</param>
+        public virtual bool TryGetFactByVersion<TFact>(out TFact fact, IVersionFact version)
+            where TFact : TFactBase
+        {
+            fact = default;
+            TFactBase searchFact = this.GetFactOrDefaultByVersion(GetFactType<TFact>(), version);
+
+            if (searchFact != null)
+            {
+                fact = (TFact)searchFact;
+                return true;
+            }
+
+            return false;
         }
     }
 }
