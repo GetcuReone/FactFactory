@@ -106,7 +106,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TContainer"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>
         /// <returns></returns>
-        public bool CanCalculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
+        public virtual bool CanCalculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
             where TContainer : IFactContainer<TFactBase>
             where TWantAction : IWantAction<TFactBase>
         {
