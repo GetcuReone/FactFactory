@@ -11,5 +11,10 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
         /// Version of the rule that calculated the fact.
         /// </summary>
         IVersionFact Version { get; set; }
+
+        /// <summary>
+        /// It was calculated using the rule.
+        /// </summary>
+        bool CalculatedByRule { get; set; }
     }
 }

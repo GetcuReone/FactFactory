@@ -11,6 +11,11 @@ namespace GetcuReone.FactFactory.Versioned
         /// Version of the rule that calculated the fact.
         /// </summary>
         public virtual IVersionFact Version { get; set; }
+
+        /// <summary>
+        /// It was calculated using the rule.
+        /// </summary>
+        public bool CalculatedByRule { get; set; } = false;
     }
 
     /// <summary>
