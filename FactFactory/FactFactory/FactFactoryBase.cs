@@ -303,7 +303,7 @@ namespace GetcuReone.FactFactory
                     else if (wantFact.IsFactType<INoDerivedFact>())
                     {
                         INoDerivedFact noDerivedFact = wantFact.CreateSpecialFact<INoDerivedFact>();
-                        if (!noDerivedFact.Value.ContainsContainer(container) && !TryDeriveNoFactInfo(noDerivedFact, container, rules))
+                        if (!noDerivedFact.Value.ContainsContainer(container) && !TryDeriveNoFactInfo(noDerivedFact, wantAction, container, rules))
                         {
                             TFact specialFact = noDerivedFact.ConvertFact<TFact>();
                             specialFacts.Add(specialFact);
@@ -315,7 +315,7 @@ namespace GetcuReone.FactFactory
                     }
                 }
 
-                if (TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> treeResult, wantFact, container, rulesForDerive, specialFacts, out List<DeriveFactErrorDetail> details))
+                if (TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> treeResult, wantFact, wantAction, container, rulesForDerive, specialFacts, out List<DeriveFactErrorDetail> details))
                 {
                     treesResult.Add(treeResult);
                 }
@@ -334,7 +334,7 @@ namespace GetcuReone.FactFactory
             return true;
         }
 
-        private bool TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> treeResult, IFactType wantFact, FactContainerBase<TFact> container, IList<TFactRule> ruleCollection, List<TFact> specialFacts, out List<DeriveFactErrorDetail> deriveFactErrorDetails)
+        private bool TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> treeResult, IFactType wantFact, TWantAction wantAction, FactContainerBase<TFact> container, IList<TFactRule> ruleCollection, List<TFact> specialFacts, out List<DeriveFactErrorDetail> deriveFactErrorDetails)
         {
             treeResult = null;
             deriveFactErrorDetails = null;
@@ -343,7 +343,7 @@ namespace GetcuReone.FactFactory
             List<FactRuleTree<TFact, TFactRule>> factRuleTrees = GetFactRuleTrees(wantFact, ruleCollection);
 
             // Check if we can already derive the fact
-            FactRuleTree<TFact, TFactRule> factRuleTreeComputed = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.CanCalculate(container));
+            FactRuleTree<TFact, TFactRule> factRuleTreeComputed = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.CanCalculate(container, wantAction));
 
             if (factRuleTreeComputed != null)
             {
@@ -441,7 +441,7 @@ namespace GetcuReone.FactFactory
                                 {
                                     INoDerivedFact noDerivedFact = needFactType.CreateSpecialFact<INoDerivedFact>();
 
-                                    if (!TryDeriveNoFactInfo(noDerivedFact, container, ruleCollection))
+                                    if (!TryDeriveNoFactInfo(noDerivedFact, wantAction, container, ruleCollection))
                                     {
                                         specialFacts.Add(noDerivedFact.ConvertFact<TFact>());
                                         needRemove = true;
@@ -713,11 +713,11 @@ namespace GetcuReone.FactFactory
             OnFactCalculatedForWantAction(rule.OutputFactType, container, wantAction);
         }
 
-        private bool TryDeriveNoFactInfo(INoDerivedFact noDerivedFact, FactContainerBase<TFact> container, IList<TFactRule> ruleCollection)
+        private bool TryDeriveNoFactInfo(INoDerivedFact noDerivedFact, TWantAction wantAction, FactContainerBase<TFact> container, IList<TFactRule> ruleCollection)
         {
             try
             {
-                return TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> _, noDerivedFact.Value, container, ruleCollection, new List<TFact>(), out var _);
+                return TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> _, noDerivedFact.Value, wantAction, container, ruleCollection, new List<TFact>(), out var _);
             }
             catch (InvalidDeriveOperationException<TFact> ex)
             {

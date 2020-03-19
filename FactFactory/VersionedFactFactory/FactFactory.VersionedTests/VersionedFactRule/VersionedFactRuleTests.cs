@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
+using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 
 namespace FactFactory.VersionedTests.VersionedFactRule
 {
@@ -118,7 +119,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
             Given("Create container", () => container = new Container())
                 .And("Added fact version", () => container.Add(new Version2()))
                 .And("Create rule", () => new Rule(ct => new FactResult(1), new List<IFactType> { GetFactType<Version2>() }, GetFactType<FactResult>()))
-                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container), "cannot calculate"))
+                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container, default(Action)), "cannot calculate"))
                 .When("Run calculate", rule => rule.Calculate(container))
                 .Then("Check result", fact =>
                 {
@@ -140,7 +141,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
 
             Given("Create container", () => container = new Container())
                 .And("Create rule", () => new Rule(ct => new FactResult(1), new List<IFactType> { }, GetFactType<FactResult>()))
-                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container), "cannot calculate"))
+                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container, default(Action)), "cannot calculate"))
                 .When("Run calculate", rule => rule.Calculate(container))
                 .Then("Check result", fact =>
                 {

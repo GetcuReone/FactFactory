@@ -10,11 +10,11 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Base class for rules.
     /// </summary>
-    /// <typeparam name="TFact">The type of fact from which the facts in the container should be inherited</typeparam>
-    public abstract class FactRuleBase<TFact> : IFactRule<TFact>
-        where TFact : IFact
+    /// <typeparam name="TFactBase">The type of fact from which the facts in the container should be inherited</typeparam>
+    public abstract class FactRuleBase<TFactBase> : IFactRule<TFactBase>
+        where TFactBase : IFact
     {
-        private readonly Func<IFactContainer<TFact>, TFact> _func;
+        private readonly Func<IFactContainer<TFactBase>, TFactBase> _func;
 
         /// <summary>
         /// Information on input factacles rules.
@@ -34,7 +34,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="outputFactType">Information on output fact.</param>
         /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
         /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
-        protected FactRuleBase(Func<IFactContainer<TFact>, TFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+        protected FactRuleBase(Func<IFactContainer<TFactBase>, TFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
             if (outputFactType == null)
@@ -42,11 +42,11 @@ namespace GetcuReone.FactFactory.BaseEntities
 
             OutputFactType = outputFactType.CannotIsType<ISpecialFact>(nameof(outputFactType));
 
-            new List<IFactType> { OutputFactType }.CheckArgumentFacts<TFact>();
+            new List<IFactType> { OutputFactType }.CheckArgumentFacts<TFactBase>();
 
             if (inputFactTypes != null)
             {
-                inputFactTypes.CheckArgumentFacts<TFact>();
+                inputFactTypes.CheckArgumentFacts<TFactBase>();
 
                 foreach (IFactType type in inputFactTypes)
                     type.CheckSpecialFactType();
@@ -93,18 +93,22 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="container"></param>
         /// <typeparam name="TContainer"></typeparam>
         /// <returns></returns>
-        public virtual TFact Calculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFact>
+        public virtual TFactBase Calculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFactBase>
         {
             return _func(container);
         }
 
         /// <summary>
-        /// Is it possible to calculate the fact.
+        /// is it possible to calculate the fact.
         /// </summary>
         /// <param name="container"></param>
+        /// <param name="wantAction"></param>
         /// <typeparam name="TContainer"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
         /// <returns></returns>
-        public virtual bool CanCalculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFact>
+        public bool CanCalculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
+            where TContainer : IFactContainer<TFactBase>
+            where TWantAction : IWantAction<TFactBase>
         {
             return InputFactTypes.All(factInfo => factInfo.ContainsContainer(container));
         }
@@ -115,7 +119,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactRule"></typeparam>
         /// <param name="factRule"></param>
         /// <returns></returns>
-        public virtual bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule<TFact>
+        public virtual bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule<TFactBase>
         {
             if (!OutputFactType.Compare(factRule.OutputFactType))
                 return false;

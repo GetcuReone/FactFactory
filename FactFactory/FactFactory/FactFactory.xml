@@ -115,7 +115,7 @@
             <summary>
             Base class for rules.
             </summary>
-            <typeparam name="TFact">The type of fact from which the facts in the container should be inherited</typeparam>
+            <typeparam name="TFactBase">The type of fact from which the facts in the container should be inherited</typeparam>
         </member>
         <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.InputFactTypes">
             <summary>
@@ -153,12 +153,14 @@
             <typeparam name="TContainer"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.CanCalculate``1(``0)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.CanCalculate``2(``0,``1)">
             <summary>
-            Is it possible to calculate the fact.
+            is it possible to calculate the fact.
             </summary>
             <param name="container"></param>
+            <param name="wantAction"></param>
             <typeparam name="TContainer"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.Compare``1(``0)">
@@ -1339,7 +1341,7 @@
             <summary>
             Rule of fact calculation.
             </summary>
-            <typeparam name="TFact">The type of fact from which the facts in the container should be inherited.</typeparam>
+            <typeparam name="TFactBase">The type of fact from which the facts in the container should be inherited.</typeparam>
         </member>
         <member name="P:GetcuReone.FactFactory.Interfaces.IFactRule`1.InputFactTypes">
             <summary>
@@ -1351,12 +1353,14 @@
             Information on output fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule`1.CanCalculate``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule`1.CanCalculate``2(``0,``1)">
             <summary>
             is it possible to calculate the fact.
             </summary>
             <param name="container"></param>
+            <param name="wantAction"></param>
             <typeparam name="TContainer"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule`1.Calculate``1(``0)">

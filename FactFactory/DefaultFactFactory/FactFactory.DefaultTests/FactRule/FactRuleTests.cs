@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 using Rule = GetcuReone.FactFactory.Entities.FactRule;
+using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactoryTests.FactRule
 {
@@ -153,7 +154,7 @@ namespace FactFactoryTests.FactRule
 
                     return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), GetFactType<OtherFact>());
                 })
-                .When("run method", rule => rule.CanCalculate(container))
+                .When("run method", rule => rule.CanCalculate(container, default(WAction)))
                 .Then("check result", result => Assert.IsTrue(result, "rule cannot be executed"));
         }
 
@@ -178,7 +179,7 @@ namespace FactFactoryTests.FactRule
 
                     return new Rule(func, factInfos, GetFactType<OtherFact>());
                 })
-                .When("run method", rule => rule.CanCalculate(container))
+                .When("run method", rule => rule.CanCalculate(container, default(WAction)))
                 .Then("check result", result => Assert.IsFalse(result, "rule can be followed"));
         }
 
