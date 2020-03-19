@@ -12,7 +12,7 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
     /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
     /// <typeparam name="TWantAction">Type 'want action'.</typeparam>
     public interface IVersionedFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
-        where TFact : IVersionFact
+        where TFact : IVersionedFact
         where TFactContainer : IFactContainer<TFact>
         where TFactRule : IVersionedFactRule<TFact>
         where TFactRuleCollection : IList<TFactRule>

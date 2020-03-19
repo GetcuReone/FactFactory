@@ -125,5 +125,53 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         {
             return ContainsByVersion<TFact>(null);
         }
+
+        /// <summary>
+        /// Return a fact of <typeparamref name="TFact"/> type with version equal to <paramref name="version"/>.
+        /// </summary>
+        /// <typeparam name="TFact">Type of fact you need.</typeparam>
+        /// <param name="version">Version.</param>
+        public virtual TFact GetFactByVersion<TFact>(IVersionFact version)
+            where TFact : TFactBase
+        {
+            if (TryGetFactByVersion(out TFact fact, version))
+                return fact;
+
+            string reason = version != null
+                ? $"Fact with type {GetFactType<TFact>().FactName} and version {version.GetFactType().FactName} not found"
+                : $"Fact with type {GetFactType<TFact>().FactName} and without version";
+
+            throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, reason);
+        }
+
+        /// <summary>
+        /// Return a fact of <typeparamref name="TFact"/> type without version.
+        /// </summary>
+        /// <typeparam name="TFact">Type of fact you need.</typeparam>
+        public override TFact GetFact<TFact>()
+        {
+            return GetFactByVersion<TFact>(null);
+        }
+
+        /// <summary>
+        /// Remove a fact of <typeparamref name="TFact"/> type with version equal to <paramref name="version"/>.
+        /// </summary>
+        /// <typeparam name="TFact">Type of fact you need.</typeparam>
+        /// <param name="version">Version.</param>
+        public virtual void RemoveByVersion<TFact>(IVersionFact version)
+            where TFact : TFactBase
+        {
+            if (TryGetFactByVersion(out TFact fact, version))
+                Remove(fact);
+        }
+
+        /// <summary>
+        /// Remove a fact of <typeparamref name="TFact"/> type without version.
+        /// </summary>
+        /// <typeparam name="TFact">Type of fact you need.</typeparam>
+        public override void Remove<TFact>()
+        {
+            RemoveByVersion<TFact>(null);
+        }
     }
 }

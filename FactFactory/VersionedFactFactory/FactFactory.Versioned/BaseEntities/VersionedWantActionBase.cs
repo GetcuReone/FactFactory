@@ -12,7 +12,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     /// </summary>
     /// <typeparam name="TFactBase"></typeparam>
     public abstract class VersionedWantActionBase<TFactBase> : WantActionBase<TFactBase>, IFactTypeVersionInfo
-        where TFactBase : IVersionFact
+        where TFactBase : IVersionedFact
     {
         /// <summary>
         /// Constructor.
