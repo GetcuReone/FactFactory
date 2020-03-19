@@ -1,4 +1,6 @@
-﻿namespace GetcuReone.FactFactory.Versioned.Versions
+﻿using GetcuReone.FactFactory.Versioned.SpecialFacts;
+
+namespace GetcuReone.FactFactory.Versioned.Versions
 {
     /// <summary>
     /// Base class for <see cref="uint"/> based version facts.
