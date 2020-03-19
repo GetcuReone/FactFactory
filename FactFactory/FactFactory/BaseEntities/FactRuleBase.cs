@@ -99,7 +99,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// is it possible to calculate the fact.
+        /// Is it possible to calculate the fact.
         /// </summary>
         /// <param name="container"></param>
         /// <typeparam name="TContainer"></typeparam>
