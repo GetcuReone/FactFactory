@@ -6,7 +6,6 @@ using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Linq;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
@@ -26,14 +25,12 @@ namespace FactFactoryTests.FactContainer
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddAnExistingFactTestCase()
         {
+            string expectedReason = $"The fact container already contains {typeof(IntFact).FullName} type of fact.";
+
             GivenCreateContainer()
                 .And("Add fact", container => container.Add(new IntFact(0)))
-                .When("Add an existing fact", container => ExpectedException<ArgumentException>(() => container.Add(new IntFact(0))))
-                .Then("Check error", ex =>
-                {
-                    Assert.IsNotNull(ex, "error can't should be null");
-                    Assert.AreEqual($"The fact container already contains {typeof(IntFact).FullName} type of fact.", ex.Message, "Expected another message");
-                });
+                .When("Add an existing fact", container => ExpectedFactFactoryException(() => container.Add(new IntFact(0))))
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
         [TestMethod]

@@ -26,7 +26,7 @@ namespace GetcuReone.FactFactory
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
         /// <returns></returns>
-        protected override WantAction CreateWantAction(Action<IFactContainer<FactBase>> wantAction, IList<IFactType> factTypes)
+        protected override WantAction CreateWantAction(Action<IFactContainer<FactBase>> wantAction, IReadOnlyCollection<IFactType> factTypes)
         {
             return new WantAction(wantAction, factTypes);
         }

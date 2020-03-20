@@ -1,4 +1,4 @@
-﻿using GetcuReone.FactFactory.Versioned.Versions;
+﻿using GetcuReone.FactFactory.Versioned.SpecialFacts;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Env
 {

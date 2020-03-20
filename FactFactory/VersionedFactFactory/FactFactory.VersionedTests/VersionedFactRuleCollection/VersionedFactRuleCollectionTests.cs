@@ -1,8 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
+using FactFactory.VersionedTests.VersionedFactRuleCollection.Env;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Versioned;
-using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +11,8 @@ using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
 namespace FactFactory.VersionedTests.VersionedFactRuleCollection
 {
     [TestClass]
-    public sealed class VersionedFactRuleCollectionTests : CommonTestBase<VersionedFactBase>
+    public sealed class VersionedFactRuleCollectionTests : VersionedFactRuleCollectionTestBase
     {
-        private GivenBlock<Collection> GivenCreateCollection()
-        {
-            return Given("Create collection", () => new Collection());
-        }
-
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.RuleCollection)]
         [Description("Add rule.")]
@@ -43,7 +37,7 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
             Rule factRule = null;
 
             Given("Create collection", () => originalsCollection = new Collection())
-                .And("Create rule", () => factRule = new Rule(ct => default, new List<IFactType>(), GetFactType<Fact1>()))
+                .And("Create rule", () => factRule = new Rule((ct, _) => default, new List<IFactType>(), GetFactType<Fact1>()))
                 .And("Add rule", _ => originalsCollection.Add(factRule))
                 .When("Get copied", _ => originalsCollection.Copy())
                 .Then("Check result", copyCollection =>

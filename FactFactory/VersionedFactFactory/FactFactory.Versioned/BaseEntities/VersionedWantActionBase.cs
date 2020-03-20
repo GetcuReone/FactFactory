@@ -19,7 +19,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// </summary>
         /// <param name="wantAction">action taken after deriving a fact.</param>
         /// <param name="factTypes">facts required to launch an action.</param>
-        protected VersionedWantActionBase(Action<IFactContainer<TFactBase>> wantAction, IList<IFactType> factTypes) : base(wantAction, factTypes)
+        protected VersionedWantActionBase(Action<IFactContainer<TFactBase>> wantAction, IReadOnlyCollection<IFactType> factTypes) : base(wantAction, factTypes)
         {
             VersionType = factTypes.SingleOrNullFactVersion();
         }
@@ -28,5 +28,31 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// Type fact version.
         /// </summary>
         public IFactType VersionType { get; }
+
+        /// <summary>
+        /// True, the current object is more priority than <paramref name="workFact"/>.
+        /// </summary>
+        /// <typeparam name="TWorkFact"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="workFact"></param>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public override bool IsMorePriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
+        {
+            return VersionedFactFactoryHelper.IsMorePriorityThan(this, workFact, container);
+        }
+
+        /// <summary>
+        /// True, the current object is less priority than <paramref name="workFact"/>.
+        /// </summary>
+        /// <typeparam name="TWorkFact"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="workFact"></param>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public override bool IsLessPriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
+        {
+            return VersionedFactFactoryHelper.IsLessPriorityThan(this, workFact, container);
+        }
     }
 }

@@ -27,13 +27,31 @@ namespace GetcuReone.FactFactory.Versioned
         private TWantAction _calculatingWantAction;
 
         /// <summary>
+        /// Return the correct fact.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="container"></param>
+        /// <param name="inputFactTypes"></param>
+        /// <returns></returns>
+        protected override TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IReadOnlyCollection<IFactType> inputFactTypes)
+        {
+            IFactType versionType = inputFactTypes.SingleOrDefault(type => type.IsFactType<IVersionFact>());
+
+            IVersionFact version = versionType != null
+                ? container.GetVersionFact(versionType)
+                : null;
+
+            return (TFact)container.GetRightFactByVersion(GetFactType<TFact>(), version);
+        }
+
+        /// <summary>
         /// Returns only those lambdas that fit the requested version.
         /// </summary>
         /// <param name="rules">Current set of rules.</param>
         /// <param name="container">Current fact set.</param>
         /// <param name="wantAction">Current wantAction</param>
         /// <returns></returns>
-        protected override IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, FactContainerBase<TFactBase> container, FactRuleCollectionBase<TFactBase, TFactRule> rules)
+        protected override IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, TFactContainer container, TFactRuleCollection rules)
         {
             // We find out the version that we will focus on
             // If the version is not requested, then we consider that the last is necessary
@@ -130,7 +148,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        protected override IEnumerable<TFactBase> GetDefaultFacts(FactContainerBase<TFactBase> container)
+        protected override IEnumerable<TFactBase> GetDefaultFacts(TFactContainer container)
         {
             IEnumerable<TFactBase> allVersionFacts = GetAllVersions()?.Select(version => version.ConvertFact<TFactBase>()) ?? Enumerable.Empty<TFactBase>();
 
@@ -182,44 +200,56 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="rule">Rule for calculating the fact.</param>
         /// <param name="container">Fact container.</param>
         /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
+        /// <param name="needRemoveFact">If the method returns the true, then this fact will be removed from the container. There will be no deletion if the fact is empty.</param>
         /// <returns>True - fact needs to be recalculated.</returns>
-        protected override bool NeedRecalculateFact(TFactRule rule, FactContainerBase<TFactBase> container, TWantAction wantAction)
+        protected override bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction, out TFactBase needRemoveFact)
         {
+            needRemoveFact = null;
+
+            IVersionFact maxVersion = wantAction.VersionType != null
+                ? container.GetVersionFact(wantAction.VersionType)
+                : null;
+
+            TFactBase currentFact = container.GetRightFactByVersion(rule.OutputFactType, maxVersion);
+
+            if (currentFact == null)
+                return true;
+            else if (!currentFact.CalculatedByRule)
+                return false;
+
             // The last fact that is accepted or given by the rule
             IFactType lastSuitableFactType = _calculatedFactTypes.LastOrDefault(type => type.Compare(rule.OutputFactType) || rule.InputFactTypes.Any(t => t.Compare(type)));
 
             // If the last time one of the input facts was recounted
             if (lastSuitableFactType != null && !lastSuitableFactType.Compare(rule.OutputFactType))
+            {
+                needRemoveFact = currentFact;
                 return true;
-
-            // The extraction must always be successful.
-            rule.OutputFactType.TryGetFact(container, out TFactBase containedFact);
+            }
 
             // If the maximum version is not specified
-            if (wantAction.VersionType == null)
+            if (maxVersion == null)
             {
-                if (containedFact.Version == null)
+                if (currentFact.Version == null)
                     return false;
                 else if (rule.VersionType == null)
                     return true;
 
                 // If less rule version
                 IVersionFact ruleVersion = container.GetVersionFact(rule.VersionType);
-                return containedFact.Version.IsLessThan(ruleVersion);
+                return currentFact.Version.IsLessThan(ruleVersion);
             }
             else
             {
-                if (containedFact.Version == null)
+                if (currentFact.Version == null)
                     return true;
 
-                // If more than the maximum allowable version
-                IVersionFact maxVersion = container.GetVersionFact(wantAction.VersionType);
-                if (containedFact.Version.IsMoreThan(maxVersion))
+                if (currentFact.Version.IsMoreThan(maxVersion))
                     return true;
 
                 // If less rule version
                 IVersionFact ruleVersion = container.GetVersionFact(rule.VersionType);
-                return containedFact.Version.IsLessThan(ruleVersion);
+                return currentFact.Version.IsLessThan(ruleVersion);
             }
         }
 
@@ -229,7 +259,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="factType">Type calculated fact.</param>
         /// <param name="container">Container.</param>
         /// <param name="wantAction">The action for which the fact was calculated.</param>
-        protected override void OnFactCalculatedForWantAction(IFactType factType, FactContainerBase<TFactBase> container, TWantAction wantAction)
+        protected override void OnFactCalculatedForWantAction(IFactType factType, TFactContainer container, TWantAction wantAction)
         {
             if (_calculatingWantAction == null)
                 _calculatingWantAction = wantAction;
@@ -256,23 +286,26 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Derive <typeparamref name="TWantFact"/> with version.
+        /// Derive <typeparamref name="TFact"/> with version.
         /// </summary>
-        /// <typeparam name="TWantFact">Type of desired fact.</typeparam>
+        /// <typeparam name="TFact">Type of desired fact.</typeparam>
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
         /// <returns></returns>
-        public virtual TWantFact DeriveFact<TWantFact, TVersion>()
-            where TWantFact : TFactBase
+        public virtual TFact DeriveFact<TFact, TVersion>()
+            where TFact : TFactBase
             where TVersion : TFactBase, IVersionFact
         {
-            TWantFact fact = default;
+            TFact fact = default;
 
             var wantActions = new List<TWantAction>(WantActions);
             WantActions.Clear();
 
+            var inputFacts = new List<IFactType> { GetFactType<TFact>(), GetFactType<TVersion>()}
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => fact = container.GetFact<TWantFact>(),
-                new List<IFactType> { GetFactType<TVersion>(), GetFactType<TWantFact>() }));
+                container => fact = GetCorrectFact<TFact>(container, inputFacts),
+                inputFacts));
 
             Derive();
 

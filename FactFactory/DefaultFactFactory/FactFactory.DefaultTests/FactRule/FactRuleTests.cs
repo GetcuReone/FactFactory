@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 using Rule = GetcuReone.FactFactory.Entities.FactRule;
+using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactoryTests.FactRule
 {
@@ -24,7 +25,7 @@ namespace FactFactoryTests.FactRule
         public void CreateFactRuleWithoutParamTestCase()
         {
             GivenEmpty()
-                .When("Create factRule", _ => new Rule(ct => { return default; }, null, GetFactType<OtherFact>()))
+                .When("Create factRule", _ => new Rule((_, __) => { return default; }, null, GetFactType<OtherFact>()))
                 .Then("Check input param", rule => Assert.AreEqual(0, rule.InputFactTypes.Count, "InpuTFactTypes is not empty"));
         }
 
@@ -40,7 +41,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule", factInner => 
                 {
                     fact = factInner;
-                    return new Rule(ct => { return default; }, new List<IFactType> { fact.GetFactType() }, GetFactType<OtherFact>());
+                    return new Rule((_, __) => { return default; }, new List<IFactType> { fact.GetFactType() }, GetFactType<OtherFact>());
                 })
                 .Then("Check input param", rule => 
                 {
@@ -61,7 +62,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule", factInner =>
                 {
                     fact = factInner;
-                    return new Rule(ct => { return default; }, new List<IFactType> { fact.GetFactType(), fact.GetFactType(), fact.GetFactType() }, GetFactType<OtherFact>());
+                    return new Rule((_, __) => { return default; }, new List<IFactType> { fact.GetFactType(), fact.GetFactType(), fact.GetFactType() }, GetFactType<OtherFact>());
                 })
                 .Then("Check input param", rule =>
                 {
@@ -81,7 +82,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule", factInner =>
                 {
                     fact = factInner;
-                    return new Rule(ct => { return default; }, null, fact.GetFactType());
+                    return new Rule((_, __) => { return default; }, null, fact.GetFactType());
                 })
                 .Then("Check output param", rule => Assert.IsTrue(rule.OutputFactType.Compare(fact.GetFactType()), "factual information does not match"));
         }
@@ -117,7 +118,7 @@ namespace FactFactoryTests.FactRule
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
-                    Func<IFactContainer<FactBase>, FactBase> func = ct =>
+                    Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func = (ct, __) =>
                     {
                         var date = ct.GetFact<DateTimeFact>().Value;
                         var number = ct.GetFact<IntFact>().Value;
@@ -127,7 +128,7 @@ namespace FactFactoryTests.FactRule
 
                     return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), GetFactType<OtherFact>());
                 })
-                .When("Run method", rule => rule.Calculate(container))
+                .When("Run method", rule => rule.Calculate(container, default(WAction)))
                 .Then("Check result", fact =>
                 {
                     Assert.IsNotNull(fact, "fac cannot be null");
@@ -149,11 +150,11 @@ namespace FactFactoryTests.FactRule
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
-                    Func<IFactContainer<FactBase>, FactBase> func = ct => default;
+                    Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func = (ct, __) => default;
 
                     return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), GetFactType<OtherFact>());
                 })
-                .When("run method", rule => rule.CanCalculate(container))
+                .When("run method", rule => rule.CanCalculate(container, default(WAction)))
                 .Then("check result", result => Assert.IsTrue(result, "rule cannot be executed"));
         }
 
@@ -174,11 +175,11 @@ namespace FactFactoryTests.FactRule
                 .And("Add fact 2", _ => container.Add(new IntFact(1)))
                 .And("Create rule", _ =>
                 {
-                    Func<IFactContainer<FactBase>, FactBase> func = ct => default;
+                    Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func = (ct, __) => default;
 
                     return new Rule(func, factInfos, GetFactType<OtherFact>());
                 })
-                .When("run method", rule => rule.CanCalculate(container))
+                .When("run method", rule => rule.CanCalculate(container, default(WAction)))
                 .Then("check result", result => Assert.IsFalse(result, "rule can be followed"));
         }
 
@@ -192,7 +193,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<IntFact>()));
+                        () => new Rule((_, __) => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<IntFact>()));
                 })
                 .Then("Check error", ex => 
                 {
@@ -213,7 +214,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<InvalidFact>()));
+                        () => new Rule((_, __) => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<InvalidFact>()));
                 })
                 .Then("Check error", ex =>
                 {
@@ -235,7 +236,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule(ct => { return default; }, new List<IFactType> { inputType }, GetFactType<IntFact>()));
+                        () => new Rule((_, __) => { return default; }, new List<IFactType> { inputType }, GetFactType<IntFact>()));
                 })
                 .Then("Check error", ex =>
                 {
@@ -256,7 +257,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<NoDerived<Input10Fact>>()));
+                        () => new Rule((_, __) => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<NoDerived<Input10Fact>>()));
                 })
                 .Then("Check error", ex =>
                 {
@@ -276,7 +277,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<NotContained<Input10Fact>>()));
+                        () => new Rule((_, __) => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<NotContained<Input10Fact>>()));
                 })
                 .Then("Check error", ex =>
                 {
@@ -296,7 +297,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<Contained<Input10Fact>>()));
+                        () => new Rule((_, __) => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<Contained<Input10Fact>>()));
                 })
                 .Then("Check error", ex =>
                 {
@@ -317,7 +318,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create wantAction", _ =>
                 {
                     return ExpectedFactFactoryException(() => new Rule(
-                        ct => { return default; },
+                        (_, __) => { return default; },
                         new List<IFactType> { invalidFactType },
                         GetFactType<IntFact>()));
                 })

@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using GetcuReone.FactFactory.Versioned.SpecialFacts;
+using System;
 
 namespace GetcuReone.FactFactory.Versioned.Versions
 {

@@ -1,7 +1,7 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.TreeEntities
+namespace GetcuReone.FactFactory.InnerEntities
 {
     internal sealed class FactRuleNode<TFact, TFactRule>
         where TFact : IFact

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GetcuReone.FactFactory.Versioned.SpecialFacts;
+using System;
 
 namespace GetcuReone.FactFactory.Versioned.Versions
 {

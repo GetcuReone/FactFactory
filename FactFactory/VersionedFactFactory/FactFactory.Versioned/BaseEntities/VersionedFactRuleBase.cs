@@ -13,7 +13,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     /// </summary>
     /// <typeparam name="TFactBase">Base class for facts.</typeparam>
     public abstract class VersionedFactRuleBase<TFactBase> : FactRuleBase<TFactBase>, IVersionedFactRule<TFactBase>
-        where TFactBase : IVersionedFact
+        where TFactBase : class, IVersionedFact
     {
         /// <summary>
         /// Type of fact with rule version.
@@ -26,7 +26,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <param name="func"></param>
         /// <param name="inputFactTypes"></param>
         /// <param name="outputFactType"></param>
-        public VersionedFactRuleBase(Func<IFactContainer<TFactBase>, TFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType) : base(func, inputFactTypes, outputFactType)
+        protected VersionedFactRuleBase(Func<IFactContainer<TFactBase>, IWantAction<TFactBase>, TFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType) : base(func, inputFactTypes, outputFactType)
         {
             outputFactType.CannotIsType<IVersionFact>(nameof(outputFactType));
 
@@ -53,16 +53,74 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// Rule of fact calculate.
         /// </summary>
         /// <param name="container"></param>
+        /// <param name="wantAction"></param>
         /// <typeparam name="TContainer"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
         /// <returns></returns>
-        public override TFactBase Calculate<TContainer>(TContainer container)
+        public override TFactBase Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
         {
-            TFactBase versionedFact = base.Calculate(container);
+            TFactBase versionedFact = base.Calculate(container, wantAction);
 
-            if (VersionType != null)
-                versionedFact.Version = (IVersionFact)container.First(fact => fact is IVersionFact && fact.GetFactType().Compare(VersionType));
+            if (versionedFact != null)
+            {
+                if (VersionType != null)
+                    versionedFact.Version = (IVersionFact)container.GetRightFactByVersion(VersionType, null);
+
+                versionedFact.CalculatedByRule = true;
+            }
 
             return versionedFact;
+        }
+
+        /// <summary>
+        /// Is it possible to calculate the fact.
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="wantAction"></param>
+        /// <typeparam name="TContainer"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <returns></returns>
+        public override bool CanCalculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
+        {
+            IFactType versionType = wantAction?.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
+
+            IVersionFact version = versionType != null
+                ? container.GetVersionFact(versionType)
+                : null;
+
+            foreach(var type in InputFactTypes)
+            {
+                if (container.GetRightFactByVersion(type, version) == null)
+                    return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// True, the current object is more priority than <paramref name="workFact"/>.
+        /// </summary>
+        /// <typeparam name="TWorkFact"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="workFact"></param>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public override bool IsMorePriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
+        {
+            return VersionedFactFactoryHelper.IsMorePriorityThan(this, workFact, container);
+        }
+
+        /// <summary>
+        /// True, the current object is less priority than <paramref name="workFact"/>.
+        /// </summary>
+        /// <typeparam name="TWorkFact"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="workFact"></param>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public override bool IsLessPriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
+        {
+            return VersionedFactFactoryHelper.IsLessPriorityThan(this, workFact, container);
         }
     }
 }

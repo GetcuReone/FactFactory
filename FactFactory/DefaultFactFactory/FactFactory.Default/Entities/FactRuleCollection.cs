@@ -50,7 +50,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="inputFactTypes">information on input factacles rules.</param>
         /// <param name="outputFactType">information on output fact.</param>
         /// <returns>fact rule</returns>
-        protected sealed override FactRule CreateFactRule(Func<IFactContainer<FactBase>, FactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+        protected sealed override FactRule CreateFactRule(Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
             return new FactRule(func, inputFactTypes, outputFactType);
         }

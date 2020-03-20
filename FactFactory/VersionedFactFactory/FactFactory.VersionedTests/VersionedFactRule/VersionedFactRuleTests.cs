@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
+using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 
 namespace FactFactory.VersionedTests.VersionedFactRule
 {
@@ -117,9 +118,9 @@ namespace FactFactory.VersionedTests.VersionedFactRule
 
             Given("Create container", () => container = new Container())
                 .And("Added fact version", () => container.Add(new Version2()))
-                .And("Create rule", () => new Rule(ct => new FactResult(1), new List<IFactType> { GetFactType<Version2>() }, GetFactType<FactResult>()))
-                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container), "cannot calculate"))
-                .When("Run calculate", rule => rule.Calculate(container))
+                .And("Create rule", () => new Rule((ct, _) => new FactResult(1), new List<IFactType> { GetFactType<Version2>() }, GetFactType<FactResult>()))
+                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container, default(Action)), "cannot calculate"))
+                .When("Run calculate", rule => rule.Calculate(container, default(Action)))
                 .Then("Check result", fact =>
                 {
                     Assert.IsNotNull(fact.Version, "Version cannot be null");
@@ -139,9 +140,9 @@ namespace FactFactory.VersionedTests.VersionedFactRule
             Container container = null;
 
             Given("Create container", () => container = new Container())
-                .And("Create rule", () => new Rule(ct => new FactResult(1), new List<IFactType> { }, GetFactType<FactResult>()))
-                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container), "cannot calculate"))
-                .When("Run calculate", rule => rule.Calculate(container))
+                .And("Create rule", () => new Rule((ct, _) => new FactResult(1), new List<IFactType> { }, GetFactType<FactResult>()))
+                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container, default(Action)), "cannot calculate"))
+                .When("Run calculate", rule => rule.Calculate(container, default(Action)))
                 .Then("Check result", fact =>
                 {
                     Assert.IsNull(fact.Version, "Version must be null");
@@ -154,13 +155,13 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void ReturnVersiondFactTestCase()
         {
-            string expectedReason = $"Parameter outputFactType should not be converted into {typeof(IVersionFact).FullName}";
+            string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
 
             GivenEmpty()
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule(ct => { return default; }, new List<IFactType> { GetFactType<Fact1>() }, GetFactType<Version1>()));
+                        () => new Rule((ct, _) => { return default; }, new List<IFactType> { GetFactType<Fact1>() }, GetFactType<Version1>()));
                 })
                 .Then("Check error", ex =>
                 {

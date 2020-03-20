@@ -6,17 +6,17 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
     /// <summary>
     /// Versioned fact factory interface.
     /// </summary>
-    /// <typeparam name="TFact">All facts that the fact factory works with should be inherited from this type.</typeparam>
+    /// <typeparam name="TFactBase">All facts that the fact factory works with should be inherited from this type.</typeparam>
     /// <typeparam name="TFactContainer">Type fact container.</typeparam>
     /// <typeparam name="TFactRule">Type fact rule.</typeparam>
     /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
     /// <typeparam name="TWantAction">Type 'want action'.</typeparam>
-    public interface IVersionedFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
-        where TFact : IVersionedFact
-        where TFactContainer : IFactContainer<TFact>
-        where TFactRule : IVersionedFactRule<TFact>
+    public interface IVersionedFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
+        where TFactBase : IVersionedFact
+        where TFactContainer : IFactContainer<TFactBase>
+        where TFactRule : IVersionedFactRule<TFactBase>
         where TFactRuleCollection : IList<TFactRule>
-        where TWantAction : IWantAction<TFact>, IFactTypeVersionInfo
+        where TWantAction : IWantAction<TFactBase>, IFactTypeVersionInfo
     {
         /// <summary>
         /// Derive <typeparamref name="TFactResult"/> with version <typeparamref name="TVersion"/>.
@@ -25,7 +25,7 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
         /// <typeparam name="TVersion">Version info.</typeparam>
         /// <returns></returns>
         TFactResult DeriveFact<TFactResult, TVersion>()
-            where TFactResult : TFact
-            where TVersion : TFact, IVersionFact;
+            where TFactResult : TFactBase
+            where TVersion : TFactBase, IVersionFact;
     }
 }
