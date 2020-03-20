@@ -203,6 +203,17 @@ namespace GetcuReone.FactFactory.Versioned
         /// <returns>True - fact needs to be recalculated.</returns>
         protected override bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction)
         {
+            IVersionFact maxVersion = wantAction.VersionType != null
+                ? container.GetVersionFact(wantAction.VersionType)
+                : null;
+
+            TFactBase currentFact = container.GetRightFactByVersion(rule.OutputFactType, maxVersion);
+
+            if (currentFact == null)
+                return true;
+            else if (!currentFact.CalculatedByRule)
+                return false;
+
             // The last fact that is accepted or given by the rule
             IFactType lastSuitableFactType = _calculatedFactTypes.LastOrDefault(type => type.Compare(rule.OutputFactType) || rule.InputFactTypes.Any(t => t.Compare(type)));
 
@@ -210,34 +221,29 @@ namespace GetcuReone.FactFactory.Versioned
             if (lastSuitableFactType != null && !lastSuitableFactType.Compare(rule.OutputFactType))
                 return true;
 
-            // The extraction must always be successful.
-            rule.OutputFactType.TryGetFact(container, out TFactBase containedFact);
-
             // If the maximum version is not specified
-            if (wantAction.VersionType == null)
+            if (maxVersion == null)
             {
-                if (containedFact.Version == null)
+                if (currentFact.Version == null)
                     return false;
                 else if (rule.VersionType == null)
                     return true;
 
                 // If less rule version
                 IVersionFact ruleVersion = container.GetVersionFact(rule.VersionType);
-                return containedFact.Version.IsLessThan(ruleVersion);
+                return currentFact.Version.IsLessThan(ruleVersion);
             }
             else
             {
-                if (containedFact.Version == null)
+                if (currentFact.Version == null)
                     return true;
 
-                // If more than the maximum allowable version
-                IVersionFact maxVersion = container.GetVersionFact(wantAction.VersionType);
-                if (containedFact.Version.IsMoreThan(maxVersion))
+                if (currentFact.Version.IsMoreThan(maxVersion))
                     return true;
 
                 // If less rule version
                 IVersionFact ruleVersion = container.GetVersionFact(rule.VersionType);
-                return containedFact.Version.IsLessThan(ruleVersion);
+                return currentFact.Version.IsLessThan(ruleVersion);
             }
         }
 
