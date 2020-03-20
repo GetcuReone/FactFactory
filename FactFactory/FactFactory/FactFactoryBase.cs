@@ -127,7 +127,6 @@ namespace GetcuReone.FactFactory
             if (deriveErrorDetails.Count != 0)
                 throw FactFactoryHelper.CreateDeriveException(deriveErrorDetails);
 
-            var calculatedFacts = new List<TFactBase>();
             foreach (var key in forestry.Keys)
             {
                 foreach (TFactBase fact in needSpecialFacts[key])
@@ -150,7 +149,7 @@ namespace GetcuReone.FactFactory
                 }
             }
 
-            OnDeriveFinished(wantActions, container, calculatedFacts);
+            OnDeriveFinished(wantActions, container);
 
             foreach(var type in defaultFacts)
             {
@@ -208,8 +207,7 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <param name="wantActions">List of desired actions.</param>
         /// <param name="container">Container.</param>
-        /// <param name="calculatedFacts">List of all calculated facts.</param>
-        protected virtual void OnDeriveFinished(List<TWantAction> wantActions, TFactContainer container, List<TFactBase> calculatedFacts) { }
+        protected virtual void OnDeriveFinished(List<TWantAction> wantActions, TFactContainer container) { }
 
         #region methods for derive
 
