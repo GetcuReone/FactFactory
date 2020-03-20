@@ -200,9 +200,12 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="rule">Rule for calculating the fact.</param>
         /// <param name="container">Fact container.</param>
         /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
+        /// <param name="needRemoveFact">If the method returns the true, then this fact will be removed from the container. There will be no deletion if the fact is empty.</param>
         /// <returns>True - fact needs to be recalculated.</returns>
-        protected override bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction)
+        protected override bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction, out TFactBase needRemoveFact)
         {
+            needRemoveFact = null;
+
             IVersionFact maxVersion = wantAction.VersionType != null
                 ? container.GetVersionFact(wantAction.VersionType)
                 : null;
@@ -219,7 +222,10 @@ namespace GetcuReone.FactFactory.Versioned
 
             // If the last time one of the input facts was recounted
             if (lastSuitableFactType != null && !lastSuitableFactType.Compare(rule.OutputFactType))
+            {
+                needRemoveFact = currentFact;
                 return true;
+            }
 
             // If the maximum version is not specified
             if (maxVersion == null)

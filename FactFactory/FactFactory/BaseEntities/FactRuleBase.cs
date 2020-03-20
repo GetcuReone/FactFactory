@@ -136,5 +136,35 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             return $"({string.Join(", ", InputFactTypes.Select(f => f.FactName).ToList())}) => ({OutputFactType.FactName})";
         }
+
+        /// <summary>
+        /// True, the current object is more priority than <paramref name="workFact"/>.
+        /// </summary>
+        /// <typeparam name="TWorkFact"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="workFact"></param>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public virtual bool IsMorePriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
+            where TWorkFact : IWorkFact<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// True, the current object is less priority than <paramref name="workFact"/>.
+        /// </summary>
+        /// <typeparam name="TWorkFact"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="workFact"></param>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public virtual bool IsLessPriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
+            where TWorkFact : IWorkFact<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>
+        {
+            return false;
+        }
     }
 }

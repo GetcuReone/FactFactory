@@ -122,5 +122,59 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
 
             return null;
         }
+
+        internal static bool IsMorePriorityThan<TFactBase, TWorkFact, TFactContainer>(IWorkFact<TFactBase> firstWork, TWorkFact secondWork, TFactContainer container)
+            where TFactBase : IVersionedFact
+            where TWorkFact : IWorkFact<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>
+        {
+            if (firstWork is IFactTypeVersionInfo firstVersionInfo)
+            {
+                if (secondWork is IFactTypeVersionInfo secondVersionInfo)
+                {
+                    if (firstVersionInfo.VersionType == null)
+                        return secondVersionInfo.VersionType != null;
+                    else
+                    {
+                        if (secondVersionInfo.VersionType == null)
+                            return false;
+
+                        IVersionFact firstVersion = container.GetVersionFact(firstVersionInfo.VersionType);
+                        IVersionFact secondVersion = container.GetVersionFact(secondVersionInfo.VersionType);
+
+                        return firstVersion.IsMoreThan(secondVersion);
+                    }
+                } 
+            }
+
+            return false;
+        }
+
+        internal static bool IsLessPriorityThan<TFactBase, TWorkFact, TFactContainer>(IWorkFact<TFactBase> firstWork, TWorkFact secondWork, TFactContainer container)
+            where TFactBase : IVersionedFact
+            where TWorkFact : IWorkFact<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>
+        {
+            if (firstWork is IFactTypeVersionInfo firstVersionInfo)
+            {
+                if (secondWork is IFactTypeVersionInfo secondVersionInfo)
+                {
+                    if (firstVersionInfo.VersionType == null)
+                        return false;
+                    else
+                    {
+                        if (secondVersionInfo.VersionType == null)
+                            return true;
+
+                        IVersionFact firstVersion = container.GetVersionFact(firstVersionInfo.VersionType);
+                        IVersionFact secondVersion = container.GetVersionFact(secondVersionInfo.VersionType);
+
+                        return firstVersion.IsLessThan(secondVersion);
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }

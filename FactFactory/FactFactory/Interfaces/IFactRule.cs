@@ -6,7 +6,7 @@ namespace GetcuReone.FactFactory.Interfaces
     /// Rule of fact calculation.
     /// </summary>
     /// <typeparam name="TFactBase">The type of fact from which the facts in the container should be inherited.</typeparam>
-    public interface IFactRule<TFactBase>
+    public interface IFactRule<TFactBase> : IWorkFact<TFactBase>
         where TFactBase : IFact
     {
         /// <summary>

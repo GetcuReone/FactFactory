@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Desired action information.
     /// </summary>
-    /// <typeparam name="TFact"></typeparam>
-    public interface IWantAction<TFact>
-        where TFact : IFact
+    /// <typeparam name="TFactBase"></typeparam>
+    public interface IWantAction<TFactBase> : IWorkFact<TFactBase>
+        where TFactBase : IFact
     {
         /// <summary>
         /// Facts required to launch an action.
@@ -20,6 +19,6 @@ namespace GetcuReone.FactFactory.Interfaces
         /// </summary>
         /// <typeparam name="TFactContainer">container with <see cref="InputFactTypes"/>.</typeparam>
         /// <param name="container"></param>
-        void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer<TFact>;
+        void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer<TFactBase>;
     }
 }

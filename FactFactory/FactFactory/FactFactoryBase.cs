@@ -4,8 +4,8 @@ using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Helpers;
+using GetcuReone.FactFactory.InnerEntities;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.TreeEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,6 +111,7 @@ namespace GetcuReone.FactFactory
             List<DeriveErrorDetail<TFactBase>> deriveErrorDetails = new List<DeriveErrorDetail<TFactBase>>();
             var needSpecialFacts = new Dictionary<TWantAction, List<TFactBase>>();
             List<TWantAction> wantActions = new List<TWantAction>(WantActions);
+            wantActions.Sort(new WorkFactCompare<TFactBase, TWantAction, TFactContainer>(container));
 
             foreach (TWantAction wantAction in wantActions)
             {
@@ -136,7 +137,7 @@ namespace GetcuReone.FactFactory
                 }
 
                 foreach (var tree in forestry[key])
-                    DeriveNode(tree.Root, container, key, calculatedFacts);
+                    DeriveNode(tree.Root, container, key);
 
                 key.Invoke(container);
 
@@ -238,9 +239,11 @@ namespace GetcuReone.FactFactory
         /// <param name="rule">Rule for calculating the fact.</param>
         /// <param name="container">Fact container.</param>
         /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
+        /// <param name="needRemoveFact">If the method returns the true, then this fact will be removed from the container. There will be no deletion if the fact is empty.</param>
         /// <returns>True - fact needs to be recalculated.</returns>
-        protected virtual bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction)
+        protected virtual bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction, out TFactBase needRemoveFact)
         {
+            needRemoveFact = null;
             return false;
         }
 
@@ -273,6 +276,9 @@ namespace GetcuReone.FactFactory
                         .ToList(),
                     wantAction);
 
+            rulesForDerive = rulesForDerive
+                .OrderBy(rule => rule, new WorkFactCompare<TFactBase, TFactRule, TFactContainer>(container))
+                .ToList();
             treesResult = new List<FactRuleTree<TFactBase, TFactRule>>();
             var deriveFactErrorDetails = new List<DeriveFactErrorDetail>();
             deriveErrorDetail = null;
@@ -680,30 +686,22 @@ namespace GetcuReone.FactFactory
                 return RemoveRuleNodeAndCheckGoneRoot(factRuleTree, level - 1, parent);
         }
 
-        private void DeriveNode(FactRuleNode<TFactBase, TFactRule> node, TFactContainer container, TWantAction wantAction, List<TFactBase> calculatedFacts)
+        private void DeriveNode(FactRuleNode<TFactBase, TFactRule> node, TFactContainer container, TWantAction wantAction)
         {
             foreach (FactRuleNode<TFactBase, TFactRule> child in node.Childs)
-                DeriveNode(child, container, wantAction, calculatedFacts);
+                DeriveNode(child, container, wantAction);
 
             TFactRule rule = node.FactRule;
 
-            // 1. We decide whether the fact will be calculated at all
-            if (rule.OutputFactType.TryGetFact(container, out TFactBase fact))
+            // 1. Is it necessary to recount a fact if a fact of this type has already been calculated?
+            if (container.Any(fact => fact.GetFactType().Compare(rule.OutputFactType)))
             {
-                if (!NeedRecalculateFact(rule, container, wantAction))
+                if (!NeedRecalculateFact(rule, container, wantAction, out TFactBase needRemoveFact))
                     return;
-
-                using (container.CreateIgnoreReadOnlySpace())
-                    container.Remove(fact);
-
-                // We ask about recalculation for all facts of the current type, which we calculated
-                foreach (TFactBase calculatedFact in calculatedFacts.Where(f => f.GetFactType().Compare(rule.OutputFactType) && f != fact))
+                else if (needRemoveFact != null)
                 {
                     using (container.CreateIgnoreReadOnlySpace())
-                        container.Add(calculatedFact);
-
-                    if (!NeedRecalculateFact(rule, container, wantAction))
-                        return;
+                        container.Remove(needRemoveFact);
                 }
             }
 
@@ -715,7 +713,6 @@ namespace GetcuReone.FactFactory
 
             using (container.CreateIgnoreReadOnlySpace())
                 container.Add(calculateFact);
-            calculatedFacts.Add(calculateFact);
 
             OnFactCalculatedForWantAction(rule.OutputFactType, container, wantAction);
         }
