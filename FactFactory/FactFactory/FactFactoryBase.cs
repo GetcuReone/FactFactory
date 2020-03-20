@@ -49,7 +49,7 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        protected virtual IEnumerable<TFactBase> GetDefaultFacts(FactContainerBase<TFactBase> container)
+        protected virtual IEnumerable<TFactBase> GetDefaultFacts(TFactContainer container)
         {
             return Enumerable.Empty<TFactBase>();
         }
@@ -185,7 +185,7 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <param name="wantAction"></param>
         /// <param name="container"></param>
-        protected virtual void OnWantActionCalculated(TWantAction wantAction, FactContainerBase<TFactBase> container) { }
+        protected virtual void OnWantActionCalculated(TWantAction wantAction, TFactContainer container) { }
 
         /// <summary>
         /// Fact calculation event handler for an <paramref name="wantAction"/>.
@@ -193,7 +193,7 @@ namespace GetcuReone.FactFactory
         /// <param name="factType">Type calculated fact.</param>
         /// <param name="container">Container.</param>
         /// <param name="wantAction">The action for which the fact was calculated.</param>
-        protected virtual void OnFactCalculatedForWantAction(IFactType factType, FactContainerBase<TFactBase> container, TWantAction wantAction) { }
+        protected virtual void OnFactCalculatedForWantAction(IFactType factType, TFactContainer container, TWantAction wantAction) { }
 
         /// <summary>
         /// Event handler method 'derive finished'. It is executed at the end of the <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/> method.
@@ -201,7 +201,7 @@ namespace GetcuReone.FactFactory
         /// <param name="wantActions">List of desired actions.</param>
         /// <param name="container">Container.</param>
         /// <param name="calculatedFacts">List of all calculated facts.</param>
-        protected virtual void OnDeriveFinished(List<TWantAction> wantActions, FactContainerBase<TFactBase> container, List<TFactBase> calculatedFacts) { }
+        protected virtual void OnDeriveFinished(List<TWantAction> wantActions, TFactContainer container, List<TFactBase> calculatedFacts) { }
 
         #region methods for derive
 
@@ -220,7 +220,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Current fact set.</param>
         /// <param name="wantAction">Current wantAction</param>
         /// <returns></returns>
-        protected virtual IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, FactContainerBase<TFactBase> container, FactRuleCollectionBase<TFactBase, TFactRule> rules)
+        protected virtual IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, TFactContainer container, FactRuleCollectionBase<TFactBase, TFactRule> rules)
         {
             return rules;
         }
@@ -232,7 +232,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
         /// <returns>True - fact needs to be recalculated.</returns>
-        protected virtual bool NeedRecalculateFact(TFactRule rule, FactContainerBase<TFactBase> container, TWantAction wantAction)
+        protected virtual bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction)
         {
             return false;
         }
@@ -247,7 +247,7 @@ namespace GetcuReone.FactFactory
         /// <param name="deriveErrorDetail"></param>
         /// <param name="specialFacts"></param>
         /// <returns></returns>
-        private bool TryDeriveTreesForWantAction(out List<FactRuleTree<TFactBase, TFactRule>> treesResult, TWantAction wantAction, FactContainerBase<TFactBase> container, FactRuleCollectionBase<TFactBase, TFactRule> rules, out List<TFactBase> specialFacts, out DeriveErrorDetail<TFactBase> deriveErrorDetail)
+        private bool TryDeriveTreesForWantAction(out List<FactRuleTree<TFactBase, TFactRule>> treesResult, TWantAction wantAction, TFactContainer container, FactRuleCollectionBase<TFactBase, TFactRule> rules, out List<TFactBase> specialFacts, out DeriveErrorDetail<TFactBase> deriveErrorDetail)
         {
             IList<TFactRule> rulesForDerive = GetRulesForWantAction(wantAction, container, rules);
 
@@ -337,7 +337,7 @@ namespace GetcuReone.FactFactory
             return true;
         }
 
-        private bool TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> treeResult, IFactType wantFact, TWantAction wantAction, FactContainerBase<TFactBase> container, IList<TFactRule> ruleCollection, List<TFactBase> specialFacts, out List<DeriveFactErrorDetail> deriveFactErrorDetails)
+        private bool TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> treeResult, IFactType wantFact, TWantAction wantAction, TFactContainer container, IList<TFactRule> ruleCollection, List<TFactBase> specialFacts, out List<DeriveFactErrorDetail> deriveFactErrorDetails)
         {
             treeResult = null;
             deriveFactErrorDetails = null;
@@ -673,7 +673,7 @@ namespace GetcuReone.FactFactory
                 return RemoveRuleNodeAndCheckGoneRoot(factRuleTree, level - 1, parent);
         }
 
-        private void DeriveNode(FactRuleNode<TFactBase, TFactRule> node, FactContainerBase<TFactBase> container, TWantAction wantAction, List<TFactBase> calculatedFacts)
+        private void DeriveNode(FactRuleNode<TFactBase, TFactRule> node, TFactContainer container, TWantAction wantAction, List<TFactBase> calculatedFacts)
         {
             foreach (FactRuleNode<TFactBase, TFactRule> child in node.Childs)
                 DeriveNode(child, container, wantAction, calculatedFacts);
@@ -713,7 +713,7 @@ namespace GetcuReone.FactFactory
             OnFactCalculatedForWantAction(rule.OutputFactType, container, wantAction);
         }
 
-        private bool TryDeriveNoFactInfo(INoDerivedFact noDerivedFact, TWantAction wantAction, FactContainerBase<TFactBase> container, IList<TFactRule> ruleCollection)
+        private bool TryDeriveNoFactInfo(INoDerivedFact noDerivedFact, TWantAction wantAction, TFactContainer container, IList<TFactRule> ruleCollection)
         {
             try
             {

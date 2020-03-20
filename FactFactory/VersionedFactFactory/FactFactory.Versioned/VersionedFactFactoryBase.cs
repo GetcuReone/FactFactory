@@ -51,7 +51,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="container">Current fact set.</param>
         /// <param name="wantAction">Current wantAction</param>
         /// <returns></returns>
-        protected override IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, FactContainerBase<TFactBase> container, FactRuleCollectionBase<TFactBase, TFactRule> rules)
+        protected override IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, TFactContainer container, FactRuleCollectionBase<TFactBase, TFactRule> rules)
         {
             // We find out the version that we will focus on
             // If the version is not requested, then we consider that the last is necessary
@@ -148,7 +148,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        protected override IEnumerable<TFactBase> GetDefaultFacts(FactContainerBase<TFactBase> container)
+        protected override IEnumerable<TFactBase> GetDefaultFacts(TFactContainer container)
         {
             IEnumerable<TFactBase> allVersionFacts = GetAllVersions()?.Select(version => version.ConvertFact<TFactBase>()) ?? Enumerable.Empty<TFactBase>();
 
@@ -201,7 +201,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="container">Fact container.</param>
         /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
         /// <returns>True - fact needs to be recalculated.</returns>
-        protected override bool NeedRecalculateFact(TFactRule rule, FactContainerBase<TFactBase> container, TWantAction wantAction)
+        protected override bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction)
         {
             // The last fact that is accepted or given by the rule
             IFactType lastSuitableFactType = _calculatedFactTypes.LastOrDefault(type => type.Compare(rule.OutputFactType) || rule.InputFactTypes.Any(t => t.Compare(type)));
@@ -247,7 +247,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="factType">Type calculated fact.</param>
         /// <param name="container">Container.</param>
         /// <param name="wantAction">The action for which the fact was calculated.</param>
-        protected override void OnFactCalculatedForWantAction(IFactType factType, FactContainerBase<TFactBase> container, TWantAction wantAction)
+        protected override void OnFactCalculatedForWantAction(IFactType factType, TFactContainer container, TWantAction wantAction)
         {
             if (_calculatingWantAction == null)
                 _calculatingWantAction = wantAction;

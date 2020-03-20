@@ -780,7 +780,7 @@
             <typeparam name="TGetFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetDefaultFacts(GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetDefaultFacts(`1)">
             <summary>
             Return the fact set that will be contained in the default container.
             </summary>
@@ -799,14 +799,14 @@
             <typeparam name="TFact">Type of desired fact</typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnWantActionCalculated(`4,GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnWantActionCalculated(`4,`1)">
             <summary>
             Action calculation completion handler
             </summary>
             <param name="wantAction"></param>
             <param name="container"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0},`4)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,`1,`4)">
             <summary>
             Fact calculation event handler for an <paramref name="wantAction"/>.
             </summary>
@@ -814,7 +814,7 @@
             <param name="container">Container.</param>
             <param name="wantAction">The action for which the fact was calculated.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnDeriveFinished(System.Collections.Generic.List{`4},GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0},System.Collections.Generic.List{`0})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnDeriveFinished(System.Collections.Generic.List{`4},`1,System.Collections.Generic.List{`0})">
             <summary>
             Event handler method 'derive finished'. It is executed at the end of the <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/> method.
             </summary>
@@ -830,7 +830,7 @@
             <param name="factTypes">facts required to launch an action</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetRulesForWantAction(`4,GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0},GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{`0,`2})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetRulesForWantAction(`4,`1,GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{`0,`2})">
             <summary>
             Return a list with the appropriate rules at the time of the derive of the facts.
             </summary>
@@ -839,7 +839,7 @@
             <param name="wantAction">Current wantAction</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.NeedRecalculateFact(`2,GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0},`4)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.NeedRecalculateFact(`2,`1,`4)">
             <summary>
             The method determines whether the fact should be recounted.
             </summary>
@@ -848,7 +848,7 @@
             <param name="wantAction">The initial action for which the parameters are calculated.</param>
             <returns>True - fact needs to be recalculated.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.TreeEntities.FactRuleTree{`0,`2}}@,`4,GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0},GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{`0,`2},System.Collections.Generic.List{`0}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.TreeEntities.FactRuleTree{`0,`2}}@,`4,`1,GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{`0,`2},System.Collections.Generic.List{`0}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
             <summary>
             We are trying to calculate a tree by which we find a fact
             </summary>

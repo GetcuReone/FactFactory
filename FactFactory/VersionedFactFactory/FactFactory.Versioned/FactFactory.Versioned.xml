@@ -626,7 +626,7 @@
             <param name="inputFactTypes"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetRulesForWantAction(`4,GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0},GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{`0,`2})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetRulesForWantAction(`4,`1,GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{`0,`2})">
             <summary>
             Returns only those lambdas that fit the requested version.
             </summary>
@@ -641,14 +641,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetDefaultFacts(GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetDefaultFacts(`1)">
             <summary>
             Return the fact set that will be contained in the default container.
             </summary>
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.NeedRecalculateFact(`2,GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0},`4)">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.NeedRecalculateFact(`2,`1,`4)">
             <summary>
             The method determines whether the fact should be recounted.
             </summary>
@@ -657,7 +657,7 @@
             <param name="wantAction">The initial action for which the parameters are calculated.</param>
             <returns>True - fact needs to be recalculated.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.BaseEntities.FactContainerBase{`0},`4)">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,`1,`4)">
             <summary>
             Fact calculation event handler for an <paramref name="wantAction"/>.
             </summary>
