@@ -261,5 +261,27 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     Assert.AreEqual(10, counterAction3, "Expected another value counterAction3.");
                 });
         }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [Description("Use newer rule for Derive.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void UseNewerRuleForDeriveTestCase()
+        {
+            int expectedValue = 10;
+
+            GivenCreateVersionedFactFactory(GetVersionFacts())
+                .AndAddRules(new V_Collection
+                {
+                    (Version1 v) => new FactResult(0),
+                    (Version2 v, Fact1 fact) => new FactResult(fact.Value)
+                })
+                .And("Add fact", factFactory => factFactory.Container.Add(new Fact1(expectedValue)))
+                .When("Derive fact", factFactory => factFactory.DeriveFact<FactResult, Version2>())
+                .Then("Check result", fact =>
+                {
+                    Assert.AreEqual(expectedValue, fact.Value, "The older rule worked.");
+                });
+        }
     }
 }
