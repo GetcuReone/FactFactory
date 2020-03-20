@@ -626,7 +626,7 @@
             <param name="inputFactTypes"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetRulesForWantAction(`4,`1,GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{`0,`2})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetRulesForWantAction(`4,`1,`3)">
             <summary>
             Returns only those lambdas that fit the requested version.
             </summary>

@@ -51,7 +51,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="container">Current fact set.</param>
         /// <param name="wantAction">Current wantAction</param>
         /// <returns></returns>
-        protected override IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, TFactContainer container, FactRuleCollectionBase<TFactBase, TFactRule> rules)
+        protected override IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, TFactContainer container, TFactRuleCollection rules)
         {
             // We find out the version that we will focus on
             // If the version is not requested, then we consider that the last is necessary

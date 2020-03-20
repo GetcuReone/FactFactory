@@ -830,7 +830,7 @@
             <param name="factTypes">facts required to launch an action</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetRulesForWantAction(`4,`1,GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{`0,`2})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetRulesForWantAction(`4,`1,`3)">
             <summary>
             Return a list with the appropriate rules at the time of the derive of the facts.
             </summary>
@@ -848,7 +848,7 @@
             <param name="wantAction">The initial action for which the parameters are calculated.</param>
             <returns>True - fact needs to be recalculated.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.TreeEntities.FactRuleTree{`0,`2}}@,`4,`1,GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{`0,`2},System.Collections.Generic.List{`0}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.TreeEntities.FactRuleTree{`0,`2}}@,`4,`1,`3,System.Collections.Generic.List{`0}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
             <summary>
             We are trying to calculate a tree by which we find a fact
             </summary>
