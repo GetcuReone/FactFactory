@@ -19,7 +19,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// </summary>
         /// <param name="wantAction">action taken after deriving a fact.</param>
         /// <param name="factTypes">facts required to launch an action.</param>
-        protected VersionedWantActionBase(Action<IFactContainer<TFactBase>> wantAction, IList<IFactType> factTypes) : base(wantAction, factTypes)
+        protected VersionedWantActionBase(Action<IFactContainer<TFactBase>> wantAction, IReadOnlyCollection<IFactType> factTypes) : base(wantAction, factTypes)
         {
             VersionType = factTypes.SingleOrNullFactVersion();
         }

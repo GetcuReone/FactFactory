@@ -51,7 +51,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <param name="inputFactTypes">information on input factacles rules.</param>
         /// <param name="outputFactType">information on output fact.</param>
         /// <returns></returns>
-        protected override VersionedFactRule CreateFactRule(Func<IFactContainer<VersionedFactBase>, VersionedFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+        protected override VersionedFactRule CreateFactRule(Func<IFactContainer<VersionedFactBase>, IWantAction<VersionedFactBase>, VersionedFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
             return new VersionedFactRule(func, inputFactTypes, outputFactType);
         }

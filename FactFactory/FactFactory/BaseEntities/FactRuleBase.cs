@@ -14,7 +14,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     public abstract class FactRuleBase<TFactBase> : IFactRule<TFactBase>
         where TFactBase : IFact
     {
-        private readonly Func<IFactContainer<TFactBase>, TFactBase> _func;
+        private readonly Func<IFactContainer<TFactBase>, IWantAction<TFactBase>, TFactBase> _func;
 
         /// <summary>
         /// Information on input factacles rules.
@@ -34,7 +34,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="outputFactType">Information on output fact.</param>
         /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
         /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
-        protected FactRuleBase(Func<IFactContainer<TFactBase>, TFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+        protected FactRuleBase(Func<IFactContainer<TFactBase>, IWantAction<TFactBase>, TFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
             if (outputFactType == null)
@@ -91,15 +91,19 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Rule of fact calculate.
         /// </summary>
         /// <param name="container"></param>
+        /// <param name="wantAction"></param>
         /// <typeparam name="TContainer"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
         /// <returns></returns>
-        public virtual TFactBase Calculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFactBase>
+        public virtual TFactBase Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
+            where TContainer : IFactContainer<TFactBase>
+            where TWantAction : IWantAction<TFactBase>
         {
-            return _func(container);
+            return _func(container, wantAction);
         }
 
         /// <summary>
-        /// is it possible to calculate the fact.
+        /// Is it possible to calculate the fact.
         /// </summary>
         /// <param name="container"></param>
         /// <param name="wantAction"></param>

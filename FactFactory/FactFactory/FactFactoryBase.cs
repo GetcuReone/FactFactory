@@ -15,12 +15,12 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Base class for fact factory
     /// </summary>
-    public abstract class FactFactoryBase<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactoryBase, IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
-        where TFact : class, IFact
-        where TFactContainer : FactContainerBase<TFact>
-        where TFactRule : FactRuleBase<TFact>
-        where TFactRuleCollection : FactRuleCollectionBase<TFact, TFactRule>
-        where TWantAction : WantActionBase<TFact>
+    public abstract class FactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactoryBase, IFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
+        where TFactBase : class, IFact
+        where TFactContainer : FactContainerBase<TFactBase>
+        where TFactRule : FactRuleBase<TFactBase>
+        where TFactRuleCollection : FactRuleCollectionBase<TFactBase, TFactRule>
+        where TWantAction : WantActionBase<TFactBase>
     {
         /// <summary>
         /// Want actions
@@ -49,9 +49,9 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        protected virtual IEnumerable<TFact> GetDefaultFacts(FactContainerBase<TFact> container)
+        protected virtual IEnumerable<TFactBase> GetDefaultFacts(FactContainerBase<TFactBase> container)
         {
-            return Enumerable.Empty<TFact>();
+            return Enumerable.Empty<TFactBase>();
         }
 
         /// <summary>
@@ -61,26 +61,26 @@ namespace GetcuReone.FactFactory
         {
             // Get a copy of the container
             if (Container == null)
-                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "Container cannot be null.");
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "Container cannot be null.");
 
-            FactContainerBase<TFact> containerCopy = Container.Copy();
+            FactContainerBase<TFactBase> containerCopy = Container.Copy();
             if (containerCopy == null)
-                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method return null.");
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method return null.");
             if (Container.Equals(containerCopy))
-                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
             if (!(containerCopy is TFactContainer))
-                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "IFactContainer.Copy method returned a different type of container.");
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method returned a different type of container.");
 
             TFactContainer container = (TFactContainer)containerCopy;
             container.IsReadOnly = true;
 
             List<IFactType> defaultFacts = new List<IFactType>();
-            foreach(TFact fact in GetDefaultFacts(container) ?? Enumerable.Empty<TFact>())
+            foreach(TFactBase fact in GetDefaultFacts(container) ?? Enumerable.Empty<TFactBase>())
             {
                 IFactType type = fact.GetFactType();
 
                 if (defaultFacts.Any(dType => dType.Compare(type)))
-                    throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, $"GetDefaultFacts method return more than two {type.FactName} facts");
+                    throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, $"GetDefaultFacts method return more than two {type.FactName} facts");
 
                 if (!type.ContainsContainer(container))
                 {
@@ -92,22 +92,22 @@ namespace GetcuReone.FactFactory
             }
 
             if (container.Any(fact => fact.IsSpecialFact()))
-                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, $"In the container there should be no facts realizing types {nameof(INotContainedFact)} and {nameof(INoDerivedFact)}");
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, $"In the container there should be no facts realizing types {nameof(INotContainedFact)} and {nameof(INoDerivedFact)}");
 
             // Get a copy of the rules
-            FactRuleCollectionBase<TFact, TFactRule> rules = Rules.Copy();
+            FactRuleCollectionBase<TFactBase, TFactRule> rules = Rules.Copy();
             if (rules.Equals(Rules))
-                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
             rules.IsReadOnly = true;
 
-            var forestry = new Dictionary<TWantAction, List<FactRuleTree<TFact, TFactRule>>>();
-            List<DeriveErrorDetail<TFact>> deriveErrorDetails = new List<DeriveErrorDetail<TFact>>();
-            var needSpecialFacts = new Dictionary<TWantAction, List<TFact>>();
+            var forestry = new Dictionary<TWantAction, List<FactRuleTree<TFactBase, TFactRule>>>();
+            List<DeriveErrorDetail<TFactBase>> deriveErrorDetails = new List<DeriveErrorDetail<TFactBase>>();
+            var needSpecialFacts = new Dictionary<TWantAction, List<TFactBase>>();
             List<TWantAction> wantActions = new List<TWantAction>(WantActions);
 
             foreach (TWantAction wantAction in wantActions)
             {
-                if (TryDeriveTreesForWantAction(out List<FactRuleTree<TFact, TFactRule>> result, wantAction, container, rules, out List<TFact> specialFacts, out DeriveErrorDetail<TFact> detail))
+                if (TryDeriveTreesForWantAction(out List<FactRuleTree<TFactBase, TFactRule>> result, wantAction, container, rules, out List<TFactBase> specialFacts, out DeriveErrorDetail<TFactBase> detail))
                 {
                     forestry.Add(wantAction, result);
                     needSpecialFacts.Add(wantAction, specialFacts);
@@ -119,10 +119,10 @@ namespace GetcuReone.FactFactory
             if (deriveErrorDetails.Count != 0)
                 throw FactFactoryHelper.CreateDeriveException(deriveErrorDetails);
 
-            var calculatedFacts = new List<TFact>();
+            var calculatedFacts = new List<TFactBase>();
             foreach (var key in forestry.Keys)
             {
-                foreach (TFact fact in needSpecialFacts[key])
+                foreach (TFactBase fact in needSpecialFacts[key])
                 {
                     using (container.CreateIgnoreReadOnlySpace())
                         container.Add(fact);
@@ -135,7 +135,7 @@ namespace GetcuReone.FactFactory
 
                 OnWantActionCalculated(key, container);
 
-                foreach (TFact fact in needSpecialFacts[key])
+                foreach (TFactBase fact in needSpecialFacts[key])
                 {
                     using(container.CreateIgnoreReadOnlySpace())
                         container.Remove(fact);
@@ -146,7 +146,7 @@ namespace GetcuReone.FactFactory
 
             foreach(var type in defaultFacts)
             {
-                if (type.TryGetFact(container, out TFact fact))
+                if (type.TryGetFact(container, out TFactBase fact))
                 {
                     using (container.CreateIgnoreReadOnlySpace())
                         container.Remove(fact);
@@ -155,20 +155,23 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Derive <typeparamref name="TWantFact"/>
+        /// Derive <typeparamref name="TFact"/>
         /// </summary>
-        /// <typeparam name="TWantFact">Type of desired fact</typeparam>
+        /// <typeparam name="TFact">Type of desired fact</typeparam>
         /// <returns></returns>
-        public virtual TWantFact DeriveFact<TWantFact>() where TWantFact : TFact
+        public virtual TFact DeriveFact<TFact>() where TFact : TFactBase
         {
-            TWantFact fact = default;
+            TFact fact = default;
 
             var wantActions = new List<TWantAction>(WantActions);
             WantActions.Clear();
 
+            var inputFacts = new List<IFactType> { GetFactType<TFact>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => fact = container.GetFact<TWantFact>(),
-                new List<IFactType> { GetFactType<TWantFact>() }));
+                container => fact = GetCorrectFact<TFact>(container, inputFacts),
+                inputFacts));
 
             Derive();
 
@@ -182,7 +185,7 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <param name="wantAction"></param>
         /// <param name="container"></param>
-        protected virtual void OnWantActionCalculated(TWantAction wantAction, FactContainerBase<TFact> container) { }
+        protected virtual void OnWantActionCalculated(TWantAction wantAction, FactContainerBase<TFactBase> container) { }
 
         /// <summary>
         /// Fact calculation event handler for an <paramref name="wantAction"/>.
@@ -190,7 +193,7 @@ namespace GetcuReone.FactFactory
         /// <param name="factType">Type calculated fact.</param>
         /// <param name="container">Container.</param>
         /// <param name="wantAction">The action for which the fact was calculated.</param>
-        protected virtual void OnFactCalculatedForWantAction(IFactType factType, FactContainerBase<TFact> container, TWantAction wantAction) { }
+        protected virtual void OnFactCalculatedForWantAction(IFactType factType, FactContainerBase<TFactBase> container, TWantAction wantAction) { }
 
         /// <summary>
         /// Event handler method 'derive finished'. It is executed at the end of the <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/> method.
@@ -198,7 +201,7 @@ namespace GetcuReone.FactFactory
         /// <param name="wantActions">List of desired actions.</param>
         /// <param name="container">Container.</param>
         /// <param name="calculatedFacts">List of all calculated facts.</param>
-        protected virtual void OnDeriveFinished(List<TWantAction> wantActions, FactContainerBase<TFact> container, List<TFact> calculatedFacts) { }
+        protected virtual void OnDeriveFinished(List<TWantAction> wantActions, FactContainerBase<TFactBase> container, List<TFactBase> calculatedFacts) { }
 
         #region methods for derive
 
@@ -208,7 +211,7 @@ namespace GetcuReone.FactFactory
         /// <param name="wantAction">action taken after deriving a fact</param>
         /// <param name="factTypes">facts required to launch an action</param>
         /// <returns></returns>
-        protected abstract TWantAction CreateWantAction(Action<IFactContainer<TFact>> wantAction, IList<IFactType> factTypes);
+        protected abstract TWantAction CreateWantAction(Action<IFactContainer<TFactBase>> wantAction, IReadOnlyCollection<IFactType> factTypes);
 
         /// <summary>
         /// Return a list with the appropriate rules at the time of the derive of the facts.
@@ -217,7 +220,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Current fact set.</param>
         /// <param name="wantAction">Current wantAction</param>
         /// <returns></returns>
-        protected virtual IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, FactContainerBase<TFact> container, FactRuleCollectionBase<TFact, TFactRule> rules)
+        protected virtual IList<TFactRule> GetRulesForWantAction(TWantAction wantAction, FactContainerBase<TFactBase> container, FactRuleCollectionBase<TFactBase, TFactRule> rules)
         {
             return rules;
         }
@@ -229,7 +232,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
         /// <returns>True - fact needs to be recalculated.</returns>
-        protected virtual bool NeedRecalculateFact(TFactRule rule, FactContainerBase<TFact> container, TWantAction wantAction)
+        protected virtual bool NeedRecalculateFact(TFactRule rule, FactContainerBase<TFactBase> container, TWantAction wantAction)
         {
             return false;
         }
@@ -244,7 +247,7 @@ namespace GetcuReone.FactFactory
         /// <param name="deriveErrorDetail"></param>
         /// <param name="specialFacts"></param>
         /// <returns></returns>
-        private bool TryDeriveTreesForWantAction(out List<FactRuleTree<TFact, TFactRule>> treesResult, TWantAction wantAction, FactContainerBase<TFact> container, FactRuleCollectionBase<TFact, TFactRule> rules, out List<TFact> specialFacts, out DeriveErrorDetail<TFact> deriveErrorDetail)
+        private bool TryDeriveTreesForWantAction(out List<FactRuleTree<TFactBase, TFactRule>> treesResult, TWantAction wantAction, FactContainerBase<TFactBase> container, FactRuleCollectionBase<TFactBase, TFactRule> rules, out List<TFactBase> specialFacts, out DeriveErrorDetail<TFactBase> deriveErrorDetail)
         {
             IList<TFactRule> rulesForDerive = GetRulesForWantAction(wantAction, container, rules);
 
@@ -263,10 +266,10 @@ namespace GetcuReone.FactFactory
                         .ToList(),
                     wantAction);
 
-            treesResult = new List<FactRuleTree<TFact, TFactRule>>();
+            treesResult = new List<FactRuleTree<TFactBase, TFactRule>>();
             var deriveFactErrorDetails = new List<DeriveFactErrorDetail>();
             deriveErrorDetail = null;
-            specialFacts = new List<TFact>();
+            specialFacts = new List<TFactBase>();
 
             foreach (IFactType wantFact in wantAction.InputFactTypes)
             {
@@ -281,7 +284,7 @@ namespace GetcuReone.FactFactory
 
                         if (!notContainedFact.IsFactContained(container))
                         {
-                            TFact specialFact = notContainedFact.ConvertFact<TFact>();
+                            TFactBase specialFact = notContainedFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
                             continue;
                         }
@@ -295,7 +298,7 @@ namespace GetcuReone.FactFactory
 
                         if (containedFact.IsFactContained(container))
                         {
-                            TFact specialFact = containedFact.ConvertFact<TFact>();
+                            TFactBase specialFact = containedFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
                             continue;
                         }
@@ -305,7 +308,7 @@ namespace GetcuReone.FactFactory
                         INoDerivedFact noDerivedFact = wantFact.CreateSpecialFact<INoDerivedFact>();
                         if (!noDerivedFact.Value.ContainsContainer(container) && !TryDeriveNoFactInfo(noDerivedFact, wantAction, container, rules))
                         {
-                            TFact specialFact = noDerivedFact.ConvertFact<TFact>();
+                            TFactBase specialFact = noDerivedFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
                             continue;
                         }
@@ -315,7 +318,7 @@ namespace GetcuReone.FactFactory
                     }
                 }
 
-                if (TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> treeResult, wantFact, wantAction, container, rulesForDerive, specialFacts, out List<DeriveFactErrorDetail> details))
+                if (TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> treeResult, wantFact, wantAction, container, rulesForDerive, specialFacts, out List<DeriveFactErrorDetail> details))
                 {
                     treesResult.Add(treeResult);
                 }
@@ -327,23 +330,23 @@ namespace GetcuReone.FactFactory
 
             if (deriveFactErrorDetails.Count != 0)
             {
-                deriveErrorDetail = new DeriveErrorDetail<TFact>(ErrorCode.FactCannotCalculated, $"Failed to calculate one or more facts for the action {wantAction.ToString()}.", wantAction, deriveFactErrorDetails);
+                deriveErrorDetail = new DeriveErrorDetail<TFactBase>(ErrorCode.FactCannotCalculated, $"Failed to calculate one or more facts for the action {wantAction.ToString()}.", wantAction, deriveFactErrorDetails);
                 return false;
             }
 
             return true;
         }
 
-        private bool TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> treeResult, IFactType wantFact, TWantAction wantAction, FactContainerBase<TFact> container, IList<TFactRule> ruleCollection, List<TFact> specialFacts, out List<DeriveFactErrorDetail> deriveFactErrorDetails)
+        private bool TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> treeResult, IFactType wantFact, TWantAction wantAction, FactContainerBase<TFactBase> container, IList<TFactRule> ruleCollection, List<TFactBase> specialFacts, out List<DeriveFactErrorDetail> deriveFactErrorDetails)
         {
             treeResult = null;
             deriveFactErrorDetails = null;
 
             // find the rules that can calculate the fact
-            List<FactRuleTree<TFact, TFactRule>> factRuleTrees = GetFactRuleTrees(wantFact, ruleCollection);
+            List<FactRuleTree<TFactBase, TFactRule>> factRuleTrees = GetFactRuleTrees(wantFact, ruleCollection);
 
             // Check if we can already derive the fact
-            FactRuleTree<TFact, TFactRule> factRuleTreeComputed = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.CanCalculate(container, wantAction));
+            FactRuleTree<TFactBase, TFactRule> factRuleTreeComputed = factRuleTrees.FirstOrDefault(tree => tree.Root.FactRule.CanCalculate(container, wantAction));
 
             if (factRuleTreeComputed != null)
             {
@@ -352,13 +355,13 @@ namespace GetcuReone.FactFactory
             }
 
             List<List<IFactType>> notFoundFactSet = factRuleTrees.ConvertAll(item => new List<IFactType>());
-            List<FactRuleNode<TFact, TFactRule>> allCompletedNodes = new List<FactRuleNode<TFact, TFactRule>>();
+            List<FactRuleNode<TFactBase, TFactRule>> allCompletedNodes = new List<FactRuleNode<TFactBase, TFactRule>>();
 
             while (true)
             {
                 for (int i = factRuleTrees.Count - 1; i >= 0; i--)
                 {
-                    FactRuleTree<TFact, TFactRule> factRuleTree = factRuleTrees[i];
+                    FactRuleTree<TFactBase, TFactRule> factRuleTree = factRuleTrees[i];
 
                     if (factRuleTree == null)
                         continue;
@@ -371,7 +374,7 @@ namespace GetcuReone.FactFactory
                         return true;
                     }
 
-                    List<FactRuleNode<TFact, TFactRule>> lastLevel = factRuleTree.Levels[lastlevelNumber];
+                    List<FactRuleNode<TFactBase, TFactRule>> lastLevel = factRuleTree.Levels[lastlevelNumber];
 
                     if (lastLevel.Count == 0)
                     {
@@ -379,13 +382,13 @@ namespace GetcuReone.FactFactory
                         return true;
                     }
 
-                    List<FactRuleNode<TFact, TFactRule>> nextNodes = new List<FactRuleNode<TFact, TFactRule>>();
-                    List<FactRuleNode<TFact, TFactRule>> currentLevelCompletedNodes = new List<FactRuleNode<TFact, TFactRule>>();
+                    List<FactRuleNode<TFactBase, TFactRule>> nextNodes = new List<FactRuleNode<TFactBase, TFactRule>>();
+                    List<FactRuleNode<TFactBase, TFactRule>> currentLevelCompletedNodes = new List<FactRuleNode<TFactBase, TFactRule>>();
                     bool cannotDerived = false;
 
                     for (int j = 0; j < lastLevel.Count; j++)
                     {
-                        FactRuleNode<TFact, TFactRule> node = lastLevel[j];
+                        FactRuleNode<TFactBase, TFactRule> node = lastLevel[j];
 
                         List<IFactType> needFacts = node.FactRule.InputFactTypes
                             .Where(fact => !fact.ContainsContainer(container))
@@ -419,7 +422,7 @@ namespace GetcuReone.FactFactory
 
                                     if (container.All(fact => !notContainedFact.IsFactContained(container)))
                                     {
-                                        specialFacts.Add(notContainedFact.ConvertFact<TFact>());
+                                        specialFacts.Add(notContainedFact.ConvertFact<TFactBase>());
                                         needRemove = true;
                                     }
                                 }
@@ -431,7 +434,7 @@ namespace GetcuReone.FactFactory
 
                                     if (container.Any(fact => containedFact.IsFactContained(container)))
                                     {
-                                        specialFacts.Add(containedFact.ConvertFact<TFact>());
+                                        specialFacts.Add(containedFact.ConvertFact<TFactBase>());
                                         needRemove = true;
                                     }
                                 }
@@ -443,7 +446,7 @@ namespace GetcuReone.FactFactory
 
                                     if (!TryDeriveNoFactInfo(noDerivedFact, wantAction, container, ruleCollection))
                                     {
-                                        specialFacts.Add(noDerivedFact.ConvertFact<TFact>());
+                                        specialFacts.Add(noDerivedFact.ConvertFact<TFactBase>());
                                         needRemove = true;
                                     }
                                 }
@@ -495,7 +498,7 @@ namespace GetcuReone.FactFactory
 
                             if (needRules.Count > 0)
                             {
-                                var nodes = needRules.Select(rule => new FactRuleNode<TFact, TFactRule>
+                                var nodes = needRules.Select(rule => new FactRuleNode<TFactBase, TFactRule>
                                 {
                                     FactRule = rule,
                                     Parent = node,
@@ -563,25 +566,25 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFact">derive fact</param>
         /// <param name="rules">rule set</param>
         /// <returns></returns>
-        private List<FactRuleTree<TFact, TFactRule>> GetFactRuleTrees(IFactType wantFact, IList<TFactRule> rules)
+        private List<FactRuleTree<TFactBase, TFactRule>> GetFactRuleTrees(IFactType wantFact, IList<TFactRule> rules)
         {
             if (rules.IsNullOrEmpty())
-                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.EmptyRuleCollection, "Rules cannot be null.");
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.EmptyRuleCollection, "Rules cannot be null.");
 
-            List<FactRuleTree<TFact, TFactRule>> factRuleTrees = rules?.Where(rule => rule.OutputFactType.Compare(wantFact))
+            List<FactRuleTree<TFactBase, TFactRule>> factRuleTrees = rules?.Where(rule => rule.OutputFactType.Compare(wantFact))
                     .Select(rule =>
                     {
-                        var tree = new FactRuleTree<TFact, TFactRule>
+                        var tree = new FactRuleTree<TFactBase, TFactRule>
                         {
-                            Root = new FactRuleNode<TFact, TFactRule> { FactRule = rule }
+                            Root = new FactRuleNode<TFactBase, TFactRule> { FactRule = rule }
                         };
-                        tree.Levels.Add(new List<FactRuleNode<TFact, TFactRule>> { tree.Root });
+                        tree.Levels.Add(new List<FactRuleNode<TFactBase, TFactRule>> { tree.Root });
                         return tree;
                     })
                     .ToList();
 
             if (factRuleTrees.IsNullOrEmpty())
-                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.RuleNotFound, $"No rules found able to calculate fact {wantFact.FactName}.");
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.RuleNotFound, $"No rules found able to calculate fact {wantFact.FactName}.");
 
             return factRuleTrees;
         }
@@ -594,13 +597,13 @@ namespace GetcuReone.FactFactory
         /// <param name="level"></param>
         /// <param name="computedNodes"></param>
         /// <returns></returns>
-        private bool SyncComputedNodeForLevelTreeAndCheckGoneRoot(FactRuleTree<TFact, TFactRule> factRuleTree, int level, List<FactRuleNode<TFact, TFactRule>> computedNodes)
+        private bool SyncComputedNodeForLevelTreeAndCheckGoneRoot(FactRuleTree<TFactBase, TFactRule> factRuleTree, int level, List<FactRuleNode<TFactBase, TFactRule>> computedNodes)
         {
             if (level < 0)
                 return true;
 
-            List<FactRuleNode<TFact, TFactRule>> currentLevel = factRuleTree.Levels[level];
-            List<FactRuleNode<TFact, TFactRule>> computedNodesInCurrentLevel = new List<FactRuleNode<TFact, TFactRule>>();
+            List<FactRuleNode<TFactBase, TFactRule>> currentLevel = factRuleTree.Levels[level];
+            List<FactRuleNode<TFactBase, TFactRule>> computedNodesInCurrentLevel = new List<FactRuleNode<TFactBase, TFactRule>>();
 
             foreach (var node in currentLevel)
             {
@@ -620,21 +623,21 @@ namespace GetcuReone.FactFactory
                 return false;
         }
 
-        private void SyncComputedNodes(List<FactRuleNode<TFact, TFactRule>> levelNodes, List<FactRuleNode<TFact, TFactRule>> computedNodes)
+        private void SyncComputedNodes(List<FactRuleNode<TFactBase, TFactRule>> levelNodes, List<FactRuleNode<TFactBase, TFactRule>> computedNodes)
         {
             // value - parents, key - node matching on child
-            Dictionary<FactRuleNode<TFact, TFactRule>, List<FactRuleNode<TFact, TFactRule>>> keyValuePairs = new Dictionary<FactRuleNode<TFact, TFactRule>, List<FactRuleNode<TFact, TFactRule>>>();
+            Dictionary<FactRuleNode<TFactBase, TFactRule>, List<FactRuleNode<TFactBase, TFactRule>>> keyValuePairs = new Dictionary<FactRuleNode<TFactBase, TFactRule>, List<FactRuleNode<TFactBase, TFactRule>>>();
             foreach (var computedNode in computedNodes.Distinct())
             {
-                List<FactRuleNode<TFact, TFactRule>> parentNodes = levelNodes
+                List<FactRuleNode<TFactBase, TFactRule>> parentNodes = levelNodes
                     .Where(n => n.FactRule.OutputFactType.Compare(computedNode.FactRule.OutputFactType))
                     .Select(n => n.Parent).ToList();
                 keyValuePairs.Add(computedNode, parentNodes);
             }
 
-            foreach (KeyValuePair<FactRuleNode<TFact, TFactRule>, List<FactRuleNode<TFact, TFactRule>>> keyValuePair in keyValuePairs)
+            foreach (KeyValuePair<FactRuleNode<TFactBase, TFactRule>, List<FactRuleNode<TFactBase, TFactRule>>> keyValuePair in keyValuePairs)
             {
-                foreach (FactRuleNode<TFact, TFactRule> parentNode in keyValuePair.Value)
+                foreach (FactRuleNode<TFactBase, TFactRule> parentNode in keyValuePair.Value)
                 {
                     if (parentNode == null)
                         continue;
@@ -650,7 +653,7 @@ namespace GetcuReone.FactFactory
             }
         }
 
-        private bool RemoveRuleNodeAndCheckGoneRoot(FactRuleTree<TFact, TFactRule> factRuleTree, int level, FactRuleNode<TFact, TFactRule> removeNode)
+        private bool RemoveRuleNodeAndCheckGoneRoot(FactRuleTree<TFactBase, TFactRule> factRuleTree, int level, FactRuleNode<TFactBase, TFactRule> removeNode)
         {
 
             if (level == 0)
@@ -660,7 +663,7 @@ namespace GetcuReone.FactFactory
             }
 
             factRuleTree.Levels[level].Remove(removeNode);
-            FactRuleNode<TFact, TFactRule> parent = removeNode.Parent;
+            FactRuleNode<TFactBase, TFactRule> parent = removeNode.Parent;
             parent.Childs.Remove(removeNode);
 
             // If the node has a child node that can calculate this fact
@@ -670,15 +673,15 @@ namespace GetcuReone.FactFactory
                 return RemoveRuleNodeAndCheckGoneRoot(factRuleTree, level - 1, parent);
         }
 
-        private void DeriveNode(FactRuleNode<TFact, TFactRule> node, FactContainerBase<TFact> container, TWantAction wantAction, List<TFact> calculatedFacts)
+        private void DeriveNode(FactRuleNode<TFactBase, TFactRule> node, FactContainerBase<TFactBase> container, TWantAction wantAction, List<TFactBase> calculatedFacts)
         {
-            foreach (FactRuleNode<TFact, TFactRule> child in node.Childs)
+            foreach (FactRuleNode<TFactBase, TFactRule> child in node.Childs)
                 DeriveNode(child, container, wantAction, calculatedFacts);
 
             TFactRule rule = node.FactRule;
 
             // 1. We decide whether the fact will be calculated at all
-            if (rule.OutputFactType.TryGetFact(container, out TFact fact))
+            if (rule.OutputFactType.TryGetFact(container, out TFactBase fact))
             {
                 if (!NeedRecalculateFact(rule, container, wantAction))
                     return;
@@ -687,24 +690,21 @@ namespace GetcuReone.FactFactory
                     container.Remove(fact);
 
                 // We ask about recalculation for all facts of the current type, which we calculated
-                foreach (TFact calculatedFact in calculatedFacts.Where(f => f.GetFactType().Compare(rule.OutputFactType) && f != fact))
+                foreach (TFactBase calculatedFact in calculatedFacts.Where(f => f.GetFactType().Compare(rule.OutputFactType) && f != fact))
                 {
                     using (container.CreateIgnoreReadOnlySpace())
                         container.Add(calculatedFact);
 
                     if (!NeedRecalculateFact(rule, container, wantAction))
                         return;
-
-                    using (container.CreateIgnoreReadOnlySpace())
-                        container.Remove(calculatedFact);
                 }
             }
 
             // 2. Calculete fact
-            TFact calculateFact = CreateObject(ct => rule.Calculate(ct), container);
+            TFactBase calculateFact = CreateObject(ct => rule.Calculate(ct, wantAction), container);
 
             if (calculateFact == null)
-                throw FactFactoryHelper.CreateDeriveException<TFact>(ErrorCode.InvalidOperation, $"Rule {rule.ToString()} return null");
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidOperation, $"Rule {rule.ToString()} return null");
 
             using (container.CreateIgnoreReadOnlySpace())
                 container.Add(calculateFact);
@@ -713,17 +713,17 @@ namespace GetcuReone.FactFactory
             OnFactCalculatedForWantAction(rule.OutputFactType, container, wantAction);
         }
 
-        private bool TryDeriveNoFactInfo(INoDerivedFact noDerivedFact, TWantAction wantAction, FactContainerBase<TFact> container, IList<TFactRule> ruleCollection)
+        private bool TryDeriveNoFactInfo(INoDerivedFact noDerivedFact, TWantAction wantAction, FactContainerBase<TFactBase> container, IList<TFactRule> ruleCollection)
         {
             try
             {
-                return TryDeriveTreeForFactInfo(out FactRuleTree<TFact, TFactRule> _, noDerivedFact.Value, wantAction, container, ruleCollection, new List<TFact>(), out var _);
+                return TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, noDerivedFact.Value, wantAction, container, ruleCollection, new List<TFactBase>(), out var _);
             }
-            catch (InvalidDeriveOperationException<TFact> ex)
+            catch (InvalidDeriveOperationException<TFactBase> ex)
             {
                 if (ex.Details != null && ex.Details.Count == 1)
                 {
-                    DeriveErrorDetail<TFact> detail = ex.Details.First();
+                    DeriveErrorDetail<TFactBase> detail = ex.Details.First();
 
                     if (detail.Code == ErrorCode.RuleNotFound || detail.Code == ErrorCode.EmptyRuleCollection)
                         return false;
@@ -738,7 +738,20 @@ namespace GetcuReone.FactFactory
         #region overloads method WantFact
 
         /// <summary>
-        /// Requesting a desired fact through action
+        /// Return the correct fact.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="container"></param>
+        /// <param name="inputFactTypes"></param>
+        /// <returns></returns>
+        protected virtual TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IReadOnlyCollection<IFactType> inputFactTypes)
+            where TFact : TFactBase
+        {
+            return container.GetFact<TFact>();
+        }
+
+        /// <summary>
+        /// Requesting a desired fact through action.
         /// </summary>
         /// <param name="wantAction"></param>
         /// <exception cref="FactFactoryException">The action has already been requested before. Or facts requested <see cref="INoDerivedFact"/> or <see cref="INotContainedFact"/></exception>
@@ -751,466 +764,514 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1"></typeparam>
-        /// <param name="wantFactAction"></param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1>(
-            Action<TFact1> wantFactAction) where TFact1 : TFact
+            Action<TFact1> wantFactAction) where TFact1 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>()),
-                new List<IFactType> { GetFactType<TFact1>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1"></typeparam>
-        /// <typeparam name="TFact2"></typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2>(
             Action<TFact1, TFact2> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3>(
             Action<TFact1, TFact2, TFact3> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4>(
             Action<TFact1, TFact2, TFact3, TFact4> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <typeparam name="TFact6">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
-            where TFact6 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
+            where TFact6 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>()}
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <typeparam name="TFact6">type fact</typeparam>
-        /// <typeparam name="TFact7">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
-            where TFact6 : TFact
-            where TFact7 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
+            where TFact6 : TFactBase
+            where TFact7 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>() }
+                 .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <typeparam name="TFact6">type fact</typeparam>
-        /// <typeparam name="TFact7">type fact</typeparam>
-        /// <typeparam name="TFact8">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
-            where TFact6 : TFact
-            where TFact7 : TFact
-            where TFact8 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
+            where TFact6 : TFactBase
+            where TFact7 : TFactBase
+            where TFact8 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <typeparam name="TFact6">type fact</typeparam>
-        /// <typeparam name="TFact7">type fact</typeparam>
-        /// <typeparam name="TFact8">type fact</typeparam>
-        /// <typeparam name="TFact9">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
-            where TFact6 : TFact
-            where TFact7 : TFact
-            where TFact8 : TFact
-            where TFact9 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
+            where TFact6 : TFactBase
+            where TFact7 : TFactBase
+            where TFact8 : TFactBase
+            where TFact9 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <typeparam name="TFact6">type fact</typeparam>
-        /// <typeparam name="TFact7">type fact</typeparam>
-        /// <typeparam name="TFact8">type fact</typeparam>
-        /// <typeparam name="TFact9">type fact</typeparam>
-        /// <typeparam name="TFact10">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
-            where TFact6 : TFact
-            where TFact7 : TFact
-            where TFact8 : TFact
-            where TFact9 : TFact
-            where TFact10 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
+            where TFact6 : TFactBase
+            where TFact7 : TFactBase
+            where TFact8 : TFactBase
+            where TFact9 : TFactBase
+            where TFact10 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <typeparam name="TFact6">type fact</typeparam>
-        /// <typeparam name="TFact7">type fact</typeparam>
-        /// <typeparam name="TFact8">type fact</typeparam>
-        /// <typeparam name="TFact9">type fact</typeparam>
-        /// <typeparam name="TFact10">type fact</typeparam>
-        /// <typeparam name="TFact11">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
-            where TFact6 : TFact
-            where TFact7 : TFact
-            where TFact8 : TFact
-            where TFact9 : TFact
-            where TFact10 : TFact
-            where TFact11 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
+            where TFact6 : TFactBase
+            where TFact7 : TFactBase
+            where TFact8 : TFactBase
+            where TFact9 : TFactBase
+            where TFact10 : TFactBase
+            where TFact11 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <typeparam name="TFact6">type fact</typeparam>
-        /// <typeparam name="TFact7">type fact</typeparam>
-        /// <typeparam name="TFact8">type fact</typeparam>
-        /// <typeparam name="TFact9">type fact</typeparam>
-        /// <typeparam name="TFact10">type fact</typeparam>
-        /// <typeparam name="TFact11">type fact</typeparam>
-        /// <typeparam name="TFact12">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
-            where TFact6 : TFact
-            where TFact7 : TFact
-            where TFact8 : TFact
-            where TFact9 : TFact
-            where TFact10 : TFact
-            where TFact11 : TFact
-            where TFact12 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
+            where TFact6 : TFactBase
+            where TFact7 : TFactBase
+            where TFact8 : TFactBase
+            where TFact9 : TFactBase
+            where TFact10 : TFactBase
+            where TFact11 : TFactBase
+            where TFact12 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>(), container.GetFact<TFact12>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts), GetCorrectFact<TFact12>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <typeparam name="TFact6">type fact</typeparam>
-        /// <typeparam name="TFact7">type fact</typeparam>
-        /// <typeparam name="TFact8">type fact</typeparam>
-        /// <typeparam name="TFact9">type fact</typeparam>
-        /// <typeparam name="TFact10">type fact</typeparam>
-        /// <typeparam name="TFact11">type fact</typeparam>
-        /// <typeparam name="TFact12">type fact</typeparam>
-        /// <typeparam name="TFact13">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
-            where TFact6 : TFact
-            where TFact7 : TFact
-            where TFact8 : TFact
-            where TFact9 : TFact
-            where TFact10 : TFact
-            where TFact11 : TFact
-            where TFact12 : TFact
-            where TFact13 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
+            where TFact6 : TFactBase
+            where TFact7 : TFactBase
+            where TFact8 : TFactBase
+            where TFact9 : TFactBase
+            where TFact10 : TFactBase
+            where TFact11 : TFactBase
+            where TFact12 : TFactBase
+            where TFact13 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>(), container.GetFact<TFact12>(), container.GetFact<TFact13>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts), GetCorrectFact<TFact12>(container, inputFacts), GetCorrectFact<TFact13>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <typeparam name="TFact6">type fact</typeparam>
-        /// <typeparam name="TFact7">type fact</typeparam>
-        /// <typeparam name="TFact8">type fact</typeparam>
-        /// <typeparam name="TFact9">type fact</typeparam>
-        /// <typeparam name="TFact10">type fact</typeparam>
-        /// <typeparam name="TFact11">type fact</typeparam>
-        /// <typeparam name="TFact12">type fact</typeparam>
-        /// <typeparam name="TFact13">type fact</typeparam>
-        /// <typeparam name="TFact14">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <typeparam name="TFact14">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
-            where TFact6 : TFact
-            where TFact7 : TFact
-            where TFact8 : TFact
-            where TFact9 : TFact
-            where TFact10 : TFact
-            where TFact11 : TFact
-            where TFact12 : TFact
-            where TFact13 : TFact
-            where TFact14 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
+            where TFact6 : TFactBase
+            where TFact7 : TFactBase
+            where TFact8 : TFactBase
+            where TFact9 : TFactBase
+            where TFact10 : TFactBase
+            where TFact11 : TFactBase
+            where TFact12 : TFactBase
+            where TFact13 : TFactBase
+            where TFact14 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>(), container.GetFact<TFact12>(), container.GetFact<TFact13>(), container.GetFact<TFact14>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts), GetCorrectFact<TFact12>(container, inputFacts), GetCorrectFact<TFact13>(container, inputFacts), GetCorrectFact<TFact14>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <typeparam name="TFact6">type fact</typeparam>
-        /// <typeparam name="TFact7">type fact</typeparam>
-        /// <typeparam name="TFact8">type fact</typeparam>
-        /// <typeparam name="TFact9">type fact</typeparam>
-        /// <typeparam name="TFact10">type fact</typeparam>
-        /// <typeparam name="TFact11">type fact</typeparam>
-        /// <typeparam name="TFact12">type fact</typeparam>
-        /// <typeparam name="TFact13">type fact</typeparam>
-        /// <typeparam name="TFact14">type fact</typeparam>
-        /// <typeparam name="TFact15">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <typeparam name="TFact14">Type fact.</typeparam>
+        /// <typeparam name="TFact15">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
-            where TFact6 : TFact
-            where TFact7 : TFact
-            where TFact8 : TFact
-            where TFact9 : TFact
-            where TFact10 : TFact
-            where TFact11 : TFact
-            where TFact12 : TFact
-            where TFact13 : TFact
-            where TFact14 : TFact
-            where TFact15 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
+            where TFact6 : TFactBase
+            where TFact7 : TFactBase
+            where TFact8 : TFactBase
+            where TFact9 : TFactBase
+            where TFact10 : TFactBase
+            where TFact11 : TFactBase
+            where TFact12 : TFactBase
+            where TFact13 : TFactBase
+            where TFact14 : TFactBase
+            where TFact15 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>(), container.GetFact<TFact12>(), container.GetFact<TFact13>(), container.GetFact<TFact14>(), container.GetFact<TFact15>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts), GetCorrectFact<TFact12>(container, inputFacts), GetCorrectFact<TFact13>(container, inputFacts), GetCorrectFact<TFact14>(container, inputFacts), GetCorrectFact<TFact15>(container, inputFacts)),
+                inputFacts));
         }
 
         /// <summary>
-        /// Requesting desired facts through action
+        /// Requesting desired facts through action.
         /// </summary>
-        /// <typeparam name="TFact1">type fact</typeparam>
-        /// <typeparam name="TFact2">type fact</typeparam>
-        /// <typeparam name="TFact3">type fact</typeparam>
-        /// <typeparam name="TFact4">type fact</typeparam>
-        /// <typeparam name="TFact5">type fact</typeparam>
-        /// <typeparam name="TFact6">type fact</typeparam>
-        /// <typeparam name="TFact7">type fact</typeparam>
-        /// <typeparam name="TFact8">type fact</typeparam>
-        /// <typeparam name="TFact9">type fact</typeparam>
-        /// <typeparam name="TFact10">type fact</typeparam>
-        /// <typeparam name="TFact11">type fact</typeparam>
-        /// <typeparam name="TFact12">type fact</typeparam>
-        /// <typeparam name="TFact13">type fact</typeparam>
-        /// <typeparam name="TFact14">type fact</typeparam>
-        /// <typeparam name="TFact15">type fact</typeparam>
-        /// <typeparam name="TFact16">type fact</typeparam>
-        /// <param name="wantFactAction">Desired action</param>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <typeparam name="TFact14">Type fact.</typeparam>
+        /// <typeparam name="TFact15">Type fact.</typeparam>
+        /// <typeparam name="TFact16">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16> wantFactAction)
-            where TFact1 : TFact
-            where TFact2 : TFact
-            where TFact3 : TFact
-            where TFact4 : TFact
-            where TFact5 : TFact
-            where TFact6 : TFact
-            where TFact7 : TFact
-            where TFact8 : TFact
-            where TFact9 : TFact
-            where TFact10 : TFact
-            where TFact11 : TFact
-            where TFact12 : TFact
-            where TFact13 : TFact
-            where TFact14 : TFact
-            where TFact15 : TFact
-            where TFact16 : TFact
+            where TFact1 : TFactBase
+            where TFact2 : TFactBase
+            where TFact3 : TFactBase
+            where TFact4 : TFactBase
+            where TFact5 : TFactBase
+            where TFact6 : TFactBase
+            where TFact7 : TFactBase
+            where TFact8 : TFactBase
+            where TFact9 : TFactBase
+            where TFact10 : TFactBase
+            where TFact11 : TFactBase
+            where TFact12 : TFactBase
+            where TFact13 : TFactBase
+            where TFact14 : TFactBase
+            where TFact15 : TFactBase
+            where TFact16 : TFactBase
         {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>(), GetFactType<TFact16>() }
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => wantFactAction(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>(), container.GetFact<TFact4>(), container.GetFact<TFact5>(), container.GetFact<TFact6>(), container.GetFact<TFact7>(), container.GetFact<TFact8>(), container.GetFact<TFact9>(), container.GetFact<TFact10>(), container.GetFact<TFact11>(), container.GetFact<TFact12>(), container.GetFact<TFact13>(), container.GetFact<TFact14>(), container.GetFact<TFact15>(), container.GetFact<TFact16>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>(), GetFactType<TFact16>() }));
+                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts), GetCorrectFact<TFact12>(container, inputFacts), GetCorrectFact<TFact13>(container, inputFacts), GetCorrectFact<TFact14>(container, inputFacts), GetCorrectFact<TFact15>(container, inputFacts), GetCorrectFact<TFact16>(container, inputFacts)),
+                inputFacts));
         }
 
         #endregion

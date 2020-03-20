@@ -635,7 +635,7 @@ namespace FactFactoryTests.FactRuleCollection
         {
             Rule factRule = null;
 
-            Given("Create rule", () => factRule = new Rule(ct => default, new List<IFactType>(), GetFactType<Input1Fact>()))
+            Given("Create rule", () => factRule = new Rule((_, __) => default, new List<IFactType>(), GetFactType<Input1Fact>()))
                 .And("Add rule", _ => Collection.Add(factRule))
                 .When("Get copied", _ => Collection.Copy())
                 .Then("Check result", copyCollection =>

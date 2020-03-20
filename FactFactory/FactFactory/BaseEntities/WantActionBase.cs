@@ -25,7 +25,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
-        protected WantActionBase(Action<IFactContainer<TFact>> wantAction, IList<IFactType> factTypes)
+        protected WantActionBase(Action<IFactContainer<TFact>> wantAction, IReadOnlyCollection<IFactType> factTypes)
         {
             _action = wantAction ?? throw new ArgumentNullException(nameof(wantAction));
 
@@ -37,7 +37,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             foreach (IFactType type in factTypes)
                 type.CheckSpecialFactType();
 
-            InputFactTypes = new ReadOnlyCollection<IFactType>(factTypes);
+            InputFactTypes = factTypes;
         }
 
         /// <summary>

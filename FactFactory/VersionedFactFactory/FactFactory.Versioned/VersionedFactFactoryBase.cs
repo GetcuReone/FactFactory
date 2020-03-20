@@ -27,6 +27,24 @@ namespace GetcuReone.FactFactory.Versioned
         private TWantAction _calculatingWantAction;
 
         /// <summary>
+        /// Return the correct fact.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="container"></param>
+        /// <param name="inputFactTypes"></param>
+        /// <returns></returns>
+        protected override TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IReadOnlyCollection<IFactType> inputFactTypes)
+        {
+            IFactType versionType = inputFactTypes.SingleOrDefault(type => type.IsFactType<IVersionFact>());
+
+            IVersionFact version = versionType != null
+                ? container.GetVersionFact(versionType)
+                : null;
+
+            return (TFact)container.GetRightFactByVersion(GetFactType<TFact>(), version);
+        }
+
+        /// <summary>
         /// Returns only those lambdas that fit the requested version.
         /// </summary>
         /// <param name="rules">Current set of rules.</param>
@@ -256,23 +274,26 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Derive <typeparamref name="TWantFact"/> with version.
+        /// Derive <typeparamref name="TFact"/> with version.
         /// </summary>
-        /// <typeparam name="TWantFact">Type of desired fact.</typeparam>
+        /// <typeparam name="TFact">Type of desired fact.</typeparam>
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
         /// <returns></returns>
-        public virtual TWantFact DeriveFact<TWantFact, TVersion>()
-            where TWantFact : TFactBase
+        public virtual TFact DeriveFact<TFact, TVersion>()
+            where TFact : TFactBase
             where TVersion : TFactBase, IVersionFact
         {
-            TWantFact fact = default;
+            TFact fact = default;
 
             var wantActions = new List<TWantAction>(WantActions);
             WantActions.Clear();
 
+            var inputFacts = new List<IFactType> { GetFactType<TFact>(), GetFactType<TVersion>()}
+                .ToReadOnlyCollection();
+
             WantFact(CreateWantAction(
-                container => fact = container.GetFact<TWantFact>(),
-                new List<IFactType> { GetFactType<TVersion>(), GetFactType<TWantFact>() }));
+                container => fact = GetCorrectFact<TFact>(container, inputFacts),
+                inputFacts));
 
             Derive();
 

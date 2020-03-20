@@ -43,7 +43,7 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
             Rule factRule = null;
 
             Given("Create collection", () => originalsCollection = new Collection())
-                .And("Create rule", () => factRule = new Rule(ct => default, new List<IFactType>(), GetFactType<Fact1>()))
+                .And("Create rule", () => factRule = new Rule((ct, _) => default, new List<IFactType>(), GetFactType<Fact1>()))
                 .And("Add rule", _ => originalsCollection.Add(factRule))
                 .When("Get copied", _ => originalsCollection.Copy())
                 .Then("Check result", copyCollection =>

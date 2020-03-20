@@ -20,7 +20,7 @@ namespace GetcuReone.FactFactory.Interfaces
         IFactType OutputFactType { get; }
 
         /// <summary>
-        /// is it possible to calculate the fact.
+        /// Is it possible to calculate the fact.
         /// </summary>
         /// <param name="container"></param>
         /// <param name="wantAction"></param>
@@ -35,9 +35,13 @@ namespace GetcuReone.FactFactory.Interfaces
         /// Rule of fact calculate.
         /// </summary>
         /// <param name="container"></param>
+        /// <param name="wantAction"></param>
         /// <typeparam name="TContainer"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
         /// <returns></returns>
-        TFactBase Calculate<TContainer>(TContainer container) where TContainer : IFactContainer<TFactBase>;
+        TFactBase Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction) 
+            where TContainer : IFactContainer<TFactBase>
+            where TWantAction : IWantAction<TFactBase>;
 
         /// <summary>
         /// Compare rules.

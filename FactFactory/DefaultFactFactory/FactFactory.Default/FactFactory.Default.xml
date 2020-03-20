@@ -45,7 +45,7 @@
             Rule of fact calculation.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.FactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.Interfaces.IWantAction{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.FactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Constructor.
             </summary>
@@ -84,7 +84,7 @@
             </summary>
             <returns>Copied <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollection"/>.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.FactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.Interfaces.IWantAction{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.FactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Creation method <see cref="T:GetcuReone.FactFactory.Entities.FactRule"/>.
             </summary>
@@ -98,7 +98,7 @@
             Desired action information.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.WantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Entities.WantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase}},System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor.
             </summary>
@@ -148,7 +148,7 @@
             Collection of rules for derive facts
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase}},System.Collections.Generic.IList{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase}},System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             creation method <see cref="T:GetcuReone.FactFactory.Entities.WantAction"/>
             </summary>

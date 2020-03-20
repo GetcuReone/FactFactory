@@ -11,17 +11,17 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Base collection for <typeparamref name="TFactRule"/>.
     /// </summary>
-    public abstract class FactRuleCollectionBase<TFact, TFactRule>: IList<TFactRule>, ICopy<FactRuleCollectionBase<TFact, TFactRule>>
-        where TFact : IFact
-        where TFactRule : IFactRule<TFact>
+    public abstract class FactRuleCollectionBase<TFactBase, TFactRule>: IList<TFactRule>, ICopy<FactRuleCollectionBase<TFactBase, TFactRule>>
+        where TFactBase : IFact
+        where TFactRule : IFactRule<TFactBase>
     {
         private readonly List<TFactRule> _list;
 
         /// <summary>
-        /// Gets or sets the rule at the specified index
+        /// Gets or sets the rule at the specified index.
         /// </summary>
-        /// <param name="index">The zero-based index of the element to get or set</param>
-        /// <exception cref="ArgumentOutOfRangeException">index is not a valid index in the <see cref="List{TFactRule}"/></exception>
+        /// <param name="index">The zero-based index of the element to get or set.</param>
+        /// <exception cref="ArgumentOutOfRangeException">index is not a valid index in the <see cref="List{TFactRule}"/>.</exception>
         /// <exception cref="NotSupportedException">The property is set and the <see cref="List{TFactRule}"/> is read-only.</exception>
         /// <returns>The rule at the specified index</returns>
         public TFactRule this[int index]
@@ -40,7 +40,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Gets the number of rules contained in the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>
+        /// Gets the number of rules contained in the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.
         /// </summary>
         public int Count => _list.Count;
 
@@ -86,26 +86,39 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Return <see cref="IFactType"/>
+        /// Return <see cref="IFactType"/>.
         /// </summary>
         /// <typeparam name="TGetFact"></typeparam>
         /// <returns></returns>
-        protected virtual IFactType GetFactType<TGetFact>() where TGetFact : TFact
+        protected virtual IFactType GetFactType<TGetFact>() where TGetFact : TFactBase
         {
             return new FactType<TGetFact>();
         }
 
         /// <summary>
-        /// Creation method <typeparamref name="TFactRule"/>
+        /// Creation method <typeparamref name="TFactRule"/>.
         /// </summary>
-        /// <param name="func">func for calculate</param>
-        /// <param name="inputFactTypes">information on input factacles rules</param>
-        /// <param name="outputFactType">information on output fact</param>
+        /// <param name="func">func for calculate.</param>
+        /// <param name="inputFactTypes">information on input factacles rules.</param>
+        /// <param name="outputFactType">information on output fact.</param>
         /// <returns></returns>
-        protected abstract TFactRule CreateFactRule(Func<IFactContainer<TFact>, TFact> func, List<IFactType> inputFactTypes, IFactType outputFactType);
+        protected abstract TFactRule CreateFactRule(Func<IFactContainer<TFactBase>, IWantAction<TFactBase>, TFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType);
 
         /// <summary>
-        /// Add rule
+        /// Return the correct fact.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="container"></param>
+        /// <param name="wantAction"></param>
+        /// <returns></returns>
+        protected virtual TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IWantAction<TFactBase> wantAction)
+            where TFact : TFactBase
+        {
+            return container.GetFact<TFact>();
+        }
+
+        /// <summary>
+        /// Add rule.
         /// </summary>
         /// <param name="item"></param>
         public void Add(TFactRule item)
@@ -121,114 +134,119 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule without input facts
+        /// Add a rule without input facts.
         /// </summary>
-        /// <typeparam name="TFactResult">type of fact result</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactResult">Type of fact result.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactResult>(Func<TFactResult> rule)
-            where TFactResult: TFact
+            where TFactResult: TFactBase
         {
-            Add(CreateFactRule(_ => rule(),
+            Add(CreateFactRule((_, __) => rule(),
                 null,
                 GetFactType<TFactResult>()));
         }
 
         /// <summary>
-        /// Add a rule with 1 input facts
+        /// Add a rule with 1 input facts.
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactOut>(
             Func<TFactIn1, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>() ),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>() },
                 GetFactType<TFactOut>()));
         }
 
         /// <summary>
-        /// Add a rule with 2 input facts
+        /// Add a rule with 2 input facts.
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>() },
                 GetFactType<TFactOut>()));
         }
 
         /// <summary>
-        /// Add a rule with 3 input facts
+        /// Add a rule with 3 input facts.
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>() },
                 GetFactType<TFactOut>()));
         }
 
         /// <summary>
-        /// Add a rule with 4 input facts
+        /// Add a rule with 4 input facts.
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>() },
                 GetFactType<TFactOut>()));
         }
 
         /// <summary>
-        /// Add a rule with 5 input facts
+        /// Add a rule with 5 input facts.
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation..</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>() },
                 GetFactType<TFactOut>()));
         }
@@ -236,25 +254,26 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule with 6 input facts
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
-            where TFactIn6 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
+            where TFactIn6 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>() },
                 GetFactType<TFactOut>()));
         }
@@ -262,27 +281,28 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule with 7 input facts
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
-        /// <typeparam name="TFactIn7">type 7 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
-            where TFactIn6 : TFact
-            where TFactIn7 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
+            where TFactIn6 : TFactBase
+            where TFactIn7 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>() },
                 GetFactType<TFactOut>()));
         }
@@ -290,29 +310,30 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule with 8 input facts
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
-        /// <typeparam name="TFactIn7">type 7 input fact</typeparam>
-        /// <typeparam name="TFactIn8">type 8 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
-            where TFactIn6 : TFact
-            where TFactIn7 : TFact
-            where TFactIn8 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
+            where TFactIn6 : TFactBase
+            where TFactIn7 : TFactBase
+            where TFactIn8 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>() },
                 GetFactType<TFactOut>()));
         }
@@ -320,31 +341,32 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule with 9 input facts
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
-        /// <typeparam name="TFactIn7">type 7 input fact</typeparam>
-        /// <typeparam name="TFactIn8">type 8 input fact</typeparam>
-        /// <typeparam name="TFactIn9">type 9 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
-            where TFactIn6 : TFact
-            where TFactIn7 : TFact
-            where TFactIn8 : TFact
-            where TFactIn9 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
+            where TFactIn6 : TFactBase
+            where TFactIn7 : TFactBase
+            where TFactIn8 : TFactBase
+            where TFactIn9 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>() },
                 GetFactType<TFactOut>()));
         }
@@ -352,33 +374,34 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule with 10 input facts
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
-        /// <typeparam name="TFactIn7">type 7 input fact</typeparam>
-        /// <typeparam name="TFactIn8">type 8 input fact</typeparam>
-        /// <typeparam name="TFactIn9">type 9 input fact</typeparam>
-        /// <typeparam name="TFactIn10">type 10 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
-            where TFactIn6 : TFact
-            where TFactIn7 : TFact
-            where TFactIn8 : TFact
-            where TFactIn9 : TFact
-            where TFactIn10 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
+            where TFactIn6 : TFactBase
+            where TFactIn7 : TFactBase
+            where TFactIn8 : TFactBase
+            where TFactIn9 : TFactBase
+            where TFactIn10 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>() },
                 GetFactType<TFactOut>()));
         }
@@ -386,35 +409,36 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule with 11 input facts
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
-        /// <typeparam name="TFactIn7">type 7 input fact</typeparam>
-        /// <typeparam name="TFactIn8">type 8 input fact</typeparam>
-        /// <typeparam name="TFactIn9">type 9 input fact</typeparam>
-        /// <typeparam name="TFactIn10">type 10 input fact</typeparam>
-        /// <typeparam name="TFactIn11">type 11 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
-            where TFactIn6 : TFact
-            where TFactIn7 : TFact
-            where TFactIn8 : TFact
-            where TFactIn9 : TFact
-            where TFactIn10 : TFact
-            where TFactIn11 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
+            where TFactIn6 : TFactBase
+            where TFactIn7 : TFactBase
+            where TFactIn8 : TFactBase
+            where TFactIn9 : TFactBase
+            where TFactIn10 : TFactBase
+            where TFactIn11 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>() },
                 GetFactType<TFactOut>()));
         }
@@ -422,37 +446,38 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule with 12 input facts
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
-        /// <typeparam name="TFactIn7">type 7 input fact</typeparam>
-        /// <typeparam name="TFactIn8">type 8 input fact</typeparam>
-        /// <typeparam name="TFactIn9">type 9 input fact</typeparam>
-        /// <typeparam name="TFactIn10">type 10 input fact</typeparam>
-        /// <typeparam name="TFactIn11">type 11 input fact</typeparam>
-        /// <typeparam name="TFactIn12">type 12 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
-            where TFactIn6 : TFact
-            where TFactIn7 : TFact
-            where TFactIn8 : TFact
-            where TFactIn9 : TFact
-            where TFactIn10 : TFact
-            where TFactIn11 : TFact
-            where TFactIn12 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
+            where TFactIn6 : TFactBase
+            where TFactIn7 : TFactBase
+            where TFactIn8 : TFactBase
+            where TFactIn9 : TFactBase
+            where TFactIn10 : TFactBase
+            where TFactIn11 : TFactBase
+            where TFactIn12 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa), GetCorrectFact<TFactIn12>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>() },
                 GetFactType<TFactOut>()));
         }
@@ -460,39 +485,40 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule with 13 input facts
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
-        /// <typeparam name="TFactIn7">type 7 input fact</typeparam>
-        /// <typeparam name="TFactIn8">type 8 input fact</typeparam>
-        /// <typeparam name="TFactIn9">type 9 input fact</typeparam>
-        /// <typeparam name="TFactIn10">type 10 input fact</typeparam>
-        /// <typeparam name="TFactIn11">type 11 input fact</typeparam>
-        /// <typeparam name="TFactIn12">type 12 input fact</typeparam>
-        /// <typeparam name="TFactIn13">type 13 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
-            where TFactIn6 : TFact
-            where TFactIn7 : TFact
-            where TFactIn8 : TFact
-            where TFactIn9 : TFact
-            where TFactIn10 : TFact
-            where TFactIn11 : TFact
-            where TFactIn12 : TFact
-            where TFactIn13 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
+            where TFactIn6 : TFactBase
+            where TFactIn7 : TFactBase
+            where TFactIn8 : TFactBase
+            where TFactIn9 : TFactBase
+            where TFactIn10 : TFactBase
+            where TFactIn11 : TFactBase
+            where TFactIn12 : TFactBase
+            where TFactIn13 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa), GetCorrectFact<TFactIn12>(ct, wa), GetCorrectFact<TFactIn13>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>() },
                 GetFactType<TFactOut>()));
         }
@@ -500,41 +526,42 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule with 14 input facts
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
-        /// <typeparam name="TFactIn7">type 7 input fact</typeparam>
-        /// <typeparam name="TFactIn8">type 8 input fact</typeparam>
-        /// <typeparam name="TFactIn9">type 9 input fact</typeparam>
-        /// <typeparam name="TFactIn10">type 10 input fact</typeparam>
-        /// <typeparam name="TFactIn11">type 11 input fact</typeparam>
-        /// <typeparam name="TFactIn12">type 12 input fact</typeparam>
-        /// <typeparam name="TFactIn13">type 13 input fact</typeparam>
-        /// <typeparam name="TFactIn14">type 14 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
-            where TFactIn6 : TFact
-            where TFactIn7 : TFact
-            where TFactIn8 : TFact
-            where TFactIn9 : TFact
-            where TFactIn10 : TFact
-            where TFactIn11 : TFact
-            where TFactIn12 : TFact
-            where TFactIn13 : TFact
-            where TFactIn14 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
+            where TFactIn6 : TFactBase
+            where TFactIn7 : TFactBase
+            where TFactIn8 : TFactBase
+            where TFactIn9 : TFactBase
+            where TFactIn10 : TFactBase
+            where TFactIn11 : TFactBase
+            where TFactIn12 : TFactBase
+            where TFactIn13 : TFactBase
+            where TFactIn14 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>(), ct.GetFact<TFactIn14>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa), GetCorrectFact<TFactIn12>(ct, wa), GetCorrectFact<TFactIn13>(ct, wa), GetCorrectFact<TFactIn14>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>()},
                 GetFactType<TFactOut>()));
         }
@@ -542,43 +569,44 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule with 15 input facts
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
-        /// <typeparam name="TFactIn7">type 7 input fact</typeparam>
-        /// <typeparam name="TFactIn8">type 8 input fact</typeparam>
-        /// <typeparam name="TFactIn9">type 9 input fact</typeparam>
-        /// <typeparam name="TFactIn10">type 10 input fact</typeparam>
-        /// <typeparam name="TFactIn11">type 11 input fact</typeparam>
-        /// <typeparam name="TFactIn12">type 12 input fact</typeparam>
-        /// <typeparam name="TFactIn13">type 13 input fact</typeparam>
-        /// <typeparam name="TFactIn14">type 14 input fact</typeparam>
-        /// <typeparam name="TFactIn15">type 15 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+        /// <typeparam name="TFactIn15">Type 15 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
-            where TFactIn6 : TFact
-            where TFactIn7 : TFact
-            where TFactIn8 : TFact
-            where TFactIn9 : TFact
-            where TFactIn10 : TFact
-            where TFactIn11 : TFact
-            where TFactIn12 : TFact
-            where TFactIn13 : TFact
-            where TFactIn14 : TFact
-            where TFactIn15 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
+            where TFactIn6 : TFactBase
+            where TFactIn7 : TFactBase
+            where TFactIn8 : TFactBase
+            where TFactIn9 : TFactBase
+            where TFactIn10 : TFactBase
+            where TFactIn11 : TFactBase
+            where TFactIn12 : TFactBase
+            where TFactIn13 : TFactBase
+            where TFactIn14 : TFactBase
+            where TFactIn15 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>(), ct.GetFact<TFactIn14>(), ct.GetFact<TFactIn15>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa), GetCorrectFact<TFactIn12>(ct, wa), GetCorrectFact<TFactIn13>(ct, wa), GetCorrectFact<TFactIn14>(ct, wa), GetCorrectFact<TFactIn15>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>() },
                 GetFactType<TFactOut>()));
         }
@@ -586,45 +614,46 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule with 16 input facts
         /// </summary>
-        /// <typeparam name="TFactIn1">type 1 input fact</typeparam>
-        /// <typeparam name="TFactIn2">type 2 input fact</typeparam>
-        /// <typeparam name="TFactIn3">type 3 input fact</typeparam>
-        /// <typeparam name="TFactIn4">type 4 input fact</typeparam>
-        /// <typeparam name="TFactIn5">type 5 input fact</typeparam>
-        /// <typeparam name="TFactIn6">type 6 input fact</typeparam>
-        /// <typeparam name="TFactIn7">type 7 input fact</typeparam>
-        /// <typeparam name="TFactIn8">type 8 input fact</typeparam>
-        /// <typeparam name="TFactIn9">type 9 input fact</typeparam>
-        /// <typeparam name="TFactIn10">type 10 input fact</typeparam>
-        /// <typeparam name="TFactIn11">type 11 input fact</typeparam>
-        /// <typeparam name="TFactIn12">type 12 input fact</typeparam>
-        /// <typeparam name="TFactIn13">type 13 input fact</typeparam>
-        /// <typeparam name="TFactIn14">type 14 input fact</typeparam>
-        /// <typeparam name="TFactIn15">type 15 input fact</typeparam>
-        /// <typeparam name="TFactIn16">type 16 input fact</typeparam>
-        /// <typeparam name="TFactOut">type output fact</typeparam>
-        /// <param name="rule">rule of fact derivation</param>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+        /// <typeparam name="TFactIn15">Type 15 input fact.</typeparam>
+        /// <typeparam name="TFactIn16">Type 16 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, TFactOut> rule)
-            where TFactOut : TFact
-            where TFactIn1 : TFact
-            where TFactIn2 : TFact
-            where TFactIn3 : TFact
-            where TFactIn4 : TFact
-            where TFactIn5 : TFact
-            where TFactIn6 : TFact
-            where TFactIn7 : TFact
-            where TFactIn8 : TFact
-            where TFactIn9 : TFact
-            where TFactIn10 : TFact
-            where TFactIn11 : TFact
-            where TFactIn12 : TFact
-            where TFactIn13 : TFact
-            where TFactIn14 : TFact
-            where TFactIn15 : TFact
-            where TFactIn16 : TFact
+            where TFactOut : TFactBase
+            where TFactIn1 : TFactBase
+            where TFactIn2 : TFactBase
+            where TFactIn3 : TFactBase
+            where TFactIn4 : TFactBase
+            where TFactIn5 : TFactBase
+            where TFactIn6 : TFactBase
+            where TFactIn7 : TFactBase
+            where TFactIn8 : TFactBase
+            where TFactIn9 : TFactBase
+            where TFactIn10 : TFactBase
+            where TFactIn11 : TFactBase
+            where TFactIn12 : TFactBase
+            where TFactIn13 : TFactBase
+            where TFactIn14 : TFactBase
+            where TFactIn15 : TFactBase
+            where TFactIn16 : TFactBase
         {
-            Add(CreateFactRule(ct => rule(ct.GetFact<TFactIn1>(), ct.GetFact<TFactIn2>(), ct.GetFact<TFactIn3>(), ct.GetFact<TFactIn4>(), ct.GetFact<TFactIn5>(), ct.GetFact<TFactIn6>(), ct.GetFact<TFactIn7>(), ct.GetFact<TFactIn8>(), ct.GetFact<TFactIn9>(), ct.GetFact<TFactIn10>(), ct.GetFact<TFactIn11>(), ct.GetFact<TFactIn12>(), ct.GetFact<TFactIn13>(), ct.GetFact<TFactIn14>(), ct.GetFact<TFactIn15>(), ct.GetFact<TFactIn16>()),
+            Add(CreateFactRule(
+                (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa), GetCorrectFact<TFactIn12>(ct, wa), GetCorrectFact<TFactIn13>(ct, wa), GetCorrectFact<TFactIn14>(ct, wa), GetCorrectFact<TFactIn15>(ct, wa), GetCorrectFact<TFactIn16>(ct, wa)),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>(), GetFactType<TFactIn16>() },
                 GetFactType<TFactOut>()));
         }
@@ -740,6 +769,6 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> copy method.
         /// </summary>
         /// <returns>Copied <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.</returns>
-        public abstract FactRuleCollectionBase<TFact, TFactRule> Copy();
+        public abstract FactRuleCollectionBase<TFactBase, TFactRule> Copy();
     }
 }

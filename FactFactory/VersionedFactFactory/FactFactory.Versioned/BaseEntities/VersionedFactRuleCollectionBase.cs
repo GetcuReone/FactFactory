@@ -1,6 +1,9 @@
 ﻿using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GetcuReone.FactFactory.Versioned.BaseEntities
 {
@@ -10,7 +13,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     /// <typeparam name="TFactBase"></typeparam>
     /// <typeparam name="TFactRule"></typeparam>
     public abstract class VersionedFactRuleCollectionBase<TFactBase, TFactRule> : FactRuleCollectionBase<TFactBase, TFactRule>
-        where TFactBase : IVersionedFact
+        where TFactBase : class, IVersionedFact
         where TFactRule : IVersionedFactRule<TFactBase>
     {
         /// <summary>
@@ -35,6 +38,24 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <param name="isReadOnly"></param>
         protected VersionedFactRuleCollectionBase(IEnumerable<TFactRule> factRules, bool isReadOnly) : base(factRules, isReadOnly)
         {
+        }
+
+        /// <summary>
+        /// Return the correct fact.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="container"></param>
+        /// <param name="wantAction"></param>
+        /// <returns></returns>
+        protected override TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IWantAction<TFactBase> wantAction)
+        {
+            IFactType versionType = wantAction.InputFactTypes.SingleOrDefault(type => type.IsFactType<IVersionFact>());
+
+            IVersionFact version = versionType != null
+                ? container.GetVersionFact(versionType)
+                : null;
+
+            return (TFact)container.GetRightFactByVersion(GetFactType<TFact>(), version);
         }
     }
 }

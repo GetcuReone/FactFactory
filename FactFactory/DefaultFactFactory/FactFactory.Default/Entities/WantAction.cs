@@ -15,7 +15,7 @@ namespace GetcuReone.FactFactory.Entities
         /// </summary>
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
-        public WantAction(Action<IFactContainer<FactBase>> wantAction, IList<IFactType> factTypes) : base(wantAction, factTypes)
+        public WantAction(Action<IFactContainer<FactBase>> wantAction, IReadOnlyCollection<IFactType> factTypes) : base(wantAction, factTypes)
         {
         }
     }

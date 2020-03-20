@@ -18,7 +18,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <param name="outputFactType">Information on output fact.</param>
         /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
         /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
-        public FactRule(Func<IFactContainer<FactBase>, FactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType) 
+        public FactRule(Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType) 
             : base(func, inputFactTypes, outputFactType)
         {
         }

@@ -61,13 +61,35 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
         }
 
         internal static TFactBase GetRightFactByVersion<TFactBase>(this IFactContainer<TFactBase> container, IFactType searchFactType, IVersionFact version)
-            where TFactBase : IVersionFact
+            where TFactBase : class, IVersionedFact
         {
-            List<TFactBase> facts = container.Where(fact => fact.GetFactType().Compare(searchFactType)).ToList();
+            if (searchFactType.IsFactType<ISpecialFact>())
+            {
+                if (searchFactType.TryGetFact(container, out var fact))
+                    return fact;
 
-            if (facts.Count == 0)
-                return default;
+                return null;
+            }
+            else
+            {
+                List<TFactBase> facts = container.Where(fact => fact.GetFactType().Compare(searchFactType)).ToList();
 
+                if (facts.Count == 0)
+                    return null;
+
+                // List of facts not calculated using a rule.
+                List<TFactBase> factsCalculatedNotByRule = facts.Where(fact => !fact.CalculatedByRule).ToList();
+
+                if (factsCalculatedNotByRule.Count != 0)
+                    return ChooseFactByVersion(factsCalculatedNotByRule, version) ?? factsCalculatedNotByRule.First();
+                else
+                    return ChooseFactByVersion(facts, version);
+            }
+        }
+
+        private static TFactBase ChooseFactByVersion<TFactBase>(List<TFactBase> facts, IVersionFact version)
+            where TFactBase : class, IVersionedFact
+        {
             if (version == null)
             {
                 var defaultMaxFact = facts.FirstOrDefault(f => f.Version == null);
@@ -85,20 +107,20 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             {
                 List<TFactBase> scopeSearch = new List<TFactBase>();
 
-                foreach(var fact in facts)
+                foreach (var fact in facts)
                 {
                     if (fact.Version != null && !fact.Version.IsMoreThan(version))
                         scopeSearch.Add(fact);
                 }
 
-                foreach(var fact in scopeSearch)
+                foreach (var fact in scopeSearch)
                 {
                     if (scopeSearch.All(f => fact.Version.IsMoreThan(f.Version) || fact.Equals(f)))
                         return fact;
                 }
             }
 
-            return default;
+            return null;
         }
     }
 }
