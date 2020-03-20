@@ -374,5 +374,47 @@ namespace FactFactoryTests.FactFactoryT
                 .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.RuleCollection)]
+        [Description("Derive with empty rules.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DeriveWithEmptyRulesTestCase()
+        {
+            string expectedReason = "Rules cannot be null.";
+
+            Given("Create factory", () => new FactFactoryCustom())
+                .And("Empty container.", factFactory => { factFactory.collection = null; })
+                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container)]
+        [Description("Derive with rules returning a blank copy.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DeriveWithRulesReturningBlankCopyTestCase()
+        {
+            string expectedReason = "FactRuleCollectionBase.Copy method return null.";
+
+            Given("Create factory", () => new FactFactoryCustom())
+                .And("Empty container.", factFactory => { factFactory.collection = new RulesGetNull(); })
+                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container)]
+        [Description("Derive with rules returning a different type of rules.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void DeriveWithRulesReturningDifferentTypeRulesTestCase()
+        {
+            string expectedReason = "FactRuleCollectionBase.Copy method returned a different type of rules.";
+
+            Given("Create factory", () => new FactFactoryCustom())
+                .And("Empty container.", factFactory => { factFactory.collection = new RulesGetDifferent(); })
+                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+        }
     }
 }

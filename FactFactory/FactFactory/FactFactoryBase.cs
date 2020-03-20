@@ -94,13 +94,16 @@ namespace GetcuReone.FactFactory
                 throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, $"In the container there should be no facts realizing types {nameof(INotContainedFact)} and {nameof(INoDerivedFact)}");
 
             // Get a copy of the rules
+            if (Rules == null)
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "Rules cannot be null.");
+
             FactRuleCollectionBase<TFactBase, TFactRule> rulesCopy = Rules.Copy();
             if (rulesCopy == null)
                 throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return null.");
             if (rulesCopy.Equals(Rules))
                 throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
             if (!(rulesCopy is TFactRuleCollection rules))
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method returned a different type of container.");
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method returned a different type of rules.");
 
             rules.IsReadOnly = true;
 
