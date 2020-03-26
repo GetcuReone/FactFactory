@@ -27,5 +27,14 @@ namespace GetcuReone.FactFactory.InnerEntities
 
             return false;
         }
+
+        internal void FillRules(List<TFactRule> rules)
+        {
+            foreach (var node in Childs)
+                node.FillRules(rules);
+
+            if (!rules.Contains(FactRule))
+                rules.Add(FactRule);
+        }
     }
 }
