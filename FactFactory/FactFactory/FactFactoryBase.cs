@@ -129,14 +129,21 @@ namespace GetcuReone.FactFactory
 
             foreach (var key in forestry.Keys)
             {
+                List<List<TFactRule>> ruleLevels = GetRuleLevels(forestry[key]);
+
+                // Add to the container all the special facts that will be necessary in the calculation.
                 foreach (TFactBase fact in needSpecialFacts[key])
                 {
                     using (container.CreateIgnoreReadOnlySpace())
                         container.Add(fact);
                 }
 
-                foreach (var tree in forestry[key])
-                    DeriveNode(tree.Root, container, key);
+                // We calculate all the rules.
+                foreach(var ruleLevel in ruleLevels)
+                {
+                    foreach (var rule in ruleLevel)
+                        CalculateRule(rule, container, key);
+                }
 
                 key.Invoke(container);
 
@@ -684,13 +691,52 @@ namespace GetcuReone.FactFactory
                 return RemoveRuleNodeAndCheckGoneRoot(factRuleTree, level - 1, parent);
         }
 
-        private void DeriveNode(FactRuleNode<TFactBase, TFactRule> node, TFactContainer container, TWantAction wantAction)
+        private List<List<TFactRule>> GetRuleLevels(List<FactRuleTree<TFactBase, TFactRule>> trees)
         {
-            foreach (FactRuleNode<TFactBase, TFactRule> child in node.Childs)
-                DeriveNode(child, container, wantAction);
+            // Get all rules to be calculated.
+            var allRules = new List<TFactRule>();
 
-            TFactRule rule = node.FactRule;
+            foreach (var tree in trees)
+                tree.Root.FillRules(allRules);
 
+            // Break down rules into levels where rules can be calculated independently.
+            var ruleLevels = new List<List<TFactRule>>();
+
+            int maxCycles = allRules.Count;
+            int counterCycles = 0;
+
+            while (allRules.Count != 0)
+            {
+                var currentLevel = new List<TFactRule>();
+                ruleLevels.Add(currentLevel);
+
+                for (int i = allRules.Count - 1; i >= 0; i--)
+                {
+                    TFactRule currentRule = allRules[i];
+
+                    // We get the number of rules on which the current rule depends.
+                    int rulesOnDependCount = allRules
+                        .Count(rule => !rule.Equals(currentLevel)
+                            && currentRule.InputFactTypes.Any(type => type.Compare(rule.OutputFactType)));
+
+                    if (rulesOnDependCount == 0)
+                    {
+                        allRules.Remove(currentRule);
+                        currentLevel.Add(currentRule);
+                    }
+                }
+
+                if (counterCycles > maxCycles)
+                    throw FactFactoryHelper.CreateDeriveException<TFactBase>(
+                        ErrorCode.InvalidOperation,
+                        "The calculation uses interdependent rules.\n" + string.Join("\n", allRules.ConvertAll(rule => rule.ToString())));
+            }
+
+            return ruleLevels;
+        }
+
+        private void CalculateRule(TFactRule rule, TFactContainer container, TWantAction wantAction)
+        {
             // 1. Is it necessary to recount a fact if a fact of this type has already been calculated?
             if (container.Any(fact => fact.GetFactType().Compare(rule.OutputFactType)))
             {
