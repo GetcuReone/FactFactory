@@ -237,14 +237,14 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                         {
                             counterAction1++;
                         });
-                        factory.WantFact((Version2 _, FactResult fact) => 
-                        {
-                            counterAction2++;
-                        });
                         factory.WantFact((Fact1 fact) =>
                         {
                             Assert.IsTrue(fact.Version is Version2, "The fact must be calculated using the rule of version 2.");
                             counterAction3++;
+                        });
+                        factory.WantFact((Version2 _, FactResult fact) =>
+                        {
+                            counterAction2++;
                         });
                     }
                 })
