@@ -212,26 +212,6 @@
             Type fact version.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase`1.IsMorePriorityThan``2(``0,``1)">
-            <summary>
-            True, the current object is more priority than <paramref name="workFact"/>.
-            </summary>
-            <typeparam name="TWorkFact"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="workFact"></param>
-            <param name="container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase`1.IsLessPriorityThan``2(``0,``1)">
-            <summary>
-            True, the current object is less priority than <paramref name="workFact"/>.
-            </summary>
-            <typeparam name="TWorkFact"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="workFact"></param>
-            <param name="container"></param>
-            <returns></returns>
-        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Constants.ErrorCode">
             <summary>
             Codes for errors in work <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5"/>.
