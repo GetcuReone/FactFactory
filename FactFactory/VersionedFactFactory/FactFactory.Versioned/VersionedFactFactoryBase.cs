@@ -237,7 +237,14 @@ namespace GetcuReone.FactFactory.Versioned
 
                 // If less rule version
                 IVersionFact ruleVersion = container.GetVersionFact(rule.VersionType);
-                return currentFact.Version.IsLessThan(ruleVersion);
+
+                if (currentFact.Version.IsLessThan(ruleVersion))
+                {
+                    needRemoveFact = currentFact;
+                    return true;
+                }
+                else
+                    return false;
             }
             else
             {
@@ -249,7 +256,14 @@ namespace GetcuReone.FactFactory.Versioned
 
                 // If less rule version
                 IVersionFact ruleVersion = container.GetVersionFact(rule.VersionType);
-                return currentFact.Version.IsLessThan(ruleVersion);
+
+                if (currentFact.Version.IsLessThan(ruleVersion))
+                {
+                    needRemoveFact = currentFact;
+                    return true;
+                }
+                else
+                    return false;
             }
         }
 
