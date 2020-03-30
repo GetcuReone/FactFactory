@@ -697,6 +697,14 @@
             <param name="container"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase`1.GetNecessaryFactTypes``1(``0)">
+            <summary>
+            Get the necessary fact types.
+            </summary>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="container"></param>
+            <returns></returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.Constants.ErrorCode">
             <summary>
             Error codes
@@ -1571,6 +1579,14 @@
             </summary>
             <typeparam name="TFactContainer">container with <see cref="P:GetcuReone.FactFactory.Interfaces.IWantAction`1.InputFactTypes"/>.</typeparam>
             <param name="container"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IWantAction`1.GetNecessaryFactTypes``1(``0)">
+            <summary>
+            Get the necessary fact types.
+            </summary>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="container"></param>
+            <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IWorkFact`1">
             <summary>

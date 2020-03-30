@@ -290,12 +290,9 @@ namespace GetcuReone.FactFactory
             deriveErrorDetail = null;
             specialFacts = new List<TFactBase>();
 
-            foreach (IFactType wantFact in wantAction.InputFactTypes)
+            foreach (IFactType wantFact in wantAction.GetNecessaryFactTypes(container))
             {
-                // If fact already exists
-                if (wantFact.ContainsContainer(container))
-                    continue;
-                else if (wantFact.IsFactType<ISpecialFact>())
+                if (wantFact.IsFactType<ISpecialFact>())
                 {
                     if (wantFact.IsFactType<INotContainedFact>())
                     {

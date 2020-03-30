@@ -20,5 +20,14 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <typeparam name="TFactContainer">container with <see cref="InputFactTypes"/>.</typeparam>
         /// <param name="container"></param>
         void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer<TFactBase>;
+
+        /// <summary>
+        /// Get the necessary fact types.
+        /// </summary>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        List<IFactType> GetNecessaryFactTypes<TFactContainer>(TFactContainer container)
+            where TFactContainer : IFactContainer<TFactBase>;
     }
 }
