@@ -1,6 +1,6 @@
 # Welcome to the GetcuReone.FactFactory
 
-Welcome to my Factory of Facts project. This project implements a mechanism for obtaining some facts on the basis of others..
+Welcome to my Factory of Facts project. This project implements a mechanism for obtaining some facts on the basis of others.
 
 ## Basic concepts
 
