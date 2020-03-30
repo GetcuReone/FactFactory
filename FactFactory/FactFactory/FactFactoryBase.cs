@@ -719,11 +719,17 @@ namespace GetcuReone.FactFactory
                         .Count(rule => !rule.Equals(currentLevel)
                             && currentRule.InputFactTypes.Any(type => type.Compare(rule.OutputFactType)));
 
-                    if (rulesOnDependCount == 0)
-                    {
-                        allRules.Remove(currentRule);
-                        currentLevel.Add(currentRule);
-                    }
+                    if (rulesOnDependCount != 0)
+                        continue;
+
+                    // Sum of rules at the current level calculating the same fact.
+                    rulesOnDependCount = currentLevel.Count(rule => rule.OutputFactType.Compare(currentRule.OutputFactType));
+
+                    if (rulesOnDependCount != 0)
+                        continue;
+
+                    allRules.Remove(currentRule);
+                    currentLevel.Add(currentRule);
                 }
 
                 if (counterCycles > maxCycles)
