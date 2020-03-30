@@ -1,13 +1,13 @@
 # Welcome to the GetcuReone.FactFactory
 
-Welcome to my Factory of Facts project. In this project, I realized my vision of a fact factory.
+Welcome to my Factory of Facts project. This project implements a mechanism for obtaining some facts on the basis of others..
 
 ## Basic concepts
 
 ### Fact
 
 Some information about something.
-The factory cannot alter the facts in any way. She can only manipulate them.
+The factory cannot alter the facts in any way. It can only manipulate them.
 
 ### Rule
 
