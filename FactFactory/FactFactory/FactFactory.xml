@@ -196,6 +196,16 @@
             <param name="container"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.GetNecessaryFactTypes``2(``0,``1)">
+            <summary>
+            Get the necessary fact types.
+            </summary>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="wantAction"></param>
+            <param name="container"></param>
+            <returns></returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2">
             <summary>
             Base collection for <typeparamref name="TFactRule"/>.
@@ -1279,6 +1289,26 @@
             <param name="requiredFacts">The facts that tried to derive.</param>
             <returns></returns>
         </member>
+        <member name="T:GetcuReone.FactFactory.InnerEntities.Enums.TreeStatus">
+            <summary>
+            Tree build status.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.FactFactory.InnerEntities.Enums.TreeStatus.BeingBuilt">
+            <summary>
+            Tree is being built.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.FactFactory.InnerEntities.Enums.TreeStatus.Built">
+            <summary>
+            Tree built.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.FactFactory.InnerEntities.Enums.TreeStatus.Cencel">
+            <summary>
+            The tree is canceled.
+            </summary>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IContainedFact">
             <summary>
             Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>
@@ -1311,7 +1341,7 @@
             <summary>
             Container interface with facts for deriving other facts.
             </summary>
-            <typeparam name="TFact">The type from which all facts in this container should be inherited.</typeparam>
+            <typeparam name="TFactBase">The type from which all facts in this container should be inherited.</typeparam>
         </member>
         <member name="P:GetcuReone.FactFactory.Interfaces.IFactContainer`1.IsReadOnly">
             <summary>
@@ -1323,26 +1353,26 @@
             Add fact.
             </summary>
             <param name="fact">Fact.</param>
-            <typeparam name="TAddFact">Type of fact to add.</typeparam>
+            <typeparam name="TFact">Type of fact to add.</typeparam>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Remove``1">
             <summary>
             Remove fact.
             </summary>
-            <typeparam name="TRemoveFact">Type of fact to delete.</typeparam>
+            <typeparam name="TFact">Type of fact to delete.</typeparam>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Remove``1(``0)">
             <summary>
             Remove fact.
             </summary>
             <param name="fact"></param>
-            <typeparam name="TRemoveFact">Type of fact to delete.</typeparam>
+            <typeparam name="TFact">Type of fact to delete.</typeparam>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.TryGetFact``1(``0@)">
             <summary>
             Try get fact.
             </summary>
-            <typeparam name="TGetFact">Type of fact to return.</typeparam>
+            <typeparam name="TFact">Type of fact to return.</typeparam>
             <param name="fact"></param>
             <returns></returns>
         </member>
@@ -1350,14 +1380,14 @@
             <summary>
             Get fact.
             </summary>
-            <typeparam name="TGetFact">Type of fact to return.</typeparam>
+            <typeparam name="TFact">Type of fact to return.</typeparam>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Contains``1">
             <summary>
             Is this type of fact contained.
             </summary>
-            <typeparam name="TContainsFact">type of fact to check for.</typeparam>
+            <typeparam name="TFact">type of fact to check for.</typeparam>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Clear">
@@ -1445,6 +1475,16 @@
             </summary>
             <typeparam name="TFactRule"></typeparam>
             <param name="factRule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule`1.GetNecessaryFactTypes``2(``0,``1)">
+            <summary>
+            Get the necessary fact types.
+            </summary>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="wantAction"></param>
+            <param name="container"></param>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactType">

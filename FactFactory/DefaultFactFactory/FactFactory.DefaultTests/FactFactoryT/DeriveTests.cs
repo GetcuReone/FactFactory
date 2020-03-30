@@ -323,9 +323,9 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.Factory)]
-        [Description("Derived tow facts.")]
+        [Description("Derived three facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
-        public void DerivedTwoFactsTestCase()
+        public void DerivedThreeFactsTestCase()
         {
             Input6Fact input6Fact = null;
             Input16Fact input16Fact = null;
