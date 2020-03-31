@@ -323,9 +323,9 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.Factory)]
-        [Description("Derived tow facts.")]
+        [Description("Derived three facts.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
-        public void DerivedTwoFactsTestCase()
+        public void DerivedThreeFactsTestCase()
         {
             Input6Fact input6Fact = null;
             Input16Fact input16Fact = null;
@@ -359,6 +359,36 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Derive fact", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Choosing the path with the least number of rules.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void ChoosingPathWithLeastNumberRulesTestCase()
+        {
+            GivenCreateFactFactory()
+                 .AndAddRules(new Collection
+                 {
+                     (Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5) => new ResultFact(fact2.Value),
+
+                     () => new Input2Fact(1),
+                     () => new Input3Fact(1),
+                     () => new Input4Fact(1),
+                     () => new Input5Fact(1),
+                 })
+                 .AndAddRules(new Collection 
+                 {
+                     (Input10Fact fact) => new ResultFact(fact.Value),
+                     (Input11Fact fact) => new Input10Fact(fact.Value),
+                     (Input12Fact fact) => new Input11Fact(fact.Value),
+                     () => new Input12Fact(2),
+                 })
+                 .When("Derive", factFactory => factFactory.DeriveFact<ResultFact>())
+                 .Then("Check fact", fact => 
+                 {
+                     Assert.AreEqual(2, fact.Value, "Expected another value.");
+                 });
         }
     }
 }

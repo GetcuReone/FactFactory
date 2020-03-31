@@ -88,5 +88,28 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             return false;
         }
+
+        /// <summary>
+        /// Get the necessary fact types.
+        /// </summary>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public virtual List<IFactType> GetNecessaryFactTypes<TFactContainer>(TFactContainer container)
+            where TFactContainer : IFactContainer<TFactBase>
+        {
+            List<IFactType> result = InputFactTypes.ToList();
+
+            foreach (var fact in container)
+            {
+                IFactType type = fact.GetFactType();
+                IFactType notNeedFact = InputFactTypes.FirstOrDefault(t => t.Compare(type));
+
+                if (notNeedFact != null)
+                    result.Remove(notNeedFact);
+            }
+
+            return result;
+        }
     }
 }

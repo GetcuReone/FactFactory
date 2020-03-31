@@ -49,13 +49,10 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <returns></returns>
         protected override TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IWantAction<TFactBase> wantAction)
         {
-            IFactType versionType = wantAction.InputFactTypes.SingleOrDefault(type => type.IsFactType<IVersionFact>());
+            if (wantAction is IFactTypeVersionInfo factType)
+                return (TFact)container.GetRightFactByVersionType(GetFactType<TFact>(), factType.VersionType);
 
-            IVersionFact version = versionType != null
-                ? container.GetVersionFact(versionType)
-                : null;
-
-            return (TFact)container.GetRightFactByVersion(GetFactType<TFact>(), version);
+            return (TFact)container.GetRightFactByVersion(GetFactType<TFact>(), null);
         }
     }
 }

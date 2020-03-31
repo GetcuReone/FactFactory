@@ -1,4 +1,6 @@
-﻿namespace GetcuReone.FactFactory.Interfaces
+﻿using System.Collections.Generic;
+
+namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Basic interface for objects that work directly with facts.

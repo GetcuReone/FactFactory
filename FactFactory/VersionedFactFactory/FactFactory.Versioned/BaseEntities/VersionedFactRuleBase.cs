@@ -82,7 +82,9 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <returns></returns>
         public override bool CanCalculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
         {
-            IFactType versionType = wantAction?.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
+            IFactType versionType = wantAction is IFactTypeVersionInfo versionInfo
+                ? versionInfo.VersionType
+                : null;
 
             IVersionFact version = versionType != null
                 ? container.GetVersionFact(versionType)

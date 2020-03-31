@@ -324,13 +324,13 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.MilliSecond.Hundred)]
         public void AddTwoDefaultFactsWithSameTypesTestCase()
         {
-            string expectedReason = $"GetDefaultFacts method return more than two {GetFactType<DefaultFact>().FactName} facts";
+            string expectedReason = $"The fact container already contains {GetFactType<DefaultFact>().FactName} type of fact.";
 
             Given("Create factory", () => new FactFactoryCustom())
                 .And("Add default fact", factFactory => factFactory.DefaultFacts.Add(new DefaultFact(10)))
                 .And("Add default fact", factFactory => factFactory.DefaultFacts.Add(new DefaultFact(10)))
-                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<DefaultFact>()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+                .When("Run Derive", factFactory => ExpectedFactFactoryException(() => factFactory.DeriveFact<DefaultFact>()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
         [TestMethod]
