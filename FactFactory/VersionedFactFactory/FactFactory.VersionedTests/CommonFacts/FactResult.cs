@@ -12,5 +12,9 @@ namespace FactFactory.VersionedTests.CommonFacts
         public FactResult(long value, IVersionFact version) : base(value, version)
         {
         }
+
+        public FactResult(long value, IVersionFact version, bool calculatedByRule) : base(value, version, calculatedByRule)
+        {
+        }
     }
 }
