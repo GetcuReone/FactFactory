@@ -85,7 +85,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             IFactType factType = fact.GetFactType();
 
             if (ContainerList.Any(f => f.GetFactType().Compare(factType)))
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"The fact container already contains {typeof(TFact).FullName} type of fact.");
+                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"The fact container already contains {factType.FactName} type of fact.");
 
             ContainerList.Add(fact);
         }

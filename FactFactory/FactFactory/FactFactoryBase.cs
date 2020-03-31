@@ -74,20 +74,15 @@ namespace GetcuReone.FactFactory
 
             container.IsReadOnly = true;
 
-            List<IFactType> defaultFacts = new List<IFactType>();
+            List<TFactBase> defaultFacts = new List<TFactBase>();
             foreach(TFactBase fact in GetDefaultFacts(container) ?? Enumerable.Empty<TFactBase>())
             {
-                IFactType type = fact.GetFactType();
-
-                if (defaultFacts.Any(dType => dType.Compare(type)))
-                    throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, $"GetDefaultFacts method return more than two {type.FactName} facts");
-
-                if (!type.ContainsContainer(container))
+                if (!container.Contains(fact))
                 {
                     using (container.CreateIgnoreReadOnlySpace())
                         container.Add(fact);
 
-                    defaultFacts.Add(type);
+                    defaultFacts.Add(fact);
                 }
             }
 
@@ -159,13 +154,10 @@ namespace GetcuReone.FactFactory
 
             OnDeriveFinished(wantActions, container);
 
-            foreach(var type in defaultFacts)
+            foreach(var fact in defaultFacts)
             {
-                if (type.TryGetFact(container, out TFactBase fact))
-                {
-                    using (container.CreateIgnoreReadOnlySpace())
-                        container.Remove(fact);
-                }
+                using (container.CreateIgnoreReadOnlySpace())
+                    container.Remove(fact);
             }
         }
 

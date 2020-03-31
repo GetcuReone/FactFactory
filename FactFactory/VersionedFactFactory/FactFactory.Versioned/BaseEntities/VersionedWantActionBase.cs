@@ -4,6 +4,7 @@ using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GetcuReone.FactFactory.Versioned.BaseEntities
 {
@@ -12,7 +13,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     /// </summary>
     /// <typeparam name="TFactBase"></typeparam>
     public abstract class VersionedWantActionBase<TFactBase> : WantActionBase<TFactBase>, IFactTypeVersionInfo
-        where TFactBase : IVersionedFact
+        where TFactBase : class, IVersionedFact
     {
         /// <summary>
         /// Constructor.
@@ -37,7 +38,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <returns></returns>
         public override List<IFactType> GetNecessaryFactTypes<TFactContainer>(TFactContainer container)
         {
-            return base.GetNecessaryFactTypes(container);
+            return InputFactTypes.Where(type => container.GetRightFactByVersionType(type, VersionType) == null).ToList();
         }
     }
 }
