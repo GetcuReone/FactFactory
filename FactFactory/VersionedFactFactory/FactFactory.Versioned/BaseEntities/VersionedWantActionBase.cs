@@ -28,5 +28,16 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// Type fact version.
         /// </summary>
         public IFactType VersionType { get; }
+
+        /// <summary>
+        /// Get the necessary fact types.
+        /// </summary>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public override List<IFactType> GetNecessaryFactTypes<TFactContainer>(TFactContainer container)
+        {
+            return base.GetNecessaryFactTypes(container);
+        }
     }
 }

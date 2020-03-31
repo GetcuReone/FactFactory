@@ -60,6 +60,18 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             return new FactType<TFact>();
         }
 
+        internal static TFactBase GetRightFactByVersionType<TFactBase>(this IFactContainer<TFactBase> container, IFactType searchFactType, IFactType versionType)
+            where TFactBase : class, IVersionedFact
+        {
+            if (versionType != null)
+            {
+                IVersionFact version = GetVersionFact(container, versionType);
+                return container.GetRightFactByVersion(searchFactType, version);
+            }
+            else
+                return container.GetRightFactByVersion(searchFactType, null);
+        }
+
         internal static TFactBase GetRightFactByVersion<TFactBase>(this IFactContainer<TFactBase> container, IFactType searchFactType, IVersionFact version)
             where TFactBase : class, IVersionedFact
         {
