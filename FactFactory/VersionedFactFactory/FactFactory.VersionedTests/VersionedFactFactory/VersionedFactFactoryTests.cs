@@ -251,8 +251,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 .When("Derive", factory => factory.Derive())
                 .Then("Check result", _ =>
                 {
-                    Assert.AreEqual(2, counterFact1, "The Fact1 should have been calculated 2 time.");
-                    Assert.AreEqual(1, counterFact2, "The Fact2 should have been calculated 2 time.");
+                    Assert.AreEqual(1, counterFact1, "The Fact1 should have been calculated 1 time.");
+                    Assert.AreEqual(1, counterFact2, "The Fact2 should have been calculated 1 time.");
 
                     Assert.AreEqual(counterFact1 + counterFact2, counterResult, "The Fact1 should have been calculated 2 times.");
 
