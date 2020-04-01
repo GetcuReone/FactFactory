@@ -204,67 +204,69 @@ namespace GetcuReone.FactFactory.Versioned
         /// <returns>True - fact needs to be recalculated.</returns>
         protected override bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction, out TFactBase needRemoveFact)
         {
+            bool result = false;
             needRemoveFact = null;
 
             IVersionFact maxVersion = wantAction.VersionType != null
-                ? container.GetVersionFact(wantAction.VersionType)
+                ? container.GetRightFactByVersionType(wantAction.VersionType, null) as IVersionFact
                 : null;
-
+            IVersionFact ruleVersion =  rule.VersionType != null
+                ? container.GetRightFactByVersionType(rule.VersionType, null) as IVersionFact
+                : null;
             TFactBase currentFact = container.GetRightFactByVersion(rule.OutputFactType, maxVersion);
 
             if (currentFact == null)
-                return true;
+                result = true;
             else if (!currentFact.CalculatedByRule)
-                return false;
-
-            // The last fact that is accepted or given by the rule
-            IFactType lastSuitableFactType = _calculatedFactTypes.LastOrDefault(type => type.Compare(rule.OutputFactType) || rule.InputFactTypes.Any(t => t.Compare(type)));
-
-            // If the last time one of the input facts was recounted
-            if (lastSuitableFactType != null && !lastSuitableFactType.Compare(rule.OutputFactType))
-            {
-                needRemoveFact = currentFact;
-                return true;
-            }
-
-            // If the maximum version is not specified
-            if (maxVersion == null)
-            {
-                if (currentFact.Version == null)
-                    return false;
-                else if (rule.VersionType == null)
-                    return true;
-
-                // If less rule version
-                IVersionFact ruleVersion = container.GetVersionFact(rule.VersionType);
-
-                if (currentFact.Version.IsLessThan(ruleVersion))
-                {
-                    needRemoveFact = currentFact;
-                    return true;
-                }
-                else
-                    return false;
-            }
+                result = false;
             else
             {
-                if (currentFact.Version == null)
-                    return true;
+                // The last fact that is accepted or given by the rule
+                IFactType lastSuitableFactType = _calculatedFactTypes.LastOrDefault(type => type.Compare(rule.OutputFactType) || rule.InputFactTypes.Any(t => t.Compare(type)));
 
-                if (currentFact.Version.IsMoreThan(maxVersion))
-                    return true;
+                // If the last time one of the input facts was recounted
+                if (lastSuitableFactType != null && !lastSuitableFactType.Compare(rule.OutputFactType))
+                    result = true;
 
-                // If less rule version
-                IVersionFact ruleVersion = container.GetVersionFact(rule.VersionType);
-
-                if (currentFact.Version.IsLessThan(ruleVersion))
+                if (!result)
                 {
-                    needRemoveFact = currentFact;
-                    return true;
+                    // If the maximum version is not specified
+                    if (maxVersion == null)
+                    {
+                        if (currentFact.Version != null)
+                        {
+                            if (ruleVersion == null)
+                                result = true;
+                            else
+                                result = currentFact.Version.IsLessThan(ruleVersion);
+                        }
+                    }
+                    else
+                    {
+                        if (currentFact.Version == null)
+                            result = true;
+                        else if (currentFact.Version.IsMoreThan(maxVersion))
+                            result = true;
+                        else if (ruleVersion == null)
+                            result = true;
+                        else
+                            result = currentFact.Version.IsLessThan(ruleVersion);
+                    }
                 }
-                else
-                    return false;
             }
+
+            if (result && currentFact != null)
+            {
+                if (ruleVersion == null)
+                {
+                    if (currentFact.Version == null)
+                        needRemoveFact = currentFact;
+                }
+                else if (currentFact.Version != null && ruleVersion.EqualVersion(currentFact.Version))
+                    needRemoveFact = currentFact;
+            }
+
+            return result;
         }
 
         /// <summary>
