@@ -45,7 +45,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <typeparam name="TFactContainer">container with <see cref="InputFactTypes"/>.</typeparam>
         /// <param name="container"></param>
-        public void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer<TFactBase>
+        public virtual void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer<TFactBase>
         {
             _action(container);
         }
