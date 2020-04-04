@@ -27,6 +27,8 @@ steps:
   displayName: "NuGet push GetcuReone source"
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/$(solutionName)/*.nupkg'
+    packagesToPush: |
+        $(Build.ArtifactStagingDirectory)/$(solutionName)/*.nupkg
+        !$(Build.ArtifactStagingDirectory)/$(solutionName)/**/*.symbols.nupkg
     nuGetFeedType: 'internal'
     publishVstsFeed: 'd5079c70-9bc4-4da1-b3c9-feb9869dfc91'
