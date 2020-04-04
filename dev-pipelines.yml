@@ -13,13 +13,12 @@ variables:
   solutionName: 'FactFactory'
   solution: '**/$(solutionName).sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  buildConfiguration: 'Debug'
   majorVersion: '1'
   packageVersion: '$(majorVersion).0.0'
   nugetProjectName: 'NugetProject'
 
 steps:
-- template: pipeline_steps/step_install_snk.yml
 
 - template: pipeline_steps/step_restore_build_pack.yml
 
