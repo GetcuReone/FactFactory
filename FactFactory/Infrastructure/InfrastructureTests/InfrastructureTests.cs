@@ -83,7 +83,10 @@ namespace InfrastructureTests
                     {
                         using (var archive = new ZipArchive(nupkgStream, ZipArchiveMode.Read))
                         {
-                            return archive.Entries.Select(entry => entry.FullName).ToArray();
+                            var files = archive.Entries.Select(entry => entry.FullName).ToArray();
+
+                            LoggingHelper.ConsoleInfo($"Include files: \n{string.Join("\n", files)}");
+                            return files;
                         }
                     }
                 })
