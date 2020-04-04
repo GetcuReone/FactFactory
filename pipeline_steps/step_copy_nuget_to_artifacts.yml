@@ -3,7 +3,5 @@ steps:
   displayName: "Copy nuget to artifacts"
   inputs:
     SourceFolder: '$(Build.Repository.LocalPath)/$(solutionName)/$(nugetProjectName)/bin/$(buildConfiguration)'
-    Contents: |
-        *.nupkg
-        *.snupkg
+    Contents: '*.nupkg'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/$(solutionName)'
