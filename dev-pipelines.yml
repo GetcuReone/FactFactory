@@ -19,6 +19,7 @@ variables:
   nugetProjectName: 'NugetProject'
 
 steps:
+
 - template: pipeline_steps/step_restore_build_pack.yml
 
 - template: pipeline_steps/step_run_all_tests.yml
