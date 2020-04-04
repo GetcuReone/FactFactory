@@ -13,7 +13,7 @@ variables:
   solutionName: 'FactFactory'
   solution: '**/$(solutionName).sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Debug'
+  buildConfiguration: 'Release'
   majorVersion: '1'
   packageVersion: '$(majorVersion).0.0'
   nugetProjectName: 'NugetProject'
