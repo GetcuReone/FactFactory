@@ -96,13 +96,10 @@ namespace InfrastructureTests
                     {
                         "lib/netstandard2.0/FactFactory.dll",
                         "lib/netstandard2.0/FactFactory.xml",
-                        "lib/netstandard2.0/FactFactory.pdb",
                         "lib/netstandard2.0/FactFactory.Versioned.dll",
                         "lib/netstandard2.0/FactFactory.Versioned.xml",
-                        "lib/netstandard2.0/FactFactory.Versioned.pdb",
                         "lib/netstandard2.0/FactFactory.Default.dll",
                         "lib/netstandard2.0/FactFactory.Default.xml",
-                        "lib/netstandard2.0/FactFactory.Default.pdb",
                         "LICENSE.txt",
                         "README.md",
                     };
