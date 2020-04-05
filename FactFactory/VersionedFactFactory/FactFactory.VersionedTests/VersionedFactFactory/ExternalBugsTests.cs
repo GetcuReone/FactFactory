@@ -15,9 +15,9 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
     {
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
-        [Description("(test for bug 73)")]
+        [Description("Remove the node from the tree when necessary (test for bug 73).")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
-        public void Bug73TestCase()
+        public void RemoveNodeFromTreeWhenNecessaryTestCase()
         {
             var certificate = new Certificate();
 
