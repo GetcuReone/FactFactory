@@ -485,12 +485,15 @@ namespace GetcuReone.FactFactory
                             continue;
                         }
 
+                        bool canTryRemoveNode = false;
+
                         foreach (var needFact in needFacts)
                         {
                             if (needFact.IsFactType<ISpecialFact>())
                             {
-                                cannotDerived = RemoveRuleNodeAndCheckGoneRoot(tree, lastlevelNumber, node);
-                                j--;
+                                if (!canTryRemoveNode)
+                                    canTryRemoveNode = true;
+
                                 notFoundFactSet[i].Add(needFact);
                                 continue;
                             }
@@ -511,11 +514,18 @@ namespace GetcuReone.FactFactory
                             }
                             else
                             {
-                                // Is there a neighboring node capable of deriving this fact
-                                cannotDerived = RemoveRuleNodeAndCheckGoneRoot(tree, lastlevelNumber, node);
-                                j--;
+                                if (!canTryRemoveNode)
+                                    canTryRemoveNode = true;
+
                                 notFoundFactSet[i].Add(needFact);
                             }
+                        }
+
+                        if (canTryRemoveNode)
+                        {
+                            // Is there a neighboring node capable of deriving this fact.
+                            cannotDerived = RemoveRuleNodeAndCheckGoneRoot(tree, lastlevelNumber, node);
+                            j--;
                         }
                     }
 
