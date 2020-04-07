@@ -110,6 +110,11 @@
             Base class for fact.
             </summary>
         </member>
+        <member name="P:GetcuReone.FactFactory.FactBase.CalculatedByRule">
+            <summary>
+            It was calculated using the rule.
+            </summary>
+        </member>
         <member name="M:GetcuReone.FactFactory.FactBase.GetFactType">
             <summary>
             Get fact type.

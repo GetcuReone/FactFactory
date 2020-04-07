@@ -65,8 +65,6 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             {
                 if (VersionType != null)
                     versionedFact.Version = (IVersionFact)container.GetRightFactByVersion(VersionType, null);
-
-                versionedFact.CalculatedByRule = true;
             }
 
             return versionedFact;

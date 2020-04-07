@@ -99,7 +99,12 @@ namespace GetcuReone.FactFactory.BaseEntities
             where TContainer : IFactContainer<TFactBase>
             where TWantAction : IWantAction<TFactBase>
         {
-            return _func(container, wantAction);
+            TFactBase fact = _func(container, wantAction);
+
+            if (fact != null)
+                fact.CalculatedByRule = true;
+
+            return fact;
         }
 
         /// <summary>
