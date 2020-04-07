@@ -364,11 +364,6 @@
             Version of the rule that calculated the fact.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFact.CalculatedByRule">
-            <summary>
-            It was calculated using the rule.
-            </summary>
-        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactFactory`5">
             <summary>
             Versioned fact factory interface.

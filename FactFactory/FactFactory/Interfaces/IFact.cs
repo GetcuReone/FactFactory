@@ -10,5 +10,10 @@
         /// </summary>
         /// <returns></returns>
         IFactType GetFactType();
+
+        /// <summary>
+        /// It was calculated using the rule.
+        /// </summary>
+        bool CalculatedByRule { get; set; }
     }
 }

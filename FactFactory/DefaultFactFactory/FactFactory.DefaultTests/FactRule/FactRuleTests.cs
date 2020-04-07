@@ -132,6 +132,7 @@ namespace FactFactoryTests.FactRule
                 .Then("Check result", fact =>
                 {
                     Assert.IsNotNull(fact, "fac cannot be null");
+                    Assert.IsTrue(fact.CalculatedByRule, "CalculatedByRule cannot be false");
                     if (fact is OtherFact otherFact)
                         Assert.AreEqual(operationDate.AddDays(1), otherFact.Value, "dates do not match");
                     else

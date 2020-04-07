@@ -9,6 +9,11 @@ namespace GetcuReone.FactFactory
     public abstract class FactBase : IFact
     {
         /// <summary>
+        /// It was calculated using the rule.
+        /// </summary>
+        public virtual bool CalculatedByRule { get; set; }
+
+        /// <summary>
         /// Get fact type.
         /// </summary>
         /// <returns>fact type</returns>
