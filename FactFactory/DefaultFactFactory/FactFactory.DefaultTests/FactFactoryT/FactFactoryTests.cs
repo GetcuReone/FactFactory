@@ -8,6 +8,7 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.SpecialFacts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -415,6 +416,29 @@ namespace FactFactoryTests.FactFactoryT
                 .And("Empty container.", factFactory => { factFactory.collection = new RulesGetDifferent(); })
                 .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory)]
+        [Description("Clear WantActions after derive.")]
+        [Timeout(Timeouts.MilliSecond.Hundred)]
+        public void ClearWantActionsAfterDeriveTestCase()
+        {
+            Given("Create factory", () => new FactFactoryCustom())
+                .AndAddRules(new Collection
+                {
+                    (Input10Fact fact) => new ResultFact(fact.Value),
+                    (Input11Fact fact) => new Input10Fact(fact.Value),
+                    (Input12Fact fact) => new Input11Fact(fact.Value),
+                    () => new Input12Fact(2),
+                })
+                .And("Want fact.", factFactory => factFactory.WantFact((ResultFact result) => { }))
+                .And("Check WantActions.", factFactory => Assert.AreEqual(1, factFactory.W_Actions.Count))
+                .When("Derive.", factFactory => factFactory.Derive())
+                .Then("Check result.", factFactory =>
+                {
+                    Assert.AreEqual(0, factFactory.W_Actions.Count);
+                });
         }
     }
 }
