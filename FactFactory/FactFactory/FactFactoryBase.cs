@@ -159,6 +159,8 @@ namespace GetcuReone.FactFactory
                 using (container.CreateIgnoreReadOnlySpace())
                     container.Remove(fact);
             }
+
+            WantActions.Clear();
         }
 
         /// <summary>
