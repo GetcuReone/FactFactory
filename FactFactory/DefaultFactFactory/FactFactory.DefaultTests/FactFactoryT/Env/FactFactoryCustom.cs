@@ -1,5 +1,4 @@
 ﻿using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,6 +11,7 @@ namespace FactFactoryTests.FactFactoryT.Env
 {
     internal sealed class FactFactoryCustom : FactFactoryBase<FactBase, Container, Rule, Collection, Action>
     {
+        public List<Action> W_Actions => WantActions;
         public override Container Container => container;
         internal Container container = new Container();
         public override Collection Rules => collection;
