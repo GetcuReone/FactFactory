@@ -4,8 +4,7 @@ trigger:
 pr:
   branches:
     exclude:
-    - master
-    - release/*
+    - *
 
 pool:
   vmImage: 'windows-2019'
