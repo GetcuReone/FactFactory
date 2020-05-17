@@ -898,6 +898,18 @@
             <typeparam name="TFact">Type of desired fact</typeparam>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.ValidateContainer">
+            <summary>
+            Validation container.
+            </summary>
+            <returns>Copy <see cref="P:GetcuReone.FactFactory.FactFactoryBase`5.Container"/></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.ValidateRules">
+            <summary>
+            Valudate <see cref="P:GetcuReone.FactFactory.FactFactoryBase`5.Rules"/>.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnWantActionCalculated(`4,`1)">
             <summary>
             Action calculation completion handler
