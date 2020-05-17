@@ -196,6 +196,8 @@ namespace GetcuReone.FactFactory
         /// Build trees.
         /// </summary>
         /// <param name="wantActions"></param>
+        /// <param name="container"></param>
+        /// <param name="rules"></param>
         /// <returns></returns>
         private Dictionary<TWantAction, (List<FactRuleTree<TFactBase, TFactRule>> Trees, List<TFactBase> NeedSpecialFacts)> BuildTrees(List<TWantAction> wantActions, TFactContainer container, TFactRuleCollection rules)
         {
