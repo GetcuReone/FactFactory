@@ -237,20 +237,6 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived)]
-        [Description("Add a special fact to the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
-        public void AddSpecialFactContainer()
-        {
-            string expectedMessage = $"In the container there should be no facts realizing types {nameof(INotContainedFact)} and {nameof(INoDerivedFact)}";
-
-            Given("Create factory", () => new FactFactoryCustom())
-                .AndAddFact(new NoDerived<OtherFact>())
-                .When("Run derive", factory => ExpectedDeriveException(() => factory.DeriveFact<OtherFact>()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedMessage);
-        }
-
-        [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NotContained)]
         [Description("Successful derive NotContained.")]
         [Timeout(Timeouts.MilliSecond.Hundred)]
