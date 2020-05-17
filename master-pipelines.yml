@@ -1,5 +1,11 @@
 trigger:
-- master
+  - master
+
+pr:
+  branches:
+    exclude:
+    - '*'
+
 
 pool:
   vmImage: 'windows-2019'
