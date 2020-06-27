@@ -8,7 +8,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\GetcuReone.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   
