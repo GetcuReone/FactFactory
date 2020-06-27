@@ -51,7 +51,6 @@ namespace InfrastructureTests
         [TestCategory(GetcuReoneTC.Infra)]
         [Description("Check for all attribute Timeout tests.")]
         [Timeout(Timeouts.Minute.One)]
-        [Ignore("The reason for the test fall is revealed")]
         public void AllHaveTimeoutTestCase()
         {
             CheckAllTestsContainTimeoutsInFolder(_solutionFolder);
@@ -61,12 +60,12 @@ namespace InfrastructureTests
         [TestCategory(GetcuReoneTC.Infra)]
         [Description("All namespaces start with GetcuReone.")]
         [Timeout(Timeouts.Minute.One)]
-        [Ignore("The reason for the test fall is revealed")]
         public void AllNamespacesStartWithGetcuReoneTestCase()
         {
             string beginNamespace = "GetcuReone";
             string[] excludeAssemblies = new string[]
             {
+                "FactFactory.TestsCommon.dll",
             };
 
             CheckBeginNamespacesInLibrary(_solutionFolder, _projectName, beginNamespace, excludeAssemblies);
