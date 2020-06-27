@@ -6,24 +6,14 @@
     public static class TC
     {
         /// <summary>
-        /// Negative test
-        /// </summary>
-        public const string Negative = "negative";
-
-        /// <summary>
         /// Test categories for projects.
         /// </summary>
         public static class Projects
         {
             /// <summary>
-            /// Refers to the FactFactory.Versioned project
+            /// Refers to the FactFactory.Versioned project.
             /// </summary>
-            public const string Versioned = "versioned";
-
-            /// <summary>
-            /// Infrastructure test.
-            /// </summary>
-            public const string Infrastructure = "Infra";
+            public const string Versioned = "versioned_test";
         }
 
         /// <summary>
@@ -32,54 +22,54 @@
         public static class Objects
         {
             /// <summary>
-            /// Fact rule <see cref="GetcuReone.FactFactory.Interfaces.IFactRule{TFact}"/>
+            /// Fact rule <see cref="GetcuReone.FactFactory.Interfaces.IFactRule{TFact}"/>.
             /// </summary>
-            public const string Rule = "rule";
+            public const string Rule = "rule_test";
 
             /// <summary>
-            /// Fact container <see cref="GetcuReone.FactFactory.Interfaces.IFactContainer{TFact}"/>
+            /// Fact container <see cref="GetcuReone.FactFactory.Interfaces.IFactContainer{TFact}"/>.
             /// </summary>
-            public const string Container = "container";
+            public const string Container = "container_test";
 
             /// <summary>
-            /// Desired action <see cref="GetcuReone.FactFactory.Interfaces.IWantAction{TFact}"/>
+            /// Desired action <see cref="GetcuReone.FactFactory.Interfaces.IWantAction{TFact}"/>.
             /// </summary>
-            public const string WantAction = "want_action";
+            public const string WantAction = "want_action_test";
 
             /// <summary>
-            /// Fact factory <see cref="GetcuReone.FactFactory.Interfaces.IFactFactory{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
+            /// Fact factory <see cref="GetcuReone.FactFactory.Interfaces.IFactFactory{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
             /// </summary>
-            public const string Factory = "factory";
+            public const string Factory = "factory_test";
 
             /// <summary>
             /// Fact rule collection
             /// </summary>
-            public const string RuleCollection = "rule_collection";
+            public const string RuleCollection = "rule_collection_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.IContainedFact"/>
+            /// <see cref="GetcuReone.FactFactory.Interfaces.IContainedFact"/>.
             /// </summary>
-            public const string Contained = "contained";
+            public const string Contained = "contained_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.INotContainedFact"/>
+            /// <see cref="GetcuReone.FactFactory.Interfaces.INotContainedFact"/>.
             /// </summary>
-            public const string NotContained = "not_contained";
+            public const string NotContained = "not_contained_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.INoDerivedFact"/>
+            /// <see cref="GetcuReone.FactFactory.Interfaces.INoDerivedFact"/>.
             /// </summary>
-            public const string NoDerived = "no_derived";
+            public const string NoDerived = "no_derived_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.IFact"/>
+            /// <see cref="GetcuReone.FactFactory.Interfaces.IFact"/>.
             /// </summary>
-            public const string Fact = "fact";
+            public const string Fact = "fact_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.IFactType"/>
+            /// <see cref="GetcuReone.FactFactory.Interfaces.IFactType"/>.
             /// </summary>
-            public const string FactType = "fact_type";
+            public const string FactType = "fact_type_test";
         }
     }
 }
