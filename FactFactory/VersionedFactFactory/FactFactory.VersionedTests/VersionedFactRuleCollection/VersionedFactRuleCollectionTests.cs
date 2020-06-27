@@ -17,7 +17,7 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.RuleCollection), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add rule.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleTestCase()
         {
             GivenCreateCollection()
@@ -31,7 +31,7 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
         [TestMethod]
         [TestCategory(TC.Objects.RuleCollection), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get copied collection.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void Versioned_GetCopiedCollectionTestCase()
         {
             Collection originalsCollection = null;

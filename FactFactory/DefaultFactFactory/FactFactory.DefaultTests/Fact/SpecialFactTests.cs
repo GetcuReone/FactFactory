@@ -13,7 +13,7 @@ namespace FactFactory.DefaultTests.Fact
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get FactType for NotContained fact.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetFactTypeForNotContainedFactTestCase()
         {
             GivenEmpty()
@@ -27,7 +27,7 @@ namespace FactFactory.DefaultTests.Fact
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.Contained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get FactType for Contained fact.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetFactTypeForContainedFactTestCase()
         {
             GivenEmpty()
@@ -41,7 +41,7 @@ namespace FactFactory.DefaultTests.Fact
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get FactType for NoDerived fact.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetFactTypeForNoDerivedFactTestCase()
         {
             GivenEmpty()

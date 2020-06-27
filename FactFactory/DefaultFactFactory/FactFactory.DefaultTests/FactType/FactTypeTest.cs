@@ -32,7 +32,7 @@ namespace FactFactoryTests.FactType
         [TestMethod]
         [TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
         [Description("Successful comparison of information about one fact.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CompareFactTypeOneFactTestCase()
         {
             DateTimeFact fact = null;
@@ -51,7 +51,7 @@ namespace FactFactoryTests.FactType
         [TestMethod]
         [TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
         [Description("Successful comparison of information about one fact.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SuccessCompareFactTypeTowFactTestCase()
         {
             DateTimeFact firstFact = null;
@@ -75,7 +75,7 @@ namespace FactFactoryTests.FactType
         [TestMethod]
         [TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
         [Description("Unsuccessful comparison of two facts.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void FailedCompareFactTypeTowFactTestCase()
         {
             DateTimeFact firstFact = null;
@@ -99,7 +99,7 @@ namespace FactFactoryTests.FactType
         [TestMethod]
         [TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
         [Description("Check fact name.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void FactNameTestCase()
         {
             GivenCreateOtherFact(DateTime.Now)
@@ -110,7 +110,7 @@ namespace FactFactoryTests.FactType
         [TestMethod]
         [TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create NoDerived fact.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateNoDerivedFactTestCase()
         {
             GivenCreateFactType<NoDerived<OtherFact>>()
@@ -125,7 +125,7 @@ namespace FactFactoryTests.FactType
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create a NoDerived fact using the wrong type.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateNoDerivedUsingWrongTypeTestCase()
         {
             string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(INoDerivedFact).FullName} type.";
@@ -138,7 +138,7 @@ namespace FactFactoryTests.FactType
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create a NoDerived fact without default constructor.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateNoDerivedWithoutDefaultConstructorTestCase()
         {
             string expectedReason = $"{typeof(NoDerivedWithoutConstructor).FullName} doesn't have a default constructor.";
@@ -151,7 +151,7 @@ namespace FactFactoryTests.FactType
         [TestMethod]
         [TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create NotContained fact.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateNotContainedFactTestCase()
         {
             GivenCreateFactType<NotContained<OtherFact>>()
@@ -166,7 +166,7 @@ namespace FactFactoryTests.FactType
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create a NotContained fact using the wrong type.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateNotContainedUsingWrongTypeTestCase()
         {
             string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(INotContainedFact).FullName} type.";
@@ -179,7 +179,7 @@ namespace FactFactoryTests.FactType
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create a NotContained fact without default constructor.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateNotContainedWithoutDefaultConstructorTestCase()
         {
             string expectedReason = $"{typeof(NotContainedWithoutConstructor).FullName} doesn't have a default constructor.";
