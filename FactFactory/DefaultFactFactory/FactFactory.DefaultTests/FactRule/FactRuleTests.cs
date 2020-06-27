@@ -31,7 +31,7 @@ namespace FactFactoryTests.FactRule
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Rule)]
+        [TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create a rule with one input parameter.")]
         [Timeout(Timeouts.Millisecond.Hundred), TestCategory(GetcuReoneTC.Unit)]
         public void CreateFactRuleOneInputParamTestCase()
