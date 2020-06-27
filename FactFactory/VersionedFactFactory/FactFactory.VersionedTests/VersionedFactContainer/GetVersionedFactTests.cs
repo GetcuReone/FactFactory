@@ -17,7 +17,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("Get copied container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void VersionedFactContainer_GetCopiedContainerTestCase()
         {
             Fact1 fact1 = new Fact1(1);
@@ -45,7 +45,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("Get a fact without a version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void GetFactWithoutVersionTestCase()
         {
             var version1 = new Version1();
@@ -72,7 +72,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("Get a fact the first version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void GetFactWithFirstVersionTestCase()
         {
             var version1 = new Version1();
@@ -99,7 +99,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("TGet a fact the second version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void GetFactWithSecondVersionTestCase()
         {
             var version1 = new Version1();
@@ -124,9 +124,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("Get a fact with a version not contained in the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void GetFactWithVersionNotContainedInContainerTestCase()
         {
             string expectedReason = $"Fact with type {GetFactType<FactResult>().FactName} and version {GetFactType<Version2>().FactName} not found.";

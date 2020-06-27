@@ -2,18 +2,18 @@
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.SpecialFacts;
-using GetcuReone.GwtTestFramework;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.DefaultTests.Fact
 {
     [TestClass]
-    public sealed class SpecialFactTests : TestBase
+    public sealed class SpecialFactTests : CommonTestBase<FactBase>
     {
         [TestMethod]
-        [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NotContained)]
+        [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get FactType for NotContained fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void GetFactTypeForNotContainedFactTestCase()
         {
             GivenEmpty()
@@ -27,7 +27,7 @@ namespace FactFactory.DefaultTests.Fact
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.Contained)]
         [Description("Get FactType for Contained fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void GetFactTypeForContainedFactTestCase()
         {
             GivenEmpty()
@@ -41,7 +41,7 @@ namespace FactFactory.DefaultTests.Fact
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NoDerived)]
         [Description("Get FactType for NoDerived fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void GetFactTypeForNoDerivedFactTestCase()
         {
             GivenEmpty()

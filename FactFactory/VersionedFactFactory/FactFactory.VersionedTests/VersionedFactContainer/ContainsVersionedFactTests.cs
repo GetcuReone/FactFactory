@@ -11,7 +11,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("A fact without a version is contained in the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void FactWithoutVersionContainedContainerTestCase()
         {
             GivenCreateContainer()
@@ -30,7 +30,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("A fact with a version is contained in the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void FactWithVersionContainedContainerTestCase()
         {
             GivenCreateContainer()
@@ -49,7 +49,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("A fact without a version is not contained in the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void FactWithoutVersionNotContainedContainerTestCase()
         {
             GivenCreateContainer()

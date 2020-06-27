@@ -11,7 +11,7 @@ namespace FactFactory.VersionedTests.Fact
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
         [Description("Set fact value.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void Versioned_SetValueTestCase()
         {
             long factValue = 5;

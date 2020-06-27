@@ -11,7 +11,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
         [Description("The first version is less than the second.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersion_FirstVersionLessThanSecondTestCase()
         {
             UlongVersion v1 = null;
@@ -26,7 +26,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
         [Description("The second version is more than the first.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersion_SecondVersionMoreThanFirstTestCase()
         {
             UlongVersion v1 = null;
@@ -41,7 +41,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
         [Description("The Ulong version is not less than the DateTime.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersionVersionNotLessThanDateTimeTestCase()
         {
             UlongVersion v1 = null;
@@ -56,7 +56,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
         [Description("The Ulong version is not more than the DateTime.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersionNotMoreThanDateTimeTestCase()
         {
             UlongVersion v1 = null;
@@ -71,7 +71,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
         [Description("The second version is equal the first.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersion_SecondVersionEqualFirstTestCase()
         {
             UlongVersion v1 = null;
@@ -86,7 +86,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
         [Description("The Ulong version is not equal the DateTime.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersionNotEqualDateTimeTestCase()
         {
             UlongVersion v1 = null;

@@ -11,7 +11,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("Remove a fact without a version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void RemoveFactWithoutVersionTestCase()
         {
             var version1 = new Version1();
@@ -39,7 +39,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("Remove a fact the first version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void RemoveFactWithFirstVersionTestCase()
         {
             var version1 = new Version1();

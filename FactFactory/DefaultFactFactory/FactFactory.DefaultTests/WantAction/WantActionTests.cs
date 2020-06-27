@@ -4,6 +4,7 @@ using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,9 @@ namespace FactFactoryTests.WantAction
     public sealed class WantActionTests : CommonTestBase<FactBase>
     {
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create WantAction without action.")]
-        [Timeout(Timeouts.MilliSecond.FiveHundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateWantActionWithoutActionTestCase()
         {
             GivenEmpty()
@@ -30,9 +31,9 @@ namespace FactFactoryTests.WantAction
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
         [Description("Run invoke.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void InvokeTestCase()
         {
             bool isRun = false;
@@ -43,9 +44,9 @@ namespace FactFactoryTests.WantAction
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create WantAction without input facts.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void CreateWantActionWithoutInputFactsTestCase()
         {
             GivenEmpty()
@@ -58,9 +59,9 @@ namespace FactFactoryTests.WantAction
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
         [Description("Request entry is not a valid fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void WantAction_RequestEntryInvalidFactTestCase()
         {
             string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}";
@@ -79,9 +80,9 @@ namespace FactFactoryTests.WantAction
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.FactType)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
         [Description("Request invalid special fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void RequestInvalidSpecialFactTestCase()
         {
             IFactType invalidFactType = GetFactType<InvalidSpecialFact>();

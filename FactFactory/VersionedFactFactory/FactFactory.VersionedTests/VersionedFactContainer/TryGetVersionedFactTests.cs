@@ -11,7 +11,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("Try to get a fact without a version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void TryGetFactWithoutVersionTestCase()
         {
             GivenCreateContainer()
@@ -40,7 +40,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("Try to get a fact the first version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void TryGetFactWithFirstVersionTestCase()
         {
             GivenCreateContainer()
@@ -70,7 +70,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("Try to get a fact the second version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void TryGetFactWithSecondVersionTestCase()
         {
             GivenCreateContainer()
@@ -100,7 +100,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
         [Description("Trying to get a fact with a version not contained in the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void TryingGetFactWithVersionNotContainedInContainerTestCase()
         {
             GivenCreateContainer()

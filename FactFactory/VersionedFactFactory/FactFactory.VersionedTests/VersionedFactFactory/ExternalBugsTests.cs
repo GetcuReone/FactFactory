@@ -16,7 +16,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Remove the node from the tree when necessary (test for bug 73).")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void RemoveNodeFromTreeWhenNecessaryTestCase()
         {
             var certificate = new Certificate();

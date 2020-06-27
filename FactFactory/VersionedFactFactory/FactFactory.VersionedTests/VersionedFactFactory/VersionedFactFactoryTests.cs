@@ -26,7 +26,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Create wantAction without version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void DeriveFactWithoutVersionedRuleTestCase()
         {
             GivenCreateVersionedFactFactory(GetVersionFacts())
@@ -55,7 +55,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Create wantAction with version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void DeriveFactWithtVersionedRuleTestCase()
         {
             GivenCreateVersionedFactFactory(GetVersionFacts())
@@ -82,9 +82,9 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Derive with invalid version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void DeriveWihtInvalidVersion_1_TestCase()
         {
             string expectedReason = $"For versions {GetFactType<CastumVersion>().FactName} and {GetFactType<CastumVersion>().FactName}, comparison operations did not work correctly.";
@@ -100,9 +100,9 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Derive with invalid version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void DeriveWihtInvalidVersion_2_TestCase()
         {
             string expectedReason = $"For versions {GetFactType<CastumVersion>().FactName} and {GetFactType<CastumVersion>().FactName}, comparison operations did not work correctly.";
@@ -120,7 +120,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Recount facts with a different version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void RecountFactsWithDifferentVersionTestCase()
         {
             FactResult result1 = null;
@@ -153,7 +153,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Do not overshoot the fact once again.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void DoNotOvershootFactOnceAgainTestCase()
         {
             int counterFact2 = 0;
@@ -199,7 +199,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Do not recalculate calculated fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void DoNotRecalculateCalculatedFactTestCase()
         {
             int counterFact1 = 0;
@@ -265,7 +265,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Use newer rule for Derive.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void UseNewerRuleForDeriveTestCase()
         {
             int expectedValue = 10;
@@ -287,7 +287,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
         [Description("Request an available fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void RequestAvailableFactTestCase()
         {
             int expectedValue = 1;
