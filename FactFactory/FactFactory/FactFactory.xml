@@ -910,6 +910,15 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.BuildTrees(System.Collections.Generic.List{`4},`1,`3)">
+            <summary>
+            Build trees.
+            </summary>
+            <param name="wantActions"></param>
+            <param name="container"></param>
+            <param name="rules"></param>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnWantActionCalculated(`4,`1)">
             <summary>
             Action calculation completion handler
