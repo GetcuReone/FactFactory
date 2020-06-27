@@ -26,7 +26,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Rules cannot be empty.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RulesCannotBeEmptyTestCase()
         {
             Given("Set rules", () => FactFactory.Rules.Clear())
@@ -37,7 +37,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Choosing the shortest way.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ChoosingShortestWayTestCase()
         {
             Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
@@ -74,7 +74,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derivation of only necessary facts.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DerivationOnlyNecessaryFactsTestCase()
         {
             int counter = 0;
@@ -125,7 +125,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get original container.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetOriginalContainerTestCase()
         {
             Given("Create factory", () => new FactFactoryCustom())
@@ -140,7 +140,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Check method DeriveFact.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactTestCase()
         {
             Given("Add rule", () => FactFactory.Rules.Add(() => new Input10Fact(10)))
@@ -155,7 +155,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get fact from container.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetFactFromContainerTastCase()
         {
             var input6Fact = new Input6Fact(6);
@@ -168,7 +168,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive only one fact.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveOnlyOneFactTestCase()
         {
             Input6Fact fact6 = null;
@@ -201,7 +201,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive facts after run method DeriveFact.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactsAfterRunDeriveFactTestCase()
         {
             Input6Fact fact6 = null;
@@ -239,7 +239,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Successful derive NotContained.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SuccessfulDeriveNotContainedTestCase()
         {
             Given("Create factory", () => new FactFactoryCustom())
@@ -250,7 +250,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Unsuccessful derive NotContained.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UnsuccessfulDeriveNotContainedTestCase()
         {
             string expectedMessage = $"Failed to calculate one or more facts for the action ({typeof(NotContained<OtherFact>).Name}).";
@@ -264,7 +264,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Successful derive NotContained.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SuccessfulDeriveNoDerivedTestCase()
         {
             Given("Create factory", () => new FactFactoryCustom())
@@ -275,7 +275,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Unsuccessful derive NoDerived.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UnsuccessfulDeriveNoDerivedTestCase()
         {
             string expectedMessage = $"Failed to calculate one or more facts for the action ({typeof(NoDerived<OtherFact>).Name}).";
@@ -289,7 +289,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add default fact.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddDefaultFactTestCase()
         {
             DefaultFact defaultFact = new DefaultFact(10);
@@ -308,7 +308,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add 2 default facts with the same types.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddTwoDefaultFactsWithSameTypesTestCase()
         {
             string expectedReason = $"The fact container already contains {GetFactType<DefaultFact>().FactName} type of fact.";
@@ -323,7 +323,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with empty container.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithEmptyContainerTestCase()
         {
             string expectedReason = "Container cannot be null.";
@@ -337,7 +337,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with container returning a blank copy.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithContainerReturningBlankCopyTestCase()
         {
             string expectedReason = "IFactContainer.Copy method return null.";
@@ -351,7 +351,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with container returning a different type of container.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithContainerReturningDifferentTypeContainerTestCase()
         {
             string expectedReason = "IFactContainer.Copy method returned a different type of container.";
@@ -365,7 +365,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.RuleCollection), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with empty rules.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithEmptyRulesTestCase()
         {
             string expectedReason = "Rules cannot be null.";
@@ -379,7 +379,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with rules returning a blank copy.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithRulesReturningBlankCopyTestCase()
         {
             string expectedReason = "FactRuleCollectionBase.Copy method return null.";
@@ -393,7 +393,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with rules returning a different type of rules.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithRulesReturningDifferentTypeRulesTestCase()
         {
             string expectedReason = "FactRuleCollectionBase.Copy method returned a different type of rules.";
@@ -407,7 +407,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Clear WantActions after derive.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ClearWantActionsAfterDeriveTestCase()
         {
             Given("Create factory", () => new FactFactoryCustom())

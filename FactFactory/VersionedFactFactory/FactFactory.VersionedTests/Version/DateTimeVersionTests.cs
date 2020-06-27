@@ -15,7 +15,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The first version is less than the second.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DateTimeVersion_FirstVersionLessThanSecondTestCase()
         {
             Version2019 v1 = null;
@@ -30,7 +30,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The second version is more than the first.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DateTimeVersion_SecondVersionMoreThanFirstTestCase()
         {
             Version2019 v1 = null;
@@ -45,7 +45,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The DateTime version is not less than the unit.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DateTimeVersionVersionNotLessThanUintTestCase()
         {
             Version2019 v1 = null;
@@ -60,7 +60,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The Datetime version is not more than the Uint.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DateTimeVersionNotMoreThanUintTestCase()
         {
             Version2019 v1 = null;
@@ -75,7 +75,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The second version is equal the first.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DateTimeVersion_SecondVersionEqualFirstTestCase()
         {
             DateTimeVersion v1 = null;
@@ -90,7 +90,7 @@ namespace FactFactory.VersionedTests.Version
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The Datetime version is not equal the Uint.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DateTimeVersionNotEqualUintTestCase()
         {
             Version2019 v1 = null;
