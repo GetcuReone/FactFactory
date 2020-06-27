@@ -3,6 +3,7 @@ using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactContainer.Env;
 using GetcuReone.FactFactory.Constants;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
@@ -12,9 +13,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
     public sealed class AddVersionedFactTests : VersionedFactContrainerTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add versioned fact to container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void AddVersionedFactContainerTestCase()
         {
             GivenCreateContainer()
@@ -26,9 +27,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add two versioned facts to the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void AddTwoVersionedFactsContainerTestCase()
         {
             GivenCreateContainer()
@@ -45,9 +46,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add two identical versioned facts to the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void AddTwoIdenticalVersionedFactsContainerTestCase()
         {
             string expectedReason = $"The container already contains fact type {typeof(Version1).FullName} without version.";
@@ -59,9 +60,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add two facts with identical versions to the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void AddTwoFactsWithIdenticalVersionsContainerTestCase()
         {
             string expectedReason = $"The container already contains fact type {typeof(FactResult).FullName} with version equal to version {typeof(Version1).FullName}.";
@@ -73,9 +74,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add one fact with different versions.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void AddOneFactWithDifferentVersionsTestCase()
         {
             GivenCreateContainer()

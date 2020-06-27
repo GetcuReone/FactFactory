@@ -1,17 +1,19 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.Version.Env;
+using GetcuReone.FactFactory.Versioned;
+using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.VersionedTests.Version
 {
     [TestClass]
-    public sealed class LongVersionTests : TestBase
+    public sealed class LongVersionTests : CommonTestBase<VersionedFactBase>
     {
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The first version is less than the second.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void LongVersion_FirstVersionLessThanSecondTestCase()
         {
             LongVersion v1 = null;
@@ -24,9 +26,9 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The second version is more than the first.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void LongVersion_SecondVersionMoreThanFirstTestCase()
         {
             LongVersion v1 = null;
@@ -39,9 +41,9 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The Long version is not less than the DateTime.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void LongVersionVersionNotLessThanDateTimeTestCase()
         {
             LongVersion v1 = null;
@@ -54,9 +56,9 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The Long version is not more than the DateTime.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void LongVersionNotMoreThanDateTimeTestCase()
         {
             LongVersion v1 = null;
@@ -69,9 +71,9 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The second version is equal the first.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void LongVersion_SecondVersionEqualFirstTestCase()
         {
             LongVersion v1 = null;
@@ -84,9 +86,9 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The Long version is not equal the DateTime.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void LongVersionNotEqualDateTimeTestCase()
         {
             LongVersion v1 = null;

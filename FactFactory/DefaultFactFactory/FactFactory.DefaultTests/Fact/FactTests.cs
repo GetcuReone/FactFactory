@@ -1,19 +1,19 @@
-﻿using FactFactory.TestsCommon;
+﻿using System;
+using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory;
-using GetcuReone.GwtTestFramework;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace FactFactoryTests.Fact
 {
     [TestClass]
-    public sealed class FactTests : TestBase
+    public sealed class FactTests : CommonTestBase<FactBase>
     {
         [TestMethod]
-        [TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("Set value fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void SetValueFactTestCase()
         {
             DateTime operationDate = DateTime.Now;
@@ -24,9 +24,9 @@ namespace FactFactoryTests.Fact
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("Check method GetFactType.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void GetFactTypeTestCase()
         {
             Given("Create fact", () => new DateTimeFact(DateTime.Now))

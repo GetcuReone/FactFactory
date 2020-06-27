@@ -1,12 +1,12 @@
-﻿using GetcuReone.FactFactory;
+﻿using System;
+using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.GwtTestFramework;
-using System;
+using GetcuReone.GetcuTestAdapter;
 
 namespace FactFactory.TestsCommon
 {
-    public abstract class CommonTestBase<TFactBase> : TestBase
+    public abstract class CommonTestBase<TFactBase> : GetcuReoneTestBase
         where TFactBase : IFact
     {
         protected virtual IFactType GetFactType<TFact>() where TFact : IFact

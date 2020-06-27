@@ -4,6 +4,7 @@ using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
@@ -20,9 +21,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Negative), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add an existing fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void AddAnExistingFactTestCase()
         {
             string expectedReason = $"The fact container already contains {GetFactType<IntFact>().FactName} type of fact.";
@@ -34,9 +35,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Contains fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void ContainsFactTestCase()
         {
             GivenCreateContainer()
@@ -46,9 +47,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Not contains fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void NotContainsFactTestCase()
         {
             GivenCreateContainer()
@@ -57,9 +58,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Remove fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void RemoveFactTestCase()
         {
             GivenCreateContainer()
@@ -69,9 +70,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Try get existing fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void TryGetValueExistingFactTestCase()
         {
             var fact = new IntFact(0);
@@ -91,9 +92,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Try get an existing fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void TryGetValueAnExistingFactTestCase()
         {
             GivenCreateContainer()
@@ -110,9 +111,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get existing fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void GetValueExistingFactTestCase()
         {
             var fact = new IntFact(0);
@@ -127,9 +128,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Negative), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get an existing fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void GetValueAnExistingFactTestCase()
         {
             string expectedReason = $"Not found type fact with type {GetFactType<IntFact>().FactName}.";
@@ -140,9 +141,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get copied container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void FactContainer_GetCopiedContainerTestCase()
         {
             Input1Fact input1Fact = new Input1Fact(1);
@@ -178,9 +179,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add fact to read-only container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void AddFactReadOnlyContainerTestCase()
         {
             GivenCreateContainer(true)
@@ -189,9 +190,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Remove fact to read-only container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void RemoveFactReadOnlyContainerTestCase()
         {
             GivenCreateContainer(true)
@@ -200,9 +201,9 @@ namespace FactFactoryTests.FactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Clear container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void ClearContainerTestCase()
         {
             GivenCreateContainer()

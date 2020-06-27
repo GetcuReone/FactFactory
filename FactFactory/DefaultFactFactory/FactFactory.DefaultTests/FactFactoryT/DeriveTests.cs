@@ -7,6 +7,7 @@ using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,9 @@ namespace FactFactoryTests.FactFactoryT
     {
 
         [TestMethod]
-        [TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Check method Derive.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void DeriveTestCase()
         {
             Input16Fact fact16 = null;
@@ -44,9 +45,9 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Negative), TestCategory(GetcuReoneTC.Unit)]
         [Description("Want a fact for which there is no rule.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void NotExistsRuleForFactTestCase()
         {
             string expectedReason = $"No rules found able to calculate fact {GetFactType<OtherFact>().FactName}.";
@@ -59,9 +60,9 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Negative), TestCategory(GetcuReoneTC.Unit)]
         [Description("Want a fact that cannot be derived.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void CannotDerivedOneFactFromOne1TestCase()
         {
             IFactType wantFact = GetFactType<Input4Fact>();
@@ -105,9 +106,9 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Two facts of the same type cannot be derive.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void TwoFactsSameTypeCannotDeriveTestCase()
         {
             IFactType wantFact = GetFactType<Input4Fact>();
@@ -156,9 +157,9 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Two facts cannot be derive.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void TwoFactsCannotDeriveTestCase()
         {
             IFactType wantFact1 = GetFactType<Input1Fact>();
@@ -233,9 +234,9 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Two facts in one action cannot be derive.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void TwoFactsInOneActionCannotDeriveTestCase()
         {
             List<IFactType> expectedRequiredFacts = new List<IFactType>
@@ -287,9 +288,9 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Want a fact that cannot be derived.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void CannotDerivedOneFactFromOne2TestCase()
         {
             IFactType wantFact = GetFactType<Input6Fact>();
@@ -322,9 +323,9 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derived three facts.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void DerivedThreeFactsTestCase()
         {
             Input6Fact input6Fact = null;
@@ -347,9 +348,9 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Objects.Factory)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get the original rules for the Derive.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void GetOriginalsRulesForDerive()
         {
             Given("Create custom factory", () => new FactFactoryCustom())
@@ -362,9 +363,9 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Choosing the path with the least number of rules.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.Hundred)]
         public void ChoosingPathWithLeastNumberRulesTestCase()
         {
             GivenCreateFactFactory()
