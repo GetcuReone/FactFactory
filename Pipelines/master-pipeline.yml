@@ -1,0 +1,46 @@
+# Pipeline for master branch current project
+trigger:
+  branches:
+    include:
+    - master
+    exclude:
+    - release/*
+    - develop
+pr:
+  branches:
+    include:
+    - master
+
+resources:
+  repositories:
+    - repository: global_pipeline_template
+      name: GetcuReone-Pipelines
+      type: git
+
+variables:
+- group: global-variables-group
+- group: GetcuReone-FactFactory-variables-group
+- template: global_variables.yml@global_pipeline_template
+- name: 'buildConfiguration'
+  value: 'release'
+- name: 'majorVersion'
+  value: $[variables['Master_Major']]
+- name: 'minorVersion'
+  value: $[variables['Master_Minor']]
+- ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+  - name: 'patchVersion'
+    value: $[counter(format('{0}.{1}', variables.majorVersion, variables.minorVersion), 0)]
+  - name: 'buildName'
+    value: $[format('{0}-{1}.{2}.{3}', variables['Build.DefinitionName'], variables['majorVersion'], variables['minorVersion'], variables['patchVersion'])]
+- ${{ if not(eq(variables['Build.SourceBranchName'], 'master')) }}:
+  - name: 'sourceBranchName'
+    value: $[replace(variables['System.PullRequest.SourceBranch'], 'refs/heads/', '')]
+  - name: 'patchVersion'
+    value: $[counter(format('{0}-{1}.{2}', variables.sourceBranchName, variables.majorVersion, variables.minorVersion), 0)]
+  - name: 'buildName'
+    value: $[format('{0}-{1}-{2}.{3}.{4}', variables['sourceBranchName'], variables['Build.DefinitionName'], variables['majorVersion'], variables['minorVersion'], variables['patchVersion'])]
+
+name: $[variables.buildName]
+
+jobs:
+  - template: nuget/master_nuget_build_template.yml@global_pipeline_template

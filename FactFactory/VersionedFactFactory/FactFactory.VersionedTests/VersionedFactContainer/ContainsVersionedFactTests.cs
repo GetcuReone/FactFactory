@@ -1,6 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactContainer.Env;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.VersionedTests.VersionedFactContainer
@@ -9,9 +10,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
     public class ContainsVersionedFactTests : VersionedFactContrainerTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("A fact without a version is contained in the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void FactWithoutVersionContainedContainerTestCase()
         {
             GivenCreateContainer()
@@ -28,9 +29,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("A fact with a version is contained in the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void FactWithVersionContainedContainerTestCase()
         {
             GivenCreateContainer()
@@ -47,9 +48,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("A fact without a version is not contained in the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void FactWithoutVersionNotContainedContainerTestCase()
         {
             GivenCreateContainer()

@@ -28,7 +28,6 @@
   <files>
     <file src="bin\$Configuration$\$TargetFramework$\FactFactory**dll" target="lib\$TargetFramework$" />
     <file src="bin\$Configuration$\$TargetFramework$\FactFactory**xml" target="lib\$TargetFramework$" />
-    <file src="bin\$Configuration$\$TargetFramework$\FactFactory**pdb" target="lib\$TargetFramework$" />
     <file src="bin\$Configuration$\$TargetFramework$\$PackageLicenseFile$" target="" />
     <file src="bin\$Configuration$\$TargetFramework$\README.md" target="" />
   </files>

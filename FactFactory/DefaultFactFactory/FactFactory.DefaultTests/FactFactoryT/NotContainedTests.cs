@@ -2,6 +2,7 @@
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.SpecialFacts;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactoryTests.FactFactoryT
@@ -10,9 +11,9 @@ namespace FactFactoryTests.FactFactoryT
     public sealed class NotContainedTests : FactFactoryTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Objects.NotContained), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Objects.NotContained), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Rule challenge with facts NotContained.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RunRuleWithTwoInputNotContainedFactTestCase()
         {
             int value = 24;
@@ -31,9 +32,9 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.NotContained), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Objects.NotContained), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Rule challenge with fact NotContained.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RunRuleWithInputNotContainedFactTestCase()
         {
             int value = 24;

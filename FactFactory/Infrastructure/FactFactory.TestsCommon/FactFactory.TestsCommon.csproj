@@ -6,15 +6,14 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\GetcuReone.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
     <FileVersion>$(majorVersion).0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GetcuReone.GwtTestFramework" Version="1.0.0" />
-    <PackageReference Include="System.Runtime" Version="4.3.1" />
+    <PackageReference Include="GetcuReone.GetcuTestAdapter" Version="[1.1.7,)" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,6 +5,7 @@ using FactFactory.VersionedTests.VersionedFactContainer.Env;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
@@ -15,9 +16,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
     public sealed class GetVersionedFactTests : VersionedFactContrainerTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get copied container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void VersionedFactContainer_GetCopiedContainerTestCase()
         {
             Fact1 fact1 = new Fact1(1);
@@ -43,9 +44,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get a fact without a version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetFactWithoutVersionTestCase()
         {
             var version1 = new Version1();
@@ -70,9 +71,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get a fact the first version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetFactWithFirstVersionTestCase()
         {
             var version1 = new Version1();
@@ -97,9 +98,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("TGet a fact the second version.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetFactWithSecondVersionTestCase()
         {
             var version1 = new Version1();
@@ -124,9 +125,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get a fact with a version not contained in the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetFactWithVersionNotContainedInContainerTestCase()
         {
             string expectedReason = $"Fact with type {GetFactType<FactResult>().FactName} and version {GetFactType<Version2>().FactName} not found.";

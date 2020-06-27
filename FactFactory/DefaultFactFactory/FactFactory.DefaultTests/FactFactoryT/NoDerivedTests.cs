@@ -2,6 +2,7 @@
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.SpecialFacts;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactoryTests.FactFactoryT
@@ -10,9 +11,9 @@ namespace FactFactoryTests.FactFactoryT
     public sealed class NoDerivedTests : FactFactoryTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Objects.NoDerived), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Objects.NoDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive the fact through the rule with the NoDerived fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveUseRuleWithNoFactTestCase()
         {
             int value = 2;
@@ -33,9 +34,9 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.NoDerived), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Objects.NoDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with NoDerived fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithNoFactTestCase()
         {
             GivenCreateFactFactory()

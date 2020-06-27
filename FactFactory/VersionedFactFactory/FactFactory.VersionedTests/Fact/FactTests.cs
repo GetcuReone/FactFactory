@@ -1,17 +1,18 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
-using GetcuReone.GwtTestFramework;
+using GetcuReone.FactFactory.Versioned;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.VersionedTests.Fact
 {
     [TestClass]
-    public sealed class FactTests : TestBase
+    public sealed class FactTests : CommonTestBase<VersionedFactBase>
     {
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("Set fact value.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void Versioned_SetValueTestCase()
         {
             long factValue = 5;

@@ -2,18 +2,19 @@
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.SpecialFacts;
-using GetcuReone.GwtTestFramework;
+using GetcuReone.FactFactory.Versioned;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.DefaultTests.Fact
 {
     [TestClass]
-    public sealed class SpecialFactTests : TestBase
+    public sealed class SpecialFactTests : CommonTestBase<VersionedFactBase>
     {
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NotContained)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get FactType for NotContained fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void Versioned_GetFactTypeForNotContainedFactTestCase()
         {
             GivenEmpty()
@@ -25,9 +26,9 @@ namespace FactFactory.DefaultTests.Fact
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.Contained)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.Contained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get FactType for Contained fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void Versioned_GetFactTypeForContainedFactTestCase()
         {
             GivenEmpty()
@@ -39,9 +40,9 @@ namespace FactFactory.DefaultTests.Fact
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NoDerived)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get FactType for NoDerived fact.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void Versioned_GetFactTypeForNoDerivedFactTestCase()
         {
             GivenEmpty()

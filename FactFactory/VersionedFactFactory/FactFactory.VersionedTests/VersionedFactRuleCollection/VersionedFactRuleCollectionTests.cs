@@ -2,6 +2,7 @@
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactRuleCollection.Env;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,9 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
     public sealed class VersionedFactRuleCollectionTests : VersionedFactRuleCollectionTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.RuleCollection)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.RuleCollection), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add rule.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleTestCase()
         {
             GivenCreateCollection()
@@ -28,9 +29,9 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.RuleCollection)]
+        [TestCategory(TC.Objects.RuleCollection), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get copied collection.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void Versioned_GetCopiedCollectionTestCase()
         {
             Collection originalsCollection = null;

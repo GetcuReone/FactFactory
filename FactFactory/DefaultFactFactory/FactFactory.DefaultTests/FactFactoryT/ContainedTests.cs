@@ -2,6 +2,7 @@
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.SpecialFacts;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
@@ -11,9 +12,9 @@ namespace FactFactoryTests.FactFactoryT
     public sealed class ContainedTests : FactFactoryTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Objects.Contained), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Objects.Contained), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create a ResultFact if the Input1Fact is contained in the container.")]
-        [Timeout(Timeouts.MilliSecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateResultFactIfInput1FactContainedTestCase()
         {
             GivenCreateFactFactory()
