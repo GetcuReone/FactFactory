@@ -147,12 +147,6 @@ namespace GetcuReone.FactFactory.Helpers
             throw CreateDeriveException<TFact>(ErrorCode.InvalidFactType, $"Type {fact.GetFactType().FactName} cannot be converted {typeof(TFact).Name}");
         }
 
-        internal static bool IsSpecialFact(this IFact fact)
-        {
-            return fact is INoDerivedFact 
-                || fact is INotContainedFact;
-        }
-
         internal static IgnoreReadOnlySpace<TFact> CreateIgnoreReadOnlySpace<TFact>(this FactContainerBase<TFact> container)
             where TFact : IFact
         {
