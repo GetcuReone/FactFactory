@@ -19,7 +19,7 @@ namespace FactFactory.VersionedTests.VersionedWantAction
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.WantAction), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create wantAction with version.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateWantActionWithVersionTestCase()
         {
             GivenEmpty()
@@ -34,7 +34,7 @@ namespace FactFactory.VersionedTests.VersionedWantAction
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.WantAction), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create wantAction without version.")]
-        [Timeout(Timeouts.Millisecond.Hundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateWantActionWithoutVersionTestCase()
         {
             GivenEmpty()
