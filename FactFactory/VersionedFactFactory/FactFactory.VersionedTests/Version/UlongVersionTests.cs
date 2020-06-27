@@ -1,15 +1,17 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.Version.Env;
+using GetcuReone.FactFactory.Versioned;
+using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.VersionedTests.Version
 {
     [TestClass]
-    public sealed class UlongVersionTests : TestBase
+    public sealed class UlongVersionTests : CommonTestBase<VersionedFactBase>
     {
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The first version is less than the second.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersion_FirstVersionLessThanSecondTestCase()
@@ -24,7 +26,7 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The second version is more than the first.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersion_SecondVersionMoreThanFirstTestCase()
@@ -39,7 +41,7 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The Ulong version is not less than the DateTime.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersionVersionNotLessThanDateTimeTestCase()
@@ -54,7 +56,7 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The Ulong version is not more than the DateTime.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersionNotMoreThanDateTimeTestCase()
@@ -69,7 +71,7 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The second version is equal the first.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersion_SecondVersionEqualFirstTestCase()
@@ -84,7 +86,7 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The Ulong version is not equal the DateTime.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void UlongVersionNotEqualDateTimeTestCase()

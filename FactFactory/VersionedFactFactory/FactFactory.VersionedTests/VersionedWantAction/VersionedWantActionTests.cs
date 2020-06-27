@@ -2,6 +2,7 @@
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VWantAction = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 
@@ -16,7 +17,7 @@ namespace FactFactory.VersionedTests.VersionedWantAction
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.WantAction)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.WantAction), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create wantAction with version.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void CreateWantActionWithVersionTestCase()
@@ -31,7 +32,7 @@ namespace FactFactory.VersionedTests.VersionedWantAction
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.WantAction)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.WantAction), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create wantAction without version.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void CreateWantActionWithoutVersionTestCase()

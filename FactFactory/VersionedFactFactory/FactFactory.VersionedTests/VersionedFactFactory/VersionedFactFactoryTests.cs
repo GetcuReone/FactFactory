@@ -5,6 +5,7 @@ using FactFactory.VersionedTests.VersionedFactFactory.Env;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using V_Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
@@ -24,7 +25,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create wantAction without version.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void DeriveFactWithoutVersionedRuleTestCase()
@@ -53,7 +54,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create wantAction with version.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void DeriveFactWithtVersionedRuleTestCase()
@@ -82,7 +83,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with invalid version.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void DeriveWihtInvalidVersion_1_TestCase()
@@ -100,7 +101,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with invalid version.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void DeriveWihtInvalidVersion_2_TestCase()
@@ -118,7 +119,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Recount facts with a different version.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void RecountFactsWithDifferentVersionTestCase()
@@ -151,7 +152,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Do not overshoot the fact once again.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void DoNotOvershootFactOnceAgainTestCase()
@@ -197,7 +198,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Do not recalculate calculated fact.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void DoNotRecalculateCalculatedFactTestCase()
@@ -263,7 +264,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Use newer rule for Derive.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void UseNewerRuleForDeriveTestCase()
@@ -285,7 +286,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Request an available fact.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void RequestAvailableFactTestCase()

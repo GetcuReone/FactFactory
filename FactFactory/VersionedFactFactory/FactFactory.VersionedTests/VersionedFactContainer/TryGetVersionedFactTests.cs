@@ -9,7 +9,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
     public sealed class TryGetVersionedFactTests : VersionedFactContrainerTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Try to get a fact without a version.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void TryGetFactWithoutVersionTestCase()
@@ -38,7 +38,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Try to get a fact the first version.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void TryGetFactWithFirstVersionTestCase()
@@ -68,7 +68,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Try to get a fact the second version.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void TryGetFactWithSecondVersionTestCase()
@@ -98,7 +98,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Trying to get a fact with a version not contained in the container.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void TryingGetFactWithVersionNotContainedInContainerTestCase()

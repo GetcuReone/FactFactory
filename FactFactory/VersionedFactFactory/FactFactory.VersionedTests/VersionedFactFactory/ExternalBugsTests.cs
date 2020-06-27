@@ -4,6 +4,7 @@ using FactFactory.VersionedTests.VersionedFactFactory.Bug73;
 using FactFactory.VersionedTests.VersionedFactFactory.Bug73.Entities;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using V_Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
@@ -14,7 +15,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
     public sealed class ExternalBugsTests : VersionedFactFactoryTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Remove the node from the tree when necessary (test for bug 73).")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void RemoveNodeFromTreeWhenNecessaryTestCase()

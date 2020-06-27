@@ -1,15 +1,16 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.Version.Env;
+using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.VersionedTests.Version
 {
     [TestClass]
-    public sealed class IntVersionTests : TestBase
+    public sealed class IntVersionTests : CommonTestBase<VersionedFactBase>
     {
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The first version is less than the second.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void IntVersion_FirstVersionLessThanSecondTestCase()
@@ -24,7 +25,7 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The second version is more than the first.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void IntVersion_SecondVersionMoreThanFirstTestCase()
@@ -39,7 +40,7 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The Int version is not less than the DateTime.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void IntVersionVersionNotLessThanDateTimeTestCase()
@@ -54,7 +55,7 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The Int version is not more than the DateTime.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void IntVersionNotMoreThanDateTimeTestCase()
@@ -69,7 +70,7 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The second version is equal the first.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void IntVersion_SecondVersionEqualFirstTestCase()
@@ -84,7 +85,7 @@ namespace FactFactory.VersionedTests.Version
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact)]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
         [Description("The Int version is not equal the DateTime.")]
         [Timeout(Timeouts.Millisecond.Hundred)]
         public void IntVersionNotEqualDateTimeTestCase()
