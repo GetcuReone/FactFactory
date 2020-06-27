@@ -1,5 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.Version.Env;
+using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
