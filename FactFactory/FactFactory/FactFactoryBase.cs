@@ -318,7 +318,7 @@ namespace GetcuReone.FactFactory
 
             foreach (IFactType wantFact in wantAction.GetNecessaryFactTypes(container))
             {
-                if (wantFact.IsFactType<ISpecialFact>())
+                if (wantFact.IsFactType<IRuntimeSpecialFact>())
                 {
                     if (wantFact.IsFactType<INotContainedFact>())
                     {
@@ -328,10 +328,10 @@ namespace GetcuReone.FactFactory
                         {
                             TFactBase specialFact = notContainedFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
-                            continue;
                         }
+                        else
+                            deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
 
-                        deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
                         continue;
                     }
                     else if (wantFact.IsFactType<IContainedFact>())
@@ -342,32 +342,39 @@ namespace GetcuReone.FactFactory
                         {
                             TFactBase specialFact = containedFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
-                            continue;
                         }
+                        else
+                            deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
+
+                        continue;
                     }
                     else if (wantFact.IsFactType<INoDerivedFact>())
                     {
                         INoDerivedFact noDerivedFact = wantFact.CreateSpecialFact<INoDerivedFact>();
+
                         if (!noDerivedFact.FactType.ContainsContainer(container) && !TryDeriveNoFactInfo(noDerivedFact, wantAction, container, rules))
                         {
                             TFactBase specialFact = noDerivedFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
-                            continue;
                         }
+                        else
+                            deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
 
-                        deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
                         continue;
                     }
                     else if (wantFact.IsFactType<ICanDerivedFact>())
                     {
                         ICanDerivedFact canDerivedFact = wantFact.CreateSpecialFact<ICanDerivedFact>();
 
-                        if (canDerivedFact.IsFactContained(container) || TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, canDerivedFact.FactType, wantAction, container, rulesForDerive, specialFacts, out List<DeriveFactErrorDetail> __))
+                        if (TryDeriveCanDerivedFact(canDerivedFact, wantAction, container, rulesForDerive, specialFacts))
                         {
                             TFactBase specialFact = canDerivedFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
-                            continue;
                         }
+                        else
+                            deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
+
+                        continue;
                     }
                 }
 
@@ -511,7 +518,7 @@ namespace GetcuReone.FactFactory
                                     {
                                         ICanDerivedFact canDerivedFact = needFactType.CreateSpecialFact<ICanDerivedFact>();
 
-                                        if (TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, canDerivedFact.FactType, wantAction, container, ruleCollection, specialFacts, out List<DeriveFactErrorDetail> __))
+                                        if (TryDeriveCanDerivedFact(canDerivedFact, wantAction, container, ruleCollection, specialFacts))
                                         {
                                             specialFacts.Add(canDerivedFact.ConvertFact<TFactBase>());
                                             needRemove = true;
@@ -850,6 +857,37 @@ namespace GetcuReone.FactFactory
                         return false;
                 }
 
+                throw;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        private bool TryDeriveCanDerivedFact(ICanDerivedFact canDerivedFact, TWantAction wantAction, TFactContainer container, IList<TFactRule> ruleCollection, List<TFactBase> specialFacts)
+        {
+            if (canDerivedFact.IsFactContained(container))
+                return true;
+
+            try
+            {
+                return TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, canDerivedFact.FactType, wantAction, container, ruleCollection, specialFacts, out var _);
+            }
+            catch (InvalidDeriveOperationException<TFactBase> ex)
+            {
+                if (ex.Details != null && ex.Details.Count == 1)
+                {
+                    DeriveErrorDetail<TFactBase> detail = ex.Details.First();
+
+                    if (detail.Code == ErrorCode.RuleNotFound || detail.Code == ErrorCode.EmptyRuleCollection)
+                        return false;
+                }
+
+                throw;
+            }
+            catch
+            {
                 throw;
             }
         }
