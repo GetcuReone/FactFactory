@@ -11,9 +11,9 @@ namespace FactFactoryTests.FactType.Env
 
         }
 
-        public IFactType Value => throw new NotImplementedException();
-
         public bool CalculatedByRule { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public IFactType FactType => throw new NotImplementedException();
 
         public IFactType GetFactType()
         {

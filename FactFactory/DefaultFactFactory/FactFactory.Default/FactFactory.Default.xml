@@ -173,10 +173,8 @@
             Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.SpecialFacts.Contained`1.Value">
-            <summary>
-            Value fact.
-            </summary>
+        <member name="P:GetcuReone.FactFactory.SpecialFacts.Contained`1.FactType">
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.SpecialFacts.Contained`1.#ctor">
             <summary>
@@ -202,10 +200,8 @@
             Contains information about a type of fact that cannot be calculated.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.SpecialFacts.NoDerived`1.Value">
-            <summary>
-            Value fact.
-            </summary>
+        <member name="P:GetcuReone.FactFactory.SpecialFacts.NoDerived`1.FactType">
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.SpecialFacts.NoDerived`1.#ctor">
             <summary>
@@ -231,10 +227,8 @@
             Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.SpecialFacts.NotContained`1.Value">
-            <summary>
-            Value fact.
-            </summary>
+        <member name="P:GetcuReone.FactFactory.SpecialFacts.NotContained`1.FactType">
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.SpecialFacts.NotContained`1.#ctor">
             <summary>

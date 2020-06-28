@@ -7,20 +7,18 @@ namespace GetcuReone.FactFactory.SpecialFacts
     /// <summary>
     /// Contains information about a type of fact that cannot be calculated.
     /// </summary>
-    public sealed class NoDerived<TFact> : FactBase<IFactType>, INoDerivedFact
+    public sealed class NoDerived<TFact> : FactBase, INoDerivedFact
         where TFact : IFact
     {
-        /// <summary>
-        /// Value fact.
-        /// </summary>
-        public override IFactType Value { get; }
+        /// <inheritdoc/>
+        public IFactType FactType { get; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public NoDerived() : base(null)
+        public NoDerived()
         {
-            Value = DefaultFactFactoryHelper.GetFactType<TFact>();
+            FactType = DefaultFactFactoryHelper.GetFactType<TFact>();
         }
 
         /// <summary>
@@ -41,7 +39,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
         public bool IsFactContained<TFact1>(IFactContainer<TFact1> container)
             where TFact1 : IFact
         {
-            return Value.TryGetFact(container, out TFact1 _);
+            return FactType.TryGetFact(container, out TFact1 _);
         }
     }
 }

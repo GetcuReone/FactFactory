@@ -1609,22 +1609,27 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.IContainedFact">
             <summary>
-            Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>
+            Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INoDerivedFact">
             <summary>
-            interface for fact that cannot be calculated
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.SpecialFacts.INoDerivedFact.Value">
-            <summary>
-            Information about a fact that cannot be calculated
+            Interface for fact that cannot be calculated.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INotContainedFact">
             <summary>
-            Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>
+            Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeSpecialFact">
+            <summary>
+            A special fact that is created using a factory when building a tree or calculating facts.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeSpecialFact.FactType">
+            <summary>
+            Information about the type of fact the current runtime fact is working with.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact">

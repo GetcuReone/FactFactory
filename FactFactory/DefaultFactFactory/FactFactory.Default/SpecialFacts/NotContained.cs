@@ -7,20 +7,18 @@ namespace GetcuReone.FactFactory.SpecialFacts
     /// <summary>
     /// Information about a fact that is not contained in the container at the time of the function call <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>
     /// </summary>
-    public sealed class NotContained<TFact> : FactBase<IFactType>, INotContainedFact
+    public sealed class NotContained<TFact> : FactBase, INotContainedFact
         where TFact : IFact
     {
-        /// <summary>
-        /// Value fact.
-        /// </summary>
-        public override IFactType Value { get; }
+        /// <inheritdoc/>
+        public IFactType FactType { get; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public NotContained() : base(null)
+        public NotContained()
         {
-            Value = DefaultFactFactoryHelper.GetFactType<TFact>();
+            FactType = DefaultFactFactoryHelper.GetFactType<TFact>();
         }
 
         /// <summary>
@@ -41,7 +39,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
         public bool IsFactContained<TFact1>(IFactContainer<TFact1> container)
             where TFact1 : IFact
         {
-            return Value.TryGetFact(container, out TFact1 _);
+            return FactType.TryGetFact(container, out TFact1 _);
         }
     }
 }

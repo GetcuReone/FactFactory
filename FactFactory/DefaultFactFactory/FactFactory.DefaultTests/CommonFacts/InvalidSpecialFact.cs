@@ -11,7 +11,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        IFactType INoDerivedFact.Value => throw new NotImplementedException();
+        public IFactType FactType => throw new NotImplementedException();
 
         public bool IsFactContained<TFact>(IFactContainer<TFact> container) where TFact : IFact
         {

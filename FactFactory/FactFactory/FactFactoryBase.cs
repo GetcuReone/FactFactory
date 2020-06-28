@@ -348,7 +348,7 @@ namespace GetcuReone.FactFactory
                     else if (wantFact.IsFactType<INoDerivedFact>())
                     {
                         INoDerivedFact noDerivedFact = wantFact.CreateSpecialFact<INoDerivedFact>();
-                        if (!noDerivedFact.Value.ContainsContainer(container) && !TryDeriveNoFactInfo(noDerivedFact, wantAction, container, rules))
+                        if (!noDerivedFact.FactType.ContainsContainer(container) && !TryDeriveNoFactInfo(noDerivedFact, wantAction, container, rules))
                         {
                             TFactBase specialFact = noDerivedFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
@@ -814,7 +814,7 @@ namespace GetcuReone.FactFactory
         {
             try
             {
-                return TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, noDerivedFact.Value, wantAction, container, ruleCollection, new List<TFactBase>(), out var _);
+                return TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, noDerivedFact.FactType, wantAction, container, ruleCollection, new List<TFactBase>(), out var _);
             }
             catch (InvalidDeriveOperationException<TFactBase> ex)
             {
