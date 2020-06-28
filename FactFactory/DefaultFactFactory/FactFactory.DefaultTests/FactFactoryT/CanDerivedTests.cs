@@ -37,12 +37,12 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UnsuccessfulDeriveCanDerivedTestCase()
         {
-            string expectedMessage = $"Failed to calculate one or more facts for the action ({typeof(CanDerived<OtherFact>).Name}).";
+            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(CanDerived<OtherFact>).Name}).";
 
             Given("Create factory", () => new FactFactoryCustom())
                 .When("Run Derive", factFactory 
                     => ExpectedDeriveException(() => factFactory.DeriveFact<CanDerived<OtherFact>>()))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedMessage);
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
         }
 
         [TestMethod]

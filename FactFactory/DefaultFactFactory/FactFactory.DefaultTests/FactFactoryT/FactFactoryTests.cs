@@ -253,12 +253,12 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UnsuccessfulDeriveNotContainedTestCase()
         {
-            string expectedMessage = $"Failed to calculate one or more facts for the action ({typeof(NotContained<OtherFact>).Name}).";
+            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(NotContained<OtherFact>).Name}).";
 
             Given("Create factory", () => new FactFactoryCustom())
                 .AndAddFact(new OtherFact(default))
                 .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<NotContained<OtherFact>>()))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedMessage);
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
         }
 
         [TestMethod]
@@ -278,12 +278,12 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UnsuccessfulDeriveCannotDerivedTestCase()
         {
-            string expectedMessage = $"Failed to calculate one or more facts for the action ({typeof(CannotDerived<OtherFact>).Name}).";
+            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(CannotDerived<OtherFact>).Name}).";
 
             Given("Create factory", () => new FactFactoryCustom())
                 .AndAddFact(new OtherFact(default))
                 .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<CannotDerived<OtherFact>>()))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedMessage);
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
         }
 
         [TestMethod]

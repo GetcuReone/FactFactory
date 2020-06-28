@@ -66,7 +66,7 @@ namespace FactFactoryTests.FactFactoryT
         public void CannotDerivedOneFactFromOne1TestCase()
         {
             IFactType wantFact = GetFactType<Input4Fact>();
-            string expectedReason = $"Failed to calculate one or more facts for the action ({wantFact.FactName}).";
+            string expectedReason = $"Failed to derive one or more facts for the action ({wantFact.FactName}).";
 
             var setNeedFacts = new List<List<IFactType>>
             {
@@ -84,7 +84,7 @@ namespace FactFactoryTests.FactFactoryT
                 .AndAddRules(RuleCollectionHelper.GetInputFactRules())
                 .And("Want fact", factory => factory.WantFact((Input4Fact fact) => { }))
                 .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedReason)
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
                 .And("Check error", error =>
                 {
                     DeriveErrorDetail<FactBase> detail = error.Details.First();
@@ -112,7 +112,7 @@ namespace FactFactoryTests.FactFactoryT
         public void TwoFactsSameTypeCannotDeriveTestCase()
         {
             IFactType wantFact = GetFactType<Input4Fact>();
-            string expectedReason = $"Failed to calculate one or more facts for the action ({wantFact.FactName}).";
+            string expectedReason = $"Failed to derive one or more facts for the action ({wantFact.FactName}).";
 
             var setNeedFacts = new List<List<IFactType>>
             {
@@ -131,7 +131,7 @@ namespace FactFactoryTests.FactFactoryT
                 .And("Want fact", factory => factory.WantFact((Input4Fact fact) => { }))
                 .And("Want fact", factory => factory.WantFact((Input4Fact fact) => { }))
                 .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedReason)
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
                 .And("Check error", error =>
                 {
                     Assert.AreEqual(2, error.Details.Count, "Expceted another count details");
@@ -163,7 +163,7 @@ namespace FactFactoryTests.FactFactoryT
         public void TwoFactsCannotDeriveTestCase()
         {
             IFactType wantFact1 = GetFactType<Input1Fact>();
-            string expectedReason1 = $"Failed to calculate one or more facts for the action ({wantFact1.FactName}).";
+            string expectedReason1 = $"Failed to derive one or more facts for the action ({wantFact1.FactName}).";
 
             var setNeedFacts1 = new List<List<IFactType>>
             {
@@ -174,7 +174,7 @@ namespace FactFactoryTests.FactFactoryT
             };
 
             IFactType wantFact2 = GetFactType<Input2Fact>();
-            string expectedReason2 = $"Failed to calculate one or more facts for the action ({wantFact2.FactName}).";
+            string expectedReason2 = $"Failed to derive one or more facts for the action ({wantFact2.FactName}).";
 
             var setNeedFacts2 = new List<List<IFactType>>
             {
@@ -193,7 +193,7 @@ namespace FactFactoryTests.FactFactoryT
                 .And("Want fact1", factory => factory.WantFact((Input1Fact fact) => { }))
                 .And("Want fact2", factory => factory.WantFact((Input2Fact fact) => { }))
                 .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedReason1)
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason1)
                 .And("Check error detail 1", error =>
                 {
                     DeriveErrorDetail<FactBase> detail = error.Details.First();
@@ -212,7 +212,7 @@ namespace FactFactoryTests.FactFactoryT
                             Assert.IsTrue(expectedNeedFacts[j].Compare(needFacts[j]), "Another missing fact was expected.");
                     }
                 })
-                .AndAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedReason2)
+                .AndAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason2)
                 .And("Check error detail", error =>
                 {
                     DeriveErrorDetail<FactBase> detail = error.Details.Skip(1).First();
@@ -244,7 +244,7 @@ namespace FactFactoryTests.FactFactoryT
                 GetFactType<Input1Fact>(),
                 GetFactType<Input2Fact>(),
             };
-            string expectedReason = $"Failed to calculate one or more facts for the action ({string.Join(", ", expectedRequiredFacts.ConvertAll(f => f.FactName))}).";
+            string expectedReason = $"Failed to derive one or more facts for the action ({string.Join(", ", expectedRequiredFacts.ConvertAll(f => f.FactName))}).";
 
             var setNeedFacts = new List<List<IFactType>>
             {
@@ -266,7 +266,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want fact1", factory => factory.WantFact((Input1Fact fact1, Input2Fact fact2) => { }))
                 .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedReason)
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
                 .And("Check error detail 1", error =>
                 {
                     DeriveErrorDetail<FactBase> detail = error.Details.First();
@@ -294,7 +294,7 @@ namespace FactFactoryTests.FactFactoryT
         public void CannotDerivedOneFactFromOne2TestCase()
         {
             IFactType wantFact = GetFactType<Input6Fact>();
-            string expectedReason = $"Failed to calculate one or more facts for the action ({wantFact.FactName}).";
+            string expectedReason = $"Failed to derive one or more facts for the action ({wantFact.FactName}).";
             var expectedNeedFacts = new List<IFactType>
             {
                 GetFactType<Input3Fact>(),
@@ -305,7 +305,7 @@ namespace FactFactoryTests.FactFactoryT
                 .AndAddRules(RuleCollectionHelper.GetRulesForNotAvailableInput6Fact())
                 .And("Want fact", factory => factory.WantFact((Input6Fact fact) => { }))
                 .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedReason)
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
                 .And("Check error", error =>
                 {
                     DeriveErrorDetail<FactBase> detail = error.Details.First();

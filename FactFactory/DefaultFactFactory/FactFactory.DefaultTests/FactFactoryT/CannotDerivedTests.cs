@@ -65,7 +65,7 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFromRuleAndWithFactInContanierTestCase()
         {
-            string expectedMessage = $"Failed to calculate one or more facts for the action ({typeof(ResultFact).Name}).";
+            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(ResultFact).Name}).";
 
             GivenCreateFactFactory()
                 .AndAddFact(new Input1Fact(default))
@@ -75,7 +75,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Run Derive", factFactory
                     => ExpectedDeriveException(() => factFactory.DeriveFact<ResultFact>()))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedMessage);
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
         }
     }
 }
