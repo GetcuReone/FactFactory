@@ -97,7 +97,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.CanDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive a fact using a recursive rule.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void RecursiveDeriveFactTestCase()
+        public void DeriveFactFromRecursiveRuleTestCase()
         {
             string expectedMessage = "Rule of fact is recursive. Rule: <(CanDerived`1) => (ResultFact)>.";
 
