@@ -358,6 +358,17 @@ namespace GetcuReone.FactFactory
                         deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
                         continue;
                     }
+                    else if (wantFact.IsFactType<INoDerivedFact>())
+                    {
+                        ICanDerivedFact canDerivedFact = wantFact.CreateSpecialFact<ICanDerivedFact>();
+
+                        if (canDerivedFact.IsFactContained(container) || TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, canDerivedFact.FactType, wantAction, container, rules, specialFacts, out List<DeriveFactErrorDetail> __))
+                        {
+                            TFactBase specialFact = canDerivedFact.ConvertFact<TFactBase>();
+                            specialFacts.Add(specialFact);
+                            continue;
+                        }
+                    }
                 }
 
                 if (TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> treeResult, wantFact, wantAction, container, rulesForDerive, specialFacts, out List<DeriveFactErrorDetail> details))
@@ -446,18 +457,19 @@ namespace GetcuReone.FactFactory
                             // Exclude special facts
                             if (needFactType.IsFactType<ISpecialFact>())
                             {
+                                if (specialFacts.Any(fact => fact.GetFactType().Compare(needFactType)))
+                                {
+                                    needFacts.Remove(needFactType);
+                                    continue;
+                                }
+
                                 bool isNotContained = needFactType.IsFactType<INotContainedFact>();
                                 bool isNoDerive = needFactType.IsFactType<INoDerivedFact>();
                                 bool isContained = needFactType.IsFactType<IContainedFact>();
+                                bool isCanDerived = needFactType.IsFactType<ICanDerivedFact>();
 
-                                if (isNoDerive || isNotContained || isContained)
+                                if (isNoDerive || isNotContained || isContained || isCanDerived)
                                 {
-                                    if (specialFacts.Any(fact => fact.GetFactType().Compare(needFactType)))
-                                    {
-                                        needFacts.Remove(needFactType);
-                                        continue;
-                                    }
-
                                     // Check INotContainedFact fact
                                     if (isNotContained)
                                     {
@@ -490,6 +502,18 @@ namespace GetcuReone.FactFactory
                                         if (!TryDeriveNoFactInfo(noDerivedFact, wantAction, container, ruleCollection))
                                         {
                                             specialFacts.Add(noDerivedFact.ConvertFact<TFactBase>());
+                                            needRemove = true;
+                                        }
+                                    }
+
+                                    // Check ICanDerivedFact fact
+                                    else
+                                    {
+                                        ICanDerivedFact canDerivedFact = needFactType.CreateSpecialFact<ICanDerivedFact>();
+
+                                        if (TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, canDerivedFact.FactType, wantAction, container, ruleCollection, specialFacts, out List<DeriveFactErrorDetail> __))
+                                        {
+                                            specialFacts.Add(canDerivedFact.ConvertFact<TFactBase>());
                                             needRemove = true;
                                         }
                                     }
