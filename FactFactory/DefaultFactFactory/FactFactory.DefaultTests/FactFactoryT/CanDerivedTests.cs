@@ -92,5 +92,22 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(37, fact.Value, "fact have other value");
                 });
         }
+
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.CanDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Derive a fact using a recursive rule.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void RecursiveDeriveFactTestCase()
+        {
+            string expectedMessage = "Rule of fact is recursive. Rule: <(CanDerived`1) => (ResultFact)>.";
+
+            GivenCreateFactFactory()
+                .AndAddRules(new Collection
+                {
+                    (CanDerived<ResultFact> _) => new ResultFact(default),
+                })
+                .When("Derive", factory => ExpectedDeriveException(() => factory.DeriveFact<ResultFact>()))
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
+        }
     }
 }

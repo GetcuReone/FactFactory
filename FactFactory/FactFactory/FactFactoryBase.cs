@@ -461,8 +461,8 @@ namespace GetcuReone.FactFactory
                             IFactType needFactType = needFacts[factIndex];
                             bool needRemove = false;
 
-                            // Exclude special facts
-                            if (needFactType.IsFactType<ISpecialFact>())
+                            // Exclude runtime special facts
+                            if (needFactType.IsFactType<IRuntimeSpecialFact>())
                             {
                                 if (specialFacts.Any(fact => fact.GetFactType().Compare(needFactType)))
                                 {
@@ -493,6 +493,7 @@ namespace GetcuReone.FactFactory
                                     else if (isContained)
                                     {
                                         IContainedFact containedFact = needFactType.CreateSpecialFact<IContainedFact>();
+                                        containedFact.VerifyRecursive<IContainedFact, TFactBase, TFactRule>(node.FactRule);
 
                                         if (container.Any(fact => containedFact.IsFactContained(container)))
                                         {
@@ -517,6 +518,7 @@ namespace GetcuReone.FactFactory
                                     else
                                     {
                                         ICanDerivedFact canDerivedFact = needFactType.CreateSpecialFact<ICanDerivedFact>();
+                                        canDerivedFact.VerifyRecursive<ICanDerivedFact, TFactBase, TFactRule>(node.FactRule);
 
                                         if (TryDeriveRuntimeSpecialFact(canDerivedFact, wantAction, container, ruleCollection, specialFacts))
                                         {

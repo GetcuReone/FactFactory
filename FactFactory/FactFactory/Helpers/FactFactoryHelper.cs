@@ -110,6 +110,15 @@ namespace GetcuReone.FactFactory.Helpers
             }.ToReadOnlyCollection());
         }
 
+        internal static void VerifyRecursive<TRuntimeSpecialFact, TFactBase, TFactRule>(this TRuntimeSpecialFact runtimeSpecialFact, TFactRule factRule)
+            where TRuntimeSpecialFact : IRuntimeSpecialFact
+            where TFactBase : IFact
+            where TFactRule : IFactRule<TFactBase>
+        {
+            if (runtimeSpecialFact.FactType.Compare(factRule.OutputFactType))
+                throw CreateDeriveException<TFactBase>(ErrorCode.FactCannotDerived, $"Rule of fact is recursive. Rule: <{factRule}>.");
+        }
+
         internal static InvalidDeriveOperationException<TFact> CreateDeriveException<TFact>(List<KeyValuePair<string, string>> codeReasonPairs, IWantAction<TFact> requiredAction)
             where TFact : IFact
         {

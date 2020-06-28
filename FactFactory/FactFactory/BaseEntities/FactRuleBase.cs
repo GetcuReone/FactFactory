@@ -49,8 +49,10 @@ namespace GetcuReone.FactFactory.BaseEntities
             {
                 inputFactTypes.CheckArgumentFacts<TFactBase>();
 
-                foreach (IFactType type in inputFactTypes)
-                    type.CheckSpecialFactType();
+                inputFactTypes.ForEach(factType =>
+                {
+                    factType.CheckSpecialFactType();
+                });
 
                 if (inputFactTypes.Any(factType => factType.Compare(outputFactType)))
                     throw new ArgumentException("Cannot request a fact calculated according to the rule");
