@@ -707,37 +707,37 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Constants.ErrorCode">
             <summary>
-            Error codes
+            Error codes.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidData">
             <summary>
-            Invalid data
+            Invalid data.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.FactCannotCalculated">
+        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.FactCannotDerived">
             <summary>
-            Fact cannot be calculated
+            Fact cannot be derived.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.EmptyRuleCollection">
             <summary>
-            Collection of rules for calculating the fact is empty
+            Collection of rules for calculating the fact is empty.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.RuleNotFound">
             <summary>
-            Rule not found
+            Rule not found.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidFactType">
             <summary>
-            The fact is of the invalid type
+            The fact is of the invalid type.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidOperation">
             <summary>
-            Invalid operation
+            Invalid operation.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail`1">
