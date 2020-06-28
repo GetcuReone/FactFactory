@@ -1,9 +1,12 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Helpers;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -54,6 +57,25 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.IsNotNull(fact, "fact cannot be null");
                     Assert.AreEqual(37, fact.Value, "fact have other value");
                 });
+        }
+
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("We derive a fact that is calculated on the basis of an uninduced fact that is in the container.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void DeriveFromRuleAndWithFactInContanierTestCase()
+        {
+            string expectedMessage = $"Failed to calculate one or more facts for the action ({typeof(ResultFact).Name}).";
+
+            GivenCreateFactFactory()
+                .AndAddFact(new Input1Fact(default))
+                .AndAddRules(new Collection
+                {
+                    (CannotDerived<Input1Fact> _) => new ResultFact(default),
+                })
+                .When("Run Derive", factFactory
+                    => ExpectedDeriveException(() => factFactory.DeriveFact<ResultFact>()))
+                .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedMessage);
         }
     }
 }
