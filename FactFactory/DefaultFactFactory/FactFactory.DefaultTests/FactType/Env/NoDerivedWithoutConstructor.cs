@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 
 namespace FactFactoryTests.FactType.Env
@@ -10,9 +11,9 @@ namespace FactFactoryTests.FactType.Env
 
         }
 
-        public IFactType Value => throw new NotImplementedException();
-
         public bool CalculatedByRule { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public IFactType FactType => throw new NotImplementedException();
 
         public IFactType GetFactType()
         {

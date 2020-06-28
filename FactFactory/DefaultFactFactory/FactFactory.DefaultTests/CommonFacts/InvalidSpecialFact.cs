@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 
 namespace FactFactoryTests.CommonFacts
@@ -10,7 +11,7 @@ namespace FactFactoryTests.CommonFacts
         {
         }
 
-        IFactType INoDerivedFact.Value => throw new NotImplementedException();
+        public IFactType FactType => throw new NotImplementedException();
 
         public bool IsFactContained<TFact>(IFactContainer<TFact> container) where TFact : IFact
         {

@@ -287,7 +287,7 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
+        [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add default fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddDefaultFactTestCase()
@@ -306,7 +306,7 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add 2 default facts with the same types.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddTwoDefaultFactsWithSameTypesTestCase()

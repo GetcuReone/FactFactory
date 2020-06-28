@@ -31,7 +31,7 @@ namespace FactFactory.DefaultTests.Fact
         public void GetFactTypeForContainedFactTestCase()
         {
             GivenEmpty()
-                .When("Create NotContainet", () => new Contained<ResultFact>())
+                .When("Create Contained", () => new Contained<ResultFact>())
                 .Then("Check fact type", fact =>
                 {
                     Assert.IsTrue(fact.GetFactType() is FactType<Contained<ResultFact>>, "Expected another FactType.");
@@ -45,10 +45,24 @@ namespace FactFactory.DefaultTests.Fact
         public void GetFactTypeForNoDerivedFactTestCase()
         {
             GivenEmpty()
-                .When("Create NotContainet", () => new NoDerived<ResultFact>())
+                .When("Create NoDerived", () => new NoDerived<ResultFact>())
                 .Then("Check fact type", fact =>
                 {
                     Assert.IsTrue(fact.GetFactType() is FactType<NoDerived<ResultFact>>, "Expected another FactType.");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.CanDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Get FactType for CanDerived fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void GetFactTypeForCanDerivedFactTestCase()
+        {
+            GivenEmpty()
+                .When("Create CanDerived", () => new CanDerived<ResultFact>())
+                .Then("Check fact type", fact =>
+                {
+                    Assert.IsTrue(fact.GetFactType() is FactType<CanDerived<ResultFact>>, "Expected another FactType.");
                 });
         }
     }

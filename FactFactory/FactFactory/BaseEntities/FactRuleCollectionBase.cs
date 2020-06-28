@@ -1,6 +1,7 @@
 ﻿using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections;
 using System.Collections.Generic;

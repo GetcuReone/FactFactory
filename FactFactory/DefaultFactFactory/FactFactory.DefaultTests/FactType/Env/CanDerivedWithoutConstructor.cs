@@ -1,12 +1,14 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace FactFactoryTests.FactType.Env
+namespace FactFactory.DefaultTests.FactType.Env
 {
-    internal class NotContainedWithoutConstructor : IFact, INotContainedFact
+    internal class CanDerivedWithoutConstructor : IFact, ICanDerivedFact
     {
-        private NotContainedWithoutConstructor()
+        private CanDerivedWithoutConstructor()
         {
 
         }
@@ -20,8 +22,7 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool IsFactContained<TFact>(IFactContainer<TFact> container)
-            where TFact : IFact
+        public bool IsFactContained<TFact>(IFactContainer<TFact> container) where TFact : IFact
         {
             throw new NotImplementedException();
         }

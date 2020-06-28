@@ -5,9 +5,10 @@ using GetcuReone.FactFactory.Versioned.Helpers;
 namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
     /// <summary>
-    /// Information about a fact that is not contained in the container at the time of the function call <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>.
+    /// Contains information about a type of fact that can be derived.
     /// </summary>
-    public sealed class NotContained<TFact> : VersionedFactBase, INotContainedFact
+    /// <typeparam name="TFact"></typeparam>
+    public class CanDerived<TFact> : VersionedFactBase, ICanDerivedFact
         where TFact : IFact
     {
         /// <inheritdoc/>
@@ -16,7 +17,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         /// <summary>
         /// Constructor.
         /// </summary>
-        public NotContained() : base(null)
+        public CanDerived()
         {
             FactType = VersionedFactFactoryHelper.GetFactType<TFact>();
         }
@@ -24,11 +25,11 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         /// <inheritdoc/>
         public override IFactType GetFactType()
         {
-            return VersionedFactFactoryHelper.GetFactType<NotContained<TFact>>();
+            return VersionedFactFactoryHelper.GetFactType<CanDerived<TFact>>();
         }
 
         /// <inheritdoc/>
-        public bool IsFactContained<TFact1>(IFactContainer<TFact1> container)
+        public virtual bool IsFactContained<TFact1>(IFactContainer<TFact1> container)
             where TFact1 : IFact
         {
             return FactType.TryGetFact(container, out TFact1 _);
