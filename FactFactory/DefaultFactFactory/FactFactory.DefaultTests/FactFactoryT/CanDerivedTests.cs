@@ -44,5 +44,29 @@ namespace FactFactoryTests.FactFactoryT
                     => ExpectedDeriveException(() => factFactory.DeriveFact<CanDerived<OtherFact>>()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedMessage);
         }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.CanDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Derive the fact through the rule with the CanDerived fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void DeriveUseRuleWithCanDerivedTestCase()
+        {
+            int value = 2;
+
+            GivenCreateFactFactory()
+                .AndRulesNotNul()
+                .AndAddRules(new Collection 
+                {
+                    () => new Input3Fact(default),
+                    (CanDerived<Input3Fact> _) => new Input2Fact(value),
+                    (Input2Fact fact) => new Input1Fact(fact.Value + 1),
+                })
+                .When("Derive fact1", factory => factory.DeriveFact<Input1Fact>())
+                .Then("Check fact", fact =>
+                {
+                    Assert.IsNotNull(fact, "fact cannot be null");
+                    Assert.AreEqual(3, fact.Value, "fact have other value");
+                });
+        }
     }
 }
