@@ -4,6 +4,7 @@ using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

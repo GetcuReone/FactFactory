@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 
 namespace FactFactoryTests.CommonFacts

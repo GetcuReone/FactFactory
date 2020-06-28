@@ -10,6 +10,7 @@ using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContain
 using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
 using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 
 namespace FactFactory.VersionedTests.VersionedFactRule
 {

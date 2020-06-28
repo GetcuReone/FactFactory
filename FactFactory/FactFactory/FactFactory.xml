@@ -1012,7 +1012,7 @@
             Requesting a desired fact through action.
             </summary>
             <param name="wantAction"></param>
-            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">The action has already been requested before. Or facts requested <see cref="T:GetcuReone.FactFactory.Interfaces.INoDerivedFact"/> or <see cref="T:GetcuReone.FactFactory.Interfaces.INotContainedFact"/></exception>
+            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">The action has already been requested before. Or facts requested <see cref="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INoDerivedFact"/> or <see cref="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INotContainedFact"/></exception>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.WantFact``1(System.Action{``0})">
             <summary>
@@ -1338,11 +1338,6 @@
             The tree is canceled.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.IContainedFact">
-            <summary>
-            Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>
-            </summary>
-        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.ICopy`1">
             <summary>
             Interface for copying objects.
@@ -1560,34 +1555,6 @@
             <param name="fact">Fact.</param>
             <returns>True - it turned out to return the fact</returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.INoDerivedFact">
-            <summary>
-            interface for fact that cannot be calculated
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.INoDerivedFact.Value">
-            <summary>
-            Information about a fact that cannot be calculated
-            </summary>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.INotContainedFact">
-            <summary>
-            Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>
-            </summary>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.ISpecialFact">
-            <summary>
-            Basic interface for special facts.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.ISpecialFact.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
-            <summary>
-            Is the fact contained in the container
-            </summary>
-            <typeparam name="TFact"></typeparam>
-            <param name="container"></param>
-            <returns></returns>
-        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IWantAction`1">
             <summary>
             Desired action information.
@@ -1637,6 +1604,39 @@
             <typeparam name="TWorkFact"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
             <param name="workFact"></param>
+            <param name="container"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.IContainedFact">
+            <summary>
+            Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INoDerivedFact">
+            <summary>
+            interface for fact that cannot be calculated
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.SpecialFacts.INoDerivedFact.Value">
+            <summary>
+            Information about a fact that cannot be calculated
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INotContainedFact">
+            <summary>
+            Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact">
+            <summary>
+            Basic interface for special facts.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
+            <summary>
+            Is the fact contained in the container
+            </summary>
+            <typeparam name="TFact"></typeparam>
             <param name="container"></param>
             <returns></returns>
         </member>

@@ -7,6 +7,7 @@ using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.InnerEntities;
 using GetcuReone.FactFactory.InnerEntities.Enums;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

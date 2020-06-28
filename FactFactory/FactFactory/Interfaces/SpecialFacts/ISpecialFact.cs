@@ -1,4 +1,4 @@
-﻿namespace GetcuReone.FactFactory.Interfaces
+﻿namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
 {
     /// <summary>
     /// Basic interface for special facts.

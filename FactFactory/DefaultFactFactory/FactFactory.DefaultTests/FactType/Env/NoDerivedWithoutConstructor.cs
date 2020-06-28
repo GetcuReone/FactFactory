@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 
 namespace FactFactoryTests.FactType.Env

@@ -1,4 +1,4 @@
-﻿namespace GetcuReone.FactFactory.Interfaces
+﻿namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
 {
     /// <summary>
     /// interface for fact that cannot be calculated

@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 
 namespace GetcuReone.FactFactory.SpecialFacts
 {
