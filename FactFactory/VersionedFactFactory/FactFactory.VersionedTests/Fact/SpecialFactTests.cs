@@ -40,16 +40,16 @@ namespace FactFactory.DefaultTests.Fact
         }
 
         [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get FactType for NoDerived fact.")]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Get FactType for CannotDerived fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void Versioned_GetFactTypeForNoDerivedFactTestCase()
+        public void Versioned_GetFactTypeForCannotDerivedFactTestCase()
         {
             GivenEmpty()
-                .When("Create NotContainet", () => new NoDerived<FactResult>())
+                .When("Create NotContainet", () => new CannotDerived<FactResult>())
                 .Then("Check fact type", fact =>
                 {
-                    Assert.IsTrue(fact.GetFactType() is FactType<NoDerived<FactResult>>, "Expected another FactType.");
+                    Assert.IsTrue(fact.GetFactType() is FactType<CannotDerived<FactResult>>, "Expected another FactType.");
                 });
         }
 

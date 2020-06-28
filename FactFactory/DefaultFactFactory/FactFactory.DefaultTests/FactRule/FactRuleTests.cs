@@ -249,7 +249,7 @@ namespace FactFactoryTests.FactRule
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Return NoDerive fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ReturnNoDeriveFactTestCase()
@@ -260,7 +260,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule((_, __) => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<NoDerived<Input10Fact>>()));
+                        () => new Rule((_, __) => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<CannotDerived<Input10Fact>>()));
                 })
                 .Then("Check error", ex =>
                 {

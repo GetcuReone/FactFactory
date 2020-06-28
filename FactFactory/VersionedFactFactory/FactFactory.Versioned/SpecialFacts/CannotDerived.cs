@@ -7,7 +7,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
     /// <summary>
     /// Contains information about a type of fact that cannot be calculated.
     /// </summary>
-    public sealed class NoDerived<TFact> : VersionedFactBase, INoDerivedFact
+    public sealed class CannotDerived<TFact> : VersionedFactBase, ICannotDerivedFact
         where TFact : IFact
     {
         /// <inheritdoc/>
@@ -16,7 +16,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         /// <summary>
         /// Constructor.
         /// </summary>
-        public NoDerived()
+        public CannotDerived()
         {
             FactType = VersionedFactFactoryHelper.GetFactType<TFact>();
         }
@@ -24,7 +24,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         /// <inheritdoc/>
         public override IFactType GetFactType()
         {
-            return VersionedFactFactoryHelper.GetFactType<NoDerived<TFact>>();
+            return VersionedFactFactoryHelper.GetFactType<CannotDerived<TFact>>();
         }
 
         /// <inheritdoc/>

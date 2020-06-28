@@ -262,27 +262,27 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Successful derive NotContained.")]
+        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Successful derive CannotDerived.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void SuccessfulDeriveNoDerivedTestCase()
+        public void SuccessfulDeriveCannotDerivedTestCase()
         {
             Given("Create factory", () => new FactFactoryCustom())
-                .When("Run Derive", factFactory => factFactory.DeriveFact<NoDerived<OtherFact>>())
+                .When("Run Derive", factFactory => factFactory.DeriveFact<CannotDerived<OtherFact>>())
                 .Then("Check fact", fact => Assert.IsNotNull(fact, "fact cannot be null"));
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Unsuccessful derive NoDerived.")]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Unsuccessful derive CannotDerived.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void UnsuccessfulDeriveNoDerivedTestCase()
+        public void UnsuccessfulDeriveCannotDerivedTestCase()
         {
-            string expectedMessage = $"Failed to calculate one or more facts for the action ({typeof(NoDerived<OtherFact>).Name}).";
+            string expectedMessage = $"Failed to calculate one or more facts for the action ({typeof(CannotDerived<OtherFact>).Name}).";
 
             Given("Create factory", () => new FactFactoryCustom())
                 .AndAddFact(new OtherFact(default))
-                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<NoDerived<OtherFact>>()))
+                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<CannotDerived<OtherFact>>()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotCalculated, expectedMessage);
         }
 

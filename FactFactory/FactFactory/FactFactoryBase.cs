@@ -348,13 +348,13 @@ namespace GetcuReone.FactFactory
 
                         continue;
                     }
-                    else if (wantFact.IsFactType<INoDerivedFact>())
+                    else if (wantFact.IsFactType<ICannotDerivedFact>())
                     {
-                        INoDerivedFact noDerivedFact = wantFact.CreateSpecialFact<INoDerivedFact>();
+                        ICannotDerivedFact cannotDerivedFact = wantFact.CreateSpecialFact<ICannotDerivedFact>();
 
-                        if (!noDerivedFact.FactType.ContainsContainer(container) && !TryDeriveNoFactInfo(noDerivedFact, wantAction, container, rules))
+                        if (!cannotDerivedFact.FactType.ContainsContainer(container) && !TryDeriveCannotDerivedFact(cannotDerivedFact, wantAction, container, rules))
                         {
-                            TFactBase specialFact = noDerivedFact.ConvertFact<TFactBase>();
+                            TFactBase specialFact = cannotDerivedFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
                         }
                         else
@@ -471,7 +471,7 @@ namespace GetcuReone.FactFactory
                                 }
 
                                 bool isNotContained = needFactType.IsFactType<INotContainedFact>();
-                                bool isNoDerive = needFactType.IsFactType<INoDerivedFact>();
+                                bool isNoDerive = needFactType.IsFactType<ICannotDerivedFact>();
                                 bool isContained = needFactType.IsFactType<IContainedFact>();
                                 bool isCanDerived = needFactType.IsFactType<ICanDerivedFact>();
 
@@ -501,14 +501,14 @@ namespace GetcuReone.FactFactory
                                         }
                                     }
 
-                                    // Check INoDerivedFact fact
-                                    else if (needFactType.IsFactType<INoDerivedFact>())
+                                    // Check ICannotDerivedFact fact
+                                    else if (needFactType.IsFactType<ICannotDerivedFact>())
                                     {
-                                        INoDerivedFact noDerivedFact = needFactType.CreateSpecialFact<INoDerivedFact>();
+                                        ICannotDerivedFact cannotDerivedFact = needFactType.CreateSpecialFact<ICannotDerivedFact>();
 
-                                        if (!TryDeriveNoFactInfo(noDerivedFact, wantAction, container, ruleCollection))
+                                        if (!TryDeriveCannotDerivedFact(cannotDerivedFact, wantAction, container, ruleCollection))
                                         {
-                                            specialFacts.Add(noDerivedFact.ConvertFact<TFactBase>());
+                                            specialFacts.Add(cannotDerivedFact.ConvertFact<TFactBase>());
                                             needRemove = true;
                                         }
                                     }
@@ -841,11 +841,11 @@ namespace GetcuReone.FactFactory
             OnFactCalculatedForWantAction(rule.OutputFactType, container, wantAction);
         }
 
-        private bool TryDeriveNoFactInfo(INoDerivedFact noDerivedFact, TWantAction wantAction, TFactContainer container, IList<TFactRule> ruleCollection)
+        private bool TryDeriveCannotDerivedFact(ICannotDerivedFact cannotDerivedFact, TWantAction wantAction, TFactContainer container, IList<TFactRule> ruleCollection)
         {
             try
             {
-                return TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, noDerivedFact.FactType, wantAction, container, ruleCollection, new List<TFactBase>(), out var _);
+                return TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, cannotDerivedFact.FactType, wantAction, container, ruleCollection, new List<TFactBase>(), out var _);
             }
             catch (InvalidDeriveOperationException<TFactBase> ex)
             {
@@ -913,7 +913,7 @@ namespace GetcuReone.FactFactory
         /// Requesting a desired fact through action.
         /// </summary>
         /// <param name="wantAction"></param>
-        /// <exception cref="FactFactoryException">The action has already been requested before. Or facts requested <see cref="INoDerivedFact"/> or <see cref="INotContainedFact"/></exception>
+        /// <exception cref="FactFactoryException">The action has already been requested before. Or facts requested <see cref="ICannotDerivedFact"/> or <see cref="INotContainedFact"/></exception>
         public virtual void WantFact(TWantAction wantAction)
         {
             if (WantActions.IndexOf(wantAction) != -1)

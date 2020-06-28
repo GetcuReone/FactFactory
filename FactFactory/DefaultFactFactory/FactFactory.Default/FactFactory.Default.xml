@@ -188,6 +188,25 @@
         <member name="M:GetcuReone.FactFactory.SpecialFacts.CanDerived`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
             <inheritdoc/>
         </member>
+        <member name="T:GetcuReone.FactFactory.SpecialFacts.CannotDerived`1">
+            <summary>
+            Contains information about a type of fact that cannot be derived.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.SpecialFacts.CannotDerived`1.FactType">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.CannotDerived`1.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.CannotDerived`1.GetFactType">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.CannotDerived`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.SpecialFacts.Contained`1">
             <summary>
             Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>.
@@ -205,25 +224,6 @@
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.SpecialFacts.Contained`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.SpecialFacts.NoDerived`1">
-            <summary>
-            Contains information about a type of fact that cannot be derived.
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.SpecialFacts.NoDerived`1.FactType">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.SpecialFacts.NoDerived`1.#ctor">
-            <summary>
-            Constructor.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.SpecialFacts.NoDerived`1.GetFactType">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.SpecialFacts.NoDerived`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.SpecialFacts.NotContained`1">

@@ -110,43 +110,43 @@ namespace FactFactoryTests.FactType
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Create NoDerived fact.")]
+        [TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Create CannotDerived fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void CreateNoDerivedFactTestCase()
+        public void CreateCannotDerivedFactTestCase()
         {
-            GivenCreateFactType<NoDerived<OtherFact>>()
-                .When("Create NoDerived fact", factType => factType.CreateSpecialFact<INoDerivedFact>())
+            GivenCreateFactType<CannotDerived<OtherFact>>()
+                .When("Create CannotDerived fact", factType => factType.CreateSpecialFact<ICannotDerivedFact>())
                 .Then("Check result", fact =>
                 {
                     Assert.IsNotNull(fact, "fact cannot be null");
-                    Assert.IsTrue(fact is NoDerived<OtherFact>, "Expected another type");
+                    Assert.IsTrue(fact is CannotDerived<OtherFact>, "Expected another type");
                 });
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Create a NoDerived fact using the wrong type.")]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Create a CannotDerived fact using the wrong type.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void CreateNoDerivedUsingWrongTypeTestCase()
+        public void CreateCannotDerivedUsingWrongTypeTestCase()
         {
-            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(INoDerivedFact).FullName} type.";
+            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(ICannotDerivedFact).FullName} type.";
 
             GivenCreateFactType<OtherFact>()
-                .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<INoDerivedFact>()))
+                .When("Create CannotDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<ICannotDerivedFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.NoDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Create a NoDerived fact without default constructor.")]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Create a CannotDerived fact without default constructor.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void CreateNoDerivedWithoutDefaultConstructorTestCase()
+        public void CreateCannotDerivedWithoutDefaultConstructorTestCase()
         {
-            string expectedReason = $"{typeof(NoDerivedWithoutConstructor).FullName} doesn't have a default constructor.";
+            string expectedReason = $"{typeof(CannotDerivedWithoutConstructor).FullName} doesn't have a default constructor.";
 
-            GivenCreateFactType<NoDerivedWithoutConstructor>()
-                .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<INoDerivedFact>()))
+            GivenCreateFactType<CannotDerivedWithoutConstructor>()
+                .When("Create CannotDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<ICannotDerivedFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
@@ -174,7 +174,7 @@ namespace FactFactoryTests.FactType
             string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(INotContainedFact).FullName} type.";
 
             GivenCreateFactType<OtherFact>()
-                .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<INotContainedFact>()))
+                .When("Create NotContained fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<INotContainedFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
@@ -187,13 +187,13 @@ namespace FactFactoryTests.FactType
             string expectedReason = $"{typeof(NotContainedWithoutConstructor).FullName} doesn't have a default constructor.";
 
             GivenCreateFactType<NotContainedWithoutConstructor>()
-                .When("Create NoDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<INotContainedFact>()))
+                .When("Create NotContained fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<INotContainedFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
         [TestMethod]
         [TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.CanDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Create NoDerived fact.")]
+        [Description("Create CanDerived fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateCanDerivedFactTestCase()
         {

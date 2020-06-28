@@ -4,9 +4,9 @@ using System;
 
 namespace FactFactoryTests.FactType.Env
 {
-    internal class NoDerivedWithoutConstructor : IFact, INoDerivedFact
+    internal class CannotDerivedWithoutConstructor : IFact, ICannotDerivedFact
     {
-        private NoDerivedWithoutConstructor()
+        private CannotDerivedWithoutConstructor()
         {
 
         }

@@ -1,9 +1,9 @@
 ﻿namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
 {
     /// <summary>
-    /// Interface for fact that cannot be calculated.
+    /// Interface for fact that cannot be derived.
     /// </summary>
-    public interface INoDerivedFact : IRuntimeSpecialFact
+    public interface ICannotDerivedFact : IRuntimeSpecialFact
     {
     }
 }

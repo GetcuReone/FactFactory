@@ -1012,7 +1012,7 @@
             Requesting a desired fact through action.
             </summary>
             <param name="wantAction"></param>
-            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">The action has already been requested before. Or facts requested <see cref="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INoDerivedFact"/> or <see cref="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INotContainedFact"/></exception>
+            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">The action has already been requested before. Or facts requested <see cref="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ICannotDerivedFact"/> or <see cref="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INotContainedFact"/></exception>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.WantFact``1(System.Action{``0})">
             <summary>
@@ -1607,19 +1607,19 @@
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.IContainedFact">
-            <summary>
-            Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>.
-            </summary>
-        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ICanDerivedFact">
             <summary>
             Interface for fact that can be derived.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INoDerivedFact">
+        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ICannotDerivedFact">
             <summary>
-            Interface for fact that cannot be calculated.
+            Interface for fact that cannot be derived.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.IContainedFact">
+            <summary>
+            Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INotContainedFact">
