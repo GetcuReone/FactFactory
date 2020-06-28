@@ -309,6 +309,26 @@ namespace FactFactoryTests.FactRule
         }
 
         [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.CanDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Return CanDerived fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void ReturnCanDerivedFactTestCase()
+        {
+            string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
+
+            GivenEmpty()
+                .When("Create rule", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule((_, __) => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<CanDerived<Input10Fact>>()));
+                })
+                .Then("Check error", ex =>
+                {
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
+                });
+        }
+
+        [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.Contained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create rule with invalid input fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]

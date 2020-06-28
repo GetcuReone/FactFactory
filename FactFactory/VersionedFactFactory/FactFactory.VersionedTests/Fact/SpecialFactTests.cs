@@ -52,5 +52,19 @@ namespace FactFactory.DefaultTests.Fact
                     Assert.IsTrue(fact.GetFactType() is FactType<NoDerived<FactResult>>, "Expected another FactType.");
                 });
         }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.CanDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Get FactType for CanDerived fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void Versioned_GetFactTypeForCanDerivedFactTestCase()
+        {
+            GivenEmpty()
+                .When("Create NotContainet", () => new CanDerived<FactResult>())
+                .Then("Check fact type", fact =>
+                {
+                    Assert.IsTrue(fact.GetFactType() is FactType<CanDerived<FactResult>>, "Expected another FactType.");
+                });
+        }
     }
 }

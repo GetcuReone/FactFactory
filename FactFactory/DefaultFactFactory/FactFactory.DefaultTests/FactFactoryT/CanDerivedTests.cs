@@ -68,5 +68,29 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(3, fact.Value, "fact have other value");
                 });
         }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.CanDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Derive with CanDerived fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void DeriveWithCanDerivedTestCase()
+        {
+            GivenCreateFactFactory()
+                .AndRulesNotNul()
+                .AndAddFact(new Input14Fact(14))
+                .AndAddRules(new Collection
+                {
+                    () => new Input9Fact(default),
+                    (Input12Fact fact) => new Input11Fact(fact.Value + 11),
+                    (Input14Fact fact, CanDerived<Input9Fact> no) => new Input12Fact(fact.Value + 12),
+                    (Input8Fact fact) => new Input9Fact(fact.Value + 12),
+                })
+                .When("Derive", factory => factory.DeriveFact<Input11Fact>())
+                .Then("Check fact", fact =>
+                {
+                    Assert.IsNotNull(fact, "fact cannot be null");
+                    Assert.AreEqual(37, fact.Value, "fact have other value");
+                });
+        }
     }
 }
