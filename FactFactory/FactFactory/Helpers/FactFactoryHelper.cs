@@ -171,7 +171,7 @@ namespace GetcuReone.FactFactory.Helpers
                 {
                     type.IsFactType<INotContainedFact>(),
                     type.IsFactType<IContainedFact>(),
-                    type.IsFactType<INoDerivedFact>(),
+                    type.IsFactType<ICannotDerivedFact>(),
                 };
 
                 if (specialResult.Count(result => result == true) > 1)

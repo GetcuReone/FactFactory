@@ -57,9 +57,9 @@
             public const string NotContained = "not_contained_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.INoDerivedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.ICannotDerivedFact"/>.
             /// </summary>
-            public const string NoDerived = "no_derived_test";
+            public const string CannotDerived = "cannot_derived_test";
 
             /// <summary>
             /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.ICanDerivedFact"/>.

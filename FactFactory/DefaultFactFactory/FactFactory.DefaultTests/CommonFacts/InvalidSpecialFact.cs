@@ -5,7 +5,7 @@ using System;
 
 namespace FactFactoryTests.CommonFacts
 {
-    internal sealed class InvalidSpecialFact : FactBase<int>, INoDerivedFact, IContainedFact
+    internal sealed class InvalidSpecialFact : FactBase<int>, ICannotDerivedFact, IContainedFact
     {
         public InvalidSpecialFact() : base(0)
         {
