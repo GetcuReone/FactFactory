@@ -5,9 +5,10 @@ using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 namespace GetcuReone.FactFactory.SpecialFacts
 {
     /// <summary>
-    /// Information about a fact that is contained in the container at the time of the function call <see cref="FactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>.
+    /// Contains information about a type of fact that can be derived.
     /// </summary>
-    public class Contained<TFact> : FactBase, IContainedFact
+    /// <typeparam name="TFact"></typeparam>
+    public class CanDerived<TFact> : FactBase, IContainedFact
         where TFact : IFact
     {
         /// <inheritdoc/>
@@ -16,7 +17,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
         /// <summary>
         /// Constructor.
         /// </summary>
-        public Contained()
+        public CanDerived()
         {
             FactType = DefaultFactFactoryHelper.GetFactType<TFact>();
         }
@@ -24,7 +25,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
         /// <inheritdoc/>
         public override IFactType GetFactType()
         {
-            return DefaultFactFactoryHelper.GetFactType<Contained<TFact>>();
+            return DefaultFactFactoryHelper.GetFactType<CanDerived<TFact>>();
         }
 
         /// <inheritdoc/>
