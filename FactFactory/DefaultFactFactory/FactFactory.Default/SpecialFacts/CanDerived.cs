@@ -8,7 +8,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
     /// Contains information about a type of fact that can be derived.
     /// </summary>
     /// <typeparam name="TFact"></typeparam>
-    public class CanDerived<TFact> : FactBase, IContainedFact
+    public class CanDerived<TFact> : FactBase, ICanDerivedFact
         where TFact : IFact
     {
         /// <inheritdoc/>

@@ -289,7 +289,7 @@ namespace GetcuReone.FactFactory
         /// <param name="deriveErrorDetail"></param>
         /// <param name="specialFacts"></param>
         /// <returns></returns>
-        private bool TryDeriveTreesForWantAction(out List<FactRuleTree<TFactBase, TFactRule>> treesResult, TWantAction          wantAction, TFactContainer container, TFactRuleCollection rules, out List<TFactBase> specialFacts, out DeriveErrorDetail<TFactBase> deriveErrorDetail)
+        private bool TryDeriveTreesForWantAction(out List<FactRuleTree<TFactBase, TFactRule>> treesResult, TWantAction wantAction, TFactContainer container, TFactRuleCollection rules, out List<TFactBase> specialFacts, out DeriveErrorDetail<TFactBase> deriveErrorDetail)
         {
             IList<TFactRule> rulesForDerive = GetRulesForWantAction(wantAction, container, rules);
 
@@ -358,11 +358,11 @@ namespace GetcuReone.FactFactory
                         deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
                         continue;
                     }
-                    else if (wantFact.IsFactType<INoDerivedFact>())
+                    else if (wantFact.IsFactType<ICanDerivedFact>())
                     {
                         ICanDerivedFact canDerivedFact = wantFact.CreateSpecialFact<ICanDerivedFact>();
 
-                        if (canDerivedFact.IsFactContained(container) || TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, canDerivedFact.FactType, wantAction, container, rules, specialFacts, out List<DeriveFactErrorDetail> __))
+                        if (canDerivedFact.IsFactContained(container) || TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, canDerivedFact.FactType, wantAction, container, rulesForDerive, specialFacts, out List<DeriveFactErrorDetail> __))
                         {
                             TFactBase specialFact = canDerivedFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
