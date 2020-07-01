@@ -95,16 +95,17 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.CanDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive a fact using a recursive rule.")]
+        [Description("Derive a fact using a recursive rules.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveFactFromRecursiveRuleTestCase()
+        public void DeriveFactFromRecursiveRulesTestCase()
         {
-            string expectedMessage = "Rule of fact is recursive. Rule: <(CanDerived`1) => (ResultFact)>.";
+            string expectedMessage = "Failed to derive one or more facts for the action (ResultFact).";
 
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
                 {
-                    (CanDerived<ResultFact> _) => new ResultFact(default),
+                    (CanDerived<Input1Fact> _) => new ResultFact(default),
+                    (CanDerived<ResultFact> _) => new Input1Fact(default),
                 })
                 .When("Derive", factory => ExpectedDeriveException(() => factory.DeriveFact<ResultFact>()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);

@@ -493,7 +493,6 @@ namespace GetcuReone.FactFactory
                                     else if (isContained)
                                     {
                                         IContainedFact containedFact = needFactType.CreateSpecialFact<IContainedFact>();
-                                        containedFact.VerifyRecursive<IContainedFact, TFactBase, TFactRule>(node.FactRule);
 
                                         if (container.Any(fact => containedFact.IsFactContained(container)))
                                         {
@@ -518,7 +517,6 @@ namespace GetcuReone.FactFactory
                                     else
                                     {
                                         ICanDerivedFact canDerivedFact = needFactType.CreateSpecialFact<ICanDerivedFact>();
-                                        canDerivedFact.VerifyRecursive<ICanDerivedFact, TFactBase, TFactRule>(node.FactRule);
 
                                         if (TryDeriveRuntimeSpecialFact(canDerivedFact, wantAction, container, ruleCollection, specialFacts))
                                         {
@@ -851,7 +849,10 @@ namespace GetcuReone.FactFactory
 
             try
             {
-                return TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, runtimeSpecialFact.FactType, wantAction, container, ruleCollection, specialFacts, out var _);
+                // Exclude the rules that accept our special fact at the input to exclude the possibility of recursion.
+                var runtimeSpecialFactType = runtimeSpecialFact.GetFactType();
+                var rulesWithoutCurrentFact = ruleCollection.Where(rule => rule.InputFactTypes.All(factType => !factType.Compare(runtimeSpecialFactType))).ToList();
+                return TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, runtimeSpecialFact.FactType, wantAction, container, rulesWithoutCurrentFact, new List<TFactBase>(specialFacts), out var _);
             }
             catch (InvalidDeriveOperationException<TFactBase> ex)
             {
