@@ -1,16 +1,15 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Versioned;
-using GetcuReone.FactFactory.Versioned.Interfaces;
+using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
-using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
-using GetcuReone.GetcuTestAdapter;
-using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 
 namespace FactFactory.VersionedTests.VersionedFactRule
 {
@@ -28,7 +27,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .Then("Check result", rule =>
                 {
                     Assert.IsNotNull(rule.VersionType, "The rule does not contain version information");
-                    Assert.IsTrue(GetFactType<Version1>().Compare(rule.VersionType), $"{nameof(Rule.VersionType)} does not store version information");
+                    Assert.IsTrue(GetFactType<Version1>().EqualsFactType(rule.VersionType), $"{nameof(Rule.VersionType)} does not store version information");
                 });
         }
 
@@ -55,11 +54,11 @@ namespace FactFactory.VersionedTests.VersionedFactRule
             Rule firstRule = null;
             Rule secondRule = null;
 
-            Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
-                .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
-                .And("Compare rules", _ => Assert.IsTrue(firstRule.Compare(secondRule), "rules are not equal"))
-                .When("Compare rules without version", _ => firstRule.CompareWithoutVersion(secondRule))
-                .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
+            Given("Create first rule.", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
+                .And("Create second rule.", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
+                .And("Rules equality.", _ => Assert.IsTrue(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
+                .When("Compare rules without version.", _ => firstRule.EqualsRuleWithoutVersion(secondRule))
+                .Then("Check result.", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
 
         [TestMethod]
@@ -73,8 +72,8 @@ namespace FactFactory.VersionedTests.VersionedFactRule
 
             Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
                 .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
-                .And("Compare rules", _ => Assert.IsTrue(firstRule.Compare(secondRule), "rules are not equal"))
-                .When("Compare rules without version", _ => firstRule.CompareWithoutVersion(secondRule))
+                .And("Compare rules", _ => Assert.IsTrue(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
+                .When("Compare rules without version", _ => firstRule.EqualsRuleWithoutVersion(secondRule))
                 .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
 
@@ -89,8 +88,8 @@ namespace FactFactory.VersionedTests.VersionedFactRule
 
             Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
                 .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version2>(), GetFactType<Fact1>()))
-                .And("Compare rules", _ => Assert.IsFalse(firstRule.Compare(secondRule), "rules are not equal"))
-                .When("Compare rules without version", _ => firstRule.CompareWithoutVersion(secondRule))
+                .And("Compare rules", _ => Assert.IsFalse(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
+                .When("Compare rules without version", _ => firstRule.EqualsRuleWithoutVersion(secondRule))
                 .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
 
@@ -105,8 +104,8 @@ namespace FactFactory.VersionedTests.VersionedFactRule
 
             Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
                 .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
-                .And("Compare rules", _ => Assert.IsFalse(firstRule.Compare(secondRule), "rules are not equal"))
-                .When("Compare rules without version", _ => firstRule.CompareWithoutVersion(secondRule))
+                .And("Compare rules", _ => Assert.IsFalse(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
+                .When("Compare rules without version", _ => firstRule.EqualsRuleWithoutVersion(secondRule))
                 .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
 

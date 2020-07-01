@@ -40,7 +40,7 @@ namespace GetcuReone.FactFactory.BaseEntities
 
             new List<IFactType> { OutputFactType }.CheckArgumentFacts<TFactBase>();
 
-            if (InputFactTypes.Any(factType => factType.Compare(outputFactType)))
+            if (InputFactTypes.Any(factType => factType.EqualsFactType(outputFactType)))
                 throw new ArgumentException("Cannot request a fact calculated according to the rule.");
 
         }
@@ -67,12 +67,14 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public virtual bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule<TFactBase>
+        public override bool EqualsWork<TFactWork, TWantAction, TFactContainer>(TFactWork workFact, TWantAction wantAction, TFactContainer container)
         {
-            if (!OutputFactType.Compare(factRule.OutputFactType))
+            if (!(workFact is IFactRule<TFactBase> factRule))
+                return false;
+            if (!OutputFactType.EqualsFactType(factRule.OutputFactType))
                 return false;
 
-            return EqualsFactTypes(factRule.InputFactTypes, InputFactTypes);
+            return base.EqualsWork(workFact, wantAction, container);
         }
 
         /// <inheritdoc />
@@ -91,7 +93,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             foreach(var fact in container)
             {
                 IFactType type = fact.GetFactType();
-                IFactType notNeedFact = InputFactTypes.FirstOrDefault(t => t.Compare(type));
+                IFactType notNeedFact = InputFactTypes.FirstOrDefault(t => t.EqualsFactType(type));
 
                 if (notNeedFact != null)
                     result.Remove(notNeedFact);

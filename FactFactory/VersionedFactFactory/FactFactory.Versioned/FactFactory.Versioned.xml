@@ -112,7 +112,7 @@
             <param name="inputFactTypes"></param>
             <param name="outputFactType"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase`1.CompareWithoutVersion``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase`1.EqualsRuleWithoutVersion``1(``0)">
             <summary>
             Comparison of rules for calculating facts without regard to version.
             </summary>
@@ -387,7 +387,7 @@
             Version rule for calculating a fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactRule`1.CompareWithoutVersion``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactRule`1.EqualsRuleWithoutVersion``1(``0)">
             <summary>
             Comparison of rules for calculating facts without regard to version.
             </summary>

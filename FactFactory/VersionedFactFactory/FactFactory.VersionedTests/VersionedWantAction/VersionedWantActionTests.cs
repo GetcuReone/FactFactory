@@ -28,7 +28,7 @@ namespace FactFactory.VersionedTests.VersionedWantAction
                 .Then("Check result", wantAction =>
                 {
                     Assert.IsNotNull(wantAction.VersionType, "The rule does not contain version information");
-                    Assert.IsTrue(GetFactType<Version1>().Compare(wantAction.VersionType), $"{nameof(wantAction.VersionType)} does not store version information");
+                    Assert.IsTrue(GetFactType<Version1>().EqualsFactType(wantAction.VersionType), $"{nameof(wantAction.VersionType)} does not store version information");
                 });
         }
 

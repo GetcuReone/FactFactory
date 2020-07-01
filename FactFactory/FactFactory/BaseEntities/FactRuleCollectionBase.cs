@@ -119,6 +119,36 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
+        /// Rules equality.
+        /// </summary>
+        /// <param name="firstRule"></param>
+        /// <param name="secondRule"></param>
+        /// <returns></returns>
+        protected virtual bool EqualsRules(TFactRule firstRule, TFactRule secondRule)
+        {
+            if (firstRule == null && secondRule == null)
+                return true;
+            if (firstRule == null || secondRule == null)
+                return false;
+            if (firstRule.OutputFactType != null && secondRule.OutputFactType == null)
+                return false;
+            if (firstRule.OutputFactType == null && secondRule.OutputFactType != null)
+                return false;
+            if (!firstRule.OutputFactType.EqualsFactType(secondRule.OutputFactType))
+                return false;
+            if (firstRule.InputFactTypes.IsNullOrEmpty() && secondRule.InputFactTypes.IsNullOrEmpty())
+                return true;
+            if (firstRule.InputFactTypes.IsNullOrEmpty() || secondRule.InputFactTypes.IsNullOrEmpty())
+                return false;
+            if (firstRule.InputFactTypes.Count != secondRule.InputFactTypes.Count)
+                return false;
+
+            return firstRule.InputFactTypes
+                .All(firstType => secondRule.InputFactTypes
+                    .Any(secondType => firstType.EqualsFactType(secondType)));
+        }
+
+        /// <summary>
         /// Add rule.
         /// </summary>
         /// <param name="item"></param>
@@ -683,13 +713,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Determines whether an element is in the <typeparamref name="TFactRule"/>. Use method <see cref="IFactRule{TFact}.Compare{TFactRule}(TFactRule)"/>.
+        /// Determines whether an element is in the <typeparamref name="TFactRule"/>. Use method <see cref="EqualsRules(TFactRule, TFactRule)"/>.
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
         public bool Contains(TFactRule item)
         {
-            return _list.Any(r => r.Compare(item));
+            return _list.Any(r => EqualsRules(item, r));
         }
 
         /// <summary>

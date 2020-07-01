@@ -39,9 +39,9 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <typeparam name="TVersionedFactRule"></typeparam>
         /// <param name="versionedFactRule"></param>
         /// <returns></returns>
-        public bool CompareWithoutVersion<TVersionedFactRule>(TVersionedFactRule versionedFactRule) where TVersionedFactRule : IVersionedFactRule<TFactBase>
+        public bool EqualsRuleWithoutVersion<TVersionedFactRule>(TVersionedFactRule versionedFactRule) where TVersionedFactRule : IVersionedFactRule<TFactBase>
         {
-            if (!OutputFactType.Compare(versionedFactRule.OutputFactType))
+            if (!OutputFactType.EqualsFactType(versionedFactRule.OutputFactType))
                 return false;
 
             return EqualsFactTypes(

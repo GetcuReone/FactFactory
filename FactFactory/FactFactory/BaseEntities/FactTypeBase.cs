@@ -23,7 +23,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Compare <see cref="IFactType"/>
         /// </summary>
         /// <param name="factInfo"></param>
-        public virtual bool Compare<TFactType>(TFactType factInfo) where TFactType : IFactType
+        public virtual bool EqualsFactType<TFactType>(TFactType factInfo) where TFactType : IFactType
         {
             return factInfo is FactTypeBase<TFact>;
         }

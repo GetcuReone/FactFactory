@@ -55,7 +55,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             {
                 foreach (var fact in second)
                 {
-                    if (first.All(f => !f.Compare(fact)))
+                    if (first.All(f => !f.EqualsFactType(fact)))
                         return false;
                 }
 

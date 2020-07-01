@@ -61,7 +61,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             foreach (var fact in container)
             {
                 IFactType type = fact.GetFactType();
-                IFactType notNeedFact = InputFactTypes.FirstOrDefault(t => t.Compare(type));
+                IFactType notNeedFact = InputFactTypes.FirstOrDefault(t => t.EqualsFactType(type));
 
                 if (notNeedFact != null)
                     result.Remove(notNeedFact);

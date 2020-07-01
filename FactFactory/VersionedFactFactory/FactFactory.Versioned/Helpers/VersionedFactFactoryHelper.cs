@@ -85,7 +85,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             }
             else
             {
-                List<TFactBase> facts = container.Where(fact => fact.GetFactType().Compare(searchFactType)).ToList();
+                List<TFactBase> facts = container.Where(fact => fact.GetFactType().EqualsFactType(searchFactType)).ToList();
 
                 if (facts.Count == 0)
                     return null;
