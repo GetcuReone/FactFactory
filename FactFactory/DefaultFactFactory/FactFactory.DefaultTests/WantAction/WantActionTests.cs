@@ -64,7 +64,7 @@ namespace FactFactoryTests.WantAction
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void WantAction_RequestEntryInvalidFactTestCase()
         {
-            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}";
+            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}.";
 
             GivenEmpty()
                 .When("Create wantAction", _ =>
@@ -86,7 +86,7 @@ namespace FactFactoryTests.WantAction
         public void RequestInvalidSpecialFactTestCase()
         {
             IFactType invalidFactType = GetFactType<InvalidSpecialFact>();
-            string expectedReason = $"{invalidFactType.FactName} implements more than one special fact interface";
+            string expectedReason = $"{invalidFactType.FactName} implements more than one runtime special fact interface.";
 
             GivenEmpty()
                 .When("Create wantAction", _ =>

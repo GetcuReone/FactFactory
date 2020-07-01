@@ -30,6 +30,8 @@ namespace GetcuReone.FactFactory.BaseEntities
                 {
                     factType.CheckSpecialFactType();
                 });
+
+                InputFactTypes = factTypes;
             }
             else
                 InputFactTypes = new ReadOnlyCollection<IFactType>(new List<IFactType>(0));

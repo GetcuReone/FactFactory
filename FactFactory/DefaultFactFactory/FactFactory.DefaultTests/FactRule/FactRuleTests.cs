@@ -192,6 +192,8 @@ namespace FactFactoryTests.FactRule
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RequestEntryCalculatedByRuleFactTestCase()
         {
+            string expectedReason = "Cannot request a fact calculated according to the rule.";
+
             GivenEmpty()
                 .When("Create rule", _ =>
                 {
@@ -201,7 +203,7 @@ namespace FactFactoryTests.FactRule
                 .Then("Check error", ex => 
                 {
                     Assert.IsNotNull(ex, "error is null");
-                    Assert.AreEqual("Cannot request a fact calculated according to the rule", ex.Message, "Another message expected");
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
                 });
         }
 
@@ -211,7 +213,7 @@ namespace FactFactoryTests.FactRule
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void Rule_RequestInvalidFactTestCase()
         {
-            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}";
+            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}.";
 
             GivenEmpty()
                 .When("Create rule", _ =>
@@ -233,7 +235,7 @@ namespace FactFactoryTests.FactRule
         public void Rule_RequestEntryInvalidFactTestCase()
         {
             IFactType inputType = GetFactType<InvalidFact>();
-            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}";
+            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}.";
 
             GivenEmpty()
                 .When("Create rule", _ =>
@@ -335,7 +337,7 @@ namespace FactFactoryTests.FactRule
         public void CreateRuleWithInvalidInputFactTypeTestCase()
         {
             IFactType invalidFactType = GetFactType<InvalidSpecialFact>();
-            string expectedReason = $"{invalidFactType.FactName} implements more than one special fact interface";
+            string expectedReason = $"{invalidFactType.FactName} implements more than one runtime special fact interface.";
 
             GivenEmpty()
                 .When("Create wantAction", _ =>
