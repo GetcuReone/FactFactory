@@ -17,9 +17,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     {
         private readonly Func<IFactContainer<TFactBase>, IWantAction<TFactBase>, TFactBase> _func;
 
-        /// <summary>
-        /// Information on input factacles rules.
-        /// </summary>
+        /// <inheritdoc/>
         public IReadOnlyCollection<IFactType> InputFactTypes { get; }
 
         /// <summary>
@@ -90,14 +88,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             }
         }
 
-        /// <summary>
-        /// Rule of fact calculate.
-        /// </summary>
-        /// <param name="container"></param>
-        /// <param name="wantAction"></param>
-        /// <typeparam name="TContainer"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public virtual TFactBase Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
             where TContainer : IFactContainer<TFactBase>
             where TWantAction : IWantAction<TFactBase>
@@ -110,14 +101,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             return fact;
         }
 
-        /// <summary>
-        /// Is it possible to calculate the fact.
-        /// </summary>
-        /// <param name="container"></param>
-        /// <param name="wantAction"></param>
-        /// <typeparam name="TContainer"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public virtual bool CanCalculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
             where TContainer : IFactContainer<TFactBase>
             where TWantAction : IWantAction<TFactBase>
@@ -125,12 +109,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             return InputFactTypes.All(factInfo => factInfo.ContainsContainer(container));
         }
 
-        /// <summary>
-        /// Compare rules.
-        /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <param name="factRule"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public virtual bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule<TFactBase>
         {
             if (!OutputFactType.Compare(factRule.OutputFactType))
@@ -145,14 +124,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             return $"({string.Join(", ", InputFactTypes.Select(f => f.FactName).ToList())}) => ({OutputFactType.FactName})";
         }
 
-        /// <summary>
-        /// True, the current object is more priority than <paramref name="workFact"/>.
-        /// </summary>
-        /// <typeparam name="TWorkFact"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="workFact"></param>
-        /// <param name="container"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public virtual bool IsMorePriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
             where TWorkFact : IWorkFact<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>
@@ -160,14 +132,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             return false;
         }
 
-        /// <summary>
-        /// True, the current object is less priority than <paramref name="workFact"/>.
-        /// </summary>
-        /// <typeparam name="TWorkFact"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="workFact"></param>
-        /// <param name="container"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public virtual bool IsLessPriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
             where TWorkFact : IWorkFact<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>
@@ -175,14 +140,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             return false;
         }
 
-        /// <summary>
-        /// Get the necessary fact types.
-        /// </summary>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="wantAction"></param>
-        /// <param name="container"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public virtual List<IFactType> GetNecessaryFactTypes<TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
             where TWantAction : IWantAction<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>
@@ -199,6 +157,15 @@ namespace GetcuReone.FactFactory.BaseEntities
             }
 
             return result;
+        }
+
+        /// <inheritdoc/>
+        public virtual bool Compatible<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction, TFactContainer container)
+            where TFactRule : IFactRule<TFactBase>
+            where TWantAction : IWantAction<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>
+        {
+            return true;
         }
     }
 }

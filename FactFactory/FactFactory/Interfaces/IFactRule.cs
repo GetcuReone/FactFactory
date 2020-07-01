@@ -62,5 +62,20 @@ namespace GetcuReone.FactFactory.Interfaces
         List<IFactType> GetNecessaryFactTypes<TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
             where TWantAction : IWantAction<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>;
+
+        /// <summary>
+        /// Is the <paramref name="factRule"/> rule compatible with the current.
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="factRule"></param>
+        /// <param name="wantAction"></param>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        bool Compatible<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction,  TFactContainer container)
+            where TFactRule : IFactRule<TFactBase>
+            where TWantAction: IWantAction<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>;
     }
 }
