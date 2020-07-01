@@ -2,7 +2,6 @@
 using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace GetcuReone.FactFactory.BaseEntities
@@ -10,40 +9,29 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Base class for <see cref="IWantAction{TFact}"/>.
     /// </summary>
-    public abstract class WantActionBase<TFactBase> : IWantAction<TFactBase>
+    public abstract class WantActionBase<TFactBase> : FactWorkBase<TFactBase>, IWantAction<TFactBase>
         where TFactBase : IFact
     {
         private readonly Action<IFactContainer<TFactBase>> _action;
-
-        /// <summary>
-        /// Facts required to launch an action.
-        /// </summary>
-        public IReadOnlyCollection<IFactType> InputFactTypes { get; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
-        protected WantActionBase(Action<IFactContainer<TFactBase>> wantAction, IReadOnlyCollection<IFactType> factTypes)
+        protected WantActionBase(Action<IFactContainer<TFactBase>> wantAction, List<IFactType> factTypes)
+            : base(factTypes)
         {
             _action = wantAction ?? throw new ArgumentNullException(nameof(wantAction));
 
-            if (factTypes.IsNullOrEmpty())
+            if (InputFactTypes.IsNullOrEmpty())
                 throw new ArgumentException("factTypes cannot be empty. The desired action should request a fact on entry.");
-
-            factTypes.CheckArgumentFacts<TFactBase>();
-
-            foreach (IFactType type in factTypes)
-                type.CheckSpecialFactType();
-
-            InputFactTypes = factTypes;
         }
 
         /// <summary>
         /// Run action.
         /// </summary>
-        /// <typeparam name="TFactContainer">container with <see cref="InputFactTypes"/>.</typeparam>
+        /// <typeparam name="TFactContainer">container with <see cref="IFactWork{TFactBase}.InputFactTypes"/>.</typeparam>
         /// <param name="container"></param>
         public virtual void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer<TFactBase>
         {
@@ -57,36 +45,6 @@ namespace GetcuReone.FactFactory.BaseEntities
         public override string ToString()
         {
             return $"({string.Join(", ", InputFactTypes.Select(f => f.FactName).ToList())})";
-        }
-
-        /// <summary>
-        /// True, the current object is more priority than <paramref name="workFact"/>.
-        /// </summary>
-        /// <typeparam name="TWorkFact"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="workFact"></param>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        public virtual bool IsMorePriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
-            where TWorkFact : IWorkFact<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// True, the current object is less priority than <paramref name="workFact"/>.
-        /// </summary>
-        /// <typeparam name="TWorkFact"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="workFact"></param>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        public virtual bool IsLessPriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
-            where TWorkFact : IWorkFact<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
-        {
-            return false;
         }
 
         /// <summary>

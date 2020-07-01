@@ -4,6 +4,7 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 using VWantAction = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 
 namespace FactFactory.VersionedTests.VersionedWantAction
@@ -13,7 +14,7 @@ namespace FactFactory.VersionedTests.VersionedWantAction
     {
         private VWantAction CreateVersionedWantAction(params IFactType[] factTypes)
         {
-            return new VWantAction(ct => { }, factTypes);
+            return new VWantAction(ct => { }, factTypes.ToList());
         }
 
         [TestMethod]

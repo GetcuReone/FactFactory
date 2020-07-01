@@ -44,7 +44,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             if (!OutputFactType.Compare(versionedFactRule.OutputFactType))
                 return false;
 
-            return CompareFactTypes(
+            return EqualsFactTypes(
                 InputFactTypes.Where(factType => !factType.IsFactType<IVersionFact>()).ToList(),
                 versionedFactRule.InputFactTypes.Where(factType => !factType.IsFactType<IVersionFact>()).ToList());
         }
@@ -100,12 +100,12 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <summary>
         /// True, the current object is more priority than <paramref name="workFact"/>.
         /// </summary>
-        /// <typeparam name="TWorkFact"></typeparam>
+        /// <typeparam name="TFactWork"></typeparam>
         /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="workFact"></param>
         /// <param name="container"></param>
         /// <returns></returns>
-        public override bool IsMorePriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
+        public override bool IsMorePriorityThan<TFactWork, TFactContainer>(TFactWork workFact, TFactContainer container)
         {
             return VersionedFactFactoryHelper.IsMorePriorityThan(this, workFact, container);
         }
@@ -113,12 +113,12 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <summary>
         /// True, the current object is less priority than <paramref name="workFact"/>.
         /// </summary>
-        /// <typeparam name="TWorkFact"></typeparam>
+        /// <typeparam name="TFactWork"></typeparam>
         /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="workFact"></param>
         /// <param name="container"></param>
         /// <returns></returns>
-        public override bool IsLessPriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
+        public override bool IsLessPriorityThan<TFactWork, TFactContainer>(TFactWork workFact, TFactContainer container)
         {
             return VersionedFactFactoryHelper.IsLessPriorityThan(this, workFact, container);
         }

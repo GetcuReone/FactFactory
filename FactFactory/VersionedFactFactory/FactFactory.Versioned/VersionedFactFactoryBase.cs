@@ -316,8 +316,7 @@ namespace GetcuReone.FactFactory.Versioned
             var wantActions = new List<TWantAction>(WantActions);
             WantActions.Clear();
 
-            var inputFacts = new List<IFactType> { GetFactType<TFact>(), GetFactType<TVersion>()}
-                .ToReadOnlyCollection();
+            var inputFacts = new List<IFactType> { GetFactType<TFact>(), GetFactType<TVersion>() };
 
             WantFact(CreateWantAction(
                 container => fact = GetCorrectFact<TFact>(container, inputFacts),

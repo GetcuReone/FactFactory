@@ -136,9 +136,9 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             return null;
         }
 
-        internal static bool IsMorePriorityThan<TFactBase, TWorkFact, TFactContainer>(IWorkFact<TFactBase> firstWork, TWorkFact secondWork, TFactContainer container)
+        internal static bool IsMorePriorityThan<TFactBase, TFactWork, TFactContainer>(IFactWork<TFactBase> firstWork, TFactWork secondWork, TFactContainer container)
             where TFactBase : IVersionedFact
-            where TWorkFact : IWorkFact<TFactBase>
+            where TFactWork : IFactWork<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>
         {
             if (firstWork is IFactTypeVersionInfo firstVersionInfo)
@@ -163,9 +163,9 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             return false;
         }
 
-        internal static bool IsLessPriorityThan<TFactBase, TWorkFact, TFactContainer>(IWorkFact<TFactBase> firstWork, TWorkFact secondWork, TFactContainer container)
+        internal static bool IsLessPriorityThan<TFactBase, TFactWork, TFactContainer>(IFactWork<TFactBase> firstWork, TFactWork secondWork, TFactContainer container)
             where TFactBase : IVersionedFact
-            where TWorkFact : IWorkFact<TFactBase>
+            where TFactWork : IFactWork<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>
         {
             if (firstWork is IFactTypeVersionInfo firstVersionInfo)

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.InnerEntities
 {
-    internal sealed class WorkFactCompare<TFactBase, TWorkFact, TFactContainer> : IComparer<TWorkFact>
+    internal sealed class WorkFactCompare<TFactBase, TFactWork, TFactContainer> : IComparer<TFactWork>
         where TFactBase : IFact
-        where TWorkFact : IWorkFact<TFactBase>
+        where TFactWork : IFactWork<TFactBase>
         where TFactContainer : IFactContainer<TFactBase>
     {
         private readonly TFactContainer _container;
@@ -15,7 +15,7 @@ namespace GetcuReone.FactFactory.InnerEntities
             _container = container;
         }
 
-        public int Compare(TWorkFact x, TWorkFact y)
+        public int Compare(TFactWork x, TFactWork y)
         {
             if (x.IsMorePriorityThan(y, _container))
                 return -1;

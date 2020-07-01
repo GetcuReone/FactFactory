@@ -40,7 +40,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="wantAction">action taken after deriving a fact.</param>
         /// <param name="factTypes">facts required to launch an action.</param>
         /// <returns></returns>
-        protected override VersionedWantAction CreateWantAction(Action<IFactContainer<VersionedFactBase>> wantAction, IReadOnlyCollection<IFactType> factTypes)
+        protected override VersionedWantAction CreateWantAction(Action<IFactContainer<VersionedFactBase>> wantAction, List<IFactType> factTypes)
         {
             return new VersionedWantAction(wantAction, factTypes);
         }
