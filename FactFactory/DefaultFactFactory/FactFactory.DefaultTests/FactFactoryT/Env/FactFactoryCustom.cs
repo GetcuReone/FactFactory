@@ -19,7 +19,7 @@ namespace FactFactoryTests.FactFactoryT.Env
 
         internal List<FactBase> DefaultFacts { get; } = new List<FactBase>();
 
-        protected override Action CreateWantAction(Action<IFactContainer<FactBase>> wantAction, IReadOnlyCollection<IFactType> factTypes)
+        protected override Action CreateWantAction(Action<IFactContainer<FactBase>> wantAction, List<IFactType> factTypes)
         {
             return new Action(wantAction, factTypes);
         }

@@ -144,7 +144,7 @@
             <summary>
             True, the current object is more priority than <paramref name="workFact"/>.
             </summary>
-            <typeparam name="TWorkFact"></typeparam>
+            <typeparam name="TFactWork"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
             <param name="workFact"></param>
             <param name="container"></param>
@@ -154,7 +154,7 @@
             <summary>
             True, the current object is less priority than <paramref name="workFact"/>.
             </summary>
-            <typeparam name="TWorkFact"></typeparam>
+            <typeparam name="TFactWork"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
             <param name="workFact"></param>
             <param name="container"></param>
@@ -200,12 +200,12 @@
             </summary>
             <typeparam name="TFactBase"></typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase`1.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{`0}},System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase`1.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{`0}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor.
             </summary>
-            <param name="wantAction">action taken after deriving a fact.</param>
-            <param name="factTypes">facts required to launch an action.</param>
+            <param name="wantAction">Action taken after deriving a fact.</param>
+            <param name="factTypes">Facts required to launch an action.</param>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase`1.VersionType">
             <summary>
@@ -332,7 +332,7 @@
             Information about the desired action with the version.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase}},System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor.
             </summary>
@@ -625,7 +625,7 @@
             </summary>
             <param name="getAllVersionFactsFunc">Function that returns all versioned facts used in the rules.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase}},System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction`1"/>.
             </summary>

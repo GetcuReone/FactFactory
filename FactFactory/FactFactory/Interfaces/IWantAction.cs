@@ -6,18 +6,13 @@ namespace GetcuReone.FactFactory.Interfaces
     /// Desired action information.
     /// </summary>
     /// <typeparam name="TFactBase"></typeparam>
-    public interface IWantAction<TFactBase> : IWorkFact<TFactBase>
+    public interface IWantAction<TFactBase> : IFactWork<TFactBase>
         where TFactBase : IFact
     {
         /// <summary>
-        /// Facts required to launch an action.
-        /// </summary>
-        IReadOnlyCollection<IFactType> InputFactTypes { get; }
-
-        /// <summary>
         /// Run action.
         /// </summary>
-        /// <typeparam name="TFactContainer">container with <see cref="InputFactTypes"/>.</typeparam>
+        /// <typeparam name="TFactContainer">container with <see cref="IFactWork{TFactBase}.InputFactTypes"/>.</typeparam>
         /// <param name="container"></param>
         void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer<TFactBase>;
 

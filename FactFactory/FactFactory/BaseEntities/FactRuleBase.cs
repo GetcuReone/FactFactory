@@ -3,7 +3,6 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace GetcuReone.FactFactory.BaseEntities
@@ -12,13 +11,10 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// Base class for rules.
     /// </summary>
     /// <typeparam name="TFactBase">The type of fact from which the facts in the container should be inherited</typeparam>
-    public abstract class FactRuleBase<TFactBase> : IFactRule<TFactBase>
+    public abstract class FactRuleBase<TFactBase> : FactWorkBase<TFactBase>, IFactRule<TFactBase>
         where TFactBase : IFact
     {
         private readonly Func<IFactContainer<TFactBase>, IWantAction<TFactBase>, TFactBase> _func;
-
-        /// <inheritdoc/>
-        public IReadOnlyCollection<IFactType> InputFactTypes { get; }
 
         /// <summary>
         /// Information on output fact.
@@ -34,6 +30,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
         /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
         protected FactRuleBase(Func<IFactContainer<TFactBase>, IWantAction<TFactBase>, TFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+            : base(inputFactTypes)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
             if (outputFactType == null)
@@ -43,49 +40,9 @@ namespace GetcuReone.FactFactory.BaseEntities
 
             new List<IFactType> { OutputFactType }.CheckArgumentFacts<TFactBase>();
 
-            if (inputFactTypes != null)
-            {
-                inputFactTypes.CheckArgumentFacts<TFactBase>();
+            if (InputFactTypes.Any(factType => factType.Compare(outputFactType)))
+                throw new ArgumentException("Cannot request a fact calculated according to the rule.");
 
-                inputFactTypes.ForEach(factType =>
-                {
-                    factType.CheckSpecialFactType();
-                });
-
-                if (inputFactTypes.Any(factType => factType.Compare(outputFactType)))
-                    throw new ArgumentException("Cannot request a fact calculated according to the rule");
-
-                InputFactTypes = new ReadOnlyCollection<IFactType>(inputFactTypes);
-            }
-            else
-                InputFactTypes = new ReadOnlyCollection<IFactType>(new List<IFactType>());
-
-        }
-
-        /// <summary>
-        /// Fact type set comparison
-        /// </summary>
-        /// <param name="first"></param>
-        /// <param name="second"></param>
-        /// <returns></returns>
-        protected virtual bool CompareFactTypes(IEnumerable<IFactType> first, IEnumerable<IFactType> second)
-        {
-            if (first.IsNullOrEmpty() && second.IsNullOrEmpty())
-                return true;
-            else if (first.IsNullOrEmpty() || second.IsNullOrEmpty())
-                return false;
-            else if (first.Count() != second.Count())
-                return false;
-            else
-            {
-                foreach (var fact in second)
-                {
-                    if (first.All(f => !f.Compare(fact)))
-                        return false;
-                }
-
-                return true;
-            }
         }
 
         /// <inheritdoc/>
@@ -115,29 +72,13 @@ namespace GetcuReone.FactFactory.BaseEntities
             if (!OutputFactType.Compare(factRule.OutputFactType))
                 return false;
 
-            return CompareFactTypes(factRule.InputFactTypes, InputFactTypes);
+            return EqualsFactTypes(factRule.InputFactTypes, InputFactTypes);
         }
 
         /// <inheritdoc />
         public override string ToString()
         {
             return $"({string.Join(", ", InputFactTypes.Select(f => f.FactName).ToList())}) => ({OutputFactType.FactName})";
-        }
-
-        /// <inheritdoc/>
-        public virtual bool IsMorePriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
-            where TWorkFact : IWorkFact<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
-        {
-            return false;
-        }
-
-        /// <inheritdoc/>
-        public virtual bool IsLessPriorityThan<TWorkFact, TFactContainer>(TWorkFact workFact, TFactContainer container)
-            where TWorkFact : IWorkFact<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
-        {
-            return false;
         }
 
         /// <inheritdoc/>

@@ -142,10 +142,10 @@ namespace GetcuReone.FactFactory.Helpers
         internal static void CheckArgumentFacts<TFact>(this IEnumerable<IFactType> factTypes)
             where TFact : IFact
         {
-            var invalidTypes = factTypes.Where(type => !type.IsFactType<TFact>()).ToList();
+            var invalidTypes = factTypes.Where(type => !(type.IsFactType<TFact>() || type.IsFactType<ISpecialFact>())).ToList();
 
             if (!invalidTypes.IsNullOrEmpty())
-                throw new ArgumentException($"{string.Join(", ", invalidTypes.ConvertAll(type => type.FactName))} types are not inherited from {typeof(TFact).FullName}");
+                throw new ArgumentException($"{string.Join(", ", invalidTypes.ConvertAll(type => type.FactName))} types are not inherited from {typeof(TFact).FullName}.");
         }
 
         internal static TFact ConvertFact<TFact>(this IFact fact)
@@ -181,11 +181,12 @@ namespace GetcuReone.FactFactory.Helpers
                     type.IsFactType<INotContainedFact>(),
                     type.IsFactType<IContainedFact>(),
                     type.IsFactType<ICannotDerivedFact>(),
+                    type.IsFactType<ICanDerivedFact>(),
                 };
 
                 if (specialResult.Count(result => result == true) > 1)
                 {
-                    throw CreateException(ErrorCode.InvalidFactType, $"{type.FactName} implements more than one special fact interface");
+                    throw CreateException(ErrorCode.InvalidFactType, $"{type.FactName} implements more than one runtime special fact interface.");
                 }
             }
         }
