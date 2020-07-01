@@ -461,8 +461,8 @@ namespace GetcuReone.FactFactory
                             IFactType needFactType = needFacts[factIndex];
                             bool needRemove = false;
 
-                            // Exclude special facts
-                            if (needFactType.IsFactType<ISpecialFact>())
+                            // Exclude runtime special facts
+                            if (needFactType.IsFactType<IRuntimeSpecialFact>())
                             {
                                 if (specialFacts.Any(fact => fact.GetFactType().Compare(needFactType)))
                                 {
@@ -849,7 +849,10 @@ namespace GetcuReone.FactFactory
 
             try
             {
-                return TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, runtimeSpecialFact.FactType, wantAction, container, ruleCollection, specialFacts, out var _);
+                // Exclude the rules that accept our special fact at the input to exclude the possibility of recursion.
+                var runtimeSpecialFactType = runtimeSpecialFact.GetFactType();
+                var rulesWithoutCurrentFact = ruleCollection.Where(rule => rule.InputFactTypes.All(factType => !factType.Compare(runtimeSpecialFactType))).ToList();
+                return TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, runtimeSpecialFact.FactType, wantAction, container, rulesWithoutCurrentFact, new List<TFactBase>(specialFacts), out var _);
             }
             catch (InvalidDeriveOperationException<TFactBase> ex)
             {
