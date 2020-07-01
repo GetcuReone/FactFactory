@@ -75,7 +75,7 @@ namespace GetcuReone.FactFactory.Versioned
                     if (factRuleVersion.IsMoreThan(versionFact))
                         continue;
 
-                    TFactRule previousRule = factRules.SingleOrDefault(r => r.CompareWithoutVersion(rule));
+                    TFactRule previousRule = factRules.SingleOrDefault(r => r.EqualsRuleWithoutVersion(rule));
 
                     if (previousRule != null)
                     {
@@ -96,7 +96,7 @@ namespace GetcuReone.FactFactory.Versioned
                     {
                         IVersionFact factRuleVersion = container.GetVersionFact(rule.VersionType);
 
-                        TFactRule previousRule = factRules.SingleOrDefault(r => r.CompareWithoutVersion(rule));
+                        TFactRule previousRule = factRules.SingleOrDefault(r => r.EqualsRuleWithoutVersion(rule));
 
                         if (previousRule != null)
                         {
@@ -119,7 +119,7 @@ namespace GetcuReone.FactFactory.Versioned
                     }
                     else
                     {
-                        TFactRule previousRule = factRules.SingleOrDefault(r => r.CompareWithoutVersion(rule));
+                        TFactRule previousRule = factRules.SingleOrDefault(r => r.EqualsRuleWithoutVersion(rule));
 
                         if (previousRule != null)
                         {
@@ -157,7 +157,7 @@ namespace GetcuReone.FactFactory.Versioned
 
             foreach(var version in allVersionFacts)
             {
-                if (defaultVersionTypes.All(defaultVersion => !defaultVersion.Compare(version.GetFactType())))
+                if (defaultVersionTypes.All(defaultVersion => !defaultVersion.EqualsFactType(version.GetFactType())))
                     defaultVersions.Add((IVersionFact)version);
             }
 
@@ -222,10 +222,10 @@ namespace GetcuReone.FactFactory.Versioned
             else
             {
                 // The last fact that is accepted or given by the rule
-                IFactType lastSuitableFactType = _calculatedFactTypes.LastOrDefault(type => type.Compare(rule.OutputFactType) || rule.InputFactTypes.Any(t => t.Compare(type)));
+                IFactType lastSuitableFactType = _calculatedFactTypes.LastOrDefault(type => type.EqualsFactType(rule.OutputFactType) || rule.InputFactTypes.Any(t => t.EqualsFactType(type)));
 
                 // If the last time one of the input facts was recounted
-                if (lastSuitableFactType != null && !lastSuitableFactType.Compare(rule.OutputFactType))
+                if (lastSuitableFactType != null && !lastSuitableFactType.EqualsFactType(rule.OutputFactType))
                     result = true;
 
                 if (!result)

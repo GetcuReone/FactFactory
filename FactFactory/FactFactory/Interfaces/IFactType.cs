@@ -3,23 +3,23 @@
 namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
-    /// Fact type
+    /// Fact type.
     /// </summary>
     public interface IFactType
     {
         /// <summary>
-        /// Compare <see cref="IFactType"/>
+        /// <see cref="IFactType"/> equality.
         /// </summary>
         /// <param name="factInfo"></param>
-        bool Compare<TFactType>(TFactType factInfo) where TFactType : IFactType;
+        bool EqualsFactType<TFactType>(TFactType factInfo) where TFactType : IFactType;
 
         /// <summary>
-        /// Fact name
+        /// Fact name.
         /// </summary>
         string FactName { get; }
 
         /// <summary>
-        /// Is it possible to convert a fact type to a <typeparamref name="TFact"/>
+        /// Is it possible to convert a fact type to a <typeparamref name="TFact"/>.
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
         /// <returns></returns>

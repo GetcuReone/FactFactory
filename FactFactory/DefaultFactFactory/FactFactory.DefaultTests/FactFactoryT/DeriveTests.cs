@@ -94,13 +94,13 @@ namespace FactFactoryTests.FactFactoryT
                     for (int i = 0; i < setNeedFacts.Count; i++)
                     {
                         DeriveFactErrorDetail factDetail = factDetails[i];
-                        Assert.IsTrue(wantFact.Compare(factDetail.RequiredFact), "They expected another fact to be required.");
+                        Assert.IsTrue(wantFact.EqualsFactType(factDetail.RequiredFact), "They expected another fact to be required.");
 
                         List<IFactType> expectedNeedFacts = setNeedFacts[i];
                         List<IFactType> needFacts = factDetail.NeedFacts.ToList();
 
                         for (int j = 0; i < expectedNeedFacts.Count; i++)
-                            Assert.IsTrue(expectedNeedFacts[j].Compare(needFacts[j]), "Another missing fact was expected.");
+                            Assert.IsTrue(expectedNeedFacts[j].EqualsFactType(needFacts[j]), "Another missing fact was expected.");
                     }
                 });
         }
@@ -144,13 +144,13 @@ namespace FactFactoryTests.FactFactoryT
                         for (int i = 0; i < setNeedFacts.Count; i++)
                         {
                             DeriveFactErrorDetail factDetail = factDetails[i];
-                            Assert.IsTrue(wantFact.Compare(factDetail.RequiredFact), "They expected another fact to be required.");
+                            Assert.IsTrue(wantFact.EqualsFactType(factDetail.RequiredFact), "They expected another fact to be required.");
 
                             List<IFactType> expectedNeedFacts = setNeedFacts[i];
                             List<IFactType> needFacts = factDetail.NeedFacts.ToList();
 
                             for (int j = 0; i < expectedNeedFacts.Count; i++)
-                                Assert.IsTrue(expectedNeedFacts[j].Compare(needFacts[j]), "Another missing fact was expected.");
+                                Assert.IsTrue(expectedNeedFacts[j].EqualsFactType(needFacts[j]), "Another missing fact was expected.");
                         } 
                     }
                 });
@@ -203,13 +203,13 @@ namespace FactFactoryTests.FactFactoryT
                     for (int i = 0; i < setNeedFacts1.Count; i++)
                     {
                         DeriveFactErrorDetail factDetail = factDetails[i];
-                        Assert.IsTrue(wantFact1.Compare(factDetail.RequiredFact), "They expected another fact to be required.");
+                        Assert.IsTrue(wantFact1.EqualsFactType(factDetail.RequiredFact), "They expected another fact to be required.");
 
                         List<IFactType> expectedNeedFacts = setNeedFacts1[i];
                         List<IFactType> needFacts = factDetail.NeedFacts.ToList();
 
                         for (int j = 0; i < expectedNeedFacts.Count; i++)
-                            Assert.IsTrue(expectedNeedFacts[j].Compare(needFacts[j]), "Another missing fact was expected.");
+                            Assert.IsTrue(expectedNeedFacts[j].EqualsFactType(needFacts[j]), "Another missing fact was expected.");
                     }
                 })
                 .AndAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason2)
@@ -222,13 +222,13 @@ namespace FactFactoryTests.FactFactoryT
                     for (int i = 0; i < setNeedFacts2.Count; i++)
                     {
                         DeriveFactErrorDetail factDetail = factDetails[i];
-                        Assert.IsTrue(wantFact2.Compare(factDetail.RequiredFact), "They expected another fact to be required.");
+                        Assert.IsTrue(wantFact2.EqualsFactType(factDetail.RequiredFact), "They expected another fact to be required.");
 
                         List<IFactType> expectedNeedFacts = setNeedFacts2[i];
                         List<IFactType> needFacts = factDetail.NeedFacts.ToList();
 
                         for (int j = 0; i < expectedNeedFacts.Count; i++)
-                            Assert.IsTrue(expectedNeedFacts[j].Compare(needFacts[j]), "Another missing fact was expected.");
+                            Assert.IsTrue(expectedNeedFacts[j].EqualsFactType(needFacts[j]), "Another missing fact was expected.");
                     }
                 });
         }
@@ -276,13 +276,13 @@ namespace FactFactoryTests.FactFactoryT
                     for (int i = 0; i < expectedRequiredFacts.Count; i++)
                     {
                         DeriveFactErrorDetail factDetail = factDetails[i];
-                        Assert.IsTrue(expectedRequiredFacts[i].Compare(factDetail.RequiredFact), "They expected another fact to be required.");
+                        Assert.IsTrue(expectedRequiredFacts[i].EqualsFactType(factDetail.RequiredFact), "They expected another fact to be required.");
 
                         List<IFactType> expectedNeedFacts = setNeedFacts[i];
                         List<IFactType> needFacts = factDetail.NeedFacts.ToList();
 
                         for (int j = 0; i < expectedNeedFacts.Count; i++)
-                            Assert.IsTrue(expectedNeedFacts[j].Compare(needFacts[j]), "Another missing fact was expected.");
+                            Assert.IsTrue(expectedNeedFacts[j].EqualsFactType(needFacts[j]), "Another missing fact was expected.");
                     }
                 });
         }
@@ -312,13 +312,13 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(1, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
 
                     DeriveFactErrorDetail factDetail = detail.RequiredFacts.First();
-                    Assert.IsTrue(wantFact.Compare(factDetail.RequiredFact), "They expected another fact to be required.");
+                    Assert.IsTrue(wantFact.EqualsFactType(factDetail.RequiredFact), "They expected another fact to be required.");
 
                     Assert.AreEqual(expectedNeedFacts.Count, factDetail.NeedFacts.Count, "Another number of missing facts expected.");
                     List<IFactType> needFacts = factDetail.NeedFacts.ToList();
 
                     for (int i = 0; i < expectedNeedFacts.Count; i++)
-                        Assert.IsTrue(expectedNeedFacts[i].Compare(needFacts[i]), "Another missing fact was expected.");
+                        Assert.IsTrue(expectedNeedFacts[i].EqualsFactType(needFacts[i]), "Another missing fact was expected.");
                 });
         }
 

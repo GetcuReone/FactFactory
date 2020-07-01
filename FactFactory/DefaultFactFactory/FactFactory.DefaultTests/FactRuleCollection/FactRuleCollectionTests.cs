@@ -66,11 +66,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -94,11 +94,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -123,11 +123,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -153,11 +153,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -184,11 +184,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -216,11 +216,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -249,11 +249,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -283,11 +283,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -318,11 +318,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -354,11 +354,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -391,11 +391,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -429,11 +429,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -468,11 +468,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -508,11 +508,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -549,11 +549,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 
@@ -591,11 +591,11 @@ namespace FactFactoryTests.FactRuleCollection
                     };
 
                     Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.Compare(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.Compare(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
                 });
         }
 

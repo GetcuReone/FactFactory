@@ -138,7 +138,7 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.CanCalculate``2(``0,``1)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.Compare``1(``0)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.EqualsWork``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.ToString">
@@ -215,6 +215,14 @@
             <typeparam name="TFact"></typeparam>
             <param name="container"></param>
             <param name="wantAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.EqualsRules(`1,`1)">
+            <summary>
+            Rules equality.
+            </summary>
+            <param name="firstRule"></param>
+            <param name="secondRule"></param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add(`1)">
@@ -494,7 +502,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Contains(`1)">
             <summary>
-            Determines whether an element is in the <typeparamref name="TFactRule"/>. Use method <see cref="M:GetcuReone.FactFactory.Interfaces.IFactRule`1.Compare``1(``0)"/>.
+            Determines whether an element is in the <typeparamref name="TFactRule"/>. Use method <see cref="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.EqualsRules(`1,`1)"/>.
             </summary>
             <param name="item"></param>
             <returns></returns>
@@ -561,7 +569,7 @@
             Fact name
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.Compare``1(``0)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.EqualsFactType``1(``0)">
             <summary>
             Compare <see cref="T:GetcuReone.FactFactory.Interfaces.IFactType"/>
             </summary>
@@ -1446,14 +1454,6 @@
             <typeparam name="TWantAction"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule`1.Compare``1(``0)">
-            <summary>
-            Compare rules.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <param name="factRule"></param>
-            <returns></returns>
-        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule`1.GetNecessaryFactTypes``2(``0,``1)">
             <summary>
             Get the necessary fact types.
@@ -1478,23 +1478,23 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactType">
             <summary>
-            Fact type
+            Fact type.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.Compare``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.EqualsFactType``1(``0)">
             <summary>
-            Compare <see cref="T:GetcuReone.FactFactory.Interfaces.IFactType"/>
+            <see cref="T:GetcuReone.FactFactory.Interfaces.IFactType"/> equality.
             </summary>
             <param name="factInfo"></param>
         </member>
         <member name="P:GetcuReone.FactFactory.Interfaces.IFactType.FactName">
             <summary>
-            Fact name
+            Fact name.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.IsFactType``1">
             <summary>
-            Is it possible to convert a fact type to a <typeparamref name="TFact"/>
+            Is it possible to convert a fact type to a <typeparamref name="TFact"/>.
             </summary>
             <typeparam name="TFact"></typeparam>
             <returns></returns>

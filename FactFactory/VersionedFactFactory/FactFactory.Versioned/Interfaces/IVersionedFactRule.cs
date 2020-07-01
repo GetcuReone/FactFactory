@@ -14,6 +14,6 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
         /// <typeparam name="TVersionedFactRule"></typeparam>
         /// <param name="versionedFactRule"></param>
         /// <returns></returns>
-        bool CompareWithoutVersion<TVersionedFactRule>(TVersionedFactRule versionedFactRule) where TVersionedFactRule : IVersionedFactRule<TFact>;
+        bool EqualsRuleWithoutVersion<TVersionedFactRule>(TVersionedFactRule versionedFactRule) where TVersionedFactRule : IVersionedFactRule<TFact>;
     }
 }

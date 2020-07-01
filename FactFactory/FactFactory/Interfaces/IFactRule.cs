@@ -39,14 +39,6 @@ namespace GetcuReone.FactFactory.Interfaces
             where TWantAction : IWantAction<TFactBase>;
 
         /// <summary>
-        /// Compare rules.
-        /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <param name="factRule"></param>
-        /// <returns></returns>
-        bool Compare<TFactRule>(TFactRule factRule) where TFactRule : IFactRule<TFactBase>;
-
-        /// <summary>
         /// Get the necessary fact types.
         /// </summary>
         /// <typeparam name="TWantAction"></typeparam>

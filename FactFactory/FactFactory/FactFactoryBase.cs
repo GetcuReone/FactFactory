@@ -466,7 +466,7 @@ namespace GetcuReone.FactFactory
                             // Exclude runtime special facts
                             if (needFactType.IsFactType<IRuntimeSpecialFact>())
                             {
-                                if (specialFacts.Any(fact => fact.GetFactType().Compare(needFactType)))
+                                if (specialFacts.Any(fact => fact.GetFactType().EqualsFactType(needFactType)))
                                 {
                                     needFacts.Remove(needFactType);
                                     continue;
@@ -531,7 +531,7 @@ namespace GetcuReone.FactFactory
                             else
                             {
                                 // Exclude facts for which a solution has already been found.
-                                var nodeCompleted = copatibleAllCompletedNodes.FirstOrDefault(n => n.FactRule.OutputFactType.Compare(needFactType));
+                                var nodeCompleted = copatibleAllCompletedNodes.FirstOrDefault(n => n.FactRule.OutputFactType.EqualsFactType(needFactType));
 
                                 if (nodeCompleted != null)
                                 {
@@ -567,7 +567,7 @@ namespace GetcuReone.FactFactory
                             }
 
                             var needRules = ruleCollection
-                                .Where(rule => rule.OutputFactType.Compare(needFact) && !node.ExistsBranch(rule))
+                                .Where(rule => rule.OutputFactType.EqualsFactType(needFact) && !node.ExistsBranch(rule))
                                 .ToList();
 
                             if (needRules.Count > 0)
@@ -663,7 +663,7 @@ namespace GetcuReone.FactFactory
             if (rules.IsNullOrEmpty())
                 throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.EmptyRuleCollection, "Rules cannot be null.");
 
-            List<FactRuleTree<TFactBase, TFactRule>> factRuleTrees = rules?.Where(rule => rule.OutputFactType.Compare(wantFact))
+            List<FactRuleTree<TFactBase, TFactRule>> factRuleTrees = rules?.Where(rule => rule.OutputFactType.EqualsFactType(wantFact))
                     .Select(rule =>
                     {
                         var tree = new FactRuleTree<TFactBase, TFactRule>
@@ -706,16 +706,16 @@ namespace GetcuReone.FactFactory
                     .Where(n => node.FactRule.Compatible(n.FactRule, wantAction, container))
                     .ToList();
 
-                if (node.FactRule.InputFactTypes.Count > 0 && node.FactRule.InputFactTypes.All(f => copatibleComputedNodes.Any(n => n.FactRule.OutputFactType.Compare(f))))
+                if (node.FactRule.InputFactTypes.Count > 0 && node.FactRule.InputFactTypes.All(f => copatibleComputedNodes.Any(n => n.FactRule.OutputFactType.EqualsFactType(f))))
                     computedNodesInCurrentLevel.Add(node);
-                else if (copatibleComputedNodes.Any(n => n.FactRule.Compare(node.FactRule)))
+                else if (copatibleComputedNodes.Any(n => n.FactRule.EqualsWork(node.FactRule, wantAction, container)))
                     computedNodesInCurrentLevel.Add(node);
             }
 
             if (!computedNodesInCurrentLevel.IsNullOrEmpty())
             {
                 SyncComputedNodes(currentLevel, computedNodesInCurrentLevel);
-                computedNodes.AddRange(computedNodesInCurrentLevel.Where(node => computedNodes.All(n => !n.FactRule.Compare(node.FactRule))));
+                computedNodes.AddRange(computedNodesInCurrentLevel.Where(node => computedNodes.All(n => !n.FactRule.EqualsWork(node.FactRule, wantAction, container))));
                 return SyncComputedNodeForLevelTreeAndCheckGoneRoot(factRuleTree, level - 1, computedNodes, wantAction, container);
             }
             else
@@ -729,7 +729,7 @@ namespace GetcuReone.FactFactory
             foreach (var computedNode in computedNodes.Distinct())
             {
                 List<FactRuleNode<TFactBase, TFactRule>> parentNodes = levelNodes
-                    .Where(n => n.FactRule.OutputFactType.Compare(computedNode.FactRule.OutputFactType))
+                    .Where(n => n.FactRule.OutputFactType.EqualsFactType(computedNode.FactRule.OutputFactType))
                     .Select(n => n.Parent).ToList();
                 keyValuePairs.Add(computedNode, parentNodes);
             }
@@ -741,7 +741,7 @@ namespace GetcuReone.FactFactory
                     if (parentNode == null)
                         continue;
 
-                    foreach (var removeNode in parentNode.Childs.Where(n => n.FactRule.OutputFactType.Compare(keyValuePair.Key.FactRule.OutputFactType)).ToList())
+                    foreach (var removeNode in parentNode.Childs.Where(n => n.FactRule.OutputFactType.EqualsFactType(keyValuePair.Key.FactRule.OutputFactType)).ToList())
                     {
                         parentNode.Childs.Remove(removeNode);
                         if (levelNodes.IndexOf(removeNode) != -1)
@@ -766,7 +766,7 @@ namespace GetcuReone.FactFactory
             parent.Childs.Remove(removeNode);
 
             // If the node has a child node that can calculate this fact
-            if (parent.Childs.Any(node => node.FactRule.OutputFactType.Compare(removeNode.FactRule.OutputFactType)))
+            if (parent.Childs.Any(node => node.FactRule.OutputFactType.EqualsFactType(removeNode.FactRule.OutputFactType)))
                 return false;
             else
                 return RemoveRuleNodeAndCheckGoneRoot(factRuleTree, level - 1, parent);
@@ -800,13 +800,13 @@ namespace GetcuReone.FactFactory
                     // We get the number of rules on which the current rule depends.
                     int rulesOnDependCount = allRules
                         .Count(rule => !rule.Equals(currentLevel)
-                            && currentRule.InputFactTypes.Any(type => type.Compare(rule.OutputFactType)));
+                            && currentRule.InputFactTypes.Any(type => type.EqualsFactType(rule.OutputFactType)));
 
                     if (rulesOnDependCount != 0)
                         continue;
 
                     // Sum of rules at the current level calculating the same fact.
-                    rulesOnDependCount = currentLevel.Count(rule => rule.OutputFactType.Compare(currentRule.OutputFactType));
+                    rulesOnDependCount = currentLevel.Count(rule => rule.OutputFactType.EqualsFactType(currentRule.OutputFactType));
 
                     if (rulesOnDependCount != 0)
                         continue;
@@ -827,7 +827,7 @@ namespace GetcuReone.FactFactory
         private void CalculateRule(TFactRule rule, TFactContainer container, TWantAction wantAction)
         {
             // 1. Is it necessary to recount a fact if a fact of this type has already been calculated?
-            if (container.Any(fact => fact.GetFactType().Compare(rule.OutputFactType)))
+            if (container.Any(fact => fact.GetFactType().EqualsFactType(rule.OutputFactType)))
             {
                 if (!NeedRecalculateFact(rule, container, wantAction, out TFactBase needRemoveFact))
                     return;
@@ -862,7 +862,7 @@ namespace GetcuReone.FactFactory
                 var runtimeSpecialFactType = runtimeSpecialFact.GetFactType();
                 var rulesWithoutCurrentFact = ruleCollection
                     .Where(r => 
-                        r.InputFactTypes.All(factType => !factType.Compare(runtimeSpecialFactType)) 
+                        r.InputFactTypes.All(factType => !factType.EqualsFactType(runtimeSpecialFactType)) 
                         && (rule?.Compatible(r, wantAction, container) ?? true))
                     .ToList();
                 return TryDeriveTreeForFactInfo(out FactRuleTree<TFactBase, TFactRule> _, runtimeSpecialFact.FactType, wantAction, container, rulesWithoutCurrentFact, new List<TFactBase>(specialFacts), out var _);

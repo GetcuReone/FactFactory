@@ -47,7 +47,7 @@ namespace FactFactoryTests.FactType
                     first = fact.GetFactType();
                     second = fact.GetFactType();
                 })
-                .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
+                .Then("Compare factInfos", () => Assert.IsTrue(first.EqualsFactType(second), "factual information is the same"));
         }
 
         [TestMethod]
@@ -71,7 +71,7 @@ namespace FactFactoryTests.FactType
                     first = firstFact.GetFactType();
                     second = secondFact.GetFactType();
                 })
-                .Then("Compare factInfos", () => Assert.IsTrue(first.Compare(second), "factual information is the same"));
+                .Then("Compare factInfos", () => Assert.IsTrue(first.EqualsFactType(second), "factual information is the same"));
         }
 
         [TestMethod]
@@ -95,7 +95,7 @@ namespace FactFactoryTests.FactType
                     first = firstFact.GetFactType();
                     second = secondFact.GetFactType();
                 })
-                .Then("Compare factInfos", () => Assert.IsFalse(first.Compare(second), "factual information is the same"));
+                .Then("Compare factInfos", () => Assert.IsFalse(first.EqualsFactType(second), "factual information is the same"));
         }
 
         [TestMethod]

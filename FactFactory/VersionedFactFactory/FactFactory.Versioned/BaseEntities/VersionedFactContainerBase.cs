@@ -54,12 +54,12 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
 
             if (fact.Version == null)
             {
-                if (ContainerList.Any(f => f.GetFactType().Compare(factType) && f.Version == null))
+                if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType) && f.Version == null))
                     throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {typeof(TFact).FullName} without version.");
             }
             else
             {
-                if (ContainerList.Any(f => f.GetFactType().Compare(factType) && f.Version != null && f.Version.EqualVersion(fact.Version)))
+                if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType) && f.Version != null && f.Version.EqualVersion(fact.Version)))
                     throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {typeof(TFact).FullName} with version equal to version {fact.Version.GetType().FullName}.");
             }
 
@@ -77,8 +77,8 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         {
             IFactType type = GetFactType<TFact>();
             TFactBase factBase = version != null
-                ? ContainerList.FirstOrDefault(f => f.GetFactType().Compare(type) && f.Version != null && f.Version.EqualVersion(version))
-                : ContainerList.FirstOrDefault(f => f.GetFactType().Compare(type) && f.Version == null);
+                ? ContainerList.FirstOrDefault(f => f.GetFactType().EqualsFactType(type) && f.Version != null && f.Version.EqualVersion(version))
+                : ContainerList.FirstOrDefault(f => f.GetFactType().EqualsFactType(type) && f.Version == null);
 
             if (factBase != null)
             {

@@ -48,7 +48,7 @@ namespace FactFactoryTests.FactRule
                 .Then("Check input param", rule => 
                 {
                     Assert.AreEqual(1, rule.InputFactTypes.Count, "InpuTFactTypes is empty");
-                    Assert.IsTrue(rule.InputFactTypes.First().Compare(fact.GetFactType()), "factual information does not match");
+                    Assert.IsTrue(rule.InputFactTypes.First().EqualsFactType(fact.GetFactType()), "factual information does not match");
                 });
         }
 
@@ -86,7 +86,7 @@ namespace FactFactoryTests.FactRule
                     fact = factInner;
                     return new Rule((_, __) => { return default; }, null, fact.GetFactType());
                 })
-                .Then("Check output param", rule => Assert.IsTrue(rule.OutputFactType.Compare(fact.GetFactType()), "factual information does not match"));
+                .Then("Check output param", rule => Assert.IsTrue(rule.OutputFactType.EqualsFactType(fact.GetFactType()), "factual information does not match"));
         }
 
         [TestMethod]

@@ -115,7 +115,7 @@ namespace GetcuReone.FactFactory.Helpers
             where TFactBase : IFact
             where TFactRule : IFactRule<TFactBase>
         {
-            if (runtimeSpecialFact.FactType.Compare(factRule.OutputFactType))
+            if (runtimeSpecialFact.FactType.EqualsFactType(factRule.OutputFactType))
                 throw CreateDeriveException<TFactBase>(ErrorCode.FactCannotDerived, $"Rule of fact is recursive. Rule: <{factRule}>.");
         }
 
