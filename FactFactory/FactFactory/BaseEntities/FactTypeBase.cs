@@ -1,6 +1,7 @@
 ﻿using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <typeparam name="TFactResult"></typeparam>
         /// <returns></returns>
-        public virtual TFactResult CreateSpecialFact<TFactResult>() where TFactResult : IFact
+        public virtual TFactResult CreateRuntimeSpecialFact<TFactResult>() where TFactResult : IRuntimeSpecialFact
         {
             var type = typeof(TFact);
             var resultType = typeof(TFactResult);

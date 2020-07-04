@@ -188,6 +188,15 @@
         <member name="M:GetcuReone.FactFactory.SpecialFacts.CanDerived`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
             <inheritdoc/>
         </member>
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.CanDerived`1.CanUse``4(``1,``2,``3)">
+            <inheritdoc/>
+            <remarks>
+            For the current fact, there are additional actions built into the fact factory.
+            </remarks>
+        </member>
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.CanDerived`1.IsFactContained``4(``1,``2,``3)">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.SpecialFacts.CannotDerived`1">
             <summary>
             Contains information about a type of fact that cannot be derived.
@@ -204,7 +213,13 @@
         <member name="M:GetcuReone.FactFactory.SpecialFacts.CannotDerived`1.GetFactType">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.SpecialFacts.CannotDerived`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.CannotDerived`1.CanUse``4(``1,``2,``3)">
+            <inheritdoc/>
+            <remarks>
+            For the current fact, there are additional actions built into the fact factory.
+            </remarks>
+        </member>
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.CannotDerived`1.IsFactContained``4(``1,``2,``3)">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.SpecialFacts.Contained`1">
@@ -226,6 +241,12 @@
         <member name="M:GetcuReone.FactFactory.SpecialFacts.Contained`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
             <inheritdoc/>
         </member>
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.Contained`1.CanUse``4(``1,``2,``3)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.Contained`1.IsFactContained``4(``1,``2,``3)">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.SpecialFacts.NotContained`1">
             <summary>
             Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/>
@@ -243,6 +264,12 @@
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.SpecialFacts.NotContained`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.NotContained`1.CanUse``4(``1,``2,``3)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.SpecialFacts.NotContained`1.IsFactContained``4(``1,``2,``3)">
             <inheritdoc/>
         </member>
     </members>

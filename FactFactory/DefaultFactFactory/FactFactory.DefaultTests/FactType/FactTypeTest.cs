@@ -116,7 +116,7 @@ namespace FactFactoryTests.FactType
         public void CreateCannotDerivedFactTestCase()
         {
             GivenCreateFactType<CannotDerived<OtherFact>>()
-                .When("Create CannotDerived fact", factType => factType.CreateSpecialFact<ICannotDerivedFact>())
+                .When("Create CannotDerived fact", factType => factType.CreateRuntimeSpecialFact<ICannotDerivedFact>())
                 .Then("Check result", fact =>
                 {
                     Assert.IsNotNull(fact, "fact cannot be null");
@@ -133,7 +133,7 @@ namespace FactFactoryTests.FactType
             string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(ICannotDerivedFact).FullName} type.";
 
             GivenCreateFactType<OtherFact>()
-                .When("Create CannotDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<ICannotDerivedFact>()))
+                .When("Create CannotDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateRuntimeSpecialFact<ICannotDerivedFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
@@ -146,7 +146,7 @@ namespace FactFactoryTests.FactType
             string expectedReason = $"{typeof(CannotDerivedWithoutConstructor).FullName} doesn't have a default constructor.";
 
             GivenCreateFactType<CannotDerivedWithoutConstructor>()
-                .When("Create CannotDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<ICannotDerivedFact>()))
+                .When("Create CannotDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateRuntimeSpecialFact<ICannotDerivedFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
@@ -157,7 +157,7 @@ namespace FactFactoryTests.FactType
         public void CreateNotContainedFactTestCase()
         {
             GivenCreateFactType<NotContained<OtherFact>>()
-                .When("Create NotContained fact", factType => factType.CreateSpecialFact<INotContainedFact>())
+                .When("Create NotContained fact", factType => factType.CreateRuntimeSpecialFact<INotContainedFact>())
                 .Then("Check result", fact =>
                 {
                     Assert.IsNotNull(fact, "fact cannot be null");
@@ -174,7 +174,7 @@ namespace FactFactoryTests.FactType
             string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(INotContainedFact).FullName} type.";
 
             GivenCreateFactType<OtherFact>()
-                .When("Create NotContained fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<INotContainedFact>()))
+                .When("Create NotContained fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateRuntimeSpecialFact<INotContainedFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
@@ -187,7 +187,7 @@ namespace FactFactoryTests.FactType
             string expectedReason = $"{typeof(NotContainedWithoutConstructor).FullName} doesn't have a default constructor.";
 
             GivenCreateFactType<NotContainedWithoutConstructor>()
-                .When("Create NotContained fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<INotContainedFact>()))
+                .When("Create NotContained fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateRuntimeSpecialFact<INotContainedFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
@@ -198,7 +198,7 @@ namespace FactFactoryTests.FactType
         public void CreateCanDerivedFactTestCase()
         {
             GivenCreateFactType<CanDerived<OtherFact>>()
-                .When("Create CanDerived fact", factType => factType.CreateSpecialFact<ICanDerivedFact>())
+                .When("Create CanDerived fact", factType => factType.CreateRuntimeSpecialFact<ICanDerivedFact>())
                 .Then("Check result", fact =>
                 {
                     Assert.IsNotNull(fact, "fact cannot be null");
@@ -215,7 +215,7 @@ namespace FactFactoryTests.FactType
             string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(ICanDerivedFact).FullName} type.";
 
             GivenCreateFactType<OtherFact>()
-                .When("Create CanDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<ICanDerivedFact>()))
+                .When("Create CanDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateRuntimeSpecialFact<ICanDerivedFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
@@ -228,7 +228,7 @@ namespace FactFactoryTests.FactType
             string expectedReason = $"{typeof(CanDerivedWithoutConstructor).FullName} doesn't have a default constructor.";
 
             GivenCreateFactType<CanDerivedWithoutConstructor>()
-                .When("Create CanDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateSpecialFact<ICanDerivedFact>()))
+                .When("Create CanDerived fact", factType => ExpectedException<FactFactoryException>(() => factType.CreateRuntimeSpecialFact<ICanDerivedFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
     }
