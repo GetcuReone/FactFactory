@@ -778,11 +778,7 @@
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetFactType``1">
-            <summary>
-            Get fact type
-            </summary>
-            <typeparam name="TGetFact"></typeparam>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetDefaultFacts(`1)">
             <summary>

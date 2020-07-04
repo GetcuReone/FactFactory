@@ -151,13 +151,6 @@
             <param name="factTypes">Facts required to launch an action.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactory.GetFactType``1">
-            <summary>
-            Get fact type.
-            </summary>
-            <typeparam name="TGetFact"></typeparam>
-            <returns>Fact type.</returns>
-        </member>
         <member name="T:GetcuReone.FactFactory.SpecialFacts.CanDerived`1">
             <summary>
             Contains information about a type of fact that can be derived.

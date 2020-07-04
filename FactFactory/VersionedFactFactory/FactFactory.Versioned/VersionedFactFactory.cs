@@ -46,16 +46,6 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Get fact type.
-        /// </summary>
-        /// <typeparam name="TGetFact"></typeparam>
-        /// <returns></returns>
-        protected override IFactType GetFactType<TGetFact>()
-        {
-            return new FactType<TGetFact>();
-        }
-
-        /// <summary>
         /// Returns instances of all used versions.
         /// </summary>
         /// <returns></returns>
