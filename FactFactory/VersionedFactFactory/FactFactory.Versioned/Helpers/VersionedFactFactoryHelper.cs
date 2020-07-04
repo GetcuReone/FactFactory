@@ -15,10 +15,9 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
     /// </summary>
     internal static class VersionedFactFactoryHelper
     {
-        internal static IVersionFact GetVersionFact<TFact>(this IEnumerable<TFact> facts, IFactType factTypeVersion)
-            where TFact : IVersionedFact
+        internal static IVersionFact GetVersionFact(this IEnumerable<IFact> facts, IFactType factTypeVersion)
         {
-            if (!factTypeVersion.TryGetFact(facts, out TFact fact))
+            if (!factTypeVersion.TryGetFact(facts, out IFact fact))
                 throw FactFactoryHelper.CreateException(ErrorCode.VersionNotFound, $"No version fact '{factTypeVersion.FactName}' found");
 
             return fact as IVersionFact;
@@ -61,7 +60,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             return new FactType<TFact>();
         }
 
-        internal static TFactBase GetRightFactByVersionType<TFactBase>(this IFactContainer<TFactBase> container, IFactType searchFactType, IFactType versionType)
+        internal static IFact GetRightFactByVersionType<TFactBase>(this IFactContainer<TFactBase> container, IFactType searchFactType, IFactType versionType)
             where TFactBase : class, IVersionedFact
         {
             if (versionType != null)
@@ -73,7 +72,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
                 return container.GetRightFactByVersion(searchFactType, null);
         }
 
-        internal static TFactBase GetRightFactByVersion<TFactBase>(this IFactContainer<TFactBase> container, IFactType searchFactType, IVersionFact version)
+        internal static IFact GetRightFactByVersion<TFactBase>(this IFactContainer<TFactBase> container, IFactType searchFactType, IVersionFact version)
             where TFactBase : class, IVersionedFact
         {
             if (searchFactType.IsFactType<ISpecialFact>())
@@ -85,13 +84,17 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             }
             else
             {
-                List<TFactBase> facts = container.Where(fact => fact.GetFactType().EqualsFactType(searchFactType)).ToList();
+                List<IVersionedFact> facts = container
+                    .Where(fact => 
+                        fact.GetFactType().EqualsFactType(searchFactType))
+                    .Select(fact => (IVersionedFact)fact)
+                    .ToList();
 
                 if (facts.Count == 0)
                     return null;
 
                 // List of facts not calculated using a rule.
-                List<TFactBase> factsCalculatedNotByRule = facts.Where(fact => !fact.CalculatedByRule).ToList();
+                List<IVersionedFact> factsCalculatedNotByRule = facts.Where(fact => !fact.CalculatedByRule).ToList();
 
                 if (factsCalculatedNotByRule.Count != 0)
                     return ChooseFactByVersion(factsCalculatedNotByRule, version) ?? factsCalculatedNotByRule.First();
@@ -100,8 +103,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             }
         }
 
-        private static TFactBase ChooseFactByVersion<TFactBase>(List<TFactBase> facts, IVersionFact version)
-            where TFactBase : class, IVersionedFact
+        private static IVersionedFact ChooseFactByVersion(List<IVersionedFact> facts, IVersionFact version)
         {
             if (version == null)
             {
@@ -118,7 +120,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             }
             else
             {
-                List<TFactBase> scopeSearch = new List<TFactBase>();
+                List<IVersionedFact> scopeSearch = new List<IVersionedFact>();
 
                 foreach (var fact in facts)
                 {

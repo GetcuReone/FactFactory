@@ -21,7 +21,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// Constructor.
         /// </summary>
         /// <param name="facts">An array of facts to add to the container.</param>
-        public VersionedFactContainer(IEnumerable<VersionedFactBase> facts) : base(facts)
+        public VersionedFactContainer(IEnumerable<IFact> facts) : base(facts)
         {
         }
 
@@ -30,7 +30,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// </summary>
         /// <param name="facts">An array of facts to add to the container.</param>
         /// <param name="isReadOnly"></param>
-        public VersionedFactContainer(IEnumerable<VersionedFactBase> facts, bool isReadOnly) : base(facts, isReadOnly)
+        public VersionedFactContainer(IEnumerable<IFact> facts, bool isReadOnly) : base(facts, isReadOnly)
         {
         }
 
@@ -41,16 +41,6 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         public override FactContainerBase<VersionedFactBase> Copy()
         {
             return new VersionedFactContainer(this, false);
-        }
-
-        /// <summary>
-        /// Return fact type information.
-        /// </summary>
-        /// <typeparam name="TGetFact">The type of fact to return information about.</typeparam>
-        /// <returns></returns>
-        protected override IFactType GetFactType<TGetFact>()
-        {
-            return new FactType<TGetFact>();
         }
     }
 }

@@ -6,32 +6,39 @@ namespace GetcuReone.FactFactory.Interfaces
     /// Container interface with facts for deriving other facts.
     /// </summary>
     /// <typeparam name="TFactBase">The type from which all facts in this container should be inherited.</typeparam>
-    public interface IFactContainer<TFactBase> : IEnumerable<TFactBase>
+    public interface IFactContainer<TFactBase> : IEnumerable<IFact>
         where TFactBase : IFact
     {
         /// <summary>
         /// Gets a value indicating whether the <see cref="IFactContainer{TFact}"/> is read-only.
         /// </summary>
         bool IsReadOnly { get; }
+
         /// <summary>
         /// Add fact.
         /// </summary>
         /// <param name="fact">Fact.</param>
         /// <typeparam name="TFact">Type of fact to add.</typeparam>
-        void Add<TFact>(TFact fact) where TFact : TFactBase;
+        void Add<TFact>(TFact fact) where TFact : IFact;
+
+        /// <summary>
+        /// Add facts.
+        /// </summary>
+        /// <param name="facts">Fact set.</param>
+        void AddRange(IEnumerable<IFact> facts);
 
         /// <summary>
         /// Remove fact.
         /// </summary>
         /// <typeparam name="TFact">Type of fact to delete.</typeparam>
-        void Remove<TFact>() where TFact : TFactBase;
+        void Remove<TFact>() where TFact : IFact;
 
         /// <summary>
         /// Remove fact.
         /// </summary>
         /// <param name="fact"></param>
         /// <typeparam name="TFact">Type of fact to delete.</typeparam>
-        void Remove<TFact>(TFact fact) where TFact : TFactBase;
+        void Remove<TFact>(TFact fact) where TFact : IFact;
 
         /// <summary>
         /// Try get fact.
@@ -39,21 +46,21 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <typeparam name="TFact">Type of fact to return.</typeparam>
         /// <param name="fact"></param>
         /// <returns></returns>
-        bool TryGetFact<TFact>(out TFact fact) where TFact : TFactBase;
+        bool TryGetFact<TFact>(out TFact fact) where TFact : IFact;
 
         /// <summary>
         /// Get fact.
         /// </summary>
         /// <typeparam name="TFact">Type of fact to return.</typeparam>
         /// <returns></returns>
-        TFact GetFact<TFact>() where TFact : TFactBase;
+        TFact GetFact<TFact>() where TFact : IFact;
 
         /// <summary>
         /// Is this type of fact contained.
         /// </summary>
         /// <typeparam name="TFact">type of fact to check for.</typeparam>
         /// <returns></returns>
-        bool Contains<TFact>() where TFact : TFactBase;
+        bool Contains<TFact>() where TFact : IFact;
 
         /// <summary>
         /// Clear this container.

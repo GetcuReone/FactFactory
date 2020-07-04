@@ -3,6 +3,7 @@ using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactContainer.Env;
 using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
@@ -92,8 +93,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     foreach (var fact in container)
                         Assert.IsTrue(fact is FactResult, "Only one type of fact was expected.");
 
-                    var fact1 = container.First();
-                    var fact2 = container.Last();
+                    var fact1 = (IVersionedFact)container.First();
+                    var fact2 = (IVersionedFact)container.Last();
 
                     Assert.IsTrue(fact1.Version is Version1, "FactResult with 1 version not contained in container");
                     Assert.IsTrue(fact2.Version is Version2, "FactResult with 2 version not contained in container");

@@ -15,13 +15,13 @@
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Constructor.
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)">
             <summary>
             Constructor.
             </summary>
@@ -29,12 +29,10 @@
             <param name="isReadOnly"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.Add``1(``0)">
-            <summary>
-            Add fact.
-            </summary>
-            <param name="fact">Fact.</param>
-            <typeparam name="TFact">Type of fact to add.</typeparam>
-            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Attempt to add an existing fact.</exception>
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.TryGetFactByVersion``1(``0@,GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
             <summary>
@@ -45,12 +43,7 @@
             <param name="version">Version.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.TryGetFact``1(``0@)">
-            <summary>
-            Try get fact without version. 
-            </summary>
-            <typeparam name="TFact">Type of fact to return.</typeparam>
-            <param name="fact"></param>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.ContainsByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
             <summary>
@@ -75,10 +68,7 @@
             <param name="version">Version.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.GetFact``1">
-            <summary>
-            Return a fact of <typeparamref name="TFact"/> type without version.
-            </summary>
-            <typeparam name="TFact">Type of fact you need.</typeparam>
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.RemoveByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
             <summary>
@@ -88,10 +78,7 @@
             <param name="version">Version.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.Remove``1">
-            <summary>
-            Remove a fact of <typeparamref name="TFact"/> type without version.
-            </summary>
-            <typeparam name="TFact">Type of fact you need.</typeparam>
+            <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase`1">
             <summary>
@@ -250,13 +237,13 @@
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Versioned.VersionedFactBase})">
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Constructor.
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Versioned.VersionedFactBase},System.Boolean)">
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)">
             <summary>
             Constructor.
             </summary>
@@ -267,13 +254,6 @@
             <summary>
             Get copy container.
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.GetFactType``1">
-            <summary>
-            Return fact type information.
-            </summary>
-            <typeparam name="TGetFact">The type of fact to return information about.</typeparam>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule">

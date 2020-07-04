@@ -14,13 +14,13 @@
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.FactBase})">
+        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Constructor.
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.FactBase},System.Boolean)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)">
             <summary>
             Constructor.
             </summary>
@@ -28,17 +28,7 @@
             <param name="isReadOnly"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactContainer.Copy">
-            <summary>
-            Get copy container.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.GetFactType``1">
-            <summary>
-            Return fact type information.
-            </summary>
-            <typeparam name="TGetFact">The type of fact to return information about.</typeparam>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.FactRule">
             <summary>
@@ -238,9 +228,6 @@
         <member name="M:GetcuReone.FactFactory.SpecialFacts.Contained`1.GetFactType">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.SpecialFacts.Contained`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.SpecialFacts.Contained`1.CanUse``4(``1,``2,``3)">
             <inheritdoc/>
         </member>
@@ -261,9 +248,6 @@
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.SpecialFacts.NotContained`1.GetFactType">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.SpecialFacts.NotContained`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.SpecialFacts.NotContained`1.CanUse``4(``1,``2,``3)">

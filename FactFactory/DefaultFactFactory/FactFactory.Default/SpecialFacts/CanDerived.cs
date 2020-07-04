@@ -32,7 +32,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
         public virtual bool IsFactContained<TFact1>(IFactContainer<TFact1> container)
             where TFact1 : IFact
         {
-            return FactType.TryGetFact(container, out TFact1 _);
+            return FactType.TryGetFact(container, out var _);
         }
 
         /// <inheritdoc/>
@@ -55,7 +55,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
             where TWantAction : IWantAction<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>
         {
-            return FactType.TryGetFact(container, out TFactBase _);
+            return FactType.TryGetFact(container, out var _);
         }
     }
 }

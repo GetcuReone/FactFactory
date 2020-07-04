@@ -62,15 +62,14 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Try to get a fact from the container.
         /// </summary>
-        /// <typeparam name="TFact1">Type base class for facts.</typeparam>
         /// <param name="facts">Set fact.</param>
         /// <param name="fact">Fact.</param>
         /// <returns>True - fact found.</returns>
         /// <exception cref="InvalidOperationException">There are more than one type of inheriting <typeparamref name="TFact"/> type.</exception>
-        public virtual bool TryGetFact<TFact1>(IEnumerable<TFact1> facts, out TFact1 fact) where TFact1 : IFact
+        public virtual bool TryGetFact(IEnumerable<IFact> facts, out IFact fact)
         {
             fact = default;
-            List<TFact1> result = facts.Where(f => f is TFact1 && f is TFact).ToList();
+            List<IFact> result = facts.Where(f => f is TFact).ToList();
 
             if (result.IsNullOrEmpty())
                 return false;
