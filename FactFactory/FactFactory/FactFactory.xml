@@ -869,7 +869,7 @@
             <param name="needRemoveFact">If the method returns the true, then this fact will be removed from the container. There will be no deletion if the fact is empty.</param>
             <returns>True - fact needs to be recalculated.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.InnerEntities.FactRuleTree{`0,`2}}@,`4,`1,`3,System.Collections.Generic.List{`0}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.InnerEntities.FactRuleTree{`0,`2}}@,`4,`1,`3,System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeSpecialFact}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
             <summary>
             We are trying to calculate a tree by which we find a fact
             </summary>
