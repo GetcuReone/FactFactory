@@ -165,6 +165,8 @@ namespace GetcuReone.FactFactory
                 throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
             if (!(containerCopy is TFactContainer container))
                 throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method returned a different type of container.");
+            if (container.Any(fact => fact is IRuntimeSpecialFact))
+                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, $"Container contains {nameof(IRuntimeSpecialFact)} facts.");
 
             container.IsReadOnly = true;
             return container;
