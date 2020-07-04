@@ -26,11 +26,6 @@ namespace FactFactoryTests.FactFactoryT.Env
             {
                 throw new NotImplementedException();
             }
-
-            protected override IFactType GetFactType<TGetFact>()
-            {
-                throw new System.NotImplementedException();
-            }
         }
     }
 }

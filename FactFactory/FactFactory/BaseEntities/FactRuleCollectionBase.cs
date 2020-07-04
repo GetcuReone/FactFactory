@@ -12,7 +12,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Base collection for <typeparamref name="TFactRule"/>.
     /// </summary>
-    public abstract class FactRuleCollectionBase<TFactBase, TFactRule>: IList<TFactRule>, ICopy<FactRuleCollectionBase<TFactBase, TFactRule>>
+    public abstract class FactRuleCollectionBase<TFactBase, TFactRule>: IList<TFactRule>, ICopy<FactRuleCollectionBase<TFactBase, TFactRule>>, IFactTypeCreation
         where TFactBase : IFact
         where TFactRule : IFactRule<TFactBase>
     {
@@ -86,14 +86,10 @@ namespace GetcuReone.FactFactory.BaseEntities
                 throw FactFactoryHelper.CreateException(ErrorCode.InvalidOperation, $"Rule collection is read-only.");
         }
 
-        /// <summary>
-        /// Return <see cref="IFactType"/>.
-        /// </summary>
-        /// <typeparam name="TGetFact"></typeparam>
-        /// <returns></returns>
-        protected virtual IFactType GetFactType<TGetFact>() where TGetFact : TFactBase
+        /// <inheritdoc/>
+        public virtual IFactType GetFactType<TFact>() where TFact : IFact
         {
-            return new FactType<TGetFact>();
+            return FactFactoryHelper.GetDefaultFactType<TFact>();
         }
 
         /// <summary>
@@ -113,7 +109,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="wantAction"></param>
         /// <returns></returns>
         protected virtual TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IWantAction<TFactBase> wantAction)
-            where TFact : TFactBase
+            where TFact : IFact
         {
             return container.GetFact<TFact>();
         }
@@ -155,11 +151,10 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add(TFactRule item)
         {
             CheckReadOnly();
+            item.OutputFactType.CannotIsType<ISpecialFact>(nameof(item));
 
-            if (item.OutputFactType.IsFactType<INotContainedFact>())
-                throw new ArgumentException($"A rule cannot return a {item.OutputFactType.FactName}");
             if (Contains(item))
-                throw new ArgumentException("This rule is already in the rule collection");
+                throw new ArgumentException("This rule is already in the rule collection.");
 
             _list.Add(item);
         }
@@ -186,7 +181,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactOut>(
             Func<TFactIn1, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
+            where TFactIn1 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa)),
@@ -204,8 +199,8 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa)),
@@ -224,9 +219,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa)),
@@ -246,10 +241,10 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa)),
@@ -270,11 +265,11 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa)),
@@ -296,12 +291,12 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
-            where TFactIn6 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa)),
@@ -324,13 +319,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
-            where TFactIn6 : TFactBase
-            where TFactIn7 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa)),
@@ -354,14 +349,14 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
-            where TFactIn6 : TFactBase
-            where TFactIn7 : TFactBase
-            where TFactIn8 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa)),
@@ -386,15 +381,15 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
-            where TFactIn6 : TFactBase
-            where TFactIn7 : TFactBase
-            where TFactIn8 : TFactBase
-            where TFactIn9 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa)),
@@ -420,16 +415,16 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
-            where TFactIn6 : TFactBase
-            where TFactIn7 : TFactBase
-            where TFactIn8 : TFactBase
-            where TFactIn9 : TFactBase
-            where TFactIn10 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa)),
@@ -456,17 +451,17 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
-            where TFactIn6 : TFactBase
-            where TFactIn7 : TFactBase
-            where TFactIn8 : TFactBase
-            where TFactIn9 : TFactBase
-            where TFactIn10 : TFactBase
-            where TFactIn11 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa)),
@@ -494,18 +489,18 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
-            where TFactIn6 : TFactBase
-            where TFactIn7 : TFactBase
-            where TFactIn8 : TFactBase
-            where TFactIn9 : TFactBase
-            where TFactIn10 : TFactBase
-            where TFactIn11 : TFactBase
-            where TFactIn12 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa), GetCorrectFact<TFactIn12>(ct, wa)),
@@ -534,19 +529,19 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
-            where TFactIn6 : TFactBase
-            where TFactIn7 : TFactBase
-            where TFactIn8 : TFactBase
-            where TFactIn9 : TFactBase
-            where TFactIn10 : TFactBase
-            where TFactIn11 : TFactBase
-            where TFactIn12 : TFactBase
-            where TFactIn13 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa), GetCorrectFact<TFactIn12>(ct, wa), GetCorrectFact<TFactIn13>(ct, wa)),
@@ -576,20 +571,20 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
-            where TFactIn6 : TFactBase
-            where TFactIn7 : TFactBase
-            where TFactIn8 : TFactBase
-            where TFactIn9 : TFactBase
-            where TFactIn10 : TFactBase
-            where TFactIn11 : TFactBase
-            where TFactIn12 : TFactBase
-            where TFactIn13 : TFactBase
-            where TFactIn14 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
+            where TFactIn14 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa), GetCorrectFact<TFactIn12>(ct, wa), GetCorrectFact<TFactIn13>(ct, wa), GetCorrectFact<TFactIn14>(ct, wa)),
@@ -620,21 +615,21 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
-            where TFactIn6 : TFactBase
-            where TFactIn7 : TFactBase
-            where TFactIn8 : TFactBase
-            where TFactIn9 : TFactBase
-            where TFactIn10 : TFactBase
-            where TFactIn11 : TFactBase
-            where TFactIn12 : TFactBase
-            where TFactIn13 : TFactBase
-            where TFactIn14 : TFactBase
-            where TFactIn15 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
+            where TFactIn14 : IFact
+            where TFactIn15 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa), GetCorrectFact<TFactIn12>(ct, wa), GetCorrectFact<TFactIn13>(ct, wa), GetCorrectFact<TFactIn14>(ct, wa), GetCorrectFact<TFactIn15>(ct, wa)),
@@ -666,22 +661,22 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, TFactOut>(
             Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, TFactOut> rule)
             where TFactOut : TFactBase
-            where TFactIn1 : TFactBase
-            where TFactIn2 : TFactBase
-            where TFactIn3 : TFactBase
-            where TFactIn4 : TFactBase
-            where TFactIn5 : TFactBase
-            where TFactIn6 : TFactBase
-            where TFactIn7 : TFactBase
-            where TFactIn8 : TFactBase
-            where TFactIn9 : TFactBase
-            where TFactIn10 : TFactBase
-            where TFactIn11 : TFactBase
-            where TFactIn12 : TFactBase
-            where TFactIn13 : TFactBase
-            where TFactIn14 : TFactBase
-            where TFactIn15 : TFactBase
-            where TFactIn16 : TFactBase
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
+            where TFactIn14 : IFact
+            where TFactIn15 : IFact
+            where TFactIn16 : IFact
         {
             Add(CreateFactRule(
                 (ct, wa) => rule(GetCorrectFact<TFactIn1>(ct, wa), GetCorrectFact<TFactIn2>(ct, wa), GetCorrectFact<TFactIn3>(ct, wa), GetCorrectFact<TFactIn4>(ct, wa), GetCorrectFact<TFactIn5>(ct, wa), GetCorrectFact<TFactIn6>(ct, wa), GetCorrectFact<TFactIn7>(ct, wa), GetCorrectFact<TFactIn8>(ct, wa), GetCorrectFact<TFactIn9>(ct, wa), GetCorrectFact<TFactIn10>(ct, wa), GetCorrectFact<TFactIn11>(ct, wa), GetCorrectFact<TFactIn12>(ct, wa), GetCorrectFact<TFactIn13>(ct, wa), GetCorrectFact<TFactIn14>(ct, wa), GetCorrectFact<TFactIn15>(ct, wa), GetCorrectFact<TFactIn16>(ct, wa)),
