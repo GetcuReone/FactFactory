@@ -13,7 +13,7 @@ namespace FactFactoryTests.CommonFacts
 
         public IFactType FactType => throw new NotImplementedException();
 
-        public bool CanUse<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+        public bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
             where TFactBase : IFact
             where TFactWork : IFactWork<TFactBase>
             where TWantAction : IWantAction<TFactBase>

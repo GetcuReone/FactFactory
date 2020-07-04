@@ -351,7 +351,7 @@ namespace GetcuReone.FactFactory
                     {
                         IRuntimeSpecialFact runtimeSpecialFact = wantFact.CreateRuntimeSpecialFact<IRuntimeSpecialFact>();
 
-                        if (runtimeSpecialFact.CanUse<TFactBase, TWantAction, TWantAction, TFactContainer>(wantAction, wantAction, container))
+                        if (runtimeSpecialFact.Condition<TFactBase, TWantAction, TWantAction, TFactContainer>(wantAction, wantAction, container))
                         {
                             TFactBase specialFact = runtimeSpecialFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
@@ -491,7 +491,7 @@ namespace GetcuReone.FactFactory
                                 {
                                     IRuntimeSpecialFact runtimeSpecialFact = needFactType.CreateRuntimeSpecialFact<IRuntimeSpecialFact>();
 
-                                    if (runtimeSpecialFact.CanUse<TFactBase, TFactRule, TWantAction, TFactContainer>(node.FactRule, wantAction, container))
+                                    if (runtimeSpecialFact.Condition<TFactBase, TFactRule, TWantAction, TFactContainer>(node.FactRule, wantAction, container))
                                     {
                                         specialFacts.Add(runtimeSpecialFact.ConvertFact<TFactBase>());
                                         needRemove = true;
