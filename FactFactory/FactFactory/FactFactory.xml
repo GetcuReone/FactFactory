@@ -1602,9 +1602,9 @@
             Information about the type of fact the current runtime fact is working with.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeSpecialFact.CanUse``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeSpecialFact.Condition``4(``1,``2,``3)">
             <summary>
-            Is it possible to use the current fact and add it to the container.
+            A condition that determines whether the current fact can be added to the container when deriving.
             </summary>
             <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactWork"></typeparam>
@@ -1614,6 +1614,9 @@
             <param name="wantAction">The action in the context of which we do this.</param>
             <param name="container">Container.</param>
             <returns></returns>
+            <remarks>
+            Using it, you can determine which rule and under what conditions can be used to build a rule tree.
+            </remarks>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact">
             <summary>

@@ -5,6 +5,7 @@ using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -425,6 +426,25 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     Assert.AreEqual(0, factFactory.W_Actions.Count);
                 });
+        }
+
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Container contains RuntimeSpecialFact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void ContainerContainsRuntimeSpecialFactTestCase()
+        {
+            string expectedMessage = $"Container contains {nameof(IRuntimeSpecialFact)} facts.";
+
+            GivenCreateFactFactory()
+                .AndAddFact(new CanDerived<ResultFact>())
+                .AndAddRules(new Collection
+                {
+                    (Input10Fact fact) => new ResultFact(fact.Value),
+                })
+                .When("Call Derive.", factFactory =>
+                    ExpectedDeriveException(factFactory.Derive))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedMessage);
         }
     }
 }
