@@ -17,7 +17,7 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Base class for fact factory
     /// </summary>
-    public abstract class FactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactoryBase, IFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
+    public abstract class FactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactoryBase, IFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>, IFactTypeCreation
         where TFactBase : class, IFact
         where TFactContainer : FactContainerBase<TFactBase>
         where TFactRule : FactRuleBase<TFactBase>
@@ -39,12 +39,11 @@ namespace GetcuReone.FactFactory
         /// </summary>
         public abstract TFactRuleCollection Rules { get; }
 
-        /// <summary>
-        /// Get fact type
-        /// </summary>
-        /// <typeparam name="TGetFact"></typeparam>
-        /// <returns></returns>
-        protected abstract IFactType GetFactType<TGetFact>() where TGetFact : IFact;
+        /// <inheritdoc/>
+        public virtual IFactType GetFactType<TFact>() where TFact : IFact
+        {
+            return FactFactoryHelper.GetDefaultFactType<TFact>();
+        }
 
         /// <summary>
         /// Return the fact set that will be contained in the default container.
@@ -871,7 +870,7 @@ namespace GetcuReone.FactFactory
         /// <param name="inputFactTypes"></param>
         /// <returns></returns>
         protected virtual TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IReadOnlyCollection<IFactType> inputFactTypes)
-            where TFact : TFactBase
+            where TFact : IFact
         {
             return container.GetFact<TFact>();
         }
@@ -895,7 +894,7 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact1">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1>(
-            Action<TFact1> wantFactAction) where TFact1 : TFactBase
+            Action<TFact1> wantFactAction) where TFact1 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>() };
 
@@ -912,8 +911,8 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2>(
             Action<TFact1, TFact2> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() };
 
@@ -931,9 +930,9 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3>(
             Action<TFact1, TFact2, TFact3> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() };
 
@@ -952,10 +951,10 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4>(
             Action<TFact1, TFact2, TFact3, TFact4> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>() };
 
@@ -975,11 +974,11 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>() };
 
@@ -1000,12 +999,12 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
-            where TFact6 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>() };
 
@@ -1027,13 +1026,13 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
-            where TFact6 : TFactBase
-            where TFact7 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>() };
 
@@ -1056,14 +1055,14 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
-            where TFact6 : TFactBase
-            where TFact7 : TFactBase
-            where TFact8 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>() };
 
@@ -1087,15 +1086,15 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
-            where TFact6 : TFactBase
-            where TFact7 : TFactBase
-            where TFact8 : TFactBase
-            where TFact9 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>() };
 
@@ -1120,16 +1119,16 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
-            where TFact6 : TFactBase
-            where TFact7 : TFactBase
-            where TFact8 : TFactBase
-            where TFact9 : TFactBase
-            where TFact10 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>() };
 
@@ -1155,17 +1154,17 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
-            where TFact6 : TFactBase
-            where TFact7 : TFactBase
-            where TFact8 : TFactBase
-            where TFact9 : TFactBase
-            where TFact10 : TFactBase
-            where TFact11 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>() };
 
@@ -1192,18 +1191,18 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
-            where TFact6 : TFactBase
-            where TFact7 : TFactBase
-            where TFact8 : TFactBase
-            where TFact9 : TFactBase
-            where TFact10 : TFactBase
-            where TFact11 : TFactBase
-            where TFact12 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>() };
 
@@ -1231,19 +1230,19 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
-            where TFact6 : TFactBase
-            where TFact7 : TFactBase
-            where TFact8 : TFactBase
-            where TFact9 : TFactBase
-            where TFact10 : TFactBase
-            where TFact11 : TFactBase
-            where TFact12 : TFactBase
-            where TFact13 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>() };
 
@@ -1272,20 +1271,20 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
-            where TFact6 : TFactBase
-            where TFact7 : TFactBase
-            where TFact8 : TFactBase
-            where TFact9 : TFactBase
-            where TFact10 : TFactBase
-            where TFact11 : TFactBase
-            where TFact12 : TFactBase
-            where TFact13 : TFactBase
-            where TFact14 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
+            where TFact14 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>() };
 
@@ -1315,21 +1314,21 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
-            where TFact6 : TFactBase
-            where TFact7 : TFactBase
-            where TFact8 : TFactBase
-            where TFact9 : TFactBase
-            where TFact10 : TFactBase
-            where TFact11 : TFactBase
-            where TFact12 : TFactBase
-            where TFact13 : TFactBase
-            where TFact14 : TFactBase
-            where TFact15 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
+            where TFact14 : IFact
+            where TFact15 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>() };
 
@@ -1360,22 +1359,22 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         public virtual void WantFact<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16>(
             Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16> wantFactAction)
-            where TFact1 : TFactBase
-            where TFact2 : TFactBase
-            where TFact3 : TFactBase
-            where TFact4 : TFactBase
-            where TFact5 : TFactBase
-            where TFact6 : TFactBase
-            where TFact7 : TFactBase
-            where TFact8 : TFactBase
-            where TFact9 : TFactBase
-            where TFact10 : TFactBase
-            where TFact11 : TFactBase
-            where TFact12 : TFactBase
-            where TFact13 : TFactBase
-            where TFact14 : TFactBase
-            where TFact15 : TFactBase
-            where TFact16 : TFactBase
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
+            where TFact14 : IFact
+            where TFact15 : IFact
+            where TFact16 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>(), GetFactType<TFact16>() };
 

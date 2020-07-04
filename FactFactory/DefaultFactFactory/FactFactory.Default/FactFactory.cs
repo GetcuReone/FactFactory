@@ -30,15 +30,5 @@ namespace GetcuReone.FactFactory
         {
             return new WantAction(wantAction, factTypes);
         }
-
-        /// <summary>
-        /// Get fact type.
-        /// </summary>
-        /// <typeparam name="TGetFact"></typeparam>
-        /// <returns>Fact type.</returns>
-        protected override IFactType GetFactType<TGetFact>()
-        {
-            return new FactType<TGetFact>();
-        }
     }
 }

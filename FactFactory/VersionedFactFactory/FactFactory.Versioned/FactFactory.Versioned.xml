@@ -611,13 +611,6 @@
             <param name="factTypes">facts required to launch an action.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetFactType``1">
-            <summary>
-            Get fact type.
-            </summary>
-            <typeparam name="TGetFact"></typeparam>
-            <returns></returns>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetAllVersions">
             <summary>
             Returns instances of all used versions.
