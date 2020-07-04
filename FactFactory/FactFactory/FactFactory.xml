@@ -163,11 +163,7 @@
             <param name="isReadOnly"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.GetFactType``1">
-            <summary>
-            Return <see cref="T:GetcuReone.FactFactory.Interfaces.IFactType"/>.
-            </summary>
-            <typeparam name="TGetFact"></typeparam>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{`0},GetcuReone.FactFactory.Interfaces.IWantAction{`0},`0},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
