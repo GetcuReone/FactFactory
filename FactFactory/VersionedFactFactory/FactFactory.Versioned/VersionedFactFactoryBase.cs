@@ -148,9 +148,9 @@ namespace GetcuReone.FactFactory.Versioned
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        protected override IEnumerable<TFactBase> GetDefaultFacts(TFactContainer container)
+        protected override IEnumerable<IFact> GetDefaultFacts(TFactContainer container)
         {
-            IEnumerable<TFactBase> allVersionFacts = GetAllVersions()?.Select(version => version.ConvertFact<TFactBase>()) ?? Enumerable.Empty<TFactBase>();
+            IEnumerable<IFact> allVersionFacts = GetAllVersions() ?? Enumerable.Empty<IFact>();
 
             List<IVersionFact> defaultVersions = container.Where(version => version is IVersionFact).Select(version => (IVersionFact)version).ToList();
             List<IFactType> defaultVersionTypes = defaultVersions.ConvertAll(version => version.GetFactType());
@@ -191,7 +191,7 @@ namespace GetcuReone.FactFactory.Versioned
             if (errorDetails.Count != 0)
                 throw new InvalidDeriveOperationException<TFactBase>(errorDetails);
 
-            return defaultVersions.Select(version => (TFactBase)version);
+            return defaultVersions;
         }
 
         /// <summary>

@@ -24,7 +24,7 @@ namespace FactFactoryTests.FactFactoryT.Env
             return new Action(wantAction, factTypes);
         }
 
-        protected override IEnumerable<FactBase> GetDefaultFacts(Container container)
+        protected override IEnumerable<IFact> GetDefaultFacts(Container container)
         {
             return DefaultFacts;
         }
