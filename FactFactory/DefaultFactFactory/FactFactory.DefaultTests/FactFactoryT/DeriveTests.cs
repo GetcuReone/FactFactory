@@ -60,7 +60,7 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Negative), TestCategory(GetcuReoneTC.Unit)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Want a fact that cannot be derived.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CannotDerivedOneFactFromOne1TestCase()

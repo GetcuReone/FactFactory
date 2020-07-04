@@ -421,7 +421,7 @@
         <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.CanDerived`1.GetFactType">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.CanDerived`1.CanUse``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.CanDerived`1.Condition``4(``1,``2,``3)">
             <inheritdoc/>
             <remarks>
             For the current fact, there are additional actions built into the fact factory.
@@ -446,7 +446,7 @@
         <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.CannotDerived`1.GetFactType">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.CannotDerived`1.CanUse``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.CannotDerived`1.Condition``4(``1,``2,``3)">
             <inheritdoc/>
             <remarks>
             For the current fact, there are additional actions built into the fact factory.
@@ -471,7 +471,7 @@
         <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.Contained`1.GetFactType">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.Contained`1.CanUse``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.Contained`1.Condition``4(``1,``2,``3)">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.Contained`1.IsFactContained``4(``1,``2,``3)">
@@ -493,7 +493,7 @@
         <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.NotContained`1.GetFactType">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.NotContained`1.CanUse``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.NotContained`1.Condition``4(``1,``2,``3)">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.NotContained`1.IsFactContained``4(``1,``2,``3)">

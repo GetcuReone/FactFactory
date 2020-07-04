@@ -44,7 +44,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
             where TWantAction : IWantAction<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>
         {
-            return FactType.TryGetFact(container, out var _);
+            return !FactType.GetFacts(container).IsNullOrEmpty();
         }
     }
 }

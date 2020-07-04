@@ -175,9 +175,6 @@
         <member name="M:GetcuReone.FactFactory.SpecialFacts.CanDerived`1.GetFactType">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.SpecialFacts.CanDerived`1.IsFactContained``1(GetcuReone.FactFactory.Interfaces.IFactContainer{``0})">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.SpecialFacts.CanDerived`1.Condition``4(``1,``2,``3)">
             <inheritdoc/>
             <remarks>

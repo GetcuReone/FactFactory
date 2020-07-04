@@ -63,7 +63,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             where TContainer : IFactContainer<TFactBase>
             where TWantAction : IWantAction<TFactBase>
         {
-            return InputFactTypes.All(factInfo => factInfo.ContainsContainer(container));
+            return InputFactTypes.All(factInfo => !factInfo.GetFacts(container).IsNullOrEmpty());
         }
 
         /// <inheritdoc/>

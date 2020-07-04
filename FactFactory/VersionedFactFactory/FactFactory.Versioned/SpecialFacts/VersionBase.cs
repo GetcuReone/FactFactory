@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Helpers;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 
 namespace GetcuReone.FactFactory.Versioned.SpecialFacts
@@ -32,7 +33,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
             where TWantAction : IWantAction<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>
         {
-            return GetFactType().TryGetFact(container, out var _);
+            return GetFactType().GetFacts(container).IsNullOrEmpty();
         }
     }
 }
