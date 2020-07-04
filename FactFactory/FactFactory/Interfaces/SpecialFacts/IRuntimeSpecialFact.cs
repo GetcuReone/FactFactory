@@ -11,7 +11,7 @@
         IFactType FactType { get; }
 
         /// <summary>
-        /// Is it possible to use the current fact and add it to the container.
+        /// A condition that determines whether the current fact can be added to the container when deriving.
         /// </summary>
         /// <typeparam name="TFactBase"></typeparam>
         /// <typeparam name="TFactWork"></typeparam>
@@ -21,7 +21,10 @@
         /// <param name="wantAction">The action in the context of which we do this.</param>
         /// <param name="container">Container.</param>
         /// <returns></returns>
-        bool CanUse<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+        /// <remarks>
+        /// Using it, you can determine which rule and under what conditions can be used to build a rule tree.
+        /// </remarks>
+        bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
             where TFactBase : IFact
             where TFactWork : IFactWork<TFactBase>
             where TWantAction : IWantAction<TFactBase>

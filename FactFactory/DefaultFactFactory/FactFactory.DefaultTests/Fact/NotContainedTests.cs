@@ -41,8 +41,8 @@ namespace FactFactory.DefaultTests.Fact
             Given("Add fact container.", () => container.Add(new ResultFact(default)))
                 .And("Create fact.", () =>
                     new NotContained<ResultFact>())
-                .When("Call CanUse method.", notContained =>
-                    notContained.CanUse<FactBase, Rule, WAction, Container>(null, null, container))
+                .When("Call Condition method.", notContained =>
+                    notContained.Condition<FactBase, Rule, WAction, Container>(null, null, container))
                 .Then("Check result.", result =>
                     Assert.IsFalse(result, "NotContained can use."));
         }
@@ -56,8 +56,8 @@ namespace FactFactory.DefaultTests.Fact
             var container = new Container();
 
             Given("Create fact.", () => new NotContained<ResultFact>())
-                .When("Call CanUse method.", notContained =>
-                    notContained.CanUse<FactBase, Rule, WAction, Container>(null, null, container))
+                .When("Call Condition method.", notContained =>
+                    notContained.Condition<FactBase, Rule, WAction, Container>(null, null, container))
                 .Then("Check result.", result =>
                     Assert.IsTrue(result, "NotContained cannot use."));
         }

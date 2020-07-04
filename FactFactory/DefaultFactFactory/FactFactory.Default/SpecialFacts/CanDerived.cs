@@ -39,7 +39,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
         /// <remarks>
         /// For the current fact, there are additional actions built into the fact factory.
         /// </remarks>
-        public bool CanUse<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+        public bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
             where TFactBase : IFact
             where TFactWork : IFactWork<TFactBase>
             where TWantAction : IWantAction<TFactBase>
