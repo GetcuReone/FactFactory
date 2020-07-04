@@ -34,11 +34,10 @@ namespace GetcuReone.FactFactory.Interfaces
         TFact CreateRuntimeSpecialFact<TFact>() where TFact : IRuntimeSpecialFact;
 
         /// <summary>
-        /// Try to get a fact from the container.
+        /// Returns a subarray whose facts have this <see cref="IFactType"/>.
         /// </summary>
-        /// <param name="facts">Set fact.</param>
-        /// <param name="fact">Fact.</param>
-        /// <returns>True - it turned out to return the fact</returns>
-        bool TryGetFact(IEnumerable<IFact> facts, out IFact fact);
+        /// <param name="facts"></param>
+        /// <returns></returns>
+        IEnumerable<IFact> GetFacts(IEnumerable<IFact> facts);
     }
 }
