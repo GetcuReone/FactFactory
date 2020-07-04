@@ -16,40 +16,23 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         {
         }
 
-        /// <summary>
-        /// True - the version of the current fact is equal <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public abstract bool EqualVersion<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact;
 
-        /// <summary>
-        /// True - the version of the current fact is less than <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public abstract bool IsLessThan<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact;
 
-        /// <summary>
-        /// True - the version of the current fact is more than <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public abstract bool IsMoreThan<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact;
 
-        /// <summary>
-        /// Is the fact contained in the container.
-        /// </summary>
-        /// <typeparam name="TFact1"></typeparam>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        public bool IsFactContained<TFact1>(IFactContainer<TFact1> container)
-            where TFact1 : IFact
+        /// <inheritdoc/>
+        public bool IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+            where TFactBase : IFact
+            where TFactWork : IFactWork<TFactBase>
+            where TWantAction : IWantAction<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>
         {
-            return GetFactType().TryGetFact(container, out TFact1 _);
+            return GetFactType().TryGetFact(container, out TFactBase _);
         }
     }
 }

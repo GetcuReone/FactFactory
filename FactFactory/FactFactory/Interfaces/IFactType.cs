@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Interfaces
 {
@@ -30,7 +31,7 @@ namespace GetcuReone.FactFactory.Interfaces
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
         /// <returns></returns>
-        TFact CreateSpecialFact<TFact>() where TFact : IFact;
+        TFact CreateRuntimeSpecialFact<TFact>() where TFact : IRuntimeSpecialFact;
 
         /// <summary>
         /// Try to get a fact from the container.

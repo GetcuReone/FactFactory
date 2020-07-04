@@ -319,37 +319,9 @@ namespace GetcuReone.FactFactory
             {
                 if (wantFact.IsFactType<IRuntimeSpecialFact>())
                 {
-                    if (wantFact.IsFactType<INotContainedFact>())
+                    if (wantFact.IsFactType<ICannotDerivedFact>())
                     {
-                        INotContainedFact notContainedFact = wantFact.CreateSpecialFact<INotContainedFact>();
-
-                        if (!notContainedFact.IsFactContained(container))
-                        {
-                            TFactBase specialFact = notContainedFact.ConvertFact<TFactBase>();
-                            specialFacts.Add(specialFact);
-                        }
-                        else
-                            deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
-
-                        continue;
-                    }
-                    else if (wantFact.IsFactType<IContainedFact>())
-                    {
-                        IContainedFact containedFact = wantFact.CreateSpecialFact<IContainedFact>();
-
-                        if (containedFact.IsFactContained(container))
-                        {
-                            TFactBase specialFact = containedFact.ConvertFact<TFactBase>();
-                            specialFacts.Add(specialFact);
-                        }
-                        else
-                            deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
-
-                        continue;
-                    }
-                    else if (wantFact.IsFactType<ICannotDerivedFact>())
-                    {
-                        ICannotDerivedFact cannotDerivedFact = wantFact.CreateSpecialFact<ICannotDerivedFact>();
+                        ICannotDerivedFact cannotDerivedFact = wantFact.CreateRuntimeSpecialFact<ICannotDerivedFact>();
 
                         if (!TryDeriveRuntimeSpecialFact(cannotDerivedFact, null, wantAction, container, rules, specialFacts))
                         {
@@ -363,11 +335,25 @@ namespace GetcuReone.FactFactory
                     }
                     else if (wantFact.IsFactType<ICanDerivedFact>())
                     {
-                        ICanDerivedFact canDerivedFact = wantFact.CreateSpecialFact<ICanDerivedFact>();
+                        ICanDerivedFact canDerivedFact = wantFact.CreateRuntimeSpecialFact<ICanDerivedFact>();
 
                         if (TryDeriveRuntimeSpecialFact(canDerivedFact, null, wantAction, container, rulesForDerive, specialFacts))
                         {
                             TFactBase specialFact = canDerivedFact.ConvertFact<TFactBase>();
+                            specialFacts.Add(specialFact);
+                        }
+                        else
+                            deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
+
+                        continue;
+                    }
+                    else
+                    {
+                        IRuntimeSpecialFact runtimeSpecialFact = wantFact.CreateRuntimeSpecialFact<IRuntimeSpecialFact>();
+
+                        if (runtimeSpecialFact.CanUse<TFactBase, TWantAction, TWantAction, TFactContainer>(wantAction, wantAction, container))
+                        {
+                            TFactBase specialFact = runtimeSpecialFact.ConvertFact<TFactBase>();
                             specialFacts.Add(specialFact);
                         }
                         else
@@ -472,41 +458,15 @@ namespace GetcuReone.FactFactory
                                     continue;
                                 }
 
-                                bool isNotContained = needFactType.IsFactType<INotContainedFact>();
                                 bool isNoDerive = needFactType.IsFactType<ICannotDerivedFact>();
-                                bool isContained = needFactType.IsFactType<IContainedFact>();
                                 bool isCanDerived = needFactType.IsFactType<ICanDerivedFact>();
 
-                                if (isNoDerive || isNotContained || isContained || isCanDerived)
+                                if (isNoDerive || isCanDerived)
                                 {
-                                    // Check INotContainedFact fact
-                                    if (isNotContained)
-                                    {
-                                        INotContainedFact notContainedFact = needFactType.CreateSpecialFact<INotContainedFact>();
-
-                                        if (container.All(fact => !notContainedFact.IsFactContained(container)))
-                                        {
-                                            specialFacts.Add(notContainedFact.ConvertFact<TFactBase>());
-                                            needRemove = true;
-                                        }
-                                    }
-
-                                    // Check IContainedFact fact
-                                    else if (isContained)
-                                    {
-                                        IContainedFact containedFact = needFactType.CreateSpecialFact<IContainedFact>();
-
-                                        if (container.Any(fact => containedFact.IsFactContained(container)))
-                                        {
-                                            specialFacts.Add(containedFact.ConvertFact<TFactBase>());
-                                            needRemove = true;
-                                        }
-                                    }
-
                                     // Check ICannotDerivedFact fact
-                                    else if (needFactType.IsFactType<ICannotDerivedFact>())
+                                    if (needFactType.IsFactType<ICannotDerivedFact>())
                                     {
-                                        ICannotDerivedFact cannotDerivedFact = needFactType.CreateSpecialFact<ICannotDerivedFact>();
+                                        ICannotDerivedFact cannotDerivedFact = needFactType.CreateRuntimeSpecialFact<ICannotDerivedFact>();
 
                                         if (!TryDeriveRuntimeSpecialFact(cannotDerivedFact, node.FactRule, wantAction, container, ruleCollection, specialFacts))
                                         {
@@ -518,13 +478,23 @@ namespace GetcuReone.FactFactory
                                     // Check ICanDerivedFact fact
                                     else
                                     {
-                                        ICanDerivedFact canDerivedFact = needFactType.CreateSpecialFact<ICanDerivedFact>();
+                                        ICanDerivedFact canDerivedFact = needFactType.CreateRuntimeSpecialFact<ICanDerivedFact>();
 
                                         if (TryDeriveRuntimeSpecialFact(canDerivedFact, node.FactRule, wantAction, container, ruleCollection, specialFacts))
                                         {
                                             specialFacts.Add(canDerivedFact.ConvertFact<TFactBase>());
                                             needRemove = true;
                                         }
+                                    }
+                                }
+                                else
+                                {
+                                    IRuntimeSpecialFact runtimeSpecialFact = needFactType.CreateRuntimeSpecialFact<IRuntimeSpecialFact>();
+
+                                    if (runtimeSpecialFact.CanUse<TFactBase, TFactRule, TWantAction, TFactContainer>(node.FactRule, wantAction, container))
+                                    {
+                                        specialFacts.Add(runtimeSpecialFact.ConvertFact<TFactBase>());
+                                        needRemove = true;
                                     }
                                 }
                             }
@@ -853,7 +823,9 @@ namespace GetcuReone.FactFactory
         private bool TryDeriveRuntimeSpecialFact<TRuntimeSpecialFact>(TRuntimeSpecialFact runtimeSpecialFact, TFactRule rule, TWantAction wantAction, TFactContainer container, IList<TFactRule> ruleCollection, List<TFactBase> specialFacts)
             where TRuntimeSpecialFact : IRuntimeSpecialFact
         {
-            if (runtimeSpecialFact.IsFactContained(container))
+            if (rule != null && runtimeSpecialFact.IsFactContained<TFactBase, TFactRule, TWantAction, TFactContainer>(rule, wantAction, container))
+                return true;
+            else if (runtimeSpecialFact.IsFactContained<TFactBase, TWantAction, TWantAction, TFactContainer>(wantAction, wantAction, container))
                 return true;
 
             try

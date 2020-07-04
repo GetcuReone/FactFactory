@@ -264,7 +264,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Successful derive CannotDerived.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        //[Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SuccessfulDeriveCannotDerivedTestCase()
         {
             Given("Create factory", () => new FactFactoryCustom())
