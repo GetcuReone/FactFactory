@@ -213,11 +213,11 @@ namespace GetcuReone.FactFactory.Versioned
             IVersionFact ruleVersion =  rule.VersionType != null
                 ? container.GetRightFactByVersionType(rule.VersionType, null) as IVersionFact
                 : null;
-            TFactBase currentFact = container.GetRightFactByVersion(rule.OutputFactType, maxVersion);
+            TFactBase currentVersionedFact = (TFactBase)container.GetRightFactByVersion(rule.OutputFactType, maxVersion);
 
-            if (currentFact == null)
+            if (currentVersionedFact == null)
                 result = true;
-            else if (!currentFact.CalculatedByRule)
+            else if (!currentVersionedFact.CalculatedByRule)
                 result = false;
             else
             {
@@ -233,37 +233,37 @@ namespace GetcuReone.FactFactory.Versioned
                     // If the maximum version is not specified
                     if (maxVersion == null)
                     {
-                        if (currentFact.Version != null)
+                        if (currentVersionedFact.Version != null)
                         {
                             if (ruleVersion == null)
                                 result = true;
                             else
-                                result = currentFact.Version.IsLessThan(ruleVersion);
+                                result = currentVersionedFact.Version.IsLessThan(ruleVersion);
                         }
                     }
                     else
                     {
-                        if (currentFact.Version == null)
+                        if (currentVersionedFact.Version == null)
                             result = true;
-                        else if (currentFact.Version.IsMoreThan(maxVersion))
+                        else if (currentVersionedFact.Version.IsMoreThan(maxVersion))
                             result = true;
                         else if (ruleVersion == null)
                             result = true;
                         else
-                            result = currentFact.Version.IsLessThan(ruleVersion);
+                            result = currentVersionedFact.Version.IsLessThan(ruleVersion);
                     }
                 }
             }
 
-            if (result && currentFact != null)
+            if (result && currentVersionedFact != null)
             {
                 if (ruleVersion == null)
                 {
-                    if (currentFact.Version == null)
-                        needRemoveFact = currentFact;
+                    if (currentVersionedFact.Version == null)
+                        needRemoveFact = currentVersionedFact;
                 }
-                else if (currentFact.Version != null && ruleVersion.EqualVersion(currentFact.Version))
-                    needRemoveFact = currentFact;
+                else if (currentVersionedFact.Version != null && ruleVersion.EqualVersion(currentVersionedFact.Version))
+                    needRemoveFact = currentVersionedFact;
             }
 
             return result;

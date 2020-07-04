@@ -32,7 +32,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
             where TWantAction : IWantAction<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>
         {
-            return GetFactType().TryGetFact(container, out TFactBase _);
+            return GetFactType().TryGetFact(container, out var _);
         }
     }
 }

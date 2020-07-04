@@ -36,10 +36,9 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <summary>
         /// Try to get a fact from the container.
         /// </summary>
-        /// <typeparam name="TFact">Type base class for facts.</typeparam>
         /// <param name="facts">Set fact.</param>
         /// <param name="fact">Fact.</param>
         /// <returns>True - it turned out to return the fact</returns>
-        bool TryGetFact<TFact>(IEnumerable<TFact> facts, out TFact fact) where TFact : IFact;
+        bool TryGetFact(IEnumerable<IFact> facts, out IFact fact);
     }
 }

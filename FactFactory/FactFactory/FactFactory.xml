@@ -15,22 +15,20 @@
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.IsReadOnly">
-            <summary>
-            Gets a value indicating whether the <see cref="T:GetcuReone.FactFactory.Interfaces.IFactContainer`1"/> is read-only.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.#ctor">
             <summary>
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Constructor.
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)">
             <summary>
             Constructor.
             </summary>
@@ -44,72 +42,44 @@
             <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">If <see cref="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.IsReadOnly"/> is true.</exception>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.GetFactType``1">
-            <summary>
-            Return fact type information.
-            </summary>
-            <typeparam name="TGetFact">The type of fact to return information about.</typeparam>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Add``1(``0)">
-            <summary>
-            Add fact.
-            </summary>
-            <param name="fact">Fact.</param>
-            <typeparam name="TFact">Type of fact to add.</typeparam>
+            <inheritdoc/>
+            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Attempt to add an existing fact.</exception>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <inheritdoc/>
             <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Attempt to add an existing fact.</exception>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Contains``1">
-            <summary>
-            Is this type of fact contained.
-            </summary>
-            <typeparam name="TFact">type of fact to check for.</typeparam>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1"/>.
-            </summary>
-            <returns>A <see cref="T:System.Collections.IEnumerator"/> for the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1"/></returns>
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.GetFact``1">
-            <summary>
-            Get fact.
-            </summary>
-            <typeparam name="TFact">Type of fact to return.</typeparam>
-            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Did not find fact type <typeparamref name="TFact"/></exception>
+            <inheritdoc/>
+            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Did not find fact type <typeparamref name="TFact"/>.</exception>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Remove``1">
-            <summary>
-            Remove fact.
-            </summary>
-            <typeparam name="TFact">Type of fact to delete.</typeparam>
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Remove``1(``0)">
-            <summary>
-            Remove fact.
-            </summary>
-            <param name="fact"></param>
-            <typeparam name="TFact">Type of fact to delete.</typeparam>
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.TryGetFact``1(``0@)">
-            <summary>
-            Try get fact.
-            </summary>
-            <typeparam name="TFact">Type of fact to return.</typeparam>
-            <param name="fact"></param>
-            <returns></returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Copy">
-            <summary>
-            Get copy container.
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Clear">
-            <summary>
-            Clear this container.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1">
             <summary>
@@ -589,11 +559,10 @@
             <typeparam name="TFact1"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.TryGetFact``1(System.Collections.Generic.IEnumerable{``0},``0@)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.TryGetFact(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact@)">
             <summary>
             Try to get a fact from the container.
             </summary>
-            <typeparam name="TFact1">Type base class for facts.</typeparam>
             <param name="facts">Set fact.</param>
             <param name="fact">Fact.</param>
             <returns>True - fact found.</returns>
@@ -1279,6 +1248,13 @@
             <param name="requiredFacts">The facts that tried to derive.</param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Helpers.FactFactoryHelper.ValidateType``1(GetcuReone.FactFactory.Interfaces.IFact)">
+            <summary>
+            Check type of fact.
+            </summary>
+            <typeparam name="TFactBase"></typeparam>
+            <param name="fact"></param>
+        </member>
         <member name="T:GetcuReone.FactFactory.InnerEntities.Enums.TreeStatus">
             <summary>
             Tree build status.
@@ -1344,6 +1320,12 @@
             </summary>
             <param name="fact">Fact.</param>
             <typeparam name="TFact">Type of fact to add.</typeparam>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <summary>
+            Add facts.
+            </summary>
+            <param name="facts">Fact set.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Remove``1">
             <summary>
@@ -1506,14 +1488,25 @@
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.TryGetFact``1(System.Collections.Generic.IEnumerable{``0},``0@)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.TryGetFact(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact@)">
             <summary>
             Try to get a fact from the container.
             </summary>
-            <typeparam name="TFact">Type base class for facts.</typeparam>
             <param name="facts">Set fact.</param>
             <param name="fact">Fact.</param>
             <returns>True - it turned out to return the fact</returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.IFactTypeCreation">
+            <summary>
+            Interface for creating a fact type.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactTypeCreation.GetFactType``1">
+            <summary>
+            Get fact type from <typeparamref name="TFact"/>.
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactWork`1">
             <summary>

@@ -136,7 +136,7 @@ namespace GetcuReone.FactFactory.Helpers
         internal static bool ContainsContainer<TFact>(this IFactType factType, IFactContainer<TFact> container)
             where TFact : IFact
         {
-            return factType.TryGetFact(container, out TFact _);
+            return factType.TryGetFact(container, out var _);
         }
 
         internal static void CheckArgumentFacts<TFact>(this IEnumerable<IFactType> factTypes)
@@ -188,6 +188,28 @@ namespace GetcuReone.FactFactory.Helpers
                 {
                     throw CreateException(ErrorCode.InvalidFactType, $"{type.FactName} implements more than one runtime special fact interface.");
                 }
+            }
+        }
+
+        internal static IFactType GetDefaultFactType<TFact>() where TFact : IFact
+        {
+            return new FactType<TFact>();
+        }
+
+        /// <summary>
+        /// Check type of fact.
+        /// </summary>
+        /// <typeparam name="TFactBase"></typeparam>
+        /// <param name="fact"></param>
+        public static void ValidateType<TFactBase>(this IFact fact) where TFactBase : IFact
+        {
+            switch (fact)
+            {
+                case TFactBase _:
+                case ISpecialFact _:
+                    break;
+
+                default: throw CreateException(ErrorCode.InvalidData, $"The fact must be inherited either from the base type or from {nameof(ISpecialFact)}. Fact:<{fact}>.");
             }
         }
     }

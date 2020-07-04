@@ -28,13 +28,6 @@ namespace GetcuReone.FactFactory.SpecialFacts
         }
 
         /// <inheritdoc/>
-        public virtual bool IsFactContained<TFact1>(IFactContainer<TFact1> container)
-            where TFact1 : IFact
-        {
-            return FactType.TryGetFact(container, out TFact1 _);
-        }
-
-        /// <inheritdoc/>
         public bool CanUse<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
             where TFactBase : IFact
             where TFactWork : IFactWork<TFactBase>
@@ -51,7 +44,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
             where TWantAction : IWantAction<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>
         {
-            return FactType.TryGetFact(container, out TFactBase _);
+            return FactType.TryGetFact(container, out var _);
         }
     }
 }
