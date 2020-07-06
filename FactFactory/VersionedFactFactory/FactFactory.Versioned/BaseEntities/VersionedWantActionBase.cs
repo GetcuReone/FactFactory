@@ -25,20 +25,25 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             VersionType = factTypes.SingleOrNullFactVersion();
         }
 
-        /// <summary>
-        /// Type fact version.
-        /// </summary>
+        /// <inheritdoc/>
         public IFactType VersionType { get; }
 
-        /// <summary>
-        /// Get the necessary fact types.
-        /// </summary>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="container"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public override List<IFactType> GetNecessaryFactTypes<TFactContainer>(TFactContainer container)
         {
             return InputFactTypes.Where(type => container.GetRightFactByVersionType(type, VersionType) == null).ToList();
+        }
+
+        /// <inheritdoc/>
+        public override bool СompatibilityWithRule<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction, TFactContainer container)
+        {
+            if (!base.СompatibilityWithRule(factRule, wantAction, container))
+                return false;
+
+            if ((factRule is VersionedFactRuleBase<TFactBase> factRuleBase) && (wantAction is VersionedWantActionBase<TFactBase> wantActionBase) && (container is VersionedFactContainerBase<TFactBase> containerBase))
+                return this.СompatibilityWithRuleByVersion<TFactBase, VersionedWantActionBase<TFactBase>, VersionedFactRuleBase<TFactBase>, VersionedWantActionBase<TFactBase>, VersionedFactContainerBase<TFactBase>>(factRuleBase, wantActionBase, containerBase);
+
+            return false;
         }
     }
 }

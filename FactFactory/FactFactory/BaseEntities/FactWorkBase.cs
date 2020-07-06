@@ -87,5 +87,14 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             return false;
         }
+
+        /// <inheritdoc/>
+        public virtual bool СompatibilityWithRule<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction, TFactContainer container)
+            where TFactRule : IFactRule<TFactBase>
+            where TWantAction : IWantAction<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>
+        {
+            return true;
+        }
     }
 }

@@ -52,5 +52,20 @@ namespace GetcuReone.FactFactory.Interfaces
             where TFactWork : IFactWork<TFactBase>
             where TWantAction : IWantAction<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>;
+
+        /// <summary>
+        /// Is the <paramref name="factRule"/> rule compatible with the current <see cref="IFactWork{TFactBase}"/>.
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="factRule">Compatibility check rule.</param>
+        /// <param name="wantAction">The action within which compatibility check.</param>
+        /// <param name="container">Container.</param>
+        /// <returns></returns>
+        bool СompatibilityWithRule<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction, TFactContainer container)
+            where TFactRule : IFactRule<TFactBase>
+            where TWantAction : IWantAction<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>;
     }
 }
