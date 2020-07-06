@@ -187,5 +187,27 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
 
             return false;
         }
+
+        internal static bool СompatibilityWithRuleByVersion<TFactBase, TFactWork, TFactRule, TWantAction, TFactContainer>(this TFactWork work, TFactRule rule, TWantAction wantAction, TFactContainer container)
+            where TFactBase : class, IVersionedFact
+            where TFactWork : IFactWork<TFactBase>, IFactTypeVersionInfo
+            where TFactRule : IFactRule<TFactBase>, IFactTypeVersionInfo
+            where TWantAction : IWantAction<TFactBase>, IFactTypeVersionInfo
+            where TFactContainer : IFactContainer<TFactBase>
+        {
+            // If the current work or action has an installed version and the rule has no version limit.
+            if (rule.VersionType == null)
+                return wantAction.VersionType == null;
+            else if (wantAction.VersionType == null)
+                return true;
+
+            IVersionFact maxVersion = container.GetVersionFact(wantAction.VersionType);
+            IVersionFact potentialVersion = container.GetVersionFact(rule.VersionType);
+
+            if (potentialVersion.IsMoreThan(maxVersion))
+                return false;
+
+            return true;
+        }
     }
 }

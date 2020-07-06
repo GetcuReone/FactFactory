@@ -763,6 +763,25 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
+        /// Retrieves all the elements that match the conditions defined by the specified predicate.
+        /// </summary>
+        /// <param name="predicate">The System.Predicate`1 delegate that defines the conditions of the elements to search for.</param>
+        /// <returns>A <see cref="List{TFactRule}"/> containing all the elements that match the conditions defined by the specified <paramref name="predicate"/>, if found; otherwise, an empty <see cref="List{TFactRule}"/>.</returns>
+        public List<TFactRule> FindAll(Predicate<TFactRule> predicate)
+        {
+            return _list.FindAll(predicate);
+        }
+
+        /// <summary>
+        /// Performs the specified action on each element of the <see cref="FactRuleCollectionBase{TFactBase, TFactRule}"/>.
+        /// </summary>
+        /// <param name="action">The System.Action`1 delegate to perform on each element of the <see cref="FactRuleCollectionBase{TFactBase, TFactRule}"/>.</param>
+        public void ForEach(Action<TFactRule> action)
+        {
+            _list.ForEach(action);
+        }
+
+        /// <summary>
         /// Removes the first occurrence of a specific object from the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.
         /// </summary>
         /// <param name="item">The object to remove from the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>. The value can be null for reference types.</param>
