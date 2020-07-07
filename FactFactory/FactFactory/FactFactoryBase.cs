@@ -12,11 +12,12 @@ using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
 namespace GetcuReone.FactFactory
 {
     /// <summary>
-    /// Base class for fact factory
+    /// Base class for fact factory.
     /// </summary>
     public abstract class FactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactoryBase, IFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>, IAbstractFactory, IFactTypeCreation
         where TFactBase : class, IFact
@@ -39,7 +40,7 @@ namespace GetcuReone.FactFactory
         /// <inheritdoc/>
         public virtual IFactType GetFactType<TFact>() where TFact : IFact
         {
-            return FactFactoryHelper.GetDefaultFactType<TFact>();
+            return new FactType<TFact>();
         }
 
         /// <summary>
@@ -146,17 +147,17 @@ namespace GetcuReone.FactFactory
         private TFactContainer ValidateContainer()
         {
             if (Container == null)
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "Container cannot be null.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "Container cannot be null.");
 
             FactContainerBase<TFactBase> containerCopy = Container.Copy();
             if (containerCopy == null)
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method return null.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method return null.");
             if (Container.Equals(containerCopy))
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
             if (!(containerCopy is TFactContainer container))
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method returned a different type of container.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method returned a different type of container.");
             if (container.Any(fact => fact is IRuntimeSpecialFact))
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, $"Container contains {nameof(IRuntimeSpecialFact)} facts.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, $"Container contains {nameof(IRuntimeSpecialFact)} facts.");
 
             container.IsReadOnly = true;
             return container;
@@ -170,15 +171,15 @@ namespace GetcuReone.FactFactory
         {
             // Get a copy of the rules
             if (Rules == null)
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "Rules cannot be null.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "Rules cannot be null.");
 
             FactRuleCollectionBase<TFactBase, TFactRule> rulesCopy = Rules.Copy();
             if (rulesCopy == null)
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return null.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return null.");
             if (rulesCopy.Equals(Rules))
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
             if (!(rulesCopy is TFactRuleCollection rules))
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method returned a different type of rules.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method returned a different type of rules.");
 
             rules.IsReadOnly = true;
             return rules;
@@ -207,7 +208,7 @@ namespace GetcuReone.FactFactory
             }
 
             if (deriveErrorDetails.Count != 0)
-                throw FactFactoryHelper.CreateDeriveException(deriveErrorDetails);
+                throw CommonHelper.CreateDeriveException(deriveErrorDetails);
 
             return forestry;
         }
@@ -587,7 +588,7 @@ namespace GetcuReone.FactFactory
         private List<FactRuleTree<TFactBase, TFactRule>> GetFactRuleTrees(IFactType wantFact, IList<TFactRule> rules)
         {
             if (rules.IsNullOrEmpty())
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.EmptyRuleCollection, "Rules cannot be null.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.EmptyRuleCollection, "Rules cannot be null.");
 
             List<FactRuleTree<TFactBase, TFactRule>> factRuleTrees = rules.Where(rule => rule.OutputFactType.EqualsFactType(wantFact))
                     .Select(rule =>
@@ -603,7 +604,7 @@ namespace GetcuReone.FactFactory
                     .ToList();
 
             if (factRuleTrees.IsNullOrEmpty())
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.RuleNotFound, $"No rules found able to calculate fact {wantFact.FactName}.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.RuleNotFound, $"No rules found able to calculate fact {wantFact.FactName}.");
 
             return factRuleTrees;
         }
@@ -740,7 +741,7 @@ namespace GetcuReone.FactFactory
                 }
 
                 if (counterCycles > maxCycles)
-                    throw FactFactoryHelper.CreateDeriveException<TFactBase>(
+                    throw CommonHelper.CreateDeriveException<TFactBase>(
                         ErrorCode.InvalidOperation,
                         "The calculation uses interdependent rules.\n" + string.Join("\n", allRules.ConvertAll(rule => rule.ToString())));
             }
@@ -766,7 +767,7 @@ namespace GetcuReone.FactFactory
             TFactBase calculateFact = CreateObject(ct => rule.Calculate(ct, wantAction), container);
 
             if (calculateFact == null)
-                throw FactFactoryHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidOperation, $"Rule {rule.ToString()} return null");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidOperation, $"Rule {rule.ToString()} return null");
 
             using (container.CreateIgnoreReadOnlySpace())
                 container.Add(calculateFact);
@@ -836,7 +837,7 @@ namespace GetcuReone.FactFactory
         public virtual void WantFact(TWantAction wantAction)
         {
             if (WantActions.IndexOf(wantAction) != -1)
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, "Action already requested");
+                throw CommonHelper.CreateException(ErrorCode.InvalidData, "Action already requested");
 
             WantActions.Add(wantAction);
         }

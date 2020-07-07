@@ -192,7 +192,7 @@ namespace FactFactoryTests.FactRule
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RequestEntryCalculatedByRuleFactTestCase()
         {
-            string expectedReason = "Cannot request a fact calculated according to the rule.";
+            string expectedReason = "Cannot request a fact calculated according to the rule. (Parameter 'inputFactTypes')";
 
             GivenEmpty()
                 .When("Create rule", _ =>
@@ -213,7 +213,7 @@ namespace FactFactoryTests.FactRule
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void Rule_RequestInvalidFactTestCase()
         {
-            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}.";
+            string expectedReason = $"Rule must return fact inherited from {typeof(FactBase).FullName}. (Parameter 'outputFactType')";
 
             GivenEmpty()
                 .When("Create rule", _ =>

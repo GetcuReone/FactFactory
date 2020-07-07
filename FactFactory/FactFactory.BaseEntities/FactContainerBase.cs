@@ -1,10 +1,13 @@
 ﻿using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
-using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
+
+[assembly: InternalsVisibleToAttribute("FactFactory")]
 
 namespace GetcuReone.FactFactory.BaseEntities
 {
@@ -20,7 +23,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         protected List<IFact> ContainerList { get; private set; }
 
         /// <inheritdoc/>
-        public bool IsReadOnly { get; internal set; }
+        public bool IsReadOnly { get; set; }
 
         /// <summary>
         /// Constructor.
@@ -57,12 +60,12 @@ namespace GetcuReone.FactFactory.BaseEntities
 
         private void InnerAdd<TFact>(TFact fact) where TFact : IFact
         {
-            fact.ValidateType<TFactBase>();
+            fact.ValidateTypeOfFact<TFactBase>();
 
             IFactType factType = fact.GetFactType();
 
             if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType)))
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"The fact container already contains {factType.FactName} type of fact.");
+                throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"The fact container already contains {factType.FactName} type of fact.");
 
             ContainerList.Add(fact);
         }
@@ -74,13 +77,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         protected virtual void CheckReadOnly()
         {
             if (IsReadOnly)
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidOperation, $"Fact container is read-only.");
+                throw CommonHelper.CreateException(ErrorCode.InvalidOperation, $"Fact container is read-only.");
         }
 
         /// <inheritdoc/>
         public virtual IFactType GetFactType<TFact>() where TFact : IFact
         {
-            return FactFactoryHelper.GetDefaultFactType<TFact>();
+            return new FactType<TFact>();
         }
 
         /// <inheritdoc/>
@@ -123,7 +126,7 @@ namespace GetcuReone.FactFactory.BaseEntities
                 return fact;
             }
 
-            throw FactFactoryHelper.CreateException(ErrorCode.InvalidData, $"Not found type fact with type {GetFactType<TFact>().FactName}.");
+            throw CommonHelper.CreateException(ErrorCode.InvalidData, $"Not found type fact with type {GetFactType<TFact>().FactName}.");
         }
 
         /// <inheritdoc/>

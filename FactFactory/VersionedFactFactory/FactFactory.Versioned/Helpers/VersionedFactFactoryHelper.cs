@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CommonErrorCode = GetcuReone.FactFactory.Constants.ErrorCode;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
 namespace GetcuReone.FactFactory.Versioned.Helpers
 {
@@ -19,7 +20,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
         {
             var versionFact = factTypeVersion.GetFacts(facts).FirstOrDefault();
             if (versionFact == null)
-                throw FactFactoryHelper.CreateException(ErrorCode.VersionNotFound, $"No version fact '{factTypeVersion.FactName}' found");
+                throw CommonHelper.CreateException(ErrorCode.VersionNotFound, $"No version fact '{factTypeVersion.FactName}' found");
 
             return versionFact as IVersionFact;
         }
@@ -31,7 +32,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             if (typeFacts.IsNullOrEmpty())
                 return null;
             else if (typeFacts.Count > 1)
-                throw FactFactoryHelper.CreateException(ErrorCode.OnlyOneVersionFact, $"You cannot specify more than one version fact\nInputFactTypes: ({string.Join(", ", factTypes)})");
+                throw CommonHelper.CreateException(ErrorCode.OnlyOneVersionFact, $"You cannot specify more than one version fact\nInputFactTypes: ({string.Join(", ", factTypes)})");
 
             return typeFacts[0];
         }
@@ -51,7 +52,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             if (fact is TFact fact1)
                 return fact1;
 
-            throw FactFactoryHelper.CreateDeriveException<TFact>(
+            throw CommonHelper.CreateDeriveException<TFact>(
                     CommonErrorCode.InvalidFactType, 
                     $"Fact {fact.GetFactType().FactName} should not be converted into {typeof(TFact).FullName}");
         }

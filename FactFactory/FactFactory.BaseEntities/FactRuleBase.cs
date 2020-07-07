@@ -1,5 +1,4 @@
-﻿using GetcuReone.FactFactory.Helpers;
-using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
@@ -37,11 +36,11 @@ namespace GetcuReone.FactFactory.BaseEntities
                 throw new ArgumentNullException(nameof(outputFactType));
 
             OutputFactType = outputFactType.CannotIsType<ISpecialFact>(nameof(outputFactType));
-
-            new List<IFactType> { OutputFactType }.CheckArgumentFacts<TFactBase>();
+            if (!OutputFactType.IsFactType<TFactBase>())
+                throw new ArgumentException($"Rule must return fact inherited from {typeof(TFactBase).FullName}.", nameof(outputFactType));
 
             if (InputFactTypes.Any(factType => factType.EqualsFactType(outputFactType)))
-                throw new ArgumentException("Cannot request a fact calculated according to the rule.");
+                throw new ArgumentException("Cannot request a fact calculated according to the rule.", nameof(inputFactTypes));
 
         }
 

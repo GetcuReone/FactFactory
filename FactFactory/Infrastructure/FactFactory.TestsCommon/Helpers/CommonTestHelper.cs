@@ -49,7 +49,8 @@ namespace FactFactory.TestsCommon.Helpers
 
         public static ThenBlock<FactFactoryException> ThenAssertErrorDetail(this WhenBlock<FactFactoryException> whenBlock, string errorCode, string errorMessage)
         {
-            return whenBlock.Then($"Check error with code {errorCode}", error => error.AssertErrorDetail(errorCode, errorMessage));
+            return whenBlock.Then($"Check error with code {errorCode}", error =>
+                error.AssertErrorDetail(errorCode, errorMessage));
         }
     }
 }

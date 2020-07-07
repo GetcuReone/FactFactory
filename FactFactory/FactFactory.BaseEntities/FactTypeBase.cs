@@ -1,10 +1,10 @@
 ﻿using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
 namespace GetcuReone.FactFactory.BaseEntities
 {
@@ -31,9 +31,9 @@ namespace GetcuReone.FactFactory.BaseEntities
             var resultType = typeof(TFactResult);
 
             if (!resultType.IsAssignableFrom(type))
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} does not implement {resultType.FullName} type.");
+                throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} does not implement {resultType.FullName} type.");
             else if (type.GetConstructor(Type.EmptyTypes) == null)
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} doesn't have a default constructor.");
+                throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} doesn't have a default constructor.");
 
 
             return (TFactResult)Activator.CreateInstance(type, false);
