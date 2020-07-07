@@ -27,11 +27,11 @@ namespace GetcuReone.FactFactory.Interfaces
         bool IsFactType<TFact>() where TFact : IFact;
 
         /// <summary>
-        /// Create an fact of this type. Method created for special facts.
+        /// Create an fact of this type. Method created for condition facts.
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
         /// <returns></returns>
-        TFact CreateRuntimeSpecialFact<TFact>() where TFact : IRuntimeSpecialFact;
+        TFact CreateConditionFact<TFact>() where TFact : IConditionFact;
 
         /// <summary>
         /// Returns a subarray whose facts have this <see cref="IFactType"/>.

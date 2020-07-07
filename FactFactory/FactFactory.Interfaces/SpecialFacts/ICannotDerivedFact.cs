@@ -3,7 +3,7 @@
     /// <summary>
     /// Interface for fact that cannot be derived.
     /// </summary>
-    public interface ICannotDerivedFact : IRuntimeSpecialFact
+    public interface ICannotDerivedFact : IConditionFact
     {
     }
 }

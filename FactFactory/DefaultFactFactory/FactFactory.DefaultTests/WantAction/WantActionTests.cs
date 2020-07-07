@@ -89,7 +89,7 @@ namespace FactFactoryTests.WantAction
             string expectedReason = $"{invalidFactType.FactName} implements more than one runtime special fact interface.";
 
             GivenEmpty()
-                .When("Create wantAction", _ =>
+                .When("Create wantAction.", _ =>
                 {
                     return ExpectedFactFactoryException(
                         () => new WAction(ct => { }, new List<IFactType> { invalidFactType }));

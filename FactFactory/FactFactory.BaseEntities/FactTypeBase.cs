@@ -25,7 +25,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public virtual TFactResult CreateRuntimeSpecialFact<TFactResult>() where TFactResult : IRuntimeSpecialFact
+        public virtual TFactResult CreateConditionFact<TFactResult>() where TFactResult : IConditionFact
         {
             var type = typeof(TFact);
             var resultType = typeof(TFactResult);

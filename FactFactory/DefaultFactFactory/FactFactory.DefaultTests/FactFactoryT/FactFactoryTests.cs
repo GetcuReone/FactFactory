@@ -432,9 +432,9 @@ namespace FactFactoryTests.FactFactoryT
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Container contains RuntimeSpecialFact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void ContainerContainsRuntimeSpecialFactTestCase()
+        public void ContainerContainsConditionFactTestCase()
         {
-            string expectedMessage = $"Container contains {nameof(IRuntimeSpecialFact)} facts.";
+            string expectedMessage = $"Container contains {nameof(IConditionFact)} facts.";
 
             GivenCreateFactFactory()
                 .AndAddFact(new CanDerived<ResultFact>())
