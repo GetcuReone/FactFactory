@@ -1,5 +1,4 @@
-﻿using GetcuReone.ComboPatterns.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Interfaces
 {
@@ -11,7 +10,7 @@ namespace GetcuReone.FactFactory.Interfaces
     /// <typeparam name="TFactRule">Type fact rule.</typeparam>
     /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
     /// <typeparam name="TWantAction">Type 'want action'.</typeparam>
-    public interface IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IAbstractFactory
+    public interface IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
         where TFact : IFact
         where TFactContainer : IFactContainer<TFact>
         where TFactRule : IFactRule<TFact>
@@ -19,17 +18,17 @@ namespace GetcuReone.FactFactory.Interfaces
         where TWantAction : IWantAction<TFact>
     {
         /// <summary>
-        /// Fact container
+        /// Fact container.
         /// </summary>
         TFactContainer Container { get; }
 
         /// <summary>
-        /// Collection of rules for derive facts
+        /// Collection of rules for derive facts.
         /// </summary>
         TFactRuleCollection Rules { get; }
 
         /// <summary>
-        /// Derive the facts
+        /// Derive the facts.
         /// </summary>
         void Derive();
 
@@ -41,7 +40,7 @@ namespace GetcuReone.FactFactory.Interfaces
         TWantFact DeriveFact<TWantFact>() where TWantFact : TFact;
 
         /// <summary>
-        /// Requesting a desired fact through action
+        /// Requesting a desired fact through action.
         /// </summary>
         /// <param name="wantAction"></param>
         void WantFact(TWantAction wantAction);

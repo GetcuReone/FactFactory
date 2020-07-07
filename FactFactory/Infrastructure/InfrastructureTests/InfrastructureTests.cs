@@ -36,10 +36,16 @@ namespace InfrastructureTests
             {
                 string.Format(libPattern, $"{_projectName}.dll"),
                 string.Format(libPattern, $"{_projectName}.xml"),
+
+                string.Format(libPattern, $"{_projectName}.Interfaces.dll"),
+                string.Format(libPattern, $"{_projectName}.Interfaces.xml"),
+
                 string.Format(libPattern, $"{_projectName}.Versioned.dll"),
                 string.Format(libPattern, $"{_projectName}.Versioned.xml"),
+
                 string.Format(libPattern, $"{_projectName}.Default.dll"),
                 string.Format(libPattern, $"{_projectName}.Default.xml"),
+
                 "LICENSE.txt",
                 "README.md",
             };
