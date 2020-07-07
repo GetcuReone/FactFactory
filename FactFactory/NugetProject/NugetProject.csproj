@@ -69,6 +69,14 @@
       <PrivateAssets>All</PrivateAssets>
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\FactFactory.BaseEntities\FactFactory.BaseEntities.csproj">
+        <PrivateAssets>All</PrivateAssets>
+        <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\FactFactory.Common\FactFactory.Common.csproj">
+        <PrivateAssets>All</PrivateAssets>
+        <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="..\FactFactory.Interfaces\FactFactory.Interfaces.csproj">
         <PrivateAssets>All</PrivateAssets>
         <ReferenceOutputAssembly>true</ReferenceOutputAssembly>

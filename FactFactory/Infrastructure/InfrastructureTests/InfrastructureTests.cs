@@ -36,9 +36,12 @@ namespace InfrastructureTests
             {
                 string.Format(libPattern, $"{_projectName}.dll"),
                 string.Format(libPattern, $"{_projectName}.xml"),
-
+                string.Format(libPattern, $"{_projectName}.Common.dll"),
+                string.Format(libPattern, $"{_projectName}.Common.xml"),
                 string.Format(libPattern, $"{_projectName}.Interfaces.dll"),
                 string.Format(libPattern, $"{_projectName}.Interfaces.xml"),
+                string.Format(libPattern, $"{_projectName}.BaseEntities.dll"),
+                string.Format(libPattern, $"{_projectName}.BaseEntities.xml"),
 
                 string.Format(libPattern, $"{_projectName}.Versioned.dll"),
                 string.Format(libPattern, $"{_projectName}.Versioned.xml"),

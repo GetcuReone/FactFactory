@@ -1,8 +1,8 @@
-﻿using GetcuReone.FactFactory.Helpers;
-using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
 namespace GetcuReone.FactFactory.BaseEntities
 {
@@ -24,13 +24,8 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             if (!factTypes.IsNullOrEmpty())
             {
-                factTypes.CheckArgumentFacts<TFactBase>();
-
-                factTypes.ForEach(factType =>
-                {
-                    factType.CheckSpecialFactType();
-                });
-
+                factTypes.VerifyFactTypes<TFactBase>();
+                factTypes.ForEach(CommonHelper.ValidateConditionFact);
                 InputFactTypes = factTypes;
             }
             else

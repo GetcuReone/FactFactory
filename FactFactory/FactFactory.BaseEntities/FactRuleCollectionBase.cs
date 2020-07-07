@@ -1,11 +1,11 @@
 ﻿using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
 namespace GetcuReone.FactFactory.BaseEntities
 {
@@ -83,13 +83,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         private void CheckReadOnly()
         {
             if (IsReadOnly)
-                throw FactFactoryHelper.CreateException(ErrorCode.InvalidOperation, $"Rule collection is read-only.");
+                throw CommonHelper.CreateException(ErrorCode.InvalidOperation, $"Rule collection is read-only.");
         }
 
         /// <inheritdoc/>
         public virtual IFactType GetFactType<TFact>() where TFact : IFact
         {
-            return FactFactoryHelper.GetDefaultFactType<TFact>();
+            return new FactType<TFact>();
         }
 
         /// <summary>
