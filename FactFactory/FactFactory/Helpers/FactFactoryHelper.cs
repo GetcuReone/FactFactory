@@ -16,8 +16,8 @@ namespace GetcuReone.FactFactory.Helpers
     /// </summary>
     public static class FactFactoryHelper
     {
-        internal static void VerifyRecursive<TRuntimeSpecialFact, TFactBase, TFactRule>(this TRuntimeSpecialFact runtimeSpecialFact, TFactRule factRule)
-            where TRuntimeSpecialFact : IRuntimeSpecialFact
+        internal static void VerifyRecursive<TConditionFact, TFactBase, TFactRule>(this TConditionFact runtimeSpecialFact, TFactRule factRule)
+            where TConditionFact : IConditionFact
             where TFactBase : IFact
             where TFactRule : IFactRule<TFactBase>
         {
