@@ -1,10 +1,11 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.BaseEntities.SpecialFacts;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 
 namespace FactFactoryTests.FactType.Env
 {
-    internal class NotContainedWithoutConstructor : IFact, INotContainedFact
+    internal class NotContainedWithoutConstructor : ConditionFactBase, IConditionFact
     {
         private NotContainedWithoutConstructor()
         {
@@ -15,11 +16,7 @@ namespace FactFactoryTests.FactType.Env
 
         public IFactType FactType => throw new NotImplementedException();
 
-        public bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
+        public override bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
         {
             throw new NotImplementedException();
         }
@@ -35,11 +32,7 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
+        public override bool IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
         {
             throw new NotImplementedException();
         }

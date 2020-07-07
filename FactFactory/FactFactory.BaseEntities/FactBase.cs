@@ -1,5 +1,7 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace GetcuReone.FactFactory
 {
@@ -8,15 +10,10 @@ namespace GetcuReone.FactFactory
     /// </summary>
     public abstract class FactBase : IFact
     {
-        /// <summary>
-        /// It was calculated using the rule.
-        /// </summary>
+        /// <inheritdoc/>
         public virtual bool CalculatedByRule { get; set; }
 
-        /// <summary>
-        /// Get fact type.
-        /// </summary>
-        /// <returns>fact type</returns>
+        /// <inheritdoc/>
         public virtual IFactType GetFactType()
         {
             Type genericType = typeof(FactType<>).MakeGenericType(GetType());
@@ -24,9 +21,7 @@ namespace GetcuReone.FactFactory
         }
     }
 
-    /// <summary>
-    /// Base class for typed facts.
-    /// </summary>
+    /// /// <inheritdoc/>
     /// <typeparam name="TFactValue">Type fact value.</typeparam>
     public abstract class FactBase<TFactValue> : FactBase
     {
@@ -42,6 +37,15 @@ namespace GetcuReone.FactFactory
         protected FactBase(TFactValue value)
         {
             Value = value;
+        }
+
+        /// <summary>
+        /// Extract <see cref="FactBase{TFactValue}.Value"/>.
+        /// </summary>
+        /// <param name="fact"></param>
+        public static implicit operator TFactValue(FactBase<TFactValue> fact)
+        {
+            return fact.Value;
         }
     }
 }

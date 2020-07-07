@@ -198,9 +198,9 @@
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.CreateRuntimeSpecialFact``1">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.CreateConditionFact``1">
             <summary>
-            Create an fact of this type. Method created for special facts.
+            Create an fact of this type. Method created for condition facts.
             </summary>
             <typeparam name="TFact"></typeparam>
             <returns></returns>
@@ -310,27 +310,17 @@
             Interface for fact that cannot be derived.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.IContainedFact">
-            <summary>
-            Information about a fact that is contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>.
-            </summary>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.INotContainedFact">
-            <summary>
-            Information about a fact that is not contained in the container at the time of the function call <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>.
-            </summary>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeSpecialFact">
+        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact">
             <summary>
             A special fact that is created using a factory when building a tree or calculating facts.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeSpecialFact.FactType">
+        <member name="P:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact.FactType">
             <summary>
             Information about the type of fact the current runtime fact is working with.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeSpecialFact.Condition``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact.Condition``4(``1,``2,``3)">
             <summary>
             A condition that determines whether the current fact can be added to the container when deriving.
             </summary>
