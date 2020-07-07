@@ -1,4 +1,5 @@
 ﻿using GetcuReone.ComboPatterns.Factory;
+using GetcuReone.ComboPatterns.Interfaces;
 using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
@@ -17,7 +18,7 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Base class for fact factory
     /// </summary>
-    public abstract class FactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactoryBase, IFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>, IFactTypeCreation
+    public abstract class FactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactoryBase, IFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>, IAbstractFactory, IFactTypeCreation
         where TFactBase : class, IFact
         where TFactContainer : FactContainerBase<TFactBase>
         where TFactRule : FactRuleBase<TFactBase>
@@ -29,14 +30,10 @@ namespace GetcuReone.FactFactory
         /// </summary>
         protected List<TWantAction> WantActions { get; } = new List<TWantAction>();
 
-        /// <summary>
-        /// Fact container
-        /// </summary>
+        /// <inheritdoc/>
         public abstract TFactContainer Container { get; }
 
-        /// <summary>
-        /// Collection of rules for derive facts
-        /// </summary>
+        /// <inheritdoc/>
         public abstract TFactRuleCollection Rules { get; }
 
         /// <inheritdoc/>
@@ -55,9 +52,7 @@ namespace GetcuReone.FactFactory
             return Enumerable.Empty<IFact>();
         }
 
-        /// <summary>
-        /// Derive the facts
-        /// </summary>
+        /// <inheritdoc/>
         public virtual void Derive()
         {
             TFactContainer container = ValidateContainer();
@@ -123,11 +118,7 @@ namespace GetcuReone.FactFactory
             WantActions.Clear();
         }
 
-        /// <summary>
-        /// Derive <typeparamref name="TFact"/>
-        /// </summary>
-        /// <typeparam name="TFact">Type of desired fact</typeparam>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public virtual TFact DeriveFact<TFact>() where TFact : TFactBase
         {
             TFact fact = default;

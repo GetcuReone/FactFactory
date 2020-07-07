@@ -69,6 +69,10 @@
       <PrivateAssets>All</PrivateAssets>
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\FactFactory.Interfaces\FactFactory.Interfaces.csproj">
+        <PrivateAssets>All</PrivateAssets>
+        <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="..\FactFactory\FactFactory.csproj">
       <PrivateAssets>All</PrivateAssets>
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
