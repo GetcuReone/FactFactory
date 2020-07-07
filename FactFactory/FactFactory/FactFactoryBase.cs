@@ -833,7 +833,7 @@ namespace GetcuReone.FactFactory
         /// Requesting a desired fact through action.
         /// </summary>
         /// <param name="wantAction"></param>
-        /// <exception cref="FactFactoryException">The action has already been requested before. Or facts requested <see cref="ICannotDerivedFact"/> or <see cref="INotContainedFact"/></exception>
+        /// <exception cref="FactFactoryException">The action has already been requested before.</exception>
         public virtual void WantFact(TWantAction wantAction)
         {
             if (WantActions.IndexOf(wantAction) != -1)

@@ -56,12 +56,10 @@ namespace GetcuReone.FactFactory.Helpers
 
         internal static void CheckSpecialFactType(this IFactType type)
         {
-            if (type.IsFactType<ISpecialFact>())
+            if (type.IsFactType<IConditionFact>())
             {
                 var specialResult = new bool[]
                 {
-                    type.IsFactType<INotContainedFact>(),
-                    type.IsFactType<IContainedFact>(),
                     type.IsFactType<ICannotDerivedFact>(),
                     type.IsFactType<ICanDerivedFact>(),
                 };
