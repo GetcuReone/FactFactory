@@ -120,7 +120,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryBuildTreesForWantAction(GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest{`0,`2,`4,`1},System.Collections.Generic.List{GetcuReone.FactFactory.InnerEntities.FactRuleTree{`0,`2}}@,System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
             <summary>
-            We are trying to calculate a tree by which we find a fact
+            We are trying to calculate a tree by which we find a fact.
             </summary>
             <param name="request"></param>
             <param name="treesResult">found trees</param>
