@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FactFactory.Default\FactFactory.Default.csproj" />
+    <ProjectReference Include="..\..\FactFactory\FactFactory.csproj" />
   </ItemGroup>
 
 </Project>
