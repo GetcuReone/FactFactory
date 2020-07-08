@@ -2,6 +2,7 @@
 using GetcuReone.ComboPatterns.Interfaces;
 using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities.Trees;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Helpers;
@@ -73,7 +74,12 @@ namespace GetcuReone.FactFactory
                 }
             }
 
-            var forestry = BuildTrees(wantActions, container, rules);
+            var forestry = BuildTrees(new BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+            {
+                Container = container,
+                FactRules = rules,
+                WantActions = wantActions,
+            });
 
             foreach (var item in forestry)
             {
@@ -188,18 +194,16 @@ namespace GetcuReone.FactFactory
         /// <summary>
         /// Build trees.
         /// </summary>
-        /// <param name="wantActions"></param>
-        /// <param name="container"></param>
-        /// <param name="rules"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
-        private Dictionary<TWantAction, (List<FactRuleTree<TFactBase, TFactRule>> Trees, List<IConditionFact> NeedSpecialFacts)> BuildTrees(List<TWantAction> wantActions, TFactContainer container, TFactRuleCollection rules)
+        private Dictionary<TWantAction, (List<FactRuleTree<TFactBase, TFactRule>> Trees, List<IConditionFact> NeedSpecialFacts)> BuildTrees(BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request)
         {
             var forestry = new Dictionary<TWantAction, (List<FactRuleTree<TFactBase, TFactRule>> Trees, List<IConditionFact> NeedSpecialFacts)>();
             var deriveErrorDetails = new List<DeriveErrorDetail<TFactBase>>();
 
-            foreach (TWantAction wantAction in wantActions)
+            foreach (TWantAction wantAction in request.WantActions)
             {
-                if (TryDeriveTreesForWantAction(out List<FactRuleTree<TFactBase, TFactRule>> result, wantAction, container, rules, out List<IConditionFact> specialFacts, out DeriveErrorDetail<TFactBase> detail))
+                if (TryDeriveTreesForWantAction(out List<FactRuleTree<TFactBase, TFactRule>> result, wantAction, request.Container, request.FactRules, out List<IConditionFact> specialFacts, out DeriveErrorDetail<TFactBase> detail))
                 {
                     forestry.Add(wantAction, (result, specialFacts));
                 }
