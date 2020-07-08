@@ -71,13 +71,11 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.BuildTrees(System.Collections.Generic.List{`4},`1,`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.BuildTrees(GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest{`0,`2,`3,`4,`1})">
             <summary>
             Build trees.
             </summary>
-            <param name="wantActions"></param>
-            <param name="container"></param>
-            <param name="rules"></param>
+            <param name="request"></param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnWantActionCalculated(`4,`1)">
@@ -120,14 +118,12 @@
             <param name="needRemoveFact">If the method returns the true, then this fact will be removed from the container. There will be no deletion if the fact is empty.</param>
             <returns>True - fact needs to be recalculated.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryDeriveTreesForWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.InnerEntities.FactRuleTree{`0,`2}}@,`4,`1,`3,System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryBuildTreesForWantAction(GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest{`0,`2,`4,`1},System.Collections.Generic.List{GetcuReone.FactFactory.InnerEntities.FactRuleTree{`0,`2}}@,System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
             <summary>
             We are trying to calculate a tree by which we find a fact
             </summary>
+            <param name="request"></param>
             <param name="treesResult">found trees</param>
-            <param name="wantAction">desired action information</param>
-            <param name="container">fact container</param>
-            <param name="rules">rule collection</param>
             <param name="deriveErrorDetail"></param>
             <param name="specialFacts"></param>
             <returns></returns>
