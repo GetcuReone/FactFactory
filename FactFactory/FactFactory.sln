@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.TestsCommon", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DefaultFactFactory", "DefaultFactFactory", "{9890ABE3-D733-42A3-9F3C-680FE09CEAA5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.Default", "DefaultFactFactory\FactFactory.Default\FactFactory.Default.csproj", "{973542AF-7330-409C-B261-B54C16E08CCC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.DefaultTests", "DefaultFactFactory\FactFactory.DefaultTests\FactFactory.DefaultTests.csproj", "{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieServiceExample", "DefaultFactFactory\MovieServiceExample\MovieServiceExample.csproj", "{BD830E3F-89FA-42F7-92FC-C691A931D878}"
@@ -31,9 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versioned_MovieServiceExamp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.Interfaces", "FactFactory.Interfaces\FactFactory.Interfaces.csproj", "{34D79D91-821F-429A-92EF-DACC3E80C275}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactFactory.BaseEntities", "FactFactory.BaseEntities\FactFactory.BaseEntities.csproj", "{8AB1CF62-4878-4568-A9A0-DF2703E7F053}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.BaseEntities", "FactFactory.BaseEntities\FactFactory.BaseEntities.csproj", "{8AB1CF62-4878-4568-A9A0-DF2703E7F053}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactFactory.Common", "FactFactory.Common\FactFactory.Common.csproj", "{428E6F33-AC49-4E29-A72E-F4463A9E11C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.Common", "FactFactory.Common\FactFactory.Common.csproj", "{428E6F33-AC49-4E29-A72E-F4463A9E11C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactFactory.Entities", "FactFactory.Entities\FactFactory.Entities.csproj", "{45B34CB5-7AAC-4FA0-81EE-EAF72B658A95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +65,6 @@ Global
 		{3AC49AB3-93F2-4A96-A408-7CBC3B12B130}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AC49AB3-93F2-4A96-A408-7CBC3B12B130}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AC49AB3-93F2-4A96-A408-7CBC3B12B130}.Release|Any CPU.Build.0 = Release|Any CPU
-		{973542AF-7330-409C-B261-B54C16E08CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{973542AF-7330-409C-B261-B54C16E08CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{973542AF-7330-409C-B261-B54C16E08CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{973542AF-7330-409C-B261-B54C16E08CCC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -93,6 +89,10 @@ Global
 		{428E6F33-AC49-4E29-A72E-F4463A9E11C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{428E6F33-AC49-4E29-A72E-F4463A9E11C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{428E6F33-AC49-4E29-A72E-F4463A9E11C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B34CB5-7AAC-4FA0-81EE-EAF72B658A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B34CB5-7AAC-4FA0-81EE-EAF72B658A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B34CB5-7AAC-4FA0-81EE-EAF72B658A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B34CB5-7AAC-4FA0-81EE-EAF72B658A95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,7 +102,6 @@ Global
 		{5BFDA09D-ED48-4553-8A65-B9E9570C2DEC} = {3547EA62-D78C-4D23-A846-451179E70B32}
 		{90291275-0D7E-4846-89BF-95C77A4BA498} = {3547EA62-D78C-4D23-A846-451179E70B32}
 		{3AC49AB3-93F2-4A96-A408-7CBC3B12B130} = {F59B953D-A6E3-435D-BCDD-4D1F22B2A036}
-		{973542AF-7330-409C-B261-B54C16E08CCC} = {9890ABE3-D733-42A3-9F3C-680FE09CEAA5}
 		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69} = {9890ABE3-D733-42A3-9F3C-680FE09CEAA5}
 		{BD830E3F-89FA-42F7-92FC-C691A931D878} = {9890ABE3-D733-42A3-9F3C-680FE09CEAA5}
 		{BBA497E3-6ABB-4E6D-9925-C107CA138E6C} = {3547EA62-D78C-4D23-A846-451179E70B32}

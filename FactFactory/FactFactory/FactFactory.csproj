@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FactFactory.BaseEntities\FactFactory.BaseEntities.csproj" />
     <ProjectReference Include="..\FactFactory.Common\FactFactory.Common.csproj" />
+    <ProjectReference Include="..\FactFactory.Entities\FactFactory.Entities.csproj" />
     <ProjectReference Include="..\FactFactory.Interfaces\FactFactory.Interfaces.csproj" />
   </ItemGroup>
 

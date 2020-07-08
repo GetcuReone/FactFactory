@@ -42,12 +42,11 @@ namespace InfrastructureTests
                 string.Format(libPattern, $"{_projectName}.Interfaces.xml"),
                 string.Format(libPattern, $"{_projectName}.BaseEntities.dll"),
                 string.Format(libPattern, $"{_projectName}.BaseEntities.xml"),
+                string.Format(libPattern, $"{_projectName}.Entities.dll"),
+                string.Format(libPattern, $"{_projectName}.Entities.xml"),
 
                 string.Format(libPattern, $"{_projectName}.Versioned.dll"),
                 string.Format(libPattern, $"{_projectName}.Versioned.xml"),
-
-                string.Format(libPattern, $"{_projectName}.Default.dll"),
-                string.Format(libPattern, $"{_projectName}.Default.xml"),
 
                 "LICENSE.txt",
                 "README.md",

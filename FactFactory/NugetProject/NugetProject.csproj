@@ -14,7 +14,6 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>factfactory fact getcureone combopatterns</PackageTags>
     <PackageReleaseNotes>
-        Added CanDerived fact support.
     </PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>
@@ -65,15 +64,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DefaultFactFactory\FactFactory.Default\FactFactory.Default.csproj">
-      <PrivateAssets>All</PrivateAssets>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\FactFactory.BaseEntities\FactFactory.BaseEntities.csproj">
         <PrivateAssets>All</PrivateAssets>
         <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\FactFactory.Common\FactFactory.Common.csproj">
+        <PrivateAssets>All</PrivateAssets>
+        <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\FactFactory.Entities\FactFactory.Entities.csproj">
         <PrivateAssets>All</PrivateAssets>
         <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </ProjectReference>

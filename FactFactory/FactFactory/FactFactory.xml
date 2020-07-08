@@ -4,6 +4,29 @@
         <name>FactFactory</name>
     </assembly>
     <members>
+        <member name="T:GetcuReone.FactFactory.FactFactory">
+            <summary>
+            Factory default implementation.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.FactFactory.Container">
+            <summary>
+            Fact container.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.FactFactory.Rules">
+            <summary>
+            Collection of rules for derive facts
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <summary>
+            creation method <see cref="T:GetcuReone.FactFactory.Entities.WantAction"/>
+            </summary>
+            <param name="wantAction">Action taken after deriving a fact.</param>
+            <param name="factTypes">Facts required to launch an action.</param>
+            <returns></returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.FactFactoryBase`5">
             <summary>
             Base class for fact factory.
