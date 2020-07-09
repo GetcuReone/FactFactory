@@ -7,8 +7,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
-[assembly: InternalsVisibleToAttribute("FactFactory")]
-
 namespace GetcuReone.FactFactory.BaseEntities
 {
     /// <summary>

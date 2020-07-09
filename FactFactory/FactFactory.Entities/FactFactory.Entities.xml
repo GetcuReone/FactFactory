@@ -83,6 +83,21 @@
             <param name="outputFactType">information on output fact.</param>
             <returns>fact rule</returns>
         </member>
+        <member name="T:GetcuReone.FactFactory.Entities.FactWorkComparer`4">
+            <summary>
+            Comparer for <see cref="T:GetcuReone.FactFactory.Interfaces.IFactWork`1"/>.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactWorkComparer`4.#ctor(`2,`3)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="wantAction"></param>
+            <param name="container"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactWorkComparer`4.Compare(`1,`1)">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`4">
             <summary>
             Request to build a trees for FactType.
@@ -155,6 +170,108 @@
         <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest`5.FactRules">
             <summary>
             A collection of rules that will be used to build the tree.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.Enums.TreeStatus">
+            <summary>
+            Tree build status.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.FactFactory.Entities.Trees.Enums.TreeStatus.BeingBuilt">
+            <summary>
+            Tree is being built.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.FactFactory.Entities.Trees.Enums.TreeStatus.Built">
+            <summary>
+            Tree built.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.FactFactory.Entities.Trees.Enums.TreeStatus.Cencel">
+            <summary>
+            The tree is canceled.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.IndependentRulesGroup`2">
+            <summary>
+            Independent Rules Group.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`2">
+            <summary>
+            Node.
+            </summary>
+            <typeparam name="TFactBase"></typeparam>
+            <typeparam name="TFactRule"></typeparam>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`2.Parent">
+            <summary>
+            Parent node.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`2.Childs">
+            <summary>
+            Childs node.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`2.Info">
+            <summary>
+            Node info.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2">
+            <summary>
+            Node info.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.Rule">
+            <summary>
+            Rule.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.ConditionFacts">
+            <summary>
+            ConditionFacts for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.Rule"/>.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.FactRules">
+            <summary>
+            Fact rules for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.Rule"/>.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2">
+            <summary>
+            A tree built by type of fact rule.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.Root">
+            <summary>
+            Root node.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.NodeInfos">
+            <summary>
+            Information about all the rules that were tested for the ability to use when building a tree.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.Levels">
+            <summary>
+            Tree levels.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.Status">
+            <summary>
+            Tree work status.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.Built">
+            <summary>
+            Tree built.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.Cencel">
+            <summary>
+            The tree is canceled.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.WantAction">

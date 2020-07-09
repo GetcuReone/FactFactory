@@ -513,10 +513,13 @@
             <exception cref="T:System.ArgumentException">The number of elements in the source <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/> is greater than the available space from arrayIndex to the end of the destination array.</exception>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Sort(System.Collections.Generic.IComparer{`1})">
             <summary>
-            Returns an enumerator that iterates through the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.
+            Sort collection.
             </summary>
-            <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1"/> for the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.</returns>
+            <param name="comparer"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.IndexOf(`1)">
             <summary>

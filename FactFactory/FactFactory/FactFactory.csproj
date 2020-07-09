@@ -15,13 +15,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ComboPatterns" Version="3.0.2" />
+    <PackageReference Include="ComboPatterns" Version="[3.0.2,)" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FactFactory.BaseEntities\FactFactory.BaseEntities.csproj" />
     <ProjectReference Include="..\FactFactory.Common\FactFactory.Common.csproj" />
     <ProjectReference Include="..\FactFactory.Entities\FactFactory.Entities.csproj" />
+    <ProjectReference Include="..\FactFactory.Facades\FactFactory.Facades.csproj" />
     <ProjectReference Include="..\FactFactory.Interfaces\FactFactory.Interfaces.csproj" />
   </ItemGroup>
 
