@@ -17,9 +17,14 @@ namespace GetcuReone.FactFactory.Entities.Trees
         public TFactRule Rule { get; set; }
 
         /// <summary>
-        /// ConditionFacts for <see cref="Rule"/>.
+        /// List of fact conditions. Successfully completed conditions for <see cref="Rule"/>.
         /// </summary>
-        public List<IConditionFact> ConditionFacts { get; set; }
+        public List<IConditionFact> SuccessConditions { get; set; }
+
+        /// <summary>
+        /// List of fact conditions. Failed conditions for <see cref="Rule"/>.
+        /// </summary>
+        public List<IConditionFact> FailedConditions { get; set; }
 
         /// <summary>
         /// Fact rules for <see cref="Rule"/>.

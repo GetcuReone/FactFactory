@@ -7,14 +7,26 @@ namespace GetcuReone.FactFactory.Entities.Trees
     /// <summary>
     /// A tree built by type of fact rule.
     /// </summary>
-    public class TreeByFactRule<TFactBase, TFactRule>
+    public class TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>
         where TFactBase : IFact
         where TFactRule : IFactRule<TFactBase>
+        where TWantAction : IWantAction<TFactBase>
+        where TFactContainer : IFactContainer<TFactBase>
     {
         /// <summary>
         /// Root node.
         /// </summary>
         public NodeByFactRule<TFactBase, TFactRule> Root { get; set; }
+
+        /// <summary>
+        /// The action in which the tree was built.
+        /// </summary>
+        public TWantAction WantAction { get; set; }
+
+        /// <summary>
+        /// The container that was used to build the tree.
+        /// </summary>
+        public TFactContainer Container { get; set; }
 
         /// <summary>
         /// Information about all the rules that were tested for the ability to use when building a tree.

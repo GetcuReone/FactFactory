@@ -229,9 +229,14 @@
             Rule.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.ConditionFacts">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.SuccessConditions">
             <summary>
-            ConditionFacts for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.Rule"/>.
+            List of fact conditions. Successfully completed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.Rule"/>.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.FailedConditions">
+            <summary>
+            List of fact conditions. Failed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.Rule"/>.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.FactRules">
@@ -239,37 +244,47 @@
             Fact rules for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.Rule"/>.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2">
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4">
             <summary>
             A tree built by type of fact rule.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.Root">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Root">
             <summary>
             Root node.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.NodeInfos">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.WantAction">
+            <summary>
+            The action in which the tree was built.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Container">
+            <summary>
+            The container that was used to build the tree.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.NodeInfos">
             <summary>
             Information about all the rules that were tested for the ability to use when building a tree.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.Levels">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Levels">
             <summary>
             Tree levels.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.Status">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Status">
             <summary>
             Tree work status.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.Built">
+        <member name="M:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Built">
             <summary>
             Tree built.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2.Cencel">
+        <member name="M:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Cencel">
             <summary>
             The tree is canceled.
             </summary>

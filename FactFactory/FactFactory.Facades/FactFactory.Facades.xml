@@ -35,7 +35,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetTreesByBuildTreeRequest``4(GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest{``0,``1,``2,``3})">
             <summary>
-            Get <see cref="T:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`2"/> by <paramref name="request"/>.
+            Get <see cref="!:TreeByFactRule&lt;TFactBase, TFactRule&gt;"/> by <paramref name="request"/>.
             </summary>
             <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactRule"></typeparam>
@@ -57,7 +57,7 @@
             <param name="wantAction">Action within which synchronization occurs.</param>
             <param name="container">Fact container.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.TrySyncTreeLevelsAndFinishedNodes``4(GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1},System.Int32,System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle{``0,``1},GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0,``1}},``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.TrySyncTreeLevelsAndFinishedNodes``4(GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1,``2,``3},System.Int32,System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle{``0,``1},GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0,``1}})">
             <summary>
             Synchronize tree levels with years ready for calculation.
             </summary>
@@ -68,8 +68,6 @@
             <param name="treeByFactRule">Tree whose levels you want to synchronize.</param>
             <param name="level">The level at which to start synchronization.</param>
             <param name="finishedNodes"></param>
-            <param name="wantAction">Action within which synchronization occurs.</param>
-            <param name="container">Fact container.</param>
             <returns>True - managed to sync root level</returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.RuleContainBranch``2(GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0,``1},``1)">
@@ -82,7 +80,7 @@
             <param name="rule"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetNodesByRules``4(System.Collections.Generic.List{``1},GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1},GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0,``1},System.Collections.Generic.List{``1},``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetNodesByRules``4(System.Collections.Generic.List{``1},GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1,``2,``3},GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0,``1},System.Collections.Generic.List{``1})">
             <summary>
             Get nodes by rules.
             </summary>
@@ -94,37 +92,40 @@
             <param name="treeByFactRule"></param>
             <param name="parentNode"></param>
             <param name="allRulesForWantAction"></param>
-            <param name="wantAction"></param>
-            <param name="container"></param>
-            <param name=""></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.TryRemoveRootNode``2(GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0,``1},GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1},System.Int32)">
+        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.TryRemoveRootNode``4(GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0,``1},GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1,``2,``3},System.Int32)">
             <summary>
             Delete current node. Recursively delete parent nodes if they do not have other nodes calculating the fact from the child node.
             </summary>
             <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
             <param name="node"></param>
             <param name="treeByFactRule"></param>
             <param name="level"></param>
             <returns>True - remove root node.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetUniqueRulesFromTree``2(GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1})">
+        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetUniqueRulesFromTree``4(GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1,``2,``3})">
             <summary>
             Get unique rules from tree.
             </summary>
             <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
             <param name="treeByFactRule"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetIndependentRulesGroups``2(GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1})">
+        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetIndependentRulesGroups``4(GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1,``2,``3})">
             <summary>
             Get independent rule groups.
             </summary>
             <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
             <param name="treeByFactRule"></param>
         </member>
     </members>
