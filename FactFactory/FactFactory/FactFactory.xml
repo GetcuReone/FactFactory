@@ -64,10 +64,18 @@
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.BuildTrees(GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest{`0,`2,`3,`4,`1})">
             <summary>
-            Build trees.
+            Build trees for wantActions.
             </summary>
             <param name="request"></param>
+            <exception cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`1">Mistakes in building trees.</exception>
             <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CalculateTreeAndDeriveWantFacts(GetcuReone.FactFactory.Entities.Trees.WantActionInfo{`0,`4,`1},System.Collections.Generic.List{GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`2,`4,`1}})">
+            <summary>
+            Tree calculation and fact deriving.
+            </summary>
+            <param name="wantActionInfo"></param>
+            <param name="trees"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnWantActionCalculated(`4,`1)">
             <summary>
@@ -111,11 +119,20 @@
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryBuildTreesForWantAction(GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest{`0,`2,`4,`1},System.Collections.Generic.List{GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`2,`4,`1}}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
             <summary>
-            We are trying to calculate a tree by which we find a fact.
+            Trye build tree for wantAction.
             </summary>
             <param name="request"></param>
-            <param name="treesResult">found trees</param>
-            <param name="deriveErrorDetail"></param>
+            <param name="treesResult">Build trees.</param>
+            <param name="deriveErrorDetail">Mistakes in building trees.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryBuildTreeForFactInfo(GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest{`0,`2,`4,`1},GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`2,`4,`1}@,System.Collections.Generic.List{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail}@)">
+            <summary>
+            Try build tree for wantFact from wantAcction.
+            </summary>
+            <param name="request"></param>
+            <param name="treeResult">Build tree.</param>
+            <param name="deriveFactErrorDetails">Errors that occurred while building a tree.</param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetCorrectFact``1(GetcuReone.FactFactory.Interfaces.IFactContainer{`0},System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
@@ -369,26 +386,6 @@
         <member name="T:GetcuReone.FactFactory.Helpers.FactFactoryHelper">
             <summary>
             Helper for <see cref="T:GetcuReone.FactFactory.FactFactoryBase`5"/>
-            </summary>
-        </member>
-        <member name="T:GetcuReone.FactFactory.InnerEntities.Enums.TreeStatus">
-            <summary>
-            Tree build status.
-            </summary>
-        </member>
-        <member name="F:GetcuReone.FactFactory.InnerEntities.Enums.TreeStatus.BeingBuilt">
-            <summary>
-            Tree is being built.
-            </summary>
-        </member>
-        <member name="F:GetcuReone.FactFactory.InnerEntities.Enums.TreeStatus.Built">
-            <summary>
-            Tree built.
-            </summary>
-        </member>
-        <member name="F:GetcuReone.FactFactory.InnerEntities.Enums.TreeStatus.Cencel">
-            <summary>
-            The tree is canceled.
             </summary>
         </member>
     </members>

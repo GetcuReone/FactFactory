@@ -81,7 +81,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive a fact using a recursive rules.")]
-        //[Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactFromRecursiveRulesTestCase()
         {
             string expectedMessage = "Failed to derive one or more facts for the action (ResultFact).";
