@@ -132,7 +132,7 @@ namespace GetcuReone.FactFactory
         /// <param name="request"></param>
         /// <exception cref="InvalidDeriveOperationException{TFact}">Mistakes in building trees.</exception>
         /// <returns></returns>
-        protected virtual Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>> BuildTrees(BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request)
+        public virtual Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>> BuildTrees(BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request)
         {
             var forestry = new Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>>();
             var deriveErrorDetails = new List<DeriveErrorDetail<TFactBase>>();
@@ -267,7 +267,7 @@ namespace GetcuReone.FactFactory
         /// <param name="treesResult">Build trees.</param>
         /// <param name="deriveErrorDetail">Mistakes in building trees.</param>
         /// <returns></returns>
-        protected virtual bool TryBuildTreesForWantAction(BuildTreesForWantActionRequest<TFactBase, TFactRule, TWantAction, TFactContainer> request, out List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>> treesResult, out DeriveErrorDetail<TFactBase> deriveErrorDetail)
+        public virtual bool TryBuildTreesForWantAction(BuildTreesForWantActionRequest<TFactBase, TFactRule, TWantAction, TFactContainer> request, out List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>> treesResult, out DeriveErrorDetail<TFactBase> deriveErrorDetail)
         {
             treesResult = new List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>();
             var deriveFactErrorDetails = new List<DeriveFactErrorDetail>();
@@ -280,21 +280,7 @@ namespace GetcuReone.FactFactory
                 {
                     IConditionFact conditionFact = wantFact.CreateConditionFact<IConditionFact>();
 
-                    if (conditionFact is ICannotDerivedFact)
-                    {
-                        if (!TryDeriveConditionFact(conditionFact, null, wantActionInfo, wantActionInfo.Container, request.FactRules))
-                            wantActionInfo.SuccessConditions.Add(conditionFact);
-                        else
-                            deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
-                    }
-                    else if (conditionFact is ICanDerivedFact)
-                    {
-                        if (TryDeriveConditionFact(conditionFact, null, wantActionInfo, wantActionInfo.Container, request.FactRules))
-                            wantActionInfo.SuccessConditions.Add(conditionFact);
-                        else
-                            deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
-                    }
-                    else if (conditionFact.Condition<TFactBase, TWantAction, TWantAction, TFactContainer>(wantActionInfo.WantAction, wantActionInfo.WantAction, wantActionInfo.Container))
+                    if (CanUseConditionFact(conditionFact, wantActionInfo.WantAction, wantActionInfo, request.FactRules))
                         wantActionInfo.SuccessConditions.Add(conditionFact);
                     else
                         deriveFactErrorDetails.Add(new DeriveFactErrorDetail(wantFact, null));
@@ -335,7 +321,7 @@ namespace GetcuReone.FactFactory
         /// <param name="treeResult">Build tree.</param>
         /// <param name="deriveFactErrorDetails">Errors that occurred while building a tree.</param>
         /// <returns></returns>
-        protected virtual bool TryBuildTreeForFactInfo(BuildTreeForFactTypeRequest<TFactBase, TFactRule, TWantAction, TFactContainer> request, out TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer> treeResult, out List<DeriveFactErrorDetail> deriveFactErrorDetails)
+        public virtual bool TryBuildTreeForFactInfo(BuildTreeForFactTypeRequest<TFactBase, TFactRule, TWantAction, TFactContainer> request, out TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer> treeResult, out List<DeriveFactErrorDetail> deriveFactErrorDetails)
         {
             treeResult = null;
             deriveFactErrorDetails = null;
@@ -414,29 +400,7 @@ namespace GetcuReone.FactFactory
                                 {
                                     var conditionFact = needFactType.CreateConditionFact<IConditionFact>();
 
-                                    if (conditionFact is ICannotDerivedFact)
-                                    {
-                                        // Check ICannotDerivedFact fact
-                                        if (!TryDeriveConditionFact(conditionFact, node.Info.Rule, wantActionInfo, wantActionInfo.Container, request.FactRules))
-                                        {
-                                            nodeInfo.SuccessConditions.Add(conditionFact);
-                                            needRemove = true;
-                                        }
-                                        else
-                                            nodeInfo.FailedConditions.Add(conditionFact);
-                                    }
-                                    else if (conditionFact is ICanDerivedFact && TryDeriveConditionFact(conditionFact, node.Info.Rule, wantActionInfo, wantActionInfo.Container, request.FactRules))
-                                    {
-                                        // Check ICannotDerivedFact fact
-                                        if (TryDeriveConditionFact(conditionFact, node.Info.Rule, wantActionInfo, wantActionInfo.Container, request.FactRules))
-                                        {
-                                            nodeInfo.SuccessConditions.Add(conditionFact);
-                                            needRemove = true;
-                                        }
-                                        else
-                                            nodeInfo.FailedConditions.Add(conditionFact);
-                                    }
-                                    else if (conditionFact.Condition<TFactBase, TFactRule, TWantAction, TFactContainer>(node.Info.Rule, wantActionInfo.WantAction, wantActionInfo.Container))
+                                    if (CanUseConditionFact(conditionFact, nodeInfo.Rule, wantActionInfo, nodeInfo.FactRules))
                                     {
                                         nodeInfo.SuccessConditions.Add(conditionFact);
                                         needRemove = true;
@@ -588,22 +552,34 @@ namespace GetcuReone.FactFactory
             OnFactCalculatedForWantAction(rule.OutputFactType, container, wantAction);
         }
 
-        private bool TryDeriveConditionFact<TConditionFact>(TConditionFact conditionFact, TFactRule rule, WantActionInfo<TFactBase, TWantAction, TFactContainer> wantActionInfo, TFactContainer container, List<TFactRule> ruleCollection)
-            where TConditionFact : IConditionFact
+        private bool CanUseConditionFact<TFactWork>(IConditionFact conditionFact, TFactWork factWork, WantActionInfo<TFactBase, TWantAction, TFactContainer> wantActionInfo, List<TFactRule> compatibilityRules)
+            where TFactWork : FactWorkBase<TFactBase>
         {
-            if (rule != null && conditionFact.IsFactContained<TFactBase, TFactRule, TWantAction, TFactContainer>(rule, wantActionInfo.WantAction, container))
-                return true;
-            else if (conditionFact.IsFactContained<TFactBase, TWantAction, TWantAction, TFactContainer>(wantActionInfo.WantAction, wantActionInfo.WantAction, container))
+            switch (conditionFact)
+            {
+                case ICannotDerivedFact _:
+                    return !TryBuildTreeForConditionFact(conditionFact, factWork, wantActionInfo, compatibilityRules);
+                case ICanDerivedFact _:
+                    return TryBuildTreeForConditionFact(conditionFact, factWork, wantActionInfo, compatibilityRules);
+                default:
+                    return conditionFact.Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(factWork, wantActionInfo.WantAction, wantActionInfo.Container);
+            }
+        }
+
+        private bool TryBuildTreeForConditionFact<TFactWork>(IConditionFact conditionFact, TFactWork factWork, WantActionInfo<TFactBase, TWantAction, TFactContainer> wantActionInfo, List<TFactRule> compatibilityRules)
+            where TFactWork : FactWorkBase<TFactBase>
+        {
+            if (conditionFact.IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(factWork, wantActionInfo.WantAction, wantActionInfo.Container))
                 return true;
 
             try
             {
                 // Exclude the rules that accept our special fact at the input to exclude the possibility of recursion.
                 var conditionFactType = conditionFact.GetFactType();
-                var rulesWithoutCurrentFact = ruleCollection
-                    .FindAll(r => 
-                        r.InputFactTypes.All(factType => !factType.EqualsFactType(conditionFactType)) 
-                        && (rule?.СompatibilityWithRule(r, wantActionInfo.WantAction, container) ?? true));
+                var rulesWithoutCurrentFact = compatibilityRules
+                    .FindAll(r =>
+                        r.InputFactTypes.All(factType => !factType.EqualsFactType(conditionFactType))
+                        && factWork.СompatibilityWithRule(r, wantActionInfo.WantAction, wantActionInfo.Container));
                 var request = new BuildTreeForFactTypeRequest<TFactBase, TFactRule, TWantAction, TFactContainer>
                 {
                     FactRules = rulesWithoutCurrentFact,
@@ -624,12 +600,7 @@ namespace GetcuReone.FactFactory
 
                 throw;
             }
-            catch
-            {
-                throw;
-            }
         }
-
         #endregion
 
         #region overloads method WantFact
