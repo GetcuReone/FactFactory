@@ -5,12 +5,12 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Exceptions
 {
     /// <summary>
-    /// Base error for FactFactory
+    /// Base error for FactFactory.
     /// </summary>
     public abstract class FactFactoryExceptionBase<TDetail> : Exception
     {
         /// <summary>
-        /// Constructor
+        /// Constructor.
         /// </summary>
         /// <param name="details"></param>
         protected FactFactoryExceptionBase(IReadOnlyCollection<TDetail> details) : base(details?.FirstOrDefault()?.ToString() ?? string.Empty)
@@ -19,7 +19,7 @@ namespace GetcuReone.FactFactory.Exceptions
         }
 
         /// <summary>
-        /// More info exception
+        /// More info exception.
         /// </summary>
         public IReadOnlyCollection<TDetail> Details { get; }
     }

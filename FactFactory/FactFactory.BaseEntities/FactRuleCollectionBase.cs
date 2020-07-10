@@ -48,7 +48,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Gets a value indicating whether the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> is read-only.
         /// </summary>
-        public bool IsReadOnly { get; internal set; }
+        public bool IsReadOnly { get; set; }
 
         /// <summary>
         /// Constructor.
@@ -730,13 +730,19 @@ namespace GetcuReone.FactFactory.BaseEntities
             _list.CopyTo(array, arrayIndex);
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.
-        /// </summary>
-        /// <returns>A <see cref="IEnumerator{TFactRule}"/> for the <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.</returns>
+        /// <inheritdoc/>
         public IEnumerator<TFactRule> GetEnumerator()
         {
             return _list.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Sort collection.
+        /// </summary>
+        /// <param name="comparer"></param>
+        public void Sort(IComparer<TFactRule> comparer)
+        {
+            _list.Sort(comparer);
         }
 
         /// <summary>

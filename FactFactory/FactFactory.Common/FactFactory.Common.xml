@@ -126,23 +126,23 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Exceptions.FactFactoryExceptionBase`1">
             <summary>
-            Base error for FactFactory
+            Base error for FactFactory.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Exceptions.FactFactoryExceptionBase`1.#ctor(System.Collections.Generic.IReadOnlyCollection{`0})">
             <summary>
-            Constructor
+            Constructor.
             </summary>
             <param name="details"></param>
         </member>
         <member name="P:GetcuReone.FactFactory.Exceptions.FactFactoryExceptionBase`1.Details">
             <summary>
-            More info exception
+            More info exception.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`1">
             <summary>
-            <see cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException"/> for method <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>
+            <see cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException"/> for method <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`1.#ctor(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}})">

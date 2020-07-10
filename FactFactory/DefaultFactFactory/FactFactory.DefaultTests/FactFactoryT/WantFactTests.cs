@@ -1,7 +1,9 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
+using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -18,9 +20,9 @@ namespace FactFactoryTests.FactFactoryT
             Input1Fact input1Fact = null;
 
             GivenCreateFactFactory()
-                .And("Add rules", factory =>
+                .AndAddRules(new Collection 
                 {
-                    factory.Rules.Add(() => new Input1Fact(startValue + 1));
+                    () => new Input1Fact(startValue + 1),
                 })
                 .And("Want 1 facts", factory =>
                 {
@@ -49,10 +51,10 @@ namespace FactFactoryTests.FactFactoryT
             Input2Fact input2Fact = null;
 
             GivenCreateFactFactory()
-                .And("Add rules", factory =>
+                .AndAddRules(new Collection
                 {
-                    factory.Rules.Add(() => new Input1Fact(startValue + 1));
-                    factory.Rules.Add((Input1Fact fact) => new Input2Fact(fact.Value + 1));
+                    () => new Input1Fact(startValue + 1),
+                    (Input1Fact fact) => new Input2Fact(fact.Value + 1),
                 })
                 .And("Want 2 facts", factory =>
                 {
