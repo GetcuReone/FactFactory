@@ -1,4 +1,5 @@
-﻿using FactFactory.TestsCommon;
+﻿using FactFactory.DefaultTests.CommonFacts;
+using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
@@ -390,6 +391,49 @@ namespace FactFactoryTests.FactFactoryT
                  {
                      Assert.AreEqual(2, fact.Value, "Expected another value.");
                  });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Derive fact use rule with condition fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void DeriveFactUseRuleWithConditionTestCase()
+        {
+            int expectedValue = 10;
+
+            GivenCreateFactFactory()
+                .AndAddRules(new Collection
+                {
+                    () => new Input1Fact(default),
+                    (Input1Fact fact) => new ResultFact(1_000),
+                    (Condition_ContainedOtherFact condition) => new ResultFact(expectedValue),
+                })
+                .AndAddFact(new OtherFact(default))
+                .When("Derive fact.", factFactory =>
+                    factFactory.DeriveFact<ResultFact>())
+                .Then("Check fact.", fact =>
+                    Assert.AreEqual(expectedValue, fact));
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Derive fact use rule without condition fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void DeriveFactUseRuleWithoutConditionTestCase()
+        {
+            int expectedValue = 1_000;
+
+            GivenCreateFactFactory()
+                .AndAddRules(new Collection
+                {
+                    () => new OtherFact(default),
+                    (OtherFact fact) => new ResultFact(expectedValue),
+                    (Condition_ContainedOtherFact condition) => new ResultFact(10),
+                })
+                .When("Derive fact.", factFactory =>
+                    factFactory.DeriveFact<ResultFact>())
+                .Then("Check fact.", fact =>
+                    Assert.AreEqual(expectedValue, fact));
         }
     }
 }
