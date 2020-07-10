@@ -229,7 +229,6 @@ namespace GetcuReone.FactFactory.Facades.TreesOperations
         /// <param name="allRulesForWantAction"></param>
         /// <param name="wantAction"></param>
         /// <param name="container"></param>
-        /// <param name=""></param>
         /// <returns></returns>
         public List<NodeByFactRule<TFactBase, TFactRule>> GetNodesByRules<TFactBase, TFactRule, TWantAction, TFactContainer>(List<TFactRule> rules, TreeByFactRule<TFactBase, TFactRule> treeByFactRule, NodeByFactRule<TFactBase, TFactRule> parentNode, List<TFactRule> allRulesForWantAction, TWantAction wantAction, TFactContainer container)
             where TFactBase : IFact

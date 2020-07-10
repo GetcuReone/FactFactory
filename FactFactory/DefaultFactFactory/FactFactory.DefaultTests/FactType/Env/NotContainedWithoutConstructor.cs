@@ -12,16 +12,7 @@ namespace FactFactoryTests.FactType.Env
 
         }
 
-        public bool CalculatedByRule { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public IFactType FactType => throw new NotImplementedException();
-
         public override bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IFactType GetFactType()
         {
             throw new NotImplementedException();
         }
