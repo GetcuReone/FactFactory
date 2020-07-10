@@ -654,6 +654,9 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase.Condition``4(``1,``2,``3)">
             <inheritdoc/>
         </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase.GetFactType">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase`1">
             <inheritdoc/>
             <typeparam name="TFact">Type for <see cref="P:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact.FactType"/>.</typeparam>

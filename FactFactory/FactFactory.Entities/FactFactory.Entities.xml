@@ -112,14 +112,9 @@
             The type of fact for which you want to build a tree.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`4.WantAction">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`4.WantActionInfo">
             <summary>
             WantAction for which you need to build an action.
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`4.Container">
-            <summary>
-            A container with facts on which to build trees for <see cref="P:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`4.WantAction"/>.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`4.FactRules">
@@ -132,14 +127,9 @@
             Request to build a trees for WantAction.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest`4.WantAction">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest`4.WantActionInfo">
             <summary>
             WantAction for which you need to build an action.
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest`4.Container">
-            <summary>
-            A container with facts on which to build trees for <see cref="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest`4.WantAction"/>.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest`4.FactRules">
@@ -254,14 +244,9 @@
             Root node.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.WantAction">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.WantActionInfo">
             <summary>
             The action in which the tree was built.
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Container">
-            <summary>
-            The container that was used to build the tree.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.NodeInfos">
@@ -287,6 +272,34 @@
         <member name="M:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Cencel">
             <summary>
             The tree is canceled.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3">
+            <summary>
+            Info for <see cref="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.WantAction"/>.
+            </summary>
+            <typeparam name="TFactBase"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.WantAction">
+            <summary>
+            WantAction.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.Container">
+            <summary>
+            Fact container.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.SuccessConditions">
+            <summary>
+            List of fact conditions. Successfully completed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.WantAction"/>.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.FailedConditions">
+            <summary>
+            List of fact conditions. Failed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.WantAction"/>.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.WantAction">

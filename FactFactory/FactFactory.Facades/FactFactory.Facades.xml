@@ -35,7 +35,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetTreesByBuildTreeRequest``4(GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest{``0,``1,``2,``3})">
             <summary>
-            Get <see cref="!:TreeByFactRule&lt;TFactBase, TFactRule&gt;"/> by <paramref name="request"/>.
+            Get <see cref="T:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4"/> by <paramref name="request"/>.
             </summary>
             <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactRule"></typeparam>

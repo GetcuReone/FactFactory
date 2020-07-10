@@ -37,7 +37,7 @@ namespace GetcuReone.FactFactory.Facades.TreesOperations
         }
 
         /// <summary>
-        /// Get <see cref="TreeByFactRule{TFactBase, TFactRule}"/> by <paramref name="request"/>.
+        /// Get <see cref="TreeByFactRule{TFactBase, TFactRule, TWantAction, TFactContainer}"/> by <paramref name="request"/>.
         /// </summary>
         /// <typeparam name="TFactBase"></typeparam>
         /// <typeparam name="TFactRule"></typeparam>
@@ -63,7 +63,7 @@ namespace GetcuReone.FactFactory.Facades.TreesOperations
             {
                 SuccessConditions = new List<IConditionFact>(),
                 FailedConditions = new List<IConditionFact>(),
-                FactRules = request.FactRules.FindAll(r => rule.СompatibilityWithRule(r, request.WantAction, request.Container)),
+                FactRules = request.FactRules.FindAll(r => rule.СompatibilityWithRule(r, request.WantActionInfo.WantAction, request.WantActionInfo.Container)),
                 Rule = rule,
             });
 
@@ -83,11 +83,10 @@ namespace GetcuReone.FactFactory.Facades.TreesOperations
                     },
                     NodeInfos = nodeInfos,
                     Root = node,
-                    Container = request.Container,
-                    WantAction = request.WantAction,
+                    WantActionInfo = request.WantActionInfo,
                 };
 
-                if (info.Rule.CanCalculate(request.Container, request.WantAction))
+                if (info.Rule.CanCalculate(request.WantActionInfo.Container, request.WantActionInfo.WantAction))
                     tree.Built();
 
                 return tree;
@@ -163,29 +162,30 @@ namespace GetcuReone.FactFactory.Facades.TreesOperations
 
             List<NodeByFactRule<TFactBase, TFactRule>> currentLevel = treeByFactRule.Levels[level];
             var finishedNodesInCurrentLevel = new Dictionary<NodeInfoByFactRyle<TFactBase, TFactRule>, NodeByFactRule<TFactBase, TFactRule>>();
+            WantActionInfo<TFactBase, TWantAction, TFactContainer> wantActionInfo = treeByFactRule.WantActionInfo;
 
-            foreach(var node in currentLevel)
+            foreach (var node in currentLevel)
             {
                 var rule = node.Info.Rule;
                 var copabilitiesFinishedRules = finishedNodes
-                    .Where(finishedNode => rule.СompatibilityWithRule(finishedNode.Key.Rule, treeByFactRule.WantAction, treeByFactRule.Container))
+                    .Where(finishedNode => rule.СompatibilityWithRule(finishedNode.Key.Rule, wantActionInfo.WantAction, wantActionInfo.Container))
                     .Select(finishedNode => finishedNode.Key.Rule)
                     .ToList();
 
                 if (rule.InputFactTypes.Count > 0 && rule.InputFactTypes.All(f => copabilitiesFinishedRules.Any(r => r.OutputFactType.EqualsFactType(f))))
                     finishedNodesInCurrentLevel.Add(node.Info, node);
-                else if (copabilitiesFinishedRules.Any(r => r.EqualsWork(rule, treeByFactRule.WantAction, treeByFactRule.Container)))
+                else if (copabilitiesFinishedRules.Any(r => r.EqualsWork(rule, wantActionInfo.WantAction, wantActionInfo.Container)))
                     finishedNodesInCurrentLevel.Add(node.Info, node);
             }
 
             if (finishedNodesInCurrentLevel.IsNullOrEmpty())
                 return false;
 
-            SyncTreeLevelAndFinishedNodes(currentLevel, finishedNodesInCurrentLevel, treeByFactRule.WantAction, treeByFactRule.Container);
+            SyncTreeLevelAndFinishedNodes(currentLevel, finishedNodesInCurrentLevel, wantActionInfo.WantAction, wantActionInfo.Container);
 
             foreach(var finishedNode in finishedNodesInCurrentLevel)
             {
-                if (finishedNodes.Keys.Any(nodeInfo => nodeInfo.Rule.EqualsWork(finishedNode.Key.Rule, treeByFactRule.WantAction, treeByFactRule.Container)))
+                if (finishedNodes.Keys.Any(nodeInfo => nodeInfo.Rule.EqualsWork(finishedNode.Key.Rule, wantActionInfo.WantAction, wantActionInfo.Container)))
                     continue;
                 finishedNodes.Add(finishedNode.Key, finishedNode.Value);
             }
@@ -236,8 +236,9 @@ namespace GetcuReone.FactFactory.Facades.TreesOperations
             where TFactContainer : FactContainerBase<TFactBase>
         {
             var result = new List<NodeByFactRule<TFactBase, TFactRule>>();
+            WantActionInfo<TFactBase, TWantAction, TFactContainer> wantActionInfo = treeByFactRule.WantActionInfo;
 
-            foreach(var rule in rules)
+            foreach (var rule in rules)
             {
                 NodeInfoByFactRyle<TFactBase, TFactRule> nodeInfo = treeByFactRule.NodeInfos.FirstOrDefault(nInfo => nInfo.Rule == rule);
 
@@ -247,7 +248,7 @@ namespace GetcuReone.FactFactory.Facades.TreesOperations
                         Rule = rule,
                         SuccessConditions = new List<IConditionFact>(),
                         FailedConditions = new List<IConditionFact>(),
-                        FactRules = allRulesForWantAction.FindAll(r => rule.СompatibilityWithRule(r, treeByFactRule.WantAction, treeByFactRule.Container)),
+                        FactRules = allRulesForWantAction.FindAll(r => rule.СompatibilityWithRule(r, wantActionInfo.WantAction, wantActionInfo.Container)),
                     };
 
                 result.Add(new NodeByFactRule<TFactBase, TFactRule>

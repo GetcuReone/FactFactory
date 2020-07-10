@@ -109,22 +109,13 @@
             <param name="needRemoveFact">If the method returns the true, then this fact will be removed from the container. There will be no deletion if the fact is empty.</param>
             <returns>True - fact needs to be recalculated.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryBuildTreesForWantAction(GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest{`0,`2,`4,`1},System.Collections.Generic.List{GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`2,`4,`1}}@,System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryBuildTreesForWantAction(GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest{`0,`2,`4,`1},System.Collections.Generic.List{GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`2,`4,`1}}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
             <summary>
             We are trying to calculate a tree by which we find a fact.
             </summary>
             <param name="request"></param>
             <param name="treesResult">found trees</param>
             <param name="deriveErrorDetail"></param>
-            <param name="specialFacts"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetFactRuleTrees(GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.IList{`2})">
-            <summary>
-            Returns trees. Their number is equal to the number of rules that can derive the necessary <paramref name="wantFact"/>.
-            </summary>
-            <param name="wantFact">derive fact</param>
-            <param name="rules">rule set</param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetCorrectFact``1(GetcuReone.FactFactory.Interfaces.IFactContainer{`0},System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">

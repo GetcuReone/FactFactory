@@ -21,12 +21,7 @@ namespace GetcuReone.FactFactory.Entities.Trees
         /// <summary>
         /// The action in which the tree was built.
         /// </summary>
-        public TWantAction WantAction { get; set; }
-
-        /// <summary>
-        /// The container that was used to build the tree.
-        /// </summary>
-        public TFactContainer Container { get; set; }
+        public WantActionInfo<TFactBase, TWantAction, TFactContainer> WantActionInfo { get; set; }
 
         /// <summary>
         /// Information about all the rules that were tested for the ability to use when building a tree.

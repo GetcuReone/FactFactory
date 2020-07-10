@@ -8,6 +8,7 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
     /// </summary>
     public abstract class ConditionFactBase : SpecialFactBase, IConditionFact
     {
+        private IFactType _selfFactType;
         /// <inheritdoc/>
         public virtual IFactType FactType { get; protected set; }
 
@@ -17,6 +18,12 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
             where TFactWork : IFactWork<TFactBase>
             where TWantAction : IWantAction<TFactBase>
             where TFactContainer : IFactContainer<TFactBase>;
+
+        /// <inheritdoc/>
+        public override IFactType GetFactType()
+        {
+            return _selfFactType ?? (_selfFactType = base.GetFactType());
+        }
     }
 
     /// <inheritdoc/>
