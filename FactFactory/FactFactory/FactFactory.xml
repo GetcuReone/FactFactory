@@ -101,9 +101,16 @@
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetWantActionComparer(`1)">
             <summary>
-            Get coparer for <see cref="!:TWantAction"/>.
+            Get coparer for <typeparamref name="TWantAction"/>.
             </summary>
             <param name="container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetFactRuleComparer(GetcuReone.FactFactory.Entities.Trees.WantActionInfo{`0,`4,`1})">
+            <summary>
+            Get comparer for <typeparamref name="TFactRule"/>.
+            </summary>
+            <param name="wantActionInfo"></param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{`0}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">

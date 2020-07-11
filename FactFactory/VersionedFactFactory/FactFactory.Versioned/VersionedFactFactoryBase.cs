@@ -1,10 +1,12 @@
 ﻿using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory.Entities.Trees;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.BaseEntities;
 using GetcuReone.FactFactory.Versioned.Constants;
+using GetcuReone.FactFactory.Versioned.Entities;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
@@ -26,13 +28,7 @@ namespace GetcuReone.FactFactory.Versioned
         private List<IFactType> _calculatedFactTypes;
         private TWantAction _calculatingWantAction;
 
-        /// <summary>
-        /// Return the correct fact.
-        /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <param name="container"></param>
-        /// <param name="inputFactTypes"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         protected override TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IReadOnlyCollection<IFactType> inputFactTypes)
         {
             IFactType versionType = inputFactTypes.SingleOrDefault(type => type.IsFactType<IVersionFact>());
@@ -50,11 +46,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <returns></returns>
         protected abstract IEnumerable<IVersionFact> GetAllVersions();
 
-        /// <summary>
-        /// Return the fact set that will be contained in the default container.
-        /// </summary>
-        /// <param name="container"></param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         protected override IEnumerable<IFact> GetDefaultFacts(TFactContainer container)
         {
             IEnumerable<IFact> allVersionFacts = GetAllVersions() ?? Enumerable.Empty<IFact>();
@@ -101,14 +93,7 @@ namespace GetcuReone.FactFactory.Versioned
             return defaultVersions;
         }
 
-        /// <summary>
-        /// The method determines whether the fact should be recounted.
-        /// </summary>
-        /// <param name="rule">Rule for calculating the fact.</param>
-        /// <param name="container">Fact container.</param>
-        /// <param name="wantAction">The initial action for which the parameters are calculated.</param>
-        /// <param name="needRemoveFact">If the method returns the true, then this fact will be removed from the container. There will be no deletion if the fact is empty.</param>
-        /// <returns>True - fact needs to be recalculated.</returns>
+        /// <inheritdoc/>
         protected override bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction, out TFactBase needRemoveFact)
         {
             bool result = false;
@@ -176,12 +161,7 @@ namespace GetcuReone.FactFactory.Versioned
             return result;
         }
 
-        /// <summary>
-        /// Fact calculation event handler for an <paramref name="wantAction"/>.
-        /// </summary>
-        /// <param name="factType">Type calculated fact.</param>
-        /// <param name="container">Container.</param>
-        /// <param name="wantAction">The action for which the fact was calculated.</param>
+        /// <inheritdoc/>
         protected override void OnFactCalculatedForWantAction(IFactType factType, TFactContainer container, TWantAction wantAction)
         {
             if (_calculatingWantAction == null)
@@ -195,9 +175,13 @@ namespace GetcuReone.FactFactory.Versioned
             _calculatedFactTypes.Add(factType);
         }
 
-        /// <summary>
-        /// Derive the facts.
-        /// </summary>
+        /// <inheritdoc/>
+        protected override IComparer<TFactRule> GetFactRuleComparer(WantActionInfo<TFactBase, TWantAction, TFactContainer> wantActionInfo)
+        {
+            return new VersionedFactRuleComparer<TFactBase, TFactRule, TWantAction, TFactContainer>(wantActionInfo.WantAction, wantActionInfo.Container);
+        }
+
+        /// <inheritdoc/>
         public override void Derive()
         {
             _calculatedFactTypes = new List<IFactType>();
