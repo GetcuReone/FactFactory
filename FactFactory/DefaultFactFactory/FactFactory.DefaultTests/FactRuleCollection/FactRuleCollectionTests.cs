@@ -7,6 +7,7 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Entities;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -38,12 +39,13 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWithoutInputFactsTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add(() => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => 
+                    Collection.Add(() => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
-                    Assert.AreEqual(0, Collection[0].InputFactTypes.Count, "a different number of input parameters was expected");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
+                    Assert.AreEqual(0, Collection[0].InputFactTypes.Count, "Different number of input parameters was expected.");
                 });
         }
 
@@ -53,24 +55,25 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith1InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => 
+                    Collection.Add((Input1Fact fact1) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
                         GetFactType<Input1Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -80,12 +83,13 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith2InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => 
+                    Collection.Add((Input1Fact fact1, Input2Fact fact2) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -93,12 +97,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input2Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -108,12 +112,13 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith3InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => 
+                    Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -122,12 +127,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input3Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -137,12 +142,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith4InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -152,12 +157,12 @@ namespace FactFactoryTests.FactRuleCollection
                         new FactType<Input4Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -167,12 +172,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith5InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -183,12 +188,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input5Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -198,12 +203,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith6InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -215,12 +220,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input6Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -230,12 +235,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith7InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -248,12 +253,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input7Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -263,12 +268,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith8InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -282,12 +287,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input8Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -297,12 +302,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith9InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -317,12 +322,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input9Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -332,12 +337,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith10InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -353,12 +358,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input10Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -368,12 +373,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith11InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -390,12 +395,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input11Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -405,12 +410,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith12InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -428,12 +433,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input12Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -443,12 +448,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith13InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -467,12 +472,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input13Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -482,12 +487,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith14InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -507,12 +512,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input14Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -522,12 +527,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith15InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14, Input15Fact fact15) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14, Input15Fact fact15) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -548,12 +553,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input15Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -563,12 +568,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleWith16InputFactTestCase()
         {
-            Given("Check count collection", () => Assert.AreEqual(0, Collection.Count, "collection is not empty"))
-                .When("Add rule", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14, Input15Fact fact15, Input16Fact fact16) => new ResultFact(default)))
-                .Then("Check collection", _ =>
+            Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
+                .When("Add rule.", _ => Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14, Input15Fact fact15, Input16Fact fact16) => new ResultFact(default)))
+                .Then("Check collection.", _ =>
                 {
                     IReadOnlyCollection<IFactType> inpuTFactTypes = Collection[0].InputFactTypes;
-                    Assert.AreEqual(1, Collection.Count, "collection is empty");
+                    Assert.AreEqual(1, Collection.Count, "Collection is empty.");
 
                     var factTypes = new List<IFactType>
                     {
@@ -590,12 +595,12 @@ namespace FactFactoryTests.FactRuleCollection
                         GetFactType<Input16Fact>(),
                     };
 
-                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "a different number of input parameters was expected");
-                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type");
+                    Assert.AreEqual(factTypes.Count, inpuTFactTypes.Count, "Different number of input parameters was expected.");
+                    Assert.IsTrue(Collection[0].OutputFactType.EqualsFactType(GetFactType<ResultFact>()), "The derived fact is of the wrong type.");
 
 
                     foreach (IFactType factType in factTypes)
-                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}");
+                        Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
                 });
         }
 
@@ -606,12 +611,13 @@ namespace FactFactoryTests.FactRuleCollection
         public void AddRuleAlreadyContainsTestCase()
         {
             GivenEmpty()
-                .And("Add rule", _ => Collection.Add(() => new Input10Fact(10)))
+                .And("Add rule.", _ => 
+                    Collection.Add(() => new Input10Fact(10)))
                 .When("Add rule already contains", _ =>
                 {
                     return ExpectedException<ArgumentException>(() => Collection.Add(() => new Input10Fact(11)));
                 })
-                .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
+                .ThenIsNotNull();
         }
 
         [TestMethod]
@@ -625,7 +631,7 @@ namespace FactFactoryTests.FactRuleCollection
                 {
                     return ExpectedException<ArgumentException>(() => Collection.Add(() => new NotContained<Input10Fact>()));
                 })
-                .Then("Check error", ex => Assert.IsNotNull(ex, "error is null"));
+                .ThenIsNotNull();
         }
 
         [TestMethod]
@@ -637,14 +643,15 @@ namespace FactFactoryTests.FactRuleCollection
             Rule factRule = null;
 
             Given("Create rule", () => factRule = new Rule((_, __) => default, new List<IFactType>(), GetFactType<Input1Fact>()))
-                .And("Add rule", _ => Collection.Add(factRule))
-                .When("Get copied", _ => Collection.Copy())
-                .Then("Check result", copyCollection =>
+                .And("Add rule.", _ => 
+                    Collection.Add(factRule))
+                .When("Get copied.", _ => 
+                    Collection.Copy())
+                .ThenIsNotNull()
+                .AndAreNotEqual(Collection)
+                .And("Check result.", copyCollection =>
                 {
-                    Assert.IsNotNull(copyCollection, "collection cannot be null");
-                    Assert.AreNotEqual(Collection, copyCollection, "Collections should not be equal");
                     Assert.AreEqual(Collection.Count(), copyCollection.Count(), "Collections should have the same amount of rules");
-
                     Assert.AreEqual(factRule, copyCollection[0], "The collection contains another rule.");
                 });
         }
@@ -655,9 +662,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddRuleReadOnlyCollectionTestCase()
         {
+            const string expectedReason = "Rule collection is read-only.";
+
             GivenCreateCollection(true)
-                .When("Add rule", rules => ExpectedFactFactoryException(() => rules.Add(null)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
+                .When("Add rule.", rules => 
+                    ExpectedFactFactoryException(() => rules.Add(null)))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
         }
 
         [TestMethod]
@@ -666,9 +676,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RemoveRuleReadOnlyCollectionTestCase()
         {
+            const string expectedReason = "Rule collection is read-only.";
+
             GivenCreateCollection(true)
-                .When("Remove rule", rules => ExpectedFactFactoryException(() => rules.Remove(null)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
+                .When("Remove rule", rules => 
+                    ExpectedFactFactoryException(() => rules.Remove(null)))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
         }
 
         [TestMethod]
@@ -677,9 +690,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ClearReadOnlyCollectionTestCase()
         {
+            const string expectedReason = "Rule collection is read-only.";
+
             GivenCreateCollection(true)
-                .When("Clear", rules => ExpectedFactFactoryException(() => rules.Clear()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
+                .When("Clear", rules => 
+                    ExpectedFactFactoryException(() => rules.Clear()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
         }
 
         [TestMethod]
@@ -688,9 +704,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void InsertRuleReadOnlyCollectionTestCase()
         {
+            const string expectedReason = "Rule collection is read-only.";
+
             GivenCreateCollection(true)
-                .When("Insert rule", rules => ExpectedFactFactoryException(() => rules.Insert(0, null)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
+                .When("Insert rule", rules => 
+                    ExpectedFactFactoryException(() => rules.Insert(0, null)))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
         }
 
         [TestMethod]
@@ -699,9 +718,12 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RemoveAtRuleReadOnlyCollectionTestCase()
         {
+            const string expectedReason = "Rule collection is read-only.";
+
             GivenCreateCollection(true)
-                .When("RemoveAt rule", rules => ExpectedFactFactoryException(() => rules.RemoveAt(0)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
+                .When("RemoveAt rule", rules => 
+                    ExpectedFactFactoryException(() => rules.RemoveAt(0)))
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
         }
 
         [TestMethod]
@@ -710,9 +732,11 @@ namespace FactFactoryTests.FactRuleCollection
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddByIndexRuleReadOnlyCollectionTestCase()
         {
+            const string expectedReason = "Rule collection is read-only.";
+
             GivenCreateCollection(true)
                 .When("Add by index", rules => ExpectedFactFactoryException(() => rules[0] = null))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, "Rule collection is read-only.");
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
         }
     }
 }

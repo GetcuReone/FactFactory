@@ -5,6 +5,7 @@ using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,11 @@ namespace FactFactoryTests.WantAction
         public void CreateWantActionWithoutActionTestCase()
         {
             GivenEmpty()
-                .When("Create WantAction", _ => ExpectedException<ArgumentNullException>(() => new WAction(null, null)))
-                .Then("Check error", ex => 
+                .When("Create WantAction.", _ => ExpectedException<ArgumentNullException>(() => new WAction(null, null)))
+                .ThenIsNotNull()
+                .And("Check error.", ex => 
                 {
-                    Assert.IsNotNull(ex, "error is null");
-                    Assert.AreEqual("wantAction", ex.ParamName, "Expectend another property name");
+                    Assert.AreEqual("wantAction", ex.ParamName, "Expectend another property name.");
                 });
         }
 
@@ -38,9 +39,11 @@ namespace FactFactoryTests.WantAction
         {
             bool isRun = false;
 
-            Given("Create WantAction", () => new WAction(ct => isRun = true, new List<IFactType> { GetFactType<OtherFact>() }))
-                .When("Run method", wantAction => wantAction.Invoke(new GetcuReone.FactFactory.Entities.FactContainer()))
-                .Then("Check result", _ => Assert.IsTrue(isRun, "Invoke not run"));
+            Given("Create WantAction.", () => new WAction(ct => isRun = true, new List<IFactType> { GetFactType<OtherFact>() }))
+                .When("Run method.", wantAction => 
+                    wantAction.Invoke(new GetcuReone.FactFactory.Entities.FactContainer()))
+                .Then("Check result.", _ => 
+                    Assert.IsTrue(isRun, "Invoke not run."));
         }
 
         [TestMethod]
@@ -49,12 +52,14 @@ namespace FactFactoryTests.WantAction
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateWantActionWithoutInputFactsTestCase()
         {
+            const string expectedReason = "factTypes cannot be empty. The desired action should request a fact on entry.";
             GivenEmpty()
-                .When("Create WantAction", _ => ExpectedException<ArgumentException>(() => new WAction(ct => { }, null)))
-                .Then("Check error", ex =>
+                .When("Create WantAction.", _ => 
+                    ExpectedException<ArgumentException>(() => new WAction(ct => { }, null)))
+                .ThenIsNotNull()
+                .And("Check error.", ex =>
                 {
-                    Assert.IsNotNull(ex, "error is null");
-                    Assert.AreEqual("factTypes cannot be empty. The desired action should request a fact on entry.", ex.Message, "Expectend another message");
+                    Assert.AreEqual(expectedReason, ex.Message, "Expectend another message.");
                 });
         }
 
@@ -67,15 +72,15 @@ namespace FactFactoryTests.WantAction
             string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}.";
 
             GivenEmpty()
-                .When("Create wantAction", _ =>
+                .When("Create WantAction.", _ =>
                 {
                     return ExpectedException<ArgumentException>(
                         () => new WAction(ct => { }, new List<IFactType> { GetFactType<InvalidFact>() }));
                 })
-                .Then("Check error", ex =>
+                .ThenIsNotNull()
+                .And("Check error.", ex =>
                 {
-                    Assert.IsNotNull(ex, "error is null");
-                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected.");
                 });
         }
 

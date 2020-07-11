@@ -1,6 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
+using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
@@ -30,8 +31,9 @@ namespace FactFactoryTests.FactContainer
             string expectedReason = $"The fact container already contains {GetFactType<IntFact>().FactName} type of fact.";
 
             GivenCreateContainer()
-                .And("Add fact", container => container.Add(new IntFact(0)))
-                .When("Add an existing fact", container => ExpectedFactFactoryException(() => container.Add(new IntFact(0))))
+                .And("Add fact.", container => container.Add(new IntFact(0)))
+                .When("Add an existing fact.", container => 
+                    ExpectedFactFactoryException(() => container.Add(new IntFact(0))))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
@@ -42,9 +44,12 @@ namespace FactFactoryTests.FactContainer
         public void ContainsFactTestCase()
         {
             GivenCreateContainer()
-                .And("Add fact", container => container.Add(new IntFact(0)))
-                .When("Contains", container => container.Contains<IntFact>())
-                .Then("Check result", result => Assert.IsTrue(result, "fact not contained"));
+                .And("Add fact.", container => 
+                    container.Add(new IntFact(0)))
+                .When("Contains.", container => 
+                    container.Contains<IntFact>())
+                .Then("Check result.", result => 
+                    Assert.IsTrue(result, "Fact not contained."));
         }
 
         [TestMethod]
@@ -54,8 +59,10 @@ namespace FactFactoryTests.FactContainer
         public void NotContainsFactTestCase()
         {
             GivenCreateContainer()
-                .When("Contains", container => container.Contains<IntFact>())
-                .Then("Check result", result => Assert.IsFalse(result, "fact contained"));
+                .When("Contains.", container => 
+                    container.Contains<IntFact>())
+                .Then("Check result.", result => 
+                    Assert.IsFalse(result, "Fact contained."));
         }
 
         [TestMethod]
@@ -65,9 +72,12 @@ namespace FactFactoryTests.FactContainer
         public void RemoveFactTestCase()
         {
             GivenCreateContainer()
-                .And("Add fact", container => container.Add(new IntFact(0)))
-                .When("Remove fact", container => container.Remove<IntFact>())
-                .Then("Check fact", container => Assert.IsFalse(container.Contains<IntFact>()));
+                .And("Add fact.", container => 
+                    container.Add(new IntFact(0)))
+                .When("Remove fact.", container => 
+                    container.Remove<IntFact>())
+                .Then("Check fact.", container => 
+                    Assert.IsFalse(container.Contains<IntFact>()));
         }
 
         [TestMethod]
@@ -79,16 +89,17 @@ namespace FactFactoryTests.FactContainer
             var fact = new IntFact(0);
 
             GivenCreateContainer()
-                .And("Add fact", container => container.Add(fact))
-                .When("Get value", ct =>
+                .And("Add fact.", container => 
+                    container.Add(fact))
+                .When("Get value.", ct =>
                 {
                     bool isFind = ct.TryGetFact(out IntFact result);
                     return new { isFind, result };
                 })
-                .Then("Check result", result =>
+                .Then("Check result.", result =>
                 {
-                    Assert.IsTrue(result.isFind, "fact not found");
-                    Assert.AreEqual(fact, result.result, "return another fact");
+                    Assert.IsTrue(result.isFind, "Fact not found.");
+                    Assert.AreEqual(fact, result.result, "Return another fact.");
                 });
         }
 
@@ -99,15 +110,15 @@ namespace FactFactoryTests.FactContainer
         public void TryGetValueAnExistingFactTestCase()
         {
             GivenCreateContainer()
-                .When("Get value", ct =>
+                .When("Get value.", ct =>
                 {
                     bool isFind = ct.TryGetFact(out IntFact result);
                     return new { isFind, result };
                 })
-                .Then("Check result", result =>
+                .Then("Check result.", result =>
                 {
-                    Assert.IsFalse(result.isFind, "fact not found");
-                    Assert.IsNull(result.result, "fact most be null");
+                    Assert.IsFalse(result.isFind, "Fact not found.");
+                    Assert.IsNull(result.result, "Fact most be null.");
                 });
         }
 
@@ -117,15 +128,12 @@ namespace FactFactoryTests.FactContainer
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetValueExistingFactTestCase()
         {
-            var fact = new IntFact(0);
+            const int expectedValue = 0;
 
             GivenCreateContainer()
-                .And("Add fact", container => container.Add(fact))
-                .When("Get value", ct => ct.GetFact<IntFact>())
-                .Then("Check result", result =>
-                {
-                    Assert.AreEqual(fact, result, "return another fact");
-                });
+                .And("Add fact.", container => container.Add(new IntFact(expectedValue)))
+                .When("Get value.", ct => ct.GetFact<IntFact>())
+                .ThenFactEquals(expectedValue);
         }
 
         [TestMethod]
@@ -137,7 +145,8 @@ namespace FactFactoryTests.FactContainer
             string expectedReason = $"Not found type fact with type {GetFactType<IntFact>().FactName}.";
 
             GivenCreateContainer()
-                .When("Get value", ct => ExpectedFactFactoryException(() => ct.GetFact<IntFact>()))
+                .When("Get value", ct => 
+                    ExpectedFactFactoryException(() => ct.GetFact<IntFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -154,28 +163,28 @@ namespace FactFactoryTests.FactContainer
             Container originalContainer = null;
             IFactContainer<FactBase> copyContainer = null;
 
-            Given("Create container", () => originalContainer = new Container())
-                .And("Add facts", _ =>
+            Given("Create container.", () => originalContainer = new Container())
+                .And("Add facts.", _ =>
                 {
                     originalContainer.Add(input1Fact);
                     originalContainer.Add(input2Fact);
                     originalContainer.Add(input3Fact);
                 })
-                .When("Get value", _ => copyContainer = originalContainer.Copy())
-                .Then("Check result", _ =>
+                .When("Get value.", _ => copyContainer = originalContainer.Copy())
+                .Then("Check result.", _ =>
                 {
-                    Assert.IsNotNull(copyContainer, "container cannot be null");
-                    Assert.AreNotEqual(originalContainer, copyContainer, "Containers should not be equal");
-                    Assert.AreEqual(originalContainer.Count(), copyContainer.Count(), "Containers should have the same amount of facts");
+                    Assert.IsNotNull(copyContainer, "Container cannot be null.");
+                    Assert.AreNotEqual(originalContainer, copyContainer, "Containers should not be equal.");
+                    Assert.AreEqual(originalContainer.Count(), copyContainer.Count(), "Containers should have the same amount of facts.");
 
-                    Assert.IsTrue(copyContainer.TryGetFact(out Input1Fact fact1), $"{nameof(Input1Fact)} must be contained in a container");
-                    Assert.AreEqual(input1Fact, fact1, $"Original copy of {nameof(Input1Fact)} fact expected");
+                    Assert.IsTrue(copyContainer.TryGetFact(out Input1Fact fact1), $"{nameof(Input1Fact)} must be contained in a container.");
+                    Assert.AreEqual(input1Fact, fact1, $"Original copy of {nameof(Input1Fact)} fact expected.");
 
-                    Assert.IsTrue(copyContainer.TryGetFact(out Input2Fact fact2), $"{nameof(Input2Fact)} must be contained in a container");
-                    Assert.AreEqual(input2Fact, fact2, $"Original copy of {nameof(Input2Fact)} fact expected");
+                    Assert.IsTrue(copyContainer.TryGetFact(out Input2Fact fact2), $"{nameof(Input2Fact)} must be contained in a container.");
+                    Assert.AreEqual(input2Fact, fact2, $"Original copy of {nameof(Input2Fact)} fact expected.");
 
-                    Assert.IsTrue(copyContainer.TryGetFact(out Input3Fact fact3), $"{nameof(Input3Fact)} must be contained in a container");
-                    Assert.AreEqual(input3Fact, fact3, $"Original copy of {nameof(Input3Fact)} fact expected");
+                    Assert.IsTrue(copyContainer.TryGetFact(out Input3Fact fact3), $"{nameof(Input3Fact)} must be contained in a container.");
+                    Assert.AreEqual(input3Fact, fact3, $"Original copy of {nameof(Input3Fact)} fact expected.");
                 });
         }
 
@@ -186,7 +195,8 @@ namespace FactFactoryTests.FactContainer
         public void AddFactReadOnlyContainerTestCase()
         {
             GivenCreateContainer(true)
-                .When("Add fact", container => ExpectedFactFactoryException(() => container.Add(new Input10Fact(10))))
+                .When("Add fact.", container => 
+                    ExpectedFactFactoryException(() => container.Add(new Input10Fact(10))))
                 .ThenAssertErrorDetail(ErrorCode.InvalidOperation, $"Fact container is read-only.");
         }
 
@@ -197,7 +207,8 @@ namespace FactFactoryTests.FactContainer
         public void RemoveFactReadOnlyContainerTestCase()
         {
             GivenCreateContainer(true)
-                .When("Remove fact", container => ExpectedFactFactoryException(() => container.Remove(new Input10Fact(10))))
+                .When("Remove fact.", container => 
+                    ExpectedFactFactoryException(() => container.Remove(new Input10Fact(10))))
                 .ThenAssertErrorDetail(ErrorCode.InvalidOperation, $"Fact container is read-only.");
         }
 
@@ -208,9 +219,9 @@ namespace FactFactoryTests.FactContainer
         public void ClearContainerTestCase()
         {
             GivenCreateContainer()
-                .And("Add fact", container => container.Add(new IntFact(0)))
-                .When("Clear", container => container.Clear())
-                .Then("Check result",container => 
+                .And("Add fact.", container => container.Add(new IntFact(0)))
+                .When("Clear.", container => container.Clear())
+                .Then("Check result.",container => 
                 {
                     Assert.AreEqual(0, container.Count(), "Container must be empty.");
                 });

@@ -1,8 +1,6 @@
 ﻿using FactFactory.TestsCommon;
-using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Helpers;
-using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,18 +17,17 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateResultFactIfInput1FactContainedTestCase()
         {
+            const int expectedValue = 1;
+
             GivenCreateFactFactory()
-                .AndAddRules(new Collection 
+                .AndAddRules(new Collection
                 {
                     (Contained<Input1Fact> _, Input1Fact fact) => new ResultFact(fact.Value),
                     (NotContained<Input1Fact> _) => new ResultFact(-1),
                 })
                 .AndAddFact(new Input1Fact(1))
-                .When("Derive", factFactory => factFactory.DeriveFact<ResultFact>())
-                .Then("Check result", fact => 
-                {
-                    Assert.AreEqual(1, fact.Value, "Expected another value");
-                });
+                .When("Derive.", factFactory => factFactory.DeriveFact<ResultFact>())
+                .ThenFactEquals(expectedValue);
         }
     }
 }

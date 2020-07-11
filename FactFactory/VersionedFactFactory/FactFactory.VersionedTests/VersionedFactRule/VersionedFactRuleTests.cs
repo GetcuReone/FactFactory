@@ -4,6 +4,7 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,9 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         public void CreateRuleWithVersionTestCase()
         {
             GivenEmpty()
-                .When("Create rule with version", _ => VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
-                .Then("Check result", rule =>
+                .When("Create rule with version.", _ => 
+                    VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
+                .Then("Check result.", rule =>
                 {
                     Assert.IsNotNull(rule.VersionType, "The rule does not contain version information");
                     Assert.IsTrue(GetFactType<Version1>().EqualsFactType(rule.VersionType), $"{nameof(Rule.VersionType)} does not store version information");
@@ -38,8 +40,9 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         public void CreateRuleWithoutVersionTestCase()
         {
             GivenEmpty()
-                .When("Create rule with version", _ => VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
-                .Then("Check result", rule =>
+                .When("Create rule with version.", _ => 
+                    VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
+                .Then("Check result.", rule =>
                 {
                     Assert.IsNull(rule.VersionType, "The rule contain version information");
                 });
@@ -55,10 +58,13 @@ namespace FactFactory.VersionedTests.VersionedFactRule
             Rule secondRule = null;
 
             Given("Create first rule.", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
-                .And("Create second rule.", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
-                .And("Rules equality.", _ => Assert.IsTrue(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
-                .When("Compare rules without version.", _ => firstRule.EqualsRuleWithoutVersion(secondRule))
-                .Then("Check result.", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
+                .And("Create second rule.", _ => 
+                    secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
+                .And("Rules equality.", _ => 
+                    Assert.IsTrue(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
+                .When("Compare rules without version.", _ => 
+                    firstRule.EqualsRuleWithoutVersion(secondRule))
+                .ThenIsTrue(errorMessage: "excluding versions, the rules are not equal");
         }
 
         [TestMethod]
@@ -74,7 +80,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
                 .And("Compare rules", _ => Assert.IsTrue(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
                 .When("Compare rules without version", _ => firstRule.EqualsRuleWithoutVersion(secondRule))
-                .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
+                .Then("Check result.", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
 
         [TestMethod]
@@ -90,7 +96,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version2>(), GetFactType<Fact1>()))
                 .And("Compare rules", _ => Assert.IsFalse(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
                 .When("Compare rules without version", _ => firstRule.EqualsRuleWithoutVersion(secondRule))
-                .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
+                .Then("Check result.", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
 
         [TestMethod]
@@ -106,7 +112,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
                 .And("Compare rules", _ => Assert.IsFalse(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
                 .When("Compare rules without version", _ => firstRule.EqualsRuleWithoutVersion(secondRule))
-                .Then("Check result", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
+                .Then("Check result.", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
         }
 
         [TestMethod]
@@ -122,7 +128,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .And("Create rule", () => new Rule((ct, _) => new FactResult(1), new List<IFactType> { GetFactType<Version2>() }, GetFactType<FactResult>()))
                 .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container, default(Action)), "cannot calculate"))
                 .When("Run calculate", rule => rule.Calculate(container, default(Action)))
-                .Then("Check result", fact =>
+                .Then("Check result.", fact =>
                 {
                     Assert.IsNotNull(fact.Version, "Version cannot be null");
                     if (fact.Version is Version2 version2)
@@ -144,7 +150,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .And("Create rule", () => new Rule((ct, _) => new FactResult(1), new List<IFactType> { }, GetFactType<FactResult>()))
                 .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container, default(Action)), "cannot calculate"))
                 .When("Run calculate", rule => rule.Calculate(container, default(Action)))
-                .Then("Check result", fact =>
+                .Then("Check result.", fact =>
                 {
                     Assert.IsNull(fact.Version, "Version must be null");
                 });

@@ -8,6 +8,7 @@ using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
@@ -16,23 +17,18 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class FactFactoryTests : FactFactoryTestBase
     {
-        private GetcuReone.FactFactory.FactFactory FactFactory { get; set; }
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            FactFactory = new GetcuReone.FactFactory.FactFactory();
-        }
-
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Rules cannot be empty.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RulesCannotBeEmptyTestCase()
         {
-            Given("Set rules", () => FactFactory.Rules.Clear())
-                .When("Derive facts", factory => ExpectedDeriveException(() => FactFactory.DeriveFact<Input10Fact>()))
-                .ThenAssertErrorDetail(ErrorCode.EmptyRuleCollection, "Rules cannot be null.");
+            const string expectedReason = "Rules cannot be null.";
+
+            GivenCreateFactFactory()
+                .When("Derive facts.", factory => 
+                    ExpectedDeriveException(() => factory.DeriveFact<Input10Fact>()))
+                .ThenAssertErrorDetail(ErrorCode.EmptyRuleCollection, expectedReason);
         }
 
         [TestMethod]
@@ -41,35 +37,46 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ChoosingShortestWayTestCase()
         {
-            Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
-                .And("Add fact", () => FactFactory.Container.Add(new Input16Fact(0)))
-                .And("Add main rule", () => FactFactory.Rules.Add((Input2Fact f) => new Input1Fact(f.Value + 1)))
-                .And("Add 1 way", () =>
+            const int expectedValue = 5;
+
+            GivenCreateFactFactory()
+                .AndRulesNotNul()
+                .AndAddFact(new Input16Fact(0))
+                .AndAddRules(new Collection
                 {
-                    FactFactory.Rules.Add((Input3Fact f) => new Input2Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input4Fact f) => new Input3Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input5Fact f) => new Input4Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input6Fact f) => new Input5Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input7Fact f) => new Input6Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input16Fact f) => new Input7Fact(f.Value + 1));
+                    // main rule.
+                    (Input2Fact f) => new Input1Fact(f.Value + 1),
                 })
-                .And("Add 2 way", () =>
+                .AndAddRules(new Collection
                 {
-                    FactFactory.Rules.Add((Input8Fact f) => new Input2Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input9Fact f) => new Input8Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input10Fact f) => new Input9Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input16Fact f) => new Input10Fact(f.Value + 1));
+                    // 1 way.
+                    (Input3Fact f) => new Input2Fact(f.Value + 1),
+                    (Input4Fact f) => new Input3Fact(f.Value + 1),
+                    (Input5Fact f) => new Input4Fact(f.Value + 1),
+                    (Input6Fact f) => new Input5Fact(f.Value + 1),
+                    (Input7Fact f) => new Input6Fact(f.Value + 1),
+                    (Input16Fact f) => new Input7Fact(f.Value + 1),
                 })
-                .And("Add 3 way", () =>
+                .AndAddRules(new Collection
                 {
-                    FactFactory.Rules.Add((Input11Fact f) => new Input2Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input12Fact f) => new Input11Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input13Fact f) => new Input12Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input14Fact f) => new Input13Fact(f.Value + 1));
-                    FactFactory.Rules.Add((Input16Fact f) => new Input14Fact(f.Value + 1));
+                    // 2 way.
+                    (Input8Fact f) => new Input2Fact(f.Value + 1),
+                    (Input9Fact f) => new Input8Fact(f.Value + 1),
+                    (Input10Fact f) => new Input9Fact(f.Value + 1),
+                    (Input16Fact f) => new Input10Fact(f.Value + 1),
                 })
-                .When("Derive facts", FactFactory.DeriveFact<Input1Fact>)
-                .Then("Check result", f => Assert.AreEqual(5, f.Value, "Another number of rules worked"));
+                .AndAddRules(new Collection
+                {
+                    // 2 way.
+                    (Input11Fact f) => new Input2Fact(f.Value + 1),
+                    (Input12Fact f) => new Input11Fact(f.Value + 1),
+                    (Input13Fact f) => new Input12Fact(f.Value + 1),
+                    (Input14Fact f) => new Input13Fact(f.Value + 1),
+                    (Input16Fact f) => new Input14Fact(f.Value + 1),
+                })
+                .When("Derive facts.", factFactory =>
+                    factFactory.DeriveFact<Input1Fact>())
+                .ThenFactEquals(expectedValue);
         }
 
         [TestMethod]
@@ -79,48 +86,58 @@ namespace FactFactoryTests.FactFactoryT
         public void DerivationOnlyNecessaryFactsTestCase()
         {
             int counter = 0;
+            const int expectedValue = 5;
 
-            Given("Check empty rules", () => Assert.IsNotNull(FactFactory.Rules, "rules cannot be null"))
-                .And("Add fact Input16Fact", () => FactFactory.Container.Add(new Input16Fact(0)))
-                .And("Add fact Input15Fact", () => FactFactory.Container.Add(new Input15Fact(0)))
-                .And("Add main rule", () => FactFactory.Rules.Add((Input2Fact f) => 
+            GivenCreateFactFactory()
+                .AndRulesNotNul()
+                .AndAddFact(new Input16Fact(0))
+                .AndAddFact(new Input15Fact(0))
+                .AndAddRules(new Collection
                 {
-                    counter++;
-                    return new Input1Fact(f.Value + 1);
-                }))
-                .And("Add way", () =>
+                    // main rule.
+                    (Input2Fact f) =>
+                    {
+                        counter++;
+                        return new Input1Fact(f.Value + 1);
+                    }
+                })
+                .AndAddRules(new Collection
                 {
-                    FactFactory.Rules.Add((Input8Fact f) => 
+                    // way.
+                    (Input8Fact f) =>
                     {
                         counter++;
                         return new Input2Fact(f.Value + 1);
-                    });
-                    FactFactory.Rules.Add((Input9Fact f) => 
+                    },
+                    (Input9Fact f) =>
                     {
                         counter++;
                         return new Input8Fact(f.Value + 1);
-                    });
-                    FactFactory.Rules.Add((Input10Fact f) => 
+                    },
+                    (Input10Fact f) =>
                     {
                         counter++;
                         return new Input9Fact(f.Value + 1);
-                    });
-                    FactFactory.Rules.Add((Input16Fact f) => 
+                    },
+                    (Input16Fact f) =>
                     {
                         counter++;
                         return new Input10Fact(f.Value + 1);
-                    });
+                    },
                 })
-                .And("Add another rule to output the penultimate fact", () =>
+                .AndAddRules(new Collection
                 {
-                    FactFactory.Rules.Add((Input8Fact f) =>
+                    // another rule to output the penultimate fact.
+                    (Input8Fact f) =>
                     {
                         counter++;
                         return new Input10Fact(f.Value + 1);
-                    });
+                    }
                 })
-                .When("Derive facts", FactFactory.DeriveFact<Input1Fact>)
-                .Then("Check result", f => Assert.AreEqual(5, counter, "It had to work out 5 rules"));
+                .When("Derive facts.", factFactory => 
+                    factFactory.DeriveFact<Input1Fact>())
+                .Then("Check result.", _ => 
+                    Assert.AreEqual(expectedValue, counter, "It had to work out 5 rules"));
         }
 
         [TestMethod]
@@ -129,13 +146,16 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetOriginalContainerTestCase()
         {
-            Given("Create factory", () => new FactFactoryCustom())
-                .And("Change container", factFactory =>
+            const string expectedValue = "IFactContainer.Copy method return original container.";
+
+            Given("Create factory.", () => new FactFactoryCustom())
+                .And("Change container.", factFactory =>
                 {
                     factFactory.container = new FactContainerGetOriginal();
                 })
-                .When("Run derive", factory => ExpectedDeriveException(() => factory.DeriveFact<OtherFact>()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
+                .When("Run derive.", factory => 
+                    ExpectedDeriveException(() => factory.DeriveFact<OtherFact>()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedValue);
         }
 
         [TestMethod]
@@ -144,13 +164,13 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactTestCase()
         {
-            Given("Add rule", () => FactFactory.Rules.Add(() => new Input10Fact(10)))
-                .When("Run DeriveFact", _ => FactFactory.DeriveFact<Input10Fact>())
-                .Then("Check result", fact =>
-                {
-                    Assert.IsNotNull(fact, "fact cannot be null");
-                    Assert.AreEqual(10, fact.Value, "fact have other value");
-                });
+            const int expectedValue = 10;
+
+            GivenCreateFactFactory()
+                .AndAddFact(new Input10Fact(10))
+                .When("Run DeriveFact.", factFactory =>
+                    factFactory.DeriveFact<Input10Fact>())
+                .ThenFactEquals(expectedValue);
         }
 
         [TestMethod]
@@ -161,9 +181,12 @@ namespace FactFactoryTests.FactFactoryT
         {
             var input6Fact = new Input6Fact(6);
 
-            Given("Add fact in container", () => FactFactory.Container.Add(input6Fact))
-                .When("Derive fact", () => FactFactory.DeriveFact<Input6Fact>())
-                .Then("Check fact", fact => Assert.AreEqual(input6Fact, fact, "facts must match"));
+            GivenCreateFactFactory()
+                .AndAddFact(input6Fact)
+                .When("Derive fact.", factFactory => 
+                    factFactory.DeriveFact<Input6Fact>())
+                .Then("Check fact.", fact => 
+                    Assert.AreEqual(input6Fact, fact, "facts must match."));
         }
 
         [TestMethod]
@@ -176,23 +199,24 @@ namespace FactFactoryTests.FactFactoryT
             Input16Fact fact16 = null;
             Input7Fact fact7 = null;
 
-            Given("Add rules", () =>
-            {
-                FactFactory.Rules.Add(() => new Input6Fact(6));
-                FactFactory.Rules.Add(() => new Input16Fact(16));
-                FactFactory.Rules.Add(() => new Input7Fact(7));
-            })
-                .And("Want facts", () =>
+            GivenCreateFactFactory()
+                .AndAddRules(new Collection
                 {
-                    FactFactory.WantFact((Input6Fact fact) => fact6 = fact);
-                    FactFactory.WantFact((Input16Fact fact) => fact16 = fact);
-                    FactFactory.WantFact((Input7Fact fact) => fact7 = fact);
+                    () => new Input6Fact(6),
+                    () => new Input16Fact(16),
+                    () => new Input7Fact(7),
                 })
-                .When("Derive fact", () => FactFactory.DeriveFact<Input7Fact>())
-                .Then("Check result", fact =>
+                .And("Want facts.", factFactory =>
                 {
-                    Assert.IsNotNull(fact, "fact not derived");
-
+                    factFactory.WantFact((Input6Fact fact) => fact6 = fact);
+                    factFactory.WantFact((Input16Fact fact) => fact16 = fact);
+                    factFactory.WantFact((Input7Fact fact) => fact7 = fact);
+                })
+                .When("Derive fact.", factFactory => 
+                    factFactory.DeriveFact<Input7Fact>())
+                .ThenIsNotNull()
+                .And("Check result.", _ =>
+                {
                     Assert.IsNull(fact7, "fact7 cannot derived");
                     Assert.IsNull(fact16, "fact16 cannot derived");
                     Assert.IsNull(fact6, "fact6 cannot derived");
@@ -208,26 +232,30 @@ namespace FactFactoryTests.FactFactoryT
             Input6Fact fact6 = null;
             Input16Fact fact16 = null;
             Input7Fact fact7 = null;
+            GetcuReone.FactFactory.FactFactory factory = null;
 
-            Given("Add rules", () =>
-            {
-                FactFactory.Rules.Add(() => new Input6Fact(6));
-                FactFactory.Rules.Add(() => new Input16Fact(16));
-                FactFactory.Rules.Add(() => new Input7Fact(7));
-            })
-                .And("Want facts", () =>
+            GivenCreateFactFactory()
+                .AndAddRules(new Collection
                 {
-                    FactFactory.WantFact((Input6Fact fact) => fact6 = fact);
-                    FactFactory.WantFact((Input16Fact fact) => fact16 = fact);
-                    FactFactory.WantFact((Input7Fact fact) => fact7 = fact);
+                    () => new Input6Fact(6),
+                    () => new Input16Fact(16),
+                    () => new Input7Fact(7),
                 })
-                .And("Derive fact", () => FactFactory.DeriveFact<Input7Fact>())
+                .And("Want facts.", factFactory =>
+                {
+                    factFactory.WantFact((Input6Fact fact) => fact6 = fact);
+                    factFactory.WantFact((Input16Fact fact) => fact16 = fact);
+                    factFactory.WantFact((Input7Fact fact) => fact7 = fact);
+                    factory = factFactory;
+                })
+                .And("Derive fact.", factFactory => 
+                    factFactory.DeriveFact<Input7Fact>())
                 .When("Derive facts", fact =>
                 {
-                    FactFactory.Derive();
+                    factory.Derive();
                     return fact;
                 })
-                .Then("Check result", fact =>
+                .Then("Check result.", fact =>
                 {
                     Assert.IsNotNull(fact7, "fact7 must derived");
                     Assert.IsNotNull(fact16, "fact16 must derived");
@@ -243,9 +271,10 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SuccessfulDeriveNotContainedTestCase()
         {
-            Given("Create factory", () => new FactFactoryCustom())
-                .When("Run Derive", factFactory => factFactory.DeriveFact<NotContained<OtherFact>>())
-                .Then("Check fact", fact => Assert.IsNotNull(fact, "fact cannot be null"));
+            GivenCreateFactFactory()
+                .When("Run Derive.", factFactory =>
+                    factFactory.DeriveFact<NotContained<OtherFact>>())
+                .ThenIsNotNull();
         }
 
         [TestMethod]
@@ -256,9 +285,10 @@ namespace FactFactoryTests.FactFactoryT
         {
             string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(NotContained<OtherFact>).Name}).";
 
-            Given("Create factory", () => new FactFactoryCustom())
+            GivenCreateFactFactory()
                 .AndAddFact(new OtherFact(default))
-                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<NotContained<OtherFact>>()))
+                .When("Run Derive.", factFactory => 
+                    ExpectedDeriveException(() => factFactory.DeriveFact<NotContained<OtherFact>>()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
         }
 
@@ -268,9 +298,10 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SuccessfulDeriveCannotDerivedTestCase()
         {
-            Given("Create factory", () => new FactFactoryCustom())
-                .When("Run Derive", factFactory => factFactory.DeriveFact<CannotDerived<OtherFact>>())
-                .Then("Check fact", fact => Assert.IsNotNull(fact, "fact cannot be null"));
+            GivenCreateFactFactory()
+                .When("Run Derive.", factFactory =>
+                    factFactory.DeriveFact<CannotDerived<OtherFact>>())
+                .ThenIsNotNull();
         }
 
         [TestMethod]
@@ -281,9 +312,10 @@ namespace FactFactoryTests.FactFactoryT
         {
             string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(CannotDerived<OtherFact>).Name}).";
 
-            Given("Create factory", () => new FactFactoryCustom())
+            GivenCreateFactFactory()
                 .AndAddFact(new OtherFact(default))
-                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.DeriveFact<CannotDerived<OtherFact>>()))
+                .When("Run Derive.", factFactory => 
+                    ExpectedDeriveException(() => factFactory.DeriveFact<CannotDerived<OtherFact>>()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
         }
 
@@ -296,10 +328,11 @@ namespace FactFactoryTests.FactFactoryT
             DefaultFact defaultFact = new DefaultFact(10);
             FactFactoryCustom factFactoryCustom = null;
 
-            Given("Create factory", () => factFactoryCustom = new FactFactoryCustom())
-                .And("Add default fact", factFactory => factFactory.DefaultFacts.Add(defaultFact))
-                .When("Run Derive", factFactory => factFactory.DeriveFact<DefaultFact>())
-                .Then("Check fact", fact => 
+            Given("Create factory.", () => factFactoryCustom = new FactFactoryCustom())
+                .And("Add default fact.", factFactory => factFactory.DefaultFacts.Add(defaultFact))
+                .When("Run Derive.", factFactory => 
+                    factFactory.DeriveFact<DefaultFact>())
+                .Then("Check fact.", fact => 
                 {
                     Assert.AreEqual(defaultFact, fact, "Expected anothe fact.");
                     Assert.AreEqual(0, factFactoryCustom.Container.Count(), "Container must be empty");
@@ -314,10 +347,12 @@ namespace FactFactoryTests.FactFactoryT
         {
             string expectedReason = $"The fact container already contains {GetFactType<DefaultFact>().FactName} type of fact.";
 
-            Given("Create factory", () => new FactFactoryCustom())
-                .And("Add default fact", factFactory => factFactory.DefaultFacts.Add(new DefaultFact(10)))
-                .And("Add default fact", factFactory => factFactory.DefaultFacts.Add(new DefaultFact(10)))
-                .When("Run Derive", factFactory => ExpectedFactFactoryException(() => factFactory.DeriveFact<DefaultFact>()))
+            Given("Create factory.", () => new FactFactoryCustom())
+                .And("Add default fact.", factFactory => 
+                    factFactory.DefaultFacts.Add(new DefaultFact(10)))
+                .And("Add default fact.", factFactory => 
+                    factFactory.DefaultFacts.Add(new DefaultFact(10)))
+                .When("Run Derive.", factFactory => ExpectedFactFactoryException(() => factFactory.DeriveFact<DefaultFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
@@ -327,11 +362,15 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithEmptyContainerTestCase()
         {
-            string expectedReason = "Container cannot be null.";
+            const string expectedReason = "Container cannot be null.";
 
-            Given("Create factory", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => { factFactory.container = null; })
-                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
+            Given("Create factory.", () => new FactFactoryCustom())
+                .And("Empty container.", factFactory => 
+                { 
+                    factFactory.container = null; 
+                })
+                .When("Run Derive.", factFactory => 
+                    ExpectedDeriveException(factFactory.Derive))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -341,11 +380,15 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithContainerReturningBlankCopyTestCase()
         {
-            string expectedReason = "IFactContainer.Copy method return null.";
+            const string expectedReason = "IFactContainer.Copy method return null.";
 
-            Given("Create factory", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => { factFactory.container = new FactContainerGetNull(); })
-                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
+            Given("Create factory.", () => new FactFactoryCustom())
+                .And("Empty container.", factFactory => 
+                {
+                    factFactory.container = new FactContainerGetNull();
+                })
+                .When("Run Derive.", factFactory => 
+                    ExpectedDeriveException(factFactory.Derive))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -355,11 +398,15 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithContainerReturningDifferentTypeContainerTestCase()
         {
-            string expectedReason = "IFactContainer.Copy method returned a different type of container.";
+            const string expectedReason = "IFactContainer.Copy method returned a different type of container.";
 
-            Given("Create factory", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => { factFactory.container = new FactContainerGetDifferent(); })
-                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
+            Given("Create factory.", () => new FactFactoryCustom())
+                .And("Empty container.", factFactory => 
+                { 
+                    factFactory.container = new FactContainerGetDifferent();
+                })
+                .When("Run Derive.", factFactory =>
+                    ExpectedDeriveException(factFactory.Derive))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -369,11 +416,15 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithEmptyRulesTestCase()
         {
-            string expectedReason = "Rules cannot be null.";
+            const string expectedReason = "Rules cannot be null.";
 
-            Given("Create factory", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => { factFactory.collection = null; })
-                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
+            Given("Create factory.", () => new FactFactoryCustom())
+                .And("Empty container.", factFactory =>
+                {
+                    factFactory.collection = null;
+                })
+                .When("Run Derive.", factFactory => 
+                    ExpectedDeriveException(factFactory.Derive))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -383,11 +434,15 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithRulesReturningBlankCopyTestCase()
         {
-            string expectedReason = "FactRuleCollectionBase.Copy method return null.";
+            const string expectedReason = "FactRuleCollectionBase.Copy method return null.";
 
-            Given("Create factory", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => { factFactory.collection = new RulesGetNull(); })
-                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
+            Given("Create factory.", () => new FactFactoryCustom())
+                .And("Empty container.", factFactory => 
+                { 
+                    factFactory.collection = new RulesGetNull(); 
+                })
+                .When("Run Derive.", factFactory => 
+                    ExpectedDeriveException(factFactory.Derive))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -397,11 +452,15 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithRulesReturningDifferentTypeRulesTestCase()
         {
-            string expectedReason = "FactRuleCollectionBase.Copy method returned a different type of rules.";
+            const string expectedReason = "FactRuleCollectionBase.Copy method returned a different type of rules.";
 
             Given("Create factory", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => { factFactory.collection = new RulesGetDifferent(); })
-                .When("Run Derive", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
+                .And("Empty container.", factFactory => 
+                {
+                    factFactory.collection = new RulesGetDifferent();
+                })
+                .When("Run Derive.", factFactory => 
+                    ExpectedDeriveException(factFactory.Derive))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -411,7 +470,7 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ClearWantActionsAfterDeriveTestCase()
         {
-            Given("Create factory", () => new FactFactoryCustom())
+            Given("Create factory.", () => new FactFactoryCustom())
                 .AndAddRules(new Collection
                 {
                     (Input10Fact fact) => new ResultFact(fact.Value),
@@ -419,9 +478,12 @@ namespace FactFactoryTests.FactFactoryT
                     (Input12Fact fact) => new Input11Fact(fact.Value),
                     () => new Input12Fact(2),
                 })
-                .And("Want fact.", factFactory => factFactory.WantFact((ResultFact result) => { }))
-                .And("Check WantActions.", factFactory => Assert.AreEqual(1, factFactory.W_Actions.Count))
-                .When("Derive.", factFactory => factFactory.Derive())
+                .And("Want fact.", factFactory => 
+                    factFactory.WantFact((ResultFact result) => { }))
+                .And("Check WantActions.", 
+                    factFactory => Assert.AreEqual(1, factFactory.W_Actions.Count))
+                .When("Derive.", factFactory => 
+                    factFactory.Derive())
                 .Then("Check result.", factFactory =>
                 {
                     Assert.AreEqual(0, factFactory.W_Actions.Count);
