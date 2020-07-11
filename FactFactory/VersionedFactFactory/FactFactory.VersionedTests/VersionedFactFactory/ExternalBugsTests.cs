@@ -26,7 +26,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             {
                 new Version1(),
             })
-                .And("Add facts", factory =>
+                .And("Add facts.", factory =>
                 {
                     factory.Container.Add(new CertFileInfo(default));
                     factory.Container.Add(new CryptKey("key"));
@@ -48,8 +48,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version1 v, Cert_ValidationNotNull cert, Cert_HashCode hashCode) => new Cert(cert.Value),
                     (Version1 v, Cert_Validation cert) => new Cert_ValidationNotNull(cert.Value),
                 })
-                .When("Derive fact", factory => factory.DeriveFact<Cert, Version1>())
-                .Then("Check result", fact =>
+                .When("Derive fact.", factory => factory.DeriveFact<Cert, Version1>())
+                .Then("Check result.", fact =>
                 {
                     Assert.AreEqual(certificate, fact.Value, "Expected another value.");
                 });

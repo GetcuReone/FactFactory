@@ -32,7 +32,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     originalContainer.Add(fact1);
                 })
                 .When("Get value", _ => copyContainer = originalContainer.Copy())
-                .Then("Check result", _ =>
+                .Then("Check result.", _ =>
                 {
                     Assert.IsNotNull(copyContainer, "container cannot be null");
                     Assert.AreNotEqual(originalContainer, copyContainer, "Containers should not be equal");

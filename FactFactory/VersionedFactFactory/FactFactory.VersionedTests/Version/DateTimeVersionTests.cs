@@ -4,6 +4,7 @@ using FactFactory.VersionedTests.Version.Env;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -21,10 +22,12 @@ namespace FactFactory.VersionedTests.Version
             Version2019 v1 = null;
             Version2020 v2 = null;
 
-            Given("Create first version", () => v1 = new Version2019())
-                .And("Create second version", _ => v2 = new Version2020())
-                .When("Compare version", _ => v1.IsLessThan(v2))
-                .Then("Check result", result => Assert.IsTrue(result, "The first version is not less than the second"));
+            Given("Create first version.", () => v1 = new Version2019())
+                .And("Create second version.", _ => 
+                    v2 = new Version2020())
+                .When("Compare version.", _ => 
+                    v1.IsLessThan(v2))
+                .ThenIsTrue();
         }
 
         [TestMethod]
@@ -36,10 +39,12 @@ namespace FactFactory.VersionedTests.Version
             Version2019 v1 = null;
             Version2020 v2 = null;
 
-            Given("Create first version", () => v1 = new Version2019())
-                .And("Create second version", _ => v2 = new Version2020())
-                .When("Compare version", _ => v2.IsMoreThan(v1))
-                .Then("Check result", result => Assert.IsTrue(result, "The first version is not more than the second"));
+            Given("Create first version.", () => v1 = new Version2019())
+                .And("Create second version.", _ =>
+                    v2 = new Version2020())
+                .When("Compare version.", _ =>
+                    v2.IsMoreThan(v1))
+                .ThenIsTrue();
         }
 
         [TestMethod]
@@ -51,10 +56,12 @@ namespace FactFactory.VersionedTests.Version
             Version2019 v1 = null;
             Version1 uintVersion = null;
 
-            Given("Create first version", () => v1 = new Version2019())
-                .And("Create second version", _ => uintVersion = new Version1())
-                .When("Compare version", _ => v1.IsLessThan(uintVersion))
-                .Then("Check result", result => Assert.IsFalse(result, "The Datetime version is less than the Uint"));
+            Given("Create first version.", () => v1 = new Version2019())
+                .And("Create second version.", _ =>
+                    uintVersion = new Version1())
+                .When("Compare version.", _ =>
+                    v1.IsLessThan(uintVersion))
+                .ThenIsFalse();
         }
 
         [TestMethod]
@@ -66,10 +73,12 @@ namespace FactFactory.VersionedTests.Version
             Version2019 v1 = null;
             Version1 uintVersion = null;
 
-            Given("Create first version", () => v1 = new Version2019())
-                .And("Create second version", _ => uintVersion = new Version1())
-                .When("Compare version", _ => v1.IsMoreThan(uintVersion))
-                .Then("Check result", result => Assert.IsFalse(result, "The Datetime version is more than the Uint"));
+            Given("Create first version.", () => v1 = new Version2019())
+                .And("Create second version.", _ => 
+                    uintVersion = new Version1())
+                .When("Compare version.", _ => 
+                    v1.IsMoreThan(uintVersion))
+                .ThenIsFalse();
         }
 
         [TestMethod]
@@ -81,10 +90,12 @@ namespace FactFactory.VersionedTests.Version
             DateTimeVersion v1 = null;
             Version2020 v2 = null;
 
-            Given("Create first version", () => v1 = new DateTimeVersion(new DateTime(2020, 1, 1)))
-                .And("Create second version", _ => v2 = new Version2020())
-                .When("Compare version", _ => v2.EqualVersion(v1))
-                .Then("Check result", result => Assert.IsTrue(result, "The first version is not equal the second"));
+            Given("Create first version.", () => v1 = new DateTimeVersion(new DateTime(2020, 1, 1)))
+                .And("Create second version.", _ => 
+                    v2 = new Version2020())
+                .When("Compare version.", _ => 
+                    v2.EqualVersion(v1))
+                .ThenIsTrue();
         }
 
         [TestMethod]
@@ -96,10 +107,12 @@ namespace FactFactory.VersionedTests.Version
             Version2019 v1 = null;
             Version1 uintVersion = null;
 
-            Given("Create first version", () => v1 = new Version2019())
-                .And("Create second version", _ => uintVersion = new Version1())
-                .When("Compare version", _ => v1.Equals(uintVersion))
-                .Then("Check result", result => Assert.IsFalse(result, "The Datetime version is equal the Uint"));
+            Given("Create first version.", () => v1 = new Version2019())
+                .And("Create second version.", _ => 
+                    uintVersion = new Version1())
+                .When("Compare version.", _ => 
+                    v1.Equals(uintVersion))
+                .ThenIsFalse();
         }
     }
 }

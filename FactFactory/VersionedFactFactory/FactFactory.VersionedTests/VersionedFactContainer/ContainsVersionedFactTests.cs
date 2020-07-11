@@ -2,6 +2,7 @@
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactContainer.Env;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.VersionedTests.VersionedFactContainer
@@ -22,10 +23,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(new FactResult(0));
                 })
                 .When("Run Contains method", container => container.Contains<FactResult>())
-                .Then("Check result.", result =>
-                {
-                    Assert.IsTrue(result, "Fact not contained");
-                });
+                .ThenIsTrue(errorMessage: "Fact not contained");
         }
 
         [TestMethod]
@@ -41,10 +39,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(new FactResult(0));
                 })
                 .When("Run Contains method", container => container.ContainsByVersion<FactResult>(new Version1()))
-                .Then("Check result.", result =>
-                {
-                    Assert.IsTrue(result, "Fact not contained");
-                });
+                .ThenIsTrue(errorMessage: "Fact not contained");
         }
 
         [TestMethod]
@@ -59,10 +54,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(new FactResult(0, new Version1()));
                 })
                 .When("Run Contains method", container => container.Contains<FactResult>())
-                .Then("Check result.", result =>
-                {
-                    Assert.IsFalse(result, "Fact contained");
-                });
+                .ThenIsFalse(errorMessage: "Fact contained");
         }
     }
 }

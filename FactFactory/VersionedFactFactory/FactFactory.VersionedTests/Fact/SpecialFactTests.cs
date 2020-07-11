@@ -18,8 +18,9 @@ namespace FactFactory.DefaultTests.Fact
         public void Versioned_GetFactTypeForNotContainedFactTestCase()
         {
             GivenEmpty()
-                .When("Create NotContainet", () => new NotContained<FactResult>())
-                .Then("Check fact type", fact =>
+                .When("Create NotContainet.", () => 
+                    new NotContained<FactResult>())
+                .Then("Check fact type.", fact =>
                 {
                     Assert.IsTrue(fact.GetFactType() is FactType<NotContained<FactResult>>, "Expected another FactType.");
                 });
@@ -32,8 +33,9 @@ namespace FactFactory.DefaultTests.Fact
         public void Versioned_GetFactTypeForContainedFactTestCase()
         {
             GivenEmpty()
-                .When("Create NotContainet", () => new Contained<FactResult>())
-                .Then("Check fact type", fact =>
+                .When("Create NotContainet.", () 
+                    => new Contained<FactResult>())
+                .Then("Check fact type.", fact =>
                 {
                     Assert.IsTrue(fact.GetFactType() is FactType<Contained<FactResult>>, "Expected another FactType.");
                 });
@@ -46,8 +48,9 @@ namespace FactFactory.DefaultTests.Fact
         public void Versioned_GetFactTypeForCannotDerivedFactTestCase()
         {
             GivenEmpty()
-                .When("Create NotContainet", () => new CannotDerived<FactResult>())
-                .Then("Check fact type", fact =>
+                .When("Create NotContainet.", () => 
+                    new CannotDerived<FactResult>())
+                .Then("Check fact type.", fact =>
                 {
                     Assert.IsTrue(fact.GetFactType() is FactType<CannotDerived<FactResult>>, "Expected another FactType.");
                 });
@@ -60,8 +63,9 @@ namespace FactFactory.DefaultTests.Fact
         public void Versioned_GetFactTypeForCanDerivedFactTestCase()
         {
             GivenEmpty()
-                .When("Create NotContainet", () => new CanDerived<FactResult>())
-                .Then("Check fact type", fact =>
+                .When("Create NotContainet.", () 
+                    => new CanDerived<FactResult>())
+                .Then("Check fact type.", fact =>
                 {
                     Assert.IsTrue(fact.GetFactType() is FactType<CanDerived<FactResult>>, "Expected another FactType.");
                 });

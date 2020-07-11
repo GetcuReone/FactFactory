@@ -83,5 +83,14 @@ namespace GetcuReone.FactFactory.Versioned
         {
             Value = value;
         }
+
+        /// <summary>
+        /// Extract <see cref="VersionedFactBase{TFactValue}.Value"/>.
+        /// </summary>
+        /// <param name="fact"></param>
+        public static implicit operator TFactValue(VersionedFactBase<TFactValue> fact)
+        {
+            return fact.Value;
+        }
     }
 }

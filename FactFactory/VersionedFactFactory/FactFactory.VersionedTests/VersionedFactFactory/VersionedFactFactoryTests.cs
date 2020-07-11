@@ -30,27 +30,24 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactWithoutVersionedRuleTestCase()
         {
+            const long expectedValue = 1_000;
+
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .And("Added rule", factFactory =>
+                .AndAddRules(new V_Collection
                 {
-                    factFactory.Rules.AddRange(new V_Collection
-                    {
-                        //without version
-                        () => new Fact1(1_000),
-                        (Fact1 fact) => new FactResult(fact.Value),
-                        // version 1
-                        (Version1 version) => new Fact1(10),
-                        (Version1 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
-                        // version 1
-                        (Version2 version) => new Fact1(10),
-                        (Version2 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
-                    });
+                    //without version
+                    () => new Fact1(1_000),
+                    (Fact1 fact) => new FactResult(fact.Value),
+                    // version 1
+                    (Version1 version) => new Fact1(10),
+                    (Version1 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
+                    // version 1
+                    (Version2 version) => new Fact1(10),
+                    (Version2 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
                 })
-                .When("Derive fact", factFactory => factFactory.DeriveFact<FactResult>())
-                .Then("Check result", fact =>
-                {
-                    Assert.AreEqual(1_000, fact.Value, "expecten another fact value");
-                });
+                .When("Derive fact.", factFactory =>
+                    factFactory.DeriveFact<FactResult>())
+                .ThenFactEquals(expectedValue);
         }
 
         [TestMethod]
@@ -59,27 +56,24 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactWithtVersionedRuleTestCase()
         {
+            const long expectedValue = 10;
+
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .And("Added rule", factFactory =>
+                .AndAddRules(new V_Collection
                 {
-                    factFactory.Rules.AddRange(new V_Collection
-                    {
-                        //without version
-                        () => new Fact1(1_000),
-                        (Fact1 fact) => new FactResult(fact.Value + 1),
-                        // version 1
-                        (Version1 version) => new Fact1(10),
-                        (Version1 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
-                        // version 2
-                        (Version2 version) => new Fact1(100),
-                        (Version2 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
-                    });
+                    //without version
+                    () => new Fact1(1_000),
+                    (Fact1 fact) => new FactResult(fact.Value + 1),
+                    // version 1
+                    (Version1 version) => new Fact1(10),
+                    (Version1 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
+                    // version 2
+                    (Version2 version) => new Fact1(100),
+                    (Version2 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
                 })
-                .When("Derive fact", factFactory => factFactory.DeriveFact<FactResult, Version1>())
-                .Then("Check result", fact =>
-                {
-                    Assert.AreEqual(10, fact.Value, "expecten another fact value");
-                });
+                .When("Derive fact.", factFactory => 
+                    factFactory.DeriveFact<FactResult, Version1>())
+                .ThenFactEquals(expectedValue);
         }
 
         [TestMethod]
@@ -96,7 +90,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             };
 
             GivenCreateVersionedFactFactory(versions)
-                .When("Derive", factory => ExpectedDeriveException(() => factory.Derive()))
+                .When("Derive", factory => 
+                    ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -114,7 +109,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             };
 
             GivenCreateVersionedFactFactory(versions)
-                .When("Derive", factory => ExpectedDeriveException(() => factory.Derive()))
+                .When("Derive", factory => 
+                    ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -135,13 +131,14 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version1 v) => new Fact1(v.Value),
                     (Version2 v) => new Fact1(v.Value),
                 })
-                .And("Want fact", factory =>
+                .And("Want fact.", factory =>
                 {
                     factory.WantFact((Version1 _, FactResult fact) => result1 = fact);
                     factory.WantFact((Version2 _, FactResult fact) => result2 = fact);
                 })
-                .When("Derive", factory => factory.Derive())
-                .Then("Check result", _ =>
+                .When("Derive", factory => 
+                    factory.Derive())
+                .Then("Check result.", _ =>
                 {
                     Assert.IsNotNull(result1, "result1 cannot be null.");
                     Assert.IsNotNull(result2, "result2 cannot be null.");
@@ -184,16 +181,17 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version2 v, Fact1 fact) => new FactResult(fact.Value),
 
                 })
-                .And("Want fact", factory =>
+                .And("Want fact.", factory =>
                 {
                     factory.WantFact((Version1 _, FactResult fact) => { });
                     factory.WantFact((Version2 _, FactResult fact) => { });
                 })
-                .When("Derive", factory => factory.Derive())
-                .Then("Check result", _ =>
+                .When("Derive", factory => 
+                    factory.Derive())
+                .Then("Check result.", _ =>
                 {
-                    Assert.AreEqual(1, counterFact2, "Fact2 was supposed to pay 1 time");
-                    Assert.AreEqual(2, counterFact1, "Fact1 was supposed to pay 2 times");
+                    Assert.AreEqual(1, counterFact2, "Fact2 was supposed to pay 1 time.");
+                    Assert.AreEqual(2, counterFact1, "Fact1 was supposed to pay 2 times.");
                 });
         }
 
@@ -230,7 +228,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                         return new Fact1(v.Value);
                     },
                 })
-                .And("Want fact", factory =>
+                .And("Want fact.", factory =>
                 {
                     for (int i = 0; i < 10; i++)
                     {
@@ -250,7 +248,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     }
                 })
                 .When("Derive", factory => factory.Derive())
-                .Then("Check result", _ =>
+                .Then("Check result.", _ =>
                 {
                     Assert.AreEqual(1, counterFact1, "The Fact1 should have been calculated 1 time.");
                     Assert.AreEqual(1, counterFact2, "The Fact2 should have been calculated 1 time.");
@@ -277,9 +275,11 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version1 v) => new FactResult(0),
                     (Version2 v, Fact1 fact) => new FactResult(fact.Value)
                 })
-                .And("Add fact", factFactory => factFactory.Container.Add(new Fact1(expectedValue)))
-                .When("Derive fact", factFactory => factFactory.DeriveFact<FactResult, Version2>())
-                .Then("Check result", fact =>
+                .And("Add fact.", factFactory => 
+                    factFactory.Container.Add(new Fact1(expectedValue)))
+                .When("Derive fact.", factFactory => 
+                    factFactory.DeriveFact<FactResult, Version2>())
+                .Then("Check result.", fact =>
                 {
                     Assert.AreEqual(expectedValue, fact.Value, "The older rule worked.");
                 });
@@ -298,9 +298,11 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 {
                     (Version2 v) => new FactResult(2),
                 })
-                .And("Add fact", factFactory => factFactory.Container.Add(new FactResult(expectedValue, new Version1())))
-                .When("Derive fact", factFactory => factFactory.DeriveFact<FactResult, Version1>())
-                .Then("Check result", fact =>
+                .And("Add fact.", factFactory => 
+                    factFactory.Container.Add(new FactResult(expectedValue, new Version1())))
+                .When("Derive fact.", factFactory => 
+                    factFactory.DeriveFact<FactResult, Version1>())
+                .Then("Check result.", fact =>
                 {
                     Assert.AreEqual(expectedValue, fact.Value, "The older rule worked.");
                 });

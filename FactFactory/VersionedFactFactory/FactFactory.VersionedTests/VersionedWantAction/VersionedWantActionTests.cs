@@ -24,10 +24,11 @@ namespace FactFactory.VersionedTests.VersionedWantAction
         public void CreateWantActionWithVersionTestCase()
         {
             GivenEmpty()
-                .When("Create wantAction with version", _ => CreateVersionedWantAction(GetFactType<Version1>(), GetFactType<Fact1>()))
-                .Then("Check result", wantAction =>
+                .When("Create wantAction with version.", _ => 
+                    CreateVersionedWantAction(GetFactType<Version1>(), GetFactType<Fact1>()))
+                .Then("Check result.", wantAction =>
                 {
-                    Assert.IsNotNull(wantAction.VersionType, "The rule does not contain version information");
+                    Assert.IsNotNull(wantAction.VersionType, "The rule does not contain version information.");
                     Assert.IsTrue(GetFactType<Version1>().EqualsFactType(wantAction.VersionType), $"{nameof(wantAction.VersionType)} does not store version information");
                 });
         }
@@ -39,10 +40,11 @@ namespace FactFactory.VersionedTests.VersionedWantAction
         public void CreateWantActionWithoutVersionTestCase()
         {
             GivenEmpty()
-                .When("Create wantAction without version", _ => CreateVersionedWantAction(GetFactType<Fact1>()))
-                .Then("Check result", wantAction =>
+                .When("Create wantAction without version", _ => 
+                    CreateVersionedWantAction(GetFactType<Fact1>()))
+                .Then("Check result.", wantAction =>
                 {
-                    Assert.IsNull(wantAction.VersionType, "The rule does not contain version information");
+                    Assert.IsNull(wantAction.VersionType, "The rule does not contain version information.");
                 });
         }
     }

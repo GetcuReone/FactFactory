@@ -15,14 +15,12 @@ namespace FactFactory.VersionedTests.Fact
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void Versioned_SetValueTestCase()
         {
-            long factValue = 5;
+            const long expectedValue = 5;
 
             GivenEmpty()
-                .When("Create fact", _ => new FactResult(factValue))
-                .Then("Check fact value", fact =>
-                {
-                    Assert.AreEqual(factValue, fact.Value, "Expected another fact value.");
-                });
+                .When("Create fact.", _ =>
+                    new FactResult(expectedValue))
+                .ThenFactEquals(expectedValue);
         }
     }
 }
