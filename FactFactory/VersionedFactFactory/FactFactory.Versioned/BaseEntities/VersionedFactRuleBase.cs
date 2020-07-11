@@ -33,30 +33,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             VersionType = inputFactTypes?.SingleOrNullFactVersion();
         }
 
-        /// <summary>
-        /// Comparison of rules for calculating facts without regard to version.
-        /// </summary>
-        /// <typeparam name="TVersionedFactRule"></typeparam>
-        /// <param name="versionedFactRule"></param>
-        /// <returns></returns>
-        public bool EqualsRuleWithoutVersion<TVersionedFactRule>(TVersionedFactRule versionedFactRule) where TVersionedFactRule : IVersionedFactRule<TFactBase>
-        {
-            if (!OutputFactType.EqualsFactType(versionedFactRule.OutputFactType))
-                return false;
-
-            return EqualsFactTypes(
-                InputFactTypes.Where(factType => !factType.IsFactType<IVersionFact>()).ToList(),
-                versionedFactRule.InputFactTypes.Where(factType => !factType.IsFactType<IVersionFact>()).ToList());
-        }
-
-        /// <summary>
-        /// Rule of fact calculate.
-        /// </summary>
-        /// <param name="container"></param>
-        /// <param name="wantAction"></param>
-        /// <typeparam name="TContainer"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public override TFactBase Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
         {
             TFactBase versionedFact = base.Calculate(container, wantAction);
@@ -70,14 +47,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             return versionedFact;
         }
 
-        /// <summary>
-        /// Is it possible to calculate the fact.
-        /// </summary>
-        /// <param name="container"></param>
-        /// <param name="wantAction"></param>
-        /// <typeparam name="TContainer"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public override bool CanCalculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
         {
             IFactType versionType = wantAction is IFactTypeVersionInfo versionInfo
@@ -95,32 +65,6 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             }
 
             return true;
-        }
-
-        /// <summary>
-        /// True, the current object is more priority than <paramref name="workFact"/>.
-        /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="workFact"></param>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        public override bool IsMorePriorityThan<TFactWork, TFactContainer>(TFactWork workFact, TFactContainer container)
-        {
-            return VersionedFactFactoryHelper.IsMorePriorityThan(this, workFact, container);
-        }
-
-        /// <summary>
-        /// True, the current object is less priority than <paramref name="workFact"/>.
-        /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="workFact"></param>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        public override bool IsLessPriorityThan<TFactWork, TFactContainer>(TFactWork workFact, TFactContainer container)
-        {
-            return VersionedFactFactoryHelper.IsLessPriorityThan(this, workFact, container);
         }
 
         /// <inheritdoc/>

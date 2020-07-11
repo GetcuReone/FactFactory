@@ -649,12 +649,6 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase`1.EqualsWork``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase`1.IsMorePriorityThan``2(``0,``1)">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase`1.IsLessPriorityThan``2(``0,``1)">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase`1.СompatibilityWithRule``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
