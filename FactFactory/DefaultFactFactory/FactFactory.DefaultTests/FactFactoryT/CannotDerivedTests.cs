@@ -19,21 +19,18 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveUseRuleWithNCannotDerivedTestCase()
         {
-            int value = 2;
+            const int value = 2;
+            const int expectedValue = 3;
 
             GivenCreateFactFactory()
                 .AndRulesNotNul()
-                .And("Add rule", factory =>
+                .AndAddRules(new Collection
                 {
-                    factory.Rules.Add((CannotDerived<Input3Fact> _) => new Input2Fact(value));
-                    factory.Rules.Add((Input2Fact fact) => new Input1Fact(fact.Value + 1));
+                    (CannotDerived<Input3Fact> _) => new Input2Fact(value),
+                    (Input2Fact fact) => new Input1Fact(fact.Value + 1),
                 })
-                .When("Derive fact1", factory => factory.DeriveFact<Input1Fact>())
-                .Then("Check fact", fact =>
-                {
-                    Assert.IsNotNull(fact, "fact cannot be null");
-                    Assert.AreEqual(3, fact.Value, "fact have other value");
-                });
+                .When("Derive fact1.", factory => factory.DeriveFact<Input1Fact>())
+                .ThenFactEquals(expectedValue);
         }
 
         [TestMethod]
@@ -42,21 +39,21 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveWithCannotDerivedTestCase()
         {
+            const int value = 14;
+            const int expectedValue = 37;
+
             GivenCreateFactFactory()
                 .AndRulesNotNul()
-                .And("Add rules", factory => 
+                .AndAddRules(new Collection
                 {
-                    factory.Rules.Add((Input12Fact fact) => new Input11Fact(fact.Value + 11));
-                    factory.Rules.Add((Input14Fact fact, CannotDerived<Input9Fact> no) => new Input12Fact(fact.Value + 12));
-                    factory.Rules.Add((Input8Fact fact) => new Input9Fact(fact.Value + 12));
+                    (Input12Fact fact) => new Input11Fact(fact.Value + 11),
+                    (Input14Fact fact, CannotDerived<Input9Fact> no) => new Input12Fact(fact.Value + 12),
+                    (Input8Fact fact) => new Input9Fact(fact.Value + 12)
                 })
-                .And("Add container", factory => factory.Container.Add(new Input14Fact(14)))
-                .When("Derive", factory => factory.DeriveFact<Input11Fact>())
-                .Then("Check fact", fact =>
-                {
-                    Assert.IsNotNull(fact, "fact cannot be null");
-                    Assert.AreEqual(37, fact.Value, "fact have other value");
-                });
+                .AndAddFact(new Input14Fact(value))
+                .When("Derive.", factory => 
+                    factory.DeriveFact<Input11Fact>())
+                .ThenFactEquals(expectedValue);
         }
 
         [TestMethod]
@@ -73,7 +70,7 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     (CannotDerived<Input1Fact> _) => new ResultFact(default),
                 })
-                .When("Run Derive", factFactory
+                .When("Run Derive.", factFactory
                     => ExpectedDeriveException(() => factFactory.DeriveFact<ResultFact>()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
         }
@@ -92,7 +89,8 @@ namespace FactFactoryTests.FactFactoryT
                     (CannotDerived<Input1Fact> _) => new ResultFact(default),
                     (CannotDerived<ResultFact> _) => new Input1Fact(default),
                 })
-                .When("Derive", factory => ExpectedDeriveException(() => factory.DeriveFact<ResultFact>()))
+                .When("Derive.", factory => 
+                    ExpectedDeriveException(() => factory.DeriveFact<ResultFact>()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
         }
     }

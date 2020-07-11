@@ -11,7 +11,7 @@ namespace FactFactoryTests.FactFactoryT
     {
         protected GivenBlock<Factory> GivenCreateFactFactory()
         {
-            return Given("Create fact factory", () => new Factory());
+            return Given("Create fact factory.", () => new Factory());
         }
     }
 }

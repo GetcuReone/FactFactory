@@ -30,15 +30,15 @@ namespace FactFactoryTests.FactFactoryT
 
             GivenCreateFactFactory()
                 .AndAddRules(RuleCollectionHelper.GetInputFactRules())
-                .And("Want fact", factory =>
+                .And("Want fact.", factory =>
                 {
                     factory.WantFact((Input16Fact fact) =>
                     {
                         fact16 = fact;
                     });
                 })
-                .When("Derive facts", factory => factory.Derive())
-                .Then("Check derive facts", _ =>
+                .When("Derive facts.", factory => factory.Derive())
+                .Then("Check derive facts.", _ =>
                 {
                     Assert.IsNotNull(fact16, "fact16 is not derived");
                     Assert.AreEqual(16, fact16.Value, "unexpected value");
@@ -55,8 +55,10 @@ namespace FactFactoryTests.FactFactoryT
 
             GivenCreateFactFactory()
                 .AndAddRules(RuleCollectionHelper.GetInputFactRules())
-                .And("Want fact", factory => factory.WantFact((OtherFact fact) => { }))
-                .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
+                .And("Want fact.", factory => 
+                    factory.WantFact((OtherFact fact) => { }))
+                .When("Derive facts.", factory => 
+                    ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.RuleNotFound, expectedReason);
         }
 
@@ -83,10 +85,12 @@ namespace FactFactoryTests.FactFactoryT
 
             GivenCreateFactFactory()
                 .AndAddRules(RuleCollectionHelper.GetInputFactRules())
-                .And("Want fact", factory => factory.WantFact((Input4Fact fact) => { }))
-                .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
+                .And("Want fact.", factory => 
+                    factory.WantFact((Input4Fact fact) => { }))
+                .When("Derive facts.", factory => 
+                    ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
-                .And("Check error", error =>
+                .And("Check error.", error =>
                 {
                     DeriveErrorDetail<FactBase> detail = error.Details.First();
                     Assert.AreEqual(setNeedFacts.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
@@ -129,11 +133,14 @@ namespace FactFactoryTests.FactFactoryT
 
             GivenCreateFactFactory()
                 .AndAddRules(RuleCollectionHelper.GetInputFactRules())
-                .And("Want fact", factory => factory.WantFact((Input4Fact fact) => { }))
-                .And("Want fact", factory => factory.WantFact((Input4Fact fact) => { }))
-                .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
+                .And("Want fact.", factory =>
+                    factory.WantFact((Input4Fact fact) => { }))
+                .And("Want fact.", factory =>
+                    factory.WantFact((Input4Fact fact) => { }))
+                .When("Derive facts.", factory => 
+                    ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
-                .And("Check error", error =>
+                .And("Check error.", error =>
                 {
                     Assert.AreEqual(2, error.Details.Count, "Expceted another count details");
 
@@ -191,11 +198,14 @@ namespace FactFactoryTests.FactFactoryT
                     (Input3Fact fact) => new Input1Fact(fact.Value),
                     (Input4Fact fact) => new Input2Fact(fact.Value)
                 })
-                .And("Want fact1", factory => factory.WantFact((Input1Fact fact) => { }))
-                .And("Want fact2", factory => factory.WantFact((Input2Fact fact) => { }))
-                .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
+                .And("Want fact1.", factory =>
+                    factory.WantFact((Input1Fact fact) => { }))
+                .And("Want fact2.", factory =>
+                    factory.WantFact((Input2Fact fact) => { }))
+                .When("Derive facts.", factory =>
+                    ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason1)
-                .And("Check error detail 1", error =>
+                .And("Check error detail 1.", error =>
                 {
                     DeriveErrorDetail<FactBase> detail = error.Details.First();
                     Assert.AreEqual(setNeedFacts1.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
@@ -214,7 +224,7 @@ namespace FactFactoryTests.FactFactoryT
                     }
                 })
                 .AndAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason2)
-                .And("Check error detail", error =>
+                .And("Check error detail.", error =>
                 {
                     DeriveErrorDetail<FactBase> detail = error.Details.Skip(1).First();
                     Assert.AreEqual(setNeedFacts2.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
@@ -265,10 +275,12 @@ namespace FactFactoryTests.FactFactoryT
                     (Input3Fact fact) => new Input1Fact(fact.Value),
                     (Input4Fact fact) => new Input2Fact(fact.Value)
                 })
-                .And("Want fact1", factory => factory.WantFact((Input1Fact fact1, Input2Fact fact2) => { }))
-                .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
+                .And("Want fact1.", factory =>
+                    factory.WantFact((Input1Fact fact1, Input2Fact fact2) => { }))
+                .When("Derive facts.", factory =>
+                    ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
-                .And("Check error detail 1", error =>
+                .And("Check error detail 1.", error =>
                 {
                     DeriveErrorDetail<FactBase> detail = error.Details.First();
                     Assert.AreEqual(expectedRequiredFacts.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
@@ -304,8 +316,10 @@ namespace FactFactoryTests.FactFactoryT
 
             GivenCreateFactFactory()
                 .AndAddRules(RuleCollectionHelper.GetRulesForNotAvailableInput6Fact())
-                .And("Want fact", factory => factory.WantFact((Input6Fact fact) => { }))
-                .When("Derive facts", factory => ExpectedDeriveException(() => factory.Derive()))
+                .And("Want fact.", factory =>
+                    factory.WantFact((Input6Fact fact) => { }))
+                .When("Derive facts.", factory =>
+                    ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
                 .And("Check error", error =>
                 {
@@ -335,12 +349,17 @@ namespace FactFactoryTests.FactFactoryT
 
             GivenCreateFactFactory()
                 .AndAddRules(RuleCollectionHelper.GetInputFactRules())
-                .And("Want fact6", factory => factory.WantFact((Input6Fact fact) => { input6Fact = fact; }))
-                .And("Want fact16", factory => factory.WantFact((Input16Fact fact) => { input16Fact = fact; }))
-                .And("Want fact16", factory => factory.WantFact((Input7Fact fact) => { input7Fact = fact; }))
-                .And("Add fact3", factory => factory.Container.Add(new Input3Fact(3)))
-                .When("Derive facts", factory => factory.Derive())
-                .Then("Check error", _ =>
+                .And("Want fact6.", factory =>
+                    factory.WantFact((Input6Fact fact) => { input6Fact = fact; }))
+                .And("Want fact16.", factory =>
+                    factory.WantFact((Input16Fact fact) => { input16Fact = fact; }))
+                .And("Want fact16.", factory =>
+                    factory.WantFact((Input7Fact fact) => { input7Fact = fact; }))
+                .And("Add fact3.", factory =>
+                    factory.Container.Add(new Input3Fact(3)))
+                .When("Derive facts.", factory =>
+                    factory.Derive())
+                .Then("Check error.", _ =>
                 {
                     Assert.IsNotNull(input6Fact, "input6Fact is not derived");
                     Assert.IsNotNull(input16Fact, "input16Fact is not derived");
@@ -354,13 +373,16 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetOriginalsRulesForDerive()
         {
-            Given("Create custom factory", () => new FactFactoryCustom())
-                .And("Change rules", factFactory => 
+            const string expectedReason = "FactRuleCollectionBase.Copy method return original rule collection.";
+
+            Given("Create custom factory.", () => new FactFactoryCustom())
+                .And("Change rules.", factFactory => 
                 {
                     factFactory.collection = new FactRuleCollectionGetOriginal();
                 })
-                .When("Derive fact", factFactory => ExpectedDeriveException(() => factFactory.Derive()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
+                .When("Derive fact.", factFactory =>
+                    ExpectedDeriveException(() => factFactory.Derive()))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
         [TestMethod]
@@ -369,6 +391,8 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ChoosingPathWithLeastNumberRulesTestCase()
         {
+            const int expectedValue = 2;
+
             GivenCreateFactFactory()
                  .AndAddRules(new Collection
                  {
@@ -379,18 +403,16 @@ namespace FactFactoryTests.FactFactoryT
                      () => new Input4Fact(1),
                      () => new Input5Fact(1),
                  })
-                 .AndAddRules(new Collection 
+                 .AndAddRules(new Collection
                  {
                      (Input10Fact fact) => new ResultFact(fact.Value),
                      (Input11Fact fact) => new Input10Fact(fact.Value),
                      (Input12Fact fact) => new Input11Fact(fact.Value),
                      () => new Input12Fact(2),
                  })
-                 .When("Derive", factFactory => factFactory.DeriveFact<ResultFact>())
-                 .Then("Check fact", fact => 
-                 {
-                     Assert.AreEqual(2, fact.Value, "Expected another value.");
-                 });
+                 .When("Derive.", factFactory =>
+                    factFactory.DeriveFact<ResultFact>())
+                 .ThenFactEquals(expectedValue);
         }
 
         [TestMethod]
@@ -399,7 +421,7 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactUseRuleWithConditionTestCase()
         {
-            int expectedValue = 10;
+            const int expectedValue = 10;
 
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
@@ -411,8 +433,7 @@ namespace FactFactoryTests.FactFactoryT
                 .AndAddFact(new OtherFact(default))
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<ResultFact>())
-                .Then("Check fact.", fact =>
-                    Assert.AreEqual(expectedValue, fact));
+                .ThenFactEquals(expectedValue);
         }
 
         [TestMethod]
@@ -421,7 +442,7 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactUseRuleWithoutConditionTestCase()
         {
-            int expectedValue = 1_000;
+            const int expectedValue = 1_000;
 
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
@@ -432,8 +453,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<ResultFact>())
-                .Then("Check fact.", fact =>
-                    Assert.AreEqual(expectedValue, fact));
+                .ThenFactEquals(expectedValue);
         }
     }
 }

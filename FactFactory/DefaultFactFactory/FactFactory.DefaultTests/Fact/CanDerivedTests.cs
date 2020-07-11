@@ -20,8 +20,8 @@ namespace FactFactory.DefaultTests.Fact
         public void GetFactTypeForCanDerivedFactTestCase()
         {
             GivenEmpty()
-                .When("Create CanDerived", () => new CanDerived<ResultFact>())
-                .Then("Check fact type", fact =>
+                .When("Create CanDerived.", () => new CanDerived<ResultFact>())
+                .Then("Check fact type.", fact =>
                 {
                     Assert.IsTrue(fact.GetFactType() is FactType<CanDerived<ResultFact>>, "Expected another FactType.");
                 });

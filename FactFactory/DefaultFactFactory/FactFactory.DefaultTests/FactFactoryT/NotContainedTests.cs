@@ -3,7 +3,9 @@ using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
+using Microsoft.VisualBasic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -16,19 +18,19 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RunRuleWithTwoInputNotContainedFactTestCase()
         {
-            int value = 24;
+            const int value = 24;
 
             GivenCreateFactFactory()
                 .AndRulesNotNul()
-                .And("Add rule with input NotContainedFact 1", factory => factory.Rules.Add((NotContained<Input1Fact> f) => new Input1Fact(value)))
-                .And("Add rule with input NotContainedFact 2", factory => factory.Rules.Add((NotContained<Input2Fact> f) => new Input2Fact(value)))
-                .And("Add rule result", factory => factory.Rules.Add((Input1Fact f1, Input2Fact f2) => new Input3Fact(f1.Value * f2.Value)))
-                .When("Derive fact", factory => factory.DeriveFact<Input3Fact>())
-                .Then("Check result", fact =>
+                .AndAddRules(new Collection
                 {
-                    Assert.IsNotNull(fact, "fact cannot be null");
-                    Assert.AreEqual(value * value, fact.Value, "The fact is derived incorrectly");
-                });
+                    (NotContained<Input1Fact> f) => new Input1Fact(value),
+                    (NotContained<Input2Fact> f) => new Input2Fact(value),
+                    (Input1Fact f1, Input2Fact f2) => new Input3Fact(f1 * f2),
+                })
+                .When("Derive fact.", factory =>
+                    factory.DeriveFact<Input3Fact>())
+                .ThenFactEquals(value * value);
         }
 
         [TestMethod]
@@ -37,17 +39,17 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RunRuleWithInputNotContainedFactTestCase()
         {
-            int value = 24;
+            const int expectedValue = 24;
 
             GivenCreateFactFactory()
                 .AndRulesNotNul()
-                .And("Add rule with input NotContainedFact", factory => factory.Rules.Add((NotContained<Input1Fact> f) => new Input1Fact(value)))
-                .When("Derive fact", factory => factory.DeriveFact<Input1Fact>())
-                .Then("Check result", fact =>
+                .AndAddRules(new Collection
                 {
-                    Assert.IsNotNull(fact, "fact cannot be null");
-                    Assert.AreEqual(value, fact.Value, "The fact is derived incorrectly");
-                });
+                    (NotContained<Input1Fact> f) => new Input1Fact(expectedValue),
+                })
+                .When("Derive fact", factory => 
+                    factory.DeriveFact<Input1Fact>())
+                .ThenFactEquals(expectedValue);
         }
     }
 }

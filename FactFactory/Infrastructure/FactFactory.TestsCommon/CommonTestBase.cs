@@ -6,10 +6,10 @@ using GetcuReone.GetcuTestAdapter;
 
 namespace FactFactory.TestsCommon
 {
-    public abstract class CommonTestBase<TFactBase> : GetcuReoneTestBase
+    public abstract class CommonTestBase<TFactBase> : GetcuReoneTestBase, IFactTypeCreation
         where TFactBase : IFact
     {
-        protected virtual IFactType GetFactType<TFact>() where TFact : IFact
+        public virtual IFactType GetFactType<TFact>() where TFact : IFact
         {
             return new FactType<TFact>();
         }

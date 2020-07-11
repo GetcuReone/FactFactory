@@ -4,9 +4,6 @@ using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 using Rule = GetcuReone.FactFactory.Entities.FactRule;
 using WAction = GetcuReone.FactFactory.Entities.WantAction;
@@ -23,8 +20,8 @@ namespace FactFactory.DefaultTests.Fact
         public void GetFactTypeForCannotDerivedFactTestCase()
         {
             GivenEmpty()
-                .When("Create CannotDerived", () => new CannotDerived<ResultFact>())
-                .Then("Check fact type", fact =>
+                .When("Create CannotDerived.", () => new CannotDerived<ResultFact>())
+                .Then("Check fact type.", fact =>
                 {
                     Assert.IsTrue(fact.GetFactType() is FactType<CannotDerived<ResultFact>>, "Expected another FactType.");
                 });
