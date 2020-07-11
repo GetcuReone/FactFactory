@@ -99,6 +99,13 @@
             <param name="wantActions">List of desired actions.</param>
             <param name="container">Container.</param>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetWantActionComparer(`1)">
+            <summary>
+            Get coparer for <see cref="!:TWantAction"/>.
+            </summary>
+            <param name="container"></param>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{`0}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Creation method <typeparamref name="TWantAction"/>.

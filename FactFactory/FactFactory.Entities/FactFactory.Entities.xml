@@ -314,6 +314,14 @@
             <param name="wantAction">Action taken after deriving a fact.</param>
             <param name="factTypes">Facts required to launch an action.</param>
         </member>
+        <member name="T:GetcuReone.FactFactory.Entities.WantActionComparer`3">
+            <summary>
+            Comparer for <see cref="T:GetcuReone.FactFactory.BaseEntities.WantActionBase`1"/>.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.WantActionComparer`3.#ctor(`2)">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.SpecialFacts.CanDerived`1">
             <inheritdoc/>
         </member>

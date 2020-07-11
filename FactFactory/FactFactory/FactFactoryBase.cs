@@ -70,7 +70,7 @@ namespace GetcuReone.FactFactory
             TFactContainer container = entitiesOperationsFacade.GetValidContainer<TFactBase, TFactContainer>(Container);
             TFactRuleCollection rules = entitiesOperationsFacade.GetValidRules<TFactBase, TFactRule, TFactRuleCollection>(Rules);
             List<TWantAction> wantActions = new List<TWantAction>(WantActions);
-            wantActions.Sort(new FactWorkComparer<TFactBase, TWantAction, TWantAction, TFactContainer>(null, container));
+            wantActions.Sort(GetWantActionComparer(container));
 
             var defaultFacts = new List<IFact>();
             foreach(IFact fact in GetDefaultFacts(container) ?? Enumerable.Empty<IFact>())
@@ -235,6 +235,16 @@ namespace GetcuReone.FactFactory
         /// <param name="wantActions">List of desired actions.</param>
         /// <param name="container">Container.</param>
         protected virtual void OnDeriveFinished(List<TWantAction> wantActions, TFactContainer container) { }
+
+        /// <summary>
+        /// Get coparer for <see cref="TWantAction"/>.
+        /// </summary>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        protected virtual IComparer<TWantAction> GetWantActionComparer(TFactContainer container)
+        {
+            return new WantActionComparer<TFactBase, TWantAction, TFactContainer>(container);
+        }
 
         #region methods for derive
 
