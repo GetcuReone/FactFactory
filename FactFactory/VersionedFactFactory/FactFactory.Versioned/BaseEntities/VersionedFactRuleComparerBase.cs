@@ -76,11 +76,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             IVersionFact xVersion = Container.GetVersionFact(xVersionType);
             IVersionFact yVersion = Container.GetVersionFact(yVersionType);
 
-            if (xVersion.IsMoreThan(yVersion))
-                return 1;
-            if (xVersion.IsLessThan(yVersion))
-                return -1;
-            return 0;
+            return xVersion.CompareTo(yVersion);
         }
 
         /// <inheritdoc/>

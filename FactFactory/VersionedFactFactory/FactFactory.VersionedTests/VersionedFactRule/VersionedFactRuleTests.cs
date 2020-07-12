@@ -65,7 +65,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 {
                     Assert.IsNotNull(fact.Version, "Version cannot be null");
                     if (fact.Version is Version2 version2)
-                        Assert.AreEqual(2, version2.Value, "expected another version");
+                        Assert.AreEqual(2, version2, "expected another version");
                     else
                         Assert.Fail("Version is not Version2");
                 });

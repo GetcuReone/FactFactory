@@ -1,5 +1,8 @@
-﻿using GetcuReone.FactFactory.Versioned.SpecialFacts;
+﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Versioned.Interfaces;
+using GetcuReone.FactFactory.Versioned.SpecialFacts;
 using System;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
 namespace GetcuReone.FactFactory.Versioned.Versions
 {
@@ -16,63 +19,20 @@ namespace GetcuReone.FactFactory.Versioned.Versions
         {
         }
 
-        /// <summary>
-        /// True - the version of the current fact is equal <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
-        public override bool EqualVersion<TVersionFact>(TVersionFact versionFact)
+        /// <inheritdoc/>
+        public override int CompareTo(IVersionFact other)
         {
-            switch (versionFact)
+            switch (other)
             {
+                case VersionBase<DateTime> version:
+                    return ValueVersion.CompareTo(version);
                 case VersionedFactBase<DateTime> version:
-                    return Value == version;
+                    return ValueVersion.CompareTo(version);
                 case FactBase<DateTime> version:
-                    return Value == version;
+                    return ValueVersion.CompareTo(version);
 
                 default:
-                    return false;
-            }
-        }
-
-        /// <summary>
-        /// True - the version of the current fact is less than <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
-        public override bool IsLessThan<TVersionFact>(TVersionFact versionFact)
-        {
-            switch (versionFact)
-            {
-                case VersionedFactBase<DateTime> version:
-                    return Value < version;
-                case FactBase<DateTime> version:
-                    return Value < version;
-
-                default:
-                    return false;
-            }
-        }
-
-        /// <summary>
-        /// True - the version of the current fact is more than <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
-        public override bool IsMoreThan<TVersionFact>(TVersionFact versionFact)
-        {
-            switch (versionFact)
-            {
-                case VersionedFactBase<DateTime> version:
-                    return Value > version;
-                case FactBase<DateTime> version:
-                    return Value > version;
-
-                default:
-                    return false;
+                    throw CreateIncompatibilityVersionException(other);
             }
         }
     }

@@ -1,5 +1,5 @@
-﻿using GetcuReone.FactFactory.Versioned.SpecialFacts;
-using System;
+﻿using GetcuReone.FactFactory.Versioned.Interfaces;
+using GetcuReone.FactFactory.Versioned.SpecialFacts;
 
 namespace GetcuReone.FactFactory.Versioned.Versions
 {
@@ -16,126 +16,40 @@ namespace GetcuReone.FactFactory.Versioned.Versions
         {
         }
 
-        /// <summary>
-        /// True - the version of the current fact is equal <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
-        public override bool EqualVersion<TVersionFact>(TVersionFact versionFact)
+        /// <inheritdoc/>
+        public override int CompareTo(IVersionFact other)
         {
-            switch (versionFact)
+            switch (other)
             {
+                case VersionBase<int> version:
+                    return ValueVersion.CompareTo(version);
+                case VersionBase<long> version:
+                    return ValueVersion.CompareTo(version);
+                case VersionBase<uint> version:
+                    return ValueVersion.CompareTo(version);
+                case VersionBase<ulong> version:
+                    return ValueVersion.CompareTo(version);
+
                 case VersionedFactBase<int> version:
-                    if (version < 0)
-                        return false;
-                    return Value == Convert.ToUInt64(version);
+                    return ValueVersion.CompareTo(version);
                 case VersionedFactBase<long> version:
-                    if (version < 0)
-                        return false;
-                    return Value == Convert.ToUInt64(version);
+                    return ValueVersion.CompareTo(version);
                 case VersionedFactBase<uint> version:
-                    return Value == version;
+                    return ValueVersion.CompareTo(version);
                 case VersionedFactBase<ulong> version:
-                    return Value == version;
+                    return ValueVersion.CompareTo(version);
 
                 case FactBase<int> version:
-                    if (version < 0)
-                        return false;
-                    return Value == Convert.ToUInt64(version);
+                    return ValueVersion.CompareTo(version);
                 case FactBase<long> version:
-                    if (version < 0)
-                        return false;
-                    return Value == Convert.ToUInt64(version);
+                    return ValueVersion.CompareTo(version);
                 case FactBase<uint> version:
-                    return Value == version;
+                    return ValueVersion.CompareTo(version);
                 case FactBase<ulong> version:
-                    return Value == version;
+                    return ValueVersion.CompareTo(version);
 
                 default:
-                    return false;
-            }
-        }
-
-        /// <summary>
-        /// True - the version of the current fact is less than <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
-        public override bool IsLessThan<TVersionFact>(TVersionFact versionFact)
-        {
-            switch (versionFact)
-            {
-                case VersionedFactBase<int> version:
-                    if (version < 0)
-                        return false;
-                    return Value < Convert.ToUInt64(version);
-                case VersionedFactBase<long> version:
-                    if (version < 0)
-                        return false;
-                    return Value < Convert.ToUInt64(version);
-                case VersionedFactBase<uint> version:
-                    return Value < version;
-                case VersionedFactBase<ulong> version:
-                    return Value < version;
-
-                case FactBase<int> version:
-                    if (version < 0)
-                        return false;
-                    return Value < Convert.ToUInt64(version);
-                case FactBase<long> version:
-                    if (version < 0)
-                        return false;
-                    return Value < Convert.ToUInt64(version);
-                case FactBase<uint> version:
-                    return Value < version;
-                case FactBase<ulong> version:
-                    return Value < version;
-
-                default:
-                    return false;
-            }
-        }
-
-        /// <summary>
-        /// True - the version of the current fact is more than <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
-        public override bool IsMoreThan<TVersionFact>(TVersionFact versionFact)
-        {
-            switch (versionFact)
-            {
-                case VersionedFactBase<int> version:
-                    if (version < 0)
-                        return true;
-                    return Value > Convert.ToUInt64(version);
-                case VersionedFactBase<long> version:
-                    if (version < 0)
-                        return true;
-                    return Value > Convert.ToUInt64(version);
-                case VersionedFactBase<uint> version:
-                    return Value > version;
-                case VersionedFactBase<ulong> version:
-                    return Value > version;
-
-                case FactBase<int> version:
-                    if (version < 0)
-                        return true;
-                    return Value > Convert.ToUInt64(version);
-                case FactBase<long> version:
-                    if (version < 0)
-                        return true;
-                    return Value > Convert.ToUInt64(version);
-                case FactBase<uint> version:
-                    return Value > version;
-                case FactBase<ulong> version:
-                    return Value > version;
-
-                default:
-                    return false;
+                    throw CreateIncompatibilityVersionException(other);
             }
         }
     }

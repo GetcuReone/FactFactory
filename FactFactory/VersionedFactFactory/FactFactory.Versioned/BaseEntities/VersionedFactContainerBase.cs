@@ -59,7 +59,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
                 }
                 else
                 {
-                    if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType) && (f is TFactBase factBase1) && factBase1.Version != null && factBase1.Version.EqualVersion(factBase.Version)))
+                    if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType) && (f is TFactBase factBase1) && factBase1.Version != null && factBase1.Version.CompareTo(factBase.Version) == 0))
                         throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {typeof(TFact).FullName} with version equal to version {factBase.Version.GetType().FullName}.");
                 } 
             }
@@ -110,7 +110,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
 
                 var factBase = (TFactBase)item;
 
-                if (version != null && factBase.Version != null && factBase.Version.EqualVersion(version))
+                if (version != null && factBase.Version != null && factBase.Version.CompareTo(version) == 0)
                 {
                     fact = (TFact)item;
                     return true;

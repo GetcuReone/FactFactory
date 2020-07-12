@@ -60,36 +60,6 @@ namespace GetcuReone.FactFactory.Versioned
                     defaultVersions.Add((IVersionFact)version);
             }
 
-            List<DeriveErrorDetail<TFactBase>> errorDetails = new List<DeriveErrorDetail<TFactBase>>();
-
-            foreach(var version1 in defaultVersions)
-            {
-                foreach(var version2 in defaultVersions)
-                {
-                    if (version1 == version2)
-                        continue;
-
-                    bool[] resultComparison = new bool[3]
-                    {
-                        version1.IsLessThan(version2),
-                        version1.IsMoreThan(version2),
-                        version1.EqualVersion(version2),
-                    };
-
-                    if (resultComparison.All(result => result == false) || resultComparison.Count(result => result == true) > 1)
-                    {
-                        errorDetails.Add(new DeriveErrorDetail<TFactBase>(
-                        CommonErrorCode.InvalidData,
-                        $"For versions {version1.GetFactType().FactName} and {version2.GetFactType().FactName}, comparison operations did not work correctly.",
-                        null,
-                        null));
-                    }
-                }
-            }
-
-            if (errorDetails.Count != 0)
-                throw new InvalidDeriveOperationException<TFactBase>(errorDetails);
-
             return defaultVersions;
         }
 
@@ -130,19 +100,19 @@ namespace GetcuReone.FactFactory.Versioned
                             if (ruleVersion == null)
                                 result = true;
                             else
-                                result = currentVersionedFact.Version.IsLessThan(ruleVersion);
+                                result = currentVersionedFact.Version.CompareTo(ruleVersion) < 0;
                         }
                     }
                     else
                     {
                         if (currentVersionedFact.Version == null)
                             result = true;
-                        else if (currentVersionedFact.Version.IsMoreThan(maxVersion))
+                        else if (currentVersionedFact.Version.CompareTo(maxVersion) > 0)
                             result = true;
                         else if (ruleVersion == null)
                             result = true;
                         else
-                            result = currentVersionedFact.Version.IsLessThan(ruleVersion);
+                            result = currentVersionedFact.Version.CompareTo(ruleVersion) < 0;
                     }
                 }
             }
@@ -154,7 +124,7 @@ namespace GetcuReone.FactFactory.Versioned
                     if (currentVersionedFact.Version == null)
                         needRemoveFact = currentVersionedFact;
                 }
-                else if (currentVersionedFact.Version != null && ruleVersion.EqualVersion(currentVersionedFact.Version))
+                else if (currentVersionedFact.Version != null && ruleVersion.CompareTo(currentVersionedFact.Version) == 0)
                     needRemoveFact = currentVersionedFact;
             }
 
