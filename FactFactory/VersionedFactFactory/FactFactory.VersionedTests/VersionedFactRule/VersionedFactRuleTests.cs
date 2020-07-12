@@ -50,73 +50,6 @@ namespace FactFactory.VersionedTests.VersionedFactRule
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Compare the same rules without versions.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void CompareSameRulesWithoutVersionsTestCase()
-        {
-            Rule firstRule = null;
-            Rule secondRule = null;
-
-            Given("Create first rule.", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
-                .And("Create second rule.", _ => 
-                    secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
-                .And("Rules equality.", _ => 
-                    Assert.IsTrue(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
-                .When("Compare rules without version.", _ => 
-                    firstRule.EqualsRuleWithoutVersion(secondRule))
-                .ThenIsTrue(errorMessage: "excluding versions, the rules are not equal");
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Compare the same rules with versions.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void CompareSameRulesWithVersionsTestCase()
-        {
-            Rule firstRule = null;
-            Rule secondRule = null;
-
-            Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
-                .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
-                .And("Compare rules", _ => Assert.IsTrue(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
-                .When("Compare rules without version", _ => firstRule.EqualsRuleWithoutVersion(secondRule))
-                .Then("Check result.", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Compare the same rules with different versions.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void CompareSameRulesWithDifferentVersionsTestCase()
-        {
-            Rule firstRule = null;
-            Rule secondRule = null;
-
-            Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
-                .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version2>(), GetFactType<Fact1>()))
-                .And("Compare rules", _ => Assert.IsFalse(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
-                .When("Compare rules without version", _ => firstRule.EqualsRuleWithoutVersion(secondRule))
-                .Then("Check result.", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Comparison of the same rules where one without version.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void ComparisonSameRulesWhereOneWithoutVersionTestCase()
-        {
-            Rule firstRule = null;
-            Rule secondRule = null;
-
-            Given("Create first rule", () => firstRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
-                .And("Create second rule", _ => secondRule = VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
-                .And("Compare rules", _ => Assert.IsFalse(firstRule.EqualsWork(secondRule, default(Action), default(Container)), "rules are not equal"))
-                .When("Compare rules without version", _ => firstRule.EqualsRuleWithoutVersion(secondRule))
-                .Then("Check result.", result => Assert.IsTrue(result, "excluding versions, the rules are not equal"));
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
         [Description("Calculate fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void VersionedFactRule_CalculateTestCase()
@@ -132,7 +65,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 {
                     Assert.IsNotNull(fact.Version, "Version cannot be null");
                     if (fact.Version is Version2 version2)
-                        Assert.AreEqual(2, version2.Value, "expected another version");
+                        Assert.AreEqual(2, version2, "expected another version");
                     else
                         Assert.Fail("Version is not Version2");
                 });

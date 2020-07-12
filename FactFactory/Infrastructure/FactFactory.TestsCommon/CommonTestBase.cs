@@ -1,8 +1,8 @@
-﻿using System;
-using GetcuReone.FactFactory;
+﻿using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
+using System;
 
 namespace FactFactory.TestsCommon
 {

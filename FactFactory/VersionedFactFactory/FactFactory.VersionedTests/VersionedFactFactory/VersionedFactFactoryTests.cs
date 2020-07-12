@@ -1,7 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
-using FactFactory.VersionedTests.VersionedFactFactory.Env;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
@@ -40,10 +39,10 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Fact1 fact) => new FactResult(fact.Value),
                     // version 1
                     (Version1 version) => new Fact1(10),
-                    (Version1 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
+                    (Version1 version, Fact1 fact) => new FactResult(fact.Value * version),
                     // version 1
                     (Version2 version) => new Fact1(10),
-                    (Version2 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
+                    (Version2 version, Fact1 fact) => new FactResult(fact.Value * version),
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<FactResult>())
@@ -66,52 +65,14 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Fact1 fact) => new FactResult(fact.Value + 1),
                     // version 1
                     (Version1 version) => new Fact1(10),
-                    (Version1 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
+                    (Version1 version, Fact1 fact) => new FactResult(fact.Value * version),
                     // version 2
                     (Version2 version) => new Fact1(100),
-                    (Version2 version, Fact1 fact) => new FactResult(fact.Value * version.Value),
+                    (Version2 version, Fact1 fact) => new FactResult(fact.Value * version),
                 })
                 .When("Derive fact.", factFactory => 
                     factFactory.DeriveFact<FactResult, Version1>())
                 .ThenFactEquals(expectedValue);
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive with invalid version.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveWihtInvalidVersion_1_TestCase()
-        {
-            string expectedReason = $"For versions {GetFactType<CastumVersion>().FactName} and {GetFactType<CastumVersion>().FactName}, comparison operations did not work correctly.";
-            var versions = new List<IVersionFact>
-            {
-                new CastumVersion(true, false, false),
-                new CastumVersion(false, false, false),
-            };
-
-            GivenCreateVersionedFactFactory(versions)
-                .When("Derive", factory => 
-                    ExpectedDeriveException(() => factory.Derive()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive with invalid version.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveWihtInvalidVersion_2_TestCase()
-        {
-            string expectedReason = $"For versions {GetFactType<CastumVersion>().FactName} and {GetFactType<CastumVersion>().FactName}, comparison operations did not work correctly.";
-            var versions = new List<IVersionFact>
-            {
-                new CastumVersion(true, false, false),
-                new CastumVersion(true, true, false),
-            };
-
-            GivenCreateVersionedFactFactory(versions)
-                .When("Derive", factory => 
-                    ExpectedDeriveException(() => factory.Derive()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
         [TestMethod]
@@ -128,8 +89,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 {
                     (Version1 v, Fact1 fact) => new FactResult(fact.Value),
 
-                    (Version1 v) => new Fact1(v.Value),
-                    (Version2 v) => new Fact1(v.Value),
+                    (Version1 v) => new Fact1(v),
+                    (Version2 v) => new Fact1(v),
                 })
                 .And("Want fact.", factory =>
                 {
@@ -163,7 +124,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version1 v) =>
                     {
                         counterFact2++;
-                        return  new Fact2(v.Value);
+                        return  new Fact2(v);
                     },
 
                     (Version1 v, Fact2 fact) =>
@@ -220,12 +181,12 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version1 v) => 
                     {
                         counterFact1++;
-                        return new Fact1(v.Value);
+                        return new Fact1(v);
                     },
                     (Version2 v) =>
                     {
                         counterFact2++;
-                        return new Fact1(v.Value);
+                        return new Fact1(v);
                     },
                 })
                 .And("Want fact.", factory =>

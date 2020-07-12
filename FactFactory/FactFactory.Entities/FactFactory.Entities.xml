@@ -83,19 +83,10 @@
             <param name="outputFactType">information on output fact.</param>
             <returns>fact rule</returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.FactWorkComparer`4">
-            <summary>
-            Comparer for <see cref="T:GetcuReone.FactFactory.Interfaces.IFactWork`1"/>.
-            </summary>
+        <member name="T:GetcuReone.FactFactory.Entities.FactRuleComparer`4">
+            <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactWorkComparer`4.#ctor(`2,`3)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="wantAction"></param>
-            <param name="container"></param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactWorkComparer`4.Compare(`1,`1)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleComparer`4.#ctor(`2,`3)">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`4">
@@ -313,6 +304,14 @@
             </summary>
             <param name="wantAction">Action taken after deriving a fact.</param>
             <param name="factTypes">Facts required to launch an action.</param>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Entities.WantActionComparer`3">
+            <summary>
+            Comparer for <see cref="T:GetcuReone.FactFactory.BaseEntities.WantActionBase`1"/>.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.WantActionComparer`3.#ctor(`2)">
+            <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.SpecialFacts.CanDerived`1">
             <inheritdoc/>

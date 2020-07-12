@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GwtTestFramework.Entities;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
@@ -50,8 +51,10 @@ namespace FactFactory.TestsCommon.Helpers
 
         public static ThenBlock<FactFactoryException> ThenAssertErrorDetail(this WhenBlock<FactFactoryException> whenBlock, string errorCode, string errorMessage)
         {
-            return whenBlock.Then($"Check error with code {errorCode}", error =>
-                error.AssertErrorDetail(errorCode, errorMessage));
+            return whenBlock
+                .ThenIsNotNull()
+                .And($"Check error with code {errorCode}", error =>
+                    error.AssertErrorDetail(errorCode, errorMessage));
         }
     }
 }

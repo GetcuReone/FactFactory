@@ -69,8 +69,10 @@ namespace GetcuReone.FactFactory
             var entitiesOperationsFacade = GetFacade<EntitiesOperationsFacade>();
             TFactContainer container = entitiesOperationsFacade.GetValidContainer<TFactBase, TFactContainer>(Container);
             TFactRuleCollection rules = entitiesOperationsFacade.GetValidRules<TFactBase, TFactRule, TFactRuleCollection>(Rules);
-            List<TWantAction> wantActions = new List<TWantAction>(WantActions);
-            wantActions.Sort(new FactWorkComparer<TFactBase, TWantAction, TWantAction, TFactContainer>(null, container));
+            var wantActions = new List<TWantAction>(
+                WantActions
+                .OrderByDescending(w => w, GetWantActionComparer(container))
+            );
 
             var defaultFacts = new List<IFact>();
             foreach(IFact fact in GetDefaultFacts(container) ?? Enumerable.Empty<IFact>())
@@ -153,7 +155,7 @@ namespace GetcuReone.FactFactory
                     FactRules = request
                         .FactRules
                         .Where(rule => wantAction.СompatibilityWithRule(rule, wantAction, wantActionInfo.Container))
-                        .OrderBy(rule => rule, new FactWorkComparer<TFactBase, TFactRule, TWantAction, TFactContainer>(wantActionInfo.WantAction, wantActionInfo.Container))
+                        .OrderByDescending(rule => rule, GetFactRuleComparer(wantActionInfo))
                         .ToList(),
                 };
                 if (TryBuildTreesForWantAction(requestForWantAction, out List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>> result, out DeriveErrorDetail<TFactBase> detail))
@@ -235,6 +237,26 @@ namespace GetcuReone.FactFactory
         /// <param name="wantActions">List of desired actions.</param>
         /// <param name="container">Container.</param>
         protected virtual void OnDeriveFinished(List<TWantAction> wantActions, TFactContainer container) { }
+
+        /// <summary>
+        /// Get coparer for <typeparamref name="TWantAction"/>.
+        /// </summary>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        protected virtual IComparer<TWantAction> GetWantActionComparer(TFactContainer container)
+        {
+            return new WantActionComparer<TFactBase, TWantAction, TFactContainer>(container);
+        }
+
+        /// <summary>
+        /// Get comparer for <typeparamref name="TFactRule"/>.
+        /// </summary>
+        /// <param name="wantActionInfo"></param>
+        /// <returns></returns>
+        protected virtual IComparer<TFactRule> GetFactRuleComparer(WantActionInfo<TFactBase, TWantAction, TFactContainer> wantActionInfo)
+        {
+            return new FactRuleComparer<TFactBase, TFactRule, TWantAction, TFactContainer>(wantActionInfo.WantAction, wantActionInfo.Container);
+        }
 
         #region methods for derive
 
