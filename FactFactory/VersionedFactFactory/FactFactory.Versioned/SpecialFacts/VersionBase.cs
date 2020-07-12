@@ -7,7 +7,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
     /// <summary>
     /// Base class for version facts.
     /// </summary>
-    public abstract class VersionBase<TVersion> : VersionedFactBase<TVersion>, IVersionFact
+    public abstract class VersionBase<TVersion> : FactBase<TVersion>, IVersionFact
     {
         /// <summary>
         /// Constructor.

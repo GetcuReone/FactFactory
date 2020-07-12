@@ -27,15 +27,27 @@ namespace GetcuReone.FactFactory.Versioned.Versions
             switch (versionFact)
             {
                 case VersionedFactBase<int> version:
-                    return Value == version.Value;
+                    return Value == version;
                 case VersionedFactBase<long> version:
-                    return Value == version.Value;
+                    return Value == version;
                 case VersionedFactBase<uint> version:
-                    return Value == version.Value;
+                    return Value == version;
                 case VersionedFactBase<ulong> version:
                     if (Value < 0)
                         return false;
-                    return Convert.ToUInt64(Value) == version.Value;
+                    return Convert.ToUInt64(Value) == version;
+
+                case FactBase<int> version:
+                    return Value == version;
+                case FactBase<long> version:
+                    return Value == version;
+                case FactBase<uint> version:
+                    return Value == version;
+                case FactBase<ulong> version:
+                    if (Value < 0)
+                        return false;
+                    return Convert.ToUInt64(Value) == version;
+
                 default:
                     return false;
             }
@@ -52,15 +64,27 @@ namespace GetcuReone.FactFactory.Versioned.Versions
             switch (versionFact)
             {
                 case VersionedFactBase<int> version:
-                    return Value < version.Value;
+                    return Value < version;
                 case VersionedFactBase<long> version:
-                    return Value < version.Value;
+                    return Value < version;
                 case VersionedFactBase<uint> version:
-                    return Value < version.Value;
+                    return Value < version;
                 case VersionedFactBase<ulong> version:
                     if (Value < 0)
                         return true;
-                    return Convert.ToUInt64(Value) < version.Value;
+                    return Convert.ToUInt64(Value) < version;
+
+                case FactBase<int> version:
+                    return Value < version;
+                case FactBase<long> version:
+                    return Value < version;
+                case FactBase<uint> version:
+                    return Value < version;
+                case FactBase<ulong> version:
+                    if (Value < 0)
+                        return true;
+                    return Convert.ToUInt64(Value) < version;
+
                 default:
                     return false;
             }
@@ -77,15 +101,27 @@ namespace GetcuReone.FactFactory.Versioned.Versions
             switch (versionFact)
             {
                 case VersionedFactBase<int> version:
-                    return Value > version.Value;
+                    return Value > version;
                 case VersionedFactBase<long> version:
-                    return Value > version.Value;
+                    return Value > version;
                 case VersionedFactBase<uint> version:
-                    return Value > version.Value;
+                    return Value > version;
                 case VersionedFactBase<ulong> version:
                     if (Value < 0)
                         return false;
-                    return Convert.ToUInt64(Value) > version.Value;
+                    return Convert.ToUInt64(Value) > version;
+
+                case FactBase<int> version:
+                    return Value > version;
+                case FactBase<long> version:
+                    return Value > version;
+                case FactBase<uint> version:
+                    return Value > version;
+                case FactBase<ulong> version:
+                    if (Value < 0)
+                        return false;
+                    return Convert.ToUInt64(Value) > version;
+
                 default:
                     return false;
             }

@@ -45,7 +45,12 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             fact.ValidateTypeOfFact<TFactBase>();
             IFactType factType = fact.GetFactType();
 
-            if (fact is TFactBase factBase)
+            if (fact is ISpecialFact)
+            {
+                if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType)))
+                    throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The fact container already contains {factType.FactName} type of fact.");
+            }
+            else if (fact is TFactBase factBase)
             {
                 if (factBase.Version == null)
                 {
@@ -59,10 +64,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
                 } 
             }
             else
-            {
-                if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType)))
-                    throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"The fact container already contains {factType.FactName} type of fact.");
-            }
+                throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"A container cannot contain a fact of {factType.FactName} type.");
 
             ContainerList.Add(fact);
         }

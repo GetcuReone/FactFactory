@@ -200,7 +200,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <returns></returns>
         public virtual TFact DeriveFact<TFact, TVersion>()
             where TFact : TFactBase
-            where TVersion : TFactBase, IVersionFact
+            where TVersion : IVersionFact
         {
             TFact fact = default;
 

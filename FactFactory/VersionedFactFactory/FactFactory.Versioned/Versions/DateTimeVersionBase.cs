@@ -24,10 +24,16 @@ namespace GetcuReone.FactFactory.Versioned.Versions
         /// <returns></returns>
         public override bool EqualVersion<TVersionFact>(TVersionFact versionFact)
         {
-            if (versionFact is VersionedFactBase<DateTime> factDateTime)
-                return Value == factDateTime.Value;
+            switch (versionFact)
+            {
+                case VersionedFactBase<DateTime> version:
+                    return Value == version;
+                case FactBase<DateTime> version:
+                    return Value == version;
 
-            return false;
+                default:
+                    return false;
+            }
         }
 
         /// <summary>
@@ -38,10 +44,16 @@ namespace GetcuReone.FactFactory.Versioned.Versions
         /// <returns></returns>
         public override bool IsLessThan<TVersionFact>(TVersionFact versionFact)
         {
-            if (versionFact is VersionedFactBase<DateTime> factDateTime)
-                return Value < factDateTime.Value;
+            switch (versionFact)
+            {
+                case VersionedFactBase<DateTime> version:
+                    return Value < version;
+                case FactBase<DateTime> version:
+                    return Value < version;
 
-            return false;
+                default:
+                    return false;
+            }
         }
 
         /// <summary>
@@ -52,10 +64,16 @@ namespace GetcuReone.FactFactory.Versioned.Versions
         /// <returns></returns>
         public override bool IsMoreThan<TVersionFact>(TVersionFact versionFact)
         {
-            if (versionFact is VersionedFactBase<DateTime> factDateTime)
-                return Value > factDateTime.Value;
+            switch (versionFact)
+            {
+                case VersionedFactBase<DateTime> version:
+                    return Value > version;
+                case FactBase<DateTime> version:
+                    return Value > version;
 
-            return false;
+                default:
+                    return false;
+            }
         }
     }
 }

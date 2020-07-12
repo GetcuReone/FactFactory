@@ -27,17 +27,31 @@ namespace GetcuReone.FactFactory.Versioned.Versions
             switch (versionFact)
             {
                 case VersionedFactBase<int> version:
-                    if (version.Value < 0)
+                    if (version < 0)
                         return false;
-                    return Value == Convert.ToUInt64(version.Value);
+                    return Value == Convert.ToUInt64(version);
                 case VersionedFactBase<long> version:
-                    if (version.Value < 0)
+                    if (version < 0)
                         return false;
-                    return Value == Convert.ToUInt64(version.Value);
+                    return Value == Convert.ToUInt64(version);
                 case VersionedFactBase<uint> version:
-                    return Value == version.Value;
+                    return Value == version;
                 case VersionedFactBase<ulong> version:
-                    return Value == version.Value;
+                    return Value == version;
+
+                case FactBase<int> version:
+                    if (version < 0)
+                        return false;
+                    return Value == Convert.ToUInt64(version);
+                case FactBase<long> version:
+                    if (version < 0)
+                        return false;
+                    return Value == Convert.ToUInt64(version);
+                case FactBase<uint> version:
+                    return Value == version;
+                case FactBase<ulong> version:
+                    return Value == version;
+
                 default:
                     return false;
             }
@@ -54,17 +68,31 @@ namespace GetcuReone.FactFactory.Versioned.Versions
             switch (versionFact)
             {
                 case VersionedFactBase<int> version:
-                    if (version.Value < 0)
+                    if (version < 0)
                         return false;
-                    return Value < Convert.ToUInt64(version.Value);
+                    return Value < Convert.ToUInt64(version);
                 case VersionedFactBase<long> version:
-                    if (version.Value < 0)
+                    if (version < 0)
                         return false;
-                    return Value < Convert.ToUInt64(version.Value);
+                    return Value < Convert.ToUInt64(version);
                 case VersionedFactBase<uint> version:
-                    return Value < version.Value;
+                    return Value < version;
                 case VersionedFactBase<ulong> version:
-                    return Value < version.Value;
+                    return Value < version;
+
+                case FactBase<int> version:
+                    if (version < 0)
+                        return false;
+                    return Value < Convert.ToUInt64(version);
+                case FactBase<long> version:
+                    if (version < 0)
+                        return false;
+                    return Value < Convert.ToUInt64(version);
+                case FactBase<uint> version:
+                    return Value < version;
+                case FactBase<ulong> version:
+                    return Value < version;
+
                 default:
                     return false;
             }
@@ -81,17 +109,31 @@ namespace GetcuReone.FactFactory.Versioned.Versions
             switch (versionFact)
             {
                 case VersionedFactBase<int> version:
-                    if (version.Value < 0)
+                    if (version < 0)
                         return true;
-                    return Value > Convert.ToUInt64(version.Value);
+                    return Value > Convert.ToUInt64(version);
                 case VersionedFactBase<long> version:
-                    if (version.Value < 0)
+                    if (version < 0)
                         return true;
-                    return Value > Convert.ToUInt64(version.Value);
+                    return Value > Convert.ToUInt64(version);
                 case VersionedFactBase<uint> version:
-                    return Value > version.Value;
+                    return Value > version;
                 case VersionedFactBase<ulong> version:
-                    return Value > version.Value;
+                    return Value > version;
+
+                case FactBase<int> version:
+                    if (version < 0)
+                        return true;
+                    return Value > Convert.ToUInt64(version);
+                case FactBase<long> version:
+                    if (version < 0)
+                        return true;
+                    return Value > Convert.ToUInt64(version);
+                case FactBase<uint> version:
+                    return Value > version;
+                case FactBase<ulong> version:
+                    return Value > version;
+
                 default:
                     return false;
             }

@@ -64,15 +64,12 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <returns></returns>
         protected virtual int CompareByVersion(TFactRule x, TFactRule y)
         {
+
             var xVersionType = x.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
             var yVersionType = y.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
 
             if (xVersionType == null)
-            {
-                return yVersionType == null
-                    ? 0
-                    : 1;
-            }
+                return yVersionType == null ? 0 : 1;
             if (yVersionType == null)
                 return -1;
 
