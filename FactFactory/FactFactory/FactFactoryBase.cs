@@ -7,7 +7,7 @@ using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Entities.Trees;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
-using GetcuReone.FactFactory.Facades.EntitiesOperations;
+using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Facades.TreesOperations;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
@@ -66,9 +66,9 @@ namespace GetcuReone.FactFactory
         /// <inheritdoc/>
         public virtual void Derive()
         {
-            var entitiesOperationsFacade = GetFacade<EntitiesOperationsFacade>();
-            TFactContainer container = entitiesOperationsFacade.GetValidContainer<TFactBase, TFactContainer>(Container);
-            TFactRuleCollection rules = entitiesOperationsFacade.GetValidRules<TFactBase, TFactRule, TFactRuleCollection>(Rules);
+            ISingleEntityOperations singleEntityOperations = GetSingleEntityOperations();
+            TFactContainer container = singleEntityOperations.ValidateAndGetCopyContainer<TFactBase, TFactContainer>(Container);
+            TFactRuleCollection rules = singleEntityOperations.ValidateAndGetCopyContainer<TFactBase, TFactRule, TFactRuleCollection>(Rules);
             var wantActions = new List<TWantAction>(
                 WantActions
                 .OrderByDescending(w => w, GetWantActionComparer(container))
@@ -126,6 +126,12 @@ namespace GetcuReone.FactFactory
             WantActions.AddRange(wantActions);
 
             return fact;
+        }
+
+        /// <inheritdoc/>
+        public virtual ISingleEntityOperations GetSingleEntityOperations()
+        {
+            return GetFacade<SingleEntityOperationsFacade>();
         }
 
         /// <summary>
