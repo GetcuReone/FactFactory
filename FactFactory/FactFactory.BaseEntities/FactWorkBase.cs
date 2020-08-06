@@ -68,22 +68,6 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public virtual bool IsMorePriorityThan<TFactWork, TFactContainer>(TFactWork workFact, TFactContainer container)
-            where TFactWork : IFactWork<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
-        {
-            return false;
-        }
-
-        /// <inheritdoc/>
-        public virtual bool IsLessPriorityThan<TFactWork, TFactContainer>(TFactWork workFact, TFactContainer container)
-            where TFactWork : IFactWork<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
-        {
-            return false;
-        }
-
-        /// <inheritdoc/>
         public virtual bool СompatibilityWithRule<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction, TFactContainer container)
             where TFactRule : IFactRule<TFactBase>
             where TWantAction : IWantAction<TFactBase>

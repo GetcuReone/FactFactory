@@ -111,7 +111,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
 
                 foreach (var fact in facts)
                 {
-                    if (facts.All(f => fact.Version.IsMoreThan(f.Version) || fact.Equals(f)))
+                    if (facts.All(f => fact.Version.CompareTo(f.Version) > 0 || fact.Equals(f)))
                         return fact;
                 }
             }
@@ -121,72 +121,18 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
 
                 foreach (var fact in facts)
                 {
-                    if (fact.Version != null && !fact.Version.IsMoreThan(version))
+                    if (fact.Version != null && fact.Version.CompareTo(version) <= 0)
                         scopeSearch.Add(fact);
                 }
 
                 foreach (var fact in scopeSearch)
                 {
-                    if (scopeSearch.All(f => fact.Version.IsMoreThan(f.Version) || fact.Equals(f)))
+                    if (scopeSearch.All(f => fact.Version.CompareTo(f.Version) > 0 || fact.Equals(f)))
                         return fact;
                 }
             }
 
             return null;
-        }
-
-        internal static bool IsMorePriorityThan<TFactBase, TFactWork, TFactContainer>(IFactWork<TFactBase> firstWork, TFactWork secondWork, TFactContainer container)
-            where TFactBase : IVersionedFact
-            where TFactWork : IFactWork<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
-        {
-            if (firstWork is IFactTypeVersionInfo firstVersionInfo)
-            {
-                if (secondWork is IFactTypeVersionInfo secondVersionInfo)
-                {
-                    if (firstVersionInfo.VersionType == null)
-                        return secondVersionInfo.VersionType != null;
-                    else
-                    {
-                        if (secondVersionInfo.VersionType == null)
-                            return false;
-
-                        IVersionFact firstVersion = container.GetVersionFact(firstVersionInfo.VersionType);
-                        IVersionFact secondVersion = container.GetVersionFact(secondVersionInfo.VersionType);
-
-                        return firstVersion.IsMoreThan(secondVersion);
-                    }
-                } 
-            }
-
-            return false;
-        }
-
-        internal static bool IsLessPriorityThan<TFactBase, TFactWork, TFactContainer>(IFactWork<TFactBase> firstWork, TFactWork secondWork, TFactContainer container)
-            where TFactBase : IVersionedFact
-            where TFactWork : IFactWork<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
-        {
-            if (firstWork is IFactTypeVersionInfo firstVersionInfo)
-            {
-                if (secondWork is IFactTypeVersionInfo secondVersionInfo)
-                {
-                    if (firstVersionInfo.VersionType == null)
-                        return false;
-                    else
-                    {
-                        if (secondVersionInfo.VersionType == null)
-                            return true;
-
-                        IVersionFact firstVersion = container.GetVersionFact(firstVersionInfo.VersionType);
-                        IVersionFact secondVersion = container.GetVersionFact(secondVersionInfo.VersionType);
-
-                        return firstVersion.IsLessThan(secondVersion);
-                    }
-                }
-            }
-
-            return false;
         }
 
         internal static bool СompatibilityWithRuleByVersion<TFactBase, TFactWork, TFactRule, TWantAction, TFactContainer>(this TFactWork work, TFactRule rule, TWantAction wantAction, TFactContainer container)
@@ -205,7 +151,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             IVersionFact maxVersion = container.GetVersionFact(wantAction.VersionType);
             IVersionFact potentialVersion = container.GetVersionFact(rule.VersionType);
 
-            if (potentialVersion.IsMoreThan(maxVersion))
+            if (potentialVersion.CompareTo(maxVersion) > 0)
                 return false;
 
             return true;

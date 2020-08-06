@@ -15,30 +15,6 @@ namespace GetcuReone.FactFactory.Interfaces
         IReadOnlyCollection<IFactType> InputFactTypes { get; }
 
         /// <summary>
-        /// True, the current object is more priority than <paramref name="workFact"/>.
-        /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="workFact"></param>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        bool IsMorePriorityThan<TFactWork, TFactContainer>(TFactWork workFact, TFactContainer container)
-            where TFactWork : IFactWork<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>;
-
-        /// <summary>
-        /// True, the current object is less priority than <paramref name="workFact"/>.
-        /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="workFact"></param>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        bool IsLessPriorityThan<TFactWork, TFactContainer>(TFactWork workFact, TFactContainer container)
-            where TFactWork : IFactWork<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>;
-
-        /// <summary>
         /// Work equality.
         /// </summary>
         /// <typeparam name="TFactWork"></typeparam>

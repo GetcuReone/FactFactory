@@ -253,26 +253,6 @@
             Information on input factacles rules.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactWork`1.IsMorePriorityThan``2(``0,``1)">
-            <summary>
-            True, the current object is more priority than <paramref name="workFact"/>.
-            </summary>
-            <typeparam name="TFactWork"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="workFact"></param>
-            <param name="container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactWork`1.IsLessPriorityThan``2(``0,``1)">
-            <summary>
-            True, the current object is less priority than <paramref name="workFact"/>.
-            </summary>
-            <typeparam name="TFactWork"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="workFact"></param>
-            <param name="container"></param>
-            <returns></returns>
-        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactWork`1.EqualsWork``3(``0,``1,``2)">
             <summary>
             Work equality.

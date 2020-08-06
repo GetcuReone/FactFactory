@@ -26,6 +26,6 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
         /// <returns></returns>
         TFactResult DeriveFact<TFactResult, TVersion>()
             where TFactResult : TFactBase
-            where TVersion : TFactBase, IVersionFact;
+            where TVersion : IVersionFact;
     }
 }

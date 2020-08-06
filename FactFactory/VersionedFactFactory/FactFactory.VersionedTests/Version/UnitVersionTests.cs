@@ -1,5 +1,7 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.Version.Env;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
@@ -8,7 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.VersionedTests.Version
 {
     [TestClass]
-    public sealed class UintVersionTests : CommonTestBase<VersionedFactBase>
+    public sealed class UUintVersionTests : CommonTestBase<VersionedFactBase>
     {
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
@@ -16,15 +18,16 @@ namespace FactFactory.VersionedTests.Version
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UintVersion_FirstVersionLessThanSecondTestCase()
         {
+            const int expectedValue = -1;
             UintVersion v1 = null;
             UintVersion v2 = null;
 
             Given("Create first version.", () => v1 = new UintVersion(1))
-                .And("Create second version.", _ => 
+                .And("Create second version.", _ =>
                     v2 = new UintVersion(2))
-                .When("Compare version.", _ => 
-                    v1.IsLessThan(v2))
-                .ThenIsTrue(errorMessage: "The first version is not less than the second.");
+                .When("Compare version.", _ =>
+                    v1.CompareTo(v2))
+                .ThenAreEqual(expectedValue);
         }
 
         [TestMethod]
@@ -33,49 +36,16 @@ namespace FactFactory.VersionedTests.Version
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UintVersion_SecondVersionMoreThanFirstTestCase()
         {
+            const int expectedValue = 1;
             UintVersion v1 = null;
             UintVersion v2 = null;
 
             Given("Create first version.", () => v1 = new UintVersion(1))
-                .And("Create second version.", _ => 
+                .And("Create second version.", _ =>
                     v2 = new UintVersion(2))
-                .When("Compare version.", _ => 
-                    v2.IsMoreThan(v1))
-                .ThenIsTrue(errorMessage: "The first version is not more than the second.");
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("The Uint version is not less than the DateTime.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void UintVersionVersionNotLessThanDateTimeTestCase()
-        {
-            UintVersion v1 = null;
-            Version2020 v2 = null;
-
-            Given("Create first version.", () => v1 = new UintVersion(1))
-                .And("Create second version.", _ => 
-                    v2 = new Version2020())
-                .When("Compare version.", _ => 
-                    v1.IsLessThan(v2))
-                .ThenIsFalse(errorMessage: "The Uint version is less than the DateTime.");
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("The Uint version is not more than the DateTime.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void UintVersionNotMoreThanDateTimeTestCase()
-        {
-            UintVersion v1 = null;
-            Version2020 v2 = null;
-
-            Given("Create first version.", () => v1 = new UintVersion(1))
-                .And("Create second version.", _ => 
-                    v2 = new Version2020())
-                .When("Compare version.", _ => 
-                    v1.IsMoreThan(v2))
-                .ThenIsFalse(errorMessage: "The Uint version is more than the DateTime.");
+                .When("Compare version.", _ =>
+                    v2.CompareTo(v1))
+                .ThenAreEqual(expectedValue);
         }
 
         [TestMethod]
@@ -84,32 +54,34 @@ namespace FactFactory.VersionedTests.Version
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UintVersion_SecondVersionEqualFirstTestCase()
         {
+            const int expectedValue = 0;
             UintVersion v1 = null;
             UintVersion v2 = null;
 
-            Given("Create first version.", () => v1 = new UintVersion(1))
-                .And("Create second version.", _ => 
-                    v2 = new UintVersion(1))
-                .When("Compare version.", _ => 
-                    v2.EqualVersion(v1))
-                .ThenIsTrue(errorMessage: "The first version is not equal the second.");
+            Given("Create first version.", () => v1 = new UintVersion(2))
+                .And("Create second version.", _ =>
+                    v2 = new UintVersion(2))
+                .When("Compare version.", _ =>
+                    v2.CompareTo(v1))
+                .ThenAreEqual(expectedValue);
         }
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("The Uint version is not equal the DateTime.")]
+        [Description("The Int version is not less than the DateTime.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void UintVersionNotEqualDateTimeTestCase()
+        public void UintVersionVersionNotLessThanDateTimeTestCase()
         {
+            const string expectedReason = "Unable to compare versions UintVersion and Version2020.";
             UintVersion v1 = null;
             Version2020 v2 = null;
 
             Given("Create first version.", () => v1 = new UintVersion(1))
-                .And("Create second version.", _ => 
+                .And("Create second version.", _ =>
                     v2 = new Version2020())
-                .When("Compare version.", _ => 
-                    v1.Equals(v2))
-                .ThenIsFalse(errorMessage: "The Uint version is equal the DateTime.");
+                .When("Compare version.", _ =>
+                    ExpectedFactFactoryException(() => v1.CompareTo(v2)))
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
     }
 }
