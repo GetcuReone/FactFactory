@@ -15,7 +15,7 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
         where TFactBase : IVersionedFact
         where TFactContainer : IFactContainer<TFactBase>
         where TFactRule : IVersionedFactRule<TFactBase>
-        where TFactRuleCollection : IList<TFactRule>
+        where TFactRuleCollection : IFactRuleCollection<TFactBase, TFactRule>
         where TWantAction : IWantAction<TFactBase>, IFactTypeVersionInfo
     {
         /// <summary>

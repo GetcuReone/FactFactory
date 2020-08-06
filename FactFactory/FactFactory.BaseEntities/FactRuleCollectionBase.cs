@@ -12,7 +12,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Base collection for <typeparamref name="TFactRule"/>.
     /// </summary>
-    public abstract class FactRuleCollectionBase<TFactBase, TFactRule>: IList<TFactRule>, ICopy<FactRuleCollectionBase<TFactBase, TFactRule>>, IFactTypeCreation
+    public abstract class FactRuleCollectionBase<TFactBase, TFactRule>: IFactRuleCollection<TFactBase, TFactRule>, IFactTypeCreation
         where TFactBase : IFact
         where TFactRule : IFactRule<TFactBase>
     {
@@ -820,6 +820,6 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> copy method.
         /// </summary>
         /// <returns>Copied <see cref="FactRuleCollectionBase{TFact, TFactRule}"/>.</returns>
-        public abstract FactRuleCollectionBase<TFactBase, TFactRule> Copy();
+        public abstract IFactRuleCollection<TFactBase, TFactRule> Copy();
     }
 }

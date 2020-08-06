@@ -38,7 +38,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// Get copy container.
         /// </summary>
         /// <returns></returns>
-        public override FactContainerBase<VersionedFactBase> Copy()
+        public override IFactContainer<VersionedFactBase> Copy()
         {
             return new VersionedFactContainer(this, false);
         }

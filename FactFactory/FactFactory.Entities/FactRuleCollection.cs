@@ -38,7 +38,7 @@ namespace GetcuReone.FactFactory.Entities
         /// <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> copy method.
         /// </summary>
         /// <returns>Copied <see cref="FactRuleCollection"/>.</returns>
-        public override FactRuleCollectionBase<FactBase, FactRule> Copy()
+        public override IFactRuleCollection<FactBase, FactRule> Copy()
         {
             return new FactRuleCollection(this, IsReadOnly);
         }

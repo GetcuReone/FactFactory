@@ -7,14 +7,14 @@ namespace FactFactoryTests.FactFactoryT.Env
 {
     internal class FactContainerGetDifferent : Container
     {
-        public override FactContainerBase<FactBase> Copy()
+        public override IFactContainer<FactBase> Copy()
         {
             return new DifferentContainer();
         }
 
         private class DifferentContainer : FactContainerBase<FactBase>
         {
-            public override FactContainerBase<FactBase> Copy()
+            public override IFactContainer<FactBase> Copy()
             {
                 throw new System.NotImplementedException();
             }

@@ -30,7 +30,7 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <inheritdoc/>
-        public override FactContainerBase<FactBase> Copy()
+        public override IFactContainer<FactBase> Copy()
         {
             return new FactContainer(this, IsReadOnly);
         }

@@ -100,7 +100,7 @@
             <summary>
             Fact factory interface.
             </summary>
-            <typeparam name="TFact">All facts that the fact factory works with should be inherited from this type.</typeparam>
+            <typeparam name="TFactBase">All facts that the fact factory works with should be inherited from this type.</typeparam>
             <typeparam name="TFactContainer">Type fact container.</typeparam>
             <typeparam name="TFactRule">Type fact rule.</typeparam>
             <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
@@ -133,6 +133,12 @@
             Requesting a desired fact through action.
             </summary>
             <param name="wantAction"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.GetSingleEntityOperations">
+            <summary>
+            Get <see cref="T:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations"/>.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactRule`1">
             <summary>
@@ -174,6 +180,18 @@
             <param name="wantAction"></param>
             <param name="container"></param>
             <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.IFactRuleCollection`2">
+            <summary>
+            Collection of rules.
+            </summary>
+            <typeparam name="TFactBase">Base fact type.</typeparam>
+            <typeparam name="TFactRule">Rule type.</typeparam>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactRuleCollection`2.IsReadOnly">
+            <summary>
+            Gets a value indicating whether the <see cref="T:GetcuReone.FactFactory.Interfaces.IFactRuleCollection`2"/> is read-only.
+            </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactType">
             <summary>
@@ -277,6 +295,30 @@
             <param name="factRule">Compatibility check rule.</param>
             <param name="wantAction">The action within which compatibility check.</param>
             <param name="container">Container.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations">
+            <summary>
+            Single operations on entities of the FactFactory.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.ValidateAndGetCopyContainer``2(``1)">
+            <summary>
+            Validate and return a copy of the container.
+            </summary>
+            <typeparam name="TFactBase"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.ValidateAndGetCopyContainer``3(``2)">
+            <summary>
+            Validate and return a copy of the rules.
+            </summary>
+            <typeparam name="TFactBase"></typeparam>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TFactRuleCollection"></typeparam>
+            <param name="ruleCollection"></param>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IWantAction`1">

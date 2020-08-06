@@ -5,17 +5,17 @@ namespace GetcuReone.FactFactory.Interfaces
     /// <summary>
     /// Fact factory interface.
     /// </summary>
-    /// <typeparam name="TFact">All facts that the fact factory works with should be inherited from this type.</typeparam>
+    /// <typeparam name="TFactBase">All facts that the fact factory works with should be inherited from this type.</typeparam>
     /// <typeparam name="TFactContainer">Type fact container.</typeparam>
     /// <typeparam name="TFactRule">Type fact rule.</typeparam>
     /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
     /// <typeparam name="TWantAction">Type 'want action'.</typeparam>
-    public interface IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
-        where TFact : IFact
-        where TFactContainer : IFactContainer<TFact>
-        where TFactRule : IFactRule<TFact>
-        where TFactRuleCollection : IList<TFactRule>
-        where TWantAction : IWantAction<TFact>
+    public interface IFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
+        where TFactBase : IFact
+        where TFactContainer : IFactContainer<TFactBase>
+        where TFactRule : IFactRule<TFactBase>
+        where TFactRuleCollection : IFactRuleCollection<TFactBase, TFactRule>
+        where TWantAction : IWantAction<TFactBase>
     {
         /// <summary>
         /// Fact container.
@@ -37,12 +37,18 @@ namespace GetcuReone.FactFactory.Interfaces
         /// </summary>
         /// <typeparam name="TWantFact">Type of desired fact.</typeparam>
         /// <returns></returns>
-        TWantFact DeriveFact<TWantFact>() where TWantFact : TFact;
+        TWantFact DeriveFact<TWantFact>() where TWantFact : TFactBase;
 
         /// <summary>
         /// Requesting a desired fact through action.
         /// </summary>
         /// <param name="wantAction"></param>
         void WantFact(TWantAction wantAction);
+
+        /// <summary>
+        /// Get <see cref="ISingleEntityOperations"/>.
+        /// </summary>
+        /// <returns></returns>
+        ISingleEntityOperations GetSingleEntityOperations();
     }
 }

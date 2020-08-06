@@ -4,7 +4,6 @@ using GetcuReone.FactFactory.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
 namespace GetcuReone.FactFactory.BaseEntities
@@ -12,7 +11,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Base class for fact container.
     /// </summary>
-    public abstract class FactContainerBase<TFactBase> : IFactContainer<TFactBase>, ICopy<FactContainerBase<TFactBase>>, IFactTypeCreation
+    public abstract class FactContainerBase<TFactBase> : IFactContainer<TFactBase>, IFactTypeCreation
         where TFactBase : IFact
     {
         /// <summary>
@@ -166,7 +165,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public abstract FactContainerBase<TFactBase> Copy();
+        public abstract IFactContainer<TFactBase> Copy();
 
         /// <inheritdoc/>
         public virtual void Clear()
