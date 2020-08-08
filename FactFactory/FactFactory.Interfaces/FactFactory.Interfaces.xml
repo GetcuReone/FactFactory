@@ -301,6 +301,14 @@
             <param name="ruleCollection"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.GetComparer``2">
+            <summary>
+            Get comparer fro <see cref="T:GetcuReone.FactFactory.Interfaces.IFactWork`1"/>.
+            </summary>
+            <typeparam name="TFactBase"></typeparam>
+            <typeparam name="TFactWork"></typeparam>
+            <returns></returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IWantAction`1">
             <summary>
             Desired action information.

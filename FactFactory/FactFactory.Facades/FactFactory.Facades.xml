@@ -9,6 +9,19 @@
             Single operations on entities of the FactFactory.
             </summary>
         </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetComparer``2">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CompareFactWorks``2(``1,``1)">
+            <summary>
+            Compare <typeparamref name="TFactWork"/>.
+            </summary>
+            <typeparam name="TFactBase"></typeparam>
+            <typeparam name="TFactWork"></typeparam>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.ValidateAndGetContainer``2(``1)">
             <inheritdoc/>
         </member>
