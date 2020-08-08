@@ -1,4 +1,6 @@
-﻿namespace GetcuReone.FactFactory.Interfaces
+﻿using System.Collections.Generic;
+
+namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Single operations on entities of the FactFactory.
@@ -28,5 +30,15 @@
             where TFactBase : IFact
             where TFactRule : IFactRule<TFactBase>
             where TFactRuleCollection : IFactRuleCollection<TFactBase, TFactRule>;
+
+        /// <summary>
+        /// Get comparer fro <see cref="IFactWork{TFactBase}"/>.
+        /// </summary>
+        /// <typeparam name="TFactBase"></typeparam>
+        /// <typeparam name="TFactWork"></typeparam>
+        /// <returns></returns>
+        IComparer<TFactWork> GetComparer<TFactBase, TFactWork>()
+            where TFactBase : IFact
+            where TFactWork : IFactWork<TFactBase>;
     }
 }
