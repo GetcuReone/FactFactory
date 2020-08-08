@@ -9,7 +9,7 @@
             Single operations on entities of the FactFactory.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.ValidateAndGetCopyContainer``2(``1)">
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.ValidateAndGetContainer``2(``1)">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.ValidateAndGetRules``3(``2)">

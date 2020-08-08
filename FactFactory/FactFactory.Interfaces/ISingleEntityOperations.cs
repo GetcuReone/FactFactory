@@ -12,7 +12,7 @@
         /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="container"></param>
         /// <returns></returns>
-        TFactContainer ValidateAndGetCopyContainer<TFactBase, TFactContainer>(TFactContainer container)
+        TFactContainer ValidateAndGetContainer<TFactBase, TFactContainer>(TFactContainer container)
             where TFactBase : IFact
             where TFactContainer : IFactContainer<TFactBase>;
 

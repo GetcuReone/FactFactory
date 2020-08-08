@@ -60,7 +60,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
 
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.RuleCollection), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get original container.")]
+        [Description("Get original rules.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetOriginalContainerTestCase()
         {

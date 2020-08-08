@@ -2,7 +2,6 @@
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using System.Collections.ObjectModel;
 using System.Linq;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
@@ -14,7 +13,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
     public class SingleEntityOperationsFacade : FacadeBase, ISingleEntityOperations
     {
         /// <inheritdoc/>
-        public virtual TFactContainer ValidateAndGetCopyContainer<TFactBase, TFactContainer>(TFactContainer container)
+        public virtual TFactContainer ValidateAndGetContainer<TFactBase, TFactContainer>(TFactContainer container)
             where TFactBase : IFact
             where TFactContainer : IFactContainer<TFactBase>
         {

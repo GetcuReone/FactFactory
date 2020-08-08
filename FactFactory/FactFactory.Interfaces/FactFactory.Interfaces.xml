@@ -282,7 +282,7 @@
             Single operations on entities of the FactFactory.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.ValidateAndGetCopyContainer``2(``1)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.ValidateAndGetContainer``2(``1)">
             <summary>
             Validate and return a copy of the container.
             </summary>

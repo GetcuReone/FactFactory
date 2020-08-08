@@ -2,7 +2,7 @@
 using GetcuReone.FactFactory.Interfaces;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
-namespace FactFactoryTests.FactFactoryT.Env
+namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
 {
     internal class FactContainerGetOriginal : Container
     {

@@ -67,7 +67,7 @@ namespace GetcuReone.FactFactory
         public virtual void Derive()
         {
             ISingleEntityOperations singleEntityOperations = GetSingleEntityOperations();
-            TFactContainer container = singleEntityOperations.ValidateAndGetCopyContainer<TFactBase, TFactContainer>(Container);
+            TFactContainer container = singleEntityOperations.ValidateAndGetContainer<TFactBase, TFactContainer>(Container);
             TFactRuleCollection rules = singleEntityOperations.ValidateAndGetRules<TFactBase, TFactRule, TFactRuleCollection>(Rules);
             var wantActions = new List<TWantAction>(
                 WantActions
