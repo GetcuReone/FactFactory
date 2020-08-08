@@ -36,7 +36,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public TFactRuleCollection ValidateAndGetCopyContainer<TFactBase, TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
+        public TFactRuleCollection ValidateAndGetRules<TFactBase, TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
             where TFactBase : IFact
             where TFactRule : IFactRule<TFactBase>
             where TFactRuleCollection : IFactRuleCollection<TFactBase, TFactRule>
@@ -47,11 +47,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
 
             IFactRuleCollection<TFactBase, TFactRule> rulesCopy = ruleCollection.Copy();
             if (rulesCopy == null)
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return null.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactRuleCollection.Copy method return null.");
             if (rulesCopy.Equals(ruleCollection))
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method return original rule collection.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactRuleCollection.Copy method return original rule collection.");
             if (!(rulesCopy is TFactRuleCollection rules))
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "FactRuleCollectionBase.Copy method returned a different type of rules.");
+                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactRuleCollection.Copy method returned a different type of rules.");
 
             rules.IsReadOnly = true;
             return rules;

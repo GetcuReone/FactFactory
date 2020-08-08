@@ -368,24 +368,6 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get the original rules for the Derive.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void GetOriginalsRulesForDerive()
-        {
-            const string expectedReason = "FactRuleCollectionBase.Copy method return original rule collection.";
-
-            Given("Create custom factory.", () => new FactFactoryCustom())
-                .And("Change rules.", factFactory => 
-                {
-                    factFactory.collection = new FactRuleCollectionGetOriginal();
-                })
-                .When("Derive fact.", factFactory =>
-                    ExpectedDeriveException(() => factFactory.Derive()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Choosing the path with the least number of rules.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]

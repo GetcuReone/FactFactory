@@ -1,9 +1,8 @@
 ﻿using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Interfaces;
 using Rules = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
-namespace FactFactoryTests.FactFactoryT.Env
+namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
 {
     internal class RulesGetNull : Rules
     {

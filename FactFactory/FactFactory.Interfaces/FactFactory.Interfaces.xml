@@ -291,7 +291,7 @@
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.ValidateAndGetCopyContainer``3(``2)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.ValidateAndGetRules``3(``2)">
             <summary>
             Validate and return a copy of the rules.
             </summary>

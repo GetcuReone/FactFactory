@@ -24,7 +24,7 @@
         /// <typeparam name="TFactRuleCollection"></typeparam>
         /// <param name="ruleCollection"></param>
         /// <returns></returns>
-        TFactRuleCollection ValidateAndGetCopyContainer<TFactBase, TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
+        TFactRuleCollection ValidateAndGetRules<TFactBase, TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
             where TFactBase : IFact
             where TFactRule : IFactRule<TFactBase>
             where TFactRuleCollection : IFactRuleCollection<TFactBase, TFactRule>;

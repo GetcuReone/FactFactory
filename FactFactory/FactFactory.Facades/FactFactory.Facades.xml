@@ -12,7 +12,7 @@
         <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.ValidateAndGetCopyContainer``2(``1)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.ValidateAndGetCopyContainer``3(``2)">
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.ValidateAndGetRules``3(``2)">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade">

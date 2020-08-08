@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Rule = GetcuReone.FactFactory.Entities.FactRule;
 using Rules = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
-namespace FactFactoryTests.FactFactoryT.Env
+namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
 {
     internal class RulesGetDifferent : Rules
     {

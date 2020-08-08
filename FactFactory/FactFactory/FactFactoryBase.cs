@@ -68,7 +68,7 @@ namespace GetcuReone.FactFactory
         {
             ISingleEntityOperations singleEntityOperations = GetSingleEntityOperations();
             TFactContainer container = singleEntityOperations.ValidateAndGetCopyContainer<TFactBase, TFactContainer>(Container);
-            TFactRuleCollection rules = singleEntityOperations.ValidateAndGetCopyContainer<TFactBase, TFactRule, TFactRuleCollection>(Rules);
+            TFactRuleCollection rules = singleEntityOperations.ValidateAndGetRules<TFactBase, TFactRule, TFactRuleCollection>(Rules);
             var wantActions = new List<TWantAction>(
                 WantActions
                 .OrderByDescending(w => w, GetWantActionComparer(container))

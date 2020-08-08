@@ -429,42 +429,6 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive with rules returning a blank copy.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveWithRulesReturningBlankCopyTestCase()
-        {
-            const string expectedReason = "FactRuleCollectionBase.Copy method return null.";
-
-            Given("Create factory.", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => 
-                { 
-                    factFactory.collection = new RulesGetNull(); 
-                })
-                .When("Run Derive.", factFactory => 
-                    ExpectedDeriveException(factFactory.Derive))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive with rules returning a different type of rules.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveWithRulesReturningDifferentTypeRulesTestCase()
-        {
-            const string expectedReason = "FactRuleCollectionBase.Copy method returned a different type of rules.";
-
-            Given("Create factory", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => 
-                {
-                    factFactory.collection = new RulesGetDifferent();
-                })
-                .When("Run Derive.", factFactory => 
-                    ExpectedDeriveException(factFactory.Derive))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Clear WantActions after derive.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
