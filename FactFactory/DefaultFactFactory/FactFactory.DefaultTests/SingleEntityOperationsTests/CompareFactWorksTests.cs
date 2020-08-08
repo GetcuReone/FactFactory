@@ -24,7 +24,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             const int expectedValue = 0;
 
             GivenCreateFacade()
-                .When("Compare want actions.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>>(firstWA, secondWA))
+                .When("Compare want actions.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>, WantActionBase<FactBase>, FactContainerBase<FactBase>>(firstWA, secondWA, null, null))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -39,7 +39,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             const int expectedValue = 0;
 
             GivenCreateFacade()
-                .When("Compare want action and rule.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>>(action, rule))
+                .When("Compare want action and rule.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>, WantActionBase<FactBase>, FactContainerBase<FactBase>>(action, rule, null, null))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -54,7 +54,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             const int expectedValue = -1;
 
             GivenCreateFacade()
-                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>>(first, second))
+                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>, WantActionBase<FactBase>, FactContainerBase<FactBase>>(first, second, null, null))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -69,7 +69,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             const int expectedValue = 0;
 
             GivenCreateFacade()
-                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>>(first, second))
+                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>, WantActionBase<FactBase>, FactContainerBase<FactBase>>(first, second, null, null))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -84,7 +84,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             const int expectedValue = 1;
 
             GivenCreateFacade()
-                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>>(first, second))
+                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>, WantActionBase<FactBase>, FactContainerBase<FactBase>>(first, second, null, null))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -99,7 +99,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             const int expectedValue = 1;
 
             GivenCreateFacade()
-                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>>(first, second))
+                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>, WantActionBase<FactBase>, FactContainerBase<FactBase>>(first, second, null, null))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -114,7 +114,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             const int expectedValue = 0;
 
             GivenCreateFacade()
-                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>>(first, second))
+                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>, WantActionBase<FactBase>, FactContainerBase<FactBase>>(first, second, null, null))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -129,7 +129,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             const int expectedValue = -1;
 
             GivenCreateFacade()
-                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>>(first, second))
+                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>, WantActionBase<FactBase>, FactContainerBase<FactBase>>(first, second, null, null))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -144,7 +144,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             const int expectedValue = 1;
 
             GivenCreateFacade()
-                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>>(first, second))
+                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>, WantActionBase<FactBase>, FactContainerBase<FactBase>>(first, second, null, null))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -159,7 +159,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             const int expectedValue = 0;
 
             GivenCreateFacade()
-                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>>(first, second))
+                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>, WantActionBase<FactBase>, FactContainerBase<FactBase>>(first, second, null, null))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -174,7 +174,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             const int expectedValue = -1;
 
             GivenCreateFacade()
-                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>>(first, second))
+                .When("Compare rules.", facade => facade.CompareFactWorks<FactBase, FactWorkBase<FactBase>, WantActionBase<FactBase>, FactContainerBase<FactBase>>(first, second, null, null))
                 .ThenAreEqual(expectedValue);
         }
     }

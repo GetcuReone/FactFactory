@@ -7,6 +7,7 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.BaseEntities;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Entities;
+using GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
@@ -149,6 +150,12 @@ namespace GetcuReone.FactFactory.Versioned
         protected override IComparer<TFactRule> GetFactRuleComparer(WantActionInfo<TFactBase, TWantAction, TFactContainer> wantActionInfo)
         {
             return new VersionedFactRuleComparer<TFactBase, TFactRule, TWantAction, TFactContainer>(wantActionInfo.WantAction, wantActionInfo.Container);
+        }
+
+        /// <inheritdoc/>
+        public override ISingleEntityOperations GetSingleEntityOperations()
+        {
+            return GetFacade<VersionedSingleEntityOperationsFacade>();
         }
 
         /// <inheritdoc/>

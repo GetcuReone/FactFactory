@@ -71,7 +71,7 @@ namespace GetcuReone.FactFactory
             TFactRuleCollection rules = singleEntityOperations.ValidateAndGetRules<TFactBase, TFactRule, TFactRuleCollection>(Rules);
             var wantActions = new List<TWantAction>(
                 WantActions
-                .OrderByDescending(w => w, GetWantActionComparer(container))
+                .OrderByDescending(w => w, singleEntityOperations.GetComparer<TFactBase, TWantAction, TWantAction, TFactContainer>(null, container))
             );
 
             var defaultFacts = new List<IFact>();
@@ -86,12 +86,15 @@ namespace GetcuReone.FactFactory
                 }
             }
 
-            Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>> forestry = BuildTrees(new BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
-            {
-                Container = container,
-                FactRules = rules,
-                WantActions = wantActions,
-            });
+            Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>> forestry = BuildTrees(
+                new BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+                {
+                    Container = container,
+                    FactRules = rules,
+                    WantActions = wantActions,
+                },
+                singleEntityOperations
+            );
 
             foreach (var item in forestry)
                 CalculateTreeAndDeriveWantFacts(item.Key, item.Value);
@@ -140,7 +143,7 @@ namespace GetcuReone.FactFactory
         /// <param name="request"></param>
         /// <exception cref="InvalidDeriveOperationException{TFact}">Mistakes in building trees.</exception>
         /// <returns></returns>
-        public virtual Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>> BuildTrees(BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request)
+        public virtual Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>> BuildTrees(BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request, ISingleEntityOperations singleEntityOperations)
         {
             var forestry = new Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>>();
             var deriveErrorDetails = new List<DeriveErrorDetail<TFactBase>>();
@@ -161,7 +164,7 @@ namespace GetcuReone.FactFactory
                     FactRules = request
                         .FactRules
                         .Where(rule => wantAction.СompatibilityWithRule(rule, wantAction, wantActionInfo.Container))
-                        .OrderByDescending(rule => rule, GetFactRuleComparer(wantActionInfo))
+                        .OrderByDescending(rule => rule, singleEntityOperations.GetComparer<TFactBase, TFactRule, TWantAction, TFactContainer>(wantActionInfo.WantAction, wantActionInfo.Container))
                         .ToList(),
                 };
                 if (TryBuildTreesForWantAction(requestForWantAction, out List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>> result, out DeriveErrorDetail<TFactBase> detail))

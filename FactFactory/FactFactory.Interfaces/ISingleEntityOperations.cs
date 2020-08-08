@@ -32,13 +32,19 @@ namespace GetcuReone.FactFactory.Interfaces
             where TFactRuleCollection : IFactRuleCollection<TFactBase, TFactRule>;
 
         /// <summary>
-        /// Get comparer fro <see cref="IFactWork{TFactBase}"/>.
+        /// Get comparer for <see cref="IFactWork{TFactBase}"/>.
         /// </summary>
         /// <typeparam name="TFactBase"></typeparam>
         /// <typeparam name="TFactWork"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <param name="container">Container within which the sorting will take place.</param>
+        /// <param name="wantAction">Action within which the sorting will take place.</param>
         /// <returns></returns>
-        IComparer<TFactWork> GetComparer<TFactBase, TFactWork>()
+        IComparer<TFactWork> GetComparer<TFactBase, TFactWork, TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
             where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>;
+            where TFactWork : IFactWork<TFactBase>
+            where TWantAction : IWantAction<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>;
     }
 }

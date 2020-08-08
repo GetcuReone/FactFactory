@@ -9,17 +9,21 @@
             Single operations on entities of the FactFactory.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetComparer``2">
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetComparer``4(``2,``3)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CompareFactWorks``2(``1,``1)">
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CompareFactWorks``4(``1,``1,``2,``3)">
             <summary>
             Compare <typeparamref name="TFactWork"/>.
             </summary>
             <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactWork"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
             <param name="first"></param>
             <param name="second"></param>
+            <param name="container">Container within which the sorting will take place.</param>
+            <param name="wantAction">Action within which the sorting will take place.</param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.ValidateAndGetContainer``2(``1)">

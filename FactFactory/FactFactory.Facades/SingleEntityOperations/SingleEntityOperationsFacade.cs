@@ -14,12 +14,14 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
     public class SingleEntityOperationsFacade : FacadeBase, ISingleEntityOperations
     {
         /// <inheritdoc/>
-        public virtual IComparer<TFactWork> GetComparer<TFactBase, TFactWork>()
+        public virtual IComparer<TFactWork> GetComparer<TFactBase, TFactWork, TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
             where TFactBase : IFact
             where TFactWork : IFactWork<TFactBase>
+            where TWantAction : IWantAction<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>
         {
             return Comparer<TFactWork>.Create(
-                (x, y) => CompareFactWorks<TFactBase, TFactWork>(x, y));
+                (x, y) => CompareFactWorks<TFactBase, TFactWork, TWantAction, TFactContainer>(x, y, wantAction, container));
         }
 
         /// <summary>
@@ -27,12 +29,18 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// </summary>
         /// <typeparam name="TFactBase"></typeparam>
         /// <typeparam name="TFactWork"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
         /// <param name="first"></param>
         /// <param name="second"></param>
+        /// <param name="container">Container within which the sorting will take place.</param>
+        /// <param name="wantAction">Action within which the sorting will take place.</param>
         /// <returns></returns>
-        public virtual int CompareFactWorks<TFactBase, TFactWork>(TFactWork first, TFactWork second)
+        public virtual int CompareFactWorks<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork first, TFactWork second, TWantAction wantAction, TFactContainer container)
             where TFactBase : IFact
             where TFactWork : IFactWork<TFactBase>
+            where TWantAction : IWantAction<TFactBase>
+            where TFactContainer : IFactContainer<TFactBase>
         {
             if ((first is IWantAction<TFactBase>) || (second is IWantAction<TFactBase>))
                 return 0;
