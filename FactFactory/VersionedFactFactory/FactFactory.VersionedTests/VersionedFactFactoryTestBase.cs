@@ -2,7 +2,6 @@
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned;
-using GetcuReone.FactFactory.Versioned.Entities;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -25,7 +24,6 @@ namespace FactFactory.VersionedTests
         {
             Container = new Container(GetVersionFacts());
             WantAction = new WAction(ct => { }, new List<IFactType> { GetFactType<FactResult>() });
-            Comparer = new VersionedFactRuleComparer<VersionedFactBase, Rule, WAction, Container>(WantAction, Container);
         }
 
         public virtual Rule GetFactRule<TFact>(Func<TFact> func)

@@ -31,26 +31,5 @@ namespace FactFactory.DefaultTests.WantAction
                 container => action(container.GetFact<TFact>()),
                 new List<IFactType> { GetFactType<TFact>() });
         }
-
-        [TestMethod]
-        [TestCategory(TC.Objects.WantAction), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Sort wantActions.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void SortWantActionsTestCase()
-        {
-            WAction firstWantAction = GetWantAction((ResultFact _) => { });
-            WAction secondWantAction = GetWantAction((OtherFact _) => { });
-            WAction thirdWantAction = GetWantAction((CannotDerived<ResultFact> _) => { });
-
-            Given("Create list.", () => new List<WAction> { firstWantAction, secondWantAction, thirdWantAction })
-                .When("Sort list.", list =>
-                    list.Sort(new WantActionComparer<FactBase, WAction, Container>(Container)))
-                .Then("Check list.", list =>
-                {
-                    Assert.AreEqual(firstWantAction, list[0]);
-                    Assert.AreEqual(secondWantAction, list[1]);
-                    Assert.AreEqual(thirdWantAction, list[2]);
-                });
-        }
     }
 }

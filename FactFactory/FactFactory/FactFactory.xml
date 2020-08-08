@@ -70,6 +70,7 @@
             Build trees for wantActions.
             </summary>
             <param name="request"></param>
+            <param name="singleEntityOperations"></param>
             <exception cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`1">Mistakes in building trees.</exception>
             <returns></returns>
         </member>
@@ -101,20 +102,6 @@
             </summary>
             <param name="wantActions">List of desired actions.</param>
             <param name="container">Container.</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetWantActionComparer(`1)">
-            <summary>
-            Get coparer for <typeparamref name="TWantAction"/>.
-            </summary>
-            <param name="container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetFactRuleComparer(GetcuReone.FactFactory.Entities.Trees.WantActionInfo{`0,`4,`1})">
-            <summary>
-            Get comparer for <typeparamref name="TFactRule"/>.
-            </summary>
-            <param name="wantActionInfo"></param>
-            <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{`0}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>

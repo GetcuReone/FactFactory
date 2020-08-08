@@ -17,14 +17,12 @@ namespace FactFactory.DefaultTests.FactRule
     {
         protected Container Container { get; private set; }
         protected WAction WantAction { get; private set; }
-        protected IComparer<Rule> Comparer { get; private set; }
 
         [TestInitialize]
         public void Initialize()
         {
             Container = new Container();
             WantAction = new WAction(ct => { }, new List<IFactType> { GetFactType<ResultFact>() });
-            Comparer = new FactRuleComparer<FactBase, Rule, WAction, Container>(WantAction, Container);
         }
 
         public virtual Rule GetFactRule<TFact>(Func<TFact> func)

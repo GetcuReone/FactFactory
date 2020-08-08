@@ -147,12 +147,6 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <inheritdoc/>
-        protected override IComparer<TFactRule> GetFactRuleComparer(WantActionInfo<TFactBase, TWantAction, TFactContainer> wantActionInfo)
-        {
-            return new VersionedFactRuleComparer<TFactBase, TFactRule, TWantAction, TFactContainer>(wantActionInfo.WantAction, wantActionInfo.Container);
-        }
-
-        /// <inheritdoc/>
         public override ISingleEntityOperations GetSingleEntityOperations()
         {
             return GetFacade<VersionedSingleEntityOperationsFacade>();

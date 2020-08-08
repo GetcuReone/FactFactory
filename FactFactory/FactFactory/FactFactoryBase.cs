@@ -141,6 +141,7 @@ namespace GetcuReone.FactFactory
         /// Build trees for wantActions.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="singleEntityOperations"></param>
         /// <exception cref="InvalidDeriveOperationException{TFact}">Mistakes in building trees.</exception>
         /// <returns></returns>
         public virtual Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>> BuildTrees(BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request, ISingleEntityOperations singleEntityOperations)
@@ -246,26 +247,6 @@ namespace GetcuReone.FactFactory
         /// <param name="wantActions">List of desired actions.</param>
         /// <param name="container">Container.</param>
         protected virtual void OnDeriveFinished(List<TWantAction> wantActions, TFactContainer container) { }
-
-        /// <summary>
-        /// Get coparer for <typeparamref name="TWantAction"/>.
-        /// </summary>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        protected virtual IComparer<TWantAction> GetWantActionComparer(TFactContainer container)
-        {
-            return new WantActionComparer<TFactBase, TWantAction, TFactContainer>(container);
-        }
-
-        /// <summary>
-        /// Get comparer for <typeparamref name="TFactRule"/>.
-        /// </summary>
-        /// <param name="wantActionInfo"></param>
-        /// <returns></returns>
-        protected virtual IComparer<TFactRule> GetFactRuleComparer(WantActionInfo<TFactBase, TWantAction, TFactContainer> wantActionInfo)
-        {
-            return new FactRuleComparer<TFactBase, TFactRule, TWantAction, TFactContainer>(wantActionInfo.WantAction, wantActionInfo.Container);
-        }
 
         #region methods for derive
 

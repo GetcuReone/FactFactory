@@ -34,7 +34,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         /// <param name="wantAction"></param>
         /// <param name="container"></param>
         /// <returns></returns>
-        protected virtual int CompareRulesByVersion<TFactBase, TFactRule, TWantAction, TFactContainer>(TFactRule x, TFactRule y, TWantAction wantAction, TFactContainer container)
+        public virtual int CompareRulesByVersion<TFactBase, TFactRule, TWantAction, TFactContainer>(TFactRule x, TFactRule y, TWantAction wantAction, TFactContainer container)
             where TFactBase : IFact
             where TFactRule : IFactRule<TFactBase>
             where TWantAction : IWantAction<TFactBase>
