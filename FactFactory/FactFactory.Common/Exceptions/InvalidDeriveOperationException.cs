@@ -5,16 +5,15 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Exceptions
 {
     /// <summary>
-    /// <see cref="FactFactoryException"/> for method <see cref="IFactFactory{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}.Derive"/>.
+    /// <see cref="FactFactoryException"/> for method <see cref="IFactFactory{TFactRule, TFactRuleCollection, TWantAction, TFactContainer}"/>.
     /// </summary>
-    public class InvalidDeriveOperationException<TFact> : FactFactoryExceptionBase<DeriveErrorDetail<TFact>>
-        where TFact : IFact
+    public class InvalidDeriveOperationException : FactFactoryExceptionBase<DeriveErrorDetail>
     {
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="details"></param>
-        public InvalidDeriveOperationException(IReadOnlyCollection<DeriveErrorDetail<TFact>> details) : base(details)
+        public InvalidDeriveOperationException(IReadOnlyCollection<DeriveErrorDetail> details) : base(details)
         {
         }
     }
