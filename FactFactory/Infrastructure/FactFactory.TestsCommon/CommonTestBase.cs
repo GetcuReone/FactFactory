@@ -6,8 +6,7 @@ using System;
 
 namespace FactFactory.TestsCommon
 {
-    public abstract class CommonTestBase<TFactBase> : GetcuReoneTestBase, IFactTypeCreation
-        where TFactBase : IFact
+    public abstract class CommonTestBase : GetcuReoneTestBase, IFactTypeCreation
     {
         public virtual IFactType GetFactType<TFact>() where TFact : IFact
         {
@@ -19,9 +18,9 @@ namespace FactFactory.TestsCommon
             return ExpectedException<FactFactoryException>(action);
         }
 
-        protected InvalidDeriveOperationException<TFactBase> ExpectedDeriveException(Action action)
+        protected InvalidDeriveOperationException ExpectedDeriveException(Action action)
         {
-            return ExpectedException<InvalidDeriveOperationException<TFactBase>>(action);
+            return ExpectedException<InvalidDeriveOperationException>(action);
         }
     }
 }
