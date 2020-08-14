@@ -8,7 +8,7 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Factory default implementation.
     /// </summary>
-    public class FactFactory : FactFactoryBase<FactBase, FactRule, FactRuleCollection, WantAction, FactContainer>
+    public class FactFactory : FactFactoryBase<FactRule, FactRuleCollection, WantAction, FactContainer>
     {
         /// <summary>
         /// Fact container.
@@ -26,7 +26,7 @@ namespace GetcuReone.FactFactory
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
         /// <returns></returns>
-        protected override WantAction CreateWantAction(Action<IFactContainer<FactBase>> wantAction, List<IFactType> factTypes)
+        protected override WantAction CreateWantAction(Action<IFactContainer> wantAction, List<IFactType> factTypes)
         {
             return new WantAction(wantAction, factTypes);
         }

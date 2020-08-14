@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Basic interface for objects that work directly with facts.
     /// </summary>
-    public abstract class FactWorkBase
+    public abstract class FactWorkBase : IFactWork
     {
         /// <inheritdoc/>
         public IReadOnlyCollection<IFactType> InputFactTypes { get; }
