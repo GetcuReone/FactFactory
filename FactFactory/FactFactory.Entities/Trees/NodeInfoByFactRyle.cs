@@ -7,9 +7,8 @@ namespace GetcuReone.FactFactory.Entities.Trees
     /// <summary>
     /// Node info.
     /// </summary>
-    public class NodeInfoByFactRyle<TFactBase, TFactRule>
-        where TFactBase : IFact
-        where TFactRule : IFactRule<TFactBase>
+    public class NodeInfoByFactRyle<TFactRule>
+        where TFactRule : IFactRule
     {
         /// <summary>
         /// Rule.

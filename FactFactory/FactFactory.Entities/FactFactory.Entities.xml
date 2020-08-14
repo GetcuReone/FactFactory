@@ -35,7 +35,7 @@
             Rule of fact calculation.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.Interfaces.IWantAction{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.FactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Constructor.
             </summary>
@@ -70,11 +70,11 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.Copy">
             <summary>
-            <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/> copy method.
+            <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/> copy method.
             </summary>
             <returns>Copied <see cref="T:GetcuReone.FactFactory.Entities.FactRuleCollection"/>.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.Interfaces.IWantAction{GetcuReone.FactFactory.FactBase},GetcuReone.FactFactory.FactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Creation method <see cref="T:GetcuReone.FactFactory.Entities.FactRule"/>.
             </summary>
@@ -83,66 +83,64 @@
             <param name="outputFactType">information on output fact.</param>
             <returns>fact rule</returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`4">
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`3">
             <summary>
             Request to build a trees for FactType.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactRule"></typeparam>
             <typeparam name="TWantAction"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`4.WantFactType">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`3.WantFactType">
             <summary>
             The type of fact for which you want to build a tree.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`4.WantActionInfo">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`3.WantActionInfo">
             <summary>
             WantAction for which you need to build an action.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`4.FactRules">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`3.FactRules">
             <summary>
             A collection of rules that will be used to build the tree.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest`4">
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest`3">
             <summary>
             Request to build a trees for WantAction.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest`4.WantActionInfo">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest`3.WantActionInfo">
             <summary>
             WantAction for which you need to build an action.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest`4.FactRules">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest`3.FactRules">
             <summary>
             A collection of rules that will be used to build the tree.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest`5">
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest`4">
             <summary>
             Request to build a trees.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactRule"></typeparam>
             <typeparam name="TFactRuleCollection"></typeparam>
             <typeparam name="TWantAction"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest`5.WantActions">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest`4.WantActions">
             <summary>
             List of actions for which to build trees.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest`5.Container">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest`4.Container">
             <summary>
-            A container with facts on which to build trees for <see cref="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest`5.WantActions"/>.
+            A container with facts on which to build trees for <see cref="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest`4.WantActions"/>.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest`5.FactRules">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest`4.FactRules">
             <summary>
             A collection of rules that will be used to build the tree.
             </summary>
@@ -172,119 +170,117 @@
             Independent Rules Group.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`2">
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`1">
             <summary>
             Node.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactRule"></typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`2.Parent">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`1.Parent">
             <summary>
             Parent node.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`2.Childs">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`1.Childs">
             <summary>
             Childs node.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`2.Info">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeByFactRule`1.Info">
             <summary>
             Node info.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2">
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`1">
             <summary>
             Node info.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.Rule">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`1.Rule">
             <summary>
             Rule.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.SuccessConditions">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`1.SuccessConditions">
             <summary>
-            List of fact conditions. Successfully completed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.Rule"/>.
+            List of fact conditions. Successfully completed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`1.Rule"/>.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.FailedConditions">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`1.FailedConditions">
             <summary>
-            List of fact conditions. Failed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.Rule"/>.
+            List of fact conditions. Failed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`1.Rule"/>.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.FactRules">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`1.FactRules">
             <summary>
-            Fact rules for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`2.Rule"/>.
+            Fact rules for <see cref="P:GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle`1.Rule"/>.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4">
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`3">
             <summary>
             A tree built by type of fact rule.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Root">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`3.Root">
             <summary>
             Root node.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.WantActionInfo">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`3.WantActionInfo">
             <summary>
             The action in which the tree was built.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.NodeInfos">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`3.NodeInfos">
             <summary>
             Information about all the rules that were tested for the ability to use when building a tree.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Levels">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`3.Levels">
             <summary>
             Tree levels.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Status">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`3.Status">
             <summary>
             Tree work status.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Built">
+        <member name="M:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`3.Built">
             <summary>
             Tree built.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`4.Cencel">
+        <member name="M:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`3.Cencel">
             <summary>
             The tree is canceled.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3">
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`2">
             <summary>
-            Info for <see cref="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.WantAction"/>.
+            Info for <see cref="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`2.WantAction"/>.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
             <typeparam name="TWantAction"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.WantAction">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`2.WantAction">
             <summary>
             WantAction.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.Container">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`2.Container">
             <summary>
             Fact container.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.SuccessConditions">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`2.SuccessConditions">
             <summary>
-            List of fact conditions. Successfully completed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.WantAction"/>.
+            List of fact conditions. Successfully completed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`2.WantAction"/>.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.FailedConditions">
+        <member name="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`2.FailedConditions">
             <summary>
-            List of fact conditions. Failed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`3.WantAction"/>.
+            List of fact conditions. Failed conditions for <see cref="P:GetcuReone.FactFactory.Entities.Trees.WantActionInfo`2.WantAction"/>.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.WantAction">
@@ -292,7 +288,7 @@
             Desired action information.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.WantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.FactBase}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Entities.WantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor.
             </summary>

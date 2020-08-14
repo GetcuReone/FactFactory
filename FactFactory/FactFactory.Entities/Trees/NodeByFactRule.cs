@@ -6,25 +6,23 @@ namespace GetcuReone.FactFactory.Entities.Trees
     /// <summary>
     /// Node.
     /// </summary>
-    /// <typeparam name="TFactBase"></typeparam>
     /// <typeparam name="TFactRule"></typeparam>
-    public class NodeByFactRule<TFactBase, TFactRule>
-        where TFactBase : IFact
-        where TFactRule : IFactRule<TFactBase>
+    public class NodeByFactRule<TFactRule>
+        where TFactRule : IFactRule
     {
         /// <summary>
         /// Parent node.
         /// </summary>
-        public NodeByFactRule<TFactBase, TFactRule> Parent { get; set; }
+        public NodeByFactRule<TFactRule> Parent { get; set; }
 
         /// <summary>
         /// Childs node.
         /// </summary>
-        public List<NodeByFactRule<TFactBase, TFactRule>> Childs { get; set; }
+        public List<NodeByFactRule<TFactRule>> Childs { get; set; }
 
         /// <summary>
         /// Node info.
         /// </summary>
-        public NodeInfoByFactRyle<TFactBase, TFactRule> Info { get; set; }
+        public NodeInfoByFactRyle<TFactRule> Info { get; set; }
     }
 }
