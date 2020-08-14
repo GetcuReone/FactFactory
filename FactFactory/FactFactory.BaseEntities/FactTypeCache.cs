@@ -13,7 +13,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public IFactType GetFactType<TFact>(TFact fact) where TFact : IFact
         {
-            if (!_cache.ContainsKey(fact))
+            if (_cache.ContainsKey(fact))
                 return _cache[fact];
 
             IFactType factType = fact.GetFactType();
