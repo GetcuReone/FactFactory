@@ -13,11 +13,10 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
         public virtual IFactType FactType { get; protected set; }
 
         /// <inheritdoc/>
-        public abstract bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>;
+        public abstract bool Condition<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
 
         /// <inheritdoc/>
         public override IFactType GetFactType()
@@ -46,7 +45,7 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
         }
 
         /// <inheritdoc/>
-        public override bool IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+        public override bool IsFactContained<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
         {
             return !FactType.GetFacts(container).IsNullOrEmpty();
         }

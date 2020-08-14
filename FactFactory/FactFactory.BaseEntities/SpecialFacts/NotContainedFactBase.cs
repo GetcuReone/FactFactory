@@ -10,9 +10,9 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
         where TFact : IFact
     {
         /// <inheritdoc/>
-        public override bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+        public override bool Condition<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
         {
-            return !IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(factWork, wantAction, container);
+            return !IsFactContained(factWork, wantAction, container);
         }
     }
 }
