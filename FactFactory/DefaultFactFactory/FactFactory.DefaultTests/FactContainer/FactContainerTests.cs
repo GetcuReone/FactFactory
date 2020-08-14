@@ -226,20 +226,5 @@ namespace FactFactoryTests.FactContainer
                     Assert.AreEqual(0, container.Count(), "Container must be empty.");
                 });
         }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Add a fact that is not inherited from the base class and is not special.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void AddFactOfIFactTestCase()
-        {
-            var fact = new InvalidFact();
-            string expectedMessage = $"The fact must be inherited either from the base type or from {nameof(ISpecialFact)}. Fact:<{fact}>.";
-
-            GivenCreateContainer()
-                .When("Add fact.", container =>
-                    ExpectedFactFactoryException(() => container.Add(fact)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedMessage);
-        }
     }
 }

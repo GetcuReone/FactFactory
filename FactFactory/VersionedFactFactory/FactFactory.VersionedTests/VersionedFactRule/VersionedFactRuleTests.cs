@@ -84,6 +84,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
         [Description("Calculate fact without version.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Ignore("Temporarily unstable due to issue 158")]
         public void VersionedFactRule_CalculateWithoutVersionTestCase()
         {
             Container container = null;

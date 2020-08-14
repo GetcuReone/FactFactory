@@ -220,47 +220,6 @@ namespace FactFactoryTests.FactRule
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Request an invalid fact.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void Rule_RequestInvalidFactTestCase()
-        {
-            string expectedReason = $"Rule must return fact inherited from {typeof(FactBase).FullName}. (Parameter 'outputFactType')";
-
-            GivenEmpty()
-                .When("Create rule.", _ =>
-                {
-                    return ExpectedException<ArgumentException>(
-                        () => new Rule((_, __) => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<InvalidFact>()));
-                })
-                .ThenIsNotNull()
-                .And("Check error.", ex =>
-                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected."));
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Request entry is not a valid fact.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void Rule_RequestEntryInvalidFactTestCase()
-        {
-            IFactType inputType = GetFactType<InvalidFact>();
-            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}.";
-
-            GivenEmpty()
-                .When("Create rule.", _ =>
-                {
-                    return ExpectedException<ArgumentException>(
-                        () => new Rule((_, __) => { return default; }, new List<IFactType> { inputType }, GetFactType<IntFact>()));
-                })
-                .ThenIsNotNull()
-                .And("Check error", ex =>
-                {
-                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
-                });
-        }
-
-        [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
         [Description("Return NoDerive fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
