@@ -43,44 +43,43 @@
             It was calculated using the rule.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.IFactContainer`1">
+        <member name="T:GetcuReone.FactFactory.Interfaces.IFactContainer">
             <summary>
             Container interface with facts for deriving other facts.
             </summary>
-            <typeparam name="TFactBase">The type from which all facts in this container should be inherited.</typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.IFactContainer`1.IsReadOnly">
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactContainer.IsReadOnly">
             <summary>
-            Gets a value indicating whether the <see cref="T:GetcuReone.FactFactory.Interfaces.IFactContainer`1"/> is read-only.
+            Gets a value indicating whether the <see cref="T:GetcuReone.FactFactory.Interfaces.IFactContainer"/> is read-only.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Add``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.Add``1(``0)">
             <summary>
             Add fact.
             </summary>
             <param name="fact">Fact.</param>
             <typeparam name="TFact">Type of fact to add.</typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Add facts.
             </summary>
             <param name="facts">Fact set.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Remove``1">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.Remove``1">
             <summary>
             Remove fact.
             </summary>
             <typeparam name="TFact">Type of fact to delete.</typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Remove``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.Remove``1(``0)">
             <summary>
             Remove fact.
             </summary>
             <param name="fact"></param>
             <typeparam name="TFact">Type of fact to delete.</typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.TryGetFact``1(``0@)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.TryGetFact``1(``0@)">
             <summary>
             Try get fact.
             </summary>
@@ -88,70 +87,69 @@
             <param name="fact"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.GetFact``1">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.GetFact``1">
             <summary>
             Get fact.
             </summary>
             <typeparam name="TFact">Type of fact to return.</typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Contains``1">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.Contains``1">
             <summary>
             Is this type of fact contained.
             </summary>
             <typeparam name="TFact">type of fact to check for.</typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer`1.Clear">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.Clear">
             <summary>
             Clear this container.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.IFactFactory`5">
+        <member name="T:GetcuReone.FactFactory.Interfaces.IFactFactory`4">
             <summary>
             Fact factory interface.
             </summary>
-            <typeparam name="TFactBase">All facts that the fact factory works with should be inherited from this type.</typeparam>
             <typeparam name="TFactContainer">Type fact container.</typeparam>
             <typeparam name="TFactRule">Type fact rule.</typeparam>
             <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
             <typeparam name="TWantAction">Type 'want action'.</typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Container">
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactFactory`4.Container">
             <summary>
             Fact container.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Rules">
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactFactory`4.Rules">
             <summary>
             Collection of rules for derive facts.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.Derive">
             <summary>
             Derive the facts.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.DeriveFact``1">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.DeriveFact``1">
             <summary>
-            Derive <typeparamref name="TWantFact"/>.
+            Derive <typeparamref name="TFactResult"/>.
             </summary>
-            <typeparam name="TWantFact">Type of desired fact.</typeparam>
+            <typeparam name="TFactResult">Type of desired fact.</typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.WantFact(`3)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.WantFact(`2)">
             <summary>
             Requesting a desired fact through action.
             </summary>
             <param name="wantAction"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.GetSingleEntityOperations">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.GetSingleEntityOperations">
             <summary>
             Get <see cref="T:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations"/>.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.GetFactTypeCache">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.GetFactTypeCache">
             <summary>
             Get <see cref="T:GetcuReone.FactFactory.Interfaces.IFactTypeCache"/>.
             </summary>
@@ -172,18 +170,17 @@
             Value.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.IFactRule`1">
+        <member name="T:GetcuReone.FactFactory.Interfaces.IFactRule">
             <summary>
             Rule of fact calculation.
             </summary>
-            <typeparam name="TFactBase">The type of fact from which the facts in the container should be inherited.</typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.IFactRule`1.OutputFactType">
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactRule.OutputFactType">
             <summary>
             Information on output fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule`1.CanCalculate``2(``0,``1)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.CanCalculate``2(``0,``1)">
             <summary>
             Is it possible to calculate the fact.
             </summary>
@@ -193,7 +190,7 @@
             <typeparam name="TWantAction"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule`1.Calculate``2(``0,``1)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.Calculate``2(``0,``1)">
             <summary>
             Rule of fact calculate.
             </summary>
@@ -203,7 +200,7 @@
             <typeparam name="TWantAction"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule`1.GetNecessaryFactTypes``2(``0,``1)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.GetNecessaryFactTypes``2(``0,``1)">
             <summary>
             Get the necessary fact types.
             </summary>
@@ -213,16 +210,15 @@
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.IFactRuleCollection`2">
+        <member name="T:GetcuReone.FactFactory.Interfaces.IFactRuleCollection`1">
             <summary>
             Collection of rules.
             </summary>
-            <typeparam name="TFactBase">Base fact type.</typeparam>
             <typeparam name="TFactRule">Rule type.</typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.IFactRuleCollection`2.IsReadOnly">
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactRuleCollection`1.IsReadOnly">
             <summary>
-            Gets a value indicating whether the <see cref="T:GetcuReone.FactFactory.Interfaces.IFactRuleCollection`2"/> is read-only.
+            Gets a value indicating whether the <see cref="T:GetcuReone.FactFactory.Interfaces.IFactRuleCollection`1"/> is read-only.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactType">
@@ -287,18 +283,17 @@
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.IFactWork`1">
+        <member name="T:GetcuReone.FactFactory.Interfaces.IFactWork">
             <summary>
             Basic interface for objects that work directly with facts.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.IFactWork`1.InputFactTypes">
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactWork.InputFactTypes">
             <summary>
             Information on input factacles rules.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactWork`1.EqualsWork``3(``0,``1,``2)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactWork.EqualsWork``3(``0,``1,``2)">
             <summary>
             Work equality.
             </summary>
@@ -310,9 +305,9 @@
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactWork`1.СompatibilityWithRule``3(``0,``1,``2)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactWork.СompatibilityWithRule``3(``0,``1,``2)">
             <summary>
-            Is the <paramref name="factRule"/> rule compatible with the current <see cref="T:GetcuReone.FactFactory.Interfaces.IFactWork`1"/>.
+            Is the <paramref name="factRule"/> rule compatible with the current <see cref="T:GetcuReone.FactFactory.Interfaces.IFactWork"/>.
             </summary>
             <typeparam name="TFactRule"></typeparam>
             <typeparam name="TWantAction"></typeparam>
@@ -327,30 +322,27 @@
             Single operations on entities of the FactFactory.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.ValidateAndGetContainer``2(``1)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.ValidateAndGetContainer``1(``0)">
             <summary>
             Validate and return a copy of the container.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.ValidateAndGetRules``3(``2)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.ValidateAndGetRules``2(``1)">
             <summary>
             Validate and return a copy of the rules.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactRule"></typeparam>
             <typeparam name="TFactRuleCollection"></typeparam>
             <param name="ruleCollection"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.GetComparer``4(``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.GetComparer``3(``1,``2)">
             <summary>
-            Get comparer for <see cref="T:GetcuReone.FactFactory.Interfaces.IFactWork`1"/>.
+            Get comparer for <see cref="T:GetcuReone.FactFactory.Interfaces.IFactWork"/>.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactWork"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
             <typeparam name="TWantAction"></typeparam>
@@ -358,20 +350,19 @@
             <param name="wantAction">Action within which the sorting will take place.</param>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.IWantAction`1">
+        <member name="T:GetcuReone.FactFactory.Interfaces.IWantAction">
             <summary>
             Desired action information.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IWantAction`1.Invoke``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IWantAction.Invoke``1(``0)">
             <summary>
             Run action.
             </summary>
-            <typeparam name="TFactContainer">container with <see cref="P:GetcuReone.FactFactory.Interfaces.IFactWork`1.InputFactTypes"/>.</typeparam>
+            <typeparam name="TFactContainer">container with <see cref="P:GetcuReone.FactFactory.Interfaces.IFactWork.InputFactTypes"/>.</typeparam>
             <param name="container"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IWantAction`1.GetNecessaryFactTypes``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IWantAction.GetNecessaryFactTypes``1(``0)">
             <summary>
             Get the necessary fact types.
             </summary>
@@ -399,11 +390,10 @@
             Information about the type of fact the current runtime fact is working with.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact.Condition``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact.Condition``3(``0,``1,``2)">
             <summary>
             A condition that determines whether the current fact can be added to the container when deriving.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactWork"></typeparam>
             <typeparam name="TWantAction"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
@@ -420,11 +410,10 @@
             Basic interface for special facts.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact.IsFactContained``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact.IsFactContained``3(``0,``1,``2)">
             <summary>
             Is the fact contained in the container.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactWork"></typeparam>
             <typeparam name="TWantAction"></typeparam>
             <typeparam name="TFactContainer"></typeparam>

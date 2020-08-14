@@ -5,9 +5,7 @@ namespace GetcuReone.FactFactory.Interfaces
     /// <summary>
     /// Rule of fact calculation.
     /// </summary>
-    /// <typeparam name="TFactBase">The type of fact from which the facts in the container should be inherited.</typeparam>
-    public interface IFactRule<TFactBase> : IFactWork<TFactBase>
-        where TFactBase : IFact
+    public interface IFactRule : IFactWork
     {
         /// <summary>
         /// Information on output fact.
@@ -23,8 +21,8 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <typeparam name="TWantAction"></typeparam>
         /// <returns></returns>
         bool CanCalculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction) 
-            where TContainer : IFactContainer<TFactBase>
-            where TWantAction : IWantAction<TFactBase>;
+            where TContainer : IFactContainer
+            where TWantAction : IWantAction;
 
         /// <summary>
         /// Rule of fact calculate.
@@ -34,9 +32,9 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <typeparam name="TContainer"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>
         /// <returns></returns>
-        TFactBase Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction) 
-            where TContainer : IFactContainer<TFactBase>
-            where TWantAction : IWantAction<TFactBase>;
+        IFact Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction) 
+            where TContainer : IFactContainer
+            where TWantAction : IWantAction;
 
         /// <summary>
         /// Get the necessary fact types.
@@ -47,7 +45,7 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <param name="container"></param>
         /// <returns></returns>
         List<IFactType> GetNecessaryFactTypes<TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>;
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }

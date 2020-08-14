@@ -10,41 +10,33 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <summary>
         /// Validate and return a copy of the container.
         /// </summary>
-        /// <typeparam name="TFactBase"></typeparam>
         /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="container"></param>
         /// <returns></returns>
-        TFactContainer ValidateAndGetContainer<TFactBase, TFactContainer>(TFactContainer container)
-            where TFactBase : IFact
-            where TFactContainer : IFactContainer<TFactBase>;
+        TFactContainer ValidateAndGetContainer<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
 
         /// <summary>
         /// Validate and return a copy of the rules.
         /// </summary>
-        /// <typeparam name="TFactBase"></typeparam>
         /// <typeparam name="TFactRule"></typeparam>
         /// <typeparam name="TFactRuleCollection"></typeparam>
         /// <param name="ruleCollection"></param>
         /// <returns></returns>
-        TFactRuleCollection ValidateAndGetRules<TFactBase, TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
-            where TFactBase : IFact
-            where TFactRule : IFactRule<TFactBase>
-            where TFactRuleCollection : IFactRuleCollection<TFactBase, TFactRule>;
+        TFactRuleCollection ValidateAndGetRules<TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
+            where TFactRule : IFactRule
+            where TFactRuleCollection : IFactRuleCollection<TFactRule>;
 
         /// <summary>
-        /// Get comparer for <see cref="IFactWork{TFactBase}"/>.
+        /// Get comparer for <see cref="IFactWork"/>.
         /// </summary>
-        /// <typeparam name="TFactBase"></typeparam>
         /// <typeparam name="TFactWork"></typeparam>
         /// <typeparam name="TFactContainer"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>
         /// <param name="container">Container within which the sorting will take place.</param>
         /// <param name="wantAction">Action within which the sorting will take place.</param>
         /// <returns></returns>
-        IComparer<TFactWork> GetComparer<TFactBase, TFactWork, TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>;
+        IComparer<TFactWork> GetComparer<TFactWork, TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }
