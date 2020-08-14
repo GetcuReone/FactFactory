@@ -14,20 +14,18 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
     public class SingleEntityOperationsFacade : FacadeBase, ISingleEntityOperations
     {
         /// <inheritdoc/>
-        public virtual IComparer<TFactWork> GetComparer<TFactBase, TFactWork, TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
+        public virtual IComparer<TFactWork> GetComparer<TFactWork, TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             return Comparer<TFactWork>.Create(
-                (x, y) => CompareFactWorks<TFactBase, TFactWork, TWantAction, TFactContainer>(x, y, wantAction, container));
+                (x, y) => CompareFactWorks(x, y, wantAction, container));
         }
 
         /// <summary>
         /// Compare <typeparamref name="TFactWork"/>.
         /// </summary>
-        /// <typeparam name="TFactBase"></typeparam>
         /// <typeparam name="TFactWork"></typeparam>
         /// <typeparam name="TFactContainer"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>
@@ -36,13 +34,12 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// <param name="container">Container within which the sorting will take place.</param>
         /// <param name="wantAction">Action within which the sorting will take place.</param>
         /// <returns></returns>
-        public virtual int CompareFactWorks<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork first, TFactWork second, TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
+        public virtual int CompareFactWorks<TFactWork, TWantAction, TFactContainer>(TFactWork first, TFactWork second, TWantAction wantAction, TFactContainer container)
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
-            if ((first is IWantAction<TFactBase>) || (second is IWantAction<TFactBase>))
+            if ((first is IWantAction) || (second is IWantAction))
                 return 0;
 
             if (first.InputFactTypes.IsNullOrEmpty())
@@ -90,44 +87,42 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual TFactContainer ValidateAndGetContainer<TFactBase, TFactContainer>(TFactContainer container)
-            where TFactBase : IFact
-            where TFactContainer : IFactContainer<TFactBase>
+        public virtual TFactContainer ValidateAndGetContainer<TFactContainer>(TFactContainer container) 
+            where TFactContainer : IFactContainer
         {
             if (container == null)
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "Container cannot be null.");
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "Container cannot be null.");
 
-            IFactContainer<TFactBase> containerCopy = container.Copy();
+            IFactContainer containerCopy = container.Copy();
             if (containerCopy == null)
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method return null.");
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactContainer.Copy method return null.");
             if (container.Equals(containerCopy))
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
             if (!(containerCopy is TFactContainer container1))
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactContainer.Copy method returned a different type of container.");
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactContainer.Copy method returned a different type of container.");
             if (container1.Any(fact => fact is IConditionFact))
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, $"Container contains {nameof(IConditionFact)} facts.");
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, $"Container contains {nameof(IConditionFact)} facts.");
 
             container1.IsReadOnly = true;
             return container1;
         }
 
         /// <inheritdoc/>
-        public TFactRuleCollection ValidateAndGetRules<TFactBase, TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
-            where TFactBase : IFact
-            where TFactRule : IFactRule<TFactBase>
-            where TFactRuleCollection : IFactRuleCollection<TFactBase, TFactRule>
+        public TFactRuleCollection ValidateAndGetRules<TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
+            where TFactRule : IFactRule
+            where TFactRuleCollection : IFactRuleCollection<TFactRule>
         {
             // Get a copy of the rules
             if (ruleCollection == null)
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "Rules cannot be null.");
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "Rules cannot be null.");
 
-            IFactRuleCollection<TFactBase, TFactRule> rulesCopy = ruleCollection.Copy();
+            IFactRuleCollection<TFactRule> rulesCopy = ruleCollection.Copy();
             if (rulesCopy == null)
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactRuleCollection.Copy method return null.");
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactRuleCollection.Copy method return null.");
             if (rulesCopy.Equals(ruleCollection))
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactRuleCollection.Copy method return original rule collection.");
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactRuleCollection.Copy method return original rule collection.");
             if (!(rulesCopy is TFactRuleCollection rules))
-                throw CommonHelper.CreateDeriveException<TFactBase>(ErrorCode.InvalidData, "IFactRuleCollection.Copy method returned a different type of rules.");
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactRuleCollection.Copy method returned a different type of rules.");
 
             rules.IsReadOnly = true;
             return rules;

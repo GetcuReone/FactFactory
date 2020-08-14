@@ -165,7 +165,7 @@
             The tree is canceled.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Entities.Trees.IndependentRulesGroup`2">
+        <member name="T:GetcuReone.FactFactory.Entities.Trees.IndependentRulesGroup`1">
             <summary>
             Independent Rules Group.
             </summary>

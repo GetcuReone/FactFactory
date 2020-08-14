@@ -36,6 +36,7 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <param name="wantAction">Action within which the sorting will take place.</param>
         /// <returns></returns>
         IComparer<TFactWork> GetComparer<TFactWork, TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
+            where TFactWork : IFactWork
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
     }
