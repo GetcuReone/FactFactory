@@ -3,18 +3,15 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace GetcuReone.FactFactory.Versioned.BaseEntities
 {
     /// <summary>
     /// Base collection for <typeparamref name="TFactRule"/>.
     /// </summary>
-    /// <typeparam name="TFactBase"></typeparam>
     /// <typeparam name="TFactRule"></typeparam>
-    public abstract class VersionedFactRuleCollectionBase<TFactBase, TFactRule> : FactRuleCollectionBase<TFactBase, TFactRule>
-        where TFactBase : class, IVersionedFact
-        where TFactRule : IVersionedFactRule<TFactBase>
+    public abstract class VersionedFactRuleCollectionBase<TFactRule> : FactRuleCollectionBase<TFactRule>
+        where TFactRule : IVersionedFactRule
     {
         /// <summary>
         /// Constructor.
@@ -47,7 +44,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <param name="container"></param>
         /// <param name="wantAction"></param>
         /// <returns></returns>
-        protected override TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IWantAction<TFactBase> wantAction)
+        protected override TFact GetCorrectFact<TFact>(IFactContainer container, IWantAction wantAction)
         {
             if (wantAction is IFactTypeVersionInfo factType)
                 return (TFact)container.GetRightFactByVersionType(GetFactType<TFact>(), factType.VersionType);

@@ -1,5 +1,4 @@
-﻿using GetcuReone.FactFactory.BaseEntities;
-using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.BaseEntities;
 using System.Collections.Generic;
 
@@ -8,7 +7,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
     /// <summary>
     /// Versioned fact container.
     /// </summary>
-    public class VersionedFactContainer : VersionedFactContainerBase<VersionedFactBase>
+    public class VersionedFactContainer : VersionedFactContainerBase
     {
         /// <summary>
         /// Constructor.
@@ -38,7 +37,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// Get copy container.
         /// </summary>
         /// <returns></returns>
-        public override IFactContainer<VersionedFactBase> Copy()
+        public override IFactContainer Copy()
         {
             return new VersionedFactContainer(this, false);
         }

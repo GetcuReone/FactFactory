@@ -11,9 +11,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     /// <summary>
     /// Version rule for calculating a fact.
     /// </summary>
-    /// <typeparam name="TFactBase">Base class for facts.</typeparam>
-    public abstract class VersionedFactRuleBase<TFactBase> : FactRuleBase<TFactBase>, IVersionedFactRule<TFactBase>
-        where TFactBase : class, IVersionedFact
+    public abstract class VersionedFactRuleBase : FactRuleBase, IVersionedFactRule
     {
         /// <summary>
         /// Type of fact with rule version.
@@ -26,7 +24,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <param name="func"></param>
         /// <param name="inputFactTypes"></param>
         /// <param name="outputFactType"></param>
-        protected VersionedFactRuleBase(Func<IFactContainer<TFactBase>, IWantAction<TFactBase>, TFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType) : base(func, inputFactTypes, outputFactType)
+        protected VersionedFactRuleBase(Func<IFactContainer, IWantAction, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType) : base(func, inputFactTypes, outputFactType)
         {
             outputFactType.CannotIsType<IVersionFact>(nameof(outputFactType));
 
@@ -34,14 +32,14 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         }
 
         /// <inheritdoc/>
-        public override TFactBase Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
+        public override IFact Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
         {
-            TFactBase versionedFact = base.Calculate(container, wantAction);
+            IFact versionedFact = base.Calculate(container, wantAction);
 
-            if (versionedFact != null)
+            if (versionedFact != null && (versionedFact is VersionedFactBase versionedFactBase))
             {
                 if (VersionType != null)
-                    versionedFact.Version = (IVersionFact)container.GetRightFactByVersion(VersionType, null);
+                    versionedFactBase.Version = (IVersionFact)container.GetRightFactByVersion(VersionType, null);
             }
 
             return versionedFact;
@@ -73,8 +71,8 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             if (!base.СompatibilityWithRule(factRule, wantAction, container))
                 return false;
 
-            if ((factRule is VersionedFactRuleBase<TFactBase> factRuleBase) && (wantAction is VersionedWantActionBase<TFactBase> wantActionBase) && (container is VersionedFactContainerBase<TFactBase> containerBase))
-                return this.СompatibilityWithRuleByVersion<TFactBase, VersionedFactRuleBase<TFactBase>, VersionedFactRuleBase<TFactBase>, VersionedWantActionBase<TFactBase>, VersionedFactContainerBase<TFactBase>>(factRuleBase, wantActionBase, containerBase);
+            if ((factRule is VersionedFactRuleBase factRuleBase) && (wantAction is VersionedWantActionBase wantActionBase) && (container is VersionedFactContainerBase containerBase))
+                return this.СompatibilityWithRuleByVersion(factRuleBase, wantActionBase, containerBase);
 
             return false;
         }

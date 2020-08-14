@@ -19,18 +19,17 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Base class for versioned fact factory.
     /// </summary>
-    public abstract class VersionedFactFactoryBase<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : FactFactoryBase<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer>, IVersionedFactFactory<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
-        where TFactBase : class, IVersionedFact
-        where TFactContainer : VersionedFactContainerBase<TFactBase>
-        where TFactRule : VersionedFactRuleBase<TFactBase>
-        where TFactRuleCollection : VersionedFactRuleCollectionBase<TFactBase, TFactRule>
-        where TWantAction : VersionedWantActionBase<TFactBase>
+    public abstract class VersionedFactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : FactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>, IVersionedFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+        where TFactContainer : VersionedFactContainerBase
+        where TFactRule : VersionedFactRuleBase
+        where TFactRuleCollection : VersionedFactRuleCollectionBase<TFactRule>
+        where TWantAction : VersionedWantActionBase
     {
         private List<IFactType> _calculatedFactTypes;
         private TWantAction _calculatingWantAction;
 
         /// <inheritdoc/>
-        protected override TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IReadOnlyCollection<IFactType> inputFactTypes)
+        protected override TFact GetCorrectFact<TFact>(IFactContainer container, IReadOnlyCollection<IFactType> inputFactTypes)
         {
             IFactType versionType = inputFactTypes.SingleOrDefault(type => type.IsFactType<IVersionFact>());
 
@@ -65,7 +64,7 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <inheritdoc/>
-        protected override bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction, out TFactBase needRemoveFact)
+        protected override bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction, out IFact needRemoveFact)
         {
             bool result = false;
             needRemoveFact = null;
@@ -76,7 +75,7 @@ namespace GetcuReone.FactFactory.Versioned
             IVersionFact ruleVersion =  rule.VersionType != null
                 ? container.GetRightFactByVersionType(rule.VersionType, null) as IVersionFact
                 : null;
-            TFactBase currentVersionedFact = (TFactBase)container.GetRightFactByVersion(rule.OutputFactType, maxVersion);
+            var currentVersionedFact = container.GetRightFactByVersion(rule.OutputFactType, maxVersion) as VersionedFactBase;
 
             if (currentVersionedFact == null)
                 result = true;
@@ -170,7 +169,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
         /// <returns></returns>
         public virtual TFact DeriveFact<TFact, TVersion>()
-            where TFact : TFactBase
+            where TFact : IFact
             where TVersion : IVersionFact
         {
             TFact fact = default;

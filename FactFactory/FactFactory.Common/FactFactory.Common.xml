@@ -224,13 +224,6 @@
             <param name="requiredFacts">The facts that tried to derive.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.ValidateTypeOfFact``1(GetcuReone.FactFactory.Interfaces.IFact)">
-            <summary>
-            Check type of fact.
-            </summary>
-            <typeparam name="TFactBase"></typeparam>
-            <param name="fact"></param>
-        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.IsValidFactType``1(GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Is the fact type valid.

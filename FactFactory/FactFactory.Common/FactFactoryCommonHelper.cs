@@ -102,23 +102,6 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Check type of fact.
-        /// </summary>
-        /// <typeparam name="TFactBase"></typeparam>
-        /// <param name="fact"></param>
-        public static void ValidateTypeOfFact<TFactBase>(this IFact fact) where TFactBase : IFact
-        {
-            switch (fact)
-            {
-                case TFactBase _:
-                case ISpecialFact _:
-                    break;
-
-                default: throw CreateException(ErrorCode.InvalidData, $"The fact must be inherited either from the base type or from {nameof(ISpecialFact)}. Fact:<{fact}>.");
-            }
-        }
-
-        /// <summary>
         /// Is the fact type valid.
         /// </summary>
         /// <typeparam name="TFactBase"></typeparam>
