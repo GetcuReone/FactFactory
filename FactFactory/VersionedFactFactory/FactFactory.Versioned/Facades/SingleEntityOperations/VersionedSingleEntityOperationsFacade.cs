@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Linq;
@@ -10,33 +11,23 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
     public class VersionedSingleEntityOperationsFacade : SingleEntityOperationsFacade
     {
         /// <inheritdoc/>
-        public override int CompareFactWorks<TFactWork, TWantAction, TFactContainer>(TFactWork first, TFactWork second, TWantAction wantAction, TFactContainer container)
+        public override int CompareFactRules(IFactRule first, IFactRule second, IWantActionContext context)
         {
-            if ((first is IFactRule firstRule) && (second is IFactRule secondRule))
-            {
-                int resultByVersion = CompareRulesByVersion<IFactRule, TWantAction, TFactContainer>(firstRule, secondRule, wantAction, container);
-                if (resultByVersion != 0)
-                    return resultByVersion;
-            }
+            int resultByVersion = CompareRulesByVersion(first, second, context);
+            if (resultByVersion != 0)
+                return resultByVersion;
 
-            return base.CompareFactWorks<TFactWork, TWantAction, TFactContainer>(first, second, wantAction, container);
+            return base.CompareFactRules(first, second, context);
         }
 
         /// <summary>
         /// Compare rules by version.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        /// <param name="wantAction"></param>
-        /// <param name="container"></param>
+        /// <param name="context"></param>
         /// <returns></returns>
-        public virtual int CompareRulesByVersion<TFactRule, TWantAction, TFactContainer>(TFactRule x, TFactRule y, TWantAction wantAction, TFactContainer container)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        public virtual int CompareRulesByVersion(IFactRule x, IFactRule y, IWantActionContext context)
         {
             var xVersionType = x.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
             var yVersionType = y.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
@@ -46,8 +37,8 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (yVersionType == null)
                 return -1;
 
-            IVersionFact xVersion = container.GetVersionFact(xVersionType);
-            IVersionFact yVersion = container.GetVersionFact(yVersionType);
+            IVersionFact xVersion = context.Container.GetVersionFact(xVersionType);
+            IVersionFact yVersion = context.Container.GetVersionFact(yVersionType);
 
             return xVersion.CompareTo(yVersion);
         }

@@ -68,13 +68,12 @@
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetFactTypeCache">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.BuildTrees(GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest{`0,`1,`2,`3},GetcuReone.FactFactory.Interfaces.ISingleEntityOperations,GetcuReone.FactFactory.Interfaces.IFactTypeCache)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.BuildTrees(GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest{`0,`1,`2,`3},GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext)">
             <summary>
             Build trees for wantActions.
             </summary>
             <param name="request"></param>
-            <param name="singleEntityOperations"></param>
-            <param name="cache"></param>
+            <param name="context"></param>
             <exception cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException">Mistakes in building trees.</exception>
             <returns></returns>
         </member>

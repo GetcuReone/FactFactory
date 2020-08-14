@@ -2,6 +2,7 @@
 using GetcuReone.ComboPatterns.Factory;
 using GetcuReone.ComboPatterns.Interfaces;
 using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Entities.Trees;
@@ -11,6 +12,7 @@ using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Facades.TreesOperations;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
@@ -65,14 +67,10 @@ namespace GetcuReone.FactFactory
         /// <inheritdoc/>
         public virtual void Derive()
         {
-            IFactTypeCache cache = GetFactTypeCache();
-            ISingleEntityOperations singleEntityOperations = GetSingleEntityOperations();
-            TFactContainer container = singleEntityOperations.ValidateAndGetContainer(Container);
-            TFactRuleCollection rules = singleEntityOperations.ValidateAndGetRules<TFactRule, TFactRuleCollection>(Rules);
-            var wantActions = new List<TWantAction>(
-                WantActions
-                .OrderByDescending(w => w, singleEntityOperations.GetComparer<TWantAction, TWantAction, TFactContainer>(null, container))
-            );
+            FactFactoryContext context = this.ToFactFactoryContext();
+            TFactContainer container = context.SingleEntityOperations.ValidateAndGetContainer(Container);
+            TFactRuleCollection rules = context.SingleEntityOperations.ValidateAndGetRules<TFactRule, TFactRuleCollection>(Rules);
+            var wantActions = new List<TWantAction>(WantActions);
 
             var defaultFacts = new List<IFact>();
             foreach(IFact fact in GetDefaultFacts(container) ?? Enumerable.Empty<IFact>())
@@ -93,8 +91,7 @@ namespace GetcuReone.FactFactory
                     FactRules = rules,
                     WantActions = wantActions,
                 },
-                singleEntityOperations,
-                cache
+                context
             );
 
             foreach (var item in forestry)
@@ -148,11 +145,10 @@ namespace GetcuReone.FactFactory
         /// Build trees for wantActions.
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="singleEntityOperations"></param>
-        /// <param name="cache"></param>
+        /// <param name="context"></param>
         /// <exception cref="InvalidDeriveOperationException">Mistakes in building trees.</exception>
         /// <returns></returns>
-        public virtual Dictionary<WantActionInfo<TWantAction, TFactContainer>, List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>> BuildTrees(BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request, ISingleEntityOperations singleEntityOperations, IFactTypeCache cache)
+        public virtual Dictionary<WantActionInfo<TWantAction, TFactContainer>, List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>> BuildTrees(BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request, IFactFactoryContext context)
         {
             var forestry = new Dictionary<WantActionInfo<TWantAction, TFactContainer>, List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>>();
             var deriveErrorDetails = new List<DeriveErrorDetail>();
@@ -167,13 +163,15 @@ namespace GetcuReone.FactFactory
                     Container = request.Container,
                 };
 
+                WantActionContext wantActionContext = context.ToWantActionContext(wantAction, request.Container);
+
                 var requestForWantAction = new BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer>
                 {
                     WantActionInfo = wantActionInfo,
                     FactRules = request
                         .FactRules
                         .Where(rule => wantAction.СompatibilityWithRule(rule, wantAction, wantActionInfo.Container))
-                        .OrderByDescending(rule => rule, singleEntityOperations.GetComparer<TFactRule, TWantAction, TFactContainer>(wantActionInfo.WantAction, wantActionInfo.Container))
+                        .OrderByDescending(rule => rule, wantActionContext.SingleEntityOperations.GetRuleComparer(wantActionContext))
                         .ToList(),
                 };
                 if (TryBuildTreesForWantAction(requestForWantAction, out List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> result, out DeriveErrorDetail detail))

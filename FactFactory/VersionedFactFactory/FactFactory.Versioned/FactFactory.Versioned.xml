@@ -275,20 +275,16 @@
         <member name="T:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.CompareFactWorks``3(``0,``0,``1,``2)">
+        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.CompareFactRules(GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.CompareRulesByVersion``3(``0,``0,``1,``2)">
+        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.CompareRulesByVersion(GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)">
             <summary>
             Compare rules by version.
             </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
             <param name="x"></param>
             <param name="y"></param>
-            <param name="wantAction"></param>
-            <param name="container"></param>
+            <param name="context"></param>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Helpers.VersionedFactFactoryHelper">

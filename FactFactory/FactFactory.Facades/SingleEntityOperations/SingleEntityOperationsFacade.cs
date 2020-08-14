@@ -1,6 +1,7 @@
 ﻿using GetcuReone.ComboPatterns.Facade;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,30 +15,20 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
     public class SingleEntityOperationsFacade : FacadeBase, ISingleEntityOperations
     {
         /// <inheritdoc/>
-        public virtual IComparer<TFactWork> GetComparer<TFactWork, TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
-            where TFactWork : IFactWork
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        public virtual IComparer<IFactRule> GetRuleComparer(IWantActionContext context)
         {
-            return Comparer<TFactWork>.Create(
-                (x, y) => CompareFactWorks(x, y, wantAction, container));
+            return Comparer<IFactRule>.Create(
+                (x, y) => CompareFactRules(x, y, context));
         }
 
         /// <summary>
-        /// Compare <typeparamref name="TFactWork"/>.
+        /// Compare <see cref="IFactRule"/>.
         /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
         /// <param name="first"></param>
         /// <param name="second"></param>
-        /// <param name="container">Container within which the sorting will take place.</param>
-        /// <param name="wantAction">Action within which the sorting will take place.</param>
+        /// <param name="context"></param>
         /// <returns></returns>
-        public virtual int CompareFactWorks<TFactWork, TWantAction, TFactContainer>(TFactWork first, TFactWork second, TWantAction wantAction, TFactContainer container)
-            where TFactWork : IFactWork
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        public virtual int CompareFactRules(IFactRule first, IFactRule second, IWantActionContext context)
         {
             if ((first is IWantAction) || (second is IWantAction))
                 return 0;

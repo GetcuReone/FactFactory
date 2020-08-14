@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using GetcuReone.FactFactory.Interfaces.Context;
+using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Interfaces
 {
@@ -27,17 +28,10 @@ namespace GetcuReone.FactFactory.Interfaces
             where TFactRuleCollection : IFactRuleCollection<TFactRule>;
 
         /// <summary>
-        /// Get comparer for <see cref="IFactWork"/>.
+        /// Get comparer for <see cref="IFactRule"/>.
         /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <param name="container">Container within which the sorting will take place.</param>
-        /// <param name="wantAction">Action within which the sorting will take place.</param>
+        /// <param name="context"></param>
         /// <returns></returns>
-        IComparer<TFactWork> GetComparer<TFactWork, TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
-            where TFactWork : IFactWork
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer;
+        IComparer<IFactRule> GetRuleComparer(IWantActionContext context);
     }
 }

@@ -4,6 +4,34 @@
         <name>FactFactory.Interfaces</name>
     </assembly>
     <members>
+        <member name="T:GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext">
+            <summary>
+            A context containing information within which current actions are taking place.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext.Cache">
+            <summary>
+            Fact type cache.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext.SingleEntityOperations">
+            <summary>
+            Single operations on entities of the FactFactory.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.Context.IWantActionContext">
+            <inheritdoc/>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Context.IWantActionContext.WantAction">
+            <summary>
+            WantAction.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Context.IWantActionContext.Container">
+            <summary>
+            Fact container.
+            </summary>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.ICopy`1">
             <summary>
             Interface for copying objects.
@@ -339,15 +367,11 @@
             <param name="ruleCollection"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.GetComparer``3(``1,``2)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.GetRuleComparer(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)">
             <summary>
-            Get comparer for <see cref="T:GetcuReone.FactFactory.Interfaces.IFactWork"/>.
+            Get comparer for <see cref="T:GetcuReone.FactFactory.Interfaces.IFactRule"/>.
             </summary>
-            <typeparam name="TFactWork"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <param name="container">Container within which the sorting will take place.</param>
-            <param name="wantAction">Action within which the sorting will take place.</param>
+            <param name="context"></param>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IWantAction">

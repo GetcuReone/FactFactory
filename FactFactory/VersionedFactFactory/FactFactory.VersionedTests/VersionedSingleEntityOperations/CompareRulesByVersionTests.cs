@@ -1,8 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedSingleEntityOperations.Env;
-using GetcuReone.FactFactory.Versioned;
-using GetcuReone.FactFactory.Versioned.BaseEntities;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -24,7 +22,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade => 
-                    facade.CompareRulesByVersion<VersionedFactRuleBase, VersionedWantActionBase, VersionedFactContainerBase>(first, second, null, Container))
+                    facade.CompareRulesByVersion(first, second, GetWantActionContext(null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -40,7 +38,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareRulesByVersion<VersionedFactRuleBase, VersionedWantActionBase, VersionedFactContainerBase>(first, second, null, Container))
+                    facade.CompareRulesByVersion(first, second, GetWantActionContext(null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -56,7 +54,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareRulesByVersion<VersionedFactRuleBase, VersionedWantActionBase, VersionedFactContainerBase>(first, second, null, Container))
+                    facade.CompareRulesByVersion(first, second, GetWantActionContext(null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -72,7 +70,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareRulesByVersion<VersionedFactRuleBase, VersionedWantActionBase, VersionedFactContainerBase>(first, second, null, Container))
+                    facade.CompareRulesByVersion(first, second, GetWantActionContext(null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -88,7 +86,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareRulesByVersion<VersionedFactRuleBase, VersionedWantActionBase, VersionedFactContainerBase>(first, second, null, Container))
+                    facade.CompareRulesByVersion(first, second, GetWantActionContext(null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -104,7 +102,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareRulesByVersion<VersionedFactRuleBase, VersionedWantActionBase, VersionedFactContainerBase>(first, second, null, Container))
+                    facade.CompareRulesByVersion(first, second, GetWantActionContext(null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
     }
