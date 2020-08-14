@@ -9,7 +9,7 @@ using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {
-    internal sealed class FactFactoryCustom : FactFactoryBase<FactBase, Container, Rule, Collection, Action>
+    internal sealed class FactFactoryCustom : FactFactoryBase<FactBase, Rule, Collection, Action, Container>
     {
         public List<Action> W_Actions => WantActions;
         public override Container Container => container;

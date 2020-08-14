@@ -11,7 +11,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory.Helpers
     public static class VersionedFactFactoryHelper
     {
         public static GivenBlock<TFactory> AndAddRules<TFactory>(this GivenBlock<TFactory> givenBlock, FactRuleCollectionBase<VersionedFactBase, Rule> factRules)
-            where TFactory : VersionedFactFactoryBase<VersionedFactBase, Container, Rule, Collection, Action>
+            where TFactory : VersionedFactFactoryBase<VersionedFactBase, Rule, Collection, Action, Container>
         {
             return givenBlock.And("Add rules", factory => factory.Rules.AddRange(factRules));
         }

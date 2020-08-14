@@ -8,7 +8,7 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Factory default implementation.
     /// </summary>
-    public class FactFactory : FactFactoryBase<FactBase, FactContainer, FactRule, FactRuleCollection, WantAction>
+    public class FactFactory : FactFactoryBase<FactBase, FactRule, FactRuleCollection, WantAction, FactContainer>
     {
         /// <summary>
         /// Fact container.

@@ -139,7 +139,7 @@
             <typeparam name="TWantFact">Type of desired fact.</typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.WantFact(`4)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.WantFact(`3)">
             <summary>
             Requesting a desired fact through action.
             </summary>

@@ -49,7 +49,7 @@
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetFactType``1">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetDefaultFacts(`1)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetDefaultFacts(`4)">
             <summary>
             Return the fact set that will be contained in the default container.
             </summary>
@@ -68,7 +68,7 @@
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetFactTypeCache">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.BuildTrees(GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest{`0,`2,`3,`4,`1},GetcuReone.FactFactory.Interfaces.ISingleEntityOperations,GetcuReone.FactFactory.Interfaces.IFactTypeCache)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.BuildTrees(GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest{`0,`1,`2,`3,`4},GetcuReone.FactFactory.Interfaces.ISingleEntityOperations,GetcuReone.FactFactory.Interfaces.IFactTypeCache)">
             <summary>
             Build trees for wantActions.
             </summary>
@@ -78,21 +78,21 @@
             <exception cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`1">Mistakes in building trees.</exception>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CalculateTreeAndDeriveWantFacts(GetcuReone.FactFactory.Entities.Trees.WantActionInfo{`0,`4,`1},System.Collections.Generic.List{GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`2,`4,`1}})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.CalculateTreeAndDeriveWantFacts(GetcuReone.FactFactory.Entities.Trees.WantActionInfo{`0,`3,`4},System.Collections.Generic.List{GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`1,`3,`4}})">
             <summary>
             Tree calculation and fact deriving.
             </summary>
             <param name="wantActionInfo"></param>
             <param name="trees"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnWantActionCalculated(`4,`1)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnWantActionCalculated(`3,`4)">
             <summary>
             Action calculation completion handler
             </summary>
             <param name="wantAction"></param>
             <param name="container"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,`1,`4)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,`4,`3)">
             <summary>
             Fact calculation event handler for an <paramref name="wantAction"/>.
             </summary>
@@ -100,7 +100,7 @@
             <param name="container">Container.</param>
             <param name="wantAction">The action for which the fact was calculated.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnDeriveFinished(System.Collections.Generic.List{`4},`1)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.OnDeriveFinished(System.Collections.Generic.List{`3},`4)">
             <summary>
             Event handler method 'derive finished'. It is executed at the end of the <see cref="M:GetcuReone.FactFactory.FactFactoryBase`5.Derive"/> method.
             </summary>
@@ -115,7 +115,7 @@
             <param name="factTypes">Facts required to launch an action.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.NeedRecalculateFact(`2,`1,`4,`0@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.NeedRecalculateFact(`1,`4,`3,`0@)">
             <summary>
             The method determines whether the fact should be recounted.
             </summary>
@@ -125,7 +125,7 @@
             <param name="needRemoveFact">If the method returns the true, then this fact will be removed from the container. There will be no deletion if the fact is empty.</param>
             <returns>True - fact needs to be recalculated.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryBuildTreesForWantAction(GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest{`0,`2,`4,`1},System.Collections.Generic.List{GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`2,`4,`1}}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryBuildTreesForWantAction(GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest{`0,`1,`3,`4},System.Collections.Generic.List{GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`1,`3,`4}}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}@)">
             <summary>
             Trye build tree for wantAction.
             </summary>
@@ -134,7 +134,7 @@
             <param name="deriveErrorDetail">Mistakes in building trees.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryBuildTreeForFactInfo(GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest{`0,`2,`4,`1},GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`2,`4,`1}@,System.Collections.Generic.List{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail}@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.TryBuildTreeForFactInfo(GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest{`0,`1,`3,`4},GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`1,`3,`4}@,System.Collections.Generic.List{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail}@)">
             <summary>
             Try build tree for wantFact from wantAcction.
             </summary>
@@ -152,7 +152,7 @@
             <param name="inputFactTypes"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.WantFact(`4)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.WantFact(`3)">
             <summary>
             Requesting a desired fact through action.
             </summary>

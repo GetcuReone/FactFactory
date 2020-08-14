@@ -1,5 +1,4 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
-using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Versioned.Interfaces
 {
@@ -11,7 +10,7 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
     /// <typeparam name="TFactRule">Type fact rule.</typeparam>
     /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
     /// <typeparam name="TWantAction">Type 'want action'.</typeparam>
-    public interface IVersionedFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : IFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
+    public interface IVersionedFactFactory<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : IFactFactory<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
         where TFactBase : IVersionedFact
         where TFactContainer : IFactContainer<TFactBase>
         where TFactRule : IVersionedFactRule<TFactBase>

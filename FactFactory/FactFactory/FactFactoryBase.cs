@@ -22,7 +22,7 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Base class for fact factory.
     /// </summary>
-    public abstract class FactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactoryBase, IFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>, IAbstractFactory, IFactTypeCreation, IFacadeCreation
+    public abstract class FactFactoryBase<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : FactoryBase, IFactFactory<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer>, IAbstractFactory, IFactTypeCreation, IFacadeCreation
         where TFactBase : class, IFact
         where TFactContainer : FactContainerBase<TFactBase>
         where TFactRule : FactRuleBase<TFactBase>

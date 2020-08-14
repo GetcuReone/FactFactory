@@ -19,7 +19,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Base class for versioned fact factory.
     /// </summary>
-    public abstract class VersionedFactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>, IVersionedFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
+    public abstract class VersionedFactFactoryBase<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : FactFactoryBase<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer>, IVersionedFactFactory<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
         where TFactBase : class, IVersionedFact
         where TFactContainer : VersionedFactContainerBase<TFactBase>
         where TFactRule : VersionedFactRuleBase<TFactBase>

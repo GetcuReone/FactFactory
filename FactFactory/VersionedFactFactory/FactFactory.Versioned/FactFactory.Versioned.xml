@@ -511,13 +511,13 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetDefaultFacts(`1)">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetDefaultFacts(`4)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.NeedRecalculateFact(`2,`1,`4,`0@)">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.NeedRecalculateFact(`1,`4,`3,`0@)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,`1,`4)">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,`4,`3)">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetSingleEntityOperations">

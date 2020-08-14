@@ -10,12 +10,12 @@ namespace GetcuReone.FactFactory.Interfaces
     /// <typeparam name="TFactRule">Type fact rule.</typeparam>
     /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
     /// <typeparam name="TWantAction">Type 'want action'.</typeparam>
-    public interface IFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
+    public interface IFactFactory<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
         where TFactBase : IFact
-        where TFactContainer : IFactContainer<TFactBase>
         where TFactRule : IFactRule<TFactBase>
         where TFactRuleCollection : IFactRuleCollection<TFactBase, TFactRule>
         where TWantAction : IWantAction<TFactBase>
+        where TFactContainer : IFactContainer<TFactBase>
     {
         /// <summary>
         /// Fact container.
