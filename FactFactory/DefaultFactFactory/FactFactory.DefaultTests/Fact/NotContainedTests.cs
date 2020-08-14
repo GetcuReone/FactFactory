@@ -11,7 +11,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactory.DefaultTests.Fact
 {
     [TestClass]
-    public sealed class NotContainedTests : CommonTestBase<FactBase>
+    public sealed class NotContainedTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
@@ -39,7 +39,7 @@ namespace FactFactory.DefaultTests.Fact
                 .And("Create fact.", () =>
                     new NotContained<ResultFact>())
                 .When("Call Condition method.", notContained =>
-                    notContained.Condition<FactBase, Rule, WAction, Container>(null, null, container))
+                    notContained.Condition<Rule, WAction, Container>(null, null, container))
                 .Then("Check result.", result =>
                     Assert.IsFalse(result, "NotContained can use."));
         }
@@ -54,7 +54,7 @@ namespace FactFactory.DefaultTests.Fact
 
             Given("Create fact.", () => new NotContained<ResultFact>())
                 .When("Call Condition method.", notContained =>
-                    notContained.Condition<FactBase, Rule, WAction, Container>(null, null, container))
+                    notContained.Condition<Rule, WAction, Container>(null, null, container))
                 .Then("Check result.", result =>
                     Assert.IsTrue(result, "NotContained cannot use."));
         }

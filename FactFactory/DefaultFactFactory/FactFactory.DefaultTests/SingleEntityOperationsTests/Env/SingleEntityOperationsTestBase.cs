@@ -12,7 +12,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
 {
     [TestClass]
-    public abstract class SingleEntityOperationsTestBase : CommonTestBase<FactBase>
+    public abstract class SingleEntityOperationsTestBase : CommonTestBase
     {
         protected virtual GivenBlock<SingleEntityOperationsFacade> GivenCreateFacade()
         {

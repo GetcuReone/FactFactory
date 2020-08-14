@@ -9,7 +9,7 @@ using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {
-    internal sealed class FactFactoryCustom : FactFactoryBase<FactBase, Rule, Collection, Action, Container>
+    internal sealed class FactFactoryCustom : FactFactoryBase<Rule, Collection, Action, Container>
     {
         public List<Action> W_Actions => WantActions;
         public override Container Container => container;
@@ -19,7 +19,7 @@ namespace FactFactoryTests.FactFactoryT.Env
 
         internal List<FactBase> DefaultFacts { get; } = new List<FactBase>();
 
-        protected override Action CreateWantAction(Action<IFactContainer<FactBase>> wantAction, List<IFactType> factTypes)
+        protected override Action CreateWantAction(Action<IFactContainer> wantAction, List<IFactType> factTypes)
         {
             return new Action(wantAction, factTypes);
         }

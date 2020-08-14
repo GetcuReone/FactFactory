@@ -1,10 +1,6 @@
 ﻿using FactFactory.TestsCommon;
-using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.SpecialFacts;
-using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -14,7 +10,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactory.DefaultTests.WantAction
 {
     [TestClass]
-    public sealed class WantActionSortTests : CommonTestBase<FactBase>
+    public sealed class WantActionSortTests : CommonTestBase
     {
         private Container Container { get; set; }
 

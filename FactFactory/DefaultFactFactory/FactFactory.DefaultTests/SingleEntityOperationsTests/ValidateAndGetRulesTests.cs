@@ -24,7 +24,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Run method ValidateAndGetRules.", facade =>
-                    ExpectedDeriveException(() => facade.ValidateAndGetRules<FactBase, Rule, Collection>(collection)))
+                    ExpectedDeriveException(() => facade.ValidateAndGetRules<Rule, Collection>(collection)))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -39,7 +39,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Run method ValidateAndGetRules.", facade =>
-                    ExpectedDeriveException(() => facade.ValidateAndGetRules<FactBase, Rule, Collection>(collection)))
+                    ExpectedDeriveException(() => facade.ValidateAndGetRules<Rule, Collection>(collection)))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -54,7 +54,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Run method ValidateAndGetRules.", facade =>
-                    ExpectedDeriveException(() => facade.ValidateAndGetRules<FactBase, Rule, Collection>(collection)))
+                    ExpectedDeriveException(() => facade.ValidateAndGetRules<Rule, Collection>(collection)))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
@@ -69,7 +69,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Run method ValidateAndGetRules.", facade =>
-                    ExpectedDeriveException(() => facade.ValidateAndGetRules<FactBase, Rule, Collection>(collection)))
+                    ExpectedDeriveException(() => facade.ValidateAndGetRules<Rule, Collection>(collection)))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
     }

@@ -1,7 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -13,7 +12,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactory.DefaultTests.FactRule
 {
     [TestClass]
-    public abstract class FactRuleTestBase : CommonTestBase<FactBase>
+    public abstract class FactRuleTestBase : CommonTestBase
     {
         protected Container Container { get; private set; }
         protected WAction WantAction { get; private set; }

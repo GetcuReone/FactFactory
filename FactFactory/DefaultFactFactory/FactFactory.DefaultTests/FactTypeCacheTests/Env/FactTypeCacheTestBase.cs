@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.DefaultTests.FactTypeCacheTests.Env
 {
     [TestClass]
-    public abstract class FactTypeCacheTestBase : CommonTestBase<FactBase>
+    public abstract class FactTypeCacheTestBase : CommonTestBase
     {
         protected virtual GivenBlock<IFactTypeCache> GivenCreateCahce()
         {

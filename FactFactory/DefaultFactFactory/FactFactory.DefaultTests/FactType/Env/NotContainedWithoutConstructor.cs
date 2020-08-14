@@ -12,18 +12,17 @@ namespace FactFactoryTests.FactType.Env
 
         }
 
-        public override bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+        public override bool Condition<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
         {
             throw new NotImplementedException();
         }
 
-        public bool IsFactContained<TFact>(IFactContainer<TFact> container)
-            where TFact : IFact
+        public bool IsFactContained(IFactContainer container)
         {
             throw new NotImplementedException();
         }
 
-        public override bool IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+        public override bool IsFactContained<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
         {
             throw new NotImplementedException();
         }

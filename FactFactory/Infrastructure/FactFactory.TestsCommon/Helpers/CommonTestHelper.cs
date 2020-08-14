@@ -1,6 +1,5 @@
 ﻿using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
-using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GwtTestFramework.Entities;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,7 +19,7 @@ namespace FactFactory.TestsCommon.Helpers
                 Assert.Fail($"Expected '{errorCode}' code and reason '{errorMessage}'.");
         }
 
-        public static ThenBlock<InvalidDeriveOperationException> ThenAssertErrorDetail<TFact>(this WhenBlock<InvalidDeriveOperationException> whenBlock, string errorCode, string errorMessage)
+        public static ThenBlock<InvalidDeriveOperationException> ThenAssertErrorDetail(this WhenBlock<InvalidDeriveOperationException> whenBlock, string errorCode, string errorMessage)
         {
             return whenBlock
                 .Then($"Check error with code {errorCode}", error =>
@@ -34,8 +33,7 @@ namespace FactFactory.TestsCommon.Helpers
                 });
         }
 
-        public static ThenBlock<InvalidDeriveOperationException> AndAssertErrorDetail<TFact>(this ThenBlock<InvalidDeriveOperationException> whenBlock, string errorCode, string errorMessage)
-            where TFact : IFact
+        public static ThenBlock<InvalidDeriveOperationException> AndAssertErrorDetail(this ThenBlock<InvalidDeriveOperationException> whenBlock, string errorCode, string errorMessage)
         {
             return whenBlock.And($"Check error with code {errorCode}", error =>
             {

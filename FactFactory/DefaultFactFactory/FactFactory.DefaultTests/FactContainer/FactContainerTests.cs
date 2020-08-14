@@ -15,7 +15,7 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace FactFactoryTests.FactContainer
 {
     [TestClass]
-    public sealed class FactContainerTests : CommonTestBase<FactBase>
+    public sealed class FactContainerTests : CommonTestBase
     {
         private GivenBlock<Container> GivenCreateContainer(bool isReadOnly = false)
         {
@@ -161,7 +161,7 @@ namespace FactFactoryTests.FactContainer
             Input3Fact input3Fact = new Input3Fact(3);
 
             Container originalContainer = null;
-            IFactContainer<FactBase> copyContainer = null;
+            IFactContainer copyContainer = null;
 
             Given("Create container.", () => originalContainer = new Container())
                 .And("Add facts.", _ =>

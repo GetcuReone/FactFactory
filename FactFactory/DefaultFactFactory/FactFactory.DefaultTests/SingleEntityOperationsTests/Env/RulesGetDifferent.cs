@@ -10,19 +10,19 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
 {
     internal class RulesGetDifferent : Rules
     {
-        public override IFactRuleCollection<FactBase, Rule> Copy()
+        public override IFactRuleCollection<Rule> Copy()
         {
             return new DifferenRules();
         }
 
-        private class DifferenRules : FactRuleCollectionBase<FactBase, Rule>
+        private class DifferenRules : FactRuleCollectionBase<Rule>
         {
-            public override IFactRuleCollection<FactBase, Rule> Copy()
+            public override IFactRuleCollection<Rule> Copy()
             {
                 throw new NotImplementedException();
             }
 
-            protected override Rule CreateFactRule(Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+            protected override Rule CreateFactRule(Func<IFactContainer, IWantAction, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
             {
                 throw new NotImplementedException();
             }

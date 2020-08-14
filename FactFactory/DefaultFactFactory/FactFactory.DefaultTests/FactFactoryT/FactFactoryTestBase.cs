@@ -7,7 +7,7 @@ using Factory = GetcuReone.FactFactory.FactFactory;
 namespace FactFactoryTests.FactFactoryT
 {
     [TestClass]
-    public abstract class FactFactoryTestBase : CommonTestBase<FactBase>
+    public abstract class FactFactoryTestBase : CommonTestBase
     {
         protected GivenBlock<Factory> GivenCreateFactFactory()
         {

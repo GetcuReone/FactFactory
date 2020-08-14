@@ -14,7 +14,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactoryTests.WantAction
 {
     [TestClass]
-    public sealed class WantActionTests : CommonTestBase<FactBase>
+    public sealed class WantActionTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]

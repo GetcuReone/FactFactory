@@ -19,7 +19,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactoryTests.FactRule
 {
     [TestClass]
-    public sealed class FactRuleTests : CommonTestBase<FactBase>
+    public sealed class FactRuleTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
@@ -125,7 +125,7 @@ namespace FactFactoryTests.FactRule
                     container.Add(new IntFact(1)))
                 .And("Create rule.", _ =>
                 {
-                    Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func = (ct, __) =>
+                    Func<IFactContainer, IWantAction, FactBase> func = (ct, __) =>
                     {
                         var date = ct.GetFact<DateTimeFact>().Value;
                         var number = ct.GetFact<IntFact>().Value;
@@ -160,7 +160,7 @@ namespace FactFactoryTests.FactRule
                     container.Add(new IntFact(1)))
                 .And("Create rule.", _ =>
                 {
-                    Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func = (ct, __) => default;
+                    Func<IFactContainer, IWantAction, FactBase> func = (ct, __) => default;
 
                     return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), GetFactType<OtherFact>());
                 })
@@ -188,7 +188,7 @@ namespace FactFactoryTests.FactRule
                     container.Add(new IntFact(1)))
                 .And("Create rule.", _ =>
                 {
-                    Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func = (ct, __) => default;
+                    Func<IFactContainer, IWantAction, FactBase> func = (ct, __) => default;
 
                     return new Rule(func, factInfos, GetFactType<OtherFact>());
                 })

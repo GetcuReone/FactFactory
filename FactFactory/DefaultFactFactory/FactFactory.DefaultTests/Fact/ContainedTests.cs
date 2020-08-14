@@ -11,7 +11,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactory.DefaultTests.Fact
 {
     [TestClass]
-    public sealed class ContainedTests : CommonTestBase<FactBase>
+    public sealed class ContainedTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.Contained), TestCategory(GetcuReoneTC.Unit)]
@@ -39,7 +39,7 @@ namespace FactFactory.DefaultTests.Fact
                 .And("Create fact.", () =>
                     new Contained<ResultFact>())
                 .When("Call Condition method.", contained =>
-                    contained.Condition<FactBase, Rule, WAction, Container>(null, null, container))
+                    contained.Condition<Rule, WAction, Container>(null, null, container))
                 .Then("Check result.", result =>
                     Assert.IsTrue(result, "Contained cannot use."));
         }
@@ -54,7 +54,7 @@ namespace FactFactory.DefaultTests.Fact
 
             Given("Create fact.", () =>new Contained<ResultFact>())
                 .When("Call Condition method.", contained =>
-                    contained.Condition<FactBase, Rule, WAction, Container>(null, null, container))
+                    contained.Condition<Rule, WAction, Container>(null, null, container))
                 .Then("Check result.", result =>
                     Assert.IsFalse(result, "Contained can use."));
         }

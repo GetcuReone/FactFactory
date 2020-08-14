@@ -6,7 +6,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
 {
     internal class FactContainerGetNull : Container
     {
-        public override IFactContainer<FactBase> Copy()
+        public override IFactContainer Copy()
         {
             return null;
         }

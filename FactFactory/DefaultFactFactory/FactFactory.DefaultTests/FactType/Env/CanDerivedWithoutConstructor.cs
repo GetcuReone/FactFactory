@@ -24,11 +24,10 @@ namespace FactFactory.DefaultTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
+        public bool Condition<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             throw new NotImplementedException();
         }
@@ -38,16 +37,15 @@ namespace FactFactory.DefaultTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool IsFactContained<TFact>(IFactContainer<TFact> container) where TFact : IFact
+        public bool IsFactContained<TFact>(IFactContainer container) where TFact : IFact
         {
             throw new NotImplementedException();
         }
 
-        public bool IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
+        public bool IsFactContained<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             throw new NotImplementedException();
         }
