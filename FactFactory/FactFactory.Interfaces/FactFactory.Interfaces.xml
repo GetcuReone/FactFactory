@@ -18,14 +18,25 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFact">
             <summary>
-            Fact interface
+            Fact interface.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFact.GetFactType">
             <summary>
-            Return fact information as an output parameter
+            Return fact information as an output parameter.
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFact.Parameters">
+            <summary>
+            Fact parameters.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFact.AddParameter(GetcuReone.FactFactory.Interfaces.IFactParameter)">
+            <summary>
+            Add parameter.
+            </summary>
+            <param name="parameter"></param>
         </member>
         <member name="P:GetcuReone.FactFactory.Interfaces.IFact.CalculatedByRule">
             <summary>
@@ -139,6 +150,27 @@
             Get <see cref="T:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations"/>.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.GetFactTypeCache">
+            <summary>
+            Get <see cref="T:GetcuReone.FactFactory.Interfaces.IFactTypeCache"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.IFactParameter">
+            <summary>
+            Fact parameter.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactParameter.Code">
+            <summary>
+            Code.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactParameter.Value">
+            <summary>
+            Value.
+            </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactRule`1">
             <summary>

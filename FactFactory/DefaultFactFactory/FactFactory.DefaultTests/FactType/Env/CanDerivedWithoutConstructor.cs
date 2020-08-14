@@ -17,6 +17,13 @@ namespace FactFactory.DefaultTests.FactType.Env
 
         public IFactType FactType => throw new NotImplementedException();
 
+        public IEnumerable<IFactParameter> Parameters => throw new NotImplementedException();
+
+        public void AddParameter(IFactParameter parameter)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
             where TFactBase : IFact
             where TFactWork : IFactWork<TFactBase>

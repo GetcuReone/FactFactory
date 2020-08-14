@@ -65,6 +65,9 @@
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetSingleEntityOperations">
             <inheritdoc/>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.GetFactTypeCache">
+            <inheritdoc/>
+        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`5.BuildTrees(GetcuReone.FactFactory.Entities.Trees.BuildTreesRequest{`0,`2,`3,`4,`1},GetcuReone.FactFactory.Interfaces.ISingleEntityOperations)">
             <summary>
             Build trees for wantActions.

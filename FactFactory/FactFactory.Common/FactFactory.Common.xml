@@ -9,34 +9,44 @@
             Error codes.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidData">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.InvalidData">
             <summary>
             Invalid data.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.FactCannotDerived">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.FactCannotDerived">
             <summary>
             Fact cannot be derived.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.EmptyRuleCollection">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.EmptyRuleCollection">
             <summary>
             Collection of rules for calculating the fact is empty.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.RuleNotFound">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.RuleNotFound">
             <summary>
             Rule not found.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidFactType">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.InvalidFactType">
             <summary>
             The fact is of the invalid type.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidOperation">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.InvalidOperation">
             <summary>
             Invalid operation.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Constants.FactParametersCodes">
+            <summary>
+            Default codes for fact parameter.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.FactFactory.Constants.FactParametersCodes.CalculateByRule">
+            <summary>
+            Was the fact calculated using the rule.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail`1">
