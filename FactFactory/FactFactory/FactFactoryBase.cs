@@ -94,7 +94,8 @@ namespace GetcuReone.FactFactory
                     FactRules = rules,
                     WantActions = wantActions,
                 },
-                singleEntityOperations
+                singleEntityOperations,
+                cache
             );
 
             foreach (var item in forestry)
@@ -149,9 +150,10 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <param name="request"></param>
         /// <param name="singleEntityOperations"></param>
+        /// <param name="cache"></param>
         /// <exception cref="InvalidDeriveOperationException{TFact}">Mistakes in building trees.</exception>
         /// <returns></returns>
-        public virtual Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>> BuildTrees(BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request, ISingleEntityOperations singleEntityOperations)
+        public virtual Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>> BuildTrees(BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request, ISingleEntityOperations singleEntityOperations, IFactTypeCache cache)
         {
             var forestry = new Dictionary<WantActionInfo<TFactBase, TWantAction, TFactContainer>, List<TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>>>();
             var deriveErrorDetails = new List<DeriveErrorDetail<TFactBase>>();
