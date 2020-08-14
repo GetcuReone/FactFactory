@@ -2,16 +2,14 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.Version.Env;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
-using GetcuReone.GwtTestFramework;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.VersionedTests.Version
 {
     [TestClass]
-    public sealed class UlongVersionTests : CommonTestBase<VersionedFactBase>
+    public sealed class UlongVersionTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]

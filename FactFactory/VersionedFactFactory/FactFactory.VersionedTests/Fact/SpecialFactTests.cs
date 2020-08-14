@@ -2,14 +2,13 @@
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.SpecialFacts;
-using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.DefaultTests.Fact
 {
     [TestClass]
-    public sealed class SpecialFactTests : CommonTestBase<VersionedFactBase>
+    public sealed class SpecialFactTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]

@@ -3,7 +3,6 @@ using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.Version.Env;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,7 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.VersionedTests.Version
 {
     [TestClass]
-    public sealed class DateTimeVersionTests : CommonTestBase<VersionedFactBase>
+    public sealed class DateTimeVersionTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]

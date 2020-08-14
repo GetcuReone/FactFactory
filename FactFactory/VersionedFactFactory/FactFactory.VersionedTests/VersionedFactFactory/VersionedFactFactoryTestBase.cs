@@ -1,5 +1,4 @@
 ﻿using FactFactory.TestsCommon;
-using GetcuReone.FactFactory.Versioned;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +8,7 @@ using V_FactFactory = GetcuReone.FactFactory.Versioned.VersionedFactFactory;
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
     [TestClass]
-    public abstract class VersionedFactFactoryTestBase : CommonTestBase<VersionedFactBase>
+    public abstract class VersionedFactFactoryTestBase : CommonTestBase
     {
         protected GivenBlock<V_FactFactory> GivenCreateVersionedFactFactory(List<IVersionFact> versions)
         {

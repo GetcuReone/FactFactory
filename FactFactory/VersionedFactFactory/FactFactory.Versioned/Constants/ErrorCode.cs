@@ -1,7 +1,7 @@
 ﻿namespace GetcuReone.FactFactory.Versioned.Constants
 {
     /// <summary>
-    /// Codes for errors in work <see cref="VersionedFactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
+    /// Codes for errors in work <see cref="VersionedFactFactoryBase{TFactRule, TFactRuleCollection, TWantAction, TFactContainer}"/>.
     /// </summary>
     public static class ErrorCode
     {

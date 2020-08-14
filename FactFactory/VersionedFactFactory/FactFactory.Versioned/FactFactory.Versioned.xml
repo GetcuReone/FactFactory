@@ -162,7 +162,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Constants.ErrorCode">
             <summary>
-            Codes for errors in work <see cref="!:VersionedFactFactoryBase&lt;TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction&gt;"/>.
+            Codes for errors in work <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4"/>.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.Constants.ErrorCode.VersionNotFound">
