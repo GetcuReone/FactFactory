@@ -66,6 +66,7 @@ namespace GetcuReone.FactFactory
         /// <inheritdoc/>
         public virtual void Derive()
         {
+            IFactTypeCache cache = GetFactTypeCache();
             ISingleEntityOperations singleEntityOperations = GetSingleEntityOperations();
             TFactContainer container = singleEntityOperations.ValidateAndGetContainer<TFactBase, TFactContainer>(Container);
             TFactRuleCollection rules = singleEntityOperations.ValidateAndGetRules<TFactBase, TFactRule, TFactRuleCollection>(Rules);
@@ -135,6 +136,12 @@ namespace GetcuReone.FactFactory
         public virtual ISingleEntityOperations GetSingleEntityOperations()
         {
             return GetFacade<SingleEntityOperationsFacade>();
+        }
+
+        /// <inheritdoc/>
+        public virtual IFactTypeCache GetFactTypeCache()
+        {
+            return new FactTypeCache();
         }
 
         /// <summary>

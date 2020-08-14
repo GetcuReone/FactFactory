@@ -50,5 +50,11 @@ namespace GetcuReone.FactFactory.Interfaces
         /// </summary>
         /// <returns></returns>
         ISingleEntityOperations GetSingleEntityOperations();
+
+        /// <summary>
+        /// Get <see cref="IFactTypeCache"/>.
+        /// </summary>
+        /// <returns></returns>
+        IFactTypeCache GetFactTypeCache();
     }
 }
