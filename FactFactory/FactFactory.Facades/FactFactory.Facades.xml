@@ -27,6 +27,9 @@
         <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.ValidateAndGetRules``2(``1)">
             <inheritdoc/>
         </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetCompatibleRules(GetcuReone.FactFactory.Interfaces.IFactWork,System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade">
             <summary>
             Facade for trees operations.

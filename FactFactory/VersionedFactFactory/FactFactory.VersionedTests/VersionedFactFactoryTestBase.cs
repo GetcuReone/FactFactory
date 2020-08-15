@@ -20,7 +20,7 @@ namespace FactFactory.VersionedTests
         protected IComparer<Rule> Comparer { get; private set; }
 
         [TestInitialize]
-        public void Initialize()
+        public virtual void Initialize()
         {
             Container = new Container(GetVersionFacts());
             WantAction = new WAction(ct => { }, new List<IFactType> { GetFactType<FactResult>() });
@@ -66,6 +66,14 @@ namespace FactFactory.VersionedTests
                 (container, _) => func(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>()),
                 new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), },
                 GetFactType<TFactResult>());
+        }
+
+        public virtual WAction GetWantAction<TFact1>(Action<TFact1> action)
+            where TFact1 : IFact
+        {
+            return new WAction(
+                ct => action(ct.GetFact<TFact1>()),
+                new List<IFactType> { GetFactType<TFact1>()});
         }
 
         protected virtual List<IVersionFact> GetVersionFacts()

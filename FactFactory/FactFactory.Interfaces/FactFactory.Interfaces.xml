@@ -374,6 +374,15 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.ISingleEntityOperations.GetCompatibleRules(GetcuReone.FactFactory.Interfaces.IFactWork,System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)">
+            <summary>
+            Get compatible rules.
+            </summary>
+            <param name="target">The purpose with which the rules must be compatible.</param>
+            <param name="factRules">List of rules.</param>
+            <param name="context">Context.</param>
+            <returns>Compatible rules.</returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IWantAction">
             <summary>
             Desired action information.

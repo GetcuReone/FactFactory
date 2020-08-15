@@ -28,7 +28,9 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         internal static IVersionFact GetVersionFact(this IEnumerable<IFactType> factTypes, IWantActionContext context)
         {
             IFactType versionType = factTypes.SingleOrDefault(type => type.IsFactType<IVersionFact>());
-            return (IVersionFact)context.Container.First(fact => context.Cache.GetFactType(fact).EqualsFactType(versionType));
+            return versionType != null
+                ? (IVersionFact)context.Container.First(fact => context.Cache.GetFactType(fact).EqualsFactType(versionType))
+                : null;
         }
 
         internal static bool CompatibleRule(this IFactRule factRule, IVersionFact maxVersion, IWantActionContext context)
