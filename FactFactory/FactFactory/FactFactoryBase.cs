@@ -168,10 +168,11 @@ namespace GetcuReone.FactFactory
                 var requestForWantAction = new BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer>
                 {
                     WantActionInfo = wantActionInfo,
-                    FactRules = request
-                        .FactRules
-                        .Where(rule => wantAction.СompatibilityWithRule(rule, wantAction, wantActionInfo.Container))
+                    FactRules = wantActionContext
+                        .SingleEntityOperations
+                        .GetCompatibleRules(wantActionContext.WantAction, request.FactRules, wantActionContext)
                         .OrderByDescending(rule => rule, wantActionContext.SingleEntityOperations.GetRuleComparer(wantActionContext))
+                        .Select(rule => (TFactRule)rule)
                         .ToList(),
                 };
                 if (TryBuildTreesForWantAction(requestForWantAction, out List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> result, out DeriveErrorDetail detail))
