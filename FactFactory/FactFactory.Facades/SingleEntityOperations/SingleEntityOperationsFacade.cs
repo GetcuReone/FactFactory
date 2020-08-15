@@ -99,7 +99,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public TFactRuleCollection ValidateAndGetRules<TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
+        public virtual TFactRuleCollection ValidateAndGetRules<TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
             where TFactRule : IFactRule
             where TFactRuleCollection : IFactRuleCollection<TFactRule>
         {
@@ -117,6 +117,12 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
 
             rules.IsReadOnly = true;
             return rules;
+        }
+
+        /// <inheritdoc/>
+        public virtual IEnumerable<IFactRule> GetCompatibleRules(IFactWork target, IEnumerable<IFactRule> factRules, IWantActionContext context)
+        {
+            return factRules;
         }
     }
 }

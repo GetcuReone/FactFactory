@@ -33,5 +33,14 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <param name="context"></param>
         /// <returns></returns>
         IComparer<IFactRule> GetRuleComparer(IWantActionContext context);
+
+        /// <summary>
+        /// Get compatible rules.
+        /// </summary>
+        /// <param name="target">The purpose with which the rules must be compatible.</param>
+        /// <param name="factRules">List of rules.</param>
+        /// <param name="context">Context.</param>
+        /// <returns>Compatible rules.</returns>
+        IEnumerable<IFactRule> GetCompatibleRules(IFactWork target, IEnumerable<IFactRule> factRules, IWantActionContext context);
     }
 }

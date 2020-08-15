@@ -3,6 +3,7 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
@@ -41,6 +42,20 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             IVersionFact yVersion = context.Container.GetVersionFact(yVersionType);
 
             return xVersion.CompareTo(yVersion);
+        }
+
+        /// <inheritdoc/>
+        public override IEnumerable<IFactRule> GetCompatibleRules(IFactWork target, IEnumerable<IFactRule> factRules, IWantActionContext context)
+        {
+            var result = base.GetCompatibleRules(target, factRules, context);
+            var maxVersion = VersionedSingleEntityOperationsHelper.GetMinVersion(
+                target.InputFactTypes.GetVersionFact(context),
+                context.WantAction.InputFactTypes.GetVersionFact(context));
+
+            if (maxVersion == null)
+                return result;
+
+            return result.Where(rule => rule.CompatibleRule(maxVersion, context));
         }
     }
 }
