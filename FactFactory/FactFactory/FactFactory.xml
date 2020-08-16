@@ -124,7 +124,7 @@
             <param name="needRemoveFact">If the method returns the true, then this fact will be removed from the container. There will be no deletion if the fact is empty.</param>
             <returns>True - fact needs to be recalculated.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.TryBuildTreesForWantAction(GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest{`0,`2,`3},System.Collections.Generic.List{GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`2,`3}}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail@)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.TryBuildTreesForWantAction(GetcuReone.FactFactory.Entities.Trees.BuildTreesForWantActionRequest{`0,`2,`3},GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext,System.Collections.Generic.List{GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{`0,`2,`3}}@,GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail@)">
             <summary>
             Trye build tree for wantAction.
             </summary>

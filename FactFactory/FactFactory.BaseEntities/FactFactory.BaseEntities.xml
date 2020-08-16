@@ -15,6 +15,12 @@
         <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.SingleEntityOperations">
             <inheritdoc/>
         </member>
+        <member name="T:GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext">
+            <inheritdoc/>
+        </member>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext.FactRules">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.Context.WantActionContext">
             <inheritdoc/>
         </member>

@@ -19,6 +19,14 @@
             Single operations on entities of the FactFactory.
             </summary>
         </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext">
+            <inheritdoc/>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext.FactRules">
+            <summary>
+            Fact rules in context.
+            </summary>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.Context.IWantActionContext">
             <inheritdoc/>
         </member>
