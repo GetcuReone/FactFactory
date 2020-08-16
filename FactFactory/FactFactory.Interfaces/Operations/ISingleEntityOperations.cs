@@ -1,7 +1,7 @@
 ﻿using GetcuReone.FactFactory.Interfaces.Context;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.Interfaces
+namespace GetcuReone.FactFactory.Interfaces.Operations
 {
     /// <summary>
     /// Single operations on entities of the FactFactory.

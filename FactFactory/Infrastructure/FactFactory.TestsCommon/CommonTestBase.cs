@@ -5,6 +5,7 @@ using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
+using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.GetcuTestAdapter;
 using System;
 

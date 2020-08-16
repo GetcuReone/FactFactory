@@ -1,4 +1,6 @@
-﻿namespace GetcuReone.FactFactory.Interfaces
+﻿using GetcuReone.FactFactory.Interfaces.Operations;
+
+namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Fact factory interface.
@@ -40,6 +42,12 @@
         /// </summary>
         /// <param name="wantAction"></param>
         void WantFact(TWantAction wantAction);
+
+        /// <summary>
+        /// Get <see cref="ITreeBuildingOperations"/>.
+        /// </summary>
+        /// <returns></returns>
+        ITreeBuildingOperations GetTreeBuildingOperations();
 
         /// <summary>
         /// Get <see cref="ISingleEntityOperations"/>.

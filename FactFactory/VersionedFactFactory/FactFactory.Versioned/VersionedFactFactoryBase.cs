@@ -4,6 +4,7 @@ using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Versioned.BaseEntities;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Entities;

@@ -1,4 +1,6 @@
-﻿namespace GetcuReone.FactFactory.Interfaces.Context
+﻿using GetcuReone.FactFactory.Interfaces.Operations;
+
+namespace GetcuReone.FactFactory.Interfaces.Context
 {
     /// <summary>
     /// A context containing information within which current actions are taking place.

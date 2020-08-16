@@ -4,15 +4,16 @@ using GetcuReone.ComboPatterns.Interfaces;
 using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Entities.Trees;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
+using GetcuReone.FactFactory.Facades.TreeBuildingOperations;
 using GetcuReone.FactFactory.Facades.TreesOperations;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
+using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
@@ -127,6 +128,12 @@ namespace GetcuReone.FactFactory
             WantActions.AddRange(wantActions);
 
             return fact;
+        }
+
+        /// <inheritdoc/>
+        public virtual ITreeBuildingOperations GetTreeBuildingOperations()
+        {
+            return GetFacade<TreeBuildingOperationsFacade>();
         }
 
         /// <inheritdoc/>
@@ -283,6 +290,7 @@ namespace GetcuReone.FactFactory
         /// Trye build tree for wantAction.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="context"></param>
         /// <param name="treesResult">Build trees.</param>
         /// <param name="deriveErrorDetail">Mistakes in building trees.</param>
         /// <returns></returns>

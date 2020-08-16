@@ -1,7 +1,6 @@
 ﻿using FactFactory.TestsCommon;
-using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.BaseEntities;
-using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

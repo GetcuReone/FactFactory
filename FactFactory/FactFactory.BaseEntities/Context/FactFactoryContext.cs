@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
+using GetcuReone.FactFactory.Interfaces.Operations;
 
 namespace GetcuReone.FactFactory.BaseEntities.Context
 {

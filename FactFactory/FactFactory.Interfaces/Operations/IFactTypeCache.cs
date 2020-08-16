@@ -1,4 +1,4 @@
-﻿namespace GetcuReone.FactFactory.Interfaces
+﻿namespace GetcuReone.FactFactory.Interfaces.Operations
 {
     /// <summary>
     /// Fact type cache.
