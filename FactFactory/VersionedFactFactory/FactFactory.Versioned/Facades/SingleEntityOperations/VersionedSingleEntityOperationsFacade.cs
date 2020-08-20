@@ -1,6 +1,7 @@
 ﻿using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
@@ -85,9 +86,14 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         /// <inheritdoc/>
         public override bool CanExtractFact<TFact, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
         {
+            var searctFactType = GetFactType<TFact>();
+
+            if (searctFactType.IsFactType<ISpecialFact>())
+                return context.Container.Contains<TFact>();
+
             List<IFact> facts = context
                 .Container
-                .Where(fact => context.Cache.GetFactType(fact).IsFactType<TFact>())
+                .Where(fact => context.Cache.GetFactType(fact).EqualsFactType(searctFactType))
                 .ToList();
 
             if (facts.Count == 0)

@@ -13,7 +13,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
     /// <summary>
     /// Single operations on entities of the FactFactory.
     /// </summary>
-    public class SingleEntityOperationsFacade : FacadeBase, ISingleEntityOperations
+    public class SingleEntityOperationsFacade : FacadeBase, ISingleEntityOperations, IFactTypeCreation
     {
         /// <inheritdoc/>
         public virtual IComparer<TFactRule> GetRuleComparer<TFactRule, TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
@@ -154,6 +154,12 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             where TFactContainer : IFactContainer
         {
             return context.Container.Contains<TFact>();
+        }
+
+        /// <inheritdoc/>
+        public virtual IFactType GetFactType<TFact>() where TFact : IFact
+        {
+            return new FactType<TFact>();
         }
     }
 }
