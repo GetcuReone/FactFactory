@@ -16,9 +16,12 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
     public class SingleEntityOperationsFacade : FacadeBase, ISingleEntityOperations
     {
         /// <inheritdoc/>
-        public virtual IComparer<IFactRule> GetRuleComparer(IWantActionContext context)
+        public virtual IComparer<TFactRule> GetRuleComparer<TFactRule, TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
-            return Comparer<IFactRule>.Create(
+            return Comparer<TFactRule>.Create(
                 (x, y) => CompareFactRules(x, y, context));
         }
 
@@ -29,7 +32,10 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// <param name="second"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public virtual int CompareFactRules(IFactRule first, IFactRule second, IWantActionContext context)
+        public virtual int CompareFactRules<TFactRule, TWantAction, TFactContainer>(TFactRule first, TFactRule second, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             if ((first is IWantAction) || (second is IWantAction))
                 return 0;
@@ -121,9 +127,33 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual IEnumerable<IFactRule> GetCompatibleRules(IFactWork target, IEnumerable<IFactRule> factRules, IWantActionContext context)
+        public virtual IEnumerable<TFactRule> GetCompatibleRules<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, IEnumerable<TFactRule> factRules, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactWork : IFactWork
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             return factRules;
+        }
+
+        /// <inheritdoc/>
+        public virtual bool CompatibleRule<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, TFactRule rule, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactWork : IFactWork
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            return true;
+        }
+
+        /// <inheritdoc/>
+        public virtual bool CanExtractFact<TFact, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFact : IFact
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            return context.Container.Contains<TFact>();
         }
     }
 }

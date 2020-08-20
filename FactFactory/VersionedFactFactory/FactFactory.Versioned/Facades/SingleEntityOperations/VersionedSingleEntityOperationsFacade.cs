@@ -1,6 +1,7 @@
 ﻿using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
+using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
     public class VersionedSingleEntityOperationsFacade : SingleEntityOperationsFacade
     {
         /// <inheritdoc/>
-        public override int CompareFactRules(IFactRule first, IFactRule second, IWantActionContext context)
+        public override int CompareFactRules<TFactRule, TWantAction, TFactContainer>(TFactRule first, TFactRule second, IWantActionContext<TWantAction, TFactContainer> context)
         {
             int resultByVersion = CompareRulesByVersion(first, second, context);
             if (resultByVersion != 0)
@@ -28,7 +29,10 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         /// <param name="y"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public virtual int CompareRulesByVersion(IFactRule x, IFactRule y, IWantActionContext context)
+        public virtual int CompareRulesByVersion<TFactRule, TWantAction, TFactContainer>(TFactRule x, TFactRule y, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             var xVersionType = x.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
             var yVersionType = y.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
@@ -45,7 +49,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public override IEnumerable<IFactRule> GetCompatibleRules(IFactWork target, IEnumerable<IFactRule> factRules, IWantActionContext context)
+        public override IEnumerable<TFactRule> GetCompatibleRules<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, IEnumerable<TFactRule> factRules, IWantActionContext<TWantAction, TFactContainer> context)
         {
             var result = base.GetCompatibleRules(target, factRules, context);
             var maxVersion = VersionedSingleEntityOperationsHelper.GetMinVersion(
@@ -56,6 +60,54 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 return result;
 
             return result.Where(rule => rule.CompatibleRule(maxVersion, context));
+        }
+
+        /// <inheritdoc/>
+        public override bool CompatibleRule<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, TFactRule rule, IWantActionContext<TWantAction, TFactContainer> context)
+        {
+            if (!base.CompatibleRule(target, rule, context))
+                return false;
+
+            var maxVersion = VersionedSingleEntityOperationsHelper.GetMinVersion(
+                target.InputFactTypes.GetVersionFact(context),
+                context.WantAction.InputFactTypes.GetVersionFact(context));
+
+            if (maxVersion == null)
+                return true;
+
+            var ruleVersion = rule.InputFactTypes.GetVersionFact(context);
+
+            return ruleVersion != null
+                ? maxVersion.CompareTo(ruleVersion) >= 0
+                : false;
+        }
+
+        /// <inheritdoc/>
+        public override bool CanExtractFact<TFact, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
+        {
+            List<IFact> facts = context
+                .Container
+                .Where(fact => context.Cache.GetFactType(fact).IsFactType<TFact>())
+                .ToList();
+
+            if (facts.Count == 0)
+                return false;
+
+            var version = factWork.InputFactTypes.GetVersionFact(context);
+
+            if (version == null)
+                return true;
+
+            return facts.Exists(fact =>
+            {
+                if (fact.Parameters == null)
+                    return false;
+
+                IVersionFact versionFact = (IVersionFact)fact.Parameters.FirstOrDefault(parameter => parameter.Code == FactParametersCodes.Version);
+                return versionFact != null
+                    ? version.CompareTo(versionFact) >= 0
+                    : false;
+            });
         }
     }
 }

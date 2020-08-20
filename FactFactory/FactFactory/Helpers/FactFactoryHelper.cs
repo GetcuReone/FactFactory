@@ -27,36 +27,51 @@ namespace GetcuReone.FactFactory.Helpers
             return new FactFactoryContext
             {
                 Cache = factory.GetFactTypeCache(),
-                SingleEntityOperations = factory.GetSingleEntityOperations(),
+                SingleEntity = factory.GetSingleEntityOperations(),
+                TreeBuilding = factory.GetTreeBuildingOperations(),
             };
         }
 
-        internal static WantActionContext ToWantActionContext(this IFactFactoryContext context, IWantAction wantAction, IFactContainer container)
+        internal static void CopyFactFactoryContext(this FactFactoryContext toContext, IFactFactoryContext fromContext)
         {
-            return new WantActionContext
+            toContext.Cache = fromContext.Cache;
+            toContext.SingleEntity = fromContext.SingleEntity;
+            toContext.TreeBuilding = fromContext.TreeBuilding;
+        }
+
+        internal static WantActionContext<TWantAction, TFactContainer> ToWantActionContext<TWantAction, TFactContainer>(this IFactFactoryContext context, TWantAction wantAction, TFactContainer container)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            var result = new WantActionContext<TWantAction, TFactContainer>
             {
-                Cache = context.Cache,
                 Container = container,
-                SingleEntityOperations = context.SingleEntityOperations,
                 WantAction = wantAction,
             };
+
+            result.CopyFactFactoryContext(context);
+            return result;
         }
 
-        internal static FactRulesContext ToFactRulesContext(this IWantActionContext context, IEnumerable<IFactRule> factRules, bool deferredRequestRequired)
+        internal static FactRulesContext<TFactRule, TWantAction, TFactContainer> ToFactRulesContext<TFactRule, TWantAction, TFactContainer>(this IWantActionContext<TWantAction, TFactContainer> context, IEnumerable<TFactRule> factRules, bool deferredRequestRequired)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
-            var compatibleRules = context.SingleEntityOperations.GetCompatibleRules(context.WantAction, factRules, context);
+            var compatibleRules = context.SingleEntity.GetCompatibleRules(context.WantAction, factRules, context);
 
             if (deferredRequestRequired)
                 compatibleRules = compatibleRules.ToList();
 
-            return new FactRulesContext
+            var result = new FactRulesContext<TFactRule, TWantAction, TFactContainer>
             {
-                Cache = context.Cache,
                 Container = context.Container,
                 FactRules = compatibleRules,
-                SingleEntityOperations = context.SingleEntityOperations,
                 WantAction = context.WantAction,
             };
+
+            result.CopyFactFactoryContext(context);
+            return result;
         }
     }
 }

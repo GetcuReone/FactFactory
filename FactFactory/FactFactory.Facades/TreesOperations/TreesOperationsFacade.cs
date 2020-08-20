@@ -92,7 +92,6 @@ namespace GetcuReone.FactFactory.Facades.TreesOperations
         /// <summary>
         /// Synchronize the tree level with years ready for calculation.
         /// </summary>
-
         /// <typeparam name="TFactRule"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>
         /// <typeparam name="TFactContainer"></typeparam>

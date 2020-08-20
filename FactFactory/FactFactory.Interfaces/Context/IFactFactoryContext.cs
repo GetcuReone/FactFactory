@@ -15,6 +15,11 @@ namespace GetcuReone.FactFactory.Interfaces.Context
         /// <summary>
         /// Single operations on entities of the FactFactory.
         /// </summary>
-        ISingleEntityOperations SingleEntityOperations { get; }
+        ISingleEntityOperations SingleEntity { get; }
+
+        /// <summary>
+        /// Tree building operations.
+        /// </summary>
+        ITreeBuildingOperations TreeBuilding { get; }
     }
 }

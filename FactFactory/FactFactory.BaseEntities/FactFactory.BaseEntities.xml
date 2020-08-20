@@ -12,22 +12,31 @@
         <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.Cache">
             <inheritdoc/>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.SingleEntityOperations">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.SingleEntity">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.TreeBuilding">
             <inheritdoc/>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext.FactRules">
+        <member name="T:GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext`3">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.Context.WantActionContext">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext`3.FactRules">
             <inheritdoc/>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.WantActionContext.WantAction">
+        <member name="T:GetcuReone.FactFactory.BaseEntities.Context.FactWorkContext`4">
             <inheritdoc/>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.WantActionContext.Container">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactWorkContext`4.FactWork">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2">
+            <inheritdoc/>
+        </member>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2.WantAction">
+            <inheritdoc/>
+        </member>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2.Container">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.FactContainerBase">
@@ -628,6 +637,9 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CanDerivedFactBase`1.Condition``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CanDerivedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CannotDerivedFactBase`1">
             <summary>
             Contains information about a type of fact that cannot be derived.
@@ -635,6 +647,9 @@
             <typeparam name="TFact"></typeparam>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CannotDerivedFactBase`1.Condition``3(``0,``1,``2)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CannotDerivedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase">
@@ -646,6 +661,9 @@
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase.Condition``3(``0,``1,``2)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase.GetFactType">
@@ -675,6 +693,9 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ContainedFactBase`1.Condition``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ContainedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.NotContainedFactBase`1">
             <summary>
             Is the fact <typeparamref name="TFact"/> not contained in the container.
@@ -682,6 +703,9 @@
             <typeparam name="TFact"></typeparam>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.NotContainedFactBase`1.Condition``3(``0,``1,``2)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.NotContainedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.SpecialFactBase">

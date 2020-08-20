@@ -1,16 +1,18 @@
 ﻿namespace GetcuReone.FactFactory.Interfaces.Context
 {
     /// <inheritdoc/>
-    public interface IWantActionContext : IFactFactoryContext
+    public interface IWantActionContext<TWantAction, TFactContainer> : IFactFactoryContext
+        where TWantAction : IWantAction
+        where TFactContainer : IFactContainer
     {
         /// <summary>
         /// WantAction.
         /// </summary>
-        IWantAction WantAction { get; }
+        TWantAction WantAction { get; }
 
         /// <summary>
         /// Fact container.
         /// </summary>
-        IFactContainer Container { get; }
+        TFactContainer Container { get; }
     }
 }

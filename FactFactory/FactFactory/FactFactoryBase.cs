@@ -69,8 +69,8 @@ namespace GetcuReone.FactFactory
         public virtual void Derive()
         {
             FactFactoryContext context = this.ToFactFactoryContext();
-            TFactContainer container = context.SingleEntityOperations.ValidateAndGetContainer(Container);
-            TFactRuleCollection rules = context.SingleEntityOperations.ValidateAndGetRules<TFactRule, TFactRuleCollection>(Rules);
+            TFactContainer container = context.SingleEntity.ValidateAndGetContainer(Container);
+            TFactRuleCollection rules = context.SingleEntity.ValidateAndGetRules<TFactRule, TFactRuleCollection>(Rules);
             var wantActions = new List<TWantAction>(WantActions);
 
             var defaultFacts = new List<IFact>();
@@ -170,7 +170,7 @@ namespace GetcuReone.FactFactory
                     Container = request.Container,
                 };
 
-                FactRulesContext factRulesContext = context
+                FactRulesContext<TFactRule, TWantAction, TFactContainer> factRulesContext = context
                     .ToWantActionContext(wantAction, request.Container)
                     .ToFactRulesContext(request.FactRules, true);
 
@@ -179,7 +179,6 @@ namespace GetcuReone.FactFactory
                     WantActionInfo = wantActionInfo,
                     FactRules = factRulesContext
                         .FactRules
-                        .Select(rule => (TFactRule)rule)
                         .ToList(),
                 };
                 if (TryBuildTreesForWantAction(requestForWantAction, factRulesContext, out List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> result, out DeriveErrorDetail detail))
@@ -294,7 +293,7 @@ namespace GetcuReone.FactFactory
         /// <param name="treesResult">Build trees.</param>
         /// <param name="deriveErrorDetail">Mistakes in building trees.</param>
         /// <returns></returns>
-        public virtual bool TryBuildTreesForWantAction(BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer> request, IFactRulesContext context, out List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> treesResult, out DeriveErrorDetail deriveErrorDetail)
+        public virtual bool TryBuildTreesForWantAction(BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer> request, IFactRulesContext<TFactRule, TWantAction, TFactContainer> context, out List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> treesResult, out DeriveErrorDetail deriveErrorDetail)
         {
             treesResult = new List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>();
             var deriveFactErrorDetails = new List<DeriveFactErrorDetail>();

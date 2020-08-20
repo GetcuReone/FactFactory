@@ -1,5 +1,4 @@
-﻿using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Interfaces.Context;
+﻿using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 
 namespace GetcuReone.FactFactory.BaseEntities.Context
@@ -13,6 +12,9 @@ namespace GetcuReone.FactFactory.BaseEntities.Context
         public IFactTypeCache Cache { get; set; }
 
         /// <inheritdoc/>
-        public ISingleEntityOperations SingleEntityOperations { get; set; }
+        public ISingleEntityOperations SingleEntity { get; set; }
+
+        /// <inheritdoc/>
+        public ITreeBuildingOperations TreeBuilding { get; set; }
     }
 }

@@ -33,12 +33,12 @@ namespace FactFactory.TestsCommon
             return new FactTypeCache();
         }
 
-        protected IWantActionContext GetWantActionContext(IWantAction wantAction, IFactContainer container, ISingleEntityOperations singleEntityOperations = null, IFactTypeCache cache = null)
+        protected IWantActionContext<IWantAction, IFactContainer> GetWantActionContext(IWantAction wantAction, IFactContainer container, ISingleEntityOperations singleEntity = null, IFactTypeCache cache = null)
         {
-            return new WantActionContext
+            return new WantActionContext<IWantAction, IFactContainer>
             {
                 Cache = cache ?? GetFactTypeCache(),
-                SingleEntityOperations = singleEntityOperations ?? GetFacade<SingleEntityOperationsFacade>(),
+                SingleEntity = singleEntity ?? GetFacade<SingleEntityOperationsFacade>(),
                 WantAction = wantAction,
                 Container = container,
             };

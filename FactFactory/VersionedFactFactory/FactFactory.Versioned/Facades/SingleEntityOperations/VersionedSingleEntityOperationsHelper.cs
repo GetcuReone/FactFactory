@@ -25,7 +25,9 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             return first.CompareTo(second);
         }
 
-        internal static IVersionFact GetVersionFact(this IEnumerable<IFactType> factTypes, IWantActionContext context)
+        internal static IVersionFact GetVersionFact<TWantAction, TFactContainer>(this IEnumerable<IFactType> factTypes, IWantActionContext<TWantAction, TFactContainer> context)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             IFactType versionType = factTypes.SingleOrDefault(type => type.IsFactType<IVersionFact>());
             return versionType != null
@@ -33,7 +35,10 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 : null;
         }
 
-        internal static bool CompatibleRule(this IFactRule factRule, IVersionFact maxVersion, IWantActionContext context)
+        internal static bool CompatibleRule<TFactRule, TWantAction, TFactContainer>(this TFactRule factRule, IVersionFact maxVersion, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             var version = factRule.InputFactTypes.GetVersionFact(context);
 

@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,15 @@ namespace FactFactoryTests.FactType.Env
 
         public bool Condition<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
             where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactWork : IFactWork
+            where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
