@@ -22,7 +22,8 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
             var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
             GivenCreateFacade()
-                .When("Check compatible.", facade => facade.CompatibleRule(first, second, context))
+                .When("Check compatible.", facade => 
+                    facade.CompatibleRule(first, second, context))
                 .ThenIsTrue();
         }
     }
