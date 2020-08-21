@@ -29,7 +29,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Check extract.", facade =>
-                    facade.CanExtractFact<Fact1, IFactRule, WAction, Container>(rule, GetWantActionContext(wantAction, Container, facade)))
+                    facade.CanExtractFact(GetFactType<Fact1>(), rule, GetWantActionContext(wantAction, Container, facade)))
                 .ThenIsTrue();
         }
 
@@ -47,7 +47,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Check extract.", facade =>
-                    facade.CanExtractFact<Fact1, IFactRule, WAction, Container>(rule, GetWantActionContext(wantAction, Container, facade)))
+                    facade.CanExtractFact(GetFactType<Fact1>(), rule, GetWantActionContext(wantAction, Container, facade)))
                 .ThenIsFalse();
         }
     }

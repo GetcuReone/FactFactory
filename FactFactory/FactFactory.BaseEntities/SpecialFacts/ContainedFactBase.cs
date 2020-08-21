@@ -20,7 +20,7 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
         /// <inheritdoc/>
         public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
         {
-            return context.SingleEntity.CanExtractFact<TFact, TFactWork, TWantAction, TFactContainer>(factWork, context);
+            return context.SingleEntity.CanExtractFact(GetFactType<TFact>(), factWork, context);
         }
     }
 }

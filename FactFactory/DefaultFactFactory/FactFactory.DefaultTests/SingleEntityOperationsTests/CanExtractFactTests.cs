@@ -27,7 +27,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Check extract.", facade =>
-                    facade.CanExtractFact<Input1Fact, IFactRule, IWantAction, Container>(rule, context))
+                    facade.CanExtractFact(GetFactType<Input1Fact>(), rule, context))
                 .ThenIsTrue();
         }
 
@@ -39,14 +39,13 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
         {
             var container = new Container
             {
-                new Input1Fact(default),
             };
             var rule = GetFactRule((Input1Fact _) => new ResultFact(default));
             var context = GetWantActionContext((IWantAction)null, container);
 
             GivenCreateFacade()
                 .When("Check extract.", facade =>
-                    facade.CanExtractFact<Input2Fact, IFactRule, IWantAction, Container>(rule, context))
+                    facade.CanExtractFact(GetFactType<Input1Fact>(), rule, context))
                 .ThenIsFalse();
         }
     }

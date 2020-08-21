@@ -84,16 +84,14 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public override bool CanExtractFact<TFact, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
+        public override bool CanExtractFact<TFactWork, TWantAction, TFactContainer>(IFactType factType, TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
         {
-            var searctFactType = GetFactType<TFact>();
-
-            if (searctFactType.IsFactType<ISpecialFact>())
-                return context.Container.Contains<TFact>();
+            if (factType.IsFactType<ISpecialFact>())
+                return base.CanExtractFact(factType, factWork, context);
 
             List<IFact> facts = context
                 .Container
-                .Where(fact => context.Cache.GetFactType(fact).EqualsFactType(searctFactType))
+                .Where(fact => context.Cache.GetFactType(fact).EqualsFactType(factType))
                 .ToList();
 
             if (facts.Count == 0)

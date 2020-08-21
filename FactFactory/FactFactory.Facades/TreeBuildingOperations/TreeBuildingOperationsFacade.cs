@@ -288,7 +288,16 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
                 var conditionFact = factType.CreateConditionFact<IConditionFact>();
 
-                return conditionFact.Condition(nodeInfo.Rule, nodeInfo.Rule.GetCompatibleRulesEx(context.FactRules, context), context);
+                if (conditionFact.Condition(nodeInfo.Rule, nodeInfo.Rule.GetCompatibleRulesEx(context.FactRules, context), context))
+                {
+                    nodeInfo.SuccessConditions.Add(conditionFact);
+                    return true;
+                }
+                else
+                {
+                    nodeInfo.FailedConditions.Add(conditionFact);
+                    return false;
+                }
             }
             else
             {

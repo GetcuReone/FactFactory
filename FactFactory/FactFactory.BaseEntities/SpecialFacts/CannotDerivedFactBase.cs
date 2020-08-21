@@ -21,7 +21,7 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
         /// <inheritdoc/>
         public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
         {
-            return !ConditionHelper.CanDeriveFact<TFact, TFactWork, TFactRule, TWantAction, TFactContainer>(
+            return !ConditionHelper.CanDeriveFact(
                 GetFactType<TFact>(),
                 factWork,
                 compatibleRules,

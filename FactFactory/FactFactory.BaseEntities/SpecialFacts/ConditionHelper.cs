@@ -12,14 +12,13 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
 {
     internal static class ConditionHelper
     {
-        internal static bool CanDeriveFact<TFact, TFactWork, TFactRule, TWantAction, TFactContainer>(IFactType searchFactType, TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
-            where TFact : IFact
+        internal static bool CanDeriveFact<TFactWork, TFactRule, TWantAction, TFactContainer>(IFactType searchFactType, TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
-            if (context.SingleEntity.CanExtractFact<TFact, TFactWork, TWantAction, TFactContainer>(factWork, context))
+            if (context.SingleEntity.CanExtractFact(searchFactType, factWork, context))
                 return true;
 
             var rulesWithoutCurrentFact = compatibleRules

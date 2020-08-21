@@ -13,7 +13,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
     /// <summary>
     /// Single operations on entities of the FactFactory.
     /// </summary>
-    public class SingleEntityOperationsFacade : FacadeBase, ISingleEntityOperations, IFactTypeCreation
+    public class SingleEntityOperationsFacade : FacadeBase, ISingleEntityOperations
     {
         /// <inheritdoc/>
         public virtual IComparer<TFactRule> GetRuleComparer<TFactRule, TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
@@ -147,19 +147,12 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual bool CanExtractFact<TFact, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
-            where TFact : IFact
+        public virtual bool CanExtractFact<TFactWork, TWantAction, TFactContainer>(IFactType factType, TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
-            return context.Container.Contains<TFact>();
-        }
-
-        /// <inheritdoc/>
-        public virtual IFactType GetFactType<TFact>() where TFact : IFact
-        {
-            return new FactType<TFact>();
+            return context.Container.Any(fact => context.Cache.GetFactType(fact).EqualsFactType(factType));
         }
     }
 }

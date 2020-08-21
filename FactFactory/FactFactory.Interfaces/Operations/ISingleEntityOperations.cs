@@ -70,17 +70,16 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
             where TFactContainer : IFactContainer;
 
         /// <summary>
-        /// Is it possible to get a fact <typeparamref name="TFact"/> from a container for a <paramref name="factWork"/>.
+        /// Is it possible to get a fact by type <paramref name="factType"/> from a container for a <paramref name="factWork"/>.
         /// </summary>
-        /// <typeparam name="TFact">The type of fact to extract.</typeparam>
         /// <typeparam name="TFactWork"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>
         /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="factType">Extracted fact type.</param>
         /// <param name="factWork"><see cref="IFactWork"/> for which to extract a fact.</param>
         /// <param name="context">Context.</param>
         /// <returns></returns>
-        bool CanExtractFact<TFact, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
-            where TFact : IFact
+        bool CanExtractFact<TFactWork, TWantAction, TFactContainer>(IFactType factType, TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;

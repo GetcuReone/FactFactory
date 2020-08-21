@@ -592,14 +592,14 @@
             <param name="context">Context.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.CanExtractFact``4(``1,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.CanExtractFact``3(GetcuReone.FactFactory.Interfaces.IFactType,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
             <summary>
-            Is it possible to get a fact <typeparamref name="TFact"/> from a container for a <paramref name="factWork"/>.
+            Is it possible to get a fact by type <paramref name="factType"/> from a container for a <paramref name="factWork"/>.
             </summary>
-            <typeparam name="TFact">The type of fact to extract.</typeparam>
             <typeparam name="TFactWork"></typeparam>
             <typeparam name="TWantAction"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
+            <param name="factType">Extracted fact type.</param>
             <param name="factWork"><see cref="T:GetcuReone.FactFactory.Interfaces.IFactWork"/> for which to extract a fact.</param>
             <param name="context">Context.</param>
             <returns></returns>
