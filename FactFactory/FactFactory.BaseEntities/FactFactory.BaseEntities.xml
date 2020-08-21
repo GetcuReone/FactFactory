@@ -116,6 +116,24 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Clear">
             <inheritdoc/>
         </member>
+        <member name="T:GetcuReone.FactFactory.BaseEntities.FactParameterBase">
+            <summary>
+            Base class for parameter.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactParameterBase.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="code"></param>
+            <param name="value"></param>
+        </member>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactParameterBase.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactParameterBase.Value">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.FactRuleBase">
             <summary>
             Base class for rules.

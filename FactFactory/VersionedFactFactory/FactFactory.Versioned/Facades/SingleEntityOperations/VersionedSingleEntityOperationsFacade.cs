@@ -99,9 +99,11 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (facts.Count == 0)
                 return false;
 
-            var version = factWork.InputFactTypes.GetVersionFact(context);
+            var maxVersion = VersionedSingleEntityOperationsHelper.GetMinVersion(
+                factWork.InputFactTypes.GetVersionFact(context),
+                context.WantAction.InputFactTypes.GetVersionFact(context));
 
-            if (version == null)
+            if (maxVersion == null)
                 return true;
 
             return facts.Exists(fact =>
@@ -109,9 +111,9 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 if (fact.Parameters == null)
                     return false;
 
-                IVersionFact versionFact = (IVersionFact)fact.Parameters.FirstOrDefault(parameter => parameter.Code == FactParametersCodes.Version);
+                IVersionFact versionFact = fact.Parameters.FirstOrDefault(parameter => parameter.Code == FactParametersCodes.Version)?.Value as IVersionFact;
                 return versionFact != null
-                    ? version.CompareTo(versionFact) >= 0
+                    ? maxVersion.CompareTo(versionFact) >= 0
                     : false;
             });
         }

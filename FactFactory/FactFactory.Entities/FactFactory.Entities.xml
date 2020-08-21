@@ -30,6 +30,18 @@
         <member name="M:GetcuReone.FactFactory.Entities.FactContainer.Copy">
             <inheritdoc/>
         </member>
+        <member name="T:GetcuReone.FactFactory.Entities.FactParameter">
+            <summary>
+            Fact parameter.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactParameter.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="code"></param>
+            <param name="value"></param>
+        </member>
         <member name="T:GetcuReone.FactFactory.Entities.FactRule">
             <summary>
             Rule of fact calculation.
