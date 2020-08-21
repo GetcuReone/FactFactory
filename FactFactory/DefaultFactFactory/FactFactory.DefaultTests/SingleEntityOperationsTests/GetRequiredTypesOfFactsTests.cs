@@ -31,7 +31,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Rule), TestCategory(TC.Projects.Versioned), TestCategory(GetcuReoneTC.Unit)]
+        [TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
         [Description("Required Input2Fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RequiredInput2FactTestCase()
