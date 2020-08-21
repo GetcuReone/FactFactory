@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WAction = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 using GetcuReone.GwtTestFramework.Helpers;
+using GetcuReone.FactFactory.Constants;
 
 namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 {
@@ -22,7 +23,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
         public void CanExtractTestCase()
         {
             var fact = new Fact1(default);
-            fact.AddParameter(new FactParameter(FactParametersCodes.Version, new Version2()));
+            fact.AddParameter(new FactParameter(VersionedFactParametersCodes.Version, new Version2()));
             Container.Add(fact);
             var rule = GetFactRule((Fact1 _) => new FactResult(default));
             var wantAction = GetWantAction((FactResult _) => { });
@@ -40,7 +41,8 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
         public void CannotExtractTestCase()
         {
             var fact = new Fact1(default);
-            fact.AddParameter(new FactParameter(FactParametersCodes.Version, new Version2()));
+            fact.AddParameter(new FactParameter(VersionedFactParametersCodes.Version, new Version2()));
+            fact.AddParameter(new FactParameter(FactParametersCodes.CalculateByRule, true));
             Container.Add(fact);
             var rule = GetFactRule((Fact1 _, Version1 v) => new FactResult(default));
             var wantAction = GetWantAction((FactResult _) => { });

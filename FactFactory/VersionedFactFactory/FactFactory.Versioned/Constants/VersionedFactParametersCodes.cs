@@ -3,7 +3,7 @@
     /// <summary>
     /// Default codes for fact parameter.
     /// </summary>
-    public static class FactParametersCodes
+    public static class VersionedFactParametersCodes
     {
         /// <summary>
         /// Version of the fact.

@@ -83,5 +83,19 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
             where TFactWork : IFactWork
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// Get types of facts that cannot be extracted from the container.
+        /// </summary>
+        /// <typeparam name="TFactWork"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="factWork">Purpose for which facts are needed.</param>
+        /// <param name="context">Context.</param>
+        /// <returns></returns>
+        IEnumerable<IFactType> GetRequiredTypesOfFacts<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }

@@ -76,9 +76,12 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         NodeByFactRule<TFactRule> node = lastTreeLevel[j];
                         NodeByFactRuleInfo<TFactRule> nodeInfo = node.Info;
                         Dictionary<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>> copatibleAllFinishedNodes = nodeInfo.GetCompatibleFinishedNodes(allFinichedNodes, context);
-                        List<IFactType> needFacts = nodeInfo.Rule.GetNecessaryFactTypes(context.WantAction, context.Container);
+                        List<IFactType> needFacts = context
+                            .SingleEntity
+                            .GetRequiredTypesOfFacts(nodeInfo.Rule, context)
+                            .Where(needFactType => !CanRemoveFromNeedFactTypes(needFactType, node, context, copatibleAllFinishedNodes))
+                            .ToList();
 
-                        needFacts.RemoveAll(needFactType => CanRemoveFromNeedFactTypes(needFactType, node, context, copatibleAllFinishedNodes));
                         // If the rule can be calculated from the parameters in the container, then add the node to the list of complete.
                         if (needFacts.IsNullOrEmpty())
                         {

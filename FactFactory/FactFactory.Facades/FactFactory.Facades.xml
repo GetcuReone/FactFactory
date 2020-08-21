@@ -36,6 +36,9 @@
         <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CanExtractFact``3(GetcuReone.FactFactory.Interfaces.IFactType,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
             <inheritdoc/>
         </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetRequiredTypesOfFacts``3(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade">
             <summary>
             Tree building operations.

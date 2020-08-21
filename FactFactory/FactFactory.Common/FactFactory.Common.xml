@@ -142,5 +142,13 @@
             </summary>
             <param name="type"></param>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.IsCalculatedByRule``1(``0)">
+            <summary>
+            Was the fact calculated using the rule.
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="fact"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

@@ -154,5 +154,14 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         {
             return context.Container.Any(fact => context.Cache.GetFactType(fact).EqualsFactType(factType));
         }
+
+        /// <inheritdoc/>
+        public virtual IEnumerable<IFactType> GetRequiredTypesOfFacts<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            return factWork.InputFactTypes.Where(factType => !CanExtractFact(factType, factWork, context));
+        }
     }
 }

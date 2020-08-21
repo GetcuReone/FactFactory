@@ -89,10 +89,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (factType.IsFactType<ISpecialFact>())
                 return base.CanExtractFact(factType, factWork, context);
 
-            List<IFact> facts = context
-                .Container
-                .Where(fact => context.Cache.GetFactType(fact).EqualsFactType(factType))
-                .ToList();
+            List<IFact> facts = context.GetFactsFromContainerByFactType(factType).ToList();
 
             if (facts.Count == 0)
                 return false;
@@ -104,16 +101,18 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (maxVersion == null)
                 return true;
 
-            return facts.Exists(fact =>
-            {
-                if (fact.Parameters == null)
-                    return false;
+            return facts.Exists(fact => fact.IsCompatibleWithVersion(maxVersion));
+        }
 
-                IVersionFact versionFact = fact.Parameters.FirstOrDefault(parameter => parameter.Code == FactParametersCodes.Version)?.Value as IVersionFact;
-                return versionFact != null
-                    ? maxVersion.CompareTo(versionFact) >= 0
-                    : false;
-            });
+        /// <inheritdoc/>
+        public override IEnumerable<IFactType> GetRequiredTypesOfFacts<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
+        {
+            var maxVersion = VersionedSingleEntityOperationsHelper.GetMinVersion(
+                factWork.InputFactTypes.GetVersionFact(context),
+                context.WantAction.InputFactTypes.GetVersionFact(context));
+
+            return factWork.InputFactTypes.Where(factType =>
+                context.GetFactsFromContainerByFactType(factType).All(fact => !fact.IsCompatibleWithVersion(maxVersion)));
         }
     }
 }

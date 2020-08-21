@@ -163,5 +163,27 @@ namespace GetcuReone.FactFactory
                     throw CreateException(ErrorCode.InvalidFactType, $"{type.FactName} implements more than one runtime special fact interface.");
             }
         }
+
+        /// <summary>
+        /// Was the fact calculated using the rule.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="fact"></param>
+        /// <returns></returns>
+        public static bool IsCalculatedByRule<TFact>(this TFact fact)
+            where TFact : IFact
+        {
+            if (fact.Parameters.IsNullOrEmpty())
+                return false;
+
+            object value = fact.Parameters.SingleOrDefault(p => p.Code == FactParametersCodes.CalculateByRule)?.Value;
+
+            if (value == null)
+                return false;
+            if (value is bool valueBool)
+                return valueBool;
+
+            return false;
+        }
     }
 }
