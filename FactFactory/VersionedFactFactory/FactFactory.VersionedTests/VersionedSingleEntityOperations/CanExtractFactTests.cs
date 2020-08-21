@@ -1,15 +1,11 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedSingleEntityOperations.Env;
-using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.GetcuTestAdapter;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WAction = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
-using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 using GetcuReone.GwtTestFramework.Helpers;
-using GetcuReone.FactFactory.Constants;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 
 namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 {
@@ -22,8 +18,9 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CanExtractTestCase()
         {
-            var fact = new Fact1(default);
-            fact.AddParameter(new FactParameter(VersionedFactParametersCodes.Version, new Version2()));
+            var fact = new Fact1(default)
+                .SetCalculateByRuleParam()
+                .SetVersionParam(new Version2());
             Container.Add(fact);
             var rule = GetFactRule((Fact1 _) => new FactResult(default));
             var wantAction = GetWantAction((FactResult _) => { });
@@ -40,9 +37,9 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CannotExtractTestCase()
         {
-            var fact = new Fact1(default);
-            fact.AddParameter(new FactParameter(VersionedFactParametersCodes.Version, new Version2()));
-            fact.AddParameter(new FactParameter(FactParametersCodes.CalculateByRule, true));
+            var fact = new Fact1(default)
+                .SetCalculateByRuleParam()
+                .SetVersionParam(new Version2());
             Container.Add(fact);
             var rule = GetFactRule((Fact1 _, Version1 v) => new FactResult(default));
             var wantAction = GetWantAction((FactResult _) => { });

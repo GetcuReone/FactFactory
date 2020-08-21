@@ -1,5 +1,8 @@
-﻿using GetcuReone.FactFactory.Exceptions;
+﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GwtTestFramework.Entities;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -52,6 +55,13 @@ namespace FactFactory.TestsCommon.Helpers
                 .ThenIsNotNull()
                 .And($"Check error with code {errorCode}", error =>
                     error.AssertErrorDetail(errorCode, errorMessage));
+        }
+
+        public static TFact SetCalculateByRuleParam<TFact>(this TFact fact)
+            where TFact : IFact
+        {
+            fact.AddParameter(new FactParameter(FactParametersCodes.CalculateByRule, true));
+            return fact;
         }
     }
 }
