@@ -16,11 +16,6 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         public TWantAction WantAction { get; set; }
 
         /// <summary>
-        /// Fact container.
-        /// </summary>
-        public TFactContainer Container { get; set; }
-
-        /// <summary>
         /// List of fact conditions. Successfully completed conditions for <see cref="WantAction"/>.
         /// </summary>
         public List<IConditionFact> SuccessConditions { get; set; }

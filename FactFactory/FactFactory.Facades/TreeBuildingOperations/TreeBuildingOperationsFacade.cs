@@ -1,4 +1,6 @@
 ﻿using GetcuReone.ComboPatterns.Facade;
+using GetcuReone.FactFactory.BaseEntities.Context;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
@@ -347,6 +349,85 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 return false;
             else
                 return TryRemoveRootNode(parent, treeByFactRule, level - 1);
+        }
+
+        /// <inheritdoc/>
+        public bool TryBuildTreesForWantAction<TFactRule, TWantAction, TFactContainer>(BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer> request, out BuildTreesForWantActionResult<TFactRule, TWantAction, TFactContainer> result)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            var context = request.Context;
+            var deriveFactErrorDetails = new List<DeriveFactErrorDetail>();
+            var wantActionInfo = new WantActionInfo<TWantAction, TFactContainer>
+            {
+                FailedConditions = new List<IConditionFact>(),
+                SuccessConditions = new List<IConditionFact>(),
+                WantAction = context.WantAction,
+            };
+            result = new BuildTreesForWantActionResult<TFactRule, TWantAction, TFactContainer>
+            {
+                TreesResult = new List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>(),
+                WantActionInfo = wantActionInfo,
+            };
+
+            foreach (var needFactType in context.SingleEntity.GetRequiredTypesOfFacts(context.WantAction, context))
+            {
+                if (needFactType.IsFactType<IConditionFact>())
+                {
+                    if (wantActionInfo.SuccessConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(needFactType)) || wantActionInfo.FailedConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(needFactType)))
+                        continue;
+
+                    var condition = needFactType.CreateConditionFact<IConditionFact>();
+
+                    if (condition.Condition(context.WantAction, context.WantAction.GetCompatibleRulesEx(request.FactRules, context), context))
+                    {
+                        result.WantActionInfo.SuccessConditions.Add(condition);
+                        continue;
+                    }
+                    else
+                        result.WantActionInfo.FailedConditions.Add(condition);
+                }
+
+                var requestFactType = new BuildTreeForFactInfoRequest<TFactRule, TWantAction, TFactContainer>
+                {
+                    WantFactType = needFactType,
+                    Context = new FactRulesContext<TFactRule, TWantAction, TFactContainer>
+                    {
+                        Cache = context.Cache,
+                        Container = context.Container,
+                        FactRules = context
+                            .WantAction
+                            .GetCompatibleRulesEx(request.FactRules, context)
+                            .ToList(),
+                        SingleEntity = context.SingleEntity,
+                        TreeBuilding = context.TreeBuilding,
+                        WantAction = context.WantAction,
+                    },
+                };
+
+                if (TryBuildTreeForFactInfo(requestFactType, out var resultTree, out var errorList))
+                {
+                    result.TreesResult.Add(resultTree);
+                }
+                else
+                {
+                    deriveFactErrorDetails.AddRange(errorList);
+                }
+            }
+
+            if (deriveFactErrorDetails.Count != 0)
+            {
+                result.DeriveErrorDetail = new DeriveErrorDetail(
+                    ErrorCode.FactCannotDerived,
+                    $"Failed to derive one or more facts for the action {context.WantAction}.",
+                    context.WantAction,
+                    deriveFactErrorDetails);
+
+                return false;
+            }
+
+            return true;
         }
     }
 }

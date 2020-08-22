@@ -385,6 +385,47 @@
             Context.
             </summary>
         </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionRequest`3">
+            <summary>
+            Request.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionRequest`3.Context">
+            <summary>
+            Context.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionRequest`3.FactRules">
+            <summary>
+            Fact rules.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionResult`3">
+            <summary>
+            Result.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionResult`3.WantActionInfo">
+            <summary>
+            WantAction info.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionResult`3.DeriveErrorDetail">
+            <summary>
+            Errors that occurred while building a tree.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionResult`3.TreesResult">
+            <summary>
+            Build trees.
+            </summary>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.Enums.TreeStatus">
             <summary>
             Tree build status.
@@ -499,11 +540,6 @@
         <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.WantAction">
             <summary>
             WantAction.
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.Container">
-            <summary>
-            Fact container.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.SuccessConditions">
@@ -631,6 +667,17 @@
             <param name="treeResult">Build tree.</param>
             <param name="deriveFactErrorDetails">Errors that occurred while building a tree.</param>
             <returns>True - build tree. False - not build tree.</returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ITreeBuildingOperations.TryBuildTreesForWantAction``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionRequest{``0,``1,``2},GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionResult{``0,``1,``2}@)">
+            <summary>
+            Try build trees for wantAction.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="request">Request.</param>
+            <param name="result">Result.</param>
+            <returns>True - build trees. False - not build trees.</returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ICanDerivedFact">
             <summary>

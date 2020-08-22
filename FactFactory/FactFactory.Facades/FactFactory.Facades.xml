@@ -82,6 +82,9 @@
             <param name="level"></param>
             <returns>True - remove root node.</returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.TryBuildTreesForWantAction``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionRequest{``0,``1,``2},GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionResult{``0,``1,``2}@)">
+            <inheritdoc/>
+        </member>
         <member name="M:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsHelper.GetTreesByRequest``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreeForFactInfoRequest{``0,``1,``2})">
             <summary>
             Get <see cref="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule`3"/> by <paramref name="request"/>.
