@@ -37,5 +37,21 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
             where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// Try build trees for wantActions.
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <typeparam name="TFactRuleCollection"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="request">Request.</param>
+        /// <param name="result">Result.</param>
+        /// <returns></returns>
+        bool TryBuildTrees<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>(BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request, out BuildTreesResult<TFactRule, TWantAction, TFactContainer> result)
+            where TFactRule : IFactRule
+            where TFactRuleCollection : IFactRuleCollection<TFactRule>
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }

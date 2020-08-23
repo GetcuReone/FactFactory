@@ -429,5 +429,41 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
             return true;
         }
+
+        /// <inheritdoc/>
+        public virtual bool TryBuildTrees<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>(BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request, out BuildTreesResult<TFactRule, TWantAction, TFactContainer> result)
+            where TFactRule : IFactRule
+            where TFactRuleCollection : IFactRuleCollection<TFactRule>
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            result = new BuildTreesResult<TFactRule, TWantAction, TFactContainer>
+            {
+                TreesByActions = new Dictionary<WantActionInfo<TWantAction, TFactContainer>, List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>>(),
+            };
+
+            foreach(var context in request.WantActionContexts)
+            {
+                var requestForAction = new BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer>
+                {
+                    Context = context,
+                    FactRules = request.FactRules,
+                };
+
+                if (TryBuildTreesForWantAction(requestForAction, out var resultForAction))
+                {
+                    result.TreesByActions.Add(resultForAction.WantActionInfo, resultForAction.TreesResult);
+                }
+                else
+                {
+                    if (result.DeriveErrorDetails == null)
+                        result.DeriveErrorDetails = new List<DeriveErrorDetail>();
+
+                    result.DeriveErrorDetails.Add(resultForAction.DeriveErrorDetail);
+                }
+            }
+
+            return result.DeriveErrorDetails == null;
+        }
     }
 }
