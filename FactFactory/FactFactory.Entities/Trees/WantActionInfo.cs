@@ -1,21 +1,17 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GetcuReone.FactFactory.Entities.Trees
 {
     /// <summary>
     /// Info for <see cref="WantAction"/>.
     /// </summary>
-    /// <typeparam name="TFactBase"></typeparam>
     /// <typeparam name="TWantAction"></typeparam>
     /// <typeparam name="TFactContainer"></typeparam>
-    public class WantActionInfo<TFactBase, TWantAction, TFactContainer>
-        where TFactBase : IFact
-        where TWantAction : IWantAction<TFactBase>
-        where TFactContainer : IFactContainer<TFactBase>
+    public class WantActionInfo<TWantAction, TFactContainer>
+        where TWantAction : IWantAction
+        where TFactContainer : IFactContainer
     {
         /// <summary>
         /// WantAction.

@@ -7,7 +7,7 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Fact collection.
     /// </summary>
-    public class FactContainer : FactContainerBase<FactBase>
+    public class FactContainer : FactContainerBase
     {
         /// <summary>
         /// Constructor.
@@ -30,7 +30,7 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <inheritdoc/>
-        public override FactContainerBase<FactBase> Copy()
+        public override IFactContainer Copy()
         {
             return new FactContainer(this, IsReadOnly);
         }

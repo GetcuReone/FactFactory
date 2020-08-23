@@ -7,9 +7,9 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Versioned
 {
     /// <summary>
-    /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
+    /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
     /// </summary>
-    public class VersionedFactFactory : VersionedFactFactoryBase<VersionedFactBase, VersionedFactContainer, VersionedFactRule, VersionedFactRuleCollection, VersionedWantAction>
+    public class VersionedFactFactory : VersionedFactFactoryBase<VersionedFactRule, VersionedFactRuleCollection, VersionedWantAction, VersionedFactContainer>
     {
         private readonly Func<List<IVersionFact>> _getAllVersionFactsFunc;
 
@@ -35,12 +35,12 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Creation method <see cref="IWantAction{TFact}"/>.
+        /// Creation method <see cref="IWantAction"/>.
         /// </summary>
         /// <param name="wantAction">action taken after deriving a fact.</param>
         /// <param name="factTypes">facts required to launch an action.</param>
         /// <returns></returns>
-        protected override VersionedWantAction CreateWantAction(Action<IFactContainer<VersionedFactBase>> wantAction, List<IFactType> factTypes)
+        protected override VersionedWantAction CreateWantAction(Action<IFactContainer> wantAction, List<IFactType> factTypes)
         {
             return new VersionedWantAction(wantAction, factTypes);
         }

@@ -15,7 +15,7 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace FactFactoryTests.FactContainer
 {
     [TestClass]
-    public sealed class FactContainerTests : CommonTestBase<FactBase>
+    public sealed class FactContainerTests : CommonTestBase
     {
         private GivenBlock<Container> GivenCreateContainer(bool isReadOnly = false)
         {
@@ -161,7 +161,7 @@ namespace FactFactoryTests.FactContainer
             Input3Fact input3Fact = new Input3Fact(3);
 
             Container originalContainer = null;
-            IFactContainer<FactBase> copyContainer = null;
+            IFactContainer copyContainer = null;
 
             Given("Create container.", () => originalContainer = new Container())
                 .And("Add facts.", _ =>
@@ -225,21 +225,6 @@ namespace FactFactoryTests.FactContainer
                 {
                     Assert.AreEqual(0, container.Count(), "Container must be empty.");
                 });
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Add a fact that is not inherited from the base class and is not special.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void AddFactOfIFactTestCase()
-        {
-            var fact = new InvalidFact();
-            string expectedMessage = $"The fact must be inherited either from the base type or from {nameof(ISpecialFact)}. Fact:<{fact}>.";
-
-            GivenCreateContainer()
-                .When("Add fact.", container =>
-                    ExpectedFactFactoryException(() => container.Add(fact)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedMessage);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using GetcuReone.FactFactory.Helpers;
-using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
@@ -12,7 +11,7 @@ using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 namespace GetcuReone.FactFactory.Versioned.Helpers
 {
     /// <summary>
-    /// Helper for <see cref="VersionedFactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
+    /// Helper for <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
     /// </summary>
     internal static class VersionedFactFactoryHelper
     {
@@ -47,12 +46,11 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
         }
 
         internal static TFact ConvertFact<TFact>(this IFact fact)
-            where TFact : IFact
         {
             if (fact is TFact fact1)
                 return fact1;
 
-            throw CommonHelper.CreateDeriveException<TFact>(
+            throw CommonHelper.CreateDeriveException(
                     CommonErrorCode.InvalidFactType, 
                     $"Fact {fact.GetFactType().FactName} should not be converted into {typeof(TFact).FullName}");
         }
@@ -62,8 +60,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             return new FactType<TFact>();
         }
 
-        internal static IFact GetRightFactByVersionType<TFactBase>(this IFactContainer<TFactBase> container, IFactType searchFactType, IFactType versionType)
-            where TFactBase : class, IVersionedFact
+        internal static IFact GetRightFactByVersionType(this IFactContainer container, IFactType searchFactType, IFactType versionType)
         {
             if (versionType != null)
             {
@@ -74,8 +71,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
                 return container.GetRightFactByVersion(searchFactType, null);
         }
 
-        internal static IFact GetRightFactByVersion<TFactBase>(this IFactContainer<TFactBase> container, IFactType searchFactType, IVersionFact version)
-            where TFactBase : class, IVersionedFact
+        internal static IFact GetRightFactByVersion(this IFactContainer container, IFactType searchFactType, IVersionFact version)
         {
             if (searchFactType.IsFactType<ISpecialFact>())
                 return searchFactType.GetFacts(container).FirstOrDefault();
@@ -135,12 +131,11 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             return null;
         }
 
-        internal static bool СompatibilityWithRuleByVersion<TFactBase, TFactWork, TFactRule, TWantAction, TFactContainer>(this TFactWork work, TFactRule rule, TWantAction wantAction, TFactContainer container)
-            where TFactBase : class, IVersionedFact
-            where TFactWork : IFactWork<TFactBase>, IFactTypeVersionInfo
-            where TFactRule : IFactRule<TFactBase>, IFactTypeVersionInfo
-            where TWantAction : IWantAction<TFactBase>, IFactTypeVersionInfo
-            where TFactContainer : IFactContainer<TFactBase>
+        internal static bool СompatibilityWithRuleByVersion<TFactWork, TFactRule, TWantAction, TFactContainer>(this TFactWork work, TFactRule rule, TWantAction wantAction, TFactContainer container)
+            where TFactWork : IFactWork, IFactTypeVersionInfo
+            where TFactRule : IFactRule, IFactTypeVersionInfo
+            where TWantAction : IWantAction, IFactTypeVersionInfo
+            where TFactContainer : IFactContainer
         {
             // If the current work or action has an installed version and the rule has no version limit.
             if (rule.VersionType == null)

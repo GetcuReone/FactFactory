@@ -141,24 +141,6 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get original container.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void GetOriginalContainerTestCase()
-        {
-            const string expectedValue = "IFactContainer.Copy method return original container.";
-
-            Given("Create factory.", () => new FactFactoryCustom())
-                .And("Change container.", factFactory =>
-                {
-                    factFactory.container = new FactContainerGetOriginal();
-                })
-                .When("Run derive.", factory => 
-                    ExpectedDeriveException(() => factory.DeriveFact<OtherFact>()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedValue);
-        }
-
-        [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Check method DeriveFact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
@@ -357,60 +339,6 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive with empty container.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveWithEmptyContainerTestCase()
-        {
-            const string expectedReason = "Container cannot be null.";
-
-            Given("Create factory.", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => 
-                { 
-                    factFactory.container = null; 
-                })
-                .When("Run Derive.", factFactory => 
-                    ExpectedDeriveException(factFactory.Derive))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive with container returning a blank copy.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveWithContainerReturningBlankCopyTestCase()
-        {
-            const string expectedReason = "IFactContainer.Copy method return null.";
-
-            Given("Create factory.", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => 
-                {
-                    factFactory.container = new FactContainerGetNull();
-                })
-                .When("Run Derive.", factFactory => 
-                    ExpectedDeriveException(factFactory.Derive))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive with container returning a different type of container.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveWithContainerReturningDifferentTypeContainerTestCase()
-        {
-            const string expectedReason = "IFactContainer.Copy method returned a different type of container.";
-
-            Given("Create factory.", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => 
-                { 
-                    factFactory.container = new FactContainerGetDifferent();
-                })
-                .When("Run Derive.", factFactory =>
-                    ExpectedDeriveException(factFactory.Derive))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.RuleCollection), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with empty rules.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
@@ -422,42 +350,6 @@ namespace FactFactoryTests.FactFactoryT
                 .And("Empty container.", factFactory =>
                 {
                     factFactory.collection = null;
-                })
-                .When("Run Derive.", factFactory => 
-                    ExpectedDeriveException(factFactory.Derive))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive with rules returning a blank copy.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveWithRulesReturningBlankCopyTestCase()
-        {
-            const string expectedReason = "FactRuleCollectionBase.Copy method return null.";
-
-            Given("Create factory.", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => 
-                { 
-                    factFactory.collection = new RulesGetNull(); 
-                })
-                .When("Run Derive.", factFactory => 
-                    ExpectedDeriveException(factFactory.Derive))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive with rules returning a different type of rules.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveWithRulesReturningDifferentTypeRulesTestCase()
-        {
-            const string expectedReason = "FactRuleCollectionBase.Copy method returned a different type of rules.";
-
-            Given("Create factory", () => new FactFactoryCustom())
-                .And("Empty container.", factFactory => 
-                {
-                    factFactory.collection = new RulesGetDifferent();
                 })
                 .When("Run Derive.", factFactory => 
                     ExpectedDeriveException(factFactory.Derive))

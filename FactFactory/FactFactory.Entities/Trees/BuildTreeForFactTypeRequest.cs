@@ -7,15 +7,13 @@ namespace GetcuReone.FactFactory.Entities.Trees
     /// <summary>
     /// Request to build a trees for FactType.
     /// </summary>
-    /// <typeparam name="TFactBase"></typeparam>
     /// <typeparam name="TFactRule"></typeparam>
     /// <typeparam name="TWantAction"></typeparam>
     /// <typeparam name="TFactContainer"></typeparam>
-    public class BuildTreeForFactTypeRequest<TFactBase, TFactRule, TWantAction, TFactContainer>
-        where TFactBase : IFact
-        where TFactRule : FactRuleBase<TFactBase>
-        where TWantAction : WantActionBase<TFactBase>
-        where TFactContainer : FactContainerBase<TFactBase>
+    public class BuildTreeForFactTypeRequest<TFactRule, TWantAction, TFactContainer>
+        where TFactRule : FactRuleBase
+        where TWantAction : WantActionBase
+        where TFactContainer : FactContainerBase
     {
         /// <summary>
         /// The type of fact for which you want to build a tree.
@@ -25,7 +23,7 @@ namespace GetcuReone.FactFactory.Entities.Trees
         /// <summary>
         /// WantAction for which you need to build an action.
         /// </summary>
-        public WantActionInfo<TFactBase, TWantAction, TFactContainer> WantActionInfo { get; set; }
+        public WantActionInfo<TWantAction, TFactContainer> WantActionInfo { get; set; }
 
         /// <summary>
         /// A collection of rules that will be used to build the tree.

@@ -1,5 +1,4 @@
 ﻿using GetcuReone.FactFactory.BaseEntities;
-using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Entities.Trees
@@ -7,17 +6,15 @@ namespace GetcuReone.FactFactory.Entities.Trees
     /// <summary>
     /// Request to build a trees.
     /// </summary>
-    /// <typeparam name="TFactBase"></typeparam>
     /// <typeparam name="TFactRule"></typeparam>
     /// <typeparam name="TFactRuleCollection"></typeparam>
     /// <typeparam name="TWantAction"></typeparam>
     /// <typeparam name="TFactContainer"></typeparam>
-    public class BuildTreesRequest<TFactBase, TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
-        where TFactBase : IFact
-        where TFactRule : FactRuleBase<TFactBase>
-        where TFactRuleCollection : FactRuleCollectionBase<TFactBase, TFactRule>
-        where TWantAction : WantActionBase<TFactBase>
-        where TFactContainer : FactContainerBase<TFactBase>
+    public class BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+        where TFactRule : FactRuleBase
+        where TFactRuleCollection : FactRuleCollectionBase<TFactRule>
+        where TWantAction : WantActionBase
+        where TFactContainer : FactContainerBase
     {
         /// <summary>
         /// List of actions for which to build trees.

@@ -4,37 +4,36 @@
         <name>FactFactory.Versioned</name>
     </assembly>
     <members>
-        <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1">
+        <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase">
             <summary>
             Base class for versioned fact container.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.#ctor">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.#ctor">
             <summary>
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Constructor.
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)">
             <summary>
             Constructor.
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
             <param name="isReadOnly"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.Add``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Add``1(``0)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.TryGetFactByVersion``1(``0@,GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.TryGetFactByVersion``1(``0@,GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
             <summary>
             Try to return a fact of <typeparamref name="TFact"/> type with version equal to <paramref name="version"/>.
             </summary>
@@ -42,10 +41,10 @@
             <param name="fact">fact.</param>
             <param name="version">Version.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.TryGetFact``1(``0@)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.TryGetFact``1(``0@)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.ContainsByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.ContainsByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
             <summary>
             Does an <typeparamref name="TFact"/> type fact with version <paramref name="version"/>.
             </summary>
@@ -53,45 +52,44 @@
             <param name="version"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.Contains``1">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Contains``1">
             <summary>
             Does an <typeparamref name="TFact"/> type fact without version.
             </summary>
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.GetFactByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.GetFactByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
             <summary>
             Return a fact of <typeparamref name="TFact"/> type with version equal to <paramref name="version"/>.
             </summary>
             <typeparam name="TFact">Type of fact you need.</typeparam>
             <param name="version">Version.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.GetFact``1">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.GetFact``1">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.RemoveByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.RemoveByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
             <summary>
             Remove a fact of <typeparamref name="TFact"/> type with version equal to <paramref name="version"/>.
             </summary>
             <typeparam name="TFact">Type of fact you need.</typeparam>
             <param name="version">Version.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase`1.Remove``1">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Remove``1">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase`1">
+        <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase">
             <summary>
             Version rule for calculating a fact.
             </summary>
-            <typeparam name="TFactBase">Base class for facts.</typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase`1.VersionType">
+        <member name="P:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.VersionType">
             <summary>
             Type of fact with rule version.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase`1.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{`0},GetcuReone.FactFactory.Interfaces.IWantAction{`0},`0},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Constructor.
             </summary>
@@ -99,41 +97,40 @@
             <param name="inputFactTypes"></param>
             <param name="outputFactType"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase`1.Calculate``2(``0,``1)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.Calculate``2(``0,``1)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase`1.CanCalculate``2(``0,``1)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.CanCalculate``2(``0,``1)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase`1.СompatibilityWithRule``3(``0,``1,``2)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.СompatibilityWithRule``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`2">
+        <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`1">
             <summary>
             Base collection for <typeparamref name="TFactRule"/>.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
             <typeparam name="TFactRule"></typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`2.#ctor">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`1.#ctor">
             <summary>
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`2.#ctor(System.Collections.Generic.IEnumerable{`1})">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
             Constructor.
             </summary>
             <param name="factRules"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
             <summary>
             Constructor.
             </summary>
             <param name="factRules"></param>
             <param name="isReadOnly"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`2.GetCorrectFact``1(GetcuReone.FactFactory.Interfaces.IFactContainer{`0},GetcuReone.FactFactory.Interfaces.IWantAction{`0})">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`1.GetCorrectFact``1(GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction)">
             <summary>
             Return the correct fact.
             </summary>
@@ -142,56 +139,30 @@
             <param name="wantAction"></param>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleComparerBase`4">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleComparerBase`4.#ctor(`2,`3)">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleComparerBase`4.EqualRulesWithDifferentVersions(`1,`1)">
-            <summary>
-            Equal rules with different versions.
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleComparerBase`4.CompareByVersion(`1,`1)">
-            <summary>
-            Compare by version.
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleComparerBase`4.Compare(`1,`1)">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase`1">
+        <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase">
             <summary>
             Base class containing information about the desired action with the version.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase`1.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{`0}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor.
             </summary>
             <param name="wantAction">Action taken after deriving a fact.</param>
             <param name="factTypes">Facts required to launch an action.</param>
         </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase`1.VersionType">
+        <member name="P:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase.VersionType">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase`1.GetNecessaryFactTypes``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase.GetNecessaryFactTypes``1(``0)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase`1.СompatibilityWithRule``3(``0,``1,``2)">
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase.СompatibilityWithRule``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Constants.ErrorCode">
             <summary>
-            Codes for errors in work <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5"/>.
+            Codes for errors in work <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4"/>.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.Constants.ErrorCode.VersionNotFound">
@@ -207,6 +178,16 @@
         <member name="P:GetcuReone.FactFactory.Versioned.Constants.ErrorCode.OnlyOneVersionFact">
             <summary>
             There should be only one version fact.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Constants.VersionedFactParametersCodes">
+            <summary>
+            Default codes for fact parameter.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.FactFactory.Versioned.Constants.VersionedFactParametersCodes.Version">
+            <summary>
+            Version of the fact.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer">
@@ -243,7 +224,7 @@
             Version rule for calculating a fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase},GetcuReone.FactFactory.Interfaces.IWantAction{GetcuReone.FactFactory.Versioned.VersionedFactBase},GetcuReone.FactFactory.Versioned.VersionedFactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Constructor.
             </summary>
@@ -276,11 +257,11 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.Copy">
             <summary>
-            <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/> copy method.
+            <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/> copy method.
             </summary>
             <returns>Copied <see cref="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection"/>.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase},GetcuReone.FactFactory.Interfaces.IWantAction{GetcuReone.FactFactory.Versioned.VersionedFactBase},GetcuReone.FactFactory.Versioned.VersionedFactBase},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Creation method <see cref="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule"/>.
             </summary>
@@ -289,27 +270,57 @@
             <param name="outputFactType">information on output fact.</param>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleComparer`4">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleComparer`4.#ctor(`2,`3)">
-            <inheritdoc/>
-        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction">
             <summary>
             Information about the desired action with the version.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor.
             </summary>
             <param name="wantAction">action taken after deriving a fact.</param>
             <param name="factTypes">facts required to launch an action.</param>
         </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.CompareFactRules``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.CompareRulesByVersion``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <summary>
+            Compare rules by version.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.GetCompatibleRules``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.CompatibleRule``4(``0,``1,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.CanExtractFact``3(GetcuReone.FactFactory.Interfaces.IFactType,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.GetRequiredTypesOfFacts``3(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsHelper.IsCompatibleWithVersion``1(``0,GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+            <summary>
+            Compatible with version.
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="fact"></param>
+            <param name="version"></param>
+            <returns></returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Helpers.VersionedFactFactoryHelper">
             <summary>
-            Helper for <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5"/>
+            Helper for <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4"/>
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Interfaces.IFactTypeVersionInfo">
@@ -332,17 +343,16 @@
             Version of the rule that calculated the fact.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactFactory`5">
+        <member name="T:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactFactory`4">
             <summary>
             Versioned fact factory interface.
             </summary>
-            <typeparam name="TFactBase">All facts that the fact factory works with should be inherited from this type.</typeparam>
             <typeparam name="TFactContainer">Type fact container.</typeparam>
             <typeparam name="TFactRule">Type fact rule.</typeparam>
             <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
             <typeparam name="TWantAction">Type 'want action'.</typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactFactory`5.DeriveFact``2">
+        <member name="M:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactFactory`4.DeriveFact``2">
             <summary>
             Derive <typeparamref name="TFactResult"/> with version <typeparamref name="TVersion"/>.
             </summary>
@@ -350,7 +360,7 @@
             <typeparam name="TVersion">Version info.</typeparam>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactRule`1">
+        <member name="T:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactRule">
             <summary>
             Version rule for calculating a fact.
             </summary>
@@ -395,7 +405,7 @@
             <param name="versionedFact"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.IsFactContained``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.IsFactContained``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
@@ -475,7 +485,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactFactory">
             <summary>
-            Default implementation of versioned fact factory <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5"/>.
+            Default implementation of versioned fact factory <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4"/>.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.VersionedFactFactory.Container">
@@ -494,9 +504,9 @@
             </summary>
             <param name="getAllVersionFactsFunc">Function that returns all versioned facts used in the rules.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{GetcuReone.FactFactory.Versioned.VersionedFactBase}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
-            Creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction`1"/>.
+            Creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>.
             </summary>
             <param name="wantAction">action taken after deriving a fact.</param>
             <param name="factTypes">facts required to launch an action.</param>
@@ -508,36 +518,36 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5">
+        <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4">
             <summary>
             Base class for versioned fact factory.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetCorrectFact``1(GetcuReone.FactFactory.Interfaces.IFactContainer{`0},System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetCorrectFact``1(GetcuReone.FactFactory.Interfaces.IFactContainer,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetAllVersions">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetAllVersions">
             <summary>
             Returns instances of all used versions.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetDefaultFacts(`1)">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetDefaultFacts(`3)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.NeedRecalculateFact(`2,`1,`4,`0@)">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.NeedRecalculateFact(`0,`3,`2,GetcuReone.FactFactory.Interfaces.IFact@)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,`1,`4)">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,`3,`2)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.GetFactRuleComparer(GetcuReone.FactFactory.Entities.Trees.WantActionInfo{`0,`4,`1})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetSingleEntityOperations">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.Derive">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.Derive">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`5.DeriveFact``2">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.DeriveFact``2">
             <summary>
             Derive <typeparamref name="TFact"/> with version.
             </summary>

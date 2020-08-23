@@ -14,7 +14,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactoryTests.WantAction
 {
     [TestClass]
-    public sealed class WantActionTests : CommonTestBase<FactBase>
+    public sealed class WantActionTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
@@ -60,27 +60,6 @@ namespace FactFactoryTests.WantAction
                 .And("Check error.", ex =>
                 {
                     Assert.AreEqual(expectedReason, ex.Message, "Expectend another message.");
-                });
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Request entry is not a valid fact.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void WantAction_RequestEntryInvalidFactTestCase()
-        {
-            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}.";
-
-            GivenEmpty()
-                .When("Create WantAction.", _ =>
-                {
-                    return ExpectedException<ArgumentException>(
-                        () => new WAction(ct => { }, new List<IFactType> { GetFactType<InvalidFact>() }));
-                })
-                .ThenIsNotNull()
-                .And("Check error.", ex =>
-                {
-                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected.");
                 });
         }
 

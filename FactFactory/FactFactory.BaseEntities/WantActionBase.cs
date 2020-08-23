@@ -6,19 +6,18 @@ using System.Linq;
 namespace GetcuReone.FactFactory.BaseEntities
 {
     /// <summary>
-    /// Base class for <see cref="IWantAction{TFact}"/>.
+    /// Base class for <see cref="IWantAction"/>.
     /// </summary>
-    public abstract class WantActionBase<TFactBase> : FactWorkBase<TFactBase>, IWantAction<TFactBase>
-        where TFactBase : IFact
+    public abstract class WantActionBase : FactWorkBase, IWantAction
     {
-        private readonly Action<IFactContainer<TFactBase>> _action;
+        private readonly Action<IFactContainer> _action;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
-        protected WantActionBase(Action<IFactContainer<TFactBase>> wantAction, List<IFactType> factTypes)
+        protected WantActionBase(Action<IFactContainer> wantAction, List<IFactType> factTypes)
             : base(factTypes)
         {
             _action = wantAction ?? throw new ArgumentNullException(nameof(wantAction));
@@ -30,9 +29,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Run action.
         /// </summary>
-        /// <typeparam name="TFactContainer">container with <see cref="IFactWork{TFactBase}.InputFactTypes"/>.</typeparam>
+        /// <typeparam name="TFactContainer">container with <see cref="IFactWork.InputFactTypes"/>.</typeparam>
         /// <param name="container"></param>
-        public virtual void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer<TFactBase>
+        public virtual void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer
         {
             _action(container);
         }
@@ -53,7 +52,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="container"></param>
         /// <returns></returns>
         public virtual List<IFactType> GetNecessaryFactTypes<TFactContainer>(TFactContainer container)
-            where TFactContainer : IFactContainer<TFactBase>
+            where TFactContainer : IFactContainer
         {
             List<IFactType> result = InputFactTypes.ToList();
 

@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.Common", "FactF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.Entities", "FactFactory.Entities\FactFactory.Entities.csproj", "{45B34CB5-7AAC-4FA0-81EE-EAF72B658A95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactFactory.Facades", "FactFactory.Facades\FactFactory.Facades.csproj", "{6E08AB94-B861-4D2D-A646-DF09585027CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.Facades", "FactFactory.Facades\FactFactory.Facades.csproj", "{6E08AB94-B861-4D2D-A646-DF09585027CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

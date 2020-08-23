@@ -19,7 +19,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactoryTests.FactRule
 {
     [TestClass]
-    public sealed class FactRuleTests : CommonTestBase<FactBase>
+    public sealed class FactRuleTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
@@ -125,7 +125,7 @@ namespace FactFactoryTests.FactRule
                     container.Add(new IntFact(1)))
                 .And("Create rule.", _ =>
                 {
-                    Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func = (ct, __) =>
+                    Func<IFactContainer, IWantAction, FactBase> func = (ct, __) =>
                     {
                         var date = ct.GetFact<DateTimeFact>().Value;
                         var number = ct.GetFact<IntFact>().Value;
@@ -160,7 +160,7 @@ namespace FactFactoryTests.FactRule
                     container.Add(new IntFact(1)))
                 .And("Create rule.", _ =>
                 {
-                    Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func = (ct, __) => default;
+                    Func<IFactContainer, IWantAction, FactBase> func = (ct, __) => default;
 
                     return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), GetFactType<OtherFact>());
                 })
@@ -188,7 +188,7 @@ namespace FactFactoryTests.FactRule
                     container.Add(new IntFact(1)))
                 .And("Create rule.", _ =>
                 {
-                    Func<IFactContainer<FactBase>, IWantAction<FactBase>, FactBase> func = (ct, __) => default;
+                    Func<IFactContainer, IWantAction, FactBase> func = (ct, __) => default;
 
                     return new Rule(func, factInfos, GetFactType<OtherFact>());
                 })
@@ -216,47 +216,6 @@ namespace FactFactoryTests.FactRule
                 .And("Check error", ex => 
                 {
                     Assert.AreEqual(expectedReason, ex.Message, "Another message expected.");
-                });
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Request an invalid fact.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void Rule_RequestInvalidFactTestCase()
-        {
-            string expectedReason = $"Rule must return fact inherited from {typeof(FactBase).FullName}. (Parameter 'outputFactType')";
-
-            GivenEmpty()
-                .When("Create rule.", _ =>
-                {
-                    return ExpectedException<ArgumentException>(
-                        () => new Rule((_, __) => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<InvalidFact>()));
-                })
-                .ThenIsNotNull()
-                .And("Check error.", ex =>
-                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected."));
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Request entry is not a valid fact.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void Rule_RequestEntryInvalidFactTestCase()
-        {
-            IFactType inputType = GetFactType<InvalidFact>();
-            string expectedReason = $"InvalidFact types are not inherited from {typeof(FactBase).FullName}.";
-
-            GivenEmpty()
-                .When("Create rule.", _ =>
-                {
-                    return ExpectedException<ArgumentException>(
-                        () => new Rule((_, __) => { return default; }, new List<IFactType> { inputType }, GetFactType<IntFact>()));
-                })
-                .ThenIsNotNull()
-                .And("Check error", ex =>
-                {
-                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
                 });
         }
 

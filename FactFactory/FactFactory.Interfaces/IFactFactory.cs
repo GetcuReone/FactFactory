@@ -1,21 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using GetcuReone.FactFactory.Interfaces.Operations;
 
 namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Fact factory interface.
     /// </summary>
-    /// <typeparam name="TFact">All facts that the fact factory works with should be inherited from this type.</typeparam>
     /// <typeparam name="TFactContainer">Type fact container.</typeparam>
     /// <typeparam name="TFactRule">Type fact rule.</typeparam>
     /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
     /// <typeparam name="TWantAction">Type 'want action'.</typeparam>
-    public interface IFactFactory<TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
-        where TFact : IFact
-        where TFactContainer : IFactContainer<TFact>
-        where TFactRule : IFactRule<TFact>
-        where TFactRuleCollection : IList<TFactRule>
-        where TWantAction : IWantAction<TFact>
+    public interface IFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+        where TFactRule : IFactRule
+        where TFactRuleCollection : IFactRuleCollection<TFactRule>
+        where TWantAction : IWantAction
+        where TFactContainer : IFactContainer
     {
         /// <summary>
         /// Fact container.
@@ -33,16 +31,34 @@ namespace GetcuReone.FactFactory.Interfaces
         void Derive();
 
         /// <summary>
-        /// Derive <typeparamref name="TWantFact"/>.
+        /// Derive <typeparamref name="TFactResult"/>.
         /// </summary>
-        /// <typeparam name="TWantFact">Type of desired fact.</typeparam>
+        /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
         /// <returns></returns>
-        TWantFact DeriveFact<TWantFact>() where TWantFact : TFact;
+        TFactResult DeriveFact<TFactResult>() where TFactResult : IFact;
 
         /// <summary>
         /// Requesting a desired fact through action.
         /// </summary>
         /// <param name="wantAction"></param>
         void WantFact(TWantAction wantAction);
+
+        /// <summary>
+        /// Get <see cref="ITreeBuildingOperations"/>.
+        /// </summary>
+        /// <returns></returns>
+        ITreeBuildingOperations GetTreeBuildingOperations();
+
+        /// <summary>
+        /// Get <see cref="ISingleEntityOperations"/>.
+        /// </summary>
+        /// <returns></returns>
+        ISingleEntityOperations GetSingleEntityOperations();
+
+        /// <summary>
+        /// Get <see cref="IFactTypeCache"/>.
+        /// </summary>
+        /// <returns></returns>
+        IFactTypeCache GetFactTypeCache();
     }
 }

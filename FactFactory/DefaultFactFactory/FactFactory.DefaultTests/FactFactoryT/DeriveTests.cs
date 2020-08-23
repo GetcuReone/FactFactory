@@ -92,7 +92,7 @@ namespace FactFactoryTests.FactFactoryT
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
                 .And("Check error.", error =>
                 {
-                    DeriveErrorDetail<FactBase> detail = error.Details.First();
+                    DeriveErrorDetail detail = error.Details.First();
                     Assert.AreEqual(setNeedFacts.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
                     List<DeriveFactErrorDetail> factDetails = detail.RequiredFacts.ToList();
 
@@ -144,7 +144,7 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     Assert.AreEqual(2, error.Details.Count, "Expceted another count details");
 
-                    foreach (DeriveErrorDetail<FactBase> detail in error.Details)
+                    foreach (var detail in error.Details)
                     {
                         Assert.AreEqual(setNeedFacts.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
                         List<DeriveFactErrorDetail> factDetails = detail.RequiredFacts.ToList();
@@ -207,7 +207,7 @@ namespace FactFactoryTests.FactFactoryT
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason1)
                 .And("Check error detail 1.", error =>
                 {
-                    DeriveErrorDetail<FactBase> detail = error.Details.First();
+                    DeriveErrorDetail detail = error.Details.First();
                     Assert.AreEqual(setNeedFacts1.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
                     List<DeriveFactErrorDetail> factDetails = detail.RequiredFacts.ToList();
 
@@ -226,7 +226,7 @@ namespace FactFactoryTests.FactFactoryT
                 .AndAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason2)
                 .And("Check error detail.", error =>
                 {
-                    DeriveErrorDetail<FactBase> detail = error.Details.Skip(1).First();
+                    DeriveErrorDetail detail = error.Details.Skip(1).First();
                     Assert.AreEqual(setNeedFacts2.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
                     List<DeriveFactErrorDetail> factDetails = detail.RequiredFacts.ToList();
 
@@ -282,7 +282,7 @@ namespace FactFactoryTests.FactFactoryT
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
                 .And("Check error detail 1.", error =>
                 {
-                    DeriveErrorDetail<FactBase> detail = error.Details.First();
+                    DeriveErrorDetail detail = error.Details.First();
                     Assert.AreEqual(expectedRequiredFacts.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
                     List<DeriveFactErrorDetail> factDetails = detail.RequiredFacts.ToList();
 
@@ -323,7 +323,7 @@ namespace FactFactoryTests.FactFactoryT
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
                 .And("Check error", error =>
                 {
-                    DeriveErrorDetail<FactBase> detail = error.Details.First();
+                    DeriveErrorDetail detail = error.Details.First();
                     Assert.AreEqual(1, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
 
                     DeriveFactErrorDetail factDetail = detail.RequiredFacts.First();
@@ -365,24 +365,6 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.IsNotNull(input16Fact, "input16Fact is not derived");
                     Assert.IsNotNull(input7Fact, "input7Fact is not derived");
                 });
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get the original rules for the Derive.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void GetOriginalsRulesForDerive()
-        {
-            const string expectedReason = "FactRuleCollectionBase.Copy method return original rule collection.";
-
-            Given("Create custom factory.", () => new FactFactoryCustom())
-                .And("Change rules.", factFactory => 
-                {
-                    factFactory.collection = new FactRuleCollectionGetOriginal();
-                })
-                .When("Derive fact.", factFactory =>
-                    ExpectedDeriveException(() => factFactory.Derive()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
 
         [TestMethod]

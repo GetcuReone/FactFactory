@@ -1,7 +1,7 @@
-using System;
-using System.IO;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
 
 namespace InfrastructureTests
 {

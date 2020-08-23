@@ -4,9 +4,11 @@ using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Versioned.BaseEntities;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Entities;
+using GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
@@ -18,18 +20,17 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Base class for versioned fact factory.
     /// </summary>
-    public abstract class VersionedFactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction> : FactFactoryBase<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>, IVersionedFactFactory<TFactBase, TFactContainer, TFactRule, TFactRuleCollection, TWantAction>
-        where TFactBase : class, IVersionedFact
-        where TFactContainer : VersionedFactContainerBase<TFactBase>
-        where TFactRule : VersionedFactRuleBase<TFactBase>
-        where TFactRuleCollection : VersionedFactRuleCollectionBase<TFactBase, TFactRule>
-        where TWantAction : VersionedWantActionBase<TFactBase>
+    public abstract class VersionedFactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : FactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>, IVersionedFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+        where TFactContainer : VersionedFactContainerBase
+        where TFactRule : VersionedFactRuleBase
+        where TFactRuleCollection : VersionedFactRuleCollectionBase<TFactRule>
+        where TWantAction : VersionedWantActionBase
     {
         private List<IFactType> _calculatedFactTypes;
         private TWantAction _calculatingWantAction;
 
         /// <inheritdoc/>
-        protected override TFact GetCorrectFact<TFact>(IFactContainer<TFactBase> container, IReadOnlyCollection<IFactType> inputFactTypes)
+        protected override TFact GetCorrectFact<TFact>(IFactContainer container, IReadOnlyCollection<IFactType> inputFactTypes)
         {
             IFactType versionType = inputFactTypes.SingleOrDefault(type => type.IsFactType<IVersionFact>());
 
@@ -64,7 +65,7 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <inheritdoc/>
-        protected override bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction, out TFactBase needRemoveFact)
+        protected override bool NeedRecalculateFact(TFactRule rule, TFactContainer container, TWantAction wantAction, out IFact needRemoveFact)
         {
             bool result = false;
             needRemoveFact = null;
@@ -75,7 +76,7 @@ namespace GetcuReone.FactFactory.Versioned
             IVersionFact ruleVersion =  rule.VersionType != null
                 ? container.GetRightFactByVersionType(rule.VersionType, null) as IVersionFact
                 : null;
-            TFactBase currentVersionedFact = (TFactBase)container.GetRightFactByVersion(rule.OutputFactType, maxVersion);
+            var currentVersionedFact = container.GetRightFactByVersion(rule.OutputFactType, maxVersion) as VersionedFactBase;
 
             if (currentVersionedFact == null)
                 result = true;
@@ -146,9 +147,9 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <inheritdoc/>
-        protected override IComparer<TFactRule> GetFactRuleComparer(WantActionInfo<TFactBase, TWantAction, TFactContainer> wantActionInfo)
+        public override ISingleEntityOperations GetSingleEntityOperations()
         {
-            return new VersionedFactRuleComparer<TFactBase, TFactRule, TWantAction, TFactContainer>(wantActionInfo.WantAction, wantActionInfo.Container);
+            return GetFacade<VersionedSingleEntityOperationsFacade>();
         }
 
         /// <inheritdoc/>
@@ -169,7 +170,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
         /// <returns></returns>
         public virtual TFact DeriveFact<TFact, TVersion>()
-            where TFact : TFactBase
+            where TFact : IFact
             where TVersion : IVersionFact
         {
             TFact fact = default;

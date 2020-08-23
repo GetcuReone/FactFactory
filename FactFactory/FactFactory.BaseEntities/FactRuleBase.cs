@@ -9,11 +9,9 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Base class for rules.
     /// </summary>
-    /// <typeparam name="TFactBase">The type of fact from which the facts in the container should be inherited</typeparam>
-    public abstract class FactRuleBase<TFactBase> : FactWorkBase<TFactBase>, IFactRule<TFactBase>
-        where TFactBase : IFact
+    public abstract class FactRuleBase : FactWorkBase, IFactRule
     {
-        private readonly Func<IFactContainer<TFactBase>, IWantAction<TFactBase>, TFactBase> _func;
+        private readonly Func<IFactContainer, IWantAction, IFact> _func;
 
         /// <summary>
         /// Information on output fact.
@@ -28,7 +26,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="outputFactType">Information on output fact.</param>
         /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
         /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
-        protected FactRuleBase(Func<IFactContainer<TFactBase>, IWantAction<TFactBase>, TFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+        protected FactRuleBase(Func<IFactContainer, IWantAction, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
             : base(inputFactTypes)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
@@ -36,8 +34,6 @@ namespace GetcuReone.FactFactory.BaseEntities
                 throw new ArgumentNullException(nameof(outputFactType));
 
             OutputFactType = outputFactType.CannotIsType<ISpecialFact>(nameof(outputFactType));
-            if (!OutputFactType.IsFactType<TFactBase>())
-                throw new ArgumentException($"Rule must return fact inherited from {typeof(TFactBase).FullName}.", nameof(outputFactType));
 
             if (InputFactTypes.Any(factType => factType.EqualsFactType(outputFactType)))
                 throw new ArgumentException("Cannot request a fact calculated according to the rule.", nameof(inputFactTypes));
@@ -45,11 +41,11 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public virtual TFactBase Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
-            where TContainer : IFactContainer<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
+        public virtual IFact Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
+            where TContainer : IFactContainer
+            where TWantAction : IWantAction
         {
-            TFactBase fact = _func(container, wantAction);
+            IFact fact = _func(container, wantAction);
 
             if (fact != null)
                 fact.CalculatedByRule = true;
@@ -59,8 +55,8 @@ namespace GetcuReone.FactFactory.BaseEntities
 
         /// <inheritdoc/>
         public virtual bool CanCalculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
-            where TContainer : IFactContainer<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
+            where TContainer : IFactContainer
+            where TWantAction : IWantAction
         {
             return InputFactTypes.All(factInfo => !factInfo.GetFacts(container).IsNullOrEmpty());
         }
@@ -68,7 +64,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public override bool EqualsWork<TFactWork, TWantAction, TFactContainer>(TFactWork workFact, TWantAction wantAction, TFactContainer container)
         {
-            if (!(workFact is IFactRule<TFactBase> factRule))
+            if (!(workFact is IFactRule factRule))
                 return false;
             if (!OutputFactType.EqualsFactType(factRule.OutputFactType))
                 return false;
@@ -84,8 +80,8 @@ namespace GetcuReone.FactFactory.BaseEntities
 
         /// <inheritdoc/>
         public virtual List<IFactType> GetNecessaryFactTypes<TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             List<IFactType> result = InputFactTypes.ToList();
 

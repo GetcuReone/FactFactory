@@ -1,7 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
@@ -10,7 +9,7 @@ using VWantAction = GetcuReone.FactFactory.Versioned.Entities.VersionedWantActio
 namespace FactFactory.VersionedTests.VersionedWantAction
 {
     [TestClass]
-    public sealed class VersionedWantActionTests : CommonTestBase<VersionedFactBase>
+    public sealed class VersionedWantActionTests : CommonTestBase
     {
         private VWantAction CreateVersionedWantAction(params IFactType[] factTypes)
         {

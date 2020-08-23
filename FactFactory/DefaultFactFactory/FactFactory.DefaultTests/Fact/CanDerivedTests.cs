@@ -11,7 +11,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactory.DefaultTests.Fact
 {
     [TestClass]
-    public sealed class CanDerivedTests : CommonTestBase<FactBase>
+    public sealed class CanDerivedTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.CanDerived), TestCategory(GetcuReoneTC.Unit)]
@@ -39,7 +39,7 @@ namespace FactFactory.DefaultTests.Fact
                 .And("Create fact.", () =>
                     new CanDerived<ResultFact>())
                 .When("Call Condition method.", canDerived =>
-                    canDerived.Condition<FactBase, Rule, WAction, Container>(null, null, container))
+                    canDerived.Condition<Rule, WAction, Container>(null, null, container))
                 .Then("Check result.", result =>
                     Assert.IsTrue(result, "CanDerived cannot use."));
         }
@@ -54,7 +54,7 @@ namespace FactFactory.DefaultTests.Fact
 
             Given("Create fact.", () =>new CanDerived<ResultFact>())
                 .When("Call Condition method.", canDerived =>
-                    canDerived.Condition<FactBase, Rule, WAction, Container>(null, null, container))
+                    canDerived.Condition<Rule, WAction, Container>(null, null, container))
                 .Then("Check result.", result =>
                     Assert.IsFalse(result, "CanDerived can use."));
         }

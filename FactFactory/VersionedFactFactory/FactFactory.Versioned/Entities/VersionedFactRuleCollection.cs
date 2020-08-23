@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
     /// <summary>
     /// Collection of versioned rules for facts.
     /// </summary>
-    public sealed class VersionedFactRuleCollection : VersionedFactRuleCollectionBase<VersionedFactBase, VersionedFactRule>
+    public sealed class VersionedFactRuleCollection : VersionedFactRuleCollectionBase<VersionedFactRule>
     {
         /// <summary>
         /// Constructor.
@@ -36,10 +36,10 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         }
 
         /// <summary>
-        /// <see cref="FactRuleCollectionBase{TFact, TFactRule}"/> copy method.
+        /// <see cref="FactRuleCollectionBase{TFactRule}"/> copy method.
         /// </summary>
         /// <returns>Copied <see cref="VersionedFactRuleCollection"/>.</returns>
-        public override FactRuleCollectionBase<VersionedFactBase, VersionedFactRule> Copy()
+        public override IFactRuleCollection<VersionedFactRule> Copy()
         {
             return new VersionedFactRuleCollection(this, IsReadOnly);
         }
@@ -51,7 +51,7 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         /// <param name="inputFactTypes">information on input factacles rules.</param>
         /// <param name="outputFactType">information on output fact.</param>
         /// <returns></returns>
-        protected override VersionedFactRule CreateFactRule(Func<IFactContainer<VersionedFactBase>, IWantAction<VersionedFactBase>, VersionedFactBase> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+        protected override VersionedFactRule CreateFactRule(Func<IFactContainer, IWantAction, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {
             return new VersionedFactRule(func, inputFactTypes, outputFactType);
         }

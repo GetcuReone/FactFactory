@@ -1,10 +1,10 @@
 ﻿using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Operations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
 namespace GetcuReone.FactFactory.BaseEntities
@@ -12,8 +12,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Base class for fact container.
     /// </summary>
-    public abstract class FactContainerBase<TFactBase> : IFactContainer<TFactBase>, ICopy<FactContainerBase<TFactBase>>, IFactTypeCreation
-        where TFactBase : IFact
+    public abstract class FactContainerBase : IFactContainer, IFactTypeCreation
     {
         /// <summary>
         /// List storing facts.
@@ -58,8 +57,6 @@ namespace GetcuReone.FactFactory.BaseEntities
 
         private void InnerAdd<TFact>(TFact fact) where TFact : IFact
         {
-            fact.ValidateTypeOfFact<TFactBase>();
-
             IFactType factType = fact.GetFactType();
 
             if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType)))
@@ -166,7 +163,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public abstract FactContainerBase<TFactBase> Copy();
+        public abstract IFactContainer Copy();
 
         /// <inheritdoc/>
         public virtual void Clear()

@@ -1,7 +1,9 @@
 ﻿using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
+using System.Collections.Generic;
 
 namespace FactFactoryTests.CommonFacts
 {
@@ -13,25 +15,32 @@ namespace FactFactoryTests.CommonFacts
 
         public IFactType FactType => throw new NotImplementedException();
 
-        public bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
+        public bool Condition<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             throw new NotImplementedException();
         }
 
-        public bool IsFactContained<TFact>(IFactContainer<TFact> container) where TFact : IFact
+        public bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactWork : IFactWork
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             throw new NotImplementedException();
         }
 
-        public bool IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
+        public bool IsFactContained<TFact>(IFactContainer container) where TFact : IFact
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsFactContained<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             throw new NotImplementedException();
         }

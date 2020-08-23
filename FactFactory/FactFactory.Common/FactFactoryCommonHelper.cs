@@ -53,77 +53,52 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Create <see cref="InvalidDeriveOperationException{TFact}"/>.
+        /// Create <see cref="InvalidDeriveOperationException"/>.
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
         /// <param name="details"></param>
         /// <returns></returns>
-        public static InvalidDeriveOperationException<TFact> CreateDeriveException<TFact>(IReadOnlyCollection<DeriveErrorDetail<TFact>> details)
-            where TFact : IFact
+        public static InvalidDeriveOperationException CreateDeriveException(IReadOnlyCollection<DeriveErrorDetail> details)
         {
-            return new InvalidDeriveOperationException<TFact>(details);
+            return new InvalidDeriveOperationException(details);
         }
 
         /// <summary>
-        /// Create <see cref="InvalidDeriveOperationException{TFact}"/>.
+        /// Create <see cref="InvalidDeriveOperationException"/>.
         /// </summary>
-        /// <typeparam name="TFact">Base class for facts.</typeparam>
         /// <param name="code">Error code.</param>
         /// <param name="reason">Error reason.</param>
         /// <returns></returns>
-        public static InvalidDeriveOperationException<TFact> CreateDeriveException<TFact>(string code, string reason)
-            where TFact : IFact
+        public static InvalidDeriveOperationException CreateDeriveException(string code, string reason)
         {
-            return CreateDeriveException(code, reason, (IWantAction<TFact>)null);
+            return CreateDeriveException(code, reason, (IWantAction)null);
         }
 
         /// <summary>
-        /// Create <see cref="InvalidDeriveOperationException{TFact}"/>.
+        /// Create <see cref="InvalidDeriveOperationException"/>.
         /// </summary>
-        /// <typeparam name="TFact">Base class for facts.</typeparam>
         /// <param name="code">Error code.</param>
         /// <param name="reason">Error reason.</param>
         /// <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
         /// <returns></returns>
-        public static InvalidDeriveOperationException<TFact> CreateDeriveException<TFact>(string code, string reason, IWantAction<TFact> requiredAction)
-            where TFact : IFact
+        public static InvalidDeriveOperationException CreateDeriveException(string code, string reason, IWantAction requiredAction)
         {
             return CreateDeriveException(code, reason, requiredAction, null);
         }
 
         /// <summary>
-        /// Create <see cref="InvalidDeriveOperationException{TFact}"/>.
+        /// Create <see cref="InvalidDeriveOperationException"/>.
         /// </summary>
-        /// <typeparam name="TFact">Base class for facts.</typeparam>
         /// <param name="code">Error code.</param>
         /// <param name="reason">Error reason.</param>
         /// <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
         /// <param name="requiredFacts">The facts that tried to derive.</param>
         /// <returns></returns>
-        public static InvalidDeriveOperationException<TFact> CreateDeriveException<TFact>(string code, string reason, IWantAction<TFact> requiredAction, IReadOnlyCollection<DeriveFactErrorDetail> requiredFacts)
-            where TFact : IFact
+        public static InvalidDeriveOperationException CreateDeriveException(string code, string reason, IWantAction requiredAction, IReadOnlyCollection<DeriveFactErrorDetail> requiredFacts)
         {
-            return new InvalidDeriveOperationException<TFact>(new List<DeriveErrorDetail<TFact>>
+            return new InvalidDeriveOperationException(new List<DeriveErrorDetail>
             {
-                new DeriveErrorDetail<TFact>(code, reason, requiredAction, requiredFacts),
+                new DeriveErrorDetail(code, reason, requiredAction, requiredFacts),
             }.ToReadOnlyCollection());
-        }
-
-        /// <summary>
-        /// Check type of fact.
-        /// </summary>
-        /// <typeparam name="TFactBase"></typeparam>
-        /// <param name="fact"></param>
-        public static void ValidateTypeOfFact<TFactBase>(this IFact fact) where TFactBase : IFact
-        {
-            switch (fact)
-            {
-                case TFactBase _:
-                case ISpecialFact _:
-                    break;
-
-                default: throw CreateException(ErrorCode.InvalidData, $"The fact must be inherited either from the base type or from {nameof(ISpecialFact)}. Fact:<{fact}>.");
-            }
         }
 
         /// <summary>
@@ -187,6 +162,28 @@ namespace GetcuReone.FactFactory
                 if (specialResult.Count(result => result == true) > 1)
                     throw CreateException(ErrorCode.InvalidFactType, $"{type.FactName} implements more than one runtime special fact interface.");
             }
+        }
+
+        /// <summary>
+        /// Was the fact calculated using the rule.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="fact"></param>
+        /// <returns></returns>
+        public static bool IsCalculatedByRule<TFact>(this TFact fact)
+            where TFact : IFact
+        {
+            if (fact.Parameters.IsNullOrEmpty())
+                return false;
+
+            object value = fact.Parameters.SingleOrDefault(p => p.Code == FactParametersCodes.CalculateByRule)?.Value;
+
+            if (value == null)
+                return false;
+            if (value is bool valueBool)
+                return valueBool;
+
+            return false;
         }
     }
 }

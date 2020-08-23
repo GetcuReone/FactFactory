@@ -8,7 +8,6 @@
         /// <summary>
         /// Is the fact contained in the container.
         /// </summary>
-        /// <typeparam name="TFactBase"></typeparam>
         /// <typeparam name="TFactWork"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>
         /// <typeparam name="TFactContainer"></typeparam>
@@ -16,10 +15,9 @@
         /// <param name="wantAction">The action in the context of which we do this.</param>
         /// <param name="container">Container.</param>
         /// <returns></returns>
-        bool IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>;
+        bool IsFactContained<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }

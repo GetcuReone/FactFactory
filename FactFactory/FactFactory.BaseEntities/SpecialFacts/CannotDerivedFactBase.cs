@@ -1,5 +1,7 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
 {
@@ -11,9 +13,19 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
         where TFact : IFact
     {
         /// <inheritdoc/>
-        public override bool Condition<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+        public override bool Condition<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
         {
-            return !IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(factWork, wantAction, container);
+            return !IsFactContained(factWork, wantAction, container);
+        }
+
+        /// <inheritdoc/>
+        public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
+        {
+            return !ConditionHelper.CanDeriveFact(
+                GetFactType<TFact>(),
+                factWork,
+                compatibleRules,
+                context);
         }
     }
 }

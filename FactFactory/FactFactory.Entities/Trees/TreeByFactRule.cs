@@ -7,31 +7,30 @@ namespace GetcuReone.FactFactory.Entities.Trees
     /// <summary>
     /// A tree built by type of fact rule.
     /// </summary>
-    public class TreeByFactRule<TFactBase, TFactRule, TWantAction, TFactContainer>
-        where TFactBase : IFact
-        where TFactRule : IFactRule<TFactBase>
-        where TWantAction : IWantAction<TFactBase>
-        where TFactContainer : IFactContainer<TFactBase>
+    public class TreeByFactRule<TFactRule, TWantAction, TFactContainer>
+        where TFactRule : IFactRule
+        where TWantAction : IWantAction
+        where TFactContainer : IFactContainer
     {
         /// <summary>
         /// Root node.
         /// </summary>
-        public NodeByFactRule<TFactBase, TFactRule> Root { get; set; }
+        public NodeByFactRule<TFactRule> Root { get; set; }
 
         /// <summary>
         /// The action in which the tree was built.
         /// </summary>
-        public WantActionInfo<TFactBase, TWantAction, TFactContainer> WantActionInfo { get; set; }
+        public WantActionInfo<TWantAction, TFactContainer> WantActionInfo { get; set; }
 
         /// <summary>
         /// Information about all the rules that were tested for the ability to use when building a tree.
         /// </summary>
-        public List<NodeInfoByFactRyle<TFactBase, TFactRule>> NodeInfos { get; set; }
+        public List<NodeInfoByFactRyle<TFactRule>> NodeInfos { get; set; }
 
         /// <summary>
         /// Tree levels.
         /// </summary>
-        public List<List<NodeByFactRule<TFactBase, TFactRule>>> Levels { get; set; }
+        public List<List<NodeByFactRule<TFactRule>>> Levels { get; set; }
 
         /// <summary>
         /// Tree work status.

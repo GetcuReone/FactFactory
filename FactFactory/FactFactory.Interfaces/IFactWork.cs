@@ -5,9 +5,7 @@ namespace GetcuReone.FactFactory.Interfaces
     /// <summary>
     /// Basic interface for objects that work directly with facts.
     /// </summary>
-    /// <typeparam name="TFactBase"></typeparam>
-    public interface IFactWork<TFactBase>
-        where TFactBase : IFact
+    public interface IFactWork
     {
         /// <summary>
         /// Information on input factacles rules.
@@ -25,12 +23,12 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <param name="container"></param>
         /// <returns></returns>
         bool EqualsWork<TFactWork, TWantAction, TFactContainer>(TFactWork workFact, TWantAction wantAction, TFactContainer container)
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>;
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
 
         /// <summary>
-        /// Is the <paramref name="factRule"/> rule compatible with the current <see cref="IFactWork{TFactBase}"/>.
+        /// Is the <paramref name="factRule"/> rule compatible with the current <see cref="IFactWork"/>.
         /// </summary>
         /// <typeparam name="TFactRule"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>
@@ -40,8 +38,8 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <param name="container">Container.</param>
         /// <returns></returns>
         bool СompatibilityWithRule<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction, TFactContainer container)
-            where TFactRule : IFactRule<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>;
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactoryTests.Fact
 {
     [TestClass]
-    public sealed class FactTests : CommonTestBase<FactBase>
+    public sealed class FactTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]

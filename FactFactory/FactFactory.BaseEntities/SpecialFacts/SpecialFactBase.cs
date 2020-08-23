@@ -9,10 +9,9 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
     public abstract class SpecialFactBase : FactBase, ISpecialFact
     {
         /// <inheritdoc/>
-        public abstract bool IsFactContained<TFactBase, TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-            where TFactBase : IFact
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>;
+        public abstract bool IsFactContained<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }

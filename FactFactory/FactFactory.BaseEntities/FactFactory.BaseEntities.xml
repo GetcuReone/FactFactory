@@ -4,127 +4,147 @@
         <name>FactFactory.BaseEntities</name>
     </assembly>
     <members>
-        <member name="T:GetcuReone.FactFactory.FactBase">
+        <member name="T:GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext">
             <summary>
-            Base class for fact.
+            A context containing information within which current actions are taking place.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.FactBase.CalculatedByRule">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.Cache">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactBase.GetFactType">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.SingleEntity">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.FactBase`1">
-            /// <inheritdoc/>
-            <typeparam name="TFactValue">Type fact value.</typeparam>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.TreeBuilding">
+            <inheritdoc/>
         </member>
-        <member name="P:GetcuReone.FactFactory.FactBase`1.Value">
-            <summary>
-            Value fact.
-            </summary>
+        <member name="T:GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext`3">
+            <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactBase`1.#ctor(`0)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="value">Fact value.</param>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext`3.FactRules">
+            <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactBase`1.op_Implicit(GetcuReone.FactFactory.FactBase{`0})~`0">
-            <summary>
-            Extract <see cref="P:GetcuReone.FactFactory.FactBase`1.Value"/>.
-            </summary>
-            <param name="fact"></param>
+        <member name="T:GetcuReone.FactFactory.BaseEntities.Context.FactWorkContext`4">
+            <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.FactWorkContext`4.FactWork">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2">
+            <inheritdoc/>
+        </member>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2.WantAction">
+            <inheritdoc/>
+        </member>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2.Container">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.BaseEntities.FactContainerBase">
             <summary>
             Base class for fact container.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.ContainerList">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase.ContainerList">
             <summary>
             List storing facts.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.IsReadOnly">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase.IsReadOnly">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.#ctor">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.#ctor">
             <summary>
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Constructor.
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)">
             <summary>
             Constructor.
             </summary>
             <param name="facts">An array of facts to add to the container.</param>
             <param name="isReadOnly"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.CheckReadOnly">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.CheckReadOnly">
             <summary>
-            If <see cref="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.IsReadOnly"/> is true then throw <see cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException"/>.
+            If <see cref="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase.IsReadOnly"/> is true then throw <see cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException"/>.
             </summary>
-            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">If <see cref="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.IsReadOnly"/> is true.</exception>
+            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">If <see cref="P:GetcuReone.FactFactory.BaseEntities.FactContainerBase.IsReadOnly"/> is true.</exception>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.GetFactType``1">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.GetFactType``1">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Add``1(``0)">
-            <inheritdoc/>
-            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Attempt to add an existing fact.</exception>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Add``1(``0)">
             <inheritdoc/>
             <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Attempt to add an existing fact.</exception>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Contains``1">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <inheritdoc/>
+            <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Attempt to add an existing fact.</exception>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Contains``1">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.GetEnumerator">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.GetFact``1">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.GetFact``1">
             <inheritdoc/>
             <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">Did not find fact type <typeparamref name="TFact"/>.</exception>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Remove``1">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Remove``1">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Remove``1(``0)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Remove``1(``0)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.TryGetFact``1(``0@)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.TryGetFact``1(``0@)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Copy">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Copy">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase`1.Clear">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Clear">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1">
+        <member name="T:GetcuReone.FactFactory.BaseEntities.FactParameterBase">
+            <summary>
+            Base class for parameter.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactParameterBase.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="code"></param>
+            <param name="value"></param>
+        </member>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactParameterBase.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactParameterBase.Value">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.BaseEntities.FactRuleBase">
             <summary>
             Base class for rules.
             </summary>
-            <typeparam name="TFactBase">The type of fact from which the facts in the container should be inherited</typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.OutputFactType">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleBase.OutputFactType">
             <summary>
             Information on output fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{`0},GetcuReone.FactFactory.Interfaces.IWantAction{`0},`0},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Constructor.
             </summary>
@@ -134,27 +154,27 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
             <exception cref="T:System.ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.Calculate``2(``0,``1)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.Calculate``2(``0,``1)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.CanCalculate``2(``0,``1)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.CanCalculate``2(``0,``1)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.EqualsWork``3(``0,``1,``2)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.EqualsWork``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.ToString">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.ToString">
             <inheritdoc />
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase`1.GetNecessaryFactTypes``2(``0,``1)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.GetNecessaryFactTypes``2(``0,``1)">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2">
+        <member name="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1">
             <summary>
             Base collection for <typeparamref name="TFactRule"/>.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Item(System.Int32)">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Item(System.Int32)">
             <summary>
             Gets or sets the rule at the specified index.
             </summary>
@@ -163,38 +183,38 @@
             <exception cref="T:System.NotSupportedException">The property is set and the <see cref="T:System.Collections.Generic.List`1"/> is read-only.</exception>
             <returns>The rule at the specified index</returns>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Count">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Count">
             <summary>
-            Gets the number of rules contained in the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.
+            Gets the number of rules contained in the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.IsReadOnly">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.IsReadOnly">
             <summary>
-            Gets a value indicating whether the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/> is read-only.
+            Gets a value indicating whether the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/> is read-only.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.#ctor">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.#ctor">
             <summary>
             Constructor.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.#ctor(System.Collections.Generic.IEnumerable{`1})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
             Constructor.
             </summary>
             <param name="factRules"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Boolean)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
             <summary>
             Constructor.
             </summary>
             <param name="factRules"></param>
             <param name="isReadOnly"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.GetFactType``1">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.GetFactType``1">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer{`0},GetcuReone.FactFactory.Interfaces.IWantAction{`0},`0},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Creation method <typeparamref name="TFactRule"/>.
             </summary>
@@ -203,7 +223,7 @@
             <param name="outputFactType">information on output fact.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.GetCorrectFact``1(GetcuReone.FactFactory.Interfaces.IFactContainer{`0},GetcuReone.FactFactory.Interfaces.IWantAction{`0})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.GetCorrectFact``1(GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction)">
             <summary>
             Return the correct fact.
             </summary>
@@ -212,7 +232,7 @@
             <param name="wantAction"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.EqualsRules(`1,`1)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.EqualsRules(`0,`0)">
             <summary>
             Rules equality.
             </summary>
@@ -220,20 +240,20 @@
             <param name="secondRule"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add(`1)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add(`0)">
             <summary>
             Add rule.
             </summary>
             <param name="item"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``1(System.Func{``0})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``1(System.Func{``0})">
             <summary>
             Add a rule without input facts.
             </summary>
             <typeparam name="TFactResult">Type of fact result.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``2(System.Func{``0,``1})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``2(System.Func{``0,``1})">
             <summary>
             Add a rule with 1 input facts.
             </summary>
@@ -241,7 +261,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``3(System.Func{``0,``1,``2})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``3(System.Func{``0,``1,``2})">
             <summary>
             Add a rule with 2 input facts.
             </summary>
@@ -250,7 +270,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``4(System.Func{``0,``1,``2,``3})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``4(System.Func{``0,``1,``2,``3})">
             <summary>
             Add a rule with 3 input facts.
             </summary>
@@ -260,7 +280,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``5(System.Func{``0,``1,``2,``3,``4})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``5(System.Func{``0,``1,``2,``3,``4})">
             <summary>
             Add a rule with 4 input facts.
             </summary>
@@ -271,7 +291,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``6(System.Func{``0,``1,``2,``3,``4,``5})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``6(System.Func{``0,``1,``2,``3,``4,``5})">
             <summary>
             Add a rule with 5 input facts.
             </summary>
@@ -283,7 +303,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation..</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``7(System.Func{``0,``1,``2,``3,``4,``5,``6})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``7(System.Func{``0,``1,``2,``3,``4,``5,``6})">
             <summary>
             Add a rule with 6 input facts
             </summary>
@@ -296,7 +316,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7})">
             <summary>
             Add a rule with 7 input facts
             </summary>
@@ -310,7 +330,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
             <summary>
             Add a rule with 8 input facts
             </summary>
@@ -325,7 +345,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
             <summary>
             Add a rule with 9 input facts
             </summary>
@@ -341,7 +361,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10})">
             <summary>
             Add a rule with 10 input facts
             </summary>
@@ -358,7 +378,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11})">
             <summary>
             Add a rule with 11 input facts
             </summary>
@@ -376,7 +396,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12})">
             <summary>
             Add a rule with 12 input facts
             </summary>
@@ -395,7 +415,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13})">
             <summary>
             Add a rule with 13 input facts
             </summary>
@@ -415,7 +435,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14})">
             <summary>
             Add a rule with 14 input facts
             </summary>
@@ -436,7 +456,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15})">
             <summary>
             Add a rule with 15 input facts
             </summary>
@@ -458,7 +478,7 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Add``17(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``17(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16})">
             <summary>
             Add a rule with 16 input facts
             </summary>
@@ -481,126 +501,93 @@
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.AddRange(System.Collections.Generic.IEnumerable{`1})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
             <summary>
-            Adds the elements of the specified collection to the end of the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>
+            Adds the elements of the specified collection to the end of the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>
             </summary>
-            <param name="rules">The collection whose elements should be added to the end of the  <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>. 
+            <param name="rules">The collection whose elements should be added to the end of the  <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>. 
             The collection itself cannot be null, but it can contain elements that are null,
             if type T is a reference type.</param>
             <exception cref="T:System.ArgumentNullException">collection is null</exception>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Clear">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Clear">
             <summary>
-            Removes all elements from the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>
+            Removes all elements from the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Contains(`1)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Contains(`0)">
             <summary>
-            Determines whether an element is in the <typeparamref name="TFactRule"/>. Use method <see cref="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.EqualsRules(`1,`1)"/>.
+            Determines whether an element is in the <typeparamref name="TFactRule"/>. Use method <see cref="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.EqualsRules(`0,`0)"/>.
             </summary>
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.CopyTo(`1[],System.Int32)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.CopyTo(`0[],System.Int32)">
             <summary>
-            Copies the entire <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/> to a compatible one-dimensional array, starting at the specified index of the target array.
+            Copies the entire <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/> to a compatible one-dimensional array, starting at the specified index of the target array.
             </summary>
-            <param name="array">The one-dimensional System.Array that is the destination of the elements copied from <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>. The System.Array must have zero-based indexing.</param>
+            <param name="array">The one-dimensional System.Array that is the destination of the elements copied from <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>. The System.Array must have zero-based indexing.</param>
             <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
             <exception cref="T:System.ArgumentNullException">array is null.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">arrayIndex is less than 0.</exception>
-            <exception cref="T:System.ArgumentException">The number of elements in the source <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/> is greater than the available space from arrayIndex to the end of the destination array.</exception>
+            <exception cref="T:System.ArgumentException">The number of elements in the source <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/> is greater than the available space from arrayIndex to the end of the destination array.</exception>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.GetEnumerator">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Sort(System.Collections.Generic.IComparer{`1})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Sort(System.Collections.Generic.IComparer{`0})">
             <summary>
             Sort collection.
             </summary>
             <param name="comparer"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.IndexOf(`1)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.IndexOf(`0)">
             <summary>
-            Searches for the specified object and returns the zero-based index of the first occurrence within the entire <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.
+            Searches for the specified object and returns the zero-based index of the first occurrence within the entire <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>.
             </summary>
-            <param name="item">The object to locate in the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/> be null for reference types. The value can</param>
-            <returns>The zero-based index of the first occurrence of item within the entire <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>, if found; otherwise, –1.</returns>
+            <param name="item">The object to locate in the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/> be null for reference types. The value can</param>
+            <returns>The zero-based index of the first occurrence of item within the entire <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>, if found; otherwise, –1.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Insert(System.Int32,`1)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Insert(System.Int32,`0)">
             <summary>
-            Inserts an element into the<see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/> at the specified index.
+            Inserts an element into the<see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/> at the specified index.
             </summary>
             <param name="index">The zero-based index at which item should be inserted.</param>
             <param name="item">The object to insert. The value can be null for reference types.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">index is less than 0. -or- index is greater than <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">index is less than 0. -or- index is greater than <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>.</exception>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.FindAll(System.Predicate{`1})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.FindAll(System.Predicate{`0})">
             <summary>
             Retrieves all the elements that match the conditions defined by the specified predicate.
             </summary>
             <param name="predicate">The System.Predicate`1 delegate that defines the conditions of the elements to search for.</param>
             <returns>A <see cref="T:System.Collections.Generic.List`1"/> containing all the elements that match the conditions defined by the specified <paramref name="predicate"/>, if found; otherwise, an empty <see cref="T:System.Collections.Generic.List`1"/>.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.ForEach(System.Action{`1})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.ForEach(System.Action{`0})">
             <summary>
-            Performs the specified action on each element of the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.
+            Performs the specified action on each element of the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>.
             </summary>
-            <param name="action">The System.Action`1 delegate to perform on each element of the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.</param>
+            <param name="action">The System.Action`1 delegate to perform on each element of the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Remove(`1)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Remove(`0)">
             <summary>
-            Removes the first occurrence of a specific object from the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.
+            Removes the first occurrence of a specific object from the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>.
             </summary>
-            <param name="item">The object to remove from the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>. The value can be null for reference types.</param>
-            <returns>true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.</returns>
+            <param name="item">The object to remove from the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>. The value can be null for reference types.</param>
+            <returns>true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>.</returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.RemoveAt(System.Int32)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.RemoveAt(System.Int32)">
             <summary>
-            Removes the element at the specified index of the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.
+            Removes the element at the specified index of the <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>.
             </summary>
             <param name="index">The zero-based index of the element to remove.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">index is less than 0. -or- index is equal to or greater than <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">index is less than 0. -or- index is equal to or greater than <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>.</exception>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2.Copy">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Copy">
             <summary>
-            <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/> copy method.
+            <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/> copy method.
             </summary>
-            <returns>Copied <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`2"/>.</returns>
-        </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.FactRuleComparerBase`4">
-            <summary>
-            Comparer for <see cref="T:GetcuReone.FactFactory.Interfaces.IFactRule`1"/>.
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleComparerBase`4.WantAction">
-            <summary>
-            WantAction.
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.FactRuleComparerBase`4.Container">
-            <summary>
-            Container.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleComparerBase`4.#ctor(`2,`3)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="wantAction"></param>
-            <param name="container"></param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleComparerBase`4.Compare(`1,`1)">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleComparerBase`4.CompareDefault(`1,`1)">
-            <summary>
-            Compare by default algorithm.
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <returns></returns>
+            <returns>Copied <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/>.</returns>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.FactTypeBase`1">
             <summary>
@@ -623,22 +610,29 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.GetFacts(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.FactWorkBase`1">
+        <member name="T:GetcuReone.FactFactory.BaseEntities.FactTypeCache">
+            <summary>
+            Fact type cache.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactTypeCache.GetFactType``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.BaseEntities.FactWorkBase">
             <summary>
             Basic interface for objects that work directly with facts.
             </summary>
-            <typeparam name="TFactBase"></typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.FactWorkBase`1.InputFactTypes">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactWorkBase.InputFactTypes">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase`1.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor.
             </summary>
             <param name="factTypes">Fact types.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase`1.EqualsFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.EqualsFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Determining the equality of a set of fact types.
             </summary>
@@ -646,10 +640,10 @@
             <param name="second"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase`1.EqualsWork``3(``0,``1,``2)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.EqualsWork``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase`1.СompatibilityWithRule``3(``0,``1,``2)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.СompatibilityWithRule``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CanDerivedFactBase`1">
@@ -658,7 +652,10 @@
             </summary>
             <typeparam name="TFact"></typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CanDerivedFactBase`1.Condition``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CanDerivedFactBase`1.Condition``3(``0,``1,``2)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CanDerivedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CannotDerivedFactBase`1">
@@ -667,7 +664,10 @@
             </summary>
             <typeparam name="TFact"></typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CannotDerivedFactBase`1.Condition``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CannotDerivedFactBase`1.Condition``3(``0,``1,``2)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CannotDerivedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase">
@@ -678,7 +678,10 @@
         <member name="P:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase.FactType">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase.Condition``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase.Condition``3(``0,``1,``2)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase.GetFactType">
@@ -696,7 +699,7 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase`1.GetFactType``1">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase`1.IsFactContained``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase`1.IsFactContained``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ContainedFactBase`1">
@@ -705,7 +708,10 @@
             </summary>
             <typeparam name="TFact"></typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ContainedFactBase`1.Condition``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ContainedFactBase`1.Condition``3(``0,``1,``2)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ContainedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.NotContainedFactBase`1">
@@ -714,7 +720,10 @@
             </summary>
             <typeparam name="TFact"></typeparam>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.NotContainedFactBase`1.Condition``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.NotContainedFactBase`1.Condition``3(``0,``1,``2)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.NotContainedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.SpecialFactBase">
@@ -722,35 +731,35 @@
             Base class for <see cref="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact"/>.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.SpecialFactBase.IsFactContained``4(``1,``2,``3)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.SpecialFactBase.IsFactContained``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.WantActionBase`1">
+        <member name="T:GetcuReone.FactFactory.BaseEntities.WantActionBase">
             <summary>
-            Base class for <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction`1"/>.
+            Base class for <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase`1.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer{`0}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor.
             </summary>
             <param name="wantAction">Action taken after deriving a fact.</param>
             <param name="factTypes">Facts required to launch an action.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase`1.Invoke``1(``0)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.Invoke``1(``0)">
             <summary>
             Run action.
             </summary>
-            <typeparam name="TFactContainer">container with <see cref="P:GetcuReone.FactFactory.Interfaces.IFactWork`1.InputFactTypes"/>.</typeparam>
+            <typeparam name="TFactContainer">container with <see cref="P:GetcuReone.FactFactory.Interfaces.IFactWork.InputFactTypes"/>.</typeparam>
             <param name="container"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase`1.ToString">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.ToString">
             <summary>
             String representation of an object
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase`1.GetNecessaryFactTypes``1(``0)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.GetNecessaryFactTypes``1(``0)">
             <summary>
             Get the necessary fact types.
             </summary>
@@ -758,24 +767,43 @@
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.WantActionComparerBase`3">
+        <member name="T:GetcuReone.FactFactory.FactBase">
             <summary>
-            Base class for comparer for <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction`1"/>.
+            Base class for fact.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.BaseEntities.WantActionComparerBase`3.Container">
+        <member name="P:GetcuReone.FactFactory.FactBase.CalculatedByRule">
+            <inheritdoc/>
+        </member>
+        <member name="P:GetcuReone.FactFactory.FactBase.Parameters">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactBase.GetFactType">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactBase.AddParameter(GetcuReone.FactFactory.Interfaces.IFactParameter)">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.FactBase`1">
+            /// <inheritdoc/>
+            <typeparam name="TFactValue">Type fact value.</typeparam>
+        </member>
+        <member name="P:GetcuReone.FactFactory.FactBase`1.Value">
             <summary>
-            Fact container.
+            Value fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionComparerBase`3.#ctor(`2)">
+        <member name="M:GetcuReone.FactFactory.FactBase`1.#ctor(`0)">
             <summary>
             Constructor.
             </summary>
-            <param name="container"></param>
+            <param name="value">Fact value.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionComparerBase`3.Compare(`1,`1)">
-            <inheritdoc/>
+        <member name="M:GetcuReone.FactFactory.FactBase`1.op_Implicit(GetcuReone.FactFactory.FactBase{`0})~`0">
+            <summary>
+            Extract <see cref="P:GetcuReone.FactFactory.FactBase`1.Value"/>.
+            </summary>
+            <param name="fact"></param>
         </member>
         <member name="T:GetcuReone.FactFactory.FactType`1">
             <summary>

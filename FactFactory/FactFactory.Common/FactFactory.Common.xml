@@ -9,147 +9,45 @@
             Error codes.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidData">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.InvalidData">
             <summary>
             Invalid data.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.FactCannotDerived">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.FactCannotDerived">
             <summary>
             Fact cannot be derived.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.EmptyRuleCollection">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.EmptyRuleCollection">
             <summary>
             Collection of rules for calculating the fact is empty.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.RuleNotFound">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.RuleNotFound">
             <summary>
             Rule not found.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidFactType">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.InvalidFactType">
             <summary>
             The fact is of the invalid type.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Constants.ErrorCode.InvalidOperation">
+        <member name="F:GetcuReone.FactFactory.Constants.ErrorCode.InvalidOperation">
             <summary>
             Invalid operation.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail`1">
+        <member name="T:GetcuReone.FactFactory.Constants.FactParametersCodes">
             <summary>
-            Detailed information about the calculation error action
+            Default codes for fact parameter.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail`1.RequiredAction">
+        <member name="F:GetcuReone.FactFactory.Constants.FactParametersCodes.CalculateByRule">
             <summary>
-            Action for which it was not possible to derive the facts.
+            Was the fact calculated using the rule.
             </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail`1.RequiredFacts">
-            <summary>
-            The facts that tried to derive.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail`1.#ctor(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction{`0},System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail})">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="code">Error code.</param>
-            <param name="reason">Error reason.</param>
-            <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
-            <param name="requiredFacts">The facts that tried to derive.</param>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail">
-            <summary>
-            Detailed fact calculation error information
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail.#ctor(GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <summary>
-            Contsructor.
-            </summary>
-            <param name="requiredFact">The fact that tried to derive.</param>
-            <param name="needFacts">Facts that were not enough to derive.</param>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail.RequiredFact">
-            <summary>
-            The fact that tried to derive.
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail.NeedFacts">
-            <summary>
-            Facts that were not enough to derive.
-            </summary>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail">
-            <summary>
-            Error detail
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail.#ctor(System.String,System.String)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="code">Error code.</param>
-            <param name="reason">Error reason.</param>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail.Code">
-            <summary>
-            Error code.
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail.Reason">
-            <summary>
-            Error reason.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail.ToString">
-            <summary>
-            String representation of an object.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">
-            <summary>
-            Base error for FactFactory
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Exceptions.FactFactoryException.#ctor(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail})">
-            <summary>
-            Constructor
-            </summary>
-            <param name="details"></param>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Exceptions.FactFactoryExceptionBase`1">
-            <summary>
-            Base error for FactFactory.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Exceptions.FactFactoryExceptionBase`1.#ctor(System.Collections.Generic.IReadOnlyCollection{`0})">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="details"></param>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Exceptions.FactFactoryExceptionBase`1.Details">
-            <summary>
-            More info exception.
-            </summary>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`1">
-            <summary>
-            <see cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException"/> for method <see cref="M:GetcuReone.FactFactory.Interfaces.IFactFactory`5.Derive"/>.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`1.#ctor(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{`0}})">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="details"></param>
         </member>
         <member name="T:GetcuReone.FactFactory.FactFactoryCommonHelper">
             <summary>
@@ -180,50 +78,39 @@
             <param name="reason">error reason</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException``1(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail{``0}})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail})">
             <summary>
-            Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`1"/>.
+            Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException"/>.
             </summary>
-            <typeparam name="TFact"></typeparam>
             <param name="details"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException``1(System.String,System.String)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException(System.String,System.String)">
             <summary>
-            Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`1"/>.
+            Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException"/>.
             </summary>
-            <typeparam name="TFact">Base class for facts.</typeparam>
             <param name="code">Error code.</param>
             <param name="reason">Error reason.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException``1(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction{``0})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction)">
             <summary>
-            Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`1"/>.
+            Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException"/>.
             </summary>
-            <typeparam name="TFact">Base class for facts.</typeparam>
             <param name="code">Error code.</param>
             <param name="reason">Error reason.</param>
             <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException``1(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction{``0},System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail})">
             <summary>
-            Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException`1"/>.
+            Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException"/>.
             </summary>
-            <typeparam name="TFact">Base class for facts.</typeparam>
             <param name="code">Error code.</param>
             <param name="reason">Error reason.</param>
             <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
             <param name="requiredFacts">The facts that tried to derive.</param>
             <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.ValidateTypeOfFact``1(GetcuReone.FactFactory.Interfaces.IFact)">
-            <summary>
-            Check type of fact.
-            </summary>
-            <typeparam name="TFactBase"></typeparam>
-            <param name="fact"></param>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.IsValidFactType``1(GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
@@ -254,6 +141,14 @@
             Validation of the fact of the condition.
             </summary>
             <param name="type"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.IsCalculatedByRule``1(``0)">
+            <summary>
+            Was the fact calculated using the rule.
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="fact"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

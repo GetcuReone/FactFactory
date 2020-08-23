@@ -1,4 +1,6 @@
-﻿using GetcuReone.FactFactory.Exceptions;
+﻿using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GwtTestFramework.Entities;
@@ -20,8 +22,7 @@ namespace FactFactory.TestsCommon.Helpers
                 Assert.Fail($"Expected '{errorCode}' code and reason '{errorMessage}'.");
         }
 
-        public static ThenBlock<InvalidDeriveOperationException<TFact>> ThenAssertErrorDetail<TFact>(this WhenBlock<InvalidDeriveOperationException<TFact>> whenBlock, string errorCode, string errorMessage)
-            where TFact : IFact
+        public static ThenBlock<InvalidDeriveOperationException> ThenAssertErrorDetail(this WhenBlock<InvalidDeriveOperationException> whenBlock, string errorCode, string errorMessage)
         {
             return whenBlock
                 .Then($"Check error with code {errorCode}", error =>
@@ -35,8 +36,7 @@ namespace FactFactory.TestsCommon.Helpers
                 });
         }
 
-        public static ThenBlock<InvalidDeriveOperationException<TFact>> AndAssertErrorDetail<TFact>(this ThenBlock<InvalidDeriveOperationException<TFact>> whenBlock, string errorCode, string errorMessage)
-            where TFact : IFact
+        public static ThenBlock<InvalidDeriveOperationException> AndAssertErrorDetail(this ThenBlock<InvalidDeriveOperationException> whenBlock, string errorCode, string errorMessage)
         {
             return whenBlock.And($"Check error with code {errorCode}", error =>
             {
@@ -55,6 +55,13 @@ namespace FactFactory.TestsCommon.Helpers
                 .ThenIsNotNull()
                 .And($"Check error with code {errorCode}", error =>
                     error.AssertErrorDetail(errorCode, errorMessage));
+        }
+
+        public static TFact SetCalculateByRuleParam<TFact>(this TFact fact)
+            where TFact : IFact
+        {
+            fact.AddParameter(new FactParameter(FactParametersCodes.CalculateByRule, true));
+            return fact;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             Fact1 fact1 = new Fact1(1);
 
             Container originalContainer = null;
-            IFactContainer<VersionedFactBase> copyContainer = null;
+            IFactContainer copyContainer = null;
 
             Given("Create container", () => originalContainer = new Container())
                 .And("Add facts", _ =>

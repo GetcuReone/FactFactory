@@ -14,10 +14,23 @@ namespace GetcuReone.FactFactory
         public virtual bool CalculatedByRule { get; set; }
 
         /// <inheritdoc/>
+        public IEnumerable<IFactParameter> Parameters => _parameters ?? (_parameters = new List<IFactParameter>());
+        private List<IFactParameter> _parameters;
+
+        /// <inheritdoc/>
         public virtual IFactType GetFactType()
         {
             Type genericType = typeof(FactType<>).MakeGenericType(GetType());
             return (IFactType)Activator.CreateInstance(genericType);
+        }
+
+        /// <inheritdoc/>
+        public virtual void AddParameter(IFactParameter parameter)
+        {
+            if (_parameters == null)
+                _parameters = new List<IFactParameter>();
+
+            _parameters.Add(parameter);
         }
     }
 

@@ -9,9 +9,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Basic interface for objects that work directly with facts.
     /// </summary>
-    /// <typeparam name="TFactBase"></typeparam>
-    public abstract class FactWorkBase<TFactBase> : IFactWork<TFactBase>
-        where TFactBase : IFact
+    public abstract class FactWorkBase : IFactWork
     {
         /// <inheritdoc/>
         public IReadOnlyCollection<IFactType> InputFactTypes { get; }
@@ -24,7 +22,6 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             if (!factTypes.IsNullOrEmpty())
             {
-                factTypes.VerifyFactTypes<TFactBase>();
                 factTypes.ForEach(CommonHelper.ValidateConditionFact);
                 InputFactTypes = factTypes;
             }
@@ -60,18 +57,18 @@ namespace GetcuReone.FactFactory.BaseEntities
 
         /// <inheritdoc/>
         public virtual bool EqualsWork<TFactWork, TWantAction, TFactContainer>(TFactWork workFact, TWantAction wantAction, TFactContainer container)
-            where TFactWork : IFactWork<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
+            where TFactWork : IFactWork
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             return EqualsFactTypes(InputFactTypes, workFact?.InputFactTypes);
         }
 
         /// <inheritdoc/>
         public virtual bool СompatibilityWithRule<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction, TFactContainer container)
-            where TFactRule : IFactRule<TFactBase>
-            where TWantAction : IWantAction<TFactBase>
-            where TFactContainer : IFactContainer<TFactBase>
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
         {
             return true;
         }
