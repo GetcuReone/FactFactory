@@ -105,7 +105,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                                 continue;
                             }
 
-                            var needRules = context
+                            var needRules = nodeInfo
                                 .FactRules
                                 .Where(rule => rule.OutputFactType.EqualsFactType(needFact) && !rule.RuleContainBranch(node))
                                 .ToList();

@@ -54,9 +54,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         public override IEnumerable<TFactRule> GetCompatibleRules<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, IEnumerable<TFactRule> factRules, IWantActionContext<TWantAction, TFactContainer> context)
         {
             var result = base.GetCompatibleRules(target, factRules, context);
-            var maxVersion = VersionedSingleEntityOperationsHelper.GetMinVersion(
-                target.InputFactTypes.GetVersionFact(context),
-                context.WantAction.InputFactTypes.GetVersionFact(context));
+            var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
             if (maxVersion == null)
                 return result;
@@ -70,9 +68,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (!base.CompatibleRule(target, rule, context))
                 return false;
 
-            var maxVersion = VersionedSingleEntityOperationsHelper.GetMinVersion(
-                target.InputFactTypes.GetVersionFact(context),
-                context.WantAction.InputFactTypes.GetVersionFact(context));
+            var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
             if (maxVersion == null)
                 return true;
@@ -95,9 +91,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (facts.Count == 0)
                 return false;
 
-            var maxVersion = VersionedSingleEntityOperationsHelper.GetMinVersion(
-                factWork.InputFactTypes.GetVersionFact(context),
-                context.WantAction.InputFactTypes.GetVersionFact(context));
+            var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
             if (maxVersion == null)
                 return true;
@@ -108,9 +102,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         /// <inheritdoc/>
         public override IEnumerable<IFactType> GetRequiredTypesOfFacts<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
         {
-            var maxVersion = VersionedSingleEntityOperationsHelper.GetMinVersion(
-                factWork.InputFactTypes.GetVersionFact(context),
-                context.WantAction.InputFactTypes.GetVersionFact(context));
+            var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
             return factWork.InputFactTypes.Where(factType =>
                 context.GetFactsFromContainerByFactType(factType).All(fact => !fact.IsCompatibleWithVersion(maxVersion)));
@@ -119,9 +111,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         /// <inheritdoc/>
         protected override IEnumerable<IFact> GetRequireFacts<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
         {
-            var maxVersion = VersionedSingleEntityOperationsHelper.GetMinVersion(
-                factWork.InputFactTypes.GetVersionFact(context),
-                context.WantAction.InputFactTypes.GetVersionFact(context));
+            var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
             if (maxVersion == null)
                 return base.GetRequireFacts(factWork, context);
@@ -181,9 +171,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         /// <inheritdoc/>
         protected override bool NeedRecalculateFact<TFactRule, TWantAction, TFactContainer>(TFactRule rule, IWantActionContext<TWantAction, TFactContainer> context)
         {
-            var maxVersion = VersionedSingleEntityOperationsHelper.GetMinVersion(
-                rule.InputFactTypes.GetVersionFact(context),
-                context.WantAction.InputFactTypes.GetVersionFact(context));
+            var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
             if (maxVersion == null)
                 return false;

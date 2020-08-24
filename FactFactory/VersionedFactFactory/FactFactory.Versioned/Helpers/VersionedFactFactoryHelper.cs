@@ -27,6 +27,26 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             return fact.Parameters.FirstOrDefault(p => p.Code == VersionedFactParametersCodes.Version)?.Value as IVersionFact;
         }
 
+        /// <summary>
+        /// The fact has a version.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="fact"></param>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        public static bool HasVersion<TFact>(this TFact fact, IVersionFact version)
+            where TFact : IFact
+        {
+            var factVersion = fact.GetVersionOrNull();
+
+            if (version == null)
+                return factVersion == null;
+            if (factVersion == null)
+                return false;
+
+            return version.CompareTo(factVersion) == 0;
+        }
+
         internal static IVersionFact GetVersionFact(this IEnumerable<IFact> facts, IFactType factTypeVersion)
         {
             var versionFact = factTypeVersion.GetFacts(facts).FirstOrDefault();
