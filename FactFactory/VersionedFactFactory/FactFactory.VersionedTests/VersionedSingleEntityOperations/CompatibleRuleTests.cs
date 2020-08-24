@@ -34,7 +34,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
         {
             var first = GetFactRule((Fact1 _) => new FactResult(default));
             var second = GetFactRule((Fact2 _, Version1 v) => new FactResult(default));
-            var wantAction = GetWantAction((FactResult _) => { });
+            var wantAction = GetWantAction((FactResult _, Version1 v) => { });
 
             GivenCreateFacade()
                 .When("Check compatible.", facade =>

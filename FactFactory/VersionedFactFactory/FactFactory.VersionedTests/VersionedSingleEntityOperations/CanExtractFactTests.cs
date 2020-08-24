@@ -42,7 +42,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                 .SetVersionParam(new Version2());
             Container.Add(fact);
             var rule = GetFactRule((Fact1 _, Version1 v) => new FactResult(default));
-            var wantAction = GetWantAction((FactResult _) => { });
+            var wantAction = GetWantAction((FactResult _, Version1 v) => { });
 
             GivenCreateFacade()
                 .When("Check extract.", facade =>

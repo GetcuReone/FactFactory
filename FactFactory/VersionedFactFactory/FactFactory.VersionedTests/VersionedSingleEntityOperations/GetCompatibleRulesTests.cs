@@ -97,7 +97,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void TargetWithVersion1TestCase()
         {
-            var wantAction = GetWantAction((Version2 v) => { });
+            var wantAction = GetWantAction((Version1 v) => { });
             var target = GetFactRule((Version1 v) => new FactResult(default));
             var context = GetWantActionContext(wantAction, Container);
 

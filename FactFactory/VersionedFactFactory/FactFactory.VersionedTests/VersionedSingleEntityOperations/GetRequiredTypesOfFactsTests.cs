@@ -47,7 +47,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
         public void RequiredFact1TestCase()
         {
             var rule = GetFactRule((Fact1 _, Version1 v) => new FactResult(default));
-            var wantAction = GetWantAction((FactResult _) => { });
+            var wantAction = GetWantAction((FactResult _, Version1 v) => { });
 
             GivenCreateFacade()
                 .When("Check method.", facade =>

@@ -76,6 +76,15 @@ namespace FactFactory.VersionedTests
                 new List<IFactType> { GetFactType<TFact1>()});
         }
 
+        public virtual WAction GetWantAction<TFact1, TFact2>(Action<TFact1, TFact2> action)
+            where TFact1 : IFact
+            where TFact2 : IFact
+        {
+            return new WAction(
+                ct => action(ct.GetFact<TFact1>(), ct.GetFact<TFact2>()),
+                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() });
+        }
+
         protected virtual List<IVersionFact> GetVersionFacts()
         {
             return new List<IVersionFact>
