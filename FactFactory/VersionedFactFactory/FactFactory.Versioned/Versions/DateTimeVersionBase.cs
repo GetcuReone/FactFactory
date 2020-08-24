@@ -1,8 +1,6 @@
-﻿using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Versioned.Interfaces;
+﻿using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.FactFactory.Versioned.SpecialFacts;
 using System;
-using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
 namespace GetcuReone.FactFactory.Versioned.Versions
 {
