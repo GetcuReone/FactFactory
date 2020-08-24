@@ -199,7 +199,6 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                         });
                         factory.WantFact((Fact1 fact) =>
                         {
-                            Assert.IsTrue(fact.Version is Version2, "The fact must be calculated using the rule of version 2.");
                             counterAction3++;
                         });
                         factory.WantFact((Version2 _, FactResult fact) =>
@@ -212,7 +211,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 .Then("Check result.", _ =>
                 {
                     Assert.AreEqual(1, counterFact1, "The Fact1 should have been calculated 1 time.");
-                    Assert.AreEqual(1, counterFact2, "The Fact2 should have been calculated 1 time.");
+                    Assert.AreEqual(0, counterFact2, "The Fact2 should have been calculated 0 time.");
 
                     Assert.AreEqual(counterFact1 + counterFact2, counterResult, "The Fact1 should have been calculated 2 times.");
 
