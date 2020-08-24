@@ -9,17 +9,19 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// </summary>
     public class FactTypeCache : IFactTypeCache
     {
-        private readonly Dictionary<IFact, IFactType> _cache = new Dictionary<IFact, IFactType>();
+        //private readonly Dictionary<IFact, IFactType> _cache = new Dictionary<IFact, IFactType>();
 
         /// <inheritdoc/>
         public IFactType GetFactType<TFact>(TFact fact) where TFact : IFact
         {
-            if (_cache.ContainsKey(fact))
-                return _cache[fact];
+            //if (_cache.ContainsKey(fact))
+            //    return _cache[fact];
 
-            IFactType factType = fact.GetFactType();
-            _cache.Add(fact, factType);
-            return factType;
+            //IFactType factType = fact.GetFactType();
+            //_cache.Add(fact, factType);
+            //return factType;
+
+            return fact.GetFactType();
         }
     }
 }

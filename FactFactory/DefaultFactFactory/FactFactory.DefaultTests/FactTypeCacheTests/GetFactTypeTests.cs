@@ -15,6 +15,7 @@ namespace FactFactory.DefaultTests.FactTypeCacheTests
         [TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get fact type from cache.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Ignore]
         public void GetTypeFromCahceTestCase()
         {
             IFact fact = new ResultFact(default);
