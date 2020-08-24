@@ -57,9 +57,9 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
                     if (f.GetFactType().EqualsFactType(factType) && f.HasVersion(factVersion))
                     {
                         if (factVersion != null)
-                            throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {typeof(TFact).FullName} with version equal to version {factVersion.GetFactType().FactName}.");
+                            throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {factType.FactName} with version equal to version {factVersion.GetFactType().FactName}.");
                         else
-                            throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {typeof(TFact).FullName} withuot version.");
+                            throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {factType.FactName} withuot version.");
                     }
                 }
             }
