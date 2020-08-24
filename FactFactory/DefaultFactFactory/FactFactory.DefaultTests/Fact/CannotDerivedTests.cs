@@ -11,7 +11,6 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactory.DefaultTests.Fact
 {
     [TestClass]
-    [Ignore]
     public sealed class CannotDerivedTests : CommonTestBase
     {
         [TestMethod]
