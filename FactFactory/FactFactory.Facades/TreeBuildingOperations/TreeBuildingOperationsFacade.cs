@@ -389,10 +389,14 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     if (condition.Condition(context.WantAction, context.WantAction.GetCompatibleRulesEx(request.FactRules, context), context))
                     {
                         result.WantActionInfo.SuccessConditions.Add(condition);
-                        continue;
                     }
                     else
+                    {
                         result.WantActionInfo.FailedConditions.Add(condition);
+                        deriveFactErrorDetails.Add(new DeriveFactErrorDetail(needFactType, null));
+                    }
+
+                    continue;
                 }
 
                 var requestFactType = new BuildTreeForFactInfoRequest<TFactRule, TWantAction, TFactContainer>
