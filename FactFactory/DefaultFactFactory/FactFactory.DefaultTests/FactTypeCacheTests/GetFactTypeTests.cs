@@ -9,13 +9,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.DefaultTests.FactTypeCacheTests
 {
     [TestClass]
+    [Ignore]
     public sealed class GetFactTypeTests : FactTypeCacheTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get fact type from cache.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        [Ignore]
         public void GetTypeFromCahceTestCase()
         {
             IFact fact = new ResultFact(default);

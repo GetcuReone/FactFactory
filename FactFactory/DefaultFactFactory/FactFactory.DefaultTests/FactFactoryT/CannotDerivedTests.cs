@@ -11,6 +11,7 @@ using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 namespace FactFactoryTests.FactFactoryT
 {
     [TestClass]
+    [Ignore]
     public sealed class CannotDerivedTests : FactFactoryTestBase
     {
         [TestMethod]

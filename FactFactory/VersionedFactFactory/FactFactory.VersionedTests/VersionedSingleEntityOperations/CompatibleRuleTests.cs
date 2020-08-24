@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 {
     [TestClass]
+    [Ignore]
     public sealed class CompatibleRuleTests : VersionedSingleEntityOperationsTestBase
     {
         [TestMethod]

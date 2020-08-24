@@ -9,6 +9,7 @@ using VWantAction = GetcuReone.FactFactory.Versioned.Entities.VersionedWantActio
 namespace FactFactory.VersionedTests.VersionedWantAction
 {
     [TestClass]
+    [Ignore]
     public sealed class VersionedWantActionTests : CommonTestBase
     {
         private VWantAction CreateVersionedWantAction(params IFactType[] factTypes)

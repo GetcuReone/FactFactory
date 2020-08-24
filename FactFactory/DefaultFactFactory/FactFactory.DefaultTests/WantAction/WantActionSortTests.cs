@@ -10,6 +10,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactory.DefaultTests.WantAction
 {
     [TestClass]
+    [Ignore]
     public sealed class WantActionSortTests : CommonTestBase
     {
         private Container Container { get; set; }

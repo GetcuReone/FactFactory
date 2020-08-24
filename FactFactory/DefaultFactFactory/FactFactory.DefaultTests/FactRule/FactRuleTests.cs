@@ -19,6 +19,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactoryTests.FactRule
 {
     [TestClass]
+    [Ignore]
     public sealed class FactRuleTests : CommonTestBase
     {
         [TestMethod]

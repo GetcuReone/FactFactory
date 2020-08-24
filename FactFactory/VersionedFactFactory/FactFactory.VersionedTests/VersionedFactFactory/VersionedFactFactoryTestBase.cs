@@ -8,6 +8,7 @@ using V_FactFactory = GetcuReone.FactFactory.Versioned.VersionedFactFactory;
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
     [TestClass]
+    [Ignore]
     public abstract class VersionedFactFactoryTestBase : CommonTestBase
     {
         protected GivenBlock<V_FactFactory> GivenCreateVersionedFactFactory(List<IVersionFact> versions)

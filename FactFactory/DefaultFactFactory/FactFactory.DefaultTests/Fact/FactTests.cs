@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactoryTests.Fact
 {
     [TestClass]
+    [Ignore]
     public sealed class FactTests : CommonTestBase
     {
         [TestMethod]

@@ -9,6 +9,7 @@ using System.Linq;
 namespace FactFactory.DefaultTests.SingleEntityOperationsTests
 {
     [TestClass]
+    [Ignore]
     public sealed class GetRequiredTypesOfFactsTests : SingleEntityOperationsTestBase
     {
         [TestMethod]

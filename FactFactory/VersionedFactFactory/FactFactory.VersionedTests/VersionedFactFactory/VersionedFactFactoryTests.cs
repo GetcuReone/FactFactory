@@ -1,8 +1,6 @@
 ﻿using FactFactory.TestsCommon;
-using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
-using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
@@ -13,6 +11,7 @@ using V_Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
     [TestClass]
+    [Ignore]
     public sealed class VersionedFactFactoryTests : VersionedFactFactoryTestBase
     {
         private List<IVersionFact> GetVersionFacts()

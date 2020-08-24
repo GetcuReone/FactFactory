@@ -13,6 +13,7 @@ using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContain
 namespace FactFactory.VersionedTests.VersionedFactContainer
 {
     [TestClass]
+    [Ignore]
     public sealed class GetVersionedFactTests : VersionedFactContrainerTestBase
     {
         [TestMethod]

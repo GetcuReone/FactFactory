@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.VersionedTests.VersionedFactContainer
 {
     [TestClass]
+    [Ignore]
     public sealed class RemoveVersionedFactTests : VersionedFactContrainerTestBase
     {
         [TestMethod]

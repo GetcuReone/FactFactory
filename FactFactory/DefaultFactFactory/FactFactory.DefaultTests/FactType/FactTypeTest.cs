@@ -20,6 +20,7 @@ using System;
 namespace FactFactoryTests.FactType
 {
     [TestClass]
+    [Ignore]
     public sealed class FactTypeTest : TestBase
     {
         private GivenBlock<OtherFact> GivenCreateOtherFact(DateTime dateTime)

@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.VersionedTests.Version
 {
     [TestClass]
+    [Ignore]
     public sealed class DateTimeVersionTests : CommonTestBase
     {
         [TestMethod]
