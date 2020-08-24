@@ -26,6 +26,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <inheritdoc/>
         protected VersionedWantActionBase(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes) : base(wantAction, factTypes)
         {
+            VersionType = factTypes.SingleOrNullFactVersion();
         }
 
         /// <inheritdoc/>

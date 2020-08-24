@@ -78,9 +78,9 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Recount facts with a different version.")]
+        [Description("Not recount facts with a different version.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void RecountFactsWithDifferentVersionTestCase()
+        public void NotRecountFactsWithDifferentVersionTestCase()
         {
             FactResult result1 = null;
             FactResult result2 = null;
@@ -106,7 +106,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     Assert.IsNotNull(result2, "result2 cannot be null.");
 
                     Assert.AreEqual(1, result1.Value, "Expected another value.");
-                    Assert.AreEqual(2, result2.Value, "Expected another value.");
+                    Assert.AreEqual(1, result2.Value, "Expected another value.");
                 });
         }
 
