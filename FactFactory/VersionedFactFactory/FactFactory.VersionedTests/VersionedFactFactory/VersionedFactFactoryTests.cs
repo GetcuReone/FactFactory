@@ -152,7 +152,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 .Then("Check result.", _ =>
                 {
                     Assert.AreEqual(1, counterFact2, "Fact2 was supposed to pay 1 time.");
-                    Assert.AreEqual(2, counterFact1, "Fact1 was supposed to pay 2 times.");
+                    Assert.AreEqual(1, counterFact1, "Fact1 was supposed to pay 1 times.");
                 });
         }
 
