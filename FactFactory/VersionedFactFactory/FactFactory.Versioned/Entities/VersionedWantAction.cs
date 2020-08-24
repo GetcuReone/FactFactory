@@ -19,5 +19,9 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         {
         }
 
+        /// <inheritdoc/>
+        public VersionedWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes) : base(wantAction, factTypes)
+        {
+        }
     }
 }

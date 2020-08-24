@@ -41,7 +41,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version1 version) => new Fact1(10),
                     (Version1 version, Fact1 fact) => new FactResult(fact.Value * version),
                     // version 1
-                    (Version2 version) => new Fact1(10),
+                    (Version2 version) => new Fact1(20),
                     (Version2 version, Fact1 fact) => new FactResult(fact.Value * version),
                 })
                 .When("Derive fact.", factFactory =>

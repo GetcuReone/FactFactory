@@ -181,7 +181,7 @@ namespace GetcuReone.FactFactory.Versioned
             var inputFacts = new List<IFactType> { GetFactType<TFact>(), GetFactType<TVersion>() };
 
             WantFact(CreateWantAction(
-                container => fact = GetCorrectFact<TFact>(container, inputFacts),
+                facts => fact = facts.GetFact<TFact>(),
                 inputFacts));
 
             Derive();
