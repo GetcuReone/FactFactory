@@ -13,8 +13,20 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
     /// <summary>
     /// Helper for <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
     /// </summary>
-    internal static class VersionedFactFactoryHelper
+    public static class VersionedFactFactoryHelper
     {
+        /// <summary>
+        /// Get version fact.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="fact"></param>
+        /// <returns></returns>
+        public static IVersionFact GetVersionOrNull<TFact>(this TFact fact)
+            where TFact : IFact
+        {
+            return fact.Parameters.FirstOrDefault(p => p.Code == VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+        }
+
         internal static IVersionFact GetVersionFact(this IEnumerable<IFact> facts, IFactType factTypeVersion)
         {
             var versionFact = factTypeVersion.GetFacts(facts).FirstOrDefault();

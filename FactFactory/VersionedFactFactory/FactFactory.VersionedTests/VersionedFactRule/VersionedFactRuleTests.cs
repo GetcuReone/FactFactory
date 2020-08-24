@@ -3,6 +3,7 @@ using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Versioned;
+using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -84,25 +85,19 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
         [Description("Calculate fact without version.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        [Ignore("Temporarily unstable due to issue 158")]
         public void VersionedFactRule_CalculateWithoutVersionTestCase()
         {
             Container container = null;
 
             Given("Create container", () => container = new Container())
-                .And("Create rule", () => new Rule((ct, _) => new FactResult(1), new List<IFactType> { }, GetFactType<FactResult>()))
-                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container, default(Action)), "cannot calculate"))
-                .When("Run calculate", rule => rule.Calculate(container, default(Action)))
+                .And("Create rule", () => 
+                    new Rule(facts => new FactResult(1), new List<IFactType> { }, GetFactType<FactResult>()))
+                .When("Run calculate", rule => 
+                    rule.Calculate(container))
                 .ThenIsNotNull()
                 .And("Get version.", fact =>
-                {
-                    if (fact is VersionedFactBase versionedFact)
-                        return versionedFact.Version;
-
-                    Assert.Fail("Invalid type.");
-                    return null;
-                })
-                .AndIsNotNull();
+                    fact.GetVersionOrNull())
+                .AndIsNull();
         }
 
         [TestMethod]
