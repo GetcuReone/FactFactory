@@ -309,9 +309,7 @@ namespace GetcuReone.FactFactory.Facades.TreesOperations
         /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="treeByFactRule"></param>
         public List<IndependentRulesGroup<TFactRule>> GetIndependentRulesGroups<TFactRule, TWantAction, TFactContainer>(TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeByFactRule)
-
             where TFactRule : FactRuleBase
-
             where TWantAction : WantActionBase
             where TFactContainer : FactContainerBase
         {

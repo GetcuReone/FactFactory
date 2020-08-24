@@ -57,6 +57,9 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
             <exception cref="T:System.ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
         </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.Entities.FactRuleCollection">
             <summary>
             Collection for <see cref="T:GetcuReone.FactFactory.Entities.FactRule"/>.
@@ -94,6 +97,9 @@
             <param name="inputFactTypes">information on input factacles rules.</param>
             <param name="outputFactType">information on output fact.</param>
             <returns>fact rule</returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.FactRuleCollection.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+            <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest`3">
             <summary>
@@ -301,11 +307,10 @@
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Entities.WantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="wantAction">Action taken after deriving a fact.</param>
-            <param name="factTypes">Facts required to launch an action.</param>
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Entities.WantAction.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.SpecialFacts.CanDerived`1">
             <inheritdoc/>

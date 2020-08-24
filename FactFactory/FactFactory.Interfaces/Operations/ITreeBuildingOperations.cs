@@ -53,5 +53,18 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
             where TFactRuleCollection : IFactRuleCollection<TFactRule>
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// List of groups of independent nodes.
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="treeByFactRule"></param>
+        /// <returns></returns>
+        List<IndependentNodeGroup<TFactRule>> GetIndependentNodeGroups<TFactRule, TWantAction, TFactContainer>(TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeByFactRule)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }

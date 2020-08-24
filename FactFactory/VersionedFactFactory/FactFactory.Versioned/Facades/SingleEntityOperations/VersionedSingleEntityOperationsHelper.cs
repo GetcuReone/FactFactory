@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
@@ -56,6 +57,20 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             return context.Container.Where(fact => context.Cache.GetFactType(fact).EqualsFactType(factType));
         }
 
+        internal static IEnumerable<IFact> GetFactsFromContainerByFactTypes<TWantAction, TFactContainer>(this IWantActionContext<TWantAction, TFactContainer> context, IEnumerable<IFactType> factTypes)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            if (factTypes.IsNullOrEmpty())
+                return Enumerable.Empty<IFact>();
+
+            return context.Container.Where(fact => 
+            {
+                IFactType factType = context.Cache.GetFactType(fact);
+                return factTypes.Any(type => type.EqualsFactType(factType));
+            });
+        }
+
         /// <summary>
         /// Compatible with version.
         /// </summary>
@@ -79,6 +94,11 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 return version.CompareTo(factVersion) >= 0;
 
             return false;
+        }
+
+        internal static void SetVersion(this IFact fact, IVersionFact version)
+        {
+            fact.AddParameter(new FactParameter(VersionedFactParametersCodes.Version, version));
         }
     }
 }

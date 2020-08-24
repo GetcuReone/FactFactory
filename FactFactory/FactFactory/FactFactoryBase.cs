@@ -68,45 +68,45 @@ namespace GetcuReone.FactFactory
         /// <inheritdoc/>
         public virtual void Derive()
         {
-            FactFactoryContext context = this.ToFactFactoryContext();
-            TFactContainer container = context.SingleEntity.ValidateAndGetContainer(Container);
-            TFactRuleCollection rules = context.SingleEntity.ValidateAndGetRules<TFactRule, TFactRuleCollection>(Rules);
-            var wantActions = new List<TWantAction>(WantActions);
+            // Create static context data.
+            IFactTypeCache cache = GetFactTypeCache();
+            ISingleEntityOperations singleEntityOperations = GetSingleEntityOperations();
+            ITreeBuildingOperations treeBuildingOperations = GetTreeBuildingOperations();
 
-            var defaultFacts = new List<IFact>();
-            foreach(IFact fact in GetDefaultFacts(container) ?? Enumerable.Empty<IFact>())
+            // Validating rules and container.
+            TFactContainer container = singleEntityOperations.ValidateAndGetContainer(Container);
+            TFactRuleCollection rules = singleEntityOperations.ValidateAndGetRules<TFactRule, TFactRuleCollection>(Rules);
+
+            // We fill the container with the default set of facts, if they are missing.
+            foreach (IFact fact in GetDefaultFacts(container) ?? Enumerable.Empty<IFact>())
             {
                 if (!container.Contains(fact))
-                {
                     using (container.CreateIgnoreReadOnlySpace())
                         container.Add(fact);
-
-                    defaultFacts.Add(fact);
-                }
             }
 
-            Dictionary<WantActionInfo<TWantAction, TFactContainer>, List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>> forestry = BuildTrees(
-                new BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
-                {
-                    Container = container,
-                    FactRules = rules,
-                    WantActions = wantActions,
-                },
-                context
-            );
+            // Create a copy of the requested actions. To work with a collection that does not change during the construction of the tree.
+            var wantActions = new List<TWantAction>(WantActions);
 
-            foreach (var item in forestry)
+            var request = new Interfaces.Operations.Entities.BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+            {
+                FactRules = rules,
+                WantActionContexts = wantActions.ConvertAll(wantAction => 
+                    wantAction.ConvertWantActionContext(container, cache, singleEntityOperations, treeBuildingOperations)),
+            };
+
+            if (!treeBuildingOperations.TryBuildTrees(request, out var result))
+                throw CommonHelper.CreateDeriveException(result.DeriveErrorDetails);
+
+            foreach(var item in result.TreesByActions)
                 CalculateTreeAndDeriveWantFacts(item.Key, item.Value);
 
             OnDeriveFinished(wantActions, container);
-
-            foreach(var fact in defaultFacts)
+            wantActions.ForEach(wA =>
             {
-                using (container.CreateIgnoreReadOnlySpace())
-                    container.Remove(fact);
-            }
-
-            WantActions.Clear();
+                if (WantActions.Contains(wA))
+                    WantActions.Remove(wA);
+            });
         }
 
         /// <inheritdoc/>
@@ -120,7 +120,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact>() };
 
             WantFact(CreateWantAction(
-                container => fact = GetCorrectFact<TFact>(container, inputFacts),
+                facts => fact = facts.GetFact<TFact>(),
                 inputFacts));
 
             Derive();
@@ -240,6 +240,33 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
+        /// Tree calculation and fact deriving.
+        /// </summary>
+        /// <param name="wantActionInfo"></param>
+        /// <param name="treeByFactRules"></param>
+        protected virtual void CalculateTreeAndDeriveWantFacts(Interfaces.Operations.Entities.WantActionInfo<TWantAction, TFactContainer> wantActionInfo, List<Interfaces.Operations.Entities.TreeByFactRule<TFactRule, TWantAction, TFactContainer>> treeByFactRules)
+        {
+            foreach(var tree in treeByFactRules)
+            {
+                foreach(var group in tree.Context.TreeBuilding.GetIndependentNodeGroups(tree))
+                {
+                    foreach(var node in group)
+                    {
+                        if (tree.Context.SingleEntity.TryCalculateFact(node, tree.Context, out IFact fact))
+                        {
+                            using (wantActionInfo.Context.Container.CreateIgnoreReadOnlySpace())
+                                wantActionInfo.Context.Container.Add(fact);
+                            OnFactCalculated(node.Info.Rule, wantActionInfo.Context);
+                        }
+                    }
+                }
+            }
+
+            wantActionInfo.Context.SingleEntity.DeriveWantFacts(wantActionInfo);
+            OnDeriveWantFacts(wantActionInfo.Context);
+        }
+
+        /// <summary>
         /// Action calculation completion handler
         /// </summary>
         /// <param name="wantAction"></param>
@@ -253,6 +280,19 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Container.</param>
         /// <param name="wantAction">The action for which the fact was calculated.</param>
         protected virtual void OnFactCalculatedForWantAction(IFactType factType, TFactContainer container, TWantAction wantAction) { }
+
+        /// <summary>
+        /// Fact calculation event handler.
+        /// </summary>
+        /// <param name="rule">The rule that calculated the fact.</param>
+        /// <param name="context">Context.</param>
+        protected virtual void OnFactCalculated(TFactRule rule, IWantActionContext<TWantAction, TFactContainer> context) { }
+
+        /// <summary>
+        /// Event handler for outputting facts to the WantAction.
+        /// </summary>
+        /// <param name="context"></param>
+        protected virtual void OnDeriveWantFacts(IWantActionContext<TWantAction, TFactContainer> context) { }
 
         /// <summary>
         /// Event handler method 'derive finished'. It is executed at the end of the <see cref="FactFactoryBase{TFactRule, TFactRuleCollection, TWantAction, TFactContainer}.Derive"/> method.
@@ -270,6 +310,14 @@ namespace GetcuReone.FactFactory
         /// <param name="factTypes">Facts required to launch an action.</param>
         /// <returns></returns>
         protected abstract TWantAction CreateWantAction(Action<IFactContainer> wantAction, List<IFactType> factTypes);
+
+        /// <summary>
+        /// Creation method <typeparamref name="TWantAction"/>.
+        /// </summary>
+        /// <param name="wantAction">Action taken after deriving a fact.</param>
+        /// <param name="factTypes">Facts required to launch an action.</param>
+        /// <returns></returns>
+        protected abstract TWantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes);
 
         /// <summary>
         /// The method determines whether the fact should be recounted.
@@ -668,7 +716,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>()),
                 inputFacts));
         }
 
@@ -686,7 +734,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>()),
                 inputFacts));
         }
 
@@ -706,7 +754,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>()),
                 inputFacts));
         }
 
@@ -728,7 +776,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>()),
                 inputFacts));
         }
 
@@ -752,7 +800,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>()),
                 inputFacts));
         }
 
@@ -778,7 +826,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>()),
                 inputFacts));
         }
 
@@ -806,7 +854,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>()),
                 inputFacts));
         }
 
@@ -836,7 +884,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>()),
                 inputFacts));
         }
 
@@ -868,7 +916,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>()),
                 inputFacts));
         }
 
@@ -902,7 +950,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>()),
                 inputFacts));
         }
 
@@ -938,7 +986,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>()),
                 inputFacts));
         }
 
@@ -976,7 +1024,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts), GetCorrectFact<TFact12>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>()),
                 inputFacts));
         }
 
@@ -1016,7 +1064,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts), GetCorrectFact<TFact12>(container, inputFacts), GetCorrectFact<TFact13>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>()),
                 inputFacts));
         }
 
@@ -1058,7 +1106,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts), GetCorrectFact<TFact12>(container, inputFacts), GetCorrectFact<TFact13>(container, inputFacts), GetCorrectFact<TFact14>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>()),
                 inputFacts));
         }
 
@@ -1102,7 +1150,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts), GetCorrectFact<TFact12>(container, inputFacts), GetCorrectFact<TFact13>(container, inputFacts), GetCorrectFact<TFact14>(container, inputFacts), GetCorrectFact<TFact15>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>(), facts.GetFact<TFact15>()),
                 inputFacts));
         }
 
@@ -1148,7 +1196,7 @@ namespace GetcuReone.FactFactory
             var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>(), GetFactType<TFact16>() };
 
             WantFact(CreateWantAction(
-                container => wantFactAction(GetCorrectFact<TFact1>(container, inputFacts), GetCorrectFact<TFact2>(container, inputFacts), GetCorrectFact<TFact3>(container, inputFacts), GetCorrectFact<TFact4>(container, inputFacts), GetCorrectFact<TFact5>(container, inputFacts), GetCorrectFact<TFact6>(container, inputFacts), GetCorrectFact<TFact7>(container, inputFacts), GetCorrectFact<TFact8>(container, inputFacts), GetCorrectFact<TFact9>(container, inputFacts), GetCorrectFact<TFact10>(container, inputFacts), GetCorrectFact<TFact11>(container, inputFacts), GetCorrectFact<TFact12>(container, inputFacts), GetCorrectFact<TFact13>(container, inputFacts), GetCorrectFact<TFact14>(container, inputFacts), GetCorrectFact<TFact15>(container, inputFacts), GetCorrectFact<TFact16>(container, inputFacts)),
+                facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>(), facts.GetFact<TFact15>(), facts.GetFact<TFact16>()),
                 inputFacts));
         }
 

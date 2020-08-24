@@ -11,6 +11,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     public abstract class WantActionBase : FactWorkBase, IWantAction
     {
         private readonly Action<IFactContainer> _action;
+        private readonly Action<IEnumerable<IFact>> _action2;
 
         /// <summary>
         /// Constructor.
@@ -21,6 +22,20 @@ namespace GetcuReone.FactFactory.BaseEntities
             : base(factTypes)
         {
             _action = wantAction ?? throw new ArgumentNullException(nameof(wantAction));
+
+            if (InputFactTypes.IsNullOrEmpty())
+                throw new ArgumentException("factTypes cannot be empty. The desired action should request a fact on entry.");
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="wantAction">Action taken after deriving a fact.</param>
+        /// <param name="factTypes">Facts required to launch an action.</param>
+        protected WantActionBase(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
+            : base(factTypes)
+        {
+            _action2 = wantAction ?? throw new ArgumentNullException(nameof(wantAction));
 
             if (InputFactTypes.IsNullOrEmpty())
                 throw new ArgumentException("factTypes cannot be empty. The desired action should request a fact on entry.");
@@ -66,6 +81,12 @@ namespace GetcuReone.FactFactory.BaseEntities
             }
 
             return result;
+        }
+
+        /// <inheritdoc/>
+        public virtual void Invoke(IEnumerable<IFact> requireFacts)
+        {
+            _action2(requireFacts);
         }
     }
 }

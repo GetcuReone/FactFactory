@@ -32,6 +32,14 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         }
 
         /// <inheritdoc/>
+        protected VersionedFactRuleBase(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType) : base(func, inputFactTypes, outputFactType)
+        {
+            outputFactType.CannotIsType<IVersionFact>(nameof(outputFactType));
+
+            VersionType = inputFactTypes?.SingleOrNullFactVersion();
+        }
+
+        /// <inheritdoc/>
         public override IFact Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
         {
             IFact versionedFact = base.Calculate(container, wantAction);

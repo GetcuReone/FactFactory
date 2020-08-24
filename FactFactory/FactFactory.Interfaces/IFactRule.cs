@@ -37,6 +37,13 @@ namespace GetcuReone.FactFactory.Interfaces
             where TWantAction : IWantAction;
 
         /// <summary>
+        /// Calculate fact.
+        /// </summary>
+        /// <param name="requireFacts">The facts required for the calculation.</param>
+        /// <returns></returns>
+        IFact Calculate(IEnumerable<IFact> requireFacts);
+
+        /// <summary>
         /// Get the necessary fact types.
         /// </summary>
         /// <typeparam name="TWantAction"></typeparam>

@@ -28,5 +28,10 @@ namespace FactFactoryTests.FactFactoryT.Env
         {
             return DefaultFacts;
         }
+
+        protected override GetcuReone.FactFactory.Entities.WantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
+        {
+            return new Action(wantAction, factTypes);
+        }
     }
 }

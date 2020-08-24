@@ -19,5 +19,10 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         public VersionedFactRule(Func<IFactContainer, IWantAction, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType) : base(func, inputFactTypes, outputFactType)
         {
         }
+
+        /// <inheritdoc/>
+        public VersionedFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType) : base(func, inputFactTypes, outputFactType)
+        {
+        }
     }
 }

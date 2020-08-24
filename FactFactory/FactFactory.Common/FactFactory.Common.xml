@@ -150,5 +150,13 @@
             <param name="fact"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.GetFact``1(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <summary>
+            Get first fact by type <typeparamref name="TFact"/>.
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="facts"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
+using GetcuReone.FactFactory.Interfaces.Operations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,20 @@ namespace GetcuReone.FactFactory.Helpers
 
             result.CopyFactFactoryContext(context);
             return result;
+        }
+
+        internal static IWantActionContext<TWantAction, TFactContainer> ConvertWantActionContext<TWantAction, TFactContainer>(this TWantAction wantAction, TFactContainer container, IFactTypeCache cache, ISingleEntityOperations singleEntityOperations, ITreeBuildingOperations treeBuildingOperations)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            return new WantActionContext<TWantAction, TFactContainer>
+            {
+                Cache = cache,
+                Container = container,
+                SingleEntity = singleEntityOperations,
+                TreeBuilding = treeBuildingOperations,
+                WantAction = wantAction,
+            };
         }
     }
 }

@@ -185,5 +185,17 @@ namespace GetcuReone.FactFactory
 
             return false;
         }
+
+        /// <summary>
+        /// Get first fact by type <typeparamref name="TFact"/>.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="facts"></param>
+        /// <returns></returns>
+        public static TFact GetFact<TFact>(this IEnumerable<IFact> facts)
+            where TFact : IFact
+        {
+            return (TFact)facts.First(fact => fact is TFact);
+        }
     }
 }

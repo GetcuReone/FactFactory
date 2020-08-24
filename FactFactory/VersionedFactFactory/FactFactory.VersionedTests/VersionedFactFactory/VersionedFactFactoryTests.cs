@@ -79,7 +79,6 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Recount facts with a different version.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        [Ignore]
         public void RecountFactsWithDifferentVersionTestCase()
         {
             FactResult result1 = null;
@@ -161,7 +160,6 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Do not recalculate calculated fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        [Ignore]
         public void DoNotRecalculateCalculatedFactTestCase()
         {
             int counterFact1 = 0;
@@ -228,7 +226,6 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Use newer rule for Derive.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        [Ignore]
         public void UseNewerRuleForDeriveTestCase()
         {
             int expectedValue = 10;

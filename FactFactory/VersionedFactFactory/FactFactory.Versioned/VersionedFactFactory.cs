@@ -53,5 +53,11 @@ namespace GetcuReone.FactFactory.Versioned
         {
             return _getAllVersionFactsFunc();
         }
+
+        /// <inheritdoc/>
+        protected override VersionedWantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
+        {
+            return new VersionedWantAction(wantAction, factTypes);
+        }
     }
 }

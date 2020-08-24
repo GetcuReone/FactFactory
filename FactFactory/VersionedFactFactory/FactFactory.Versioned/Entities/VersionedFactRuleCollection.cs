@@ -55,5 +55,11 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         {
             return new VersionedFactRule(func, inputFactTypes, outputFactType);
         }
+
+        /// <inheritdoc/>
+        protected override VersionedFactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+        {
+            return new VersionedFactRule(func, inputFactTypes, outputFactType);
+        }
     }
 }

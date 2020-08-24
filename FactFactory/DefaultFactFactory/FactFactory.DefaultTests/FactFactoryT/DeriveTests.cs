@@ -4,7 +4,6 @@ using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using FactFactoryTests.FactFactoryT.Helpers;
-using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
@@ -19,7 +18,6 @@ namespace FactFactoryTests.FactFactoryT
     [TestClass]
     public sealed class DeriveTests : FactFactoryTestBase
     {
-
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Check method Derive.")]
@@ -27,9 +25,17 @@ namespace FactFactoryTests.FactFactoryT
         public void DeriveTestCase()
         {
             Input16Fact fact16 = null;
+            const int expectedValue = 16;
 
             GivenCreateFactFactory()
-                .AndAddRules(RuleCollectionHelper.GetInputFactRules())
+                .AndAddRules(new Collection
+                {
+                    (Input15Fact firstFact, Input14Fact secondFact) => new Input16Fact(firstFact.Value + secondFact.Value - 3),
+                    (Input2Fact secondFact) => new Input14Fact(secondFact.Value + 14),
+                    (Input1Fact firstFact, Input2Fact secondFact) => new Input15Fact(firstFact.Value + secondFact.Value),
+                    () => new Input1Fact(1),
+                    (Input1Fact fact) => new Input2Fact(fact.Value * 2),
+                })
                 .And("Want fact.", factory =>
                 {
                     factory.WantFact((Input16Fact fact) =>
@@ -41,7 +47,7 @@ namespace FactFactoryTests.FactFactoryT
                 .Then("Check derive facts.", _ =>
                 {
                     Assert.IsNotNull(fact16, "fact16 is not derived");
-                    Assert.AreEqual(16, fact16.Value, "unexpected value");
+                    Assert.AreEqual(expectedValue, fact16.Value, "unexpected value");
                 });
         }
 

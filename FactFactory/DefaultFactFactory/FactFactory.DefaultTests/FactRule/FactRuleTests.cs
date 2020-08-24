@@ -102,7 +102,7 @@ namespace FactFactoryTests.FactRule
             GivenEmpty()
                 .When("Create rule,", _ =>
                 {
-                    return ExpectedException<ArgumentNullException>(() => new Rule(null, null, null));
+                    return ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, IFact>), null, null));
                 })
                 .Then("Check error.", ex => 
                 {

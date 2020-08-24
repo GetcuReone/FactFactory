@@ -255,6 +255,13 @@
             <typeparam name="TWantAction"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.Calculate(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <summary>
+            Calculate fact.
+            </summary>
+            <param name="requireFacts">The facts required for the calculation.</param>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.GetNecessaryFactTypes``2(``0,``1)">
             <summary>
             Get the necessary fact types.
@@ -359,6 +366,12 @@
             <typeparam name="TFactContainer">container with <see cref="P:GetcuReone.FactFactory.Interfaces.IFactWork.InputFactTypes"/>.</typeparam>
             <param name="container"></param>
         </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IWantAction.Invoke(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <summary>
+            Run action.
+            </summary>
+            <param name="requireFacts">The facts required for run.</param>
+        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IWantAction.GetNecessaryFactTypes``1(``0)">
             <summary>
             Get the necessary fact types.
@@ -426,6 +439,39 @@
             Build trees.
             </summary>
         </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest`4">
+            <summary>
+            Request.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest`4.WantActionContexts">
+            <summary>
+            The contexts within which to build trees.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest`4.FactRules">
+            <summary>
+            List of rules that take part in the construction of trees.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesResult`3">
+            <summary>
+            Result.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesResult`3.TreesByActions">
+            <summary>
+            Constructed trees by actions.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesResult`3.DeriveErrorDetails">
+            <summary>
+            Errors when constructing trees.
+            </summary>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.Enums.TreeStatus">
             <summary>
             Tree build status.
@@ -445,6 +491,25 @@
             <summary>
             The tree is canceled.
             </summary>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.IndependentNodeGroup`1">
+            <summary>
+            Independent node group.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.Entities.IndependentNodeGroup`1.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.Entities.IndependentNodeGroup`1.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{`0}})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.Entities.IndependentNodeGroup`1.CanAdd(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{`0})">
+            <summary>
+            Can add node.
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule`1">
             <summary>
@@ -534,22 +599,22 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2">
             <summary>
-            Info for <see cref="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.WantAction"/>.
+            Info for WantAction from context.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.WantAction">
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.Context">
             <summary>
-            WantAction.
+            Context.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.SuccessConditions">
             <summary>
-            List of fact conditions. Successfully completed conditions for <see cref="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.WantAction"/>.
+            List of fact conditions. Successfully completed conditions for WantAction from context.
             </summary>
         </member>
         <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.FailedConditions">
             <summary>
-            List of fact conditions. Failed conditions for <see cref="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.WantAction"/>.
+            List of fact conditions. Failed conditions for WantAction from context.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache">
@@ -651,6 +716,26 @@
             <param name="context">Context.</param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.TryCalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2},GetcuReone.FactFactory.Interfaces.IFact@)">
+            <summary>
+            Calculate fact by rule from node.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="node"></param>
+            <param name="context"></param>
+            <param name="fact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.DeriveWantFacts``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="wantActionInfo"></param>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.Operations.ITreeBuildingOperations">
             <summary>
             Tree building operations.
@@ -678,6 +763,28 @@
             <param name="request">Request.</param>
             <param name="result">Result.</param>
             <returns>True - build trees. False - not build trees.</returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ITreeBuildingOperations.TryBuildTrees``4(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest{``0,``1,``2,``3},GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesResult{``0,``2,``3}@)">
+            <summary>
+            Try build trees for wantActions.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TFactRuleCollection"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="request">Request.</param>
+            <param name="result">Result.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ITreeBuildingOperations.GetIndependentNodeGroups``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2})">
+            <summary>
+            List of groups of independent nodes.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="treeByFactRule"></param>
+            <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ICanDerivedFact">
             <summary>

@@ -15,6 +15,12 @@ namespace GetcuReone.FactFactory.Interfaces
         void Invoke<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
 
         /// <summary>
+        /// Run action.
+        /// </summary>
+        /// <param name="requireFacts">The facts required for run.</param>
+        void Invoke(IEnumerable<IFact> requireFacts);
+
+        /// <summary>
         /// Get the necessary fact types.
         /// </summary>
         /// <typeparam name="TFactContainer"></typeparam>

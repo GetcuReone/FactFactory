@@ -27,6 +27,9 @@
             <param name="factTypes">Facts required to launch an action.</param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.FactFactoryBase`4">
             <summary>
             Base class for fact factory.
@@ -87,6 +90,13 @@
             <param name="wantActionInfo"></param>
             <param name="trees"></param>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CalculateTreeAndDeriveWantFacts(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{`2,`3},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{`0,`2,`3}})">
+            <summary>
+            Tree calculation and fact deriving.
+            </summary>
+            <param name="wantActionInfo"></param>
+            <param name="treeByFactRules"></param>
+        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.OnWantActionCalculated(`2,`3)">
             <summary>
             Action calculation completion handler
@@ -102,6 +112,19 @@
             <param name="container">Container.</param>
             <param name="wantAction">The action for which the fact was calculated.</param>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.OnFactCalculated(`0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{`2,`3})">
+            <summary>
+            Fact calculation event handler.
+            </summary>
+            <param name="rule">The rule that calculated the fact.</param>
+            <param name="context">Context.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.OnDeriveWantFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{`2,`3})">
+            <summary>
+            Event handler for outputting facts to the WantAction.
+            </summary>
+            <param name="context"></param>
+        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.OnDeriveFinished(System.Collections.Generic.List{`2},`3)">
             <summary>
             Event handler method 'derive finished'. It is executed at the end of the <see cref="M:GetcuReone.FactFactory.FactFactoryBase`4.Derive"/> method.
@@ -110,6 +133,14 @@
             <param name="container">Container.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <summary>
+            Creation method <typeparamref name="TWantAction"/>.
+            </summary>
+            <param name="wantAction">Action taken after deriving a fact.</param>
+            <param name="factTypes">Facts required to launch an action.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Creation method <typeparamref name="TWantAction"/>.
             </summary>

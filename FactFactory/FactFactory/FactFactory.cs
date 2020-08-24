@@ -30,5 +30,11 @@ namespace GetcuReone.FactFactory
         {
             return new WantAction(wantAction, factTypes);
         }
+
+        /// <inheritdoc/>
+        protected override WantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
+        {
+            return new WantAction(wantAction, factTypes);
+        }
     }
 }
