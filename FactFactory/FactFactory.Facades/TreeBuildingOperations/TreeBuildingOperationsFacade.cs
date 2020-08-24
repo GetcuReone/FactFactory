@@ -10,6 +10,7 @@ using GetcuReone.FactFactory.Interfaces.Operations.Entities.Enums;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 {
@@ -457,7 +458,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 var requestForAction = new BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer>
                 {
                     Context = context,
-                    FactRules = request.FactRules,
+                    FactRules = request
+                        .FactRules
+                        .OrderByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction, TFactContainer>(context))
+                        .ToList(),
                 };
 
                 if (TryBuildTreesForWantAction(requestForAction, out var resultForAction))

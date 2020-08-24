@@ -5,6 +5,7 @@ using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using V_Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
@@ -238,11 +239,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 .And("Add fact.", factFactory => 
                     factFactory.Container.Add(new Fact1(expectedValue)))
                 .When("Derive fact.", factFactory => 
-                    factFactory.DeriveFact<FactResult, Version2>())
-                .Then("Check result.", fact =>
-                {
-                    Assert.AreEqual(expectedValue, fact.Value, "The older rule worked.");
-                });
+                    factFactory.DeriveFact<FactResult, Version2>().Value)
+                .ThenAreEqual(expectedValue);
         }
 
         [TestMethod]
