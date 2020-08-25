@@ -10,7 +10,6 @@ using System.Linq;
 namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 {
     [TestClass]
-    [Ignore]
     public sealed class GetRequiredTypesOfFactsTests : VersionedSingleEntityOperationsTestBase
     {
         [TestInitialize]

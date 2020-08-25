@@ -10,7 +10,6 @@ using Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCo
 namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 {
     [TestClass]
-    [Ignore]
     public sealed class GetCompatibleRulesTests : VersionedSingleEntityOperationsTestBase
     {
         public Collection Collection { get; private set; }
