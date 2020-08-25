@@ -17,6 +17,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive the fact through the rule with the CannotDerived fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Ignore]
         public void DeriveUseRuleWithNCannotDerivedTestCase()
         {
             const int value = 2;
@@ -37,6 +38,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with CannotDerived fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Ignore]
         public void DeriveWithCannotDerivedTestCase()
         {
             const int value = 14;
@@ -60,6 +62,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("We derive a fact that is calculated on the basis of an uninduced fact that is in the container.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Ignore]
         public void DeriveFromRuleAndWithFactInContanierTestCase()
         {
             string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(ResultFact).Name}).";
@@ -79,6 +82,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive a fact using a recursive rules.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Ignore]
         public void DeriveFactFromRecursiveRulesTestCase()
         {
             string expectedMessage = "Failed to derive one or more facts for the action (ResultFact).";
