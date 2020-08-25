@@ -13,7 +13,7 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
         where TFactContainer : IFactContainer
         where TFactRule : IVersionedFactRule
         where TFactRuleCollection : IFactRuleCollection<TFactRule>
-        where TWantAction : IWantAction, IFactTypeVersionInfo
+        where TWantAction : IWantAction
     {
         /// <summary>
         /// Derive <typeparamref name="TFactResult"/> with version <typeparamref name="TVersion"/>.

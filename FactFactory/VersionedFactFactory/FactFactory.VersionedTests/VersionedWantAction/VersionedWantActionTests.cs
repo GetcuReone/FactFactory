@@ -2,9 +2,11 @@
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using VWantAction = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
+using GetcuReone.FactFactory.Versioned.Helpers;
 
 namespace FactFactory.VersionedTests.VersionedWantAction
 {
@@ -25,10 +27,13 @@ namespace FactFactory.VersionedTests.VersionedWantAction
             GivenEmpty()
                 .When("Create wantAction with version.", _ => 
                     CreateVersionedWantAction(GetFactType<Version1>(), GetFactType<Fact1>()))
-                .Then("Check result.", wantAction =>
+                .ThenIsNotNull()
+                .And("Get type of version.", wantAction => 
+                    wantAction.InputFactTypes.GetVersionFactType())
+                .AndIsNotNull()
+                .And("Check result.", versionType =>
                 {
-                    Assert.IsNotNull(wantAction.VersionType, "The rule does not contain version information.");
-                    Assert.IsTrue(GetFactType<Version1>().EqualsFactType(wantAction.VersionType), $"{nameof(wantAction.VersionType)} does not store version information");
+                    Assert.IsTrue(GetFactType<Version1>().EqualsFactType(versionType), $"{nameof(versionType)} does not store version information");
                 });
         }
 
@@ -39,12 +44,12 @@ namespace FactFactory.VersionedTests.VersionedWantAction
         public void CreateWantActionWithoutVersionTestCase()
         {
             GivenEmpty()
-                .When("Create wantAction without version", _ => 
+                .When("Create wantAction without version", _ =>
                     CreateVersionedWantAction(GetFactType<Fact1>()))
-                .Then("Check result.", wantAction =>
-                {
-                    Assert.IsNull(wantAction.VersionType, "The rule does not contain version information.");
-                });
+                .ThenIsNotNull()
+                .And("Get type of version.", wantAction =>
+                    wantAction.InputFactTypes.GetVersionFactType())
+                .AndIsNull();
         }
     }
 }

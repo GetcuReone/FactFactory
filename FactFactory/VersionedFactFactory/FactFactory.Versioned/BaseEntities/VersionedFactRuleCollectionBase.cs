@@ -36,20 +36,5 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         protected VersionedFactRuleCollectionBase(IEnumerable<TFactRule> factRules, bool isReadOnly) : base(factRules, isReadOnly)
         {
         }
-
-        /// <summary>
-        /// Return the correct fact.
-        /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <param name="container"></param>
-        /// <param name="wantAction"></param>
-        /// <returns></returns>
-        protected override TFact GetCorrectFact<TFact>(IFactContainer container, IWantAction wantAction)
-        {
-            if (wantAction is IFactTypeVersionInfo factType)
-                return (TFact)container.GetRightFactByVersionType(GetFactType<TFact>(), factType.VersionType);
-
-            return (TFact)container.GetRightFactByVersion(GetFactType<TFact>(), null);
-        }
     }
 }

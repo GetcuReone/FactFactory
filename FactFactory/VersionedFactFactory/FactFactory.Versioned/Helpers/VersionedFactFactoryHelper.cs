@@ -47,6 +47,16 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             return version.CompareTo(factVersion) == 0;
         }
 
+        /// <summary>
+        /// Return the fact type of a version.
+        /// </summary>
+        /// <param name="factTypes"></param>
+        /// <returns></returns>
+        public static IFactType GetVersionFactType(this IEnumerable<IFactType> factTypes)
+        {
+            return factTypes.FirstOrDefault(type => type.IsFactType<IVersionFact>());
+        }
+
         internal static IVersionFact GetVersionFact(this IEnumerable<IFact> facts, IFactType factTypeVersion)
         {
             var versionFact = factTypeVersion.GetFacts(facts).FirstOrDefault();
