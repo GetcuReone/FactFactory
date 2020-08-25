@@ -12,7 +12,6 @@ using System.Linq;
 namespace FactFactory.VersionedTests.VersionedFactContainer
 {
     [TestClass]
-    [Ignore]
     public sealed class AddVersionedFactTests : VersionedFactContrainerTestBase
     {
         [TestMethod]
