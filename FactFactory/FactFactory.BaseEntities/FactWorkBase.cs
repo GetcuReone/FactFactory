@@ -22,8 +22,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             if (!factTypes.IsNullOrEmpty())
             {
-                factTypes.ForEach(CommonHelper.ValidateConditionFact);
-                InputFactTypes = factTypes;
+                InputFactTypes = factTypes.ToReadOnlyCollection();
             }
             else
                 InputFactTypes = new ReadOnlyCollection<IFactType>(new List<IFactType>(0));

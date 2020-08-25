@@ -249,25 +249,5 @@ namespace FactFactoryTests.FactRule
                     Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
                 });
         }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.Contained), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Create rule with invalid input fact.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void CreateRuleWithInvalidInputFactTypeTestCase()
-        {
-            IFactType invalidFactType = GetFactType<InvalidSpecialFact>();
-            string expectedReason = $"{invalidFactType.FactName} implements more than one runtime special fact interface.";
-
-            GivenEmpty()
-                .When("Create wantAction", _ =>
-                {
-                    return ExpectedFactFactoryException(() => new Rule(
-                        facts => { return default; },
-                        new List<IFactType> { invalidFactType },
-                        GetFactType<IntFact>()));
-                })
-                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
-        }
     }
 }

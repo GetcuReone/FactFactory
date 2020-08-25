@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace FactFactoryTests.CommonFacts
 {
-    internal sealed class InvalidSpecialFact : FactBase<int>, ICannotDerivedFact, ICanDerivedFact
+    internal sealed class InvalidSpecialFact : FactBase<int>
     {
         public InvalidSpecialFact() : base(0)
         {

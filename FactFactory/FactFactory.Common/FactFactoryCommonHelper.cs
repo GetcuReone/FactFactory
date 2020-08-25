@@ -146,25 +146,6 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Validation of the fact of the condition.
-        /// </summary>
-        /// <param name="type"></param>
-        public static void ValidateConditionFact(this IFactType type)
-        {
-            if (type.IsFactType<ISpecialFact>())
-            {
-                var specialResult = new bool[]
-                {
-                    type.IsFactType<ICannotDerivedFact>(),
-                    type.IsFactType<ICanDerivedFact>(),
-                };
-
-                if (specialResult.Count(result => result == true) > 1)
-                    throw CreateException(ErrorCode.InvalidFactType, $"{type.FactName} implements more than one runtime special fact interface.");
-            }
-        }
-
-        /// <summary>
         /// Was the fact calculated using the rule.
         /// </summary>
         /// <typeparam name="TFact"></typeparam>

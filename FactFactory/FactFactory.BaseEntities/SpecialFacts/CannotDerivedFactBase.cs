@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
     /// Contains information about a type of fact that cannot be derived.
     /// </summary>
     /// <typeparam name="TFact"></typeparam>
-    public abstract class CannotDerivedFactBase<TFact> : ConditionFactBase<TFact>, ICannotDerivedFact
+    public abstract class CannotDerivedFactBase<TFact> : ConditionFactBase<TFact>
         where TFact : IFact
     {
         /// <inheritdoc/>

@@ -731,16 +731,6 @@
             <param name="treeByFactRule"></param>
             <returns></returns>
         </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ICanDerivedFact">
-            <summary>
-            Interface for fact that can be derived.
-            </summary>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ICannotDerivedFact">
-            <summary>
-            Interface for fact that cannot be derived.
-            </summary>
-        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact">
             <summary>
             A special fact that is created using a factory when building a tree or calculating facts.

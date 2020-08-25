@@ -4,11 +4,11 @@ using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
 
-namespace FactFactoryTests.FactType.Env
+namespace FactFactory.DefaultTests.FactType.Env
 {
-    internal class CannotDerivedWithoutConstructor : IFact, ICannotDerivedFact
+    internal class ConditionWithoutConstructor : IFact, IConditionFact
     {
-        private CannotDerivedWithoutConstructor()
+        private ConditionWithoutConstructor()
         {
 
         }
