@@ -11,7 +11,6 @@ using V_Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
     [TestClass]
-    [Ignore]
     public sealed class VersionedFactFactoryTests : VersionedFactFactoryTestBase
     {
         private List<IVersionFact> GetVersionFacts()
