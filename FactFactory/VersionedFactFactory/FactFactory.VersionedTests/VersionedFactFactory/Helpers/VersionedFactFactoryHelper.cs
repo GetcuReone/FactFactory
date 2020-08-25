@@ -3,7 +3,7 @@ using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GwtTestFramework.Entities;
 using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
-using Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Helpers

@@ -6,7 +6,7 @@ using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using V_Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
@@ -31,7 +31,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             const long expectedValue = 1_000;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     //without version
                     () => new Fact1(1_000),
@@ -57,7 +57,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             const long expectedValue = 10;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     //without version
                     () => new Fact1(1_000),
@@ -84,7 +84,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             FactResult result2 = null;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     (Version1 v, Fact1 fact) => new FactResult(fact.Value),
 
@@ -118,7 +118,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int counterFact1 = 0;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     (Version1 v) =>
                     {
@@ -169,7 +169,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int counterAction3 = 0;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     (Version1 v, Fact1 fact) => 
                     {
@@ -229,7 +229,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int expectedValue = 10;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     (Version1 v) => new FactResult(0),
                     (Version2 v, Fact1 fact) => new FactResult(fact.Value)
@@ -250,7 +250,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int expectedValue = 1;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     (Version2 v) => new FactResult(2),
                 })

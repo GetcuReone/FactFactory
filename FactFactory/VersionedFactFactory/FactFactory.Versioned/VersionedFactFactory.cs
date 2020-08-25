@@ -10,7 +10,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
     /// </summary>
-    public class VersionedFactFactory : VersionedFactFactoryBase<FactRule, VersionedFactRuleCollection, VersionedWantAction, VersionedFactContainer>
+    public class VersionedFactFactory : VersionedFactFactoryBase<FactRule, FactRuleCollection, VersionedWantAction, VersionedFactContainer>
     {
         private readonly Func<List<IVersionFact>> _getAllVersionFactsFunc;
 
@@ -22,7 +22,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <summary>
         /// Rule collection.
         /// </summary>
-        public override VersionedFactRuleCollection Rules { get; }
+        public override FactRuleCollection Rules { get; }
 
         /// <summary>
         /// Constructor.
@@ -32,7 +32,7 @@ namespace GetcuReone.FactFactory.Versioned
         {
             _getAllVersionFactsFunc = getAllVersionFactsFunc;
             Container = new VersionedFactContainer();
-            Rules = new VersionedFactRuleCollection();
+            Rules = new FactRuleCollection();
         }
 
         /// <summary>

@@ -79,30 +79,6 @@
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Remove``1">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`1">
-            <summary>
-            Base collection for <typeparamref name="TFactRule"/>.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`1.#ctor">
-            <summary>
-            Constructor.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="factRules"></param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="factRules"></param>
-            <param name="isReadOnly"></param>
-        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase">
             <summary>
             Base class containing information about the desired action with the version.
@@ -169,38 +145,6 @@
             Get copy container.
             </summary>
             <returns></returns>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection">
-            <summary>
-            Collection of versioned rules for facts.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.#ctor">
-            <summary>
-            Constructor.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule})">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="factRules"></param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule},System.Boolean)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="factRules"></param>
-            <param name="isReadOnly"></param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.Copy">
-            <summary>
-            <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/> copy method.
-            </summary>
-            <returns>Copied <see cref="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection"/>.</returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
-            <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction">
             <summary>

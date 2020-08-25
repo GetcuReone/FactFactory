@@ -5,7 +5,7 @@ using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 {
