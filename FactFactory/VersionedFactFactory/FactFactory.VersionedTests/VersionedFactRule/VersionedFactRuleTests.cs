@@ -9,14 +9,12 @@ using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
 
 namespace FactFactory.VersionedTests.VersionedFactRule
 {
     [TestClass]
-    [Ignore]
     public sealed class VersionedFactRuleTests : CommonTestBase
     {
         [TestMethod]
