@@ -14,12 +14,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 using Rule = GetcuReone.FactFactory.Entities.FactRule;
-using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactoryTests.FactRule
 {
     [TestClass]
-    [Ignore]
     public sealed class FactRuleTests : CommonTestBase
     {
         [TestMethod]
