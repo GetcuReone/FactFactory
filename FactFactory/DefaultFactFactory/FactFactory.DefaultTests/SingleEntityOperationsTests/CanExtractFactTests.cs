@@ -10,7 +10,6 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace FactFactory.DefaultTests.SingleEntityOperationsTests
 {
     [TestClass]
-    [Ignore]
     public sealed class CanExtractFactTests : SingleEntityOperationsTestBase
     {
         [TestMethod]
