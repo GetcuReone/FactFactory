@@ -30,13 +30,5 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
         {
             return Given("Create SingleEntityOperationsFacade", () => GetFacade<SingleEntityOperationsFacade>());
         }
-
-        protected virtual WAction GetWantAction<TFact>(Action<TFact> action)
-            where TFact : FactBase
-        {
-            return new WAction(
-                container => action(container.GetFact<TFact>()),
-                new List<IFactType> { GetFactType<TFact>() });
-        }
     }
 }

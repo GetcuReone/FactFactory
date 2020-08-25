@@ -35,7 +35,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 {
                     Assert.IsTrue(result.Success, "Fact not found.");
                     Assert.IsNotNull(result.Fact, "Fact cannot be null.");
-                    Assert.IsNull(result.Fact.Version, "Version must be null.");
+                    Assert.IsNull(result.Fact.GetVersionOrNull(), "Version must be null.");
                 });
         }
 

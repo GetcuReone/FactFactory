@@ -89,5 +89,32 @@ namespace FactFactory.TestsCommon
                 new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() },
                 GetFactType<TFactResult>());
         }
+
+        protected WantAction GetWantAction<TFact1>(Action<TFact1> action)
+            where TFact1 : IFact
+        {
+            return new WantAction(
+                facts => action(facts.GetFact<TFact1>()),
+                new List<IFactType> { GetFactType<TFact1>() });
+        }
+
+        protected WantAction GetWantAction<TFact1, TFact2>(Action<TFact1, TFact2> action)
+            where TFact1 : IFact
+            where TFact2 : IFact
+        {
+            return new WantAction(
+                facts => action(facts.GetFact<TFact1>(), facts.GetFact<TFact2>()),
+                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() });
+        }
+
+        protected WantAction GetWantAction<TFact1, TFact2, TFact3>(Action<TFact1, TFact2, TFact3> action)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+        {
+            return new WantAction(
+                facts => action(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>()),
+                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() });
+        }
     }
 }

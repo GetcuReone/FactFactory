@@ -255,7 +255,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version2 v) => new FactResult(2),
                 })
                 .And("Add fact.", factFactory => 
-                    factFactory.Container.Add(new FactResult(expectedValue, new Version1())))
+                    factFactory.Container.Add(new FactResult(expectedValue).SetVersionParam(new Version1())))
                 .When("Derive fact.", factFactory => 
                     factFactory.DeriveFact<FactResult, Version1>())
                 .Then("Check result.", fact =>

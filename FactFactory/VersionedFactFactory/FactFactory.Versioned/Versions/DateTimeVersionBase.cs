@@ -24,8 +24,6 @@ namespace GetcuReone.FactFactory.Versioned.Versions
             {
                 case VersionBase<DateTime> version:
                     return ValueVersion.CompareTo(version);
-                case VersionedFactBase<DateTime> version:
-                    return ValueVersion.CompareTo(version);
                 case FactBase<DateTime> version:
                     return ValueVersion.CompareTo(version);
 

@@ -25,7 +25,7 @@ namespace FactFactory.VersionedTests.VersionedWantAction
         {
             GivenEmpty()
                 .When("Create wantAction with version.", _ => 
-                    CreateVersionedWantAction(GetFactType<Version1>(), GetFactType<Fact1>()))
+                    GetWantAction((Version1 v, Fact1 _) => { }))
                 .ThenGetVersionType()
                 .AndIsNotNull()
                 .And("Check result.", versionType =>

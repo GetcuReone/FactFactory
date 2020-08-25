@@ -30,15 +30,6 @@ namespace GetcuReone.FactFactory.Versioned.Versions
                 case VersionBase<ulong> version:
                     return ValueVersion.CompareTo(version);
 
-                case VersionedFactBase<int> version:
-                    return ValueVersion.CompareTo(version);
-                case VersionedFactBase<long> version:
-                    return ValueVersion.CompareTo(version);
-                case VersionedFactBase<uint> version:
-                    return ValueVersion.CompareTo(version);
-                case VersionedFactBase<ulong> version:
-                    return ValueVersion.CompareTo(version);
-
                 case FactBase<int> version:
                     return ValueVersion.CompareTo(version);
                 case FactBase<long> version:

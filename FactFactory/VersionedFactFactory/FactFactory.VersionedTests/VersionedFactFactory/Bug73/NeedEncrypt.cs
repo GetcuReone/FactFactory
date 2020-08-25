@@ -1,8 +1,8 @@
-﻿using GetcuReone.FactFactory.Versioned;
+﻿using GetcuReone.FactFactory;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Bug73
 {
-    internal sealed class NeedEncrypt : VersionedFactBase
+    internal sealed class NeedEncrypt : FactBase
     {
     }
 }

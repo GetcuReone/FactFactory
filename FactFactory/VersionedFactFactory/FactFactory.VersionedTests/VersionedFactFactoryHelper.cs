@@ -1,8 +1,8 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using GetcuReone.FactFactory;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Versioned;
-using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Constants;
+using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.GwtTestFramework.Entities;
 using GetcuReone.GwtTestFramework.Helpers;
@@ -13,7 +13,7 @@ namespace FactFactory.VersionedTests
     public static class VersionedFactFactoryHelper
     {
         public static ThenBlock<TFact> ThenFactEquals<TExpectedValue, TFact>(this WhenBlock<TFact> whenBlock, TExpectedValue expectedValue)
-            where TFact : VersionedFactBase<TExpectedValue>
+            where TFact : FactBase<TExpectedValue>
         {
             return whenBlock
                 .ThenIsNotNull()
