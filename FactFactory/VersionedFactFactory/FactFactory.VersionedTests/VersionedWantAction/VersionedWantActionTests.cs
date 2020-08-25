@@ -5,8 +5,7 @@ using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using VWantAction = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
-using GetcuReone.FactFactory.Versioned.Helpers;
+using VWantAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactory.VersionedTests.VersionedWantAction
 {

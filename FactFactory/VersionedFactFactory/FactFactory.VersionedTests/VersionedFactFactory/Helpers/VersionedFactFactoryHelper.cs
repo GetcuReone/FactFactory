@@ -2,7 +2,7 @@
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GwtTestFramework.Entities;
-using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
+using Action = GetcuReone.FactFactory.Entities.WantAction;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 

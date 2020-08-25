@@ -16,7 +16,7 @@ namespace GetcuReone.FactFactory.Versioned
         where TFactContainer : VersionedFactContainerBase
         where TFactRule : FactRuleBase
         where TFactRuleCollection : FactRuleCollectionBase<TFactRule>
-        where TWantAction : VersionedWantActionBase
+        where TWantAction : WantActionBase
     {
         /// <summary>
         /// Returns instances of all used versions.

@@ -1,15 +1,13 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Versioned;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
-using WAction = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
+using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactory.VersionedTests
 {
