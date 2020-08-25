@@ -13,7 +13,6 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace FactFactoryTests.FactContainer
 {
     [TestClass]
-    [Ignore]
     public sealed class FactContainerTests : CommonTestBase
     {
         private GivenBlock<Container> GivenCreateContainer(bool isReadOnly = false)
