@@ -718,9 +718,6 @@
             Base class for fact.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.FactBase.CalculatedByRule">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.FactBase.GetFactType">
             <inheritdoc/>
         </member>

@@ -10,9 +10,6 @@ namespace GetcuReone.FactFactory
     /// </summary>
     public abstract class FactBase : IFact
     {
-        /// <inheritdoc/>
-        public virtual bool CalculatedByRule { get; set; }
-
         private List<IFactParameter> _parameters;
 
         /// <inheritdoc/>

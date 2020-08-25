@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace GetcuReone.FactFactory.Interfaces
+﻿namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Fact interface.
@@ -25,10 +23,5 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <param name="parameterCode">Parameter code.</param>
         /// <returns></returns>
         IFactParameter GetParameter(string parameterCode);
-
-        /// <summary>
-        /// It was calculated using the rule.
-        /// </summary>
-        bool CalculatedByRule { get; set; }
     }
 }
