@@ -44,18 +44,6 @@ namespace GetcuReone.FactFactory.Versioned.Entities
             return new VersionedFactRuleCollection(this, IsReadOnly);
         }
 
-        /// <summary>
-        /// Creation method <see cref="VersionedFactRule"/>.
-        /// </summary>
-        /// <param name="func">func for calculate</param>
-        /// <param name="inputFactTypes">information on input factacles rules.</param>
-        /// <param name="outputFactType">information on output fact.</param>
-        /// <returns></returns>
-        protected override VersionedFactRule CreateFactRule(Func<IFactContainer, IWantAction, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
-        {
-            return new VersionedFactRule(func, inputFactTypes, outputFactType);
-        }
-
         /// <inheritdoc/>
         protected override VersionedFactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {

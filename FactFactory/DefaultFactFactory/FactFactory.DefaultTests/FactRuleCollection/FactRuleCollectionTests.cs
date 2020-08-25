@@ -643,7 +643,7 @@ namespace FactFactoryTests.FactRuleCollection
         {
             Rule factRule = null;
 
-            Given("Create rule", () => factRule = new Rule((_, __) => default, new List<IFactType>(), GetFactType<Input1Fact>()))
+            Given("Create rule", () => factRule = new Rule(facts => default, new List<IFactType>(), GetFactType<Input1Fact>()))
                 .And("Add rule.", _ => 
                     Collection.Add(factRule))
                 .When("Get copied.", _ => 

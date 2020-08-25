@@ -60,14 +60,13 @@ namespace FactFactory.VersionedTests.VersionedFactRule
 
             Given("Create container", () => container = new Container())
                 .And("Added fact version", () => container.Add(new Version2()))
-                .And("Create rule", () => new Rule((ct, _) => new FactResult(1), new List<IFactType> { GetFactType<Version2>() }, GetFactType<FactResult>()))
-                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container, default(Action)), "cannot calculate"))
-                .When("Run calculate", rule => rule.Calculate(container, default(Action)))
+                .And("Create rule", () => new Rule(facts => new FactResult(1), new List<IFactType> { GetFactType<Version2>() }, GetFactType<FactResult>()))
+                .When("Run calculate", rule => rule.Calculate(container))
                 .ThenIsNotNull()
                 .And("Get version.", fact =>
                 {
                     if (fact is VersionedFactBase versionedFact)
-                        return versionedFact.Version;
+                        return versionedFact.GetVersionOrNull();
 
                     Assert.Fail("Invalid type.");
                     return null;
@@ -113,7 +112,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule((ct, _) => { return default; }, new List<IFactType> { GetFactType<Fact1>() }, GetFactType<Version1>()));
+                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<Fact1>() }, GetFactType<Version1>()));
                 })
                 .Then("Check error", ex =>
                 {

@@ -36,7 +36,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
             where TFact : FactBase
         {
             return new Rule(
-                (container, _) => func(),
+                facts => func(),
                 new List<IFactType> { },
                 GetFactType<TFact>());
         }
@@ -46,7 +46,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
             where TFactResult : FactBase
         {
             return new Rule(
-                (container, _) => func(container.GetFact<TFact1>()),
+                facts => func(facts.GetFact<TFact1>()),
                 new List<IFactType> { GetFactType<TFact1>() },
                 GetFactType<TFactResult>());
         }
@@ -57,7 +57,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
             where TFactResult : FactBase
         {
             return new Rule(
-                (container, _) => func(container.GetFact<TFact1>(), container.GetFact<TFact2>()),
+                facts => func(facts.GetFact<TFact1>(), facts.GetFact<TFact2>()),
                 new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), },
                 GetFactType<TFactResult>());
         }
@@ -69,7 +69,7 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
             where TFactResult : FactBase
         {
             return new Rule(
-                (container, _) => func(container.GetFact<TFact1>(), container.GetFact<TFact2>(), container.GetFact<TFact3>()),
+                facts => func(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>()),
                 new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), },
                 GetFactType<TFactResult>());
         }

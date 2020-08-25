@@ -28,7 +28,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
                 return false;
 
             if ((factRule is VersionedFactRuleBase factRuleBase) && (wantAction is VersionedWantActionBase wantActionBase) && (container is VersionedFactContainerBase containerBase))
-                return this.СompatibilityWithRuleByVersion<VersionedWantActionBase, VersionedFactRuleBase, VersionedWantActionBase, VersionedFactContainerBase>(factRuleBase, wantActionBase, containerBase);
+                return this.СompatibilityWithRuleByVersion(factRuleBase, wantActionBase, containerBase);
 
             return false;
         }

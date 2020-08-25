@@ -10,19 +10,6 @@ namespace GetcuReone.FactFactory.Entities
     /// </summary>
     public class FactRule : FactRuleBase
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="func">Func for calculate.</param>
-        /// <param name="inputFactTypes">Information on input factacles rules.</param>
-        /// <param name="outputFactType">Information on output fact.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
-        /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
-        public FactRule(Func<IFactContainer, IWantAction, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType) 
-            : base(func, inputFactTypes, outputFactType)
-        {
-        }
-
         /// <inheritdoc/>
         public FactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
             : base(func, inputFactTypes, outputFactType)

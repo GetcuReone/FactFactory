@@ -43,18 +43,6 @@ namespace GetcuReone.FactFactory.Entities
             return new FactRuleCollection(this, IsReadOnly);
         }
 
-        /// <summary>
-        /// Creation method <see cref="FactRule"/>.
-        /// </summary>
-        /// <param name="func">func for calculate.</param>
-        /// <param name="inputFactTypes">information on input factacles rules.</param>
-        /// <param name="outputFactType">information on output fact.</param>
-        /// <returns>fact rule</returns>
-        protected sealed override FactRule CreateFactRule(Func<IFactContainer, IWantAction, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
-        {
-            return new FactRule(func, inputFactTypes, outputFactType);
-        }
-
         /// <inheritdoc/>
         protected override FactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
         {

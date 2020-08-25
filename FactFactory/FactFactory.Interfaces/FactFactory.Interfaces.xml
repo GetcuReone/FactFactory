@@ -235,41 +235,11 @@
             Information on output fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.CanCalculate``2(``0,``1)">
-            <summary>
-            Is it possible to calculate the fact.
-            </summary>
-            <param name="container"></param>
-            <param name="wantAction"></param>
-            <typeparam name="TContainer"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.Calculate``2(``0,``1)">
-            <summary>
-            Rule of fact calculate.
-            </summary>
-            <param name="container"></param>
-            <param name="wantAction"></param>
-            <typeparam name="TContainer"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <returns></returns>
-        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.Calculate(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Calculate fact.
             </summary>
             <param name="requireFacts">The facts required for the calculation.</param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.GetNecessaryFactTypes``2(``0,``1)">
-            <summary>
-            Get the necessary fact types.
-            </summary>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="wantAction"></param>
-            <param name="container"></param>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactRuleCollection`1">

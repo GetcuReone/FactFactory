@@ -89,21 +89,7 @@
             Type of fact with rule version.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="func"></param>
-            <param name="inputFactTypes"></param>
-            <param name="outputFactType"></param>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.Calculate``2(``0,``1)">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.CanCalculate``2(``0,``1)">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.СompatibilityWithRule``3(``0,``1,``2)">
@@ -220,14 +206,6 @@
             Version rule for calculating a fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="func"></param>
-            <param name="inputFactTypes"></param>
-            <param name="outputFactType"></param>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <inheritdoc/>
         </member>
@@ -259,15 +237,6 @@
             <see cref="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1"/> copy method.
             </summary>
             <returns>Copied <see cref="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection"/>.</returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
-            <summary>
-            Creation method <see cref="T:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule"/>.
-            </summary>
-            <param name="func">func for calculate</param>
-            <param name="inputFactTypes">information on input factacles rules.</param>
-            <param name="outputFactType">information on output fact.</param>
-            <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <inheritdoc/>

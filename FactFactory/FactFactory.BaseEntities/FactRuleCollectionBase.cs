@@ -99,15 +99,6 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="inputFactTypes">information on input factacles rules.</param>
         /// <param name="outputFactType">information on output fact.</param>
         /// <returns></returns>
-        protected abstract TFactRule CreateFactRule(Func<IFactContainer, IWantAction, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType);
-
-        /// <summary>
-        /// Creation method <typeparamref name="TFactRule"/>.
-        /// </summary>
-        /// <param name="func">func for calculate.</param>
-        /// <param name="inputFactTypes">information on input factacles rules.</param>
-        /// <param name="outputFactType">information on output fact.</param>
-        /// <returns></returns>
         protected abstract TFactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType);
 
         /// <summary>

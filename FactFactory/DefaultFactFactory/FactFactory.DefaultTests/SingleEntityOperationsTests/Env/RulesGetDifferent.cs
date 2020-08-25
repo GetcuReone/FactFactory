@@ -22,11 +22,6 @@ namespace FactFactory.DefaultTests.SingleEntityOperationsTests.Env
                 throw new NotImplementedException();
             }
 
-            protected override Rule CreateFactRule(Func<IFactContainer, IWantAction, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
-            {
-                throw new NotImplementedException();
-            }
-
             protected override Rule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
             {
                 throw new NotImplementedException();

@@ -144,16 +144,6 @@
             Information on output fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="func">Func for calculate.</param>
-            <param name="inputFactTypes">Information on input factacles rules.</param>
-            <param name="outputFactType">Information on output fact.</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
-            <exception cref="T:System.ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
-        </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Constructor.
@@ -164,20 +154,11 @@
             /// <exception cref="T:System.ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
             <exception cref="T:System.ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.Calculate``2(``0,``1)">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.CanCalculate``2(``0,``1)">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.EqualsWork``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.ToString">
             <inheritdoc />
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.GetNecessaryFactTypes``2(``0,``1)">
-            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.Calculate(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <inheritdoc/>
@@ -226,15 +207,6 @@
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.GetFactType``1">
             <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.CreateFactRule(System.Func{GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
-            <summary>
-            Creation method <typeparamref name="TFactRule"/>.
-            </summary>
-            <param name="func">func for calculate.</param>
-            <param name="inputFactTypes">information on input factacles rules.</param>
-            <param name="outputFactType">information on output fact.</param>
-            <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>

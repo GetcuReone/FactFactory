@@ -66,7 +66,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     Context = context,
                 };
 
-                if (info.Rule.CanCalculate(context.Container, context.WantAction))
+                if (context.SingleEntity.GetRequiredTypesOfFacts(info.Rule, context).IsNullOrEmpty())
                     tree.Built();
 
                 return tree;
