@@ -147,20 +147,10 @@
             Base class containing information about the desired action with the version.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="wantAction">Action taken after deriving a fact.</param>
-            <param name="factTypes">Facts required to launch an action.</param>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <inheritdoc/>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase.VersionType">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase.GetNecessaryFactTypes``1(``0)">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase.СompatibilityWithRule``3(``0,``1,``2)">
@@ -286,13 +276,6 @@
             <summary>
             Information about the desired action with the version.
             </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="wantAction">action taken after deriving a fact.</param>
-            <param name="factTypes">facts required to launch an action.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <inheritdoc/>

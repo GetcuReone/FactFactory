@@ -11,11 +11,6 @@ namespace GetcuReone.FactFactory.Entities
     public class WantAction : WantActionBase
     {
         /// <inheritdoc/>
-        public WantAction(Action<IFactContainer> wantAction, List<IFactType> factTypes) : base(wantAction, factTypes)
-        {
-        }
-
-        /// <inheritdoc/>
         public WantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes) : base(wantAction, factTypes)
         {
         }

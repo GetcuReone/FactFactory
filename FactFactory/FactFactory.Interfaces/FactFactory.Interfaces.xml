@@ -359,26 +359,11 @@
             Desired action information.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IWantAction.Invoke``1(``0)">
-            <summary>
-            Run action.
-            </summary>
-            <typeparam name="TFactContainer">container with <see cref="P:GetcuReone.FactFactory.Interfaces.IFactWork.InputFactTypes"/>.</typeparam>
-            <param name="container"></param>
-        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IWantAction.Invoke(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Run action.
             </summary>
             <param name="requireFacts">The facts required for run.</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IWantAction.GetNecessaryFactTypes``1(``0)">
-            <summary>
-            Get the necessary fact types.
-            </summary>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="container"></param>
-            <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreeForFactInfoRequest`3">
             <summary>

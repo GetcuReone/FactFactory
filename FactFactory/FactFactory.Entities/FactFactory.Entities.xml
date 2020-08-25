@@ -306,9 +306,6 @@
             Desired action information.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.WantAction.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.Entities.WantAction.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <inheritdoc/>
         </member>

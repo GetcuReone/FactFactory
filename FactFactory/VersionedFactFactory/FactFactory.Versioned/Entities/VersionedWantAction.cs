@@ -10,15 +10,6 @@ namespace GetcuReone.FactFactory.Versioned.Entities
     /// </summary>
     public class VersionedWantAction : VersionedWantActionBase
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="wantAction">action taken after deriving a fact.</param>
-        /// <param name="factTypes">facts required to launch an action.</param>
-        public VersionedWantAction(Action<IFactContainer> wantAction, List<IFactType> factTypes) : base(wantAction, factTypes)
-        {
-        }
-
         /// <inheritdoc/>
         public VersionedWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes) : base(wantAction, factTypes)
         {

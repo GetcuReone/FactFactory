@@ -4,7 +4,6 @@ using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace GetcuReone.FactFactory.Versioned.BaseEntities
 {
@@ -13,16 +12,6 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     /// </summary>
     public abstract class VersionedWantActionBase : WantActionBase, IFactTypeVersionInfo
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="wantAction">Action taken after deriving a fact.</param>
-        /// <param name="factTypes">Facts required to launch an action.</param>
-        protected VersionedWantActionBase(Action<IFactContainer> wantAction, List<IFactType> factTypes) : base(wantAction, factTypes)
-        {
-            VersionType = factTypes.SingleOrNullFactVersion();
-        }
-
         /// <inheritdoc/>
         protected VersionedWantActionBase(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes) : base(wantAction, factTypes)
         {
@@ -31,12 +20,6 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
 
         /// <inheritdoc/>
         public IFactType VersionType { get; }
-
-        /// <inheritdoc/>
-        public override List<IFactType> GetNecessaryFactTypes<TFactContainer>(TFactContainer container)
-        {
-            return InputFactTypes.Where(type => container.GetRightFactByVersionType(type, VersionType) == null).ToList();
-        }
 
         /// <inheritdoc/>
         public override bool СompatibilityWithRule<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction, TFactContainer container)

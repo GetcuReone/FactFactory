@@ -761,13 +761,6 @@
             Base class for <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="wantAction">Action taken after deriving a fact.</param>
-            <param name="factTypes">Facts required to launch an action.</param>
-        </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Constructor.
@@ -775,25 +768,10 @@
             <param name="wantAction">Action taken after deriving a fact.</param>
             <param name="factTypes">Facts required to launch an action.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.Invoke``1(``0)">
-            <summary>
-            Run action.
-            </summary>
-            <typeparam name="TFactContainer">container with <see cref="P:GetcuReone.FactFactory.Interfaces.IFactWork.InputFactTypes"/>.</typeparam>
-            <param name="container"></param>
-        </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.ToString">
             <summary>
             String representation of an object
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.GetNecessaryFactTypes``1(``0)">
-            <summary>
-            Get the necessary fact types.
-            </summary>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="container"></param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.Invoke(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
