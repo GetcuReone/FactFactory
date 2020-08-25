@@ -92,9 +92,6 @@
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleBase.СompatibilityWithRule``3(``0,``1,``2)">
-            <inheritdoc/>
-        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactRuleCollectionBase`1">
             <summary>
             Base collection for <typeparamref name="TFactRule"/>.
@@ -137,9 +134,6 @@
             <inheritdoc/>
         </member>
         <member name="P:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase.VersionType">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedWantActionBase.СompatibilityWithRule``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Constants.ErrorCode">

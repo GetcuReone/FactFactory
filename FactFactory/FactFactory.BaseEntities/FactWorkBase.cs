@@ -63,14 +63,5 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             return EqualsFactTypes(InputFactTypes, workFact?.InputFactTypes);
         }
-
-        /// <inheritdoc/>
-        public virtual bool СompatibilityWithRule<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction, TFactContainer container)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
-        {
-            return true;
-        }
     }
 }

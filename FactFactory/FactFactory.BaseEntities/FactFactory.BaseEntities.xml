@@ -637,9 +637,6 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.EqualsWork``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.СompatibilityWithRule``3(``0,``1,``2)">
-            <inheritdoc/>
-        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CanDerivedFactBase`1">
             <summary>
             Contains information about a type of fact that can be derived.

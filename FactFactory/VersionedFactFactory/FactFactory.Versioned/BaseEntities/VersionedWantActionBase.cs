@@ -20,17 +20,5 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
 
         /// <inheritdoc/>
         public IFactType VersionType { get; }
-
-        /// <inheritdoc/>
-        public override bool СompatibilityWithRule<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction, TFactContainer container)
-        {
-            if (!base.СompatibilityWithRule(factRule, wantAction, container))
-                return false;
-
-            if ((factRule is VersionedFactRuleBase factRuleBase) && (wantAction is VersionedWantActionBase wantActionBase) && (container is VersionedFactContainerBase containerBase))
-                return this.СompatibilityWithRuleByVersion(factRuleBase, wantActionBase, containerBase);
-
-            return false;
-        }
     }
 }

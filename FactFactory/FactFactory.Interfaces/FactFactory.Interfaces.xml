@@ -312,18 +312,6 @@
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactWork.СompatibilityWithRule``3(``0,``1,``2)">
-            <summary>
-            Is the <paramref name="factRule"/> rule compatible with the current <see cref="T:GetcuReone.FactFactory.Interfaces.IFactWork"/>.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="factRule">Compatibility check rule.</param>
-            <param name="wantAction">The action within which compatibility check.</param>
-            <param name="container">Container.</param>
-            <returns></returns>
-        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IWantAction">
             <summary>
             Desired action information.
