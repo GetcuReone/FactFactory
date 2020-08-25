@@ -10,7 +10,6 @@ using Rule = GetcuReone.FactFactory.Entities.FactRule;
 namespace FactFactory.DefaultTests.SingleEntityOperationsTests
 {
     [TestClass]
-    [Ignore]
     public sealed class ValidateAndGetRulesTests : SingleEntityOperationsTestBase
     {
         [TestMethod]

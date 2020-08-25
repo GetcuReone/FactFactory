@@ -10,7 +10,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.DefaultTests.SingleEntityOperationsTests
 {
     [TestClass]
-    [Ignore]
     public sealed class CompareFactRulesTests : SingleEntityOperationsTestBase
     {
         [TestMethod]
