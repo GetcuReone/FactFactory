@@ -27,9 +27,7 @@ namespace FactFactory.VersionedTests.VersionedWantAction
             GivenEmpty()
                 .When("Create wantAction with version.", _ => 
                     CreateVersionedWantAction(GetFactType<Version1>(), GetFactType<Fact1>()))
-                .ThenIsNotNull()
-                .And("Get type of version.", wantAction => 
-                    wantAction.InputFactTypes.GetVersionFactType())
+                .ThenGetVersionType()
                 .AndIsNotNull()
                 .And("Check result.", versionType =>
                 {
@@ -46,10 +44,7 @@ namespace FactFactory.VersionedTests.VersionedWantAction
             GivenEmpty()
                 .When("Create wantAction without version", _ =>
                     CreateVersionedWantAction(GetFactType<Fact1>()))
-                .ThenIsNotNull()
-                .And("Get type of version.", wantAction =>
-                    wantAction.InputFactTypes.GetVersionFactType())
-                .AndIsNull();
+                .ThenNotContainVersionType();
         }
     }
 }

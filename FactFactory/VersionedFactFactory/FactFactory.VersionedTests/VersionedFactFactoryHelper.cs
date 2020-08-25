@@ -1,6 +1,7 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned;
+using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.GwtTestFramework.Entities;
@@ -20,6 +21,20 @@ namespace FactFactory.VersionedTests
                 {
                     Assert.AreEqual(expectedValue, fact, $"Expected another {fact.GetFactType().FactName} value.");
                 });
+        }
+
+        public static ThenBlock<IFactType> ThenGetVersionType<TFactWork>(this WhenBlock<TFactWork> whenBlock)
+            where TFactWork : IFactWork
+        {
+            return whenBlock.ThenIsNotNull().And("Get type of version.", work => work.InputFactTypes?.GetVersionFactType());
+        }
+
+        public static ThenBlock<TFactWork> ThenNotContainVersionType<TFactWork>(this WhenBlock<TFactWork> whenBlock)
+            where TFactWork : IFactWork
+        {
+            return whenBlock
+                .ThenIsNotNull()
+                .And("Get type of version.", work => Assert.IsNull(work.InputFactTypes?.GetVersionFactType()));
         }
 
         public static TFact SetVersionParam<TFact>(this TFact fact, IVersionFact version)

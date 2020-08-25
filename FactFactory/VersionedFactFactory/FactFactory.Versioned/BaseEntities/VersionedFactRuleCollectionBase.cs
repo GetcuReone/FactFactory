@@ -1,7 +1,5 @@
 ﻿using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Versioned.Helpers;
-using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Versioned.BaseEntities
@@ -11,7 +9,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     /// </summary>
     /// <typeparam name="TFactRule"></typeparam>
     public abstract class VersionedFactRuleCollectionBase<TFactRule> : FactRuleCollectionBase<TFactRule>
-        where TFactRule : IVersionedFactRule
+        where TFactRule : IFactRule
     {
         /// <summary>
         /// Constructor.
