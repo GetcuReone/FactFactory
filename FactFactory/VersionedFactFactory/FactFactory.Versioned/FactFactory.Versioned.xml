@@ -365,18 +365,6 @@
             Fact containing version information.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.CanDerived`1">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.CannotDerived`1">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.Contained`1">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.NotContained`1">
-            <inheritdoc/>
-        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1">
             <summary>
             Base class for version facts.
