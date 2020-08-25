@@ -1,7 +1,7 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace GetcuReone.FactFactory
 {
@@ -13,8 +13,6 @@ namespace GetcuReone.FactFactory
         /// <inheritdoc/>
         public virtual bool CalculatedByRule { get; set; }
 
-        /// <inheritdoc/>
-        public IEnumerable<IFactParameter> Parameters => _parameters ?? (_parameters = new List<IFactParameter>());
         private List<IFactParameter> _parameters;
 
         /// <inheritdoc/>
@@ -31,6 +29,12 @@ namespace GetcuReone.FactFactory
                 _parameters = new List<IFactParameter>();
 
             _parameters.Add(parameter);
+        }
+
+        /// <inheritdoc/>
+        public virtual IFactParameter GetParameter(string parameterCode)
+        {
+            return _parameters?.FirstOrDefault(p => p.Code == parameterCode);
         }
     }
 

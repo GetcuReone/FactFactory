@@ -17,8 +17,6 @@ namespace FactFactoryTests.FactType.Env
 
         public IFactType FactType => throw new NotImplementedException();
 
-        public IEnumerable<IFactParameter> Parameters => throw new NotImplementedException();
-
         public void AddParameter(IFactParameter parameter)
         {
             throw new NotImplementedException();
@@ -42,6 +40,11 @@ namespace FactFactoryTests.FactType.Env
         }
 
         public IFactType GetFactType()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IFactParameter GetParameter(string parameterCode)
         {
             throw new NotImplementedException();
         }

@@ -131,9 +131,6 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         /// <returns></returns>
         protected virtual int CompareFacts(IFact x, IFact y)
         {
-            var xCalculatedByRule = x.Parameters.FirstOrDefault(p => p.Code == VersionedFactParametersCodes.Version)?.Value;
-            var yCalculatedByRule = y.Parameters.FirstOrDefault(p => p.Code == VersionedFactParametersCodes.Version)?.Value;
-
             if (x.IsCalculatedByRule())
             {
                 if (!y.IsCalculatedByRule())
@@ -142,8 +139,8 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             else if (y.IsCalculatedByRule())
                 return -1;
 
-            var xVersion = x.Parameters.FirstOrDefault(p => p.Code == VersionedFactParametersCodes.Version)?.Value as IVersionFact;
-            var yVersion = y.Parameters.FirstOrDefault(p => p.Code == VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+            var xVersion = x.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+            var yVersion = y.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
 
             if (xVersion == null)
                 return yVersion == null ? 0 : 1;

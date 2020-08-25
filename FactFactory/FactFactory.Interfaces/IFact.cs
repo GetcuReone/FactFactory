@@ -14,15 +14,17 @@ namespace GetcuReone.FactFactory.Interfaces
         IFactType GetFactType();
 
         /// <summary>
-        /// Fact parameters.
-        /// </summary>
-        IEnumerable<IFactParameter> Parameters { get; }
-
-        /// <summary>
         /// Add parameter.
         /// </summary>
         /// <param name="parameter"></param>
         void AddParameter(IFactParameter parameter);
+
+        /// <summary>
+        /// Get parameter by code.
+        /// </summary>
+        /// <param name="parameterCode">Parameter code.</param>
+        /// <returns></returns>
+        IFactParameter GetParameter(string parameterCode);
 
         /// <summary>
         /// It was calculated using the rule.

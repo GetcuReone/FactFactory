@@ -9,7 +9,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.DefaultTests.FactTypeCacheTests
 {
     [TestClass]
-    [Ignore]
     public sealed class GetFactTypeTests : FactTypeCacheTestBase
     {
         [TestMethod]

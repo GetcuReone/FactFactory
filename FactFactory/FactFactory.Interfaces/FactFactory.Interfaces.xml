@@ -76,16 +76,18 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.IFact.Parameters">
-            <summary>
-            Fact parameters.
-            </summary>
-        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFact.AddParameter(GetcuReone.FactFactory.Interfaces.IFactParameter)">
             <summary>
             Add parameter.
             </summary>
             <param name="parameter"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFact.GetParameter(System.String)">
+            <summary>
+            Get parameter by code.
+            </summary>
+            <param name="parameterCode">Parameter code.</param>
+            <returns></returns>
         </member>
         <member name="P:GetcuReone.FactFactory.Interfaces.IFact.CalculatedByRule">
             <summary>

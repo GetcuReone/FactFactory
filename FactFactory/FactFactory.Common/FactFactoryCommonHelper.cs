@@ -173,10 +173,7 @@ namespace GetcuReone.FactFactory
         public static bool IsCalculatedByRule<TFact>(this TFact fact)
             where TFact : IFact
         {
-            if (fact.Parameters.IsNullOrEmpty())
-                return false;
-
-            object value = fact.Parameters.SingleOrDefault(p => p.Code == FactParametersCodes.CalculateByRule)?.Value;
+            object value = fact.GetParameter(FactParametersCodes.CalculateByRule)?.Value;
 
             if (value == null)
                 return false;

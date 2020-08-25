@@ -754,13 +754,13 @@
         <member name="P:GetcuReone.FactFactory.FactBase.CalculatedByRule">
             <inheritdoc/>
         </member>
-        <member name="P:GetcuReone.FactFactory.FactBase.Parameters">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.FactBase.GetFactType">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.FactBase.AddParameter(GetcuReone.FactFactory.Interfaces.IFactParameter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactBase.GetParameter(System.String)">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.FactBase`1">

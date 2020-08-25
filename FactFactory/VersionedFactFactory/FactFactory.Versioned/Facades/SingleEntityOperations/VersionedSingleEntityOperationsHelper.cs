@@ -83,10 +83,8 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         {
             if (version == null || !fact.IsCalculatedByRule())
                 return true;
-            if (fact.Parameters.IsNullOrEmpty())
-                return false;
 
-            var value = fact.Parameters.FirstOrDefault(p => p.Code == VersionedFactParametersCodes.Version)?.Value;
+            var value = fact.GetParameter(VersionedFactParametersCodes.Version)?.Value;
 
             if (value == null)
                 return false;

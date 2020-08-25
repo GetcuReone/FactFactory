@@ -24,7 +24,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
         public static IVersionFact GetVersionOrNull<TFact>(this TFact fact)
             where TFact : IFact
         {
-            return fact.Parameters.FirstOrDefault(p => p.Code == VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+            return fact.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
         }
 
         /// <summary>
