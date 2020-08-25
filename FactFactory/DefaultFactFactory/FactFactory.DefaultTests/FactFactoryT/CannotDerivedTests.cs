@@ -38,7 +38,6 @@ namespace FactFactoryTests.FactFactoryT
         [TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with CannotDerived fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        [Ignore]
         public void DeriveWithCannotDerivedTestCase()
         {
             const int value = 14;
