@@ -68,30 +68,6 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             return typeFacts[0];
         }
 
-        internal static IFactType CannotIsType<TFact>(this IFactType type, string paramName)
-            where TFact : IFact
-        {
-            if (type.IsFactType<TFact>())
-                throw new ArgumentException($"Parameter {paramName} should not be converted into {typeof(TFact).FullName}");
-
-            return type;
-        }
-
-        internal static TFact ConvertFact<TFact>(this IFact fact)
-        {
-            if (fact is TFact fact1)
-                return fact1;
-
-            throw CommonHelper.CreateDeriveException(
-                    CommonErrorCode.InvalidFactType, 
-                    $"Fact {fact.GetFactType().FactName} should not be converted into {typeof(TFact).FullName}");
-        }
-
-        internal static IFactType GetFactType<TFact>() where TFact : IFact
-        {
-            return new FactType<TFact>();
-        }
-
         internal static IFact GetRightFactByVersionType(this IFactContainer container, IFactType searchFactType, IFactType versionType)
         {
             if (versionType != null)
@@ -161,27 +137,6 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             }
 
             return null;
-        }
-
-        internal static bool СompatibilityWithRuleByVersion<TFactWork, TFactRule, TWantAction, TFactContainer>(this TFactWork work, TFactRule rule, TWantAction wantAction, TFactContainer container)
-            where TFactWork : IFactWork, IFactTypeVersionInfo
-            where TFactRule : IFactRule, IFactTypeVersionInfo
-            where TWantAction : IWantAction, IFactTypeVersionInfo
-            where TFactContainer : IFactContainer
-        {
-            // If the current work or action has an installed version and the rule has no version limit.
-            if (rule.VersionType == null)
-                return wantAction.VersionType == null;
-            else if (wantAction.VersionType == null)
-                return true;
-
-            IVersionFact maxVersion = container.GetVersionFact(wantAction.VersionType);
-            IVersionFact potentialVersion = container.GetVersionFact(rule.VersionType);
-
-            if (potentialVersion.CompareTo(maxVersion) > 0)
-                return false;
-
-            return true;
         }
     }
 }
