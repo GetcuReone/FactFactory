@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Entities;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
@@ -9,7 +10,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
     /// </summary>
-    public class VersionedFactFactory : VersionedFactFactoryBase<VersionedFactRule, VersionedFactRuleCollection, VersionedWantAction, VersionedFactContainer>
+    public class VersionedFactFactory : VersionedFactFactoryBase<FactRule, VersionedFactRuleCollection, VersionedWantAction, VersionedFactContainer>
     {
         private readonly Func<List<IVersionFact>> _getAllVersionFactsFunc;
 

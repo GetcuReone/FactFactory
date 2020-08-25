@@ -2,7 +2,6 @@
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using GetcuReone.FactFactory.Versioned;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
@@ -10,7 +9,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
-using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
 
 namespace FactFactory.VersionedTests.VersionedFactRule
 {
@@ -25,7 +23,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         {
             GivenEmpty()
                 .When("Create rule with version.", _ => 
-                    VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
+                    GetFactRule((Version1 v, Fact1 _) => new FactResult(default)))
                 .ThenGetVersionType()
                 .And("Check result.", versionType =>
                 {
@@ -40,8 +38,8 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         public void CreateRuleWithoutVersionTestCase()
         {
             GivenEmpty()
-                .When("Create rule with version.", _ => 
-                    VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
+                .When("Create rule with version.", _ =>
+                    GetFactRule((Fact1 _) => new FactResult(default)))
                 .ThenNotContainVersionType();
         }
 
@@ -55,7 +53,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
 
             Given("Create container", () => container = new Container())
                 .And("Create rule", () => 
-                    new Rule(facts => new FactResult(1), new List<IFactType> { }, GetFactType<FactResult>()))
+                    GetFactRule(() => new FactResult(default)))
                 .When("Run calculate", rule => 
                     rule.Calculate(container))
                 .ThenIsNotNull()
@@ -76,7 +74,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<Fact1>() }, GetFactType<Version1>()));
+                        () => GetFactRule((Fact1 _) => new Version1()));
                 })
                 .Then("Check error", ex =>
                 {

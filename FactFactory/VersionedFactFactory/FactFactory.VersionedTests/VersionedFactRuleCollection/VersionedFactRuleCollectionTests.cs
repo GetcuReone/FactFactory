@@ -1,6 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactRuleCollection.Env;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
@@ -8,7 +9,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 using Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
-using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
 
 namespace FactFactory.VersionedTests.VersionedFactRuleCollection
 {
@@ -37,11 +37,11 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
         public void Versioned_GetCopiedCollectionTestCase()
         {
             Collection originalsCollection = null;
-            Rule factRule = null;
+            FactRule factRule = null;
 
             Given("Create collection.", () => originalsCollection = new Collection())
                 .And("Create rule", () => 
-                    factRule = new Rule(facts => default, new List<IFactType>(), GetFactType<Fact1>()))
+                    factRule = GetFactRule(() => new Fact1(default)))
                 .And("Add rule.", _ => 
                     originalsCollection.Add(factRule))
                 .When("Get copied.", _ => 

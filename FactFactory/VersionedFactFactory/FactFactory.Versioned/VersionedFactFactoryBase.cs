@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Versioned.BaseEntities;
 using GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations;
@@ -13,7 +14,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// </summary>
     public abstract class VersionedFactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : FactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>, IVersionedFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
         where TFactContainer : VersionedFactContainerBase
-        where TFactRule : VersionedFactRuleBase
+        where TFactRule : FactRuleBase
         where TFactRuleCollection : VersionedFactRuleCollectionBase<TFactRule>
         where TWantAction : VersionedWantActionBase
     {
