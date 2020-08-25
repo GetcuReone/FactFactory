@@ -13,7 +13,6 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactoryTests.WantAction
 {
     [TestClass]
-    [Ignore]
     public sealed class WantActionTests : CommonTestBase
     {
         [TestMethod]
