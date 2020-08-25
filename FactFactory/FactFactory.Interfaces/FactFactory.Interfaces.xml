@@ -777,18 +777,6 @@
             Basic interface for special facts.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact.IsFactContained``3(``0,``1,``2)">
-            <summary>
-            Is the fact contained in the container.
-            </summary>
-            <typeparam name="TFactWork"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="factWork">Work for which we learn about the possibility of using the fact.</param>
-            <param name="wantAction">The action in the context of which we do this.</param>
-            <param name="container">Container.</param>
-            <returns></returns>
-        </member>
         <member name="T:GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail">
             <summary>
             Detailed information about the calculation error action.

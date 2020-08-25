@@ -690,9 +690,6 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase`1.GetFactType``1">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase`1.IsFactContained``3(``0,``1,``2)">
-            <inheritdoc/>
-        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ContainedFactBase`1">
             <summary>
             Is the fact <typeparamref name="TFact"/> contained in the container.
@@ -721,9 +718,6 @@
             <summary>
             Base class for <see cref="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact"/>.
             </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.SpecialFactBase.IsFactContained``3(``0,``1,``2)">
-            <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.WantActionBase">
             <summary>

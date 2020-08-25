@@ -53,11 +53,5 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
         {
             return new FactType<TFact1>();
         }
-
-        /// <inheritdoc/>
-        public override bool IsFactContained<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-        {
-            return !FactType.GetFacts(container).IsNullOrEmpty();
-        }
     }
 }

@@ -28,10 +28,5 @@ namespace FactFactoryTests.FactType.Env
         {
             throw new NotImplementedException();
         }
-
-        public override bool IsFactContained<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

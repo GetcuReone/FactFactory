@@ -14,7 +14,7 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
         /// <inheritdoc/>
         public override bool Condition<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
         {
-            return !IsFactContained(factWork, wantAction, container);
+            return true;
         }
 
         /// <inheritdoc/>

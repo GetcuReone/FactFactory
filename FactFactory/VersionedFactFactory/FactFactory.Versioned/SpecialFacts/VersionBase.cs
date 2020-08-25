@@ -36,12 +36,6 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         }
 
         /// <inheritdoc/>
-        public override bool IsFactContained<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-        {
-            return GetFactType().GetFacts(container).IsNullOrEmpty();
-        }
-
-        /// <inheritdoc/>
         public abstract int CompareTo(IVersionFact other);
 
         /// <summary>

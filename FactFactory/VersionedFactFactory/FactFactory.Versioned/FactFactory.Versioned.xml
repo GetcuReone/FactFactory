@@ -400,9 +400,6 @@
             <param name="versionedFact"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.IsFactContained``3(``0,``1,``2)">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
             <inheritdoc/>
         </member>
