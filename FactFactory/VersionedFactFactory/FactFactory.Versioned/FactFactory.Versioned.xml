@@ -553,14 +553,6 @@
             </summary>
             <param name="getAllVersionFactsFunc">Function that returns all versioned facts used in the rules.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{GetcuReone.FactFactory.Interfaces.IFactContainer},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <summary>
-            Creation method <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>.
-            </summary>
-            <param name="wantAction">action taken after deriving a fact.</param>
-            <param name="factTypes">facts required to launch an action.</param>
-            <returns></returns>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetAllVersions">
             <summary>
             Returns instances of all used versions.
@@ -575,9 +567,6 @@
             Base class for versioned fact factory.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetCorrectFact``1(GetcuReone.FactFactory.Interfaces.IFactContainer,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetAllVersions">
             <summary>
             Returns instances of all used versions.
@@ -587,16 +576,7 @@
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetDefaultFacts(`3)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.NeedRecalculateFact(`0,`3,`2,GetcuReone.FactFactory.Interfaces.IFact@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.OnFactCalculatedForWantAction(GetcuReone.FactFactory.Interfaces.IFactType,`3,`2)">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetSingleEntityOperations">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.Derive">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.DeriveFact``2">

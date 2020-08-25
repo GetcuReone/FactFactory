@@ -35,17 +35,6 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Creation method <see cref="IWantAction"/>.
-        /// </summary>
-        /// <param name="wantAction">action taken after deriving a fact.</param>
-        /// <param name="factTypes">facts required to launch an action.</param>
-        /// <returns></returns>
-        protected override VersionedWantAction CreateWantAction(Action<IFactContainer> wantAction, List<IFactType> factTypes)
-        {
-            return new VersionedWantAction(wantAction, factTypes);
-        }
-
-        /// <summary>
         /// Returns instances of all used versions.
         /// </summary>
         /// <returns></returns>
