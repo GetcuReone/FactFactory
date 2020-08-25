@@ -40,10 +40,6 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             {
                 SuccessConditions = new List<IConditionFact>(),
                 FailedConditions = new List<IConditionFact>(),
-                FactRules = context
-                    .SingleEntity
-                    .GetCompatibleRules(rule, factRules, context)
-                    .ToList(),
                 Rule = rule,
             });
 
@@ -143,7 +139,6 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         Rule = rule,
                         SuccessConditions = new List<IConditionFact>(),
                         FailedConditions = new List<IConditionFact>(),
-                        FactRules = rule.GetCompatibleRulesEx(context.FactRules, context).ToList(),
                     };
 
                 result.Add(new NodeByFactRule<TFactRule>

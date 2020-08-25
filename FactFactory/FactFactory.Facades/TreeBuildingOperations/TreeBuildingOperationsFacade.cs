@@ -10,7 +10,6 @@ using GetcuReone.FactFactory.Interfaces.Operations.Entities.Enums;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 {
@@ -105,7 +104,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                                 continue;
                             }
 
-                            var needRules = nodeInfo
+                            var needRules = context
                                 .FactRules
                                 .Where(rule => rule.OutputFactType.EqualsFactType(needFact) && !rule.RuleContainBranch(node))
                                 .ToList();
@@ -297,7 +296,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     factType
                 );
 
-                if (conditionFact.Condition(nodeInfo.Rule, nodeInfo.Rule.GetCompatibleRulesEx(context.FactRules, context), context))
+                if (conditionFact.Condition(nodeInfo.Rule, context.FactRules, context))
                 {
                     nodeInfo.SuccessConditions.Add(conditionFact);
                     return true;
