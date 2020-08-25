@@ -9,7 +9,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.VersionedTests.Version
 {
     [TestClass]
-    [Ignore]
     public sealed class IntVersionTests : CommonTestBase
     {
         [TestMethod]
