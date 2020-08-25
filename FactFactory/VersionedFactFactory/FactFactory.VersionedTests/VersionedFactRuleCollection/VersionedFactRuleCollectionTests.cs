@@ -22,10 +22,7 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
             GivenCreateCollection()
                 .When("Add rule.", collection => 
                     collection.Add((Fact1 fact) => new FactResult(fact.Value)))
-                .Then("Check result.", collection =>
-                {
-                    Assert.AreEqual(1, collection.Count, "a different number of elements was expected.");
-                });
+                .ThenIsTrue(colletion => colletion.Count == 1);
         }
 
         [TestMethod]
