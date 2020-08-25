@@ -17,7 +17,6 @@ namespace FactFactoryTests.FactFactoryT
         [TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive the fact through the rule with the CannotDerived fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        [Ignore]
         public void DeriveUseRuleWithNCannotDerivedTestCase()
         {
             const int value = 2;
