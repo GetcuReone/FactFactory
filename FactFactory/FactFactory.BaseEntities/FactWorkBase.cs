@@ -22,8 +22,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             if (!factTypes.IsNullOrEmpty())
             {
-                factTypes.ForEach(CommonHelper.ValidateConditionFact);
-                InputFactTypes = factTypes;
+                InputFactTypes = factTypes.ToReadOnlyCollection();
             }
             else
                 InputFactTypes = new ReadOnlyCollection<IFactType>(new List<IFactType>(0));
@@ -62,15 +61,6 @@ namespace GetcuReone.FactFactory.BaseEntities
             where TFactContainer : IFactContainer
         {
             return EqualsFactTypes(InputFactTypes, workFact?.InputFactTypes);
-        }
-
-        /// <inheritdoc/>
-        public virtual bool СompatibilityWithRule<TFactRule, TWantAction, TFactContainer>(TFactRule factRule, TWantAction wantAction, TFactContainer container)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
-        {
-            return true;
         }
     }
 }

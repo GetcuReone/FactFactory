@@ -1,13 +1,12 @@
 ﻿using FactFactory.TestsCommon;
-using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
-using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using V_Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
@@ -32,7 +31,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             const long expectedValue = 1_000;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     //without version
                     () => new Fact1(1_000),
@@ -41,7 +40,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version1 version) => new Fact1(10),
                     (Version1 version, Fact1 fact) => new FactResult(fact.Value * version),
                     // version 1
-                    (Version2 version) => new Fact1(10),
+                    (Version2 version) => new Fact1(20),
                     (Version2 version, Fact1 fact) => new FactResult(fact.Value * version),
                 })
                 .When("Derive fact.", factFactory =>
@@ -58,7 +57,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             const long expectedValue = 10;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     //without version
                     () => new Fact1(1_000),
@@ -77,16 +76,15 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Recount facts with a different version.")]
+        [Description("Not recount facts with a different version.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        [Ignore]
-        public void RecountFactsWithDifferentVersionTestCase()
+        public void NotRecountFactsWithDifferentVersionTestCase()
         {
             FactResult result1 = null;
             FactResult result2 = null;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     (Version1 v, Fact1 fact) => new FactResult(fact.Value),
 
@@ -106,7 +104,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     Assert.IsNotNull(result2, "result2 cannot be null.");
 
                     Assert.AreEqual(1, result1.Value, "Expected another value.");
-                    Assert.AreEqual(2, result2.Value, "Expected another value.");
+                    Assert.AreEqual(1, result2.Value, "Expected another value.");
                 });
         }
 
@@ -120,7 +118,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int counterFact1 = 0;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     (Version1 v) =>
                     {
@@ -153,7 +151,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 .Then("Check result.", _ =>
                 {
                     Assert.AreEqual(1, counterFact2, "Fact2 was supposed to pay 1 time.");
-                    Assert.AreEqual(2, counterFact1, "Fact1 was supposed to pay 2 times.");
+                    Assert.AreEqual(1, counterFact1, "Fact1 was supposed to pay 1 times.");
                 });
         }
 
@@ -161,7 +159,6 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Do not recalculate calculated fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        [Ignore]
         public void DoNotRecalculateCalculatedFactTestCase()
         {
             int counterFact1 = 0;
@@ -172,7 +169,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int counterAction3 = 0;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     (Version1 v, Fact1 fact) => 
                     {
@@ -201,7 +198,6 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                         });
                         factory.WantFact((Fact1 fact) =>
                         {
-                            Assert.IsTrue(fact.Version is Version2, "The fact must be calculated using the rule of version 2.");
                             counterAction3++;
                         });
                         factory.WantFact((Version2 _, FactResult fact) =>
@@ -214,7 +210,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 .Then("Check result.", _ =>
                 {
                     Assert.AreEqual(1, counterFact1, "The Fact1 should have been calculated 1 time.");
-                    Assert.AreEqual(1, counterFact2, "The Fact2 should have been calculated 1 time.");
+                    Assert.AreEqual(0, counterFact2, "The Fact2 should have been calculated 0 time.");
 
                     Assert.AreEqual(counterFact1 + counterFact2, counterResult, "The Fact1 should have been calculated 2 times.");
 
@@ -228,13 +224,12 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Use newer rule for Derive.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        [Ignore]
         public void UseNewerRuleForDeriveTestCase()
         {
             int expectedValue = 10;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     (Version1 v) => new FactResult(0),
                     (Version2 v, Fact1 fact) => new FactResult(fact.Value)
@@ -242,11 +237,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 .And("Add fact.", factFactory => 
                     factFactory.Container.Add(new Fact1(expectedValue)))
                 .When("Derive fact.", factFactory => 
-                    factFactory.DeriveFact<FactResult, Version2>())
-                .Then("Check result.", fact =>
-                {
-                    Assert.AreEqual(expectedValue, fact.Value, "The older rule worked.");
-                });
+                    factFactory.DeriveFact<FactResult, Version2>().Value)
+                .ThenAreEqual(expectedValue);
         }
 
         [TestMethod]
@@ -258,12 +250,12 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int expectedValue = 1;
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
-                .AndAddRules(new V_Collection
+                .AndAddRules(new Collection
                 {
                     (Version2 v) => new FactResult(2),
                 })
                 .And("Add fact.", factFactory => 
-                    factFactory.Container.Add(new FactResult(expectedValue, new Version1())))
+                    factFactory.Container.Add(new FactResult(expectedValue).SetVersionParam(new Version1())))
                 .When("Derive fact.", factFactory => 
                     factFactory.DeriveFact<FactResult, Version1>())
                 .Then("Check result.", fact =>

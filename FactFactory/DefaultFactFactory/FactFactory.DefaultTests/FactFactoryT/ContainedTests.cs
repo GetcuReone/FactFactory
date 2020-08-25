@@ -25,8 +25,9 @@ namespace FactFactoryTests.FactFactoryT
                     (Contained<Input1Fact> _, Input1Fact fact) => new ResultFact(fact.Value),
                     (NotContained<Input1Fact> _) => new ResultFact(-1),
                 })
-                .AndAddFact(new Input1Fact(1))
-                .When("Derive.", factFactory => factFactory.DeriveFact<ResultFact>())
+                .AndAddFact(new Input1Fact(expectedValue))
+                .When("Derive.", factFactory => 
+                    factFactory.DeriveFact<ResultFact>())
                 .ThenFactEquals(expectedValue);
         }
     }

@@ -136,18 +136,20 @@
             <typeparam name="TFactBase"></typeparam>
             <param name="factTypes"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.ValidateConditionFact(GetcuReone.FactFactory.Interfaces.IFactType)">
-            <summary>
-            Validation of the fact of the condition.
-            </summary>
-            <param name="type"></param>
-        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.IsCalculatedByRule``1(``0)">
             <summary>
             Was the fact calculated using the rule.
             </summary>
             <typeparam name="TFact"></typeparam>
             <param name="fact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.GetFact``1(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <summary>
+            Get first fact by type <typeparamref name="TFact"/>.
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="facts"></param>
             <returns></returns>
         </member>
     </members>

@@ -1,6 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactContainer.Env;
+using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,8 +19,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             GivenCreateContainer()
                 .And("Added versioned fact.", container =>
                 {
-                    container.Add(new FactResult(0, new Version1()));
-                    container.Add(new FactResult(0, new Version2()));
+                    container.Add(new FactResult(0).SetVersionParam(new Version1()));
+                    container.Add(new FactResult(0).SetVersionParam(new Version2()));
                     container.Add(new FactResult(0));
                 })
                 .When("Try get fact.", container =>
@@ -34,7 +35,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 {
                     Assert.IsTrue(result.Success, "Fact not found.");
                     Assert.IsNotNull(result.Fact, "Fact cannot be null.");
-                    Assert.IsNull(result.Fact.Version, "Version must be null.");
+                    Assert.IsNull(result.Fact.GetVersionOrNull(), "Version must be null.");
                 });
         }
 
@@ -47,8 +48,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             GivenCreateContainer()
                 .And("Added versioned fact.", container =>
                 {
-                    container.Add(new FactResult(0, new Version1()));
-                    container.Add(new FactResult(0, new Version2()));
+                    container.Add(new FactResult(0).SetVersionParam(new Version1()));
+                    container.Add(new FactResult(0).SetVersionParam(new Version2()));
                     container.Add(new FactResult(0));
                 })
                 .When("Try get fact.", container =>
@@ -63,8 +64,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 {
                     Assert.IsTrue(result.Success, "Fact not found.");
                     Assert.IsNotNull(result.Fact, "Fact cannot be null.");
-                    Assert.IsNotNull(result.Fact.Version, "Version cannot be null.");
-                    Assert.IsTrue(result.Fact.Version is Version1, "Expected different version.");
+                    Assert.IsTrue(result.Fact.GetVersionOrNull() is Version1, "Expected different version.");
                 });
         }
 
@@ -77,8 +77,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             GivenCreateContainer()
                 .And("Added versioned fact.", container =>
                 {
-                    container.Add(new FactResult(0, new Version1()));
-                    container.Add(new FactResult(0, new Version2()));
+                    container.Add(new FactResult(0).SetVersionParam(new Version1()));
+                    container.Add(new FactResult(0).SetVersionParam(new Version2()));
                     container.Add(new FactResult(0));
                 })
                 .When("Try get fact.", container =>
@@ -93,8 +93,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 {
                     Assert.IsTrue(result.Success, "Fact not found.");
                     Assert.IsNotNull(result.Fact, "Fact cannot be null.");
-                    Assert.IsNotNull(result.Fact.Version, "Version cannot be null.");
-                    Assert.IsTrue(result.Fact.Version is Version2, "Expected different version.");
+                    Assert.IsTrue(result.Fact.GetVersionOrNull() is Version2, "Expected different version.");
                 });
         }
 
@@ -107,7 +106,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             GivenCreateContainer()
                 .And("Added versioned fact.", container =>
                 {
-                    container.Add(new FactResult(0, new Version1()));
+                    container.Add(new FactResult(0).SetVersionParam(new Version1()));
                     container.Add(new FactResult(0));
                 })
                 .When("Try get fact.", container =>

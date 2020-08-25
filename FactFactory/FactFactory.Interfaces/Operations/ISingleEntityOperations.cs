@@ -97,5 +97,30 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
             where TFactWork : IFactWork
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// Calculate fact by rule from node.
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="node"></param>
+        /// <param name="context"></param>
+        /// <param name="fact"></param>
+        /// <returns></returns>
+        bool TryCalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context, out IFact fact)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="wantActionInfo"></param>
+        void DeriveWantFacts<TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }

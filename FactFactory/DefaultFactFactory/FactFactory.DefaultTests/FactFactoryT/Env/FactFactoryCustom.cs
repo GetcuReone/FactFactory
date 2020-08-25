@@ -19,14 +19,14 @@ namespace FactFactoryTests.FactFactoryT.Env
 
         internal List<FactBase> DefaultFacts { get; } = new List<FactBase>();
 
-        protected override Action CreateWantAction(Action<IFactContainer> wantAction, List<IFactType> factTypes)
-        {
-            return new Action(wantAction, factTypes);
-        }
-
         protected override IEnumerable<IFact> GetDefaultFacts(Container container)
         {
             return DefaultFacts;
+        }
+
+        protected override GetcuReone.FactFactory.Entities.WantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
+        {
+            return new Action(wantAction, factTypes);
         }
     }
 }

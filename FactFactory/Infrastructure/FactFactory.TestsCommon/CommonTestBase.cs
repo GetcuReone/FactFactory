@@ -1,6 +1,7 @@
 ﻿using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Interfaces;
@@ -8,6 +9,7 @@ using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.GetcuTestAdapter;
 using System;
+using System.Collections.Generic;
 
 namespace FactFactory.TestsCommon
 {
@@ -44,6 +46,75 @@ namespace FactFactory.TestsCommon
                 WantAction = wantAction,
                 Container = container,
             };
+        }
+
+        protected FactRule GetFactRule<TFactResult>(Func<TFactResult> func)
+            where TFactResult : IFact
+        {
+            return new FactRule(
+                facts => func(),
+                new List<IFactType>(),
+                GetFactType<TFactResult>());
+        }
+
+        protected FactRule GetFactRule<TFact1, TFactResult>(Func<TFact1, TFactResult> func)
+            where TFact1 : IFact
+            where TFactResult : IFact
+        {
+            return new FactRule(
+                facts => func(facts.GetFact<TFact1>()),
+                new List<IFactType> { GetFactType<TFact1>() },
+                GetFactType<TFactResult>());
+        }
+
+        protected FactRule GetFactRule<TFact1, TFact2, TFactResult>(Func<TFact1, TFact2, TFactResult> func)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFactResult : IFact
+        {
+            return new FactRule(
+                facts => func(facts.GetFact<TFact1>(), facts.GetFact<TFact2>()),
+                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() },
+                GetFactType<TFactResult>());
+        }
+
+        protected FactRule GetFactRule<TFact1, TFact2, TFact3, TFactResult>(Func<TFact1, TFact2, TFact3, TFactResult> func)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFactResult : IFact
+        {
+            return new FactRule(
+                facts => func(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>()),
+                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() },
+                GetFactType<TFactResult>());
+        }
+
+        protected WantAction GetWantAction<TFact1>(Action<TFact1> action)
+            where TFact1 : IFact
+        {
+            return new WantAction(
+                facts => action(facts.GetFact<TFact1>()),
+                new List<IFactType> { GetFactType<TFact1>() });
+        }
+
+        protected WantAction GetWantAction<TFact1, TFact2>(Action<TFact1, TFact2> action)
+            where TFact1 : IFact
+            where TFact2 : IFact
+        {
+            return new WantAction(
+                facts => action(facts.GetFact<TFact1>(), facts.GetFact<TFact2>()),
+                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() });
+        }
+
+        protected WantAction GetWantAction<TFact1, TFact2, TFact3>(Action<TFact1, TFact2, TFact3> action)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+        {
+            return new WantAction(
+                facts => action(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>()),
+                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() });
         }
     }
 }

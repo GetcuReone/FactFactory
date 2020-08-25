@@ -2,8 +2,6 @@
 using FactFactory.DefaultTests.SingleEntityOperationsTests.Env;
 using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
-using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;

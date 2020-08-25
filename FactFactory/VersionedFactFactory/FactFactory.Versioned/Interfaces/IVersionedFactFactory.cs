@@ -11,9 +11,9 @@ namespace GetcuReone.FactFactory.Versioned.Interfaces
     /// <typeparam name="TWantAction">Type 'want action'.</typeparam>
     public interface IVersionedFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : IFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
         where TFactContainer : IFactContainer
-        where TFactRule : IVersionedFactRule
+        where TFactRule : IFactRule
         where TFactRuleCollection : IFactRuleCollection<TFactRule>
-        where TWantAction : IWantAction, IFactTypeVersionInfo
+        where TWantAction : IWantAction
     {
         /// <summary>
         /// Derive <typeparamref name="TFactResult"/> with version <typeparamref name="TVersion"/>.

@@ -2,15 +2,13 @@
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using GetcuReone.FactFactory.Versioned;
+using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using Action = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
-using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
 
 namespace FactFactory.VersionedTests.VersionedFactRule
 {
@@ -25,11 +23,11 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         {
             GivenEmpty()
                 .When("Create rule with version.", _ => 
-                    VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Version1>(), GetFactType<Fact1>()))
-                .Then("Check result.", rule =>
+                    GetFactRule((Version1 v, Fact1 _) => new FactResult(default)))
+                .ThenGetVersionType()
+                .And("Check result.", versionType =>
                 {
-                    Assert.IsNotNull(rule.VersionType, "The rule does not contain version information");
-                    Assert.IsTrue(GetFactType<Version1>().EqualsFactType(rule.VersionType), $"{nameof(Rule.VersionType)} does not store version information");
+                    Assert.IsTrue(GetFactType<Version1>().EqualsFactType(versionType), $"{nameof(versionType)} does not store version information");
                 });
         }
 
@@ -40,69 +38,28 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         public void CreateRuleWithoutVersionTestCase()
         {
             GivenEmpty()
-                .When("Create rule with version.", _ => 
-                    VersionedFactRuleHelper.CreateRule(GetFactType<FactResult>(), GetFactType<Fact1>()))
-                .Then("Check result.", rule =>
-                {
-                    Assert.IsNull(rule.VersionType, "The rule contain version information");
-                });
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Calculate fact.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void VersionedFactRule_CalculateTestCase()
-        {
-            Container container = null;
-
-            Given("Create container", () => container = new Container())
-                .And("Added fact version", () => container.Add(new Version2()))
-                .And("Create rule", () => new Rule((ct, _) => new FactResult(1), new List<IFactType> { GetFactType<Version2>() }, GetFactType<FactResult>()))
-                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container, default(Action)), "cannot calculate"))
-                .When("Run calculate", rule => rule.Calculate(container, default(Action)))
-                .ThenIsNotNull()
-                .And("Get version.", fact =>
-                {
-                    if (fact is VersionedFactBase versionedFact)
-                        return versionedFact.Version;
-
-                    Assert.Fail("Invalid type.");
-                    return null;
-                })
-                .AndIsNotNull()
-                .And("Check result.", version =>
-                {
-                    if (version is Version2 version2)
-                        Assert.AreEqual(2, version2, "expected another version.");
-                    else
-                        Assert.Fail("Version is not Version2.");
-                });
+                .When("Create rule with version.", _ =>
+                    GetFactRule((Fact1 _) => new FactResult(default)))
+                .ThenNotContainVersionType();
         }
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
         [Description("Calculate fact without version.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        [Ignore("Temporarily unstable due to issue 158")]
         public void VersionedFactRule_CalculateWithoutVersionTestCase()
         {
             Container container = null;
 
             Given("Create container", () => container = new Container())
-                .And("Create rule", () => new Rule((ct, _) => new FactResult(1), new List<IFactType> { }, GetFactType<FactResult>()))
-                .And("Can calculate", rule => Assert.IsTrue(rule.CanCalculate(container, default(Action)), "cannot calculate"))
-                .When("Run calculate", rule => rule.Calculate(container, default(Action)))
+                .And("Create rule", () => 
+                    GetFactRule(() => new FactResult(default)))
+                .When("Run calculate", rule => 
+                    rule.Calculate(container))
                 .ThenIsNotNull()
                 .And("Get version.", fact =>
-                {
-                    if (fact is VersionedFactBase versionedFact)
-                        return versionedFact.Version;
-
-                    Assert.Fail("Invalid type.");
-                    return null;
-                })
-                .AndIsNotNull();
+                    fact.GetVersionOrNull())
+                .AndIsNull();
         }
 
         [TestMethod]
@@ -117,7 +74,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .When("Create rule", _ =>
                 {
                     return ExpectedException<ArgumentException>(
-                        () => new Rule((ct, _) => { return default; }, new List<IFactType> { GetFactType<Fact1>() }, GetFactType<Version1>()));
+                        () => GetFactRule((Fact1 _) => new Version1()));
                 })
                 .Then("Check error", ex =>
                 {

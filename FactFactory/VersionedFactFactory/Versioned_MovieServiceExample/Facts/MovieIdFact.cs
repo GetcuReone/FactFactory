@@ -1,11 +1,11 @@
-﻿using GetcuReone.FactFactory.Versioned;
+﻿using GetcuReone.FactFactory;
 
 namespace Versioned_MovieServiceExample.Facts
 {
     /// <summary>
     /// Fact stores movie id information
     /// </summary>
-    public class MovieIdFact : VersionedFactBase<int>
+    public class MovieIdFact : FactBase<int>
     {
         public MovieIdFact(int value) : base(value)
         {

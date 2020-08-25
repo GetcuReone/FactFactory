@@ -124,7 +124,7 @@ namespace FactFactoryTests.FactType
         {
             GivenCreateFactType<CannotDerived<OtherFact>>()
                 .When("Create CannotDerived fact.", factType => 
-                    factType.CreateConditionFact<ICannotDerivedFact>())
+                    factType.CreateConditionFact<IConditionFact>())
                 .ThenIsNotNull()
                 .And("Check result.", fact =>
                 {
@@ -138,25 +138,11 @@ namespace FactFactoryTests.FactType
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateCannotDerivedUsingWrongTypeTestCase()
         {
-            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(ICannotDerivedFact).FullName} type.";
+            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(IConditionFact).FullName} type.";
 
             GivenCreateFactType<OtherFact>()
                 .When("Create CannotDerived fact.", factType => 
-                    ExpectedException<FactFactoryException>(() => factType.CreateConditionFact<ICannotDerivedFact>()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Create a CannotDerived fact without default constructor.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void CreateCannotDerivedWithoutDefaultConstructorTestCase()
-        {
-            string expectedReason = $"{typeof(CannotDerivedWithoutConstructor).FullName} doesn't have a default constructor.";
-
-            GivenCreateFactType<CannotDerivedWithoutConstructor>()
-                .When("Create CannotDerived fact.", factType => 
-                    ExpectedException<FactFactoryException>(() => factType.CreateConditionFact<ICannotDerivedFact>()))
+                    ExpectedException<FactFactoryException>(() => factType.CreateConditionFact<IConditionFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
@@ -211,7 +197,8 @@ namespace FactFactoryTests.FactType
         public void CreateCanDerivedFactTestCase()
         {
             GivenCreateFactType<CanDerived<OtherFact>>()
-                .When("Create CanDerived fact.", factType => factType.CreateConditionFact<ICanDerivedFact>())
+                .When("Create CanDerived fact.", factType => 
+                    factType.CreateConditionFact<IConditionFact>())
                 .ThenIsNotNull()
                 .And("Check result.", fact =>
                 {
@@ -225,25 +212,25 @@ namespace FactFactoryTests.FactType
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateCanDerivedUsingWrongTypeTestCase()
         {
-            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(ICanDerivedFact).FullName} type.";
+            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(IConditionFact).FullName} type.";
 
             GivenCreateFactType<OtherFact>()
                 .When("Create CanDerived fact.", factType => 
-                    ExpectedException<FactFactoryException>(() => factType.CreateConditionFact<ICanDerivedFact>()))
+                    ExpectedException<FactFactoryException>(() => factType.CreateConditionFact<IConditionFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
 
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(TC.Objects.CanDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Create a CanDerived fact without default constructor.")]
+        [Description("Create a Condition fact without default constructor.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void CreateCanDerivedWithoutDefaultConstructorTestCase()
+        public void CreateConditionWithoutConstructorTestCase()
         {
-            string expectedReason = $"{typeof(CanDerivedWithoutConstructor).FullName} doesn't have a default constructor.";
+            string expectedReason = $"{typeof(ConditionWithoutConstructor).FullName} doesn't have a default constructor.";
 
-            GivenCreateFactType<CanDerivedWithoutConstructor>()
+            GivenCreateFactType<ConditionWithoutConstructor>()
                 .When("Create CanDerived fact.", factType => 
-                    ExpectedException<FactFactoryException>(() => factType.CreateConditionFact<ICanDerivedFact>()))
+                    ExpectedException<FactFactoryException>(() => factType.CreateConditionFact<IConditionFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
     }

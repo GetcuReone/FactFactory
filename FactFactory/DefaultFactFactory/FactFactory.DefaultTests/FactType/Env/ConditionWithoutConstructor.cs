@@ -3,13 +3,12 @@ using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FactFactory.DefaultTests.FactType.Env
 {
-    internal class CanDerivedWithoutConstructor : IFact, ICanDerivedFact
+    internal class ConditionWithoutConstructor : IFact, IConditionFact
     {
-        private CanDerivedWithoutConstructor()
+        private ConditionWithoutConstructor()
         {
 
         }
@@ -17,8 +16,6 @@ namespace FactFactory.DefaultTests.FactType.Env
         public bool CalculatedByRule { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public IFactType FactType => throw new NotImplementedException();
-
-        public IEnumerable<IFactParameter> Parameters => throw new NotImplementedException();
 
         public void AddParameter(IFactParameter parameter)
         {
@@ -43,6 +40,11 @@ namespace FactFactory.DefaultTests.FactType.Env
         }
 
         public IFactType GetFactType()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IFactParameter GetParameter(string parameterCode)
         {
             throw new NotImplementedException();
         }

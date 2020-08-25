@@ -1,7 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
-using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
@@ -61,24 +60,6 @@ namespace FactFactoryTests.WantAction
                 {
                     Assert.AreEqual(expectedReason, ex.Message, "Expectend another message.");
                 });
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.FactType), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Request invalid special fact.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void RequestInvalidSpecialFactTestCase()
-        {
-            IFactType invalidFactType = GetFactType<InvalidSpecialFact>();
-            string expectedReason = $"{invalidFactType.FactName} implements more than one runtime special fact interface.";
-
-            GivenEmpty()
-                .When("Create wantAction.", _ =>
-                {
-                    return ExpectedFactFactoryException(
-                        () => new WAction(ct => { }, new List<IFactType> { invalidFactType }));
-                })
-                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
     }
 }

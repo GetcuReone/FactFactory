@@ -291,9 +291,12 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 else if (nodeInfo.FailedConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(factType)))
                     return false;
 
-                var conditionFact = factType.CreateConditionFact<IConditionFact>();
+                var conditionFact = Factory.CreateObject(
+                    type => type.CreateConditionFact<IConditionFact>(),
+                    factType
+                );
 
-                if (conditionFact.Condition(nodeInfo.Rule, nodeInfo.Rule.GetCompatibleRulesEx(context.FactRules, context), context))
+                if (conditionFact.Condition(nodeInfo.Rule, context.FactRules, context))
                 {
                     nodeInfo.SuccessConditions.Add(conditionFact);
                     return true;
@@ -363,7 +366,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             {
                 FailedConditions = new List<IConditionFact>(),
                 SuccessConditions = new List<IConditionFact>(),
-                WantAction = context.WantAction,
+                Context = context,
             };
             result = new BuildTreesForWantActionResult<TFactRule, TWantAction, TFactContainer>
             {
@@ -378,15 +381,22 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     if (wantActionInfo.SuccessConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(needFactType)) || wantActionInfo.FailedConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(needFactType)))
                         continue;
 
-                    var condition = needFactType.CreateConditionFact<IConditionFact>();
+                    var condition = Factory.CreateObject(
+                        type => type.CreateConditionFact<IConditionFact>(),
+                        needFactType
+                    );
 
                     if (condition.Condition(context.WantAction, context.WantAction.GetCompatibleRulesEx(request.FactRules, context), context))
                     {
                         result.WantActionInfo.SuccessConditions.Add(condition);
-                        continue;
                     }
                     else
+                    {
                         result.WantActionInfo.FailedConditions.Add(condition);
+                        deriveFactErrorDetails.Add(new DeriveFactErrorDetail(needFactType, null));
+                    }
+
+                    continue;
                 }
 
                 var requestFactType = new BuildTreeForFactInfoRequest<TFactRule, TWantAction, TFactContainer>
@@ -447,7 +457,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 var requestForAction = new BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer>
                 {
                     Context = context,
-                    FactRules = request.FactRules,
+                    FactRules = request
+                        .FactRules
+                        .OrderByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction, TFactContainer>(context))
+                        .ToList(),
                 };
 
                 if (TryBuildTreesForWantAction(requestForAction, out var resultForAction))
@@ -464,6 +477,49 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             }
 
             return result.DeriveErrorDetails == null;
+        }
+
+        /// <inheritdoc/>
+        public virtual List<IndependentNodeGroup<TFactRule>> GetIndependentNodeGroups<TFactRule, TWantAction, TFactContainer>(TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeByFactRule)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            var allGroups = new List<IndependentNodeGroup<TFactRule>>();
+            FillChildIndependentNodeGroup(treeByFactRule.Root, allGroups);
+            allGroups.Add(new IndependentNodeGroup<TFactRule> { treeByFactRule.Root });
+            return allGroups;
+        }
+
+        private void FillChildIndependentNodeGroup<TFactRule>(NodeByFactRule<TFactRule> node, List<IndependentNodeGroup<TFactRule>> groups)
+            where TFactRule : IFactRule
+        {
+            if (node.Childs.IsNullOrEmpty())
+                return;
+
+            foreach (var child in node.Childs)
+                FillChildIndependentNodeGroup(child, groups);
+
+            IndependentNodeGroup<TFactRule> lastGroup;
+
+            if (groups.Count == 0)
+            {
+                lastGroup = new IndependentNodeGroup<TFactRule>();
+                groups.Add(lastGroup);
+            }
+            else
+                lastGroup = groups.Last();
+
+            foreach (var child in node.Childs)
+            {
+                if (lastGroup.CanAdd(child))
+                    lastGroup.Add(child);
+                else
+                {
+                    lastGroup = new IndependentNodeGroup<TFactRule> { child };
+                    groups.Add(lastGroup);
+                }
+            }
         }
     }
 }

@@ -3,7 +3,6 @@ using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
-using Microsoft.VisualBasic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 

@@ -18,8 +18,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             var version1 = new Version1();
             var version2 = new Version2();
 
-            var factResult1 = new FactResult(0, version1);
-            var factResult2 = new FactResult(0, version2);
+            var factResult1 = new FactResult(0).SetVersionParam(version1);
+            var factResult2 = new FactResult(0).SetVersionParam(version2);
             var factResultWithoutVersion = new FactResult(0);
 
             GivenCreateContainer()
@@ -47,8 +47,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             var version1 = new Version1();
             var version2 = new Version2();
 
-            var factResult1 = new FactResult(0, version1);
-            var factResult2 = new FactResult(0, version2);
+            var factResult1 = new FactResult(0).SetVersionParam(version1);
+            var factResult2 = new FactResult(0).SetVersionParam(version2);
             var factResultWithoutVersion = new FactResult(0);
 
             GivenCreateContainer()

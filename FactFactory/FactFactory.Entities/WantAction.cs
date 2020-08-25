@@ -10,12 +10,8 @@ namespace GetcuReone.FactFactory.Entities
     /// </summary>
     public class WantAction : WantActionBase
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="wantAction">Action taken after deriving a fact.</param>
-        /// <param name="factTypes">Facts required to launch an action.</param>
-        public WantAction(Action<IFactContainer> wantAction, List<IFactType> factTypes) : base(wantAction, factTypes)
+        /// <inheritdoc/>
+        public WantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes) : base(wantAction, factTypes)
         {
         }
     }

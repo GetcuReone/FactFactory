@@ -1,5 +1,4 @@
 ﻿using FactFactory.TestsCommon;
-using GetcuReone.FactFactory;
 using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Factory = GetcuReone.FactFactory.FactFactory;

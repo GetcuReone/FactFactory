@@ -1,7 +1,6 @@
 ﻿using FactFactory.DefaultTests.SingleEntityOperationsTests.Env;
 using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
-using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

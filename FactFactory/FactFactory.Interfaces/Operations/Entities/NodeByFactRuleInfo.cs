@@ -1,7 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
 {
@@ -25,10 +23,5 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// List of fact conditions. Failed conditions for <see cref="Rule"/>.
         /// </summary>
         public List<IConditionFact> FailedConditions { get; set; }
-
-        /// <summary>
-        /// Fact rules for <see cref="Rule"/>.
-        /// </summary>
-        public List<TFactRule> FactRules { get; set; }
     }
 }

@@ -39,6 +39,46 @@
         <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetRequiredTypesOfFacts``3(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
             <inheritdoc/>
         </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.TryCalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2},GetcuReone.FactFactory.Interfaces.IFact@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetRequireFacts``3(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <summary>
+            Get the facts needed to enter the work.
+            </summary>
+            <typeparam name="TFactWork"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="factWork"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.NeedRecalculateFact``3(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <summary>
+            Do I need to recalculate the fact.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="rule"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.DeriveWantFacts``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1})">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsHelper">
+            <summary>
+            Helper.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsHelper.SetCalculateByRule``1(``0)">
+            <summary>
+            Set a parameter indicating that the fact was calculated using the rule.
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="fact"></param>
+        </member>
         <member name="T:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade">
             <summary>
             Tree building operations.
@@ -85,6 +125,12 @@
         <member name="M:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.TryBuildTreesForWantAction``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionRequest{``0,``1,``2},GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionResult{``0,``1,``2}@)">
             <inheritdoc/>
         </member>
+        <member name="M:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.TryBuildTrees``4(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest{``0,``1,``2,``3},GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesResult{``0,``2,``3}@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.GetIndependentNodeGroups``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2})">
+            <inheritdoc/>
+        </member>
         <member name="M:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsHelper.GetTreesByRequest``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreeForFactInfoRequest{``0,``1,``2})">
             <summary>
             Get <see cref="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule`3"/> by <paramref name="request"/>.
@@ -125,98 +171,6 @@
             <typeparam name="TFactContainer"></typeparam>
             <param name="treeByFactRule"></param>
             <returns></returns>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade">
-            <summary>
-            Facade for trees operations.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetTreesByBuildTreeRequest``3(GetcuReone.FactFactory.Entities.Trees.BuildTreeForFactTypeRequest{``0,``1,``2})">
-            <summary>
-            Get <see cref="T:GetcuReone.FactFactory.Entities.Trees.TreeByFactRule`3"/> by <paramref name="request"/>.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.SyncTreeLevelAndFinishedNodes``3(System.Collections.Generic.List{GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0}},System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle{``0},GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0}},``1,``2)">
-            <summary>
-            Synchronize the tree level with years ready for calculation.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="treeLevel">Tree level.</param>
-            <param name="finishedNodes">Nodes by which the rule can already be calculated. Key - node info, value - node</param>
-            <param name="wantAction">Action within which synchronization occurs.</param>
-            <param name="container">Fact container.</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.TrySyncTreeLevelsAndFinishedNodes``3(GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1,``2},System.Int32,System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Entities.Trees.NodeInfoByFactRyle{``0},GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0}})">
-            <summary>
-            Synchronize tree levels with years ready for calculation.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="treeByFactRule">Tree whose levels you want to synchronize.</param>
-            <param name="level">The level at which to start synchronization.</param>
-            <param name="finishedNodes"></param>
-            <returns>True - managed to sync root level</returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.RuleContainBranch``1(GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0},``0)">
-            <summary>
-            Whether the <paramref name="rule"/> is contained in a branch with <paramref name="node"/>.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <param name="node"></param>
-            <param name="rule"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetNodesByRules``3(System.Collections.Generic.List{``0},GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1,``2},GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0},System.Collections.Generic.List{``0})">
-            <summary>
-            Get nodes by rules.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="rules"></param>
-            <param name="treeByFactRule"></param>
-            <param name="parentNode"></param>
-            <param name="allRulesForWantAction"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.TryRemoveRootNode``3(GetcuReone.FactFactory.Entities.Trees.NodeByFactRule{``0},GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1,``2},System.Int32)">
-            <summary>
-            Delete current node. Recursively delete parent nodes if they do not have other nodes calculating the fact from the child node.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="node"></param>
-            <param name="treeByFactRule"></param>
-            <param name="level"></param>
-            <returns>True - remove root node.</returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetUniqueRulesFromTree``3(GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1,``2})">
-            <summary>
-            Get unique rules from tree.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="treeByFactRule"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Facades.TreesOperations.TreesOperationsFacade.GetIndependentRulesGroups``3(GetcuReone.FactFactory.Entities.Trees.TreeByFactRule{``0,``1,``2})">
-            <summary>
-            Get independent rule groups.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="treeByFactRule"></param>
         </member>
     </members>
 </doc>

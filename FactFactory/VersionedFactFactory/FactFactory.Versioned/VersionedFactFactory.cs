@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Entities;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
@@ -9,7 +10,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
     /// </summary>
-    public class VersionedFactFactory : VersionedFactFactoryBase<VersionedFactRule, VersionedFactRuleCollection, VersionedWantAction, VersionedFactContainer>
+    public class VersionedFactFactory : VersionedFactFactoryBase<FactRule, FactRuleCollection, WantAction, VersionedFactContainer>
     {
         private readonly Func<List<IVersionFact>> _getAllVersionFactsFunc;
 
@@ -21,7 +22,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <summary>
         /// Rule collection.
         /// </summary>
-        public override VersionedFactRuleCollection Rules { get; }
+        public override FactRuleCollection Rules { get; }
 
         /// <summary>
         /// Constructor.
@@ -31,18 +32,7 @@ namespace GetcuReone.FactFactory.Versioned
         {
             _getAllVersionFactsFunc = getAllVersionFactsFunc;
             Container = new VersionedFactContainer();
-            Rules = new VersionedFactRuleCollection();
-        }
-
-        /// <summary>
-        /// Creation method <see cref="IWantAction"/>.
-        /// </summary>
-        /// <param name="wantAction">action taken after deriving a fact.</param>
-        /// <param name="factTypes">facts required to launch an action.</param>
-        /// <returns></returns>
-        protected override VersionedWantAction CreateWantAction(Action<IFactContainer> wantAction, List<IFactType> factTypes)
-        {
-            return new VersionedWantAction(wantAction, factTypes);
+            Rules = new FactRuleCollection();
         }
 
         /// <summary>
@@ -52,6 +42,12 @@ namespace GetcuReone.FactFactory.Versioned
         protected override IEnumerable<IVersionFact> GetAllVersions()
         {
             return _getAllVersionFactsFunc();
+        }
+
+        /// <inheritdoc/>
+        protected override WantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
+        {
+            return new WantAction(wantAction, factTypes);
         }
     }
 }

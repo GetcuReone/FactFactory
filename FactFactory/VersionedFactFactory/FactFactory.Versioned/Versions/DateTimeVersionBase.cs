@@ -1,8 +1,6 @@
-﻿using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Versioned.Interfaces;
+﻿using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.FactFactory.Versioned.SpecialFacts;
 using System;
-using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
 namespace GetcuReone.FactFactory.Versioned.Versions
 {
@@ -25,8 +23,6 @@ namespace GetcuReone.FactFactory.Versioned.Versions
             switch (other)
             {
                 case VersionBase<DateTime> version:
-                    return ValueVersion.CompareTo(version);
-                case VersionedFactBase<DateTime> version:
                     return ValueVersion.CompareTo(version);
                 case FactBase<DateTime> version:
                     return ValueVersion.CompareTo(version);

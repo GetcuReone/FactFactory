@@ -13,39 +13,10 @@ namespace GetcuReone.FactFactory.Interfaces
         IFactType OutputFactType { get; }
 
         /// <summary>
-        /// Is it possible to calculate the fact.
+        /// Calculate fact.
         /// </summary>
-        /// <param name="container"></param>
-        /// <param name="wantAction"></param>
-        /// <typeparam name="TContainer"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
+        /// <param name="requireFacts">The facts required for the calculation.</param>
         /// <returns></returns>
-        bool CanCalculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction) 
-            where TContainer : IFactContainer
-            where TWantAction : IWantAction;
-
-        /// <summary>
-        /// Rule of fact calculate.
-        /// </summary>
-        /// <param name="container"></param>
-        /// <param name="wantAction"></param>
-        /// <typeparam name="TContainer"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <returns></returns>
-        IFact Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction) 
-            where TContainer : IFactContainer
-            where TWantAction : IWantAction;
-
-        /// <summary>
-        /// Get the necessary fact types.
-        /// </summary>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="wantAction"></param>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        List<IFactType> GetNecessaryFactTypes<TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer;
+        IFact Calculate(IEnumerable<IFact> requireFacts);
     }
 }

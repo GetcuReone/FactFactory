@@ -1,19 +1,10 @@
-﻿using GetcuReone.FactFactory.Versioned;
-using GetcuReone.FactFactory.Versioned.Interfaces;
+﻿using GetcuReone.FactFactory;
 
 namespace FactFactory.VersionedTests.CommonFacts
 {
-    public sealed class FactResult : VersionedFactBase<long>
+    public sealed class FactResult : FactBase<long>
     {
         public FactResult(long fact) : base(fact)
-        {
-        }
-
-        public FactResult(long value, IVersionFact version) : base(value, version)
-        {
-        }
-
-        public FactResult(long value, IVersionFact version, bool calculatedByRule) : base(value, version, calculatedByRule)
         {
         }
     }

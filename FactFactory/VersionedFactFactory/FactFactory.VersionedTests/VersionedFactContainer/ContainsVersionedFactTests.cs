@@ -19,7 +19,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             GivenCreateContainer()
                 .And("Added versioned fact.", container =>
                 {
-                    container.Add(new FactResult(0, new Version1()));
+                    container.Add(new FactResult(0).SetVersionParam(new Version1()));
                     container.Add(new FactResult(0));
                 })
                 .When("Run Contains method", container => container.Contains<FactResult>())
@@ -35,7 +35,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             GivenCreateContainer()
                 .And("Added versioned fact.", container =>
                 {
-                    container.Add(new FactResult(0, new Version1()));
+                    container.Add(new FactResult(0).SetVersionParam(new Version1()));
                     container.Add(new FactResult(0));
                 })
                 .When("Run Contains method", container => container.ContainsByVersion<FactResult>(new Version1()))
@@ -51,7 +51,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             GivenCreateContainer()
                 .And("Added versioned fact.", container =>
                 {
-                    container.Add(new FactResult(0, new Version1()));
+                    container.Add(new FactResult(0).SetVersionParam(new Version1()));
                 })
                 .When("Run Contains method", container => container.Contains<FactResult>())
                 .ThenIsFalse(errorMessage: "Fact contained");

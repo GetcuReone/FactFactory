@@ -2,6 +2,8 @@
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations;
+using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,21 +49,20 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
                 if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType)))
                     throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The fact container already contains {factType.FactName} type of fact.");
             }
-            else if (fact is VersionedFactBase factBase)
-            {
-                if (factBase.Version == null)
-                {
-                    if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType) && ((VersionedFactBase)f).Version == null))
-                        throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {typeof(TFact).FullName} without version.");
-                }
-                else
-                {
-                    if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType) && (f is VersionedFactBase factBase1) && factBase1.Version != null && factBase1.Version.CompareTo(factBase.Version) == 0))
-                        throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {typeof(TFact).FullName} with version equal to version {factBase.Version.GetType().FullName}.");
-                } 
-            }
             else
-                throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"A container cannot contain a fact of {factType.FactName} type.");
+            {
+                var factVersion = fact.GetVersionOrNull();
+                foreach (var f in ContainerList)
+                {
+                    if (f.GetFactType().EqualsFactType(factType) && f.HasVersion(factVersion))
+                    {
+                        if (factVersion != null)
+                            throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {factType.FactName} with version equal to version {factVersion.GetFactType().FactName}.");
+                        else
+                            throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {factType.FactName} withuot version.");
+                    }
+                }
+            }
 
             ContainerList.Add(fact);
         }
@@ -105,14 +106,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
                 if (!itemType.EqualsFactType(type))
                     continue;
 
-                var factBase = (VersionedFactBase)item;
-
-                if (version != null && factBase.Version != null && factBase.Version.CompareTo(version) == 0)
-                {
-                    fact = (TFact)item;
-                    return true;
-                }
-                else if (version == null && factBase.Version == null)
+                if (item.HasVersion(version))
                 {
                     fact = (TFact)item;
                     return true;

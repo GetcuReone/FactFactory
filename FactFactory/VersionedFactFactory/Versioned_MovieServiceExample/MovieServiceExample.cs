@@ -1,4 +1,5 @@
 using GetcuReone.FactFactory;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.FactFactory.Versioned.Entities;
 using GetcuReone.FactFactory.Versioned.Interfaces;
@@ -20,7 +21,7 @@ namespace Versioned_MovieServiceExample
 
         List<Discount> DiscountDB;
 
-        VersionedFactRuleCollection Rules;
+        FactRuleCollection Rules;
 
         VersionedFactFactory Factory;
 
@@ -61,7 +62,7 @@ namespace Versioned_MovieServiceExample
                 new Discount { Id = 3, MovieDiscount = 3, MovieId = 3, UserId = 1 },
             };
 
-            Rules = new VersionedFactRuleCollection
+            Rules = new FactRuleCollection
             {
                 // If we have a user, then we can find out his email.
                 (Version2019 _, UserFact fact) => new UserEmailFact(fact.Value.Email),

@@ -1,9 +1,9 @@
 ﻿using FactFactory.TestsCommon;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using Collection = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRuleCollection;
-using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
+using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactory.VersionedTests.VersionedFactRuleCollection.Env
 {
@@ -12,7 +12,7 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection.Env
     {
         protected GivenBlock<Collection> GivenCreateCollection(bool isReadOnly = false)
         {
-            return Given("Create collection", () => new Collection(Enumerable.Empty<Rule>(), isReadOnly));
+            return Given("Create collection", () => new Collection(Enumerable.Empty<FactRule>(), isReadOnly));
         }
     }
 }

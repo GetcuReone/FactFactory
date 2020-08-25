@@ -11,7 +11,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// </summary>
     public abstract class FactRuleBase : FactWorkBase, IFactRule
     {
-        private readonly Func<IFactContainer, IWantAction, IFact> _func;
+        private readonly Func<IEnumerable<IFact>, IFact> _func2;
 
         /// <summary>
         /// Information on output fact.
@@ -24,12 +24,12 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="func">Func for calculate.</param>
         /// <param name="inputFactTypes">Information on input factacles rules.</param>
         /// <param name="outputFactType">Information on output fact.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
+        /// /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
         /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
-        protected FactRuleBase(Func<IFactContainer, IWantAction, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+        protected FactRuleBase(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
             : base(inputFactTypes)
         {
-            _func = func ?? throw new ArgumentNullException(nameof(func));
+            _func2 = func ?? throw new ArgumentNullException(nameof(func));
             if (outputFactType == null)
                 throw new ArgumentNullException(nameof(outputFactType));
 
@@ -37,28 +37,6 @@ namespace GetcuReone.FactFactory.BaseEntities
 
             if (InputFactTypes.Any(factType => factType.EqualsFactType(outputFactType)))
                 throw new ArgumentException("Cannot request a fact calculated according to the rule.", nameof(inputFactTypes));
-
-        }
-
-        /// <inheritdoc/>
-        public virtual IFact Calculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
-            where TContainer : IFactContainer
-            where TWantAction : IWantAction
-        {
-            IFact fact = _func(container, wantAction);
-
-            if (fact != null)
-                fact.CalculatedByRule = true;
-
-            return fact;
-        }
-
-        /// <inheritdoc/>
-        public virtual bool CanCalculate<TContainer, TWantAction>(TContainer container, TWantAction wantAction)
-            where TContainer : IFactContainer
-            where TWantAction : IWantAction
-        {
-            return InputFactTypes.All(factInfo => !factInfo.GetFacts(container).IsNullOrEmpty());
         }
 
         /// <inheritdoc/>
@@ -79,22 +57,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public virtual List<IFactType> GetNecessaryFactTypes<TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container)
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        public virtual IFact Calculate(IEnumerable<IFact> requireFacts)
         {
-            List<IFactType> result = InputFactTypes.ToList();
-
-            foreach(var fact in container)
-            {
-                IFactType type = fact.GetFactType();
-                IFactType notNeedFact = InputFactTypes.FirstOrDefault(t => t.EqualsFactType(type));
-
-                if (notNeedFact != null)
-                    result.Remove(notNeedFact);
-            }
-
-            return result;
+            return _func2(requireFacts);
         }
     }
 }

@@ -5,6 +5,7 @@ using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,7 +13,7 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
 {
     internal static class ConditionHelper
     {
-        internal static bool CanDeriveFact<TFactWork, TFactRule, TWantAction, TFactContainer>(IFactType searchFactType, TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
+        internal static bool CanDeriveFact<TFactWork, TFactRule, TWantAction, TFactContainer>(IConditionFact conditionFact, IFactType searchFactType, TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TFactRule : IFactRule
             where TWantAction : IWantAction
@@ -21,8 +22,9 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
             if (context.SingleEntity.CanExtractFact(searchFactType, factWork, context))
                 return true;
 
-            var rulesWithoutCurrentFact = compatibleRules
-                .Where(rule => rule.InputFactTypes.All(factType => !factType.EqualsFactType(searchFactType)))
+            var rulesWithoutConditionFact = compatibleRules
+                .Where(rule => rule.InputFactTypes
+                    .All(factType => !factType.EqualsFactType(context.Cache.GetFactType(conditionFact))))
                 .ToList();
 
             var request = new BuildTreeForFactInfoRequest<TFactRule, TWantAction, TFactContainer>
@@ -32,10 +34,8 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
                 {
                     Cache = context.Cache,
                     Container = context.Container,
-                    FactRules = compatibleRules
-                        .Where(rule => rule.InputFactTypes.All(factType => !factType.EqualsFactType(searchFactType)))
-                        .ToList(),
-                    SingleEntity  =context.SingleEntity,
+                    FactRules = rulesWithoutConditionFact,
+                    SingleEntity = context.SingleEntity,
                     TreeBuilding = context.TreeBuilding,
                     WantAction = context.WantAction,
                 },
