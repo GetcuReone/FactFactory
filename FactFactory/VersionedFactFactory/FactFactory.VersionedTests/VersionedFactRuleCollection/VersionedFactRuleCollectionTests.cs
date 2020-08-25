@@ -13,7 +13,6 @@ using Rule = GetcuReone.FactFactory.Versioned.Entities.VersionedFactRule;
 namespace FactFactory.VersionedTests.VersionedFactRuleCollection
 {
     [TestClass]
-    [Ignore]
     public sealed class VersionedFactRuleCollectionTests : VersionedFactRuleCollectionTestBase
     {
         [TestMethod]
