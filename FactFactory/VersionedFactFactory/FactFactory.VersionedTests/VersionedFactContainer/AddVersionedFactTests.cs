@@ -6,6 +6,7 @@ using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
@@ -92,19 +93,14 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(new FactResult(0).SetVersionParam(new Version1()));
                     container.Add(new FactResult(0).SetVersionParam(new Version2()));
                 })
-                .Then("Check result.", container =>
-                {
-                    Assert.AreEqual(2, container.Count(), "The container must contain two facts.");
-
-                    foreach (var fact in container)
-                        Assert.IsTrue(fact is FactResult, "Only one type of fact was expected.");
-
-                    var fact1 = container.First();
-                    var fact2 = container.Last();
-
-                    Assert.IsTrue(fact1.GetVersionOrNull() is Version1, "FactResult with 1 version not contained in container.");
-                    Assert.IsTrue(fact2.GetVersionOrNull() is Version2, "FactResult with 2 version not contained in container.");
-                });
+                .ThenAreEqual(container => 
+                    container.Count(), 2, errorMessage: "The container must contain two facts.")
+                .AndIsTrue(container =>
+                    container.All(fact => fact is FactResult), errorMessage: "Only one type of fact was expected.")
+                .AndIsTrue(container => 
+                    container.First().GetVersionOrNull() is Version1, errorMessage: "FactResult with 1 version not contained in container.")
+                .AndIsTrue(container =>
+                    container.Last().GetVersionOrNull() is Version2, errorMessage: "FactResult with 2 version not contained in container.");
         }
     }
 }
