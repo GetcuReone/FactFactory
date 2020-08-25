@@ -10,6 +10,7 @@ using GetcuReone.FactFactory.Helpers;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
+using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,7 +84,7 @@ namespace GetcuReone.FactFactory
             // Create a copy of the requested actions. To work with a collection that does not change during the construction of the tree.
             var wantActions = new List<TWantAction>(WantActions);
 
-            var request = new Interfaces.Operations.Entities.BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+            var request = new BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
             {
                 FactRules = rules,
                 WantActionContexts = wantActions.ConvertAll(wantAction => 
