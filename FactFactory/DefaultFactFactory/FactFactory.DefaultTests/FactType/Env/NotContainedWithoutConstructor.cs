@@ -14,11 +14,6 @@ namespace FactFactoryTests.FactType.Env
 
         }
 
-        public override bool Condition<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-        {
-            throw new NotImplementedException();
-        }
-
         public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
         {
             throw new NotImplementedException();

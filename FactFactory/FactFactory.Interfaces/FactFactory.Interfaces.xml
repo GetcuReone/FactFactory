@@ -736,26 +736,6 @@
             A special fact that is created using a factory when building a tree or calculating facts.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact.FactType">
-            <summary>
-            Information about the type of fact the current runtime fact is working with.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact.Condition``3(``0,``1,``2)">
-            <summary>
-            A condition that determines whether the current fact can be added to the container when deriving.
-            </summary>
-            <typeparam name="TFactWork"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="factWork">Work for which we learn about the possibility of using the fact.</param>
-            <param name="wantAction">The action in the context of which we do this.</param>
-            <param name="container">Container.</param>
-            <returns></returns>
-            <remarks>
-            Using it, you can determine which rule and under what conditions can be used to build a rule tree.
-            </remarks>
-        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
             <summary>
             A condition that determines whether the current fact can be added to the container when deriving.

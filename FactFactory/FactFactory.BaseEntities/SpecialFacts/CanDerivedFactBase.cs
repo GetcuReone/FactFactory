@@ -1,6 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
-using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
@@ -12,12 +11,6 @@ namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
     public abstract class CanDerivedFactBase<TFact> : ConditionFactBase<TFact>
         where TFact : IFact
     {
-        /// <inheritdoc/>
-        public override bool Condition<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-        {
-            return true;
-        }
-
         /// <inheritdoc/>
         public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
         {
