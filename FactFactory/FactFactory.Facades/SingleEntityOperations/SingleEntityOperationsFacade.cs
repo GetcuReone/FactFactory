@@ -38,7 +38,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
-            return x.CompareTo(y, context);
+            return x.CompareTo(y);
         }
 
         /// <inheritdoc/>

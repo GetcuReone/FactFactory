@@ -152,17 +152,24 @@
             <param name="facts"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CompareTo``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CompareTo``1(``0,``0)">
             <summary>
             Compare fact rules.
             </summary>
             <typeparam name="TFactRule"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
             <param name="x"></param>
             <param name="y"></param>
-            <param name="context"></param>
             <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.FirstFactByFactType``1(System.Collections.Generic.IEnumerable{``0},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)">
+            <summary>
+            The first fact of the same type.
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="facts">Fact list.</param>
+            <param name="factType">Fact type.</param>
+            <param name="cache">Cache.</param>
+            <returns>Fact or null.</returns>
         </member>
     </members>
 </doc>

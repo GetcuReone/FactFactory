@@ -3,6 +3,7 @@ using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
+using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
@@ -181,16 +182,11 @@ namespace GetcuReone.FactFactory
         /// Compare fact rules.
         /// </summary>
         /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        /// <param name="context"></param>
         /// <returns></returns>
-        public static int CompareTo<TFactRule, TWantAction, TFactContainer>(this TFactRule x, TFactRule y, IWantActionContext<TWantAction, TFactContainer> context)
+        public static int CompareTo<TFactRule>(this TFactRule x, TFactRule y)
             where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             if ((x is IWantAction) || (y is IWantAction))
                 return 0;
@@ -237,6 +233,20 @@ namespace GetcuReone.FactFactory
             if (x.InputFactTypes.Count < y.InputFactTypes.Count)
                 return 1;
             return 0;
+        }
+
+        /// <summary>
+        /// The first fact of the same type.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="facts">Fact list.</param>
+        /// <param name="factType">Fact type.</param>
+        /// <param name="cache">Cache.</param>
+        /// <returns>Fact or null.</returns>
+        public static TFact FirstFactByFactType<TFact>(this IEnumerable<TFact> facts, IFactType factType, IFactTypeCache cache)
+            where TFact : IFact
+        {
+            return facts.FirstOrDefault(fact => cache.GetFactType(fact).EqualsFactType(factType));
         }
     }
 }

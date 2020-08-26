@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
+using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
@@ -56,18 +57,17 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Get version fact by type.
+        /// The first version fact of the same type.
         /// </summary>
-        /// <param name="facts"></param>
-        /// <param name="factTypeVersion"></param>
-        /// <returns></returns>
-        public static IVersionFact GetVersionByType(this IEnumerable<IFact> facts, IFactType factTypeVersion)
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="facts">Fact list.</param>
+        /// <param name="factType">Fact type of version.</param>
+        /// <param name="cache">Cache.</param>
+        /// <returns>Version or null.</returns>
+        public static IVersionFact FirstVersionByFactType<TFact>(this IEnumerable<TFact> facts, IFactType factType, IFactTypeCache cache)
+            where TFact : IFact
         {
-            var versionFact = factTypeVersion.GetFacts(facts).FirstOrDefault();
-            if (versionFact == null)
-                throw CommonHelper.CreateException(VersionedErrorCode.VersionNotFound, $"No version fact '{factTypeVersion.FactName}' found");
-
-            return versionFact as IVersionFact;
+            return facts.FirstFactByFactType(factType, cache) as IVersionFact;
         }
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace GetcuReone.FactFactory.Versioned
             if (yVersionType == null)
                 return -1;
 
-            IVersionFact xVersion = context.Container.GetVersionByType(xVersionType);
-            IVersionFact yVersion = context.Container.GetVersionByType(yVersionType);
+            IVersionFact xVersion = context.Container.FirstVersionByFactType(xVersionType, context.Cache);
+            IVersionFact yVersion = context.Container.FirstVersionByFactType(yVersionType, context.Cache);
 
             return xVersion.CompareTo(yVersion);
         }

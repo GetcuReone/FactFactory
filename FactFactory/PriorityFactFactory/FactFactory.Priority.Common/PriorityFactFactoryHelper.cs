@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Priority.Constants;
+using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Priority
 {
