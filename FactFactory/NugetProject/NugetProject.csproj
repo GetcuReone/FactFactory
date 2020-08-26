@@ -24,6 +24,10 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+
     <PropertyGroup Condition="'$(PackageVersion)'==''">
         <PackageVersion>1.0.0</PackageVersion>
     </PropertyGroup>
