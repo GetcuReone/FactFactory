@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
@@ -67,6 +68,35 @@ namespace GetcuReone.FactFactory.Versioned
                 throw CommonHelper.CreateException(VersionedErrorCode.VersionNotFound, $"No version fact '{factTypeVersion.FactName}' found");
 
             return versionFact as IVersionFact;
+        }
+
+        /// <summary>
+        /// Compare fact rules by version.
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static int CompareByVersion<TFactRule, TWantAction, TFactContainer>(this TFactRule x, TFactRule y, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            var xVersionType = x.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
+            var yVersionType = y.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
+
+            if (xVersionType == null)
+                return yVersionType == null ? 0 : 1;
+            if (yVersionType == null)
+                return -1;
+
+            IVersionFact xVersion = context.Container.GetVersionByType(xVersionType);
+            IVersionFact yVersion = context.Container.GetVersionByType(yVersionType);
+
+            return xVersion.CompareTo(yVersion);
         }
     }
 }

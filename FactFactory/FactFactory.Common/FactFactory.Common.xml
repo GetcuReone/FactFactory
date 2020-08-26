@@ -152,5 +152,17 @@
             <param name="facts"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CompareTo``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <summary>
+            Compare fact rules.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

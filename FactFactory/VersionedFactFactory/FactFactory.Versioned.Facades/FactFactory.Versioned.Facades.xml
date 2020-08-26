@@ -10,15 +10,6 @@
         <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.CompareFactRules``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.CompareRulesByVersion``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
-            <summary>
-            Compare rules by version.
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.GetCompatibleRules``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
             <inheritdoc/>
         </member>
