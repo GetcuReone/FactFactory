@@ -18,6 +18,7 @@
     <ProjectReference Include="..\..\FactFactory\FactFactory.csproj" />
     <ProjectReference Include="..\FactFactory.Versioned.BaseEntities\FactFactory.Versioned.BaseEntities.csproj" />
     <ProjectReference Include="..\FactFactory.Versioned.Common\FactFactory.Versioned.Common.csproj" />
+    <ProjectReference Include="..\FactFactory.Versioned.Entities\FactFactory.Versioned.Entities.csproj" />
     <ProjectReference Include="..\FactFactory.Versioned.Facades\FactFactory.Versioned.Facades.csproj" />
   </ItemGroup>
 
