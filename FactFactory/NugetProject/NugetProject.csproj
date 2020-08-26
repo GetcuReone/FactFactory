@@ -94,6 +94,10 @@
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
+        <ProjectReference Include="..\VersionedFactFactory\FactFactory.Versioned.Common\FactFactory.Versioned.Common.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
         <ProjectReference Include="..\VersionedFactFactory\FactFactory.Versioned\FactFactory.Versioned.csproj">
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>

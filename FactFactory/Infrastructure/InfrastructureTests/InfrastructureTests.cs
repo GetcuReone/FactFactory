@@ -49,6 +49,8 @@ namespace InfrastructureTests
 
                 string.Format(libPattern, $"{_projectName}.Versioned.Interfaces.dll"),
                 string.Format(libPattern, $"{_projectName}.Versioned.Interfaces.xml"),
+                string.Format(libPattern, $"{_projectName}.Versioned.Common.dll"),
+                string.Format(libPattern, $"{_projectName}.Versioned.Common.xml"),
                 string.Format(libPattern, $"{_projectName}.Versioned.dll"),
                 string.Format(libPattern, $"{_projectName}.Versioned.xml"),
 

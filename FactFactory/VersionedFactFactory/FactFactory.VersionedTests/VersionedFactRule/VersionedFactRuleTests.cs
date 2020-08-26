@@ -1,13 +1,11 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
-using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using GetcuReone.FactFactory.Versioned.Helpers;
+using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 
 namespace FactFactory.VersionedTests.VersionedFactRule

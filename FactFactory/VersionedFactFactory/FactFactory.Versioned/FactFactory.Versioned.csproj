@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\FactFactory\FactFactory.csproj" />
+    <ProjectReference Include="..\FactFactory.Versioned.Common\FactFactory.Versioned.Common.csproj" />
     <ProjectReference Include="..\FactFactory.Versioned.Interfaces\FactFactory.Versioned.Interfaces.csproj" />
   </ItemGroup>
 

@@ -1,17 +1,14 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using CommonErrorCode = GetcuReone.FactFactory.Constants.ErrorCode;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
 
-namespace GetcuReone.FactFactory.Versioned.Helpers
+namespace GetcuReone.FactFactory.Versioned
 {
     /// <summary>
-    /// Helper for <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>
+    /// Helper for <see cref="IVersionedFactFactory{TFactRule, TFactRuleCollection, TWantAction, TFactContainer}"/>.
     /// </summary>
     public static class VersionedFactFactoryHelper
     {
@@ -57,7 +54,13 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
             return factTypes.FirstOrDefault(type => type.IsFactType<IVersionFact>());
         }
 
-        internal static IVersionFact GetVersionFact(this IEnumerable<IFact> facts, IFactType factTypeVersion)
+        /// <summary>
+        /// Get version fact by type.
+        /// </summary>
+        /// <param name="facts"></param>
+        /// <param name="factTypeVersion"></param>
+        /// <returns></returns>
+        public static IVersionFact GetVersionByType(this IEnumerable<IFact> facts, IFactType factTypeVersion)
         {
             var versionFact = factTypeVersion.GetFacts(facts).FirstOrDefault();
             if (versionFact == null)

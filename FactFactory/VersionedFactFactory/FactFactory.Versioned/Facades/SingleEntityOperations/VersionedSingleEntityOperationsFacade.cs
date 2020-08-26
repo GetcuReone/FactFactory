@@ -4,7 +4,6 @@ using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Versioned.Constants;
-using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,8 +43,8 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (yVersionType == null)
                 return -1;
 
-            IVersionFact xVersion = context.Container.GetVersionFact(xVersionType);
-            IVersionFact yVersion = context.Container.GetVersionFact(yVersionType);
+            IVersionFact xVersion = context.Container.GetVersionByType(xVersionType);
+            IVersionFact yVersion = context.Container.GetVersionByType(yVersionType);
 
             return xVersion.CompareTo(yVersion);
         }

@@ -2,8 +2,6 @@
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations;
-using GetcuReone.FactFactory.Versioned.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
