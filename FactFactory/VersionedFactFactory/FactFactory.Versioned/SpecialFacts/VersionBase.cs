@@ -1,55 +1,50 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.BaseEntities.SpecialFacts;
+using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Versioned.Interfaces;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
     /// <summary>
     /// Base class for version facts.
     /// </summary>
-    public abstract class VersionBase<TVersion> : VersionedFactBase<TVersion>, IVersionFact
+    public abstract class VersionBase<TVersion> : SpecialFactBase, IVersionFact
     {
+        /// <summary>
+        /// Value version.
+        /// </summary>
+        public TVersion ValueVersion { get; }
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="version">version</param>
-        protected VersionBase(TVersion version) : base(version)
+        protected VersionBase(TVersion version)
         {
+            ValueVersion = version;
         }
 
         /// <summary>
-        /// True - the version of the current fact is equal <paramref name="versionFact"/>.
+        /// Error creating version incompatibility.
         /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
+        /// <param name="versionedFact"></param>
         /// <returns></returns>
-        public abstract bool EqualVersion<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact;
-
-        /// <summary>
-        /// True - the version of the current fact is less than <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
-        public abstract bool IsLessThan<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact;
-
-        /// <summary>
-        /// True - the version of the current fact is more than <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
-        public abstract bool IsMoreThan<TVersionFact>(TVersionFact versionFact) where TVersionFact : IVersionFact;
-
-        /// <summary>
-        /// Is the fact contained in the container.
-        /// </summary>
-        /// <typeparam name="TFact1"></typeparam>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        public bool IsFactContained<TFact1>(IFactContainer<TFact1> container)
-            where TFact1 : IFact
+        protected virtual FactFactoryException CreateIncompatibilityVersionException(IVersionFact versionedFact)
         {
-            return GetFactType().TryGetFact(container, out TFact1 _);
+            return CommonHelper.CreateException(ErrorCode.InvalidFactType, $"Unable to compare versions {GetFactType().FactName} and {versionedFact.GetFactType().FactName}.");
+        }
+
+        /// <inheritdoc/>
+        public abstract int CompareTo(IVersionFact other);
+
+        /// <summary>
+        /// Extract <see cref="VersionBase{TVersion}.ValueVersion"/>.
+        /// </summary>
+        /// <param name="fact"></param>
+        public static implicit operator TVersion(VersionBase<TVersion> fact)
+        {
+            return fact.ValueVersion;
         }
     }
 }

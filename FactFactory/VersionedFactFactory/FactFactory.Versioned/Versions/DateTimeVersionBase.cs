@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Versioned.SpecialFacts;
+﻿using GetcuReone.FactFactory.Versioned.Interfaces;
+using GetcuReone.FactFactory.Versioned.SpecialFacts;
 using System;
 
 namespace GetcuReone.FactFactory.Versioned.Versions
@@ -16,46 +17,19 @@ namespace GetcuReone.FactFactory.Versioned.Versions
         {
         }
 
-        /// <summary>
-        /// True - the version of the current fact is equal <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
-        public override bool EqualVersion<TVersionFact>(TVersionFact versionFact)
+        /// <inheritdoc/>
+        public override int CompareTo(IVersionFact other)
         {
-            if (versionFact is VersionedFactBase<DateTime> factDateTime)
-                return Value == factDateTime.Value;
+            switch (other)
+            {
+                case VersionBase<DateTime> version:
+                    return ValueVersion.CompareTo(version);
+                case FactBase<DateTime> version:
+                    return ValueVersion.CompareTo(version);
 
-            return false;
-        }
-
-        /// <summary>
-        /// True - the version of the current fact is less than <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
-        public override bool IsLessThan<TVersionFact>(TVersionFact versionFact)
-        {
-            if (versionFact is VersionedFactBase<DateTime> factDateTime)
-                return Value < factDateTime.Value;
-
-            return false;
-        }
-
-        /// <summary>
-        /// True - the version of the current fact is more than <paramref name="versionFact"/>.
-        /// </summary>
-        /// <typeparam name="TVersionFact"></typeparam>
-        /// <param name="versionFact"></param>
-        /// <returns></returns>
-        public override bool IsMoreThan<TVersionFact>(TVersionFact versionFact)
-        {
-            if (versionFact is VersionedFactBase<DateTime> factDateTime)
-                return Value > factDateTime.Value;
-
-            return false;
+                default:
+                    throw CreateIncompatibilityVersionException(other);
+            }
         }
     }
 }

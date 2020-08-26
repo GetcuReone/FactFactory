@@ -18,8 +18,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             var version1 = new Version1();
             var version2 = new Version2();
 
-            var factResult1 = new FactResult(0, version1);
-            var factResult2 = new FactResult(0, version2);
+            var factResult1 = new FactResult(0).SetVersionParam(version1);
+            var factResult2 = new FactResult(0).SetVersionParam(version2);
             var factResultWithoutVersion = new FactResult(0);
 
             GivenCreateContainer()
@@ -29,7 +29,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(factResult2);
                     container.Add(factResultWithoutVersion);
                 })
-                .When("Try get fact.", container => container.Remove<FactResult>())
+                .When("Try get fact.", container => 
+                    container.Remove<FactResult>())
                 .Then("Check result.", container =>
                 {
                     foreach (var fact in container)
@@ -46,8 +47,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             var version1 = new Version1();
             var version2 = new Version2();
 
-            var factResult1 = new FactResult(0, version1);
-            var factResult2 = new FactResult(0, version2);
+            var factResult1 = new FactResult(0).SetVersionParam(version1);
+            var factResult2 = new FactResult(0).SetVersionParam(version2);
             var factResultWithoutVersion = new FactResult(0);
 
             GivenCreateContainer()
@@ -57,7 +58,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(factResult2);
                     container.Add(factResultWithoutVersion);
                 })
-                .When("Try get fact.", container => container.RemoveByVersion<FactResult>(version1))
+                .When("Try get fact.", container => 
+                    container.RemoveByVersion<FactResult>(version1))
                 .Then("Check result.", container =>
                 {
                     foreach (var fact in container)
