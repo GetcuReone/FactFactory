@@ -24,11 +24,20 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(PackageVersion)'==''">
+        <PackageVersion>1.0.0</PackageVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(RepositoryBranch)'==''">
+        <RepositoryBranch>develop</RepositoryBranch>
+    </PropertyGroup>
+
     <PropertyGroup>
         <!--Transfer information to a nuspec file-->
         <NuspecFile>.nuspec</NuspecFile>
         <!--General Information Transfer-->
         <NuspecProperties>$(NuspecProperties);id=$(PackageId)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);version=$(PackageVersion)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);author=$(Authors)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);Description=$(Description)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);PackageTags=$(PackageTags)</NuspecProperties>
@@ -38,6 +47,7 @@
         <NuspecProperties>$(NuspecProperties);PackageProjectUrl=$(PackageProjectUrl)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);RepositoryType=$(RepositoryType)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);RepositoryUrl=$(RepositoryUrl)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);RepositoryBranch=$(RepositoryBranch)</NuspecProperties>
         <!--Transfer license information-->
         <NuspecProperties>$(NuspecProperties);PackageLicenseFile=$(PackageLicenseFile)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);PackageRequireLicenseAcceptance=$(PackageRequireLicenseAcceptance)</NuspecProperties>
@@ -45,14 +55,6 @@
         <!--Transfer another information-->
         <NuspecProperties>$(NuspecProperties);Configuration=$(Configuration)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);TargetFramework=$(TargetFramework)</NuspecProperties>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(PackageVersion)'==''">
-        <PackageVersion>1.0.0</PackageVersion>
-    </PropertyGroup>
-
-    <PropertyGroup>
-        <NuspecProperties>$(NuspecProperties);version=$(PackageVersion)</NuspecProperties>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
