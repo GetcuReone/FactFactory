@@ -79,24 +79,14 @@
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Remove``1">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Constants.ErrorCode">
+        <member name="T:GetcuReone.FactFactory.Versioned.Constants.VersionedErrorCode">
             <summary>
             Codes for errors in work <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4"/>.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.Constants.ErrorCode.VersionNotFound">
+        <member name="F:GetcuReone.FactFactory.Versioned.Constants.VersionedErrorCode.VersionNotFound">
             <summary>
             'VersionNotFound'. No fact was found in the container with information about the required version.
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.Constants.ErrorCode.VersionConflict">
-            <summary>
-            Version conflict.
-            </summary>
-        </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.Constants.ErrorCode.OnlyOneVersionFact">
-            <summary>
-            There should be only one version fact.
             </summary>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Constants.VersionedFactParametersCodes">

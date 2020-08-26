@@ -61,7 +61,7 @@ namespace GetcuReone.FactFactory.Versioned.Helpers
         {
             var versionFact = factTypeVersion.GetFacts(facts).FirstOrDefault();
             if (versionFact == null)
-                throw CommonHelper.CreateException(ErrorCode.VersionNotFound, $"No version fact '{factTypeVersion.FactName}' found");
+                throw CommonHelper.CreateException(VersionedErrorCode.VersionNotFound, $"No version fact '{factTypeVersion.FactName}' found");
 
             return versionFact as IVersionFact;
         }
