@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieServiceExample", "Movi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactoryTests", "FactFactoryTests\FactFactoryTests.csproj", "{9CAD9AC5-61F2-4723-9114-00E2C58A3A0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactFactory.Versioned.Interfaces", "VersionedFactFactory\FactFactory.Versioned.Interfaces\FactFactory.Versioned.Interfaces.csproj", "{9147FC60-2D32-4C53-A650-74EFB3AF3DD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{9CAD9AC5-61F2-4723-9114-00E2C58A3A0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CAD9AC5-61F2-4723-9114-00E2C58A3A0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CAD9AC5-61F2-4723-9114-00E2C58A3A0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9147FC60-2D32-4C53-A650-74EFB3AF3DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9147FC60-2D32-4C53-A650-74EFB3AF3DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9147FC60-2D32-4C53-A650-74EFB3AF3DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9147FC60-2D32-4C53-A650-74EFB3AF3DD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +113,7 @@ Global
 		{90291275-0D7E-4846-89BF-95C77A4BA498} = {3547EA62-D78C-4D23-A846-451179E70B32}
 		{3AC49AB3-93F2-4A96-A408-7CBC3B12B130} = {F59B953D-A6E3-435D-BCDD-4D1F22B2A036}
 		{BBA497E3-6ABB-4E6D-9925-C107CA138E6C} = {3547EA62-D78C-4D23-A846-451179E70B32}
+		{9147FC60-2D32-4C53-A650-74EFB3AF3DD1} = {3547EA62-D78C-4D23-A846-451179E70B32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FC41382-9108-4BAA-806E-C2CFE2D98DB2}
