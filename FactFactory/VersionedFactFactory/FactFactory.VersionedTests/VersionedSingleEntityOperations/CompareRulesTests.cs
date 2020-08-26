@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 {
     [TestClass]
-    public sealed class CompareRulesByVersionTests : VersionedSingleEntityOperationsTestBase
+    public sealed class CompareRulesTests : VersionedSingleEntityOperationsTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
@@ -18,12 +18,12 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
         public void ComparisonRulesWithoutVersionTestCase()
         {
             var first = GetFactRule((Fact1 _, Fact2 __) => new FactResult(default));
-            var second = GetFactRule((Fact1 _) => new FactResult(default));
+            var second = GetFactRule((Fact2 _, Fact1 __) => new FactResult(default));
             const int expectedValue = 0;
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade => 
-                    facade.CompareRulesByVersion(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
+                    facade.CompareFactRules(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -39,7 +39,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareRulesByVersion(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
+                    facade.CompareFactRules(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -55,7 +55,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareRulesByVersion(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
+                    facade.CompareFactRules(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -71,7 +71,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareRulesByVersion(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
+                    facade.CompareFactRules(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -87,7 +87,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareRulesByVersion(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
+                    facade.CompareFactRules(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
 
@@ -98,12 +98,12 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
         public void ComparisonRulesWithVersion_3_TestCase()
         {
             var first = GetFactRule((Fact1 _, Fact2 __, Version2 ___) => new FactResult(default));
-            var second = GetFactRule((Fact1 _, Version2 __) => new FactResult(default));
+            var second = GetFactRule((Fact2 _, Fact1 __, Version2 ___) => new FactResult(default));
             const int expectedValue = 0;
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareRulesByVersion(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
+                    facade.CompareFactRules(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
                 .ThenAreEqual(expectedValue);
         }
     }

@@ -14,39 +14,13 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
     public class VersionedSingleEntityOperationsFacade : SingleEntityOperationsFacade
     {
         /// <inheritdoc/>
-        public override int CompareFactRules<TFactRule, TWantAction, TFactContainer>(TFactRule first, TFactRule second, IWantActionContext<TWantAction, TFactContainer> context)
+        public override int CompareFactRules<TFactRule, TWantAction, TFactContainer>(TFactRule x, TFactRule y, IWantActionContext<TWantAction, TFactContainer> context)
         {
-            int resultByVersion = CompareRulesByVersion(first, second, context);
+            int resultByVersion = x.CompareByVersion(y, context);
             if (resultByVersion != 0)
                 return resultByVersion;
 
-            return base.CompareFactRules(first, second, context);
-        }
-
-        /// <summary>
-        /// Compare rules by version.
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        public virtual int CompareRulesByVersion<TFactRule, TWantAction, TFactContainer>(TFactRule x, TFactRule y, IWantActionContext<TWantAction, TFactContainer> context)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
-        {
-            var xVersionType = x.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
-            var yVersionType = y.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
-
-            if (xVersionType == null)
-                return yVersionType == null ? 0 : 1;
-            if (yVersionType == null)
-                return -1;
-
-            IVersionFact xVersion = context.Container.GetVersionByType(xVersionType);
-            IVersionFact yVersion = context.Container.GetVersionByType(yVersionType);
-
-            return xVersion.CompareTo(yVersion);
+            return base.CompareFactRules(x, y, context);
         }
 
         /// <inheritdoc/>

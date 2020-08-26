@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
@@ -174,6 +175,68 @@ namespace GetcuReone.FactFactory
             where TFact : IFact
         {
             return (TFact)facts.First(fact => fact is TFact);
+        }
+
+        /// <summary>
+        /// Compare fact rules.
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static int CompareTo<TFactRule, TWantAction, TFactContainer>(this TFactRule x, TFactRule y, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            if ((x is IWantAction) || (y is IWantAction))
+                return 0;
+
+            if (x.InputFactTypes.IsNullOrEmpty())
+            {
+                if (y.InputFactTypes.IsNullOrEmpty())
+                    return 0;
+
+                return y.InputFactTypes.Any(factType => factType.IsFactType<ISpecialFact>())
+                    ? -1
+                    : 1;
+            }
+
+            if (y.InputFactTypes.IsNullOrEmpty())
+            {
+                return x.InputFactTypes.Any(factType => factType.IsFactType<ISpecialFact>())
+                    ? 1
+                    : -1;
+            }
+
+            int xCountCondition = x.InputFactTypes.Count(factType => factType.IsFactType<IConditionFact>());
+            int yCountCondition = y.InputFactTypes.Count(factType => factType.IsFactType<IConditionFact>());
+
+            if (xCountCondition != yCountCondition)
+            {
+                return xCountCondition > yCountCondition
+                    ? 1
+                    : -1;
+            }
+
+            int xCountSpecial = x.InputFactTypes.Count(factType => factType.IsFactType<ISpecialFact>());
+            int yCountSpecial = y.InputFactTypes.Count(factType => factType.IsFactType<ISpecialFact>());
+
+            if (xCountSpecial != yCountSpecial)
+            {
+                return xCountSpecial > yCountSpecial
+                    ? 1
+                    : -1;
+            }
+
+            if (x.InputFactTypes.Count > y.InputFactTypes.Count)
+                return -1;
+            if (x.InputFactTypes.Count < y.InputFactTypes.Count)
+                return 1;
+            return 0;
         }
     }
 }

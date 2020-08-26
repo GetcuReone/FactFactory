@@ -114,7 +114,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
             where TFactContainer : IFactContainer;
 
         /// <summary>
-        /// 
+        /// Run <paramref name="wantActionInfo"/> with input facts.
         /// </summary>
         /// <typeparam name="TWantAction"></typeparam>
         /// <typeparam name="TFactContainer"></typeparam>
