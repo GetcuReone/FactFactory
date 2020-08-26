@@ -601,9 +601,6 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.IsFactType``1">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.GetFacts(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
-            <inheritdoc/>
-        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.FactTypeCache">
             <summary>
             Fact type cache.

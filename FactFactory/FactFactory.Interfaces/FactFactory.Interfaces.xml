@@ -280,13 +280,6 @@
             <typeparam name="TFact"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.GetFacts(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
-            <summary>
-            Returns a subarray whose facts have this <see cref="T:GetcuReone.FactFactory.Interfaces.IFactType"/>.
-            </summary>
-            <param name="facts"></param>
-            <returns></returns>
-        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactWork">
             <summary>
             Basic interface for objects that work directly with facts.
