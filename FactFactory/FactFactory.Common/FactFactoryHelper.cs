@@ -13,7 +13,7 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Common helper for FactFactory.
     /// </summary>
-    public static class FactFactoryCommonHelper
+    public static class FactFactoryHelper
     {
         /// <summary>
         /// True - <paramref name="items"/> is null or empty

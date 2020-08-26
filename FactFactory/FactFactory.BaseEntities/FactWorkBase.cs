@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.BaseEntities
 {

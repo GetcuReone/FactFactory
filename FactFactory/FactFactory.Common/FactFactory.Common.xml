@@ -49,12 +49,12 @@
             Was the fact calculated using the rule.
             </summary>
         </member>
-        <member name="T:GetcuReone.FactFactory.FactFactoryCommonHelper">
+        <member name="T:GetcuReone.FactFactory.FactFactoryHelper">
             <summary>
             Common helper for FactFactory.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             True - <paramref name="items"/> is null or empty
             </summary>
@@ -62,7 +62,7 @@
             <param name="items"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})">
             <summary>
             Convert list to <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1"/>
             </summary>
@@ -70,7 +70,7 @@
             <param name="items"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateException(System.String,System.String)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CreateException(System.String,System.String)">
             <summary>
             Create <see cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException"/>
             </summary>
@@ -78,14 +78,14 @@
             <param name="reason">error reason</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CreateDeriveException(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail})">
             <summary>
             Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException"/>.
             </summary>
             <param name="details"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException(System.String,System.String)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CreateDeriveException(System.String,System.String)">
             <summary>
             Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException"/>.
             </summary>
@@ -93,7 +93,7 @@
             <param name="reason">Error reason.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CreateDeriveException(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction)">
             <summary>
             Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException"/>.
             </summary>
@@ -102,7 +102,7 @@
             <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CreateDeriveException(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CreateDeriveException(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail})">
             <summary>
             Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException"/>.
             </summary>
@@ -112,7 +112,7 @@
             <param name="requiredFacts">The facts that tried to derive.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.IsValidFactType``1(GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.IsValidFactType``1(GetcuReone.FactFactory.Interfaces.IFactType)">
             <summary>
             Is the fact type valid.
             </summary>
@@ -120,7 +120,7 @@
             <param name="factType"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.CannotIsType``1(GetcuReone.FactFactory.Interfaces.IFactType,System.String)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CannotIsType``1(GetcuReone.FactFactory.Interfaces.IFactType,System.String)">
             <summary>
             Cannot is <typeparamref name="TFact"/>.
             </summary>
@@ -129,14 +129,14 @@
             <param name="paramName"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.VerifyFactTypes``1(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.VerifyFactTypes``1(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Type checking facts.
             </summary>
             <typeparam name="TFactBase"></typeparam>
             <param name="factTypes"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.IsCalculatedByRule``1(``0)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.IsCalculatedByRule``1(``0)">
             <summary>
             Was the fact calculated using the rule.
             </summary>
@@ -144,7 +144,7 @@
             <param name="fact"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryCommonHelper.GetFact``1(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.GetFact``1(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <summary>
             Get first fact by type <typeparamref name="TFact"/>.
             </summary>

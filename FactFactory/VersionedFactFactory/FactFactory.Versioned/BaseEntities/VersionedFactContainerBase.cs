@@ -5,7 +5,7 @@ using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Versioned.BaseEntities
 {
