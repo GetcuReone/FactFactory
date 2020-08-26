@@ -1,9 +1,11 @@
 ﻿using FactFactory.Priority.Interfaces;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Priority.Constants;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GetcuReone.FactFactory.Priority
 {
@@ -52,6 +54,35 @@ namespace GetcuReone.FactFactory.Priority
             where TFact : IFact
         {
             return facts.FirstFactByFactType(factType, cache) as IPriorityFact;
+        }
+
+        /// <summary>
+        /// Compare fact rules by 'priority'.
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static int CompareByPriority<TFactRule, TWantAction, TFactContainer>(this TFactRule x, TFactRule y, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            var xPriorityType = x.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IPriorityFact>());
+            var yPriorityType = y.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IPriorityFact>());
+
+            if (xPriorityType == null)
+                return yPriorityType == null ? 0 : -1;
+            if (yPriorityType == null)
+                return 1;
+
+            IPriorityFact xPriority = context.Container.FirstPriorityByFactType(xPriorityType, context.Cache);
+            IPriorityFact yPriority = context.Container.FirstPriorityByFactType(yPriorityType, context.Cache);
+
+            return xPriority.CompareTo(yPriority);
         }
     }
 }
