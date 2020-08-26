@@ -19,10 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.VersionedTests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.TestsCommon", "Infrastructure\FactFactory.TestsCommon\FactFactory.TestsCommon.csproj", "{3AC49AB3-93F2-4A96-A408-7CBC3B12B130}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DefaultFactFactory", "DefaultFactFactory", "{9890ABE3-D733-42A3-9F3C-680FE09CEAA5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.DefaultTests", "DefaultFactFactory\FactFactory.DefaultTests\FactFactory.DefaultTests.csproj", "{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versioned_MovieServiceExample", "VersionedFactFactory\Versioned_MovieServiceExample\Versioned_MovieServiceExample.csproj", "{BBA497E3-6ABB-4E6D-9925-C107CA138E6C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.Interfaces", "FactFactory.Interfaces\FactFactory.Interfaces.csproj", "{34D79D91-821F-429A-92EF-DACC3E80C275}"
@@ -36,6 +32,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.Facades", "FactFactory.Facades\FactFactory.Facades.csproj", "{6E08AB94-B861-4D2D-A646-DF09585027CB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieServiceExample", "MovieServiceExample\MovieServiceExample.csproj", "{79826B2E-EE8A-4F79-8460-EAC31B1C03D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactoryTests", "FactFactoryTests\FactFactoryTests.csproj", "{9CAD9AC5-61F2-4723-9114-00E2C58A3A0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,10 +65,6 @@ Global
 		{3AC49AB3-93F2-4A96-A408-7CBC3B12B130}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AC49AB3-93F2-4A96-A408-7CBC3B12B130}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AC49AB3-93F2-4A96-A408-7CBC3B12B130}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BBA497E3-6ABB-4E6D-9925-C107CA138E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BBA497E3-6ABB-4E6D-9925-C107CA138E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBA497E3-6ABB-4E6D-9925-C107CA138E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -99,6 +93,10 @@ Global
 		{79826B2E-EE8A-4F79-8460-EAC31B1C03D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79826B2E-EE8A-4F79-8460-EAC31B1C03D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79826B2E-EE8A-4F79-8460-EAC31B1C03D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CAD9AC5-61F2-4723-9114-00E2C58A3A0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CAD9AC5-61F2-4723-9114-00E2C58A3A0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CAD9AC5-61F2-4723-9114-00E2C58A3A0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CAD9AC5-61F2-4723-9114-00E2C58A3A0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,7 +106,6 @@ Global
 		{5BFDA09D-ED48-4553-8A65-B9E9570C2DEC} = {3547EA62-D78C-4D23-A846-451179E70B32}
 		{90291275-0D7E-4846-89BF-95C77A4BA498} = {3547EA62-D78C-4D23-A846-451179E70B32}
 		{3AC49AB3-93F2-4A96-A408-7CBC3B12B130} = {F59B953D-A6E3-435D-BCDD-4D1F22B2A036}
-		{ACB0DCAD-1152-4E85-9D54-6B8D88A07D69} = {9890ABE3-D733-42A3-9F3C-680FE09CEAA5}
 		{BBA497E3-6ABB-4E6D-9925-C107CA138E6C} = {3547EA62-D78C-4D23-A846-451179E70B32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
