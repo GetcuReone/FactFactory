@@ -2,7 +2,7 @@
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Versioned.Interfaces;
-using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {

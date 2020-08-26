@@ -9,7 +9,7 @@
 
     <!--Project info-->
     <projectUrl>$PackageProjectUrl$</projectUrl>
-    <repository type="$RepositoryType$" url="$RepositoryUrl$" branch="master"/>
+    <repository type="$RepositoryType$" url="$RepositoryUrl$" branch="$RepositoryBranch$"/>
 
     <!--License info-->
     <license type="file">$PackageLicenseFile$</license>
@@ -20,7 +20,7 @@
 
     <dependencies>
       <group targetFramework=".$TargetFramework$">
-        <dependency id="ComboPatterns" version="[3.0.2,4)" />
+        <dependency id="ComboPatterns" version="[3.0.2,)" />
       </group>
     </dependencies>
   </metadata>

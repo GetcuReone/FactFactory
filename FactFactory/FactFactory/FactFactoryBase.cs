@@ -14,7 +14,7 @@ using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory
 {

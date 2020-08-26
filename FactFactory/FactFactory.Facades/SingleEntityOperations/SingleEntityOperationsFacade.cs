@@ -7,7 +7,7 @@ using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 using System.Linq;
-using CommonHelper = GetcuReone.FactFactory.FactFactoryCommonHelper;
+using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
 {

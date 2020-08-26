@@ -47,6 +47,16 @@ namespace InfrastructureTests
                 string.Format(libPattern, $"{_projectName}.Facades.dll"),
                 string.Format(libPattern, $"{_projectName}.Facades.xml"),
 
+                string.Format(libPattern, $"{_projectName}.Versioned.Interfaces.dll"),
+                string.Format(libPattern, $"{_projectName}.Versioned.Interfaces.xml"),
+                string.Format(libPattern, $"{_projectName}.Versioned.Common.dll"),
+                string.Format(libPattern, $"{_projectName}.Versioned.Common.xml"),
+                string.Format(libPattern, $"{_projectName}.Versioned.Facades.dll"),
+                string.Format(libPattern, $"{_projectName}.Versioned.Facades.xml"),
+                string.Format(libPattern, $"{_projectName}.Versioned.BaseEntities.dll"),
+                string.Format(libPattern, $"{_projectName}.Versioned.BaseEntities.xml"),
+                string.Format(libPattern, $"{_projectName}.Versioned.Entities.dll"),
+                string.Format(libPattern, $"{_projectName}.Versioned.Entities.xml"),
                 string.Format(libPattern, $"{_projectName}.Versioned.dll"),
                 string.Format(libPattern, $"{_projectName}.Versioned.xml"),
 
