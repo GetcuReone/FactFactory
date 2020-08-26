@@ -1,5 +1,4 @@
-﻿using FactFactoryTests.CommonFacts;
-using FactFactory.TestsCommon;
+﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
