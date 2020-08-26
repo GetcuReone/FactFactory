@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <DocumentationFile>FactFactory.Priority.Common.xml</DocumentationFile>
+        <RootNamespace>GetcuReone.FactFactory.Priority</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
+        <DelaySign>false</DelaySign>
+        <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
+        <FileVersion>$(majorVersion).0.0.0</FileVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Update="FactFactory.Priority.Common.xml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>

@@ -1,7 +1,7 @@
 ﻿namespace GetcuReone.FactFactory.Versioned.Constants
 {
     /// <summary>
-    /// Default codes for fact parameter.
+    /// Versioned codes for fact parameter.
     /// </summary>
     public static class VersionedFactParametersCodes
     {
