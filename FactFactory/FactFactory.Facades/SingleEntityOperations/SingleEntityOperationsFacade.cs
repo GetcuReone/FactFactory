@@ -131,7 +131,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             var rule = node.Info.Rule;
             if (context.Container.Any(f => context.Cache.GetFactType(f).EqualsFactType(rule.OutputFactType)))
             {
-                if (!NeedRecalculateFact(rule, context))
+                if (!NeedRecalculateFact(node, context))
                     return false;
             }
 
@@ -180,10 +180,10 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// <typeparam name="TFactRule"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>
         /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="rule"></param>
+        /// <param name="node"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        protected virtual bool NeedRecalculateFact<TFactRule, TWantAction, TFactContainer>(TFactRule rule, IWantActionContext<TWantAction, TFactContainer> context)
+        protected virtual bool NeedRecalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
