@@ -27,9 +27,6 @@
             <param name="facts">An array of facts to add to the container.</param>
             <param name="isReadOnly"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Entities.FactContainer.Copy">
-            <inheritdoc/>
-        </member>
         <member name="T:GetcuReone.FactFactory.Entities.FactParameter">
             <summary>
             Fact parameter.

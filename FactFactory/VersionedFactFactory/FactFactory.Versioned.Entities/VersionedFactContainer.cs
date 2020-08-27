@@ -32,14 +32,5 @@ namespace GetcuReone.FactFactory.Versioned.Entities
         public VersionedFactContainer(IEnumerable<IFact> facts, bool isReadOnly) : base(facts, isReadOnly)
         {
         }
-
-        /// <summary>
-        /// Get copy container.
-        /// </summary>
-        /// <returns></returns>
-        public override IFactContainer Copy()
-        {
-            return new VersionedFactContainer(this, false);
-        }
     }
 }

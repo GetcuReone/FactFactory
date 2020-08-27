@@ -47,19 +47,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         {
             if (container == null)
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "Container cannot be null.");
-
-            IFactContainer containerCopy = container.Copy();
-            if (containerCopy == null)
-                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactContainer.Copy method return null.");
-            if (container.Equals(containerCopy))
-                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
-            if (!(containerCopy is TFactContainer container1))
-                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactContainer.Copy method returned a different type of container.");
-            if (container1.Any(fact => fact is IConditionFact))
+            if (container.Any(fact => fact is IConditionFact))
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, $"Container contains {nameof(IConditionFact)} facts.");
 
-            container1.IsReadOnly = true;
-            return container1;
+            container.IsReadOnly = true;
+            return container;
         }
 
         /// <inheritdoc/>

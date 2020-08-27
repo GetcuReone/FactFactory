@@ -237,13 +237,12 @@ namespace FactFactoryTests.FactFactoryT
                     factory.Derive();
                     return fact;
                 })
-                .Then("Check result.", fact =>
+                .ThenAreEqual(fact7)
+                .And("Check result.", _ =>
                 {
                     Assert.IsNotNull(fact7, "fact7 must derived");
                     Assert.IsNotNull(fact16, "fact16 must derived");
                     Assert.IsNotNull(fact6, "fact6 must derived");
-
-                    Assert.AreNotEqual(fact, fact7, "fact and fact7 must be different");
                 });
         }
 
@@ -314,10 +313,11 @@ namespace FactFactoryTests.FactFactoryT
                 .And("Add default fact.", factFactory => factFactory.DefaultFacts.Add(defaultFact))
                 .When("Run Derive.", factFactory => 
                     factFactory.DeriveFact<DefaultFact>())
-                .Then("Check fact.", fact => 
+                .ThenIsNotNull()
+                .AndAreEqual(defaultFact)
+                .And("Check Container.", _ => 
                 {
-                    Assert.AreEqual(defaultFact, fact, "Expected anothe fact.");
-                    Assert.AreEqual(0, factFactoryCustom.Container.Count(), "Container must be empty");
+                    Assert.AreEqual(1, factFactoryCustom.Container.Count(), "Container must be empty");
                 });
         }
 

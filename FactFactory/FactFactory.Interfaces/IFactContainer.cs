@@ -5,7 +5,7 @@ namespace GetcuReone.FactFactory.Interfaces
     /// <summary>
     /// Container interface with facts for deriving other facts.
     /// </summary>
-    public interface IFactContainer : IEnumerable<IFact>, ICopy<IFactContainer>
+    public interface IFactContainer : IEnumerable<IFact>
     {
         /// <summary>
         /// Gets a value indicating whether the <see cref="IFactContainer"/> is read-only.

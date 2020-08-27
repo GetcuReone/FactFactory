@@ -110,9 +110,6 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Copy">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Clear">
             <inheritdoc/>
         </member>
