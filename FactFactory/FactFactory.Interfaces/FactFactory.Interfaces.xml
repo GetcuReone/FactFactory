@@ -575,7 +575,7 @@
             Single operations on entities of the FactFactory.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.ValidateAndGetContainer``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.ValidateContainer``1(``0)">
             <summary>
             Validate and return a copy of the container.
             </summary>

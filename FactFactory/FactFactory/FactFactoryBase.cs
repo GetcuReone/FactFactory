@@ -70,15 +70,15 @@ namespace GetcuReone.FactFactory
             ITreeBuildingOperations treeBuildingOperations = GetTreeBuildingOperations();
 
             // Validating rules and container.
-            TFactContainer container = singleEntityOperations.ValidateAndGetContainer(Container);
+            singleEntityOperations.ValidateContainer(Container);
             TFactRuleCollection rules = singleEntityOperations.ValidateAndGetRules<TFactRule, TFactRuleCollection>(Rules);
 
             // We fill the container with the default set of facts, if they are missing.
-            foreach (IFact fact in GetDefaultFacts(container) ?? Enumerable.Empty<IFact>())
+            foreach (IFact fact in GetDefaultFacts(Container) ?? Enumerable.Empty<IFact>())
             {
-                if (!container.Contains(fact))
-                    using (container.CreateIgnoreReadOnlySpace())
-                        container.Add(fact);
+                if (!Container.Contains(fact))
+                    using (Container.CreateIgnoreReadOnlySpace())
+                        Container.Add(fact);
             }
 
             // Create a copy of the requested actions. To work with a collection that does not change during the construction of the tree.
@@ -88,7 +88,7 @@ namespace GetcuReone.FactFactory
             {
                 FactRules = rules,
                 WantActionContexts = wantActions.ConvertAll(wantAction => 
-                    wantAction.ConvertWantActionContext(container, cache, singleEntityOperations, treeBuildingOperations)),
+                    wantAction.ConvertWantActionContext(Container, cache, singleEntityOperations, treeBuildingOperations)),
             };
 
             if (!treeBuildingOperations.TryBuildTrees(request, out var result))
@@ -97,7 +97,7 @@ namespace GetcuReone.FactFactory
             foreach(var item in result.TreesByActions)
                 CalculateTreeAndDeriveWantFacts(item.Key, item.Value);
 
-            OnDeriveFinished(wantActions, container);
+            OnDeriveFinished(wantActions, Container);
             wantActions.ForEach(wA =>
             {
                 if (WantActions.Contains(wA))

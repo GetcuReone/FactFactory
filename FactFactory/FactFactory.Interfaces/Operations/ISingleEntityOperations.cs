@@ -16,7 +16,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="container"></param>
         /// <returns></returns>
-        TFactContainer ValidateAndGetContainer<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
+        void ValidateContainer<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
 
         /// <summary>
         /// Validate and return a copy of the rules.
