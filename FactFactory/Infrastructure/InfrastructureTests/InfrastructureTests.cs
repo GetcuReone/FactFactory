@@ -53,6 +53,8 @@ namespace InfrastructureTests
                 string.Format(libPattern, $"{_projectName}.Priority.Common.xml"),
                 string.Format(libPattern, $"{_projectName}.Priority.Facades.dll"),
                 string.Format(libPattern, $"{_projectName}.Priority.Facades.xml"),
+                string.Format(libPattern, $"{_projectName}.Priority.dll"),
+                string.Format(libPattern, $"{_projectName}.Priority.xml"),
 
                 string.Format(libPattern, $"{_projectName}.Versioned.Interfaces.dll"),
                 string.Format(libPattern, $"{_projectName}.Versioned.Interfaces.xml"),

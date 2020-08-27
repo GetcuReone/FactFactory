@@ -1,4 +1,6 @@
-﻿using GetcuReone.FactFactory.Constants;
+﻿using GetcuReone.FactFactory;
+using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Exceptions.Entities;
@@ -62,6 +64,18 @@ namespace FactFactory.TestsCommon.Helpers
         {
             fact.AddParameter(new FactParameter(FactParametersCodes.CalculateByRule, true));
             return fact;
+        }
+
+        public static GivenBlock<TFactory> AndAddRules<TFactory>(this GivenBlock<TFactory> givenBlock, FactRuleCollectionBase<FactRule> factRules)
+            where TFactory : FactFactoryBase<FactRule, FactRuleCollection, WantAction, FactContainer>
+        {
+            return givenBlock.And("Add rules", factory => factory.Rules.AddRange(factRules));
+        }
+
+        public static GivenBlock<TFactory> AndAddFact<TFactory>(this GivenBlock<TFactory> givenBlock, FactBase fact)
+            where TFactory : FactFactoryBase<FactRule, FactRuleCollection, WantAction, FactContainer>
+        {
+            return givenBlock.And("Add fact", factory => factory.Container.Add(fact));
         }
     }
 }

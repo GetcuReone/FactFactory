@@ -24,7 +24,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\Infrastructure\FactFactory.TestsCommon\FactFactory.TestsCommon.csproj" />
-        <ProjectReference Include="..\FactFactory.Priority.Facades\FactFactory.Priority.Facades.csproj" />
+        <ProjectReference Include="..\FactFactory.Priority\FactFactory.Priority.csproj" />
     </ItemGroup>
 
 </Project>

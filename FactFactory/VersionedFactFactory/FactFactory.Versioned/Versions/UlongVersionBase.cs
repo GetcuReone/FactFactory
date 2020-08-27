@@ -22,22 +22,22 @@ namespace GetcuReone.FactFactory.Versioned.Versions
             switch (other)
             {
                 case VersionBase<int> version:
-                    return ValueVersion.CompareTo(version);
+                    return VersionValue.CompareTo(version.VersionValue);
                 case VersionBase<long> version:
-                    return ValueVersion.CompareTo(version);
+                    return VersionValue.CompareTo(version.VersionValue);
                 case VersionBase<uint> version:
-                    return ValueVersion.CompareTo(version);
+                    return VersionValue.CompareTo(version.VersionValue);
                 case VersionBase<ulong> version:
-                    return ValueVersion.CompareTo(version);
+                    return VersionValue.CompareTo(version.VersionValue);
 
                 case FactBase<int> version:
-                    return ValueVersion.CompareTo(version);
+                    return VersionValue.CompareTo(version.Value);
                 case FactBase<long> version:
-                    return ValueVersion.CompareTo(version);
+                    return VersionValue.CompareTo(version.Value);
                 case FactBase<uint> version:
-                    return ValueVersion.CompareTo(version);
+                    return VersionValue.CompareTo(version.Value);
                 case FactBase<ulong> version:
-                    return ValueVersion.CompareTo(version);
+                    return VersionValue.CompareTo(version.Value);
 
                 default:
                     throw CreateIncompatibilityVersionException(other);
