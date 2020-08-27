@@ -1,7 +1,6 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Entities;
-using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -12,7 +11,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// </summary>
     public class VersionedFactFactory : VersionedFactFactoryBase<FactRule, FactRuleCollection, WantAction, VersionedFactContainer>
     {
-        private readonly Func<List<IVersionFact>> _getAllVersionFactsFunc;
+        private readonly Func<IEnumerable<IFact>> _getDefaultFactsFunc;
 
         /// <summary>
         /// Fact container.
@@ -27,21 +26,18 @@ namespace GetcuReone.FactFactory.Versioned
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="getAllVersionFactsFunc">Function that returns all versioned facts used in the rules.</param>
-        public VersionedFactFactory(Func<List<IVersionFact>> getAllVersionFactsFunc)
+        /// <param name="getDefaultFactsFunc">Function that returns default facts.</param>
+        public VersionedFactFactory(Func<IEnumerable<IFact>> getDefaultFactsFunc)
         {
-            _getAllVersionFactsFunc = getAllVersionFactsFunc;
+            _getDefaultFactsFunc = getDefaultFactsFunc;
             Container = new VersionedFactContainer();
             Rules = new FactRuleCollection();
         }
 
-        /// <summary>
-        /// Returns instances of all used versions.
-        /// </summary>
-        /// <returns></returns>
-        protected override IEnumerable<IVersionFact> GetAllVersions()
+        /// <inheritdoc/>
+        protected override IEnumerable<IFact> GetDefaultFacts(VersionedFactContainer container)
         {
-            return _getAllVersionFactsFunc();
+            return _getDefaultFactsFunc?.Invoke() ?? base.GetDefaultFacts(container);
         }
 
         /// <inheritdoc/>

@@ -5,7 +5,6 @@ using GetcuReone.FactFactory.Versioned.BaseEntities;
 using GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace GetcuReone.FactFactory.Versioned
 {
@@ -18,29 +17,6 @@ namespace GetcuReone.FactFactory.Versioned
         where TFactRuleCollection : FactRuleCollectionBase<TFactRule>
         where TWantAction : WantActionBase
     {
-        /// <summary>
-        /// Returns instances of all used versions.
-        /// </summary>
-        /// <returns></returns>
-        protected abstract IEnumerable<IVersionFact> GetAllVersions();
-
-        /// <inheritdoc/>
-        protected override IEnumerable<IFact> GetDefaultFacts(TFactContainer container)
-        {
-            IEnumerable<IFact> allVersionFacts = GetAllVersions() ?? Enumerable.Empty<IFact>();
-
-            List<IVersionFact> defaultVersions = container.Where(version => version is IVersionFact).Select(version => (IVersionFact)version).ToList();
-            List<IFactType> defaultVersionTypes = defaultVersions.ConvertAll(version => version.GetFactType());
-
-            foreach(var version in allVersionFacts)
-            {
-                if (defaultVersionTypes.All(defaultVersion => !defaultVersion.EqualsFactType(version.GetFactType())))
-                    defaultVersions.Add((IVersionFact)version);
-            }
-
-            return defaultVersions;
-        }
-
         /// <inheritdoc/>
         public override ISingleEntityOperations GetSingleEntityOperations()
         {
