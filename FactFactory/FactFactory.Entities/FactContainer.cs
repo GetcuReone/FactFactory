@@ -28,11 +28,5 @@ namespace GetcuReone.FactFactory.Entities
         public FactContainer(IEnumerable<IFact> facts, bool isReadOnly) : base(facts, isReadOnly)
         {
         }
-
-        /// <inheritdoc/>
-        public override IFactContainer Copy()
-        {
-            return new FactContainer(this, IsReadOnly);
-        }
     }
 }

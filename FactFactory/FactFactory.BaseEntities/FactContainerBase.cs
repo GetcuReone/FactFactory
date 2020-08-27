@@ -163,9 +163,6 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public abstract IFactContainer Copy();
-
-        /// <inheritdoc/>
         public virtual void Clear()
         {
             ContainerList.Clear();
