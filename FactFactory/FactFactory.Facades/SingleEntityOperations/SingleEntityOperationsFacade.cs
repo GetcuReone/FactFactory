@@ -170,6 +170,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             return context.Container
                 .Where(fact => factWork.InputFactTypes
                     .Any(inputType => context.Cache.GetFactType(fact).EqualsFactType(inputType)))
+                .OrderByDescending(fact => fact, Comparer<IFact>.Create(CompareFacts))
                 .ToList();
         }
 
@@ -206,6 +207,17 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             foreach (var condition in wantActionInfo.SuccessConditions)
                 using (context.Container.CreateIgnoreReadOnlySpace())
                     context.Container.Remove(condition);
+        }
+
+        /// <summary>
+        /// Comparison of facts.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        protected virtual int CompareFacts(IFact x, IFact y)
+        {
+            return x.CompareTo(y);
         }
     }
 }

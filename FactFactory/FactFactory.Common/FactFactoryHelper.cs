@@ -248,5 +248,24 @@ namespace GetcuReone.FactFactory
         {
             return facts.FirstOrDefault(fact => cache.GetFactType(fact).EqualsFactType(factType));
         }
+
+        /// <summary>
+        /// Compare facts by <see cref="FactParametersCodes.CalculateByRule"/>.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static int CompareTo(this IFact x, IFact y)
+        {
+            if (x.IsCalculatedByRule())
+            {
+                if (!y.IsCalculatedByRule())
+                    return 1;
+            }
+            else if (y.IsCalculatedByRule())
+                return -1;
+
+            return 0;
+        }
     }
 }

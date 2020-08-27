@@ -84,5 +84,24 @@ namespace GetcuReone.FactFactory.Priority
 
             return xPriority.CompareTo(yPriority);
         }
+
+        /// <summary>
+        /// Compare by priority.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static int CompareByPriority(this IFact x, IFact y)
+        {
+            var xPriority = x.GetParameter(PriorityFactParametersCodes.Priority)?.Value as IPriorityFact;
+            var yPriority = y.GetParameter(PriorityFactParametersCodes.Priority)?.Value as IPriorityFact;
+
+            if (xPriority == null)
+                return yPriority != null ? -1 : 0;
+            if (yPriority == null)
+                return 1;
+
+            return xPriority.CompareTo(yPriority);
+        }
     }
 }

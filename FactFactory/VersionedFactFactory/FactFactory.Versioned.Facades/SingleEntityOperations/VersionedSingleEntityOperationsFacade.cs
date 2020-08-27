@@ -96,13 +96,8 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 .ToList();
         }
 
-        /// <summary>
-        /// Comparison of facts.
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
-        protected virtual int CompareFacts(IFact x, IFact y)
+        /// <inheritdoc/>
+        protected override int CompareFacts(IFact x, IFact y)
         {
             if (x.IsCalculatedByRule())
             {
