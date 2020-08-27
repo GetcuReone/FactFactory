@@ -215,7 +215,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        protected virtual int CompareFacts(IFact x, IFact y)
+        public virtual int CompareFacts(IFact x, IFact y)
         {
             return x.CompareTo(y);
         }

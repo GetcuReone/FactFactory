@@ -35,7 +35,7 @@ namespace FactFactory.TestsCommon
             return new FactTypeCache();
         }
 
-        protected IWantActionContext<TWantAction, TFactContainer> GetWantActionContext<TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container, ISingleEntityOperations singleEntity = null, IFactTypeCache cache = null)
+        protected virtual IWantActionContext<TWantAction, TFactContainer> GetWantActionContext<TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container, ISingleEntityOperations singleEntity = null, IFactTypeCache cache = null)
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {

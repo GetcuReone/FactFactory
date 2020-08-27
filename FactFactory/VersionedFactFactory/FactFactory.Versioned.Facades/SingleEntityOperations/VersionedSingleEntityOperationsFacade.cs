@@ -97,7 +97,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        protected override int CompareFacts(IFact x, IFact y)
+        public override int CompareFacts(IFact x, IFact y)
         {
             if (x.IsCalculatedByRule())
             {

@@ -19,7 +19,7 @@ namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        protected override int CompareFacts(IFact x, IFact y)
+        public override int CompareFacts(IFact x, IFact y)
         {
             int defaultCompare = x.CompareTo(y);
 
