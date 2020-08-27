@@ -35,5 +35,14 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
                 ErrorCode.InvalidFactType,
                 $"Unable to compare priorities {GetFactType().FactName} and {priorityFact.GetFactType().FactName}.");
         }
+
+        /// <summary>
+        /// Extract <see cref="PriorityBase{TPriorityValue}.PriorityValue"/>.
+        /// </summary>
+        /// <param name="fact"></param>
+        public static implicit operator TPriorityValue(PriorityBase<TPriorityValue> fact)
+        {
+            return fact.PriorityValue;
+        }
     }
 }
