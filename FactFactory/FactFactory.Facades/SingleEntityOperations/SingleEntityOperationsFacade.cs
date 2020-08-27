@@ -42,7 +42,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual TFactContainer ValidateAndGetContainer<TFactContainer>(TFactContainer container) 
+        public virtual void ValidateContainer<TFactContainer>(TFactContainer container) 
             where TFactContainer : IFactContainer
         {
             if (container == null)
@@ -51,7 +51,6 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, $"Container contains {nameof(IConditionFact)} facts.");
 
             container.IsReadOnly = true;
-            return container;
         }
 
         /// <inheritdoc/>
