@@ -109,6 +109,10 @@
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
+        <ProjectReference Include="..\PriorityFactFactory\FactFactory.Priority\FactFactory.Priority.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
 
         <!-- versioned fact factory references -->
         <ProjectReference Include="..\VersionedFactFactory\FactFactory.Versioned.Interfaces\FactFactory.Versioned.Interfaces.csproj">
