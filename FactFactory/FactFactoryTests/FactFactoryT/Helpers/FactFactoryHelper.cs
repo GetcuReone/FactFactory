@@ -22,18 +22,6 @@ namespace FactFactoryTests.FactFactoryT.Helpers
             });
         }
 
-        public static GivenBlock<TFactory> AndAddRules<TFactory>(this GivenBlock<TFactory> givenBlock, FactRuleCollectionBase<Rule> factRules)
-            where TFactory : FactFactoryBase<Rule, Collection, Action, Container>
-        {
-            return givenBlock.And("Add rules", factory => factory.Rules.AddRange(factRules));
-        }
-
-        public static GivenBlock<TFactory> AndAddFact<TFactory>(this GivenBlock<TFactory> givenBlock, FactBase fact)
-            where TFactory : FactFactoryBase<Rule, Collection, Action, Container>
-        {
-            return givenBlock.And("Add fact", factory => factory.Container.Add(fact));
-        }
-
         public static ThenBlock<TFact> ThenFactEquals<TExpectedValue, TFact>(this WhenBlock<TFact> whenBlock, TExpectedValue expectedValue)
             where TFact : FactBase<TExpectedValue>
         {

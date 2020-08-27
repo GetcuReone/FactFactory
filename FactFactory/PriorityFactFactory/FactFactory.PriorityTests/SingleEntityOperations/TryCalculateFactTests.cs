@@ -1,4 +1,5 @@
-﻿using FactFactory.PriorityTests.CommonFacts;
+﻿using FactFactory.Priority.Interfaces;
+using FactFactory.PriorityTests.CommonFacts;
 using FactFactory.PriorityTests.SingleEntityOperations.Env;
 using FactFactory.TestsCommon;
 using GetcuReone.FactFactory.Entities;
@@ -6,6 +7,7 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using GetcuReone.FactFactory.Priority;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -70,7 +72,9 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
                     Assert.Fail("result must have type FactResult.");
                     return null;
                 })
-                .AndAreEqual(fact => fact.Value, expectedValue);
+                .AndAreEqual(fact => fact.Value, expectedValue)
+                .AndIsTrue(fact => fact.GetPriorityOrNull() != null)
+                .AndIsTrue(fact => fact.GetPriorityOrNull() is IPriorityFact);
         }
     }
 }

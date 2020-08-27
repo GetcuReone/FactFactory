@@ -9,7 +9,7 @@
             Base class for version facts.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.ValueVersion">
+        <member name="P:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.VersionValue">
             <summary>
             Value version.
             </summary>
@@ -32,7 +32,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.op_Implicit(GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase{`0})~`0">
             <summary>
-            Extract <see cref="P:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.ValueVersion"/>.
+            Extract <see cref="P:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.VersionValue"/>.
             </summary>
             <param name="fact"></param>
         </member>
