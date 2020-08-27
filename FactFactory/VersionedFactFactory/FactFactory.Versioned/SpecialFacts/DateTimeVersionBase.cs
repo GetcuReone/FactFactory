@@ -1,8 +1,7 @@
 ﻿using GetcuReone.FactFactory.Versioned.Interfaces;
-using GetcuReone.FactFactory.Versioned.SpecialFacts;
 using System;
 
-namespace GetcuReone.FactFactory.Versioned.Versions
+namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
     /// <summary>
     /// Base class for <see cref="DateTime"/> based version facts.

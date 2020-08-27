@@ -1,18 +1,17 @@
 ﻿using GetcuReone.FactFactory.Versioned.Interfaces;
-using GetcuReone.FactFactory.Versioned.SpecialFacts;
 
-namespace GetcuReone.FactFactory.Versioned.Versions
+namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
     /// <summary>
-    /// Base class for <see cref="long"/> based version facts.
+    /// Base class for <see cref="int"/> based version facts.
     /// </summary>
-    public abstract class LongVersionBase : VersionBase<long>
+    public abstract class IntVersionBase : VersionBase<int>
     {
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="version">version</param>
-        protected LongVersionBase(long version) : base(version)
+        protected IntVersionBase(int version) : base(version)
         {
         }
 

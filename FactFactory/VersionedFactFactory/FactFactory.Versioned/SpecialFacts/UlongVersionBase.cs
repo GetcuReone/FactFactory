@@ -1,7 +1,6 @@
 ﻿using GetcuReone.FactFactory.Versioned.Interfaces;
-using GetcuReone.FactFactory.Versioned.SpecialFacts;
 
-namespace GetcuReone.FactFactory.Versioned.Versions
+namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
     /// <summary>
     /// Base class for <see cref="ulong"/> based version facts.
