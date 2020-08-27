@@ -53,14 +53,14 @@
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.NeedRecalculateFact``3(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.NeedRecalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
             <summary>
             Do I need to recalculate the fact.
             </summary>
             <typeparam name="TFactRule"></typeparam>
             <typeparam name="TWantAction"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
-            <param name="rule"></param>
+            <param name="node"></param>
             <param name="context"></param>
             <returns></returns>
         </member>

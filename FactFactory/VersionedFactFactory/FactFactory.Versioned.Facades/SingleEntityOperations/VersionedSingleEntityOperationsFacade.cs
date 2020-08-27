@@ -134,7 +134,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        protected override bool NeedRecalculateFact<TFactRule, TWantAction, TFactContainer>(TFactRule rule, IWantActionContext<TWantAction, TFactContainer> context)
+        protected override bool NeedRecalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
         {
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
@@ -142,7 +142,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 return false;
 
             return context
-                .GetFactsFromContainerByFactType(rule.OutputFactType)
+                .GetFactsFromContainerByFactType(node.Info.Rule.OutputFactType)
                 .Any(fact => !fact.IsCompatibleWithVersion(maxVersion));
         }
     }
