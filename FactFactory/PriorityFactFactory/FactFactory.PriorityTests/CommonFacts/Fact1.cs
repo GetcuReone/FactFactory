@@ -2,9 +2,9 @@
 
 namespace FactFactory.PriorityTests.CommonFacts
 {
-    internal class FactResult : FactBase<long>
+    internal class Fact1 : FactBase<int>
     {
-        public FactResult(long value) : base(value)
+        public Fact1(int value) : base(value)
         {
         }
     }
