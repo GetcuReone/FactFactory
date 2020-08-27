@@ -37,5 +37,35 @@
             <param name="priority"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.FirstPriorityByFactType``1(System.Collections.Generic.IEnumerable{``0},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)">
+            <summary>
+            The first 'priority' fact of the same type.
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="facts">Fact list.</param>
+            <param name="factType">Fact type of 'priority'.</param>
+            <param name="cache">Cache.</param>
+            <returns>Priority or null.</returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.CompareByPriority``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <summary>
+            Compare fact rules by 'priority'.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.CompareByPriority(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)">
+            <summary>
+            Compare by priority.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
