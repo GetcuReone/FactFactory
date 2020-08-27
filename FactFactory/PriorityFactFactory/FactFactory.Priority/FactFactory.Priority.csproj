@@ -15,6 +15,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\FactFactory\FactFactory.csproj" />
+      <ProjectReference Include="..\FactFactory.Priority.Facades\FactFactory.Priority.Facades.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
         <None Update="FactFactory.Priority.xml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>

@@ -14,6 +14,11 @@
             /// Refers to the FactFactory.Versioned project.
             /// </summary>
             public const string Versioned = "versioned_test";
+
+            /// <summary>
+            /// Refers to the FactFactory.Priority project.
+            /// </summary>
+            public const string Priority = "priority_test";
         }
 
         /// <summary>
