@@ -38,5 +38,57 @@
         <member name="M:GetcuReone.FactFactory.Priority.PriorityFactFactoryBase`4.GetSingleEntityOperations">
             <inheritdoc/>
         </member>
+        <member name="T:GetcuReone.FactFactory.Priority.SpecialFacts.PriorityBase`1">
+            <summary>
+            Base class for <see cref="T:FactFactory.Priority.Interfaces.IPriorityFact"/>.
+            </summary>
+            <typeparam name="TPriorityValue">Priority value type.</typeparam>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Priority.SpecialFacts.PriorityBase`1.PriorityValue">
+            <summary>
+            Priority value.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Priority.SpecialFacts.PriorityBase`1.#ctor(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Priority.SpecialFacts.PriorityBase`1.CompareTo(FactFactory.Priority.Interfaces.IPriorityFact)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Priority.SpecialFacts.PriorityBase`1.CreateIncompatibilityVersionException(FactFactory.Priority.Interfaces.IPriorityFact)">
+            <summary>
+            Error creating version incompatibility.
+            </summary>
+            <param name="priorityFact"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Priority.SpecialFacts.PriorityBase`1.op_Implicit(GetcuReone.FactFactory.Priority.SpecialFacts.PriorityBase{`0})~`0">
+            <summary>
+            Extract <see cref="P:GetcuReone.FactFactory.Priority.SpecialFacts.PriorityBase`1.PriorityValue"/>.
+            </summary>
+            <param name="fact"></param>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Priority.SpecialFacts.UintPriorityBase">
+            <summary>
+            Base class for priority fact with value of type <see cref="T:System.UInt32"/>.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Priority.SpecialFacts.UintPriorityBase.#ctor(System.UInt32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Priority.SpecialFacts.UintPriorityBase.CompareTo(FactFactory.Priority.Interfaces.IPriorityFact)">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Priority.SpecialFacts.ULongPriorityBase">
+            <summary>
+            Base class for priority fact with value of type <see cref="T:System.UInt32"/>.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Priority.SpecialFacts.ULongPriorityBase.#ctor(System.UInt64)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Priority.SpecialFacts.ULongPriorityBase.CompareTo(FactFactory.Priority.Interfaces.IPriorityFact)">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>
