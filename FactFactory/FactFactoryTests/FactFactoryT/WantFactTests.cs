@@ -26,7 +26,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 1 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1) =>
+                    factory.WantFacts((Input1Fact fact1) =>
                     {
                         input1Fact = fact1;
                     });
@@ -59,7 +59,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 2 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -97,7 +97,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 3 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -140,7 +140,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 4 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -188,7 +188,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 5 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -241,7 +241,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 6 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -299,7 +299,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 7 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -362,7 +362,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 8 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -430,7 +430,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 9 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -503,7 +503,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 10 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -581,7 +581,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 11 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -664,7 +664,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 12 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -752,7 +752,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 13 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -845,7 +845,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 14 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -943,7 +943,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 15 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14, Input15Fact fact15) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14, Input15Fact fact15) =>
                     {
                         input1Fact = fact1;
                         input2Fact = fact2;
@@ -1046,7 +1046,7 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want 16 facts.", factory =>
                 {
-                    factory.WantFact((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14, Input15Fact fact15, Input16Fact fact16) =>
+                    factory.WantFacts((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3, Input4Fact fact4, Input5Fact fact5, Input6Fact fact6, Input7Fact fact7, Input8Fact fact8, Input9Fact fact9, Input10Fact fact10, Input11Fact fact11, Input12Fact fact12, Input13Fact fact13, Input14Fact fact14, Input15Fact fact15, Input16Fact fact16) =>
                         {
                             input1Fact = fact1;
                             input2Fact = fact2;

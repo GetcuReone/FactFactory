@@ -176,14 +176,7 @@
             Derive the facts.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.DeriveFact``1">
-            <summary>
-            Derive <typeparamref name="TFactResult"/>.
-            </summary>
-            <typeparam name="TFactResult">Type of desired fact.</typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.WantFact(`2)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.WantFacts(`2)">
             <summary>
             Requesting a desired fact through action.
             </summary>

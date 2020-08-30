@@ -143,9 +143,9 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.DeriveFact``2">
             <summary>
-            Derive <typeparamref name="TFact"/> with version.
+            Derive <typeparamref name="TFactResult"/> with version.
             </summary>
-            <typeparam name="TFact">Type of desired fact.</typeparam>
+            <typeparam name="TFactResult">Type of desired fact.</typeparam>
             <typeparam name="TVersion">Type of version fact.</typeparam>
             <returns></returns>
         </member>

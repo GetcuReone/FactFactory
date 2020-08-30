@@ -34,7 +34,7 @@ namespace GetcuReone.FactFactory.Interfaces
         /// Requesting a desired fact through action.
         /// </summary>
         /// <param name="wantAction"></param>
-        void WantFact(TWantAction wantAction);
+        void WantFacts(TWantAction wantAction);
 
         /// <summary>
         /// Get <see cref="ITreeBuildingOperations"/>.

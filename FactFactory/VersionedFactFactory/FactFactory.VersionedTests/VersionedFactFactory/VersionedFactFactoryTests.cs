@@ -93,8 +93,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .And("Want fact.", factory =>
                 {
-                    factory.WantFact((Version1 _, FactResult fact) => result1 = fact);
-                    factory.WantFact((Version2 _, FactResult fact) => result2 = fact);
+                    factory.WantFacts((Version1 _, FactResult fact) => result1 = fact);
+                    factory.WantFacts((Version2 _, FactResult fact) => result2 = fact);
                 })
                 .When("Derive", factory => 
                     factory.Derive())
@@ -143,8 +143,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .And("Want fact.", factory =>
                 {
-                    factory.WantFact((Version1 _, FactResult fact) => { });
-                    factory.WantFact((Version2 _, FactResult fact) => { });
+                    factory.WantFacts((Version1 _, FactResult fact) => { });
+                    factory.WantFacts((Version2 _, FactResult fact) => { });
                 })
                 .When("Derive", factory => 
                     factory.Derive())
@@ -192,15 +192,15 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 {
                     for (int i = 0; i < 10; i++)
                     {
-                        factory.WantFact((Version1 _, FactResult fact) => 
+                        factory.WantFacts((Version1 _, FactResult fact) => 
                         {
                             counterAction1++;
                         });
-                        factory.WantFact((Fact1 fact) =>
+                        factory.WantFacts((Fact1 fact) =>
                         {
                             counterAction3++;
                         });
-                        factory.WantFact((Version2 _, FactResult fact) =>
+                        factory.WantFacts((Version2 _, FactResult fact) =>
                         {
                             counterAction2++;
                         });

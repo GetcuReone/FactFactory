@@ -190,9 +190,9 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want facts.", factFactory =>
                 {
-                    factFactory.WantFact((Input6Fact fact) => fact6 = fact);
-                    factFactory.WantFact((Input16Fact fact) => fact16 = fact);
-                    factFactory.WantFact((Input7Fact fact) => fact7 = fact);
+                    factFactory.WantFacts((Input6Fact fact) => fact6 = fact);
+                    factFactory.WantFacts((Input16Fact fact) => fact16 = fact);
+                    factFactory.WantFacts((Input7Fact fact) => fact7 = fact);
                 })
                 .When("Derive fact.", factFactory => 
                     factFactory.DeriveFact<Input7Fact>())
@@ -225,9 +225,9 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .And("Want facts.", factFactory =>
                 {
-                    factFactory.WantFact((Input6Fact fact) => fact6 = fact);
-                    factFactory.WantFact((Input16Fact fact) => fact16 = fact);
-                    factFactory.WantFact((Input7Fact fact) => fact7 = fact);
+                    factFactory.WantFacts((Input6Fact fact) => fact6 = fact);
+                    factFactory.WantFacts((Input16Fact fact) => fact16 = fact);
+                    factFactory.WantFacts((Input7Fact fact) => fact7 = fact);
                     factory = factFactory;
                 })
                 .And("Derive fact.", factFactory => 
@@ -371,7 +371,7 @@ namespace FactFactoryTests.FactFactoryT
                     () => new Input12Fact(2),
                 })
                 .And("Want fact.", factFactory => 
-                    factFactory.WantFact((ResultFact result) => { }))
+                    factFactory.WantFacts((ResultFact result) => { }))
                 .And("Check WantActions.", 
                     factFactory => Assert.AreEqual(1, factFactory.W_Actions.Count))
                 .When("Derive.", factFactory => 

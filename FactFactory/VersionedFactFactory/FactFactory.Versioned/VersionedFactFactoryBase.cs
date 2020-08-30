@@ -11,7 +11,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Base class for versioned fact factory.
     /// </summary>
-    public abstract class VersionedFactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : FactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>, IVersionedFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+    public abstract class VersionedFactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : FactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
         where TFactContainer : VersionedFactContainerBase
         where TFactRule : FactRuleBase
         where TFactRuleCollection : FactRuleCollectionBase<TFactRule>
@@ -24,24 +24,24 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Derive <typeparamref name="TFact"/> with version.
+        /// Derive <typeparamref name="TFactResult"/> with version.
         /// </summary>
-        /// <typeparam name="TFact">Type of desired fact.</typeparam>
+        /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
         /// <returns></returns>
-        public virtual TFact DeriveFact<TFact, TVersion>()
-            where TFact : IFact
+        public virtual TFactResult DeriveFact<TFactResult, TVersion>()
+            where TFactResult : IFact
             where TVersion : IVersionFact
         {
-            TFact fact = default;
+            TFactResult fact = default;
 
             var wantActions = new List<TWantAction>(WantActions);
             WantActions.Clear();
 
-            var inputFacts = new List<IFactType> { GetFactType<TFact>(), GetFactType<TVersion>() };
+            var inputFacts = new List<IFactType> { GetFactType<TFactResult>(), GetFactType<TVersion>() };
 
-            WantFact(CreateWantAction(
-                facts => fact = facts.GetFact<TFact>(),
+            WantFacts(CreateWantAction(
+                facts => fact = facts.GetFact<TFactResult>(),
                 inputFacts));
 
             Derive();
