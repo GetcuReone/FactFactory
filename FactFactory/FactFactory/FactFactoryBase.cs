@@ -105,18 +105,22 @@ namespace GetcuReone.FactFactory
             });
         }
 
-        /// <inheritdoc/>
-        public virtual TFact DeriveFact<TFact>() where TFact : IFact
+        /// <summary>
+        /// Derive <typeparamref name="TFactResult"/>.
+        /// </summary>
+        /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
+        /// <returns></returns>
+        public virtual TFactResult DeriveFact<TFactResult>() where TFactResult : IFact
         {
-            TFact fact = default;
+            TFactResult fact = default;
 
             var wantActions = new List<TWantAction>(WantActions);
             WantActions.Clear();
 
-            var inputFacts = new List<IFactType> { GetFactType<TFact>() };
+            var inputFacts = new List<IFactType> { GetFactType<TFactResult>() };
 
             WantFact(CreateWantAction(
-                facts => fact = facts.GetFact<TFact>(),
+                facts => fact = facts.GetFact<TFactResult>(),
                 inputFacts));
 
             Derive();

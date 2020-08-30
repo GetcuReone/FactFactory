@@ -31,13 +31,6 @@ namespace GetcuReone.FactFactory.Interfaces
         void Derive();
 
         /// <summary>
-        /// Derive <typeparamref name="TFactResult"/>.
-        /// </summary>
-        /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
-        /// <returns></returns>
-        TFactResult DeriveFact<TFactResult>() where TFactResult : IFact;
-
-        /// <summary>
         /// Requesting a desired fact through action.
         /// </summary>
         /// <param name="wantAction"></param>
