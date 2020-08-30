@@ -1,5 +1,6 @@
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Priority;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Priority_MovieServiceExample.Entities;
@@ -113,7 +114,7 @@ namespace Priority_MovieServiceExample
             Factory.Rules.AddRange(Rules);
         }
 
-        private IEnumerable<IFact> GetPriorityFacts()
+        private IEnumerable<IFact> GetPriorityFacts(IWantActionContext<WantAction, FactContainer> context)
         {
             return new List<IFact>
             {
@@ -131,11 +132,14 @@ namespace Priority_MovieServiceExample
             int movieId = 1;
 
             // Let's tell the factory what we know
-            Factory.Container.Add(new UserEmailFact(email));
-            Factory.Container.Add(new MovieIdFact(movieId));
+            var container = new FactContainer
+            {
+                new UserEmailFact(email),
+                new MovieIdFact(movieId),
+            };
 
             // We ask the factory to calculate the cost of buying a movie for our user.
-            int price = Factory.DeriveFact<MoviePurchasePriceFact>().Value;
+            int price = Factory.DeriveFact<MoviePurchasePriceFact>(container).Value;
 
             // For this user, the discount for this movie is not configured. Therefore we expect full value.
             Assert.AreEqual(0, price, "Everything should be free for John.");

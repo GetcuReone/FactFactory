@@ -13,7 +13,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         protected GivenBlock<V_FactFactory> GivenCreateVersionedFactFactory(List<IVersionFact> versions)
         {
             List<IVersionFact> versionsCopy = new List<IVersionFact>(versions);
-            return Given("Create versioned fact factory.", () => new V_FactFactory(() => versionsCopy));
+            return Given("Create versioned fact factory.", () => new V_FactFactory(context => versionsCopy));
         }
     }
 }

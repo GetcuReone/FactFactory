@@ -1,5 +1,7 @@
 ﻿using FactFactory.PriorityTests.CommonFacts;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace FactFactory.PriorityTests.PriorityFactFactory.Env
                 new GetcuReone.FactFactory.Priority.PriorityFactFactory(GetPriorityFacts));
         }
 
-        protected IEnumerable<IFact> GetPriorityFacts()
+        protected IEnumerable<IFact> GetPriorityFacts(IWantActionContext<WantAction, FactContainer> context)
         {
             return new List<IFact>
             {

@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Versioned.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// </summary>
     public class VersionedFactFactory : VersionedFactFactoryBase<FactRule, FactRuleCollection, WantAction, VersionedFactContainer>
     {
-        private readonly Func<IEnumerable<IFact>> _getDefaultFactsFunc;
-
-        /// <summary>
-        /// Fact container.
-        /// </summary>
-        public override VersionedFactContainer Container { get; }
+        private readonly Func<IWantActionContext<WantAction, VersionedFactContainer>, IEnumerable<IFact>> _getDefaultFactsFunc;
 
         /// <summary>
         /// Rule collection.
@@ -26,24 +22,37 @@ namespace GetcuReone.FactFactory.Versioned
         /// <summary>
         /// Constructor.
         /// </summary>
+        public VersionedFactFactory() : this(null)
+        {
+
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         /// <param name="getDefaultFactsFunc">Function that returns default facts.</param>
-        public VersionedFactFactory(Func<IEnumerable<IFact>> getDefaultFactsFunc)
+        public VersionedFactFactory(Func<IWantActionContext<WantAction, VersionedFactContainer>, IEnumerable<IFact>> getDefaultFactsFunc)
         {
             _getDefaultFactsFunc = getDefaultFactsFunc;
-            Container = new VersionedFactContainer();
             Rules = new FactRuleCollection();
         }
 
         /// <inheritdoc/>
-        protected override IEnumerable<IFact> GetDefaultFacts(VersionedFactContainer container)
+        protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext<WantAction, VersionedFactContainer> context)
         {
-            return _getDefaultFactsFunc?.Invoke() ?? base.GetDefaultFacts(container);
+            return _getDefaultFactsFunc?.Invoke(context) ?? base.GetDefaultFacts(context);
         }
 
         /// <inheritdoc/>
         protected override WantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
         {
             return new WantAction(wantAction, factTypes);
+        }
+
+        /// <inheritdoc/>
+        protected override VersionedFactContainer GetDefaultContainer()
+        {
+            return new VersionedFactContainer();
         }
     }
 }

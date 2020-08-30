@@ -7,6 +7,7 @@ using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -41,6 +42,10 @@ namespace FactFactoryTests.FactFactoryT
         {
             const int value = 14;
             const int expectedValue = 37;
+            var container = new Container
+            {
+                new Input14Fact(value),
+            };
 
             GivenCreateFactFactory()
                 .AndRulesNotNul()
@@ -50,9 +55,8 @@ namespace FactFactoryTests.FactFactoryT
                     (Input14Fact fact, CannotDerived<Input9Fact> no) => new Input12Fact(fact.Value + 12),
                     (Input8Fact fact) => new Input9Fact(fact.Value + 12)
                 })
-                .AndAddFact(new Input14Fact(value))
                 .When("Derive.", factory => 
-                    factory.DeriveFact<Input11Fact>())
+                    factory.DeriveFact<Input11Fact>(container))
                 .ThenFactEquals(expectedValue);
         }
 
@@ -63,15 +67,18 @@ namespace FactFactoryTests.FactFactoryT
         public void DeriveFromRuleAndWithFactInContanierTestCase()
         {
             string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(ResultFact).Name}).";
+            var container = new Container
+            {
+                new Input1Fact(default),
+            };
 
             GivenCreateFactFactory()
-                .AndAddFact(new Input1Fact(default))
                 .AndAddRules(new Collection
                 {
                     (CannotDerived<Input1Fact> _) => new ResultFact(default),
                 })
                 .When("Run Derive.", factFactory
-                    => ExpectedDeriveException(() => factFactory.DeriveFact<ResultFact>()))
+                    => ExpectedDeriveException(() => factFactory.DeriveFact<ResultFact>(container)))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
         }
 

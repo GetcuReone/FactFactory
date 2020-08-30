@@ -9,6 +9,7 @@ using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -74,10 +75,13 @@ namespace FactFactoryTests.FactFactoryT
         {
             const int value = 14;
             const int expectedValue = 37;
+            var container = new Container
+            {
+                new Input14Fact(value),
+            };
 
             GivenCreateFactFactory()
                 .AndRulesNotNul()
-                .AndAddFact(new Input14Fact(value))
                 .AndAddRules(new Collection
                 {
                     () => new Input9Fact(default),
@@ -86,7 +90,7 @@ namespace FactFactoryTests.FactFactoryT
                     (Input8Fact fact) => new Input9Fact(fact.Value + 12),
                 })
                 .When("Derive.", factory =>
-                    factory.DeriveFact<Input11Fact>())
+                    factory.DeriveFact<Input11Fact>(container))
                 .ThenFactEquals(expectedValue);
         }
 

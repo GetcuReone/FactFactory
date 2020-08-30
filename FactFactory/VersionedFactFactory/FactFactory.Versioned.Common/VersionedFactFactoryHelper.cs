@@ -5,12 +5,11 @@ using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Versioned
 {
     /// <summary>
-    /// Helper for <see cref="IVersionedFactFactory{TFactRule, TFactRuleCollection, TWantAction, TFactContainer}"/>.
+    /// Helper for VersionedFactFactory.
     /// </summary>
     public static class VersionedFactFactoryHelper
     {

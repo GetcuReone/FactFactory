@@ -5,9 +5,11 @@ using FactFactory.VersionedTests.VersionedFactFactory.Bug73.Entities;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
+using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
@@ -21,16 +23,16 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         public void RemoveNodeFromTreeWhenNecessaryTestCase()
         {
             var certificate = new Certificate();
+            var container = new Container
+            {
+                new CertFileInfo(default),
+                new CryptKey("key"),
+            };
 
             GivenCreateVersionedFactFactory(new List<IVersionFact>
             {
                 new Version1(),
             })
-                .And("Add facts.", factory =>
-                {
-                    factory.Container.Add(new CertFileInfo(default));
-                    factory.Container.Add(new CryptKey("key"));
-                })
                 .AndAddRules(new Collection
                 {
                     (Version1 v, NeedEncrypt n, Cert certFact) => new DecryptedText(""),
@@ -48,11 +50,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version1 v, Cert_ValidationNotNull cert, Cert_HashCode hashCode) => new Cert(cert.Value),
                     (Version1 v, Cert_Validation cert) => new Cert_ValidationNotNull(cert.Value),
                 })
-                .When("Derive fact.", factory => factory.DeriveFact<Cert, Version1>())
-                .Then("Check result.", fact =>
-                {
-                    Assert.AreEqual(certificate, fact.Value, "Expected another value.");
-                });
+                .When("Derive fact.", factory => factory.DeriveFact<Cert, Version1>(container))
+                .ThenAreEqual(fact => fact.Value, certificate);
         }
     }
 }
