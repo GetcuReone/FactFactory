@@ -12,6 +12,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -354,17 +355,19 @@ namespace FactFactoryTests.FactFactoryT
             Input6Fact input6Fact = null;
             Input16Fact input16Fact = null;
             Input7Fact input7Fact = null;
+            var container = new Container
+            {
+                new Input3Fact(3),
+            };
 
             GivenCreateFactFactory()
                 .AndAddRules(RuleCollectionHelper.GetInputFactRules())
                 .And("Want fact6.", factory =>
-                    factory.WantFacts((Input6Fact fact) => { input6Fact = fact; }))
+                    factory.WantFacts((Input6Fact fact) => { input6Fact = fact; }, container))
                 .And("Want fact16.", factory =>
-                    factory.WantFacts((Input16Fact fact) => { input16Fact = fact; }))
+                    factory.WantFacts((Input16Fact fact) => { input16Fact = fact; }, container))
                 .And("Want fact16.", factory =>
-                    factory.WantFacts((Input7Fact fact) => { input7Fact = fact; }))
-                .And("Add fact3.", factory =>
-                    factory.Container.Add(new Input3Fact(3)))
+                    factory.WantFacts((Input7Fact fact) => { input7Fact = fact; }, container))
                 .When("Derive facts.", factory =>
                     factory.Derive())
                 .Then("Check error.", _ =>
@@ -412,6 +415,10 @@ namespace FactFactoryTests.FactFactoryT
         public void DeriveFactUseRuleWithConditionTestCase()
         {
             const int expectedValue = 10;
+            var container = new Container
+            {
+                new OtherFact(default)
+            };
 
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
@@ -420,9 +427,8 @@ namespace FactFactoryTests.FactFactoryT
                     (Input1Fact fact) => new ResultFact(1_000),
                     (Condition_ContainedOtherFact condition) => new ResultFact(expectedValue),
                 })
-                .AndAddFact(new OtherFact(default))
                 .When("Derive fact.", factFactory =>
-                    factFactory.DeriveFact<ResultFact>())
+                    factFactory.DeriveFact<ResultFact>(container))
                 .ThenFactEquals(expectedValue);
         }
 

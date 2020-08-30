@@ -5,6 +5,7 @@ using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactory.PriorityTests.PriorityFactFactory
 {
@@ -18,6 +19,10 @@ namespace FactFactory.PriorityTests.PriorityFactFactory
         public void UsePriorityRuleTestCase()
         {
             const long expectedValue = 2;
+            var container = new Container
+            {
+                new Fact1(1),
+            };
 
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
@@ -25,9 +30,8 @@ namespace FactFactory.PriorityTests.PriorityFactFactory
                     (Fact1 f) => new FactResult(f),
                     (Priority1 p, Fact1 f) => new FactResult(f + p),
                 })
-                .AndAddFact(new Fact1(1))
                 .When("Derive fact.", factory =>
-                    factory.DeriveFact<FactResult>())
+                    factory.DeriveFact<FactResult>(container))
                 .ThenIsNotNull()
                 .AndAreEqual(fact => fact.Value, expectedValue);
         }
@@ -39,6 +43,10 @@ namespace FactFactory.PriorityTests.PriorityFactFactory
         public void UseHigherPriorityRightTestCase()
         {
             const long expectedValue = 2;
+            var container = new Container
+            {
+                new Fact1(1),
+            };
 
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
@@ -46,9 +54,8 @@ namespace FactFactory.PriorityTests.PriorityFactFactory
                     (Priority2 p, Fact1 f) => new FactResult(f),
                     (Priority1 p, Fact1 f) => new FactResult(f + p),
                 })
-                .AndAddFact(new Fact1(1))
                 .When("Derive fact.", factory =>
-                    factory.DeriveFact<FactResult>())
+                    factory.DeriveFact<FactResult>(container))
                 .ThenIsNotNull()
                 .AndAreEqual(fact => fact.Value, expectedValue);
         }

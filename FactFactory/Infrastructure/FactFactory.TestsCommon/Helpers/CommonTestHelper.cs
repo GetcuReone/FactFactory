@@ -71,11 +71,5 @@ namespace FactFactory.TestsCommon.Helpers
         {
             return givenBlock.And("Add rules", factory => factory.Rules.AddRange(factRules));
         }
-
-        public static GivenBlock<TFactory> AndAddFact<TFactory>(this GivenBlock<TFactory> givenBlock, FactBase fact)
-            where TFactory : FactFactoryBase<FactRule, FactRuleCollection, WantAction, FactContainer>
-        {
-            return givenBlock.And("Add fact", factory => factory.Container.Add(fact));
-        }
     }
 }

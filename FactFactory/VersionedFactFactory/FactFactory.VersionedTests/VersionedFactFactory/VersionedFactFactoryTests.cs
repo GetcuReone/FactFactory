@@ -3,10 +3,10 @@ using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.GetcuTestAdapter;
-using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
+using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
@@ -82,6 +82,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         {
             FactResult result1 = null;
             FactResult result2 = null;
+            var container = new Container();
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
                 .AndAddRules(new Collection
@@ -93,8 +94,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .And("Want fact.", factory =>
                 {
-                    factory.WantFacts((Version1 _, FactResult fact) => result1 = fact);
-                    factory.WantFacts((Version2 _, FactResult fact) => result2 = fact);
+                    factory.WantFacts((Version1 _, FactResult fact) => result1 = fact, container);
+                    factory.WantFacts((Version2 _, FactResult fact) => result2 = fact, container);
                 })
                 .When("Derive", factory => 
                     factory.Derive())
@@ -116,6 +117,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         {
             int counterFact2 = 0;
             int counterFact1 = 0;
+            var container = new Container();
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
                 .AndAddRules(new Collection
@@ -143,8 +145,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .And("Want fact.", factory =>
                 {
-                    factory.WantFacts((Version1 _, FactResult fact) => { });
-                    factory.WantFacts((Version2 _, FactResult fact) => { });
+                    factory.WantFacts((Version1 _, FactResult fact) => { }, container);
+                    factory.WantFacts((Version2 _, FactResult fact) => { }, container);
                 })
                 .When("Derive", factory => 
                     factory.Derive())
@@ -167,6 +169,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int counterAction1 = 0;
             int counterAction2 = 0;
             int counterAction3 = 0;
+            var container = new Container();
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
                 .AndAddRules(new Collection
@@ -195,15 +198,15 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                         factory.WantFacts((Version1 _, FactResult fact) => 
                         {
                             counterAction1++;
-                        });
+                        }, container);
                         factory.WantFacts((Fact1 fact) =>
                         {
                             counterAction3++;
-                        });
+                        }, container);
                         factory.WantFacts((Version2 _, FactResult fact) =>
                         {
                             counterAction2++;
-                        });
+                        }, container);
                     }
                 })
                 .When("Derive", factory => factory.Derive())
@@ -226,7 +229,11 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UseNewerRuleForDeriveTestCase()
         {
-            int expectedValue = 10;
+            const long expectedValue = 10;
+            var container = new Container
+            {
+                new Fact1((int)expectedValue),
+            };
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
                 .AndAddRules(new Collection
@@ -234,11 +241,9 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version1 v) => new FactResult(0),
                     (Version2 v, Fact1 fact) => new FactResult(fact.Value)
                 })
-                .And("Add fact.", factFactory => 
-                    factFactory.Container.Add(new Fact1(expectedValue)))
                 .When("Derive fact.", factFactory => 
-                    factFactory.DeriveFact<FactResult, Version2>().Value)
-                .ThenAreEqual(expectedValue);
+                    factFactory.DeriveFact<FactResult, Version2>(container))
+                .ThenFactEquals(expectedValue);
         }
 
         [TestMethod]
@@ -247,21 +252,20 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RequestAvailableFactTestCase()
         {
-            int expectedValue = 1;
+            const long expectedValue = 1;
+            var container = new Container
+            {
+                new FactResult(expectedValue).SetVersionParam(new Version1()),
+            };
 
             GivenCreateVersionedFactFactory(GetVersionFacts())
                 .AndAddRules(new Collection
                 {
                     (Version2 v) => new FactResult(2),
                 })
-                .And("Add fact.", factFactory => 
-                    factFactory.Container.Add(new FactResult(expectedValue).SetVersionParam(new Version1())))
-                .When("Derive fact.", factFactory => 
-                    factFactory.DeriveFact<FactResult, Version1>())
-                .Then("Check result.", fact =>
-                {
-                    Assert.AreEqual(expectedValue, fact.Value, "The older rule worked.");
-                });
+                .When("Derive fact.", factFactory =>
+                    factFactory.DeriveFact<FactResult, Version1>(container))
+                .ThenFactEquals(expectedValue);
         }
     }
 }

@@ -97,11 +97,14 @@ namespace MovieServiceExample
             int movieId = 1;
 
             // Let's tell the factory what we know
-            Factory.Container.Add(new UserEmailFact(email));
-            Factory.Container.Add(new MovieIdFact(movieId));
+            var container = new FactContainer
+            {
+                new UserEmailFact(email),
+                new MovieIdFact(movieId),
+            };
 
             // We ask the factory to calculate the cost of buying a movie for our user.
-            int price = Factory.DeriveFact<MoviePurchasePriceFact>().Value;
+            int price = Factory.DeriveFact<MoviePurchasePriceFact>(container).Value;
 
             // If we look at the database, we will see that for this user the discount on the purchase of this film is 5. The movie itself costs 11.
             Assert.AreEqual(6, price, "We expected a different purchase price.");
@@ -116,11 +119,14 @@ namespace MovieServiceExample
             int movieId = 1;
 
             // Let's tell the factory what we know
-            Factory.Container.Add(new UserEmailFact(email));
-            Factory.Container.Add(new MovieIdFact(movieId));
+            var container = new FactContainer
+            {
+                new UserEmailFact(email),
+                new MovieIdFact(movieId),
+            };
 
             // We ask the factory to calculate the cost of buying a movie for our user.
-            int price = Factory.DeriveFact<MoviePurchasePriceFact>().Value;
+            int price = Factory.DeriveFact<MoviePurchasePriceFact>(container).Value;
 
             // For this user, the discount for this movie is not configured. Therefore we expect full value.
             Assert.AreEqual(MovieDB.Single(m => m.Id == movieId).Cost, price, "We expected a different purchase price.");

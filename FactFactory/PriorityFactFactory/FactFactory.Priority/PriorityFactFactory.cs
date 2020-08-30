@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using System;
 using System.Collections.Generic;
 
@@ -10,10 +11,7 @@ namespace GetcuReone.FactFactory.Priority
     /// </summary>
     public class PriorityFactFactory : PriorityFactFactoryBase<FactRule, FactRuleCollection, WantAction, FactContainer>
     {
-        private readonly Func<IEnumerable<IFact>> _getDefaultFactsFunc;
-
-        /// <inheritdoc/>
-        public override FactContainer Container { get; }
+        private readonly Func<IWantActionContext<WantAction, FactContainer>, IEnumerable<IFact>> _getDefaultFactsFunc;
 
         /// <inheritdoc/>
         public override FactRuleCollection Rules { get; }
@@ -29,10 +27,9 @@ namespace GetcuReone.FactFactory.Priority
         /// Constructot.
         /// </summary>
         /// <param name="getDefaultFactsFunc">Function that returns default facts.</param>
-        public PriorityFactFactory(Func<IEnumerable<IFact>> getDefaultFactsFunc)
+        public PriorityFactFactory(Func<IWantActionContext<WantAction, FactContainer>, IEnumerable<IFact>> getDefaultFactsFunc)
         {
             _getDefaultFactsFunc = getDefaultFactsFunc;
-            Container = new FactContainer();
             Rules = new FactRuleCollection();
         }
 
@@ -43,9 +40,15 @@ namespace GetcuReone.FactFactory.Priority
         }
 
         /// <inheritdoc/>
-        protected override IEnumerable<IFact> GetDefaultFacts(FactContainer container)
+        protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext<WantAction, FactContainer> context)
         {
-            return _getDefaultFactsFunc?.Invoke() ?? base.GetDefaultFacts(container);
+            return _getDefaultFactsFunc?.Invoke(context) ?? base.GetDefaultFacts(context);
+        }
+
+        /// <inheritdoc/>
+        protected override FactContainer GetDefaultContainer()
+        {
+            return new FactContainer();
         }
     }
 }

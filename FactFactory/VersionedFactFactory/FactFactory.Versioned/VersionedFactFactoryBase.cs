@@ -1,6 +1,7 @@
 ﻿using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Operations;
+using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Versioned.BaseEntities;
 using GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Versioned.Interfaces;
@@ -29,24 +30,26 @@ namespace GetcuReone.FactFactory.Versioned
         /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
         /// <returns></returns>
-        public virtual TFactResult DeriveFact<TFactResult, TVersion>()
+        public virtual TFactResult DeriveFact<TFactResult, TVersion>(TFactContainer container = null)
             where TFactResult : IFact
             where TVersion : IVersionFact
         {
             TFactResult fact = default;
 
-            var wantActions = new List<TWantAction>(WantActions);
-            WantActions.Clear();
+            var previousWantFacts = new List<WantFactsInfo<TWantAction, TFactContainer>>(WantFactsInfos);
+            WantFactsInfos.Clear();
 
             var inputFacts = new List<IFactType> { GetFactType<TFactResult>(), GetFactType<TVersion>() };
 
-            WantFacts(CreateWantAction(
-                facts => fact = facts.GetFact<TFactResult>(),
-                inputFacts));
+            WantFacts(
+                CreateWantAction(
+                    facts => fact = facts.GetFact<TFactResult>(),
+                    inputFacts),
+                container);
 
             Derive();
 
-            WantActions.AddRange(wantActions);
+            WantFactsInfos.AddRange(previousWantFacts);
 
             return fact;
         }

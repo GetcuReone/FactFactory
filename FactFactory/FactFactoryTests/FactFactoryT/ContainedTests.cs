@@ -6,6 +6,7 @@ using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactoryTests.FactFactoryT
 {
@@ -19,6 +20,10 @@ namespace FactFactoryTests.FactFactoryT
         public void CreateResultFactIfInput1FactContainedTestCase()
         {
             const int expectedValue = 1;
+            var container = new Container
+            {
+                new Input1Fact(expectedValue),
+            };
 
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
@@ -26,9 +31,8 @@ namespace FactFactoryTests.FactFactoryT
                     (Contained<Input1Fact> _, Input1Fact fact) => new ResultFact(fact.Value),
                     (NotContained<Input1Fact> _) => new ResultFact(-1),
                 })
-                .AndAddFact(new Input1Fact(expectedValue))
                 .When("Derive.", factFactory => 
-                    factFactory.DeriveFact<ResultFact>())
+                    factFactory.DeriveFact<ResultFact>(container))
                 .ThenFactEquals(expectedValue);
         }
     }
