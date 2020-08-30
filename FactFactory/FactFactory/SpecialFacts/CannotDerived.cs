@@ -2,13 +2,10 @@
 using GetcuReone.FactFactory.Interfaces.Context;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
+namespace GetcuReone.FactFactory.SpecialFacts
 {
-    /// <summary>
-    /// Contains information about a type of fact that cannot be derived.
-    /// </summary>
-    /// <typeparam name="TFact"></typeparam>
-    public abstract class CannotDerivedFactBase<TFact> : ConditionFactBase<TFact>
+    /// <inheritdoc/>
+    public class CannotDerived<TFact> : ConditionFactBase<TFact>
         where TFact : IFact
     {
         /// <inheritdoc/>

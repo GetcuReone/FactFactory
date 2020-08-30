@@ -1,4 +1,4 @@
-﻿using GetcuReone.FactFactory.BaseEntities.SpecialFacts;
+﻿using GetcuReone.FactFactory.SpecialFacts;
 
 namespace FactFactoryTests.CommonFacts
 {
