@@ -9,7 +9,7 @@ using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
+namespace GetcuReone.FactFactory.SpecialFacts
 {
     internal static class ConditionHelper
     {

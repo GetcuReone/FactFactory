@@ -4,7 +4,7 @@ using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
+namespace GetcuReone.FactFactory.SpecialFacts
 {
     /// <summary>
     /// Base class for <see cref="IConditionFact"/>.

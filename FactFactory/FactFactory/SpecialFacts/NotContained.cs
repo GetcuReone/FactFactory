@@ -2,13 +2,10 @@
 using GetcuReone.FactFactory.Interfaces.Context;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.BaseEntities.SpecialFacts
+namespace GetcuReone.FactFactory.SpecialFacts
 {
-    /// <summary>
-    /// Is the fact <typeparamref name="TFact"/> not contained in the container.
-    /// </summary>
-    /// <typeparam name="TFact"></typeparam>
-    public abstract class NotContainedFactBase<TFact> : ConditionFactBase<TFact>
+    /// <inheritdoc/>
+    public class NotContained<TFact> : ConditionFactBase<TFact>
         where TFact : IFact
     {
         /// <inheritdoc/>

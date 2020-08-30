@@ -3,7 +3,6 @@ using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactType.Env;
 using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.BaseEntities.SpecialFacts;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Interfaces;

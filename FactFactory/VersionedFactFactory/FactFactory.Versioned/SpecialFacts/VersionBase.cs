@@ -1,6 +1,6 @@
-﻿using GetcuReone.FactFactory.BaseEntities.SpecialFacts;
-using GetcuReone.FactFactory.Constants;
+﻿using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
