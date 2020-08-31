@@ -147,6 +147,14 @@
             <typeparam name="TFact">type of fact to check for.</typeparam>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.Contains``1(``0)">
+            <summary>
+            Is this type of fact contained.
+            </summary>
+            <typeparam name="TFact">type of fact to check for.</typeparam>
+            <param name="fact"></param>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.Clear">
             <summary>
             Clear this container.

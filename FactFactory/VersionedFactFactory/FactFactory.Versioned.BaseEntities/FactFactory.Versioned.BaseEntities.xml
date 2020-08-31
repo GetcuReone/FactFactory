@@ -53,11 +53,10 @@
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Contains``1">
-            <summary>
-            Does an <typeparamref name="TFact"/> type fact without version.
-            </summary>
-            <typeparam name="TFact"></typeparam>
-            <returns></returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Contains``1(``0)">
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.GetFactByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
             <summary>

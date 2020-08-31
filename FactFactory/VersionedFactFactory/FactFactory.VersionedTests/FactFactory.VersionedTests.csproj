@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\FactFactory.TestsCommon\FactFactory.TestsCommon.csproj" />
+    <ProjectReference Include="..\..\PriorityFactFactory\FactFactory.Priority\FactFactory.Priority.csproj" />
     <ProjectReference Include="..\FactFactory.Versioned\FactFactory.Versioned.csproj" />
   </ItemGroup>
 

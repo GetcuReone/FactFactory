@@ -1,7 +1,10 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
-using GetcuReone.FactFactory.Versioned.Interfaces;
+using GetcuReone.FactFactory.Facades.SingleEntityOperations;
+using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Priority;
+using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -13,15 +16,6 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
     [TestClass]
     public sealed class VersionedFactFactoryTests : VersionedFactFactoryTestBase
     {
-        private List<IVersionFact> GetVersionFacts()
-        {
-            return new List<IVersionFact>
-            {
-                new Version1(),
-                new Version2(),
-            };
-        }
-
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create wantAction without version.")]
@@ -30,7 +24,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         {
             const long expectedValue = 1_000;
 
-            GivenCreateVersionedFactFactory(GetVersionFacts())
+            GivenCreateVersionedFactFactory()
                 .AndAddRules(new Collection
                 {
                     //without version
@@ -56,7 +50,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         {
             const long expectedValue = 10;
 
-            GivenCreateVersionedFactFactory(GetVersionFacts())
+            GivenCreateVersionedFactFactory()
                 .AndAddRules(new Collection
                 {
                     //without version
@@ -84,7 +78,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             FactResult result2 = null;
             var container = new Container();
 
-            GivenCreateVersionedFactFactory(GetVersionFacts())
+            GivenCreateVersionedFactFactory()
                 .AndAddRules(new Collection
                 {
                     (Version1 v, Fact1 fact) => new FactResult(fact.Value),
@@ -119,7 +113,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int counterFact1 = 0;
             var container = new Container();
 
-            GivenCreateVersionedFactFactory(GetVersionFacts())
+            GivenCreateVersionedFactFactory()
                 .AndAddRules(new Collection
                 {
                     (Version1 v) =>
@@ -171,7 +165,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             int counterAction3 = 0;
             var container = new Container();
 
-            GivenCreateVersionedFactFactory(GetVersionFacts())
+            GivenCreateVersionedFactFactory()
                 .AndAddRules(new Collection
                 {
                     (Version1 v, Fact1 fact) => 
@@ -235,7 +229,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 new Fact1((int)expectedValue),
             };
 
-            GivenCreateVersionedFactFactory(GetVersionFacts())
+            GivenCreateVersionedFactFactory()
                 .AndAddRules(new Collection
                 {
                     (Version1 v) => new FactResult(0),
@@ -258,13 +252,70 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 new FactResult(expectedValue).SetVersionParam(new Version1()),
             };
 
-            GivenCreateVersionedFactFactory(GetVersionFacts())
+            GivenCreateVersionedFactFactory()
                 .AndAddRules(new Collection
                 {
                     (Version2 v) => new FactResult(2),
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<FactResult, Version1>(container))
+                .ThenFactEquals(expectedValue);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Select a higher priority fact from the container.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void SelectHigherPriorityFactFromContainerTestCase()
+        {
+            const long expectedValue = 1;
+            var container = new Container
+            {
+                new FactResult(expectedValue).SetPriority(new Priority1()).SetVersion(new Version1()),
+                new FactResult(expectedValue * 2).SetVersion(new Version2())
+            };
+
+            GivenCreateVersionedFactFactory()
+                .When("Derive fact.", factFactory =>
+                    factFactory.DeriveFact<FactResult, Version2>(container))
+                .ThenFactEquals(expectedValue);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Select a rule with a higher priority.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void SelectRuleWithHigherPriorityTestCase()
+        {
+            const long expectedValue = 1;
+
+            GivenCreateVersionedFactFactory()
+                .AndAddRules(new Collection 
+                {
+                    (Version1 v, Priority1 p) => new FactResult(expectedValue),
+                    (Version2 v) => new FactResult(expectedValue * 2),
+                })
+                .When("Derive fact.", factFactory =>
+                    factFactory.DeriveFact<FactResult, Version2>())
+                .ThenFactEquals(expectedValue);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Select a fact not calculated by the rule.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void SelectFactNotCalculatedByRuleTestCase()
+        {
+            const long expectedValue = 1;
+            var container = new Container
+            {
+                new FactResult(expectedValue).SetVersion(new Version1()),
+                new FactResult(expectedValue * 2).SetCalculateByRule().SetVersion(new Version2())
+            };
+
+            GivenCreateVersionedFactFactory()
+                .When("Derive fact.", factFactory =>
+                    factFactory.DeriveFact<FactResult, Version2>(container))
                 .ThenFactEquals(expectedValue);
         }
     }

@@ -61,6 +61,14 @@ namespace GetcuReone.FactFactory.Interfaces
         bool Contains<TFact>() where TFact : IFact;
 
         /// <summary>
+        /// Is this type of fact contained.
+        /// </summary>
+        /// <typeparam name="TFact">type of fact to check for.</typeparam>
+        /// <param name="fact"></param>
+        /// <returns></returns>
+        bool Contains<TFact>(TFact fact) where TFact : IFact;
+
+        /// <summary>
         /// Clear this container.
         /// </summary>
         void Clear();

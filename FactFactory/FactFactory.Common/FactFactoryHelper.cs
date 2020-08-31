@@ -260,10 +260,10 @@ namespace GetcuReone.FactFactory
             if (x.IsCalculatedByRule())
             {
                 if (!y.IsCalculatedByRule())
-                    return 1;
+                    return -1;
             }
             else if (y.IsCalculatedByRule())
-                return -1;
+                return 1;
 
             return 0;
         }

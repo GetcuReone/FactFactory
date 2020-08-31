@@ -342,23 +342,6 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Add 2 default facts with the same types.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void AddTwoDefaultFactsWithSameTypesTestCase()
-        {
-            string expectedReason = $"The fact container already contains {GetFactType<DefaultFact>().FactName} type of fact.";
-
-            Given("Create factory.", () => new FactFactoryCustom())
-                .And("Add default fact.", factFactory => 
-                    factFactory.DefaultFacts.Add(new DefaultFact(10)))
-                .And("Add default fact.", factFactory => 
-                    factFactory.DefaultFacts.Add(new DefaultFact(10)))
-                .When("Run Derive.", factFactory => ExpectedFactFactoryException(() => factFactory.DeriveFact<DefaultFact>()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
-        }
-
-        [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.RuleCollection), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive with empty rules.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]

@@ -106,6 +106,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
+        public virtual bool Contains<TFact>(TFact fact) where TFact : IFact
+        {
+            IFactType factType = fact.GetFactType();
+            return ContainerList.Exists(f => f.GetFactType().EqualsFactType(factType));
+        }
+
+        /// <inheritdoc/>
         public virtual IEnumerator<IFact> GetEnumerator()
         {
             return ContainerList.GetEnumerator();

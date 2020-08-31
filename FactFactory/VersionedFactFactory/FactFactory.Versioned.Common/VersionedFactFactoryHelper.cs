@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Versioned.Constants;
@@ -96,6 +97,36 @@ namespace GetcuReone.FactFactory.Versioned
             IVersionFact yVersion = context.Container.FirstVersionByFactType(yVersionType, context.Cache);
 
             return xVersion.CompareTo(yVersion);
+        }
+
+        /// <summary>
+        /// Compare facts by version.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static int CompareByVersion(this IFact x, IFact y)
+        {
+            var xVersion = x.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+            var yVersion = y.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+
+            if (xVersion == null)
+                return yVersion == null ? 0 : 1;
+            if (yVersion == null)
+                return -1;
+
+            return xVersion.CompareTo(yVersion);
+        }
+
+        /// <summary>
+        /// Set version.
+        /// </summary>
+        /// <param name="fact"></param>
+        /// <param name="version"></param>
+        public static IFact SetVersion(this IFact fact, IVersionFact version)
+        {
+            fact.AddParameter(new FactParameter(VersionedFactParametersCodes.Version, version));
+            return fact;
         }
     }
 }

@@ -75,5 +75,20 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.CompareByVersion(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)">
+            <summary>
+            Compare facts by version.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.SetVersion(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+            <summary>
+            Set version.
+            </summary>
+            <param name="fact"></param>
+            <param name="version"></param>
+        </member>
     </members>
 </doc>
