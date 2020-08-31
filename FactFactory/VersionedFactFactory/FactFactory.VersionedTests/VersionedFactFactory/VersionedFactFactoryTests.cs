@@ -1,6 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
+using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Priority;
 using GetcuReone.FactFactory.Versioned;
@@ -296,6 +297,25 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<FactResult, Version2>())
+                .ThenFactEquals(expectedValue);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Select a fact not calculated by the rule.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void SelectFactNotCalculatedByRuleTestCase()
+        {
+            const long expectedValue = 1;
+            var container = new Container
+            {
+                new FactResult(expectedValue).SetVersion(new Version1()),
+                new FactResult(expectedValue * 2).SetCalculateByRule().SetVersion(new Version2())
+            };
+
+            GivenCreateVersionedFactFactory()
+                .When("Derive fact.", factFactory =>
+                    factFactory.DeriveFact<FactResult, Version2>(container))
                 .ThenFactEquals(expectedValue);
         }
     }
