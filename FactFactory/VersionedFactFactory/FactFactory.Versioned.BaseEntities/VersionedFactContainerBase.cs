@@ -133,14 +133,19 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
             return TryGetFactByVersion(out TFact _, version);
         }
 
-        /// <summary>
-        /// Does an <typeparamref name="TFact"/> type fact without version.
-        /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public override bool Contains<TFact>()
         {
             return ContainsByVersion<TFact>(null);
+        }
+
+        /// <inheritdoc/>
+        public override bool Contains<TFact>(TFact fact)
+        {
+            var factType = fact.GetFactType();
+            var version = fact.GetVersionOrNull();
+
+            return ContainerList.Exists(f => f.GetFactType().EqualsFactType(factType) && f.HasVersion(version));
         }
 
         /// <summary>
