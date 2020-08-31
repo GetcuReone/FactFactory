@@ -3,11 +3,9 @@ using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Bug73;
 using FactFactory.VersionedTests.VersionedFactFactory.Bug73.Entities;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
-using GetcuReone.FactFactory.Versioned.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 
@@ -29,10 +27,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 new CryptKey("key"),
             };
 
-            GivenCreateVersionedFactFactory(new List<IVersionFact>
-            {
-                new Version1(),
-            })
+            GivenCreateVersionedFactFactory()
                 .AndAddRules(new Collection
                 {
                     (Version1 v, NeedEncrypt n, Cert certFact) => new DecryptedText(""),

@@ -76,10 +76,5 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
             return false;
         }
-
-        internal static void SetVersion(this IFact fact, IVersionFact version)
-        {
-            fact.AddParameter(new FactParameter(VersionedFactParametersCodes.Version, version));
-        }
     }
 }
