@@ -97,5 +97,24 @@ namespace GetcuReone.FactFactory.Versioned
 
             return xVersion.CompareTo(yVersion);
         }
+
+        /// <summary>
+        /// Compare facts by version.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static int CompareByVersion(this IFact x, IFact y)
+        {
+            var xVersion = x.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+            var yVersion = y.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+
+            if (xVersion == null)
+                return yVersion == null ? 0 : 1;
+            if (yVersion == null)
+                return -1;
+
+            return xVersion.CompareTo(yVersion);
+        }
     }
 }
