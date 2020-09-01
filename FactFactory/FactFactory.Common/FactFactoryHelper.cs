@@ -72,7 +72,7 @@ namespace GetcuReone.FactFactory
         /// <returns></returns>
         public static InvalidDeriveOperationException CreateDeriveException(string code, string reason)
         {
-            return CreateDeriveException(code, reason, (IWantAction)null);
+            return CreateDeriveException(code, reason, null, null);
         }
 
         /// <summary>
@@ -81,10 +81,11 @@ namespace GetcuReone.FactFactory
         /// <param name="code">Error code.</param>
         /// <param name="reason">Error reason.</param>
         /// <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
+        /// <param name="container">Fact container.</param>
         /// <returns></returns>
-        public static InvalidDeriveOperationException CreateDeriveException(string code, string reason, IWantAction requiredAction)
+        public static InvalidDeriveOperationException CreateDeriveException(string code, string reason, IWantAction requiredAction, IFactContainer container)
         {
-            return CreateDeriveException(code, reason, requiredAction, null);
+            return CreateDeriveException(code, reason, requiredAction , container, null);
         }
 
         /// <summary>
@@ -93,13 +94,14 @@ namespace GetcuReone.FactFactory
         /// <param name="code">Error code.</param>
         /// <param name="reason">Error reason.</param>
         /// <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
+        /// <param name="container">Fact container.</param>
         /// <param name="requiredFacts">The facts that tried to derive.</param>
         /// <returns></returns>
-        public static InvalidDeriveOperationException CreateDeriveException(string code, string reason, IWantAction requiredAction, IReadOnlyCollection<DeriveFactErrorDetail> requiredFacts)
+        public static InvalidDeriveOperationException CreateDeriveException(string code, string reason, IWantAction requiredAction, IFactContainer container, IReadOnlyCollection<DeriveFactErrorDetail> requiredFacts)
         {
             return new InvalidDeriveOperationException(new List<DeriveErrorDetail>
             {
-                new DeriveErrorDetail(code, reason, requiredAction, requiredFacts),
+                new DeriveErrorDetail(code, reason, requiredAction, container, requiredFacts),
             }.ToReadOnlyCollection());
         }
 

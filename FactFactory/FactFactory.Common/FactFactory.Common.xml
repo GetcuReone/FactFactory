@@ -93,22 +93,24 @@
             <param name="reason">Error reason.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CreateDeriveException(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CreateDeriveException(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer)">
             <summary>
             Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException"/>.
             </summary>
             <param name="code">Error code.</param>
             <param name="reason">Error reason.</param>
             <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
+            <param name="container">Fact container.</param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CreateDeriveException(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.CreateDeriveException(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail})">
             <summary>
             Create <see cref="T:GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException"/>.
             </summary>
             <param name="code">Error code.</param>
             <param name="reason">Error reason.</param>
             <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
+            <param name="container">Fact container.</param>
             <param name="requiredFacts">The facts that tried to derive.</param>
             <returns></returns>
         </member>
