@@ -435,6 +435,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     ErrorCode.FactCannotDerived,
                     $"Failed to derive one or more facts for the action {context.WantAction}.",
                     context.WantAction,
+                    context.Container,
                     deriveFactErrorDetails);
 
                 return false;
