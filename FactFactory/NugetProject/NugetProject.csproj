@@ -14,12 +14,11 @@
         <RepositoryType>git</RepositoryType>
         <PackageTags>factfactory fact getcureone combopatterns</PackageTags>
         <PackageReleaseNotes>
-            Changes:
-            - API standardized interaction with the fact factory;
-            - made it possible to add an individual container for each fact request;
-            - removed the constraint on the base class of facts;
-            - added a priority fact factory;
-            - also fixed important bugs.
+            In this change, we tried to change the API of the library and make it more convenient.
+
+            We also added the ability to use individual containers for each separate fact request.
+
+            Another important part of this update was the implementation of the priority fact factory.
         </PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>
