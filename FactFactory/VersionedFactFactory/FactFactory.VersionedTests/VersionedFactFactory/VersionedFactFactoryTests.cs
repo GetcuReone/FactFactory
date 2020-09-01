@@ -2,12 +2,10 @@
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
-using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Priority;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 
@@ -19,7 +17,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create wantAction without version.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        //[Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactWithoutVersionedRuleTestCase()
         {
             const long expectedValue = 1_000;
@@ -316,6 +314,32 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             GivenCreateVersionedFactFactory()
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<FactResult, Version2>(container))
+                .ThenFactEquals(expectedValue);
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Calculate a fact by priority rule.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void CalculateFactByPriorityRuleTestCase()
+        {
+            const long expectedValue = 3;
+
+            GivenCreateVersionedFactFactory()
+                .AndAddRules(new Collection
+                {
+                    (Priority1 p) => new Fact2((int)p.PriorityValue),
+                    (Version1 v) => new Fact2(v),
+                    (Version2 v) => new Fact2(v),
+
+                    (Version1 v, Priority1 p, Fact2 f) => new Fact1(f + (int)p.PriorityValue + v),
+                    (Version2 v, Fact2 f) => new Fact1(f + v),
+                    (Fact2 f) => new Fact1(f),
+
+                    (Fact1 f) => new FactResult(f),
+                })
+                .When("Derive fact.", factFactory =>
+                    factFactory.DeriveFact<FactResult>())
                 .ThenFactEquals(expectedValue);
         }
     }

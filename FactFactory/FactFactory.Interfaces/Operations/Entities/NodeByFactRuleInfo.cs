@@ -23,5 +23,16 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// List of fact conditions. Failed conditions for <see cref="Rule"/>.
         /// </summary>
         public List<IConditionFact> FailedConditions { get; set; }
+
+        /// <summary>
+        /// Required fact types.
+        /// </summary>
+        public List<IFactType> RequiredFactTypes { get; set; }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return "Info <" + Rule.ToString() + ">";
+        }
     }
 }

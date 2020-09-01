@@ -78,11 +78,9 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         NodeByFactRule<TFactRule> node = lastTreeLevel[j];
                         NodeByFactRuleInfo<TFactRule> nodeInfo = node.Info;
                         Dictionary<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>> copatibleAllFinishedNodes = nodeInfo.GetCompatibleFinishedNodes(allFinichedNodes, context);
-                        List<IFactType> needFacts = context
-                            .SingleEntity
-                            .GetRequiredTypesOfFacts(nodeInfo.Rule, context)
-                            .Where(needFactType => !CanRemoveFromNeedFactTypes(needFactType, node, context, copatibleAllFinishedNodes))
-                            .ToList();
+                        List<IFactType> needFacts = nodeInfo
+                            .RequiredFactTypes
+                            .FindAll(needFactType => !CanRemoveFromNeedFactTypes(needFactType, node, context, copatibleAllFinishedNodes));
 
                         // If the rule can be calculated from the parameters in the container, then add the node to the list of complete.
                         if (needFacts.IsNullOrEmpty())
@@ -212,7 +210,9 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     .GetCompatibleRulesEx(finishedNodes.Select(item => item.Key.Rule), context)
                     .ToList();
 
-                if (rule.InputFactTypes.Count > 0 && rule.InputFactTypes.All(f => copabilitiesFinishedRules.Any(r => r.OutputFactType.EqualsFactType(f))))
+                if (rule.InputFactTypes.Count == 0)
+                    finishedNodesInCurrentLevel.Add(node.Info, node);
+                else if (node.Info.RequiredFactTypes.All(requiredFactType => !requiredFactType.IsFactType<IConditionFact>() && copabilitiesFinishedRules.Any(r => r.OutputFactType.EqualsFactType(requiredFactType))))
                     finishedNodesInCurrentLevel.Add(node.Info, node);
                 else if (copabilitiesFinishedRules.Any(r => r.EqualsWork(rule, context.WantAction, context.Container)))
                     finishedNodesInCurrentLevel.Add(node.Info, node);
@@ -271,7 +271,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                             treeLevel.RemoveAt(indexNodeInTreeLevel);
                     }
 
-                    parentNode.Childs.Add(finishedNode.Value);
+                    if (parentNode == finishedNode.Value.Parent)
+                        parentNode.Childs.Add(finishedNode.Value);
+                    else
+                        parentNode.Childs.Add(finishedNode.Value.Copy(parentNode));
                 }
             }
         }
