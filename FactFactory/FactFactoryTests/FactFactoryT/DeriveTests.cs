@@ -101,6 +101,7 @@ namespace FactFactoryTests.FactFactoryT
                     error.Details.First())
                 .AndAreEqual(detail => detail.RequiredFacts.Count, setNeedFacts.Count,
                     errorMessage: "A different amount of required facts was expected.")
+                .AndIsTrue(detail => detail.Container != null)
                 .And("Check detail.", detail =>
                 {
                     List<DeriveFactErrorDetail> factDetails = detail.RequiredFacts.ToList();
@@ -156,6 +157,7 @@ namespace FactFactoryTests.FactFactoryT
                     foreach (var detail in error.Details)
                     {
                         Assert.AreEqual(setNeedFacts.Count, detail.RequiredFacts.Count, "A different amount of required facts was expected.");
+                        Assert.IsNotNull(detail.Container);
                         List<DeriveFactErrorDetail> factDetails = detail.RequiredFacts.ToList();
 
                         for (int i = 0; i < setNeedFacts.Count; i++)

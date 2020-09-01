@@ -14,6 +14,11 @@ namespace GetcuReone.FactFactory.Exceptions.Entities
         public IWantAction RequiredAction { get; }
 
         /// <summary>
+        /// The container that was used for <see cref="RequiredAction"/>.
+        /// </summary>
+        public IFactContainer Container { get; }
+
+        /// <summary>
         /// The facts that tried to derive.
         /// </summary>
         public IReadOnlyCollection<DeriveFactErrorDetail> RequiredFacts { get; }
@@ -24,11 +29,14 @@ namespace GetcuReone.FactFactory.Exceptions.Entities
         /// <param name="code">Error code.</param>
         /// <param name="reason">Error reason.</param>
         /// <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
+        /// <param name="container"></param>
         /// <param name="requiredFacts">The facts that tried to derive.</param>
-        public DeriveErrorDetail(string code, string reason, IWantAction requiredAction, IReadOnlyCollection<DeriveFactErrorDetail> requiredFacts) : base(code, reason)
+        public DeriveErrorDetail(string code, string reason, IWantAction requiredAction, IFactContainer container, IReadOnlyCollection<DeriveFactErrorDetail> requiredFacts) 
+            : base(code, reason)
         {
             RequiredAction = requiredAction;
             RequiredFacts = requiredFacts;
+            Container = container;
         }
     }
 }
