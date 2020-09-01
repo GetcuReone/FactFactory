@@ -1,4 +1,4 @@
-﻿using GetcuReone.FactFactory.Versioned.Versions;
+﻿using GetcuReone.FactFactory.Versioned.SpecialFacts;
 using System;
 
 namespace Versioned_MovieServiceExample.Versions

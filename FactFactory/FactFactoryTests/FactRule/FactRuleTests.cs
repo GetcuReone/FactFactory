@@ -1,0 +1,253 @@
+﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
+using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory;
+using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using GetcuReone.FactFactory.SpecialFacts;
+using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
+using Rule = GetcuReone.FactFactory.Entities.FactRule;
+
+namespace FactFactoryTests.FactRule
+{
+    [TestClass]
+    public sealed class FactRuleTests : CommonTestBase
+    {
+        [TestMethod]
+        [TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Create FactRule without param.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void CreateFactRuleWithoutParamTestCase()
+        {
+            GivenEmpty()
+                .When("Create factRule.", _ => 
+                    new Rule(facts => { return default; }, null, GetFactType<OtherFact>()))
+                .Then("Check input param.", rule => 
+                    Assert.AreEqual(0, rule.InputFactTypes.Count, "InpuTFactTypes is not empty."));
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Create a rule with one input parameter.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred), TestCategory(GetcuReoneTC.Unit)]
+        public void CreateFactRuleOneInputParamTestCase()
+        {
+            IntFact fact = null;
+
+            Given("Create fact", () => new IntFact(0))
+                .When("Create factRule.", factInner => 
+                {
+                    fact = factInner;
+                    return new Rule(facts => { return default; }, new List<IFactType> { fact.GetFactType() }, GetFactType<OtherFact>());
+                })
+                .Then("Check input param.", rule => 
+                {
+                    Assert.AreEqual(1, rule.InputFactTypes.Count, "InpuTFactTypes is empty");
+                    Assert.IsTrue(rule.InputFactTypes.First().EqualsFactType(fact.GetFactType()), "factual information does not match");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Create a rule with several input parameters.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void CreateFactRuleSeveralInputParamTestCase()
+        {
+            IntFact fact = null;
+
+            Given("Create fact.", () => new IntFact(0))
+                .When("Create factRule.", factInner =>
+                {
+                    fact = factInner;
+                    return new Rule(facts => { return default; }, new List<IFactType> { fact.GetFactType(), fact.GetFactType(), fact.GetFactType() }, GetFactType<OtherFact>());
+                })
+                .Then("Check input param.", rule =>
+                {
+                    Assert.AreEqual(3, rule.InputFactTypes.Count, "InpuTFactTypes is not empty.");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Create a rule with output parameter.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void CreateFactRuleOutputParamTestCase()
+        {
+            IntFact fact = null;
+
+            Given("Create fact.", () => new IntFact(0))
+                .When("Create factRule.", factInner =>
+                {
+                    fact = factInner;
+                    return new Rule(facts => { return default; }, null, fact.GetFactType());
+                })
+                .Then("Check output param.", rule => 
+                    Assert.IsTrue(rule.OutputFactType.EqualsFactType(fact.GetFactType()), "factual information does not match."));
+        }
+
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Create a rule without param.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void CreateFactRuleWithoutFuncTestCase()
+        {
+            GivenEmpty()
+                .When("Create rule,", _ =>
+                {
+                    return ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, IFact>), null, null));
+                })
+                .Then("Check error.", ex => 
+                {
+                    Assert.IsNotNull(ex, "error is null,");
+                    Assert.AreEqual("func", ex.ParamName, "Another parameter name expected.");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Check method calculate.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void CalculateFactRuleTestCase()
+        {
+            DateTime operationDate = DateTime.Now;
+            var container = new Container();
+
+            Given("Add fact 1.", () => container.Add(new DateTimeFact(operationDate)))
+                .And("Add fact 2.", _ => 
+                    container.Add(new IntFact(1)))
+                .And("Create rule.", _ =>
+                {
+                    Func<IEnumerable<IFact>, FactBase> func = facts =>
+                    {
+                        var date = facts.GetFact<DateTimeFact>().Value;
+                        var number = facts.GetFact<IntFact>().Value;
+
+                        return new OtherFact(date.AddDays(number));
+                    };
+
+                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), GetFactType<OtherFact>());
+                })
+                .When("Run method.", rule => 
+                    rule.Calculate(container))
+                .ThenIsNotNull()
+                .And("Check result.", fact =>
+                {
+                    if (fact is OtherFact otherFact)
+                        Assert.AreEqual(operationDate.AddDays(1), otherFact.Value, "Dates do not match.");
+                    else
+                        Assert.Fail($"fact have type {fact.GetType().FullName}.");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Request entry calculated by the rule fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void RequestEntryCalculatedByRuleFactTestCase()
+        {
+            const string expectedReason = "Cannot request a fact calculated according to the rule. (Parameter 'inputFactTypes')";
+
+            GivenEmpty()
+                .When("Create rule.", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<IntFact>()));
+                })
+                .ThenIsNotNull()
+                .And("Check error", ex => 
+                {
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected.");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Return NoDerive fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void ReturnNoDeriveFactTestCase()
+        {
+            string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
+
+            GivenEmpty()
+                .When("Create rule.", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<CannotDerived<Input10Fact>>()));
+                })
+                .ThenIsNotNull()
+                .And("Check error.", ex =>
+                {
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected.");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Return NotContained fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void ReturnNotContainedFactTestCase()
+        {
+            string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
+
+            GivenEmpty()
+                .When("Create rule.", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<NotContained<Input10Fact>>()));
+                })
+                .ThenIsNotNull()
+                .And("Check error.", ex =>
+                {
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected.");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.Contained), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Return Contained fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void ReturnContainedFactTestCase()
+        {
+            string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
+
+            GivenEmpty()
+                .When("Create rule.", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<Contained<Input10Fact>>()));
+                })
+                .ThenIsNotNull()
+                .And("Check error.", ex =>
+                {
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected.");
+                });
+        }
+
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.CanDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Return CanDerived fact.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void ReturnCanDerivedFactTestCase()
+        {
+            string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
+
+            GivenEmpty()
+                .When("Create rule", _ =>
+                {
+                    return ExpectedException<ArgumentException>(
+                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<CanDerived<Input10Fact>>()));
+                })
+                .Then("Check error", ex =>
+                {
+                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
+                });
+        }
+    }
+}

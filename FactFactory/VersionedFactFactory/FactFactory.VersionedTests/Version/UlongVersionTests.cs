@@ -1,14 +1,15 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.Version.Env;
-using GetcuReone.FactFactory.Versioned;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.GetcuTestAdapter;
-using GetcuReone.GwtTestFramework;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.VersionedTests.Version
 {
     [TestClass]
-    public sealed class UlongVersionTests : CommonTestBase<VersionedFactBase>
+    public sealed class UlongVersionTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
@@ -16,13 +17,16 @@ namespace FactFactory.VersionedTests.Version
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UlongVersion_FirstVersionLessThanSecondTestCase()
         {
+            const int expectedValue = -1;
             UlongVersion v1 = null;
             UlongVersion v2 = null;
 
-            Given("Create first version", () => v1 = new UlongVersion(1))
-                .And("Create second version", _ => v2 = new UlongVersion(2))
-                .When("Compare version", _ => v1.IsLessThan(v2))
-                .Then("Check result", result => Assert.IsTrue(result, "The first version is not less than the second"));
+            Given("Create first version.", () => v1 = new UlongVersion(1))
+                .And("Create second version.", _ =>
+                    v2 = new UlongVersion(2))
+                .When("Compare version.", _ =>
+                    v1.CompareTo(v2))
+                .ThenAreEqual(expectedValue);
         }
 
         [TestMethod]
@@ -31,43 +35,16 @@ namespace FactFactory.VersionedTests.Version
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UlongVersion_SecondVersionMoreThanFirstTestCase()
         {
+            const int expectedValue = 1;
             UlongVersion v1 = null;
             UlongVersion v2 = null;
 
-            Given("Create first version", () => v1 = new UlongVersion(1))
-                .And("Create second version", _ => v2 = new UlongVersion(2))
-                .When("Compare version", _ => v2.IsMoreThan(v1))
-                .Then("Check result", result => Assert.IsTrue(result, "The first version is not more than the second"));
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("The Ulong version is not less than the DateTime.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void UlongVersionVersionNotLessThanDateTimeTestCase()
-        {
-            UlongVersion v1 = null;
-            Version2020 v2 = null;
-
-            Given("Create first version", () => v1 = new UlongVersion(1))
-                .And("Create second version", _ => v2 = new Version2020())
-                .When("Compare version", _ => v1.IsLessThan(v2))
-                .Then("Check result", result => Assert.IsFalse(result, "The Ulong version is less than the DateTime"));
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("The Ulong version is not more than the DateTime.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void UlongVersionNotMoreThanDateTimeTestCase()
-        {
-            UlongVersion v1 = null;
-            Version2020 v2 = null;
-
-            Given("Create first version", () => v1 = new UlongVersion(1))
-                .And("Create second version", _ => v2 = new Version2020())
-                .When("Compare version", _ => v1.IsMoreThan(v2))
-                .Then("Check result", result => Assert.IsFalse(result, "The Ulong version is more than the DateTime"));
+            Given("Create first version.", () => v1 = new UlongVersion(1))
+                .And("Create second version.", _ =>
+                    v2 = new UlongVersion(2))
+                .When("Compare version.", _ =>
+                    v2.CompareTo(v1))
+                .ThenAreEqual(expectedValue);
         }
 
         [TestMethod]
@@ -76,28 +53,34 @@ namespace FactFactory.VersionedTests.Version
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UlongVersion_SecondVersionEqualFirstTestCase()
         {
+            const int expectedValue = 0;
             UlongVersion v1 = null;
             UlongVersion v2 = null;
 
-            Given("Create first version", () => v1 = new UlongVersion(1))
-                .And("Create second version", _ => v2 = new UlongVersion(1))
-                .When("Compare version", _ => v2.EqualVersion(v1))
-                .Then("Check result", result => Assert.IsTrue(result, "The first version is not equal the second"));
+            Given("Create first version.", () => v1 = new UlongVersion(2))
+                .And("Create second version.", _ =>
+                    v2 = new UlongVersion(2))
+                .When("Compare version.", _ =>
+                    v2.CompareTo(v1))
+                .ThenAreEqual(expectedValue);
         }
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("The Ulong version is not equal the DateTime.")]
+        [Description("The Int version is not less than the DateTime.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void UlongVersionNotEqualDateTimeTestCase()
+        public void UlongVersionVersionNotLessThanDateTimeTestCase()
         {
+            const string expectedReason = "Unable to compare versions UlongVersion and Version2020.";
             UlongVersion v1 = null;
             Version2020 v2 = null;
 
-            Given("Create first version", () => v1 = new UlongVersion(1))
-                .And("Create second version", _ => v2 = new Version2020())
-                .When("Compare version", _ => v1.Equals(v2))
-                .Then("Check result", result => Assert.IsFalse(result, "The Ulong version is equal the DateTime"));
+            Given("Create first version.", () => v1 = new UlongVersion(1))
+                .And("Create second version.", _ =>
+                    v2 = new Version2020())
+                .When("Compare version.", _ =>
+                    ExpectedFactFactoryException(() => v1.CompareTo(v2)))
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using FactFactory.TestsCommon;
-using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
@@ -7,7 +6,7 @@ using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContain
 namespace FactFactory.VersionedTests.VersionedFactContainer.Env
 {
     [TestClass]
-    public abstract class VersionedFactContrainerTestBase : CommonTestBase<VersionedFactBase>
+    public abstract class VersionedFactContrainerTestBase : CommonTestBase
     {
         protected GivenBlock<Container> GivenCreateContainer()
         {

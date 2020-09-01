@@ -1,8 +1,8 @@
-﻿using GetcuReone.FactFactory.Versioned;
+﻿using GetcuReone.FactFactory;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Bug73
 {
-    internal sealed class CanCalculateDefaultKey : VersionedFactBase
+    internal sealed class CanCalculateDefaultKey : FactBase
     {
     }
 }

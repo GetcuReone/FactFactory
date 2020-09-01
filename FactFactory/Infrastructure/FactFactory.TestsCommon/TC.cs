@@ -14,6 +14,11 @@
             /// Refers to the FactFactory.Versioned project.
             /// </summary>
             public const string Versioned = "versioned_test";
+
+            /// <summary>
+            /// Refers to the FactFactory.Priority project.
+            /// </summary>
+            public const string Priority = "priority_test";
         }
 
         /// <summary>
@@ -47,19 +52,24 @@
             public const string RuleCollection = "rule_collection_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.IContainedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.IContainedFact"/>.
             /// </summary>
             public const string Contained = "contained_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.INotContainedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.INotContainedFact"/>.
             /// </summary>
             public const string NotContained = "not_contained_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.INoDerivedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.ICannotDerivedFact"/>.
             /// </summary>
-            public const string NoDerived = "no_derived_test";
+            public const string CannotDerived = "cannot_derived_test";
+
+            /// <summary>
+            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.ICanDerivedFact"/>.
+            /// </summary>
+            public const string CanDerived = "can_derived_test";
 
             /// <summary>
             /// <see cref="GetcuReone.FactFactory.Interfaces.IFact"/>.

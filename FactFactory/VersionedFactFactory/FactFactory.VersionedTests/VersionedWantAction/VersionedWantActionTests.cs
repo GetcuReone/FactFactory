@@ -1,19 +1,20 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VWantAction = GetcuReone.FactFactory.Versioned.Entities.VersionedWantAction;
+using System.Linq;
+using VWantAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactory.VersionedTests.VersionedWantAction
 {
     [TestClass]
-    public sealed class VersionedWantActionTests : CommonTestBase<VersionedFactBase>
+    public sealed class VersionedWantActionTests : CommonTestBase
     {
         private VWantAction CreateVersionedWantAction(params IFactType[] factTypes)
         {
-            return new VWantAction(ct => { }, factTypes);
+            return new VWantAction(ct => { }, factTypes.ToList());
         }
 
         [TestMethod]
@@ -23,11 +24,13 @@ namespace FactFactory.VersionedTests.VersionedWantAction
         public void CreateWantActionWithVersionTestCase()
         {
             GivenEmpty()
-                .When("Create wantAction with version", _ => CreateVersionedWantAction(GetFactType<Version1>(), GetFactType<Fact1>()))
-                .Then("Check result", wantAction =>
+                .When("Create wantAction with version.", _ => 
+                    GetWantAction((Version1 v, Fact1 _) => { }))
+                .ThenGetVersionType()
+                .AndIsNotNull()
+                .And("Check result.", versionType =>
                 {
-                    Assert.IsNotNull(wantAction.VersionType, "The rule does not contain version information");
-                    Assert.IsTrue(GetFactType<Version1>().Compare(wantAction.VersionType), $"{nameof(wantAction.VersionType)} does not store version information");
+                    Assert.IsTrue(GetFactType<Version1>().EqualsFactType(versionType), $"{nameof(versionType)} does not store version information");
                 });
         }
 
@@ -38,11 +41,9 @@ namespace FactFactory.VersionedTests.VersionedWantAction
         public void CreateWantActionWithoutVersionTestCase()
         {
             GivenEmpty()
-                .When("Create wantAction without version", _ => CreateVersionedWantAction(GetFactType<Fact1>()))
-                .Then("Check result", wantAction =>
-                {
-                    Assert.IsNull(wantAction.VersionType, "The rule does not contain version information");
-                });
+                .When("Create wantAction without version", _ =>
+                    CreateVersionedWantAction(GetFactType<Fact1>()))
+                .ThenNotContainVersionType();
         }
     }
 }

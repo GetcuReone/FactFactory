@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FactFactory.Versioned.Interfaces</name>
+    </assembly>
+    <members>
+        <member name="T:GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact">
+            <summary>
+            Fact containing version information.
+            </summary>
+        </member>
+    </members>
+</doc>

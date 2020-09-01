@@ -1,9 +1,9 @@
-﻿using GetcuReone.FactFactory.Versioned;
+﻿using GetcuReone.FactFactory;
 using System.IO;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Bug73
 {
-    internal sealed class CertFileInfo : VersionedFactBase<FileInfo>
+    internal sealed class CertFileInfo : FactBase<FileInfo>
     {
         public CertFileInfo(FileInfo value) : base(value)
         {

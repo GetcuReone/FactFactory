@@ -1,15 +1,13 @@
 ﻿using GetcuReone.FactFactory.BaseEntities;
-using GetcuReone.FactFactory.Interfaces;
 using System;
 
 namespace GetcuReone.FactFactory.Helpers
 {
-    internal class IgnoreReadOnlySpace<TFact> : IDisposable
-        where TFact : IFact
+    internal class IgnoreReadOnlySpace : IDisposable
     {
-        private readonly FactContainerBase<TFact> _container;
+        private readonly FactContainerBase _container;
 
-        internal IgnoreReadOnlySpace(FactContainerBase<TFact> container)
+        internal IgnoreReadOnlySpace(FactContainerBase container)
         {
             _container = container;
             _container.IsReadOnly = false;

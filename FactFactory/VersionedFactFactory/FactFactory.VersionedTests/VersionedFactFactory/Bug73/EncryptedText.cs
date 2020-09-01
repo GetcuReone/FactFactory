@@ -1,8 +1,8 @@
-﻿using GetcuReone.FactFactory.Versioned;
+﻿using GetcuReone.FactFactory;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Bug73
 {
-    internal sealed class EncryptedText : VersionedFactBase<string>
+    internal sealed class EncryptedText : FactBase<string>
     {
         public EncryptedText(string value) : base(value)
         {

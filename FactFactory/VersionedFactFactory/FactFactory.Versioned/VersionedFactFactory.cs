@@ -1,67 +1,58 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Versioned.Entities;
-using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Versioned
 {
     /// <summary>
-    /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
+    /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
     /// </summary>
-    public class VersionedFactFactory : VersionedFactFactoryBase<VersionedFactBase, VersionedFactContainer, VersionedFactRule, VersionedFactRuleCollection, VersionedWantAction>
+    public class VersionedFactFactory : VersionedFactFactoryBase<FactRule, FactRuleCollection, WantAction, VersionedFactContainer>
     {
-        private readonly Func<List<IVersionFact>> _getAllVersionFactsFunc;
-
-        /// <summary>
-        /// Fact container.
-        /// </summary>
-        public override VersionedFactContainer Container { get; }
+        private readonly Func<IWantActionContext<WantAction, VersionedFactContainer>, IEnumerable<IFact>> _getDefaultFactsFunc;
 
         /// <summary>
         /// Rule collection.
         /// </summary>
-        public override VersionedFactRuleCollection Rules { get; }
+        public override FactRuleCollection Rules { get; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="getAllVersionFactsFunc">Function that returns all versioned facts used in the rules.</param>
-        public VersionedFactFactory(Func<List<IVersionFact>> getAllVersionFactsFunc)
+        public VersionedFactFactory() : this(null)
         {
-            _getAllVersionFactsFunc = getAllVersionFactsFunc;
-            Container = new VersionedFactContainer();
-            Rules = new VersionedFactRuleCollection();
+
         }
 
         /// <summary>
-        /// Creation method <see cref="IWantAction{TFact}"/>.
+        /// Constructor.
         /// </summary>
-        /// <param name="wantAction">action taken after deriving a fact.</param>
-        /// <param name="factTypes">facts required to launch an action.</param>
-        /// <returns></returns>
-        protected override VersionedWantAction CreateWantAction(Action<IFactContainer<VersionedFactBase>> wantAction, IReadOnlyCollection<IFactType> factTypes)
+        /// <param name="getDefaultFactsFunc">Function that returns default facts.</param>
+        public VersionedFactFactory(Func<IWantActionContext<WantAction, VersionedFactContainer>, IEnumerable<IFact>> getDefaultFactsFunc)
         {
-            return new VersionedWantAction(wantAction, factTypes);
+            _getDefaultFactsFunc = getDefaultFactsFunc;
+            Rules = new FactRuleCollection();
         }
 
-        /// <summary>
-        /// Get fact type.
-        /// </summary>
-        /// <typeparam name="TGetFact"></typeparam>
-        /// <returns></returns>
-        protected override IFactType GetFactType<TGetFact>()
+        /// <inheritdoc/>
+        protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext<WantAction, VersionedFactContainer> context)
         {
-            return new FactType<TGetFact>();
+            return _getDefaultFactsFunc?.Invoke(context) ?? base.GetDefaultFacts(context);
         }
 
-        /// <summary>
-        /// Returns instances of all used versions.
-        /// </summary>
-        /// <returns></returns>
-        protected override IEnumerable<IVersionFact> GetAllVersions()
+        /// <inheritdoc/>
+        protected override WantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
         {
-            return _getAllVersionFactsFunc();
+            return new WantAction(wantAction, factTypes);
+        }
+
+        /// <inheritdoc/>
+        protected override VersionedFactContainer GetDefaultContainer()
+        {
+            return new VersionedFactContainer();
         }
     }
 }
