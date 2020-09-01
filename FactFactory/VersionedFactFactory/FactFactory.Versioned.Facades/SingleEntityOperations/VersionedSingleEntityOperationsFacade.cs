@@ -1,26 +1,29 @@
-﻿using GetcuReone.FactFactory.Facades.SingleEntityOperations;
-using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using GetcuReone.FactFactory.Versioned.Constants;
-using GetcuReone.FactFactory.Versioned.Interfaces;
+using GetcuReone.FactFactory.Priority;
+using GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 {
     /// <inheritdoc/>
-    public class VersionedSingleEntityOperationsFacade : SingleEntityOperationsFacade
+    public class VersionedSingleEntityOperationsFacade : PrioritySingleEntityOperationsFacade
     {
         /// <inheritdoc/>
         public override int CompareFactRules<TFactRule, TWantAction, TFactContainer>(TFactRule x, TFactRule y, IWantActionContext<TWantAction, TFactContainer> context)
         {
+            int resultByPriority = x.CompareByPriority(y, context);
+            if (resultByPriority != 0)
+                return resultByPriority;
+
             int resultByVersion = x.CompareByVersion(y, context);
             if (resultByVersion != 0)
                 return resultByVersion;
 
-            return base.CompareFactRules(x, y, context);
+            return x.CompareTo(y);
         }
 
         /// <inheritdoc/>
@@ -96,31 +99,18 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 .ToList();
         }
 
-        /// <summary>
-        /// Comparison of facts.
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
-        protected virtual int CompareFacts(IFact x, IFact y)
+        /// <inheritdoc/>
+        public override int CompareFacts(IFact x, IFact y)
         {
-            if (x.IsCalculatedByRule())
-            {
-                if (!y.IsCalculatedByRule())
-                    return 1;
-            }
-            else if (y.IsCalculatedByRule())
-                return -1;
+            int result = x.CompareTo(y);
+            if (result != 0)
+                return result;
 
-            var xVersion = x.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
-            var yVersion = y.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+            result = x.CompareByPriority(y);
+            if (result != 0)
+                return result;
 
-            if (xVersion == null)
-                return yVersion == null ? 0 : 1;
-            if (yVersion == null)
-                return -1;
-
-            return xVersion.CompareTo(yVersion);
+            return x.CompareByVersion(y);
         }
 
         /// <inheritdoc/>
@@ -139,7 +129,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        protected override bool NeedRecalculateFact<TFactRule, TWantAction, TFactContainer>(TFactRule rule, IWantActionContext<TWantAction, TFactContainer> context)
+        protected override bool NeedRecalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
         {
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
@@ -147,7 +137,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 return false;
 
             return context
-                .GetFactsFromContainerByFactType(rule.OutputFactType)
+                .GetFactsFromContainerByFactType(node.Info.Rule.OutputFactType)
                 .Any(fact => !fact.IsCompatibleWithVersion(maxVersion));
         }
     }

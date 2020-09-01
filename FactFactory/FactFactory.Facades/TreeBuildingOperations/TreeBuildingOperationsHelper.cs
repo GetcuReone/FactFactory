@@ -41,6 +41,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 SuccessConditions = new List<IConditionFact>(),
                 FailedConditions = new List<IConditionFact>(),
                 Rule = rule,
+                RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList()
             });
 
             return nodeInfos.ConvertAll(info =>
@@ -62,7 +63,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     Context = context,
                 };
 
-                if (context.SingleEntity.GetRequiredTypesOfFacts(info.Rule, context).IsNullOrEmpty())
+                if (info.RequiredFactTypes.Count == 0)
                     tree.Built();
 
                 return tree;
@@ -139,6 +140,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         Rule = rule,
                         SuccessConditions = new List<IConditionFact>(),
                         FailedConditions = new List<IConditionFact>(),
+                        RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
                     };
 
                 result.Add(new NodeByFactRule<TFactRule>
@@ -178,6 +180,17 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             var result = new HashSet<TFactRule>();
             FillUniqueRulesFromTree(treeByFactRule.Root, result);
             return result;
+        }
+
+        internal static NodeByFactRule<TFactRule> Copy<TFactRule>(this NodeByFactRule<TFactRule> node, NodeByFactRule<TFactRule> newParent)
+            where TFactRule : IFactRule
+        {
+            return new NodeByFactRule<TFactRule>
+            {
+                Childs = node.Childs,
+                Info = node.Info,
+                Parent = newParent,
+            };
         }
     }
 }

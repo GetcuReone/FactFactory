@@ -150,44 +150,6 @@ namespace FactFactoryTests.FactContainer
 
         [TestMethod]
         [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get copied container.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void FactContainer_GetCopiedContainerTestCase()
-        {
-            Input1Fact input1Fact = new Input1Fact(1);
-            Input2Fact input2Fact = new Input2Fact(2);
-            Input3Fact input3Fact = new Input3Fact(3);
-
-            Container originalContainer = null;
-            IFactContainer copyContainer = null;
-
-            Given("Create container.", () => originalContainer = new Container())
-                .And("Add facts.", _ =>
-                {
-                    originalContainer.Add(input1Fact);
-                    originalContainer.Add(input2Fact);
-                    originalContainer.Add(input3Fact);
-                })
-                .When("Get value.", _ => copyContainer = originalContainer.Copy())
-                .Then("Check result.", _ =>
-                {
-                    Assert.IsNotNull(copyContainer, "Container cannot be null.");
-                    Assert.AreNotEqual(originalContainer, copyContainer, "Containers should not be equal.");
-                    Assert.AreEqual(originalContainer.Count(), copyContainer.Count(), "Containers should have the same amount of facts.");
-
-                    Assert.IsTrue(copyContainer.TryGetFact(out Input1Fact fact1), $"{nameof(Input1Fact)} must be contained in a container.");
-                    Assert.AreEqual(input1Fact, fact1, $"Original copy of {nameof(Input1Fact)} fact expected.");
-
-                    Assert.IsTrue(copyContainer.TryGetFact(out Input2Fact fact2), $"{nameof(Input2Fact)} must be contained in a container.");
-                    Assert.AreEqual(input2Fact, fact2, $"Original copy of {nameof(Input2Fact)} fact expected.");
-
-                    Assert.IsTrue(copyContainer.TryGetFact(out Input3Fact fact3), $"{nameof(Input3Fact)} must be contained in a container.");
-                    Assert.AreEqual(input3Fact, fact3, $"Original copy of {nameof(Input3Fact)} fact expected.");
-                });
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("Add fact to read-only container.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddFactReadOnlyContainerTestCase()

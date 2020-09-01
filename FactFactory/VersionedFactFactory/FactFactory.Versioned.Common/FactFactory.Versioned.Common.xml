@@ -6,7 +6,7 @@
     <members>
         <member name="T:GetcuReone.FactFactory.Versioned.Constants.VersionedErrorCode">
             <summary>
-            Codes for errors in work <see cref="T:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactFactory`4"/>.
+            Codes for errors in work VersionedFactFactory.
             </summary>
         </member>
         <member name="F:GetcuReone.FactFactory.Versioned.Constants.VersionedErrorCode.VersionNotFound">
@@ -16,7 +16,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.Constants.VersionedFactParametersCodes">
             <summary>
-            Default codes for fact parameter.
+            Versioned codes for fact parameter.
             </summary>
         </member>
         <member name="F:GetcuReone.FactFactory.Versioned.Constants.VersionedFactParametersCodes.Version">
@@ -26,7 +26,7 @@
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper">
             <summary>
-            Helper for <see cref="T:GetcuReone.FactFactory.Versioned.Interfaces.IVersionedFactFactory`4"/>.
+            Helper for VersionedFactFactory.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.GetVersionOrNull``1(``0)">
@@ -53,13 +53,15 @@
             <param name="factTypes"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.GetVersionByType(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.FirstVersionByFactType``1(System.Collections.Generic.IEnumerable{``0},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)">
             <summary>
-            Get version fact by type.
+            The first version fact of the same type.
             </summary>
-            <param name="facts"></param>
-            <param name="factTypeVersion"></param>
-            <returns></returns>
+            <typeparam name="TFact"></typeparam>
+            <param name="facts">Fact list.</param>
+            <param name="factType">Fact type of version.</param>
+            <param name="cache">Cache.</param>
+            <returns>Version or null.</returns>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.CompareByVersion``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
             <summary>
@@ -72,6 +74,21 @@
             <param name="y"></param>
             <param name="context"></param>
             <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.CompareByVersion(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)">
+            <summary>
+            Compare facts by version.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.SetVersion(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+            <summary>
+            Set version.
+            </summary>
+            <param name="fact"></param>
+            <param name="version"></param>
         </member>
     </members>
 </doc>

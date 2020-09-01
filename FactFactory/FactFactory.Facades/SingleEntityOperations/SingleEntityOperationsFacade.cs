@@ -38,28 +38,19 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
-            return x.CompareTo(y, context);
+            return x.CompareTo(y);
         }
 
         /// <inheritdoc/>
-        public virtual TFactContainer ValidateAndGetContainer<TFactContainer>(TFactContainer container) 
+        public virtual void ValidateContainer<TFactContainer>(TFactContainer container) 
             where TFactContainer : IFactContainer
         {
             if (container == null)
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "Container cannot be null.");
-
-            IFactContainer containerCopy = container.Copy();
-            if (containerCopy == null)
-                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactContainer.Copy method return null.");
-            if (container.Equals(containerCopy))
-                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactContainer.Copy method return original container.");
-            if (!(containerCopy is TFactContainer container1))
-                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactContainer.Copy method returned a different type of container.");
-            if (container1.Any(fact => fact is IConditionFact))
+            if (container.Any(fact => fact is IConditionFact))
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, $"Container contains {nameof(IConditionFact)} facts.");
 
-            container1.IsReadOnly = true;
-            return container1;
+            container.IsReadOnly = true;
         }
 
         /// <inheritdoc/>
@@ -131,7 +122,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             var rule = node.Info.Rule;
             if (context.Container.Any(f => context.Cache.GetFactType(f).EqualsFactType(rule.OutputFactType)))
             {
-                if (!NeedRecalculateFact(rule, context))
+                if (!NeedRecalculateFact(node, context))
                     return false;
             }
 
@@ -170,6 +161,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             return context.Container
                 .Where(fact => factWork.InputFactTypes
                     .Any(inputType => context.Cache.GetFactType(fact).EqualsFactType(inputType)))
+                .OrderByDescending(fact => fact, Comparer<IFact>.Create(CompareFacts))
                 .ToList();
         }
 
@@ -179,10 +171,10 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// <typeparam name="TFactRule"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>
         /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="rule"></param>
+        /// <param name="node"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        protected virtual bool NeedRecalculateFact<TFactRule, TWantAction, TFactContainer>(TFactRule rule, IWantActionContext<TWantAction, TFactContainer> context)
+        protected virtual bool NeedRecalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
@@ -206,6 +198,17 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             foreach (var condition in wantActionInfo.SuccessConditions)
                 using (context.Container.CreateIgnoreReadOnlySpace())
                     context.Container.Remove(condition);
+        }
+
+        /// <summary>
+        /// Comparison of facts.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public virtual int CompareFacts(IFact x, IFact y)
+        {
+            return x.CompareTo(y);
         }
     }
 }

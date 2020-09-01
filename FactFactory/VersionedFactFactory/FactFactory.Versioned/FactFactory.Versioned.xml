@@ -4,12 +4,82 @@
         <name>FactFactory.Versioned</name>
     </assembly>
     <members>
+        <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.DateTimeVersionBase">
+            <summary>
+            Base class for <see cref="T:System.DateTime"/> based version facts.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.DateTimeVersionBase.#ctor(System.DateTime)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.DateTimeVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.IntVersionBase">
+            <summary>
+            Base class for <see cref="T:System.Int32"/> based version facts.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.IntVersionBase.#ctor(System.Int32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.IntVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.LongVersionBase">
+            <summary>
+            Base class for <see cref="T:System.Int64"/> based version facts.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.LongVersionBase.#ctor(System.Int64)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.LongVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.UintVersionBase">
+            <summary>
+            Base class for <see cref="T:System.UInt32"/> based version facts.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.UintVersionBase.#ctor(System.UInt32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.UintVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.UlongVersionBase">
+            <summary>
+            Base class for <see cref="T:System.UInt64"/> based version facts.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.UlongVersionBase.#ctor(System.UInt64)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="version">version</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.UlongVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1">
             <summary>
             Base class for version facts.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.ValueVersion">
+        <member name="P:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.VersionValue">
             <summary>
             Value version.
             </summary>
@@ -32,7 +102,7 @@
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.op_Implicit(GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase{`0})~`0">
             <summary>
-            Extract <see cref="P:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.ValueVersion"/>.
+            Extract <see cref="P:GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.VersionValue"/>.
             </summary>
             <param name="fact"></param>
         </member>
@@ -41,29 +111,29 @@
             Default implementation of versioned fact factory <see cref="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4"/>.
             </summary>
         </member>
-        <member name="P:GetcuReone.FactFactory.Versioned.VersionedFactFactory.Container">
-            <summary>
-            Fact container.
-            </summary>
-        </member>
         <member name="P:GetcuReone.FactFactory.Versioned.VersionedFactFactory.Rules">
             <summary>
             Rule collection.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.#ctor(System.Func{System.Collections.Generic.List{GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact}})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.#ctor">
             <summary>
             Constructor.
             </summary>
-            <param name="getAllVersionFactsFunc">Function that returns all versioned facts used in the rules.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetAllVersions">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}})">
             <summary>
-            Returns instances of all used versions.
+            Constructor.
             </summary>
-            <returns></returns>
+            <param name="getDefaultFactsFunc">Function that returns default facts.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer})">
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetDefaultContainer">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4">
@@ -71,95 +141,16 @@
             Base class for versioned fact factory.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetAllVersions">
-            <summary>
-            Returns instances of all used versions.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetDefaultFacts(`3)">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetSingleEntityOperations">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.DeriveFact``2">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.DeriveFact``2(`3)">
             <summary>
-            Derive <typeparamref name="TFact"/> with version.
+            Derive <typeparamref name="TFactResult"/> with version.
             </summary>
-            <typeparam name="TFact">Type of desired fact.</typeparam>
+            <typeparam name="TFactResult">Type of desired fact.</typeparam>
             <typeparam name="TVersion">Type of version fact.</typeparam>
             <returns></returns>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Versions.DateTimeVersionBase">
-            <summary>
-            Base class for <see cref="T:System.DateTime"/> based version facts.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Versions.DateTimeVersionBase.#ctor(System.DateTime)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="version">version</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Versions.DateTimeVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Versions.IntVersionBase">
-            <summary>
-            Base class for <see cref="T:System.Int32"/> based version facts.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Versions.IntVersionBase.#ctor(System.Int32)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="version">version</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Versions.IntVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Versions.LongVersionBase">
-            <summary>
-            Base class for <see cref="T:System.Int64"/> based version facts.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Versions.LongVersionBase.#ctor(System.Int64)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="version">version</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Versions.LongVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Versions.UintVersionBase">
-            <summary>
-            Base class for <see cref="T:System.UInt32"/> based version facts.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UintVersionBase.#ctor(System.UInt32)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="version">version</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UintVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.Versioned.Versions.UlongVersionBase">
-            <summary>
-            Base class for <see cref="T:System.UInt64"/> based version facts.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UlongVersionBase.#ctor(System.UInt64)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="version">version</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Versions.UlongVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
-            <inheritdoc/>
         </member>
     </members>
 </doc>

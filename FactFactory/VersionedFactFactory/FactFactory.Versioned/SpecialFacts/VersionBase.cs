@@ -1,6 +1,6 @@
-﻿using GetcuReone.FactFactory.BaseEntities.SpecialFacts;
-using GetcuReone.FactFactory.Constants;
+﻿using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
@@ -9,20 +9,20 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
     /// <summary>
     /// Base class for version facts.
     /// </summary>
-    public abstract class VersionBase<TVersion> : SpecialFactBase, IVersionFact
+    public abstract class VersionBase<TVersionValue> : SpecialFactBase, IVersionFact
     {
         /// <summary>
         /// Value version.
         /// </summary>
-        public TVersion ValueVersion { get; }
+        public TVersionValue VersionValue { get; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="version">version</param>
-        protected VersionBase(TVersion version)
+        protected VersionBase(TVersionValue version)
         {
-            ValueVersion = version;
+            VersionValue = version;
         }
 
         /// <summary>
@@ -39,12 +39,12 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         public abstract int CompareTo(IVersionFact other);
 
         /// <summary>
-        /// Extract <see cref="VersionBase{TVersion}.ValueVersion"/>.
+        /// Extract <see cref="VersionBase{TVersionValue}.VersionValue"/>.
         /// </summary>
         /// <param name="fact"></param>
-        public static implicit operator TVersion(VersionBase<TVersion> fact)
+        public static implicit operator TVersionValue(VersionBase<TVersionValue> fact)
         {
-            return fact.ValueVersion;
+            return fact.VersionValue;
         }
     }
 }

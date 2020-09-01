@@ -16,11 +16,6 @@ namespace GetcuReone.FactFactory.Interfaces
         where TFactContainer : IFactContainer
     {
         /// <summary>
-        /// Fact container.
-        /// </summary>
-        TFactContainer Container { get; }
-
-        /// <summary>
         /// Collection of rules for derive facts.
         /// </summary>
         TFactRuleCollection Rules { get; }
@@ -31,17 +26,11 @@ namespace GetcuReone.FactFactory.Interfaces
         void Derive();
 
         /// <summary>
-        /// Derive <typeparamref name="TFactResult"/>.
-        /// </summary>
-        /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
-        /// <returns></returns>
-        TFactResult DeriveFact<TFactResult>() where TFactResult : IFact;
-
-        /// <summary>
         /// Requesting a desired fact through action.
         /// </summary>
-        /// <param name="wantAction"></param>
-        void WantFact(TWantAction wantAction);
+        /// <param name="wantAction">WantAction.</param>
+        /// <param name="container">Fact container.</param>
+        void WantFacts(TWantAction wantAction, TFactContainer container);
 
         /// <summary>
         /// Get <see cref="ITreeBuildingOperations"/>.

@@ -27,11 +27,5 @@
             <param name="facts">An array of facts to add to the container.</param>
             <param name="isReadOnly"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.Copy">
-            <summary>
-            Get copy container.
-            </summary>
-            <returns></returns>
-        </member>
     </members>
 </doc>

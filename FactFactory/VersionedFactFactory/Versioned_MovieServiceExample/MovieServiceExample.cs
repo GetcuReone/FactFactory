@@ -1,5 +1,6 @@
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.FactFactory.Versioned.Entities;
 using GetcuReone.FactFactory.Versioned.Interfaces;
@@ -29,7 +30,7 @@ namespace Versioned_MovieServiceExample
         /// The method returns instances of all versions used in the rules.
         /// </summary>
         /// <returns></returns>
-        private List<IVersionFact> GetAllVersion()
+        private List<IVersionFact> GetAllVersion(IWantActionContext<WantAction, VersionedFactContainer> context)
         {
             return new List<IVersionFact>
             {
@@ -134,11 +135,14 @@ namespace Versioned_MovieServiceExample
             int movieId = 1;
 
             // Let's tell the factory what we know
-            Factory.Container.Add(new UserEmailFact(email));
-            Factory.Container.Add(new MovieIdFact(movieId));
+            var container = new VersionedFactContainer
+            {
+                new UserEmailFact(email),
+                new MovieIdFact(movieId),
+            };
 
             // We ask the factory to calculate the cost of buying a movie for our user.
-            int price = Factory.DeriveFact<MoviePurchasePriceFact, Version2019>().Value;
+            int price = Factory.DeriveFact<MoviePurchasePriceFact, Version2019>(container).Value;
 
             // If we look at the database, we will see that for this user the discount on the purchase of this film is 5. The movie itself costs 11.
             Assert.AreEqual(6, price, "We expected a different purchase price.");
@@ -153,11 +157,14 @@ namespace Versioned_MovieServiceExample
             int movieId = 1;
 
             // Let's tell the factory what we know
-            Factory.Container.Add(new UserEmailFact(email));
-            Factory.Container.Add(new MovieIdFact(movieId));
+            var container = new VersionedFactContainer
+            {
+                new UserEmailFact(email),
+                new MovieIdFact(movieId),
+            };
 
             // We ask the factory to calculate the cost of buying a movie for our user.
-            int price = Factory.DeriveFact<MoviePurchasePriceFact, Version2019>().Value;
+            int price = Factory.DeriveFact<MoviePurchasePriceFact, Version2019>(container).Value;
 
             // For this user, the discount for this movie is not configured. Therefore we expect full value.
             Assert.AreEqual(MovieDB.Single(m => m.Id == movieId).Cost, price, "We expected a different purchase price.");
@@ -172,11 +179,14 @@ namespace Versioned_MovieServiceExample
             int movieId = 1;
 
             // Let's tell the factory what we know
-            Factory.Container.Add(new UserEmailFact(email));
-            Factory.Container.Add(new MovieIdFact(movieId));
+            var container = new VersionedFactContainer
+            {
+                new UserEmailFact(email),
+                new MovieIdFact(movieId),
+            };
 
             // We ask the factory to calculate the cost of buying a movie for our user.
-            int price = Factory.DeriveFact<MoviePurchasePriceFact, Version2020>().Value;
+            int price = Factory.DeriveFact<MoviePurchasePriceFact, Version2020>(container).Value;
 
             // Calculate the cost of the movie "My Hero's Academy: Rise of the Heroes" for the user "Judy Gonzalez" according to the new rule.
             Assert.AreEqual(MovieDB.First(movie => movie.Id == movieId).Cost, price, "We expected a different purchase price.");

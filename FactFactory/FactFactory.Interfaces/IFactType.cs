@@ -32,12 +32,5 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <typeparam name="TFact"></typeparam>
         /// <returns></returns>
         TFact CreateConditionFact<TFact>() where TFact : IConditionFact;
-
-        /// <summary>
-        /// Returns a subarray whose facts have this <see cref="IFactType"/>.
-        /// </summary>
-        /// <param name="facts"></param>
-        /// <returns></returns>
-        IEnumerable<IFact> GetFacts(IEnumerable<IFact> facts);
     }
 }

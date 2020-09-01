@@ -147,6 +147,14 @@
             <typeparam name="TFact">type of fact to check for.</typeparam>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.Contains``1(``0)">
+            <summary>
+            Is this type of fact contained.
+            </summary>
+            <typeparam name="TFact">type of fact to check for.</typeparam>
+            <param name="fact"></param>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactContainer.Clear">
             <summary>
             Clear this container.
@@ -161,11 +169,6 @@
             <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
             <typeparam name="TWantAction">Type 'want action'.</typeparam>
         </member>
-        <member name="P:GetcuReone.FactFactory.Interfaces.IFactFactory`4.Container">
-            <summary>
-            Fact container.
-            </summary>
-        </member>
         <member name="P:GetcuReone.FactFactory.Interfaces.IFactFactory`4.Rules">
             <summary>
             Collection of rules for derive facts.
@@ -176,18 +179,12 @@
             Derive the facts.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.DeriveFact``1">
-            <summary>
-            Derive <typeparamref name="TFactResult"/>.
-            </summary>
-            <typeparam name="TFactResult">Type of desired fact.</typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.WantFact(`2)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.WantFacts(`2,`3)">
             <summary>
             Requesting a desired fact through action.
             </summary>
-            <param name="wantAction"></param>
+            <param name="wantAction">WantAction.</param>
+            <param name="container">Fact container.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.GetTreeBuildingOperations">
             <summary>
@@ -278,13 +275,6 @@
             Create an fact of this type. Method created for condition facts.
             </summary>
             <typeparam name="TFact"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.IFactType.GetFacts(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
-            <summary>
-            Returns a subarray whose facts have this <see cref="T:GetcuReone.FactFactory.Interfaces.IFactType"/>.
-            </summary>
-            <param name="facts"></param>
             <returns></returns>
         </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactWork">
@@ -492,6 +482,14 @@
             List of fact conditions. Failed conditions for <see cref="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRuleInfo`1.Rule"/>.
             </summary>
         </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRuleInfo`1.RequiredFactTypes">
+            <summary>
+            Required fact types.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRuleInfo`1.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule`3">
             <summary>
             A tree built by type of fact rule.
@@ -552,6 +550,23 @@
             List of fact conditions. Failed conditions for WantAction from context.
             </summary>
         </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantFactsInfo`2">
+            <summary>
+            Information about 'WantFacts'.
+            </summary>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantFactsInfo`2.WantAction">
+            <summary>
+            WantAction.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.WantFactsInfo`2.Container">
+            <summary>
+            Fact container.
+            </summary>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache">
             <summary>
             Fact type cache.
@@ -582,7 +597,7 @@
             Single operations on entities of the FactFactory.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.ValidateAndGetContainer``1(``0)">
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.ValidateContainer``1(``0)">
             <summary>
             Validate and return a copy of the container.
             </summary>

@@ -1,5 +1,5 @@
-﻿using GetcuReone.FactFactory.BaseEntities.SpecialFacts;
-using GetcuReone.FactFactory.Interfaces.Context;
+﻿using GetcuReone.FactFactory.Interfaces.Context;
+using GetcuReone.FactFactory.SpecialFacts;
 using System.Collections.Generic;
 
 namespace FactFactory.VersionedTests.CommonFacts

@@ -90,6 +90,9 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Contains``1">
             <inheritdoc/>
         </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Contains``1(``0)">
+            <inheritdoc/>
+        </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.GetEnumerator">
             <inheritdoc/>
         </member>
@@ -108,9 +111,6 @@
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Copy">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactContainerBase.Clear">
@@ -601,9 +601,6 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.IsFactType``1">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.GetFacts(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
-            <inheritdoc/>
-        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.FactTypeCache">
             <summary>
             Fact type cache.
@@ -637,61 +634,6 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.EqualsWork``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CanDerivedFactBase`1">
-            <summary>
-            Contains information about a type of fact that can be derived.
-            </summary>
-            <typeparam name="TFact"></typeparam>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CanDerivedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CannotDerivedFactBase`1">
-            <summary>
-            Contains information about a type of fact that cannot be derived.
-            </summary>
-            <typeparam name="TFact"></typeparam>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.CannotDerivedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase">
-            <summary>
-            Base class for <see cref="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact"/>.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase`1">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ConditionFactBase`1.GetFactType``1">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ContainedFactBase`1">
-            <summary>
-            Is the fact <typeparamref name="TFact"/> contained in the container.
-            </summary>
-            <typeparam name="TFact"></typeparam>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.ContainedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.NotContainedFactBase`1">
-            <summary>
-            Is the fact <typeparamref name="TFact"/> not contained in the container.
-            </summary>
-            <typeparam name="TFact"></typeparam>
-        </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.SpecialFacts.NotContainedFactBase`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.BaseEntities.SpecialFacts.SpecialFactBase">
-            <summary>
-            Base class for <see cref="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact"/>.
-            </summary>
-        </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.WantActionBase">
             <summary>
             Base class for <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>.
@@ -712,41 +654,6 @@
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.Invoke(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.FactBase">
-            <summary>
-            Base class for fact.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactBase.GetFactType">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactBase.AddParameter(GetcuReone.FactFactory.Interfaces.IFactParameter)">
-            <inheritdoc/>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactBase.GetParameter(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="T:GetcuReone.FactFactory.FactBase`1">
-            /// <inheritdoc/>
-            <typeparam name="TFactValue">Type fact value.</typeparam>
-        </member>
-        <member name="P:GetcuReone.FactFactory.FactBase`1.Value">
-            <summary>
-            Value fact.
-            </summary>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactBase`1.#ctor(`0)">
-            <summary>
-            Constructor.
-            </summary>
-            <param name="value">Fact value.</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactBase`1.op_Implicit(GetcuReone.FactFactory.FactBase{`0})~`0">
-            <summary>
-            Extract <see cref="P:GetcuReone.FactFactory.FactBase`1.Value"/>.
-            </summary>
-            <param name="fact"></param>
         </member>
         <member name="T:GetcuReone.FactFactory.FactType`1">
             <summary>

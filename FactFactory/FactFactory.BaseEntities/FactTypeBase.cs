@@ -2,8 +2,6 @@
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.BaseEntities
@@ -44,12 +42,6 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             bool result = typeof(TFact1).IsAssignableFrom(typeof(TFact));
             return result;
-        }
-
-        /// <inheritdoc/>
-        public virtual IEnumerable<IFact> GetFacts(IEnumerable<IFact> facts)
-        {
-            return facts.Where(fact => fact is TFact);
         }
     }
 }

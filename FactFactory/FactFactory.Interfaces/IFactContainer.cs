@@ -5,7 +5,7 @@ namespace GetcuReone.FactFactory.Interfaces
     /// <summary>
     /// Container interface with facts for deriving other facts.
     /// </summary>
-    public interface IFactContainer : IEnumerable<IFact>, ICopy<IFactContainer>
+    public interface IFactContainer : IEnumerable<IFact>
     {
         /// <summary>
         /// Gets a value indicating whether the <see cref="IFactContainer"/> is read-only.
@@ -59,6 +59,14 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <typeparam name="TFact">type of fact to check for.</typeparam>
         /// <returns></returns>
         bool Contains<TFact>() where TFact : IFact;
+
+        /// <summary>
+        /// Is this type of fact contained.
+        /// </summary>
+        /// <typeparam name="TFact">type of fact to check for.</typeparam>
+        /// <param name="fact"></param>
+        /// <returns></returns>
+        bool Contains<TFact>(TFact fact) where TFact : IFact;
 
         /// <summary>
         /// Clear this container.

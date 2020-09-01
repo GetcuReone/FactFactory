@@ -1,15 +1,16 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
+using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Versioned.Constants;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Versioned
 {
     /// <summary>
-    /// Helper for <see cref="IVersionedFactFactory{TFactRule, TFactRuleCollection, TWantAction, TFactContainer}"/>.
+    /// Helper for VersionedFactFactory.
     /// </summary>
     public static class VersionedFactFactoryHelper
     {
@@ -56,18 +57,17 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Get version fact by type.
+        /// The first version fact of the same type.
         /// </summary>
-        /// <param name="facts"></param>
-        /// <param name="factTypeVersion"></param>
-        /// <returns></returns>
-        public static IVersionFact GetVersionByType(this IEnumerable<IFact> facts, IFactType factTypeVersion)
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="facts">Fact list.</param>
+        /// <param name="factType">Fact type of version.</param>
+        /// <param name="cache">Cache.</param>
+        /// <returns>Version or null.</returns>
+        public static IVersionFact FirstVersionByFactType<TFact>(this IEnumerable<TFact> facts, IFactType factType, IFactTypeCache cache)
+            where TFact : IFact
         {
-            var versionFact = factTypeVersion.GetFacts(facts).FirstOrDefault();
-            if (versionFact == null)
-                throw CommonHelper.CreateException(VersionedErrorCode.VersionNotFound, $"No version fact '{factTypeVersion.FactName}' found");
-
-            return versionFact as IVersionFact;
+            return facts.FirstFactByFactType(factType, cache) as IVersionFact;
         }
 
         /// <summary>
@@ -93,10 +93,40 @@ namespace GetcuReone.FactFactory.Versioned
             if (yVersionType == null)
                 return -1;
 
-            IVersionFact xVersion = context.Container.GetVersionByType(xVersionType);
-            IVersionFact yVersion = context.Container.GetVersionByType(yVersionType);
+            IVersionFact xVersion = context.Container.FirstVersionByFactType(xVersionType, context.Cache);
+            IVersionFact yVersion = context.Container.FirstVersionByFactType(yVersionType, context.Cache);
 
             return xVersion.CompareTo(yVersion);
+        }
+
+        /// <summary>
+        /// Compare facts by version.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static int CompareByVersion(this IFact x, IFact y)
+        {
+            var xVersion = x.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+            var yVersion = y.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+
+            if (xVersion == null)
+                return yVersion == null ? 0 : 1;
+            if (yVersion == null)
+                return -1;
+
+            return xVersion.CompareTo(yVersion);
+        }
+
+        /// <summary>
+        /// Set version.
+        /// </summary>
+        /// <param name="fact"></param>
+        /// <param name="version"></param>
+        public static IFact SetVersion(this IFact fact, IVersionFact version)
+        {
+            fact.AddParameter(new FactParameter(VersionedFactParametersCodes.Version, version));
+            return fact;
         }
     }
 }

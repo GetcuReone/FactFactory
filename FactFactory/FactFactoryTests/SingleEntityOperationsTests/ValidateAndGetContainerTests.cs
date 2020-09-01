@@ -22,52 +22,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Run method ValidateAndGetRules.", facade =>
-                    ExpectedDeriveException(() => facade.ValidateAndGetContainer<Container>(container)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get original container.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void GetOriginalContainerTestCase()
-        {
-            const string expectedReason = "IFactContainer.Copy method return original container.";
-            var container = new FactContainerGetOriginal();
-
-            GivenCreateFacade()
-                .When("Run method ValidateAndGetRules.", facade =>
-                    ExpectedDeriveException(() => facade.ValidateAndGetContainer<Container>(container)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get null container.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void GetNullContainerTestCase()
-        {
-            const string expectedReason = "IFactContainer.Copy method return null.";
-            var container = new FactContainerGetNull();
-
-            GivenCreateFacade()
-                .When("Run method ValidateAndGetRules.", facade =>
-                    ExpectedDeriveException(() => facade.ValidateAndGetContainer<Container>(container)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Returned a different type of container.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void GetDifferentContainerTestCase()
-        {
-            const string expectedReason = "IFactContainer.Copy method returned a different type of container.";
-            var container = new FactContainerGetDifferent();
-
-            GivenCreateFacade()
-                .When("Run method ValidateAndGetRules.", facade =>
-                    ExpectedDeriveException(() => facade.ValidateAndGetContainer<Container>(container)))
+                    ExpectedDeriveException(() => facade.ValidateContainer(container)))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
         }
     }
