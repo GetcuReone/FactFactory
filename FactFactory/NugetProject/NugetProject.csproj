@@ -14,6 +14,7 @@
         <RepositoryType>git</RepositoryType>
         <PackageTags>factfactory fact getcureone combopatterns</PackageTags>
         <PackageReleaseNotes>
+            Changes:
             - API standardized interaction with the fact factory;
             - made it possible to add an individual container for each fact request;
             - removed the constraint on the base class of facts;
