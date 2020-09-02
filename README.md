@@ -6,7 +6,7 @@ Welcome to my Factory of Facts project. This project implements a mechanism for 
 [![Build status](https://dev.azure.com/GetcuReone-Studio/OpenSource-Projects/_apis/build/status/master-FactFactory?branchName=master)](https://dev.azure.com/GetcuReone-Studio/OpenSource-Projects/_build/latest?definitionId=23)
 [![Azure DevOps tests](https://img.shields.io/azure-devops/tests/GetcuReone-Studio/OpenSource-Projects/23?label=Unit%20tests)](https://dev.azure.com/GetcuReone-Studio/OpenSource-Projects/_build/latest?definitionId=23)
 [![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/GetcuReone-Studio/OpenSource-Projects/23?label=Code%20coverage)](https://dev.azure.com/GetcuReone-Studio/OpenSource-Projects/_build/latest?definitionId=23)
-[![GitHub](https://img.shields.io/github/license/GetcuReone/FactFactory)](https://github.com/GetcuReone/FactFactory/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/GetcuReone/FactFactory)](https://github.com/GetcuReone/FactFactory/blob/master/LICENSE.txt)
 
 - [Homepage](https://github.com/GetcuReone/FactFactory/wiki)
 - [NuGet Package](https://www.nuget.org/packages/GetcuReone.FactFactory/)
