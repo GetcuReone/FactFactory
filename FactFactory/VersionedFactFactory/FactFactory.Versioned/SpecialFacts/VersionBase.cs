@@ -46,5 +46,11 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         {
             return fact.VersionValue;
         }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return $"Version <{VersionValue}>";
+        }
     }
 }
