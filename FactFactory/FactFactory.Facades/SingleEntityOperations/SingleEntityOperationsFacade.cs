@@ -179,7 +179,9 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
-            return false;
+            return node.Parent != null
+                ? !CanExtractFact(node.Info.Rule.OutputFactType, node.Parent.Info.Rule, context)
+                : !CanExtractFact(node.Info.Rule.OutputFactType, context.WantAction, context);
         }
 
         /// <inheritdoc/>
