@@ -62,7 +62,10 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (factType.IsFactType<ISpecialFact>())
                 return base.CanExtractFact(factType, factWork, context);
 
-            List<IFact> facts = context.GetFactsFromContainerByFactType(factType).ToList();
+            List<IFact> facts = context
+                .Container
+                .WhereFactsByFactType(factType, context.Cache)
+                .ToList();
 
             if (facts.Count == 0)
                 return false;
@@ -80,8 +83,11 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         {
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
-            return factWork.InputFactTypes.Where(factType =>
-                context.GetFactsFromContainerByFactType(factType).All(fact => !fact.IsRelevantFactByVersioned(maxVersion)));
+            return factWork.InputFactTypes.Where(factType => context
+                .Container
+                .WhereFactsByFactType(factType, context.Cache)
+                .All(fact => !fact.IsRelevantFactByVersioned(maxVersion))
+            );
         }
 
         /// <inheritdoc/>

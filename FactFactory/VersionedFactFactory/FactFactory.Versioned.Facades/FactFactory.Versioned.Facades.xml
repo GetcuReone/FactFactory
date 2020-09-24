@@ -31,14 +31,5 @@
         <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade.TryCalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2},GetcuReone.FactFactory.Interfaces.IFact@)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsHelper.IsCompatibleWithVersion``1(``0,GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
-            <summary>
-            Compatible with version.
-            </summary>
-            <typeparam name="TFact"></typeparam>
-            <param name="fact"></param>
-            <param name="version"></param>
-            <returns></returns>
-        </member>
     </members>
 </doc>

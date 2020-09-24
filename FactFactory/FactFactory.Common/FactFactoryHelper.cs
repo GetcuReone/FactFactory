@@ -275,7 +275,7 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <param name="facts">Facts.</param>
         /// <param name="factType">Required type.</param>
-        /// <param name="cache">Cache.</param>
+        /// <param name="cache">Cache (optional).</param>
         /// <returns></returns>
         public static IEnumerable<IFact> WhereFactsByFactType(this IEnumerable<IFact> facts, IFactType factType, IFactTypeCache cache)
         {
