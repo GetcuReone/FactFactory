@@ -72,7 +72,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (maxVersion == null)
                 return true;
 
-            return facts.Exists(fact => fact.IsCompatibleWithVersion(maxVersion));
+            return facts.Exists(fact => fact.IsRelevantFactByVersioned(maxVersion));
         }
 
         /// <inheritdoc/>
@@ -81,7 +81,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
             return factWork.InputFactTypes.Where(factType =>
-                context.GetFactsFromContainerByFactType(factType).All(fact => !fact.IsCompatibleWithVersion(maxVersion)));
+                context.GetFactsFromContainerByFactType(factType).All(fact => !fact.IsRelevantFactByVersioned(maxVersion)));
         }
 
         /// <inheritdoc/>
@@ -94,7 +94,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
             return context
                 .GetFactsFromContainerByFactTypes(factWork.InputFactTypes)
-                .Where(fact => fact.IsCompatibleWithVersion(maxVersion))
+                .Where(fact => fact.IsRelevantFactByVersioned(maxVersion))
                 .OrderByDescending(fact => fact, Comparer<IFact>.Create(CompareFacts))
                 .ToList();
         }

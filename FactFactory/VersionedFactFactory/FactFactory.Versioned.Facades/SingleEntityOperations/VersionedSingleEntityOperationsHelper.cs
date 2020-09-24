@@ -53,28 +53,5 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 return factTypes.Any(type => type.EqualsFactType(factType));
             });
         }
-
-        /// <summary>
-        /// Compatible with version.
-        /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <param name="fact"></param>
-        /// <param name="version"></param>
-        /// <returns></returns>
-        internal static bool IsCompatibleWithVersion<TFact>(this TFact fact, IVersionFact version)
-            where TFact : IFact
-        {
-            if (version == null || !fact.IsCalculatedByRule())
-                return true;
-
-            var value = fact.GetParameter(VersionedFactParametersCodes.Version)?.Value;
-
-            if (value == null)
-                return false;
-            if (value is IVersionFact factVersion)
-                return version.CompareTo(factVersion) >= 0;
-
-            return false;
-        }
     }
 }
