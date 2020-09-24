@@ -90,5 +90,14 @@
             <param name="fact"></param>
             <param name="version"></param>
         </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.IsRelevantFactByVersioned``1(``0,GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)">
+            <summary>
+            Is relevant fact by versioned.
+            </summary>
+            <typeparam name="TFact"></typeparam>
+            <param name="fact">Fact.</param>
+            <param name="maxVersion">Max version (optional).</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

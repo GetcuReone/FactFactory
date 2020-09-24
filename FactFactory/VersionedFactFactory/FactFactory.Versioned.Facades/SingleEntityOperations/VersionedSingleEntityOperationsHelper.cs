@@ -32,49 +32,5 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
             return maxVersion.CompareTo(version) >= 0;
         }
-
-        internal static IEnumerable<IFact> GetFactsFromContainerByFactType<TWantAction, TFactContainer>(this IWantActionContext<TWantAction, TFactContainer> context, IFactType factType)
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
-        {
-            return context.Container.Where(fact => context.Cache.GetFactType(fact).EqualsFactType(factType));
-        }
-
-        internal static IEnumerable<IFact> GetFactsFromContainerByFactTypes<TWantAction, TFactContainer>(this IWantActionContext<TWantAction, TFactContainer> context, IEnumerable<IFactType> factTypes)
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
-        {
-            if (factTypes.IsNullOrEmpty())
-                return Enumerable.Empty<IFact>();
-
-            return context.Container.Where(fact => 
-            {
-                IFactType factType = context.Cache.GetFactType(fact);
-                return factTypes.Any(type => type.EqualsFactType(factType));
-            });
-        }
-
-        /// <summary>
-        /// Compatible with version.
-        /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <param name="fact"></param>
-        /// <param name="version"></param>
-        /// <returns></returns>
-        internal static bool IsCompatibleWithVersion<TFact>(this TFact fact, IVersionFact version)
-            where TFact : IFact
-        {
-            if (version == null || !fact.IsCalculatedByRule())
-                return true;
-
-            var value = fact.GetParameter(VersionedFactParametersCodes.Version)?.Value;
-
-            if (value == null)
-                return false;
-            if (value is IVersionFact factVersion)
-                return version.CompareTo(factVersion) >= 0;
-
-            return false;
-        }
     }
 }

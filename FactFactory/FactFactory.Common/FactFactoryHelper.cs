@@ -269,5 +269,45 @@ namespace GetcuReone.FactFactory
 
             return 0;
         }
+
+        /// <summary>
+        /// Get an array of facts of a specific type.
+        /// </summary>
+        /// <param name="facts">Facts.</param>
+        /// <param name="factType">Required type.</param>
+        /// <param name="cache">Cache (optional).</param>
+        /// <returns></returns>
+        public static IEnumerable<IFact> WhereFactsByFactType(this IEnumerable<IFact> facts, IFactType factType, IFactTypeCache cache)
+        {
+            Func<IFact, IFactType> getFactTypeFunc;
+            if (cache != null)
+                getFactTypeFunc = cache.GetFactType;
+            else
+                getFactTypeFunc = fact => fact.GetFactType();
+
+            return facts.Where(fact => getFactTypeFunc(fact).EqualsFactType(factType));
+        }
+
+        /// <summary>
+        /// Get an array of facts of a specific types.
+        /// </summary>
+        /// <param name="facts">Facts.</param>
+        /// <param name="factTypes">Required types.</param>
+        /// <param name="cache">Cache (optional).</param>
+        /// <returns></returns>
+        public static IEnumerable<IFact> WhereFactsByFactTypes(this IEnumerable<IFact> facts, IEnumerable<IFactType> factTypes, IFactTypeCache cache)
+        {
+            Func<IFact, IFactType> getFactTypeFunc;
+            if (cache != null)
+                getFactTypeFunc = cache.GetFactType;
+            else
+                getFactTypeFunc = fact => fact.GetFactType();
+
+            return facts.Where(fact => 
+            {
+                var factType = getFactTypeFunc(fact);
+                return factTypes.Any(type => type.EqualsFactType(factType));
+            });
+        }
     }
 }

@@ -62,7 +62,10 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (factType.IsFactType<ISpecialFact>())
                 return base.CanExtractFact(factType, factWork, context);
 
-            List<IFact> facts = context.GetFactsFromContainerByFactType(factType).ToList();
+            List<IFact> facts = context
+                .Container
+                .WhereFactsByFactType(factType, context.Cache)
+                .ToList();
 
             if (facts.Count == 0)
                 return false;
@@ -72,7 +75,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (maxVersion == null)
                 return true;
 
-            return facts.Exists(fact => fact.IsCompatibleWithVersion(maxVersion));
+            return facts.Exists(fact => fact.IsRelevantFactByVersioned(maxVersion));
         }
 
         /// <inheritdoc/>
@@ -80,8 +83,11 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         {
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
-            return factWork.InputFactTypes.Where(factType =>
-                context.GetFactsFromContainerByFactType(factType).All(fact => !fact.IsCompatibleWithVersion(maxVersion)));
+            return factWork.InputFactTypes.Where(factType => context
+                .Container
+                .WhereFactsByFactType(factType, context.Cache)
+                .All(fact => !fact.IsRelevantFactByVersioned(maxVersion))
+            );
         }
 
         /// <inheritdoc/>
@@ -93,8 +99,9 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 return base.GetRequireFacts(factWork, context);
 
             return context
-                .GetFactsFromContainerByFactTypes(factWork.InputFactTypes)
-                .Where(fact => fact.IsCompatibleWithVersion(maxVersion))
+                .Container
+                .WhereFactsByFactTypes(factWork.InputFactTypes, context.Cache)
+                .Where(fact => fact.IsRelevantFactByVersioned(maxVersion))
                 .OrderByDescending(fact => fact, Comparer<IFact>.Create(CompareFacts))
                 .ToList();
         }
