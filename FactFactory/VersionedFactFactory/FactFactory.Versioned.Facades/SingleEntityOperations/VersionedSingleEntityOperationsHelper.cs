@@ -32,19 +32,5 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
             return maxVersion.CompareTo(version) >= 0;
         }
-
-        internal static IEnumerable<IFact> GetFactsFromContainerByFactTypes<TWantAction, TFactContainer>(this IWantActionContext<TWantAction, TFactContainer> context, IEnumerable<IFactType> factTypes)
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
-        {
-            if (factTypes.IsNullOrEmpty())
-                return Enumerable.Empty<IFact>();
-
-            return context.Container.Where(fact => 
-            {
-                IFactType factType = context.Cache.GetFactType(fact);
-                return factTypes.Any(type => type.EqualsFactType(factType));
-            });
-        }
     }
 }

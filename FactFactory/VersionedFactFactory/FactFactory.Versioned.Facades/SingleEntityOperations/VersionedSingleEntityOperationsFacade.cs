@@ -99,7 +99,8 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 return base.GetRequireFacts(factWork, context);
 
             return context
-                .GetFactsFromContainerByFactTypes(factWork.InputFactTypes)
+                .Container
+                .WhereFactsByFactTypes(factWork.InputFactTypes, context.Cache)
                 .Where(fact => fact.IsRelevantFactByVersioned(maxVersion))
                 .OrderByDescending(fact => fact, Comparer<IFact>.Create(CompareFacts))
                 .ToList();
