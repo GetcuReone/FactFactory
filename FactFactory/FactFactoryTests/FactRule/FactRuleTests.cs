@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
@@ -101,6 +102,22 @@ namespace FactFactoryTests.FactRule
             GivenEmpty()
                 .When("Create rule,", _ =>
                     ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, IFact>), null, null)))
+                .ThenIsNotNull()
+                .AndAreEqual(ex => ex.ParamName, paramName,
+                    errorMessage: "Another parameter name expected.");
+        }
+
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Create a async rule without param.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void CreateAsyncFactRuleWithoutFuncTestCase()
+        {
+            const string paramName = "funcAsync";
+
+            GivenEmpty()
+                .When("Create rule,", _ =>
+                    ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, ValueTask<IFact>>), null, null)))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.ParamName, paramName,
                     errorMessage: "Another parameter name expected.");
