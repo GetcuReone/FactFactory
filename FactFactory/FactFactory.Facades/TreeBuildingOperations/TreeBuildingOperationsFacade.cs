@@ -525,5 +525,29 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 }
             }
         }
+
+        /// <inheritdoc/>
+        public virtual void CalculateTreeAndDeriveWantFacts<TFactRule, TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo, IEnumerable<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> treeByFactRules)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            foreach (var tree in treeByFactRules)
+            {
+                foreach (var group in GetIndependentNodeGroups(tree))
+                {
+                    foreach (var node in group)
+                    {
+                        if (tree.Context.SingleEntity.TryCalculateFact(node, tree.Context, out IFact fact))
+                        {
+                            using (wantActionInfo.Context.Container.CreateIgnoreReadOnlySpace())
+                                wantActionInfo.Context.Container.Add(fact);
+                        }
+                    }
+                }
+            }
+
+            wantActionInfo.Context.SingleEntity.DeriveWantFacts(wantActionInfo);
+        }
     }
 }

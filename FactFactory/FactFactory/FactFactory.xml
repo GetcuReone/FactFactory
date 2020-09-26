@@ -121,13 +121,6 @@
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetFactTypeCache">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CalculateTreeAndDeriveWantFacts(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{`2,`3},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{`0,`2,`3}})">
-            <summary>
-            Tree calculation and fact deriving.
-            </summary>
-            <param name="wantActionInfo"></param>
-            <param name="treeByFactRules"></param>
-        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Creation method <typeparamref name="TWantAction"/>.

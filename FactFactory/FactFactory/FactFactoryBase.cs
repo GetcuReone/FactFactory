@@ -84,7 +84,7 @@ namespace GetcuReone.FactFactory
                 throw CommonHelper.CreateDeriveException(result.DeriveErrorDetails);
 
             foreach(var item in result.TreesByActions)
-                CalculateTreeAndDeriveWantFacts(item.Key, item.Value);
+                treeBuildingOperations.CalculateTreeAndDeriveWantFacts(item.Key, item.Value);
 
             contexts.ForEach(context =>
             {
@@ -171,31 +171,6 @@ namespace GetcuReone.FactFactory
         public virtual IFactTypeCache GetFactTypeCache()
         {
             return new FactTypeCache();
-        }
-
-        /// <summary>
-        /// Tree calculation and fact deriving.
-        /// </summary>
-        /// <param name="wantActionInfo"></param>
-        /// <param name="treeByFactRules"></param>
-        protected virtual void CalculateTreeAndDeriveWantFacts(WantActionInfo<TWantAction, TFactContainer> wantActionInfo, List<Interfaces.Operations.Entities.TreeByFactRule<TFactRule, TWantAction, TFactContainer>> treeByFactRules)
-        {
-            foreach(var tree in treeByFactRules)
-            {
-                foreach(var group in tree.Context.TreeBuilding.GetIndependentNodeGroups(tree))
-                {
-                    foreach(var node in group)
-                    {
-                        if (tree.Context.SingleEntity.TryCalculateFact(node, tree.Context, out IFact fact))
-                        {
-                            using (wantActionInfo.Context.Container.CreateIgnoreReadOnlySpace())
-                                wantActionInfo.Context.Container.Add(fact);
-                        }
-                    }
-                }
-            }
-
-            wantActionInfo.Context.SingleEntity.DeriveWantFacts(wantActionInfo);
         }
 
         #region overloads method WantFact
