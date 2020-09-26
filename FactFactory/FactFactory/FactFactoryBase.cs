@@ -86,7 +86,6 @@ namespace GetcuReone.FactFactory
             foreach(var item in result.TreesByActions)
                 CalculateTreeAndDeriveWantFacts(item.Key, item.Value);
 
-            OnDeriveFinished(contexts);
             contexts.ForEach(context =>
             {
                 var wantFactsInfos = WantFactsInfos.FirstOrDefault(info => info.WantAction == context.WantAction && info.Container == context.Container);
@@ -191,34 +190,13 @@ namespace GetcuReone.FactFactory
                         {
                             using (wantActionInfo.Context.Container.CreateIgnoreReadOnlySpace())
                                 wantActionInfo.Context.Container.Add(fact);
-                            OnFactCalculated(node.Info.Rule, wantActionInfo.Context);
                         }
                     }
                 }
             }
 
             wantActionInfo.Context.SingleEntity.DeriveWantFacts(wantActionInfo);
-            OnDeriveWantFacts(wantActionInfo.Context);
         }
-
-        /// <summary>
-        /// Fact calculation event handler.
-        /// </summary>
-        /// <param name="rule">The rule that calculated the fact.</param>
-        /// <param name="context">Context.</param>
-        protected virtual void OnFactCalculated(TFactRule rule, IWantActionContext<TWantAction, TFactContainer> context) { }
-
-        /// <summary>
-        /// Event handler for outputting facts to the WantAction.
-        /// </summary>
-        /// <param name="context"></param>
-        protected virtual void OnDeriveWantFacts(IWantActionContext<TWantAction, TFactContainer> context) { }
-
-        /// <summary>
-        /// Event handler method 'derive finished'. It is executed at the end of the <see cref="FactFactoryBase{TFactRule, TFactRuleCollection, TWantAction, TFactContainer}.Derive"/> method.
-        /// </summary>
-        /// <param name="context">Contexts.</param>
-        protected virtual void OnDeriveFinished(IEnumerable<IWantActionContext<TWantAction, TFactContainer>> context) { }
 
         #region overloads method WantFact
 
