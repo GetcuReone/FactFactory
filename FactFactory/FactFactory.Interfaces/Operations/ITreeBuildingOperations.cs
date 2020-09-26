@@ -66,5 +66,18 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
             where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// Calculate trees and derive fact.
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="wantActionInfo">Information about the WantAction.</param>
+        /// <param name="treeByFactRules">Trees that need to be calculated to output a facts.</param>
+        void CalculateTreeAndDeriveWantFacts<TFactRule, TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo, IEnumerable<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> treeByFactRules)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }

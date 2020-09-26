@@ -192,5 +192,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 Parent = newParent,
             };
         }
+
+        internal static IgnoreReadOnlySpace CreateIgnoreReadOnlySpace(this IFactContainer container)
+        {
+            return new IgnoreReadOnlySpace(container);
+        }
     }
 }
