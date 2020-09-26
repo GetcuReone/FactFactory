@@ -1,8 +1,6 @@
 ﻿using FactFactory.TestsCommon;
-using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.SpecialFacts;
@@ -28,7 +26,7 @@ namespace FactFactoryTests.FactRule
         {
             GivenEmpty()
                 .When("Create factRule.", _ => 
-                    new Rule(facts => { return default; }, null, GetFactType<OtherFact>()))
+                    new Rule(facts => { return new OtherFact(default); }, null, GetFactType<OtherFact>()))
                 .Then("Check input param.", rule => 
                     Assert.AreEqual(0, rule.InputFactTypes.Count, "InpuTFactTypes is not empty."));
         }
@@ -45,7 +43,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule.", factInner => 
                 {
                     fact = factInner;
-                    return new Rule(facts => { return default; }, new List<IFactType> { fact.GetFactType() }, GetFactType<OtherFact>());
+                    return new Rule(facts => { return new OtherFact(default); }, new List<IFactType> { fact.GetFactType() }, GetFactType<OtherFact>());
                 })
                 .Then("Check input param.", rule => 
                 {
@@ -66,7 +64,7 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule.", factInner =>
                 {
                     fact = factInner;
-                    return new Rule(facts => { return default; }, new List<IFactType> { fact.GetFactType(), fact.GetFactType(), fact.GetFactType() }, GetFactType<OtherFact>());
+                    return new Rule(facts => { return new OtherFact(default); }, new List<IFactType> { fact.GetFactType(), fact.GetFactType(), fact.GetFactType() }, GetFactType<OtherFact>());
                 })
                 .Then("Check input param.", rule =>
                 {
@@ -86,10 +84,10 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule.", factInner =>
                 {
                     fact = factInner;
-                    return new Rule(facts => { return default; }, null, fact.GetFactType());
+                    return new Rule(facts => { return fact; }, null, fact.GetFactType());
                 })
-                .Then("Check output param.", rule => 
-                    Assert.IsTrue(rule.OutputFactType.EqualsFactType(fact.GetFactType()), "factual information does not match."));
+                .ThenIsTrue(rule => rule.OutputFactType.EqualsFactType(fact.GetFactType()),
+                    errorMessage: "factual information does not match.");
         }
 
         [TestMethod]
@@ -98,16 +96,14 @@ namespace FactFactoryTests.FactRule
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateFactRuleWithoutFuncTestCase()
         {
+            const string paramName = "func";
+
             GivenEmpty()
                 .When("Create rule,", _ =>
-                {
-                    return ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, IFact>), null, null));
-                })
-                .Then("Check error.", ex => 
-                {
-                    Assert.IsNotNull(ex, "error is null,");
-                    Assert.AreEqual("func", ex.ParamName, "Another parameter name expected.");
-                });
+                    ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, IFact>), null, null)))
+                .ThenIsNotNull()
+                .AndAreEqual(ex => ex.ParamName, paramName,
+                    errorMessage: "Another parameter name expected.");
         }
 
         [TestMethod]
@@ -156,15 +152,10 @@ namespace FactFactoryTests.FactRule
 
             GivenEmpty()
                 .When("Create rule.", _ =>
-                {
-                    return ExpectedException<ArgumentException>(
-                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<IntFact>()));
-                })
+                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new IntFact(default))))
                 .ThenIsNotNull()
-                .And("Check error", ex => 
-                {
-                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected.");
-                });
+                .AndAreEqual(ex => ex.Message, expectedReason,
+                    errorMessage: "Another message expected.");
         }
 
         [TestMethod]
@@ -177,15 +168,10 @@ namespace FactFactoryTests.FactRule
 
             GivenEmpty()
                 .When("Create rule.", _ =>
-                {
-                    return ExpectedException<ArgumentException>(
-                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<CannotDerived<Input10Fact>>()));
-                })
+                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new CannotDerived<Input10Fact>())))
                 .ThenIsNotNull()
-                .And("Check error.", ex =>
-                {
-                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected.");
-                });
+                .AndAreEqual(ex => ex.Message, expectedReason,
+                    errorMessage: "Another message expected.");
         }
 
         [TestMethod]
@@ -198,15 +184,10 @@ namespace FactFactoryTests.FactRule
 
             GivenEmpty()
                 .When("Create rule.", _ =>
-                {
-                    return ExpectedException<ArgumentException>(
-                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<NotContained<Input10Fact>>()));
-                })
+                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new NotContained<Input10Fact>())))
                 .ThenIsNotNull()
-                .And("Check error.", ex =>
-                {
-                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected.");
-                });
+                .AndAreEqual(ex => ex.Message, expectedReason,
+                    errorMessage: "Another message expected.");
         }
 
         [TestMethod]
@@ -219,15 +200,10 @@ namespace FactFactoryTests.FactRule
 
             GivenEmpty()
                 .When("Create rule.", _ =>
-                {
-                    return ExpectedException<ArgumentException>(
-                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<Contained<Input10Fact>>()));
-                })
+                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new Contained<Input10Fact>())))
                 .ThenIsNotNull()
-                .And("Check error.", ex =>
-                {
-                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected.");
-                });
+                .AndAreEqual(ex => ex.Message, expectedReason,
+                    errorMessage: "Another message expected.");
         }
 
         [TestMethod]
@@ -239,15 +215,11 @@ namespace FactFactoryTests.FactRule
             string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
 
             GivenEmpty()
-                .When("Create rule", _ =>
-                {
-                    return ExpectedException<ArgumentException>(
-                        () => new Rule(facts => { return default; }, new List<IFactType> { GetFactType<IntFact>() }, GetFactType<CanDerived<Input10Fact>>()));
-                })
-                .Then("Check error", ex =>
-                {
-                    Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
-                });
+                .When("Create rule.", _ =>
+                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new CanDerived<Input10Fact>())))
+                .ThenIsNotNull()
+                .AndAreEqual(ex => ex.Message, expectedReason,
+                    errorMessage: "Another message expected.");
         }
     }
 }

@@ -18,8 +18,8 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <inheritdoc/>
-        public FactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType> inputFactTypes, IFactType outputFactType)
-            : base(func, inputFactTypes, outputFactType)
+        public FactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> funcAsync, List<IFactType> inputFactTypes, IFactType outputFactType)
+            : base(funcAsync, inputFactTypes, outputFactType)
         {
         }
     }
