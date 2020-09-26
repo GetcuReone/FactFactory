@@ -53,6 +53,26 @@
             Fact container.
             </summary>
         </member>
+        <member name="T:GetcuReone.FactFactory.Interfaces.FactWorkOption">
+            <summary>
+            Options for <see cref="T:GetcuReone.FactFactory.Interfaces.IFactWork"/>.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.FactFactory.Interfaces.FactWorkOption.CanExecuteSync">
+            <summary>
+            Work can be done synchronously.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.FactFactory.Interfaces.FactWorkOption.CanExecuteAsync">
+            <summary>
+            Work can be done asynchronously.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.FactFactory.Interfaces.FactWorkOption.CanExcecuteParallel">
+            <summary>
+            Work can be done asynchronously.
+            </summary>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.ICopy`1">
             <summary>
             Interface for copying objects.
@@ -285,6 +305,11 @@
         <member name="P:GetcuReone.FactFactory.Interfaces.IFactWork.InputFactTypes">
             <summary>
             Information on input factacles rules.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.IFactWork.Option">
+            <summary>
+            FactWork option.
             </summary>
         </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactWork.EqualsWork``3(``0,``1,``2)">

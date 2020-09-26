@@ -13,6 +13,11 @@ namespace GetcuReone.FactFactory.Interfaces
         IReadOnlyCollection<IFactType> InputFactTypes { get; }
 
         /// <summary>
+        /// FactWork option.
+        /// </summary>
+        FactWorkOption Option { get; }
+
+        /// <summary>
         /// Work equality.
         /// </summary>
         /// <typeparam name="TFactWork"></typeparam>
