@@ -18,7 +18,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
         protected WantActionBase(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
-            : base(factTypes)
+            : base(factTypes, FactWorkOption.CanExecuteSync)
         {
             _action2 = wantAction ?? throw new ArgumentNullException(nameof(wantAction));
 

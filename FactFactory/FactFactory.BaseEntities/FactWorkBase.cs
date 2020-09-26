@@ -1,8 +1,6 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.BaseEntities
 {
@@ -14,18 +12,21 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public IReadOnlyCollection<IFactType> InputFactTypes { get; }
 
+        /// <inheritdoc/>
+        public FactWorkOption Option { get; }
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="factTypes">Fact types.</param>
-        protected FactWorkBase(List<IFactType> factTypes)
+        /// <param name="option">FactWork option.</param>
+        protected FactWorkBase(List<IFactType> factTypes, FactWorkOption option)
         {
-            if (!factTypes.IsNullOrEmpty())
-            {
-                InputFactTypes = factTypes.ToReadOnlyCollection();
-            }
-            else
-                InputFactTypes = new ReadOnlyCollection<IFactType>(new List<IFactType>(0));
+            InputFactTypes = !factTypes.IsNullOrEmpty()
+                ? factTypes.AsReadOnly()
+                : new List<IFactType>(0).AsReadOnly();
+
+            Option = option;
         }
 
         /// <summary>

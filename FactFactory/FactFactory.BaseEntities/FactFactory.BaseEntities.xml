@@ -151,7 +151,7 @@
             <param name="func">Func for calculate.</param>
             <param name="inputFactTypes">Information on input factacles rules.</param>
             <param name="outputFactType">Information on output fact.</param>
-            /// <exception cref="T:System.ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
             <exception cref="T:System.ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.EqualsWork``3(``0,``1,``2)">
@@ -617,11 +617,15 @@
         <member name="P:GetcuReone.FactFactory.BaseEntities.FactWorkBase.InputFactTypes">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactWorkBase.Option">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Constructor.
             </summary>
             <param name="factTypes">Fact types.</param>
+            <param name="option">FactWork option.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.EqualsFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>

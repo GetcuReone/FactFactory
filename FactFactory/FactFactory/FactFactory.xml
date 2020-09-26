@@ -128,25 +128,6 @@
             <param name="wantActionInfo"></param>
             <param name="treeByFactRules"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.OnFactCalculated(`0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{`2,`3})">
-            <summary>
-            Fact calculation event handler.
-            </summary>
-            <param name="rule">The rule that calculated the fact.</param>
-            <param name="context">Context.</param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.OnDeriveWantFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{`2,`3})">
-            <summary>
-            Event handler for outputting facts to the WantAction.
-            </summary>
-            <param name="context"></param>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.OnDeriveFinished(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{`2,`3}})">
-            <summary>
-            Event handler method 'derive finished'. It is executed at the end of the <see cref="M:GetcuReone.FactFactory.FactFactoryBase`4.Derive"/> method.
-            </summary>
-            <param name="context">Contexts.</param>
-        </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
             Creation method <typeparamref name="TWantAction"/>.

@@ -11,7 +11,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// </summary>
     public abstract class FactRuleBase : FactWorkBase, IFactRule
     {
-        private readonly Func<IEnumerable<IFact>, IFact> _func2;
+        private readonly Func<IEnumerable<IFact>, IFact> _func;
 
         /// <summary>
         /// Information on output fact.
@@ -24,12 +24,12 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="func">Func for calculate.</param>
         /// <param name="inputFactTypes">Information on input factacles rules.</param>
         /// <param name="outputFactType">Information on output fact.</param>
-        /// /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
         /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
         protected FactRuleBase(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
-            : base(inputFactTypes)
+            : base(inputFactTypes, FactWorkOption.CanExecuteSync)
         {
-            _func2 = func ?? throw new ArgumentNullException(nameof(func));
+            _func = func ?? throw new ArgumentNullException(nameof(func));
             if (outputFactType == null)
                 throw new ArgumentNullException(nameof(outputFactType));
 
@@ -59,7 +59,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public virtual IFact Calculate(IEnumerable<IFact> requireFacts)
         {
-            return _func2(requireFacts);
+            return _func(requireFacts);
         }
     }
 }
