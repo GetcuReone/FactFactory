@@ -10,6 +10,7 @@ using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.GetcuTestAdapter;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FactFactory.TestsCommon
 {

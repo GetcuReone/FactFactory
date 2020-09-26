@@ -256,6 +256,13 @@
             <param name="requireFacts">The facts required for the calculation.</param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactRule.CalculateAsync(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <summary>
+            Calculate fact asynchronously.
+            </summary>
+            <param name="requireFacts"></param>
+            <returns></returns>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.IFactRuleCollection`1">
             <summary>
             Collection of rules.

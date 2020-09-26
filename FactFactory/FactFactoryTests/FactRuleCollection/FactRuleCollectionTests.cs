@@ -642,18 +642,17 @@ namespace FactFactoryTests.FactRuleCollection
         {
             Rule factRule = null;
 
-            Given("Create rule", () => factRule = new Rule(facts => default, new List<IFactType>(), GetFactType<Input1Fact>()))
+            Given("Create rule", () => factRule = GetFactRule(() => new Input1Fact(default)))
                 .And("Add rule.", _ => 
                     Collection.Add(factRule))
                 .When("Get copied.", _ => 
                     Collection.Copy())
                 .ThenIsNotNull()
                 .AndAreNotEqual(Collection)
-                .And("Check result.", copyCollection =>
-                {
-                    Assert.AreEqual(Collection.Count(), copyCollection.Count(), "Collections should have the same amount of rules");
-                    Assert.AreEqual(factRule, copyCollection[0], "The collection contains another rule.");
-                });
+                .AndAreEqual(copyCollection => copyCollection.Count, Collection.Count(),
+                    errorMessage: "Collections should have the same amount of rules.")
+                .AndAreEqual(copyCollection => copyCollection[0], factRule,
+                    errorMessage: "The collection contains another rule.");
         }
 
         [TestMethod]
