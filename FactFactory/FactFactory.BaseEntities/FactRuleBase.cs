@@ -3,6 +3,7 @@ using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.BaseEntities
 {
@@ -12,6 +13,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     public abstract class FactRuleBase : FactWorkBase, IFactRule
     {
         private readonly Func<IEnumerable<IFact>, IFact> _func;
+        private readonly Func<IEnumerable<IFact>, ValueTask<IFact>> _funcAsync;
 
         /// <summary>
         /// Information on output fact.
@@ -39,6 +41,27 @@ namespace GetcuReone.FactFactory.BaseEntities
                 throw new ArgumentException("Cannot request a fact calculated according to the rule.", nameof(inputFactTypes));
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="funcAsync">Func for calculate.</param>
+        /// <param name="inputFactTypes">Information on input factacles rules.</param>
+        /// <param name="outputFactType">Information on output fact.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="funcAsync"/> or <paramref name="outputFactType"/> is null.</exception>
+        /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
+        protected FactRuleBase(Func<IEnumerable<IFact>, ValueTask<IFact>> funcAsync, List<IFactType> inputFactTypes, IFactType outputFactType)
+            : base(inputFactTypes, FactWorkOption.CanExecuteAsync)
+        {
+            _funcAsync = funcAsync ?? throw new ArgumentNullException(nameof(funcAsync));
+            if (outputFactType == null)
+                throw new ArgumentNullException(nameof(outputFactType));
+
+            OutputFactType = outputFactType.CannotIsType<ISpecialFact>(nameof(outputFactType));
+
+            if (InputFactTypes.Any(factType => factType.EqualsFactType(outputFactType)))
+                throw new ArgumentException("Cannot request a fact calculated according to the rule.", nameof(inputFactTypes));
+        }
+
         /// <inheritdoc/>
         public override bool EqualsWork<TFactWork, TWantAction, TFactContainer>(TFactWork workFact, TWantAction wantAction, TFactContainer container)
         {
@@ -50,16 +73,22 @@ namespace GetcuReone.FactFactory.BaseEntities
             return base.EqualsWork(workFact, wantAction, container);
         }
 
-        /// <inheritdoc />
-        public override string ToString()
+        /// <inheritdoc/>
+        public virtual ValueTask<IFact> CalculateAsync(IEnumerable<IFact> requireFacts)
         {
-            return $"({string.Join(", ", InputFactTypes.Select(f => f.FactName).ToList())}) => ({OutputFactType.FactName})";
+            return _funcAsync(requireFacts);
         }
 
         /// <inheritdoc/>
         public virtual IFact Calculate(IEnumerable<IFact> requireFacts)
         {
             return _func(requireFacts);
+        }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"({string.Join(", ", InputFactTypes.Select(f => f.FactName))}) => ({OutputFactType.FactName})";
         }
     }
 }
