@@ -32,13 +32,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             : base(inputFactTypes, FactWorkOption.CanExecuteSync)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
-            if (outputFactType == null)
-                throw new ArgumentNullException(nameof(outputFactType));
-
-            OutputFactType = outputFactType.CannotIsType<ISpecialFact>(nameof(outputFactType));
-
-            if (InputFactTypes.Any(factType => factType.EqualsFactType(outputFactType)))
-                throw new ArgumentException("Cannot request a fact calculated according to the rule.", nameof(inputFactTypes));
+            ValidateParam(inputFactTypes, outputFactType);
+            OutputFactType = outputFactType;
         }
 
         /// <summary>
@@ -53,10 +48,16 @@ namespace GetcuReone.FactFactory.BaseEntities
             : base(inputFactTypes, FactWorkOption.CanExecuteAsync)
         {
             _funcAsync = funcAsync ?? throw new ArgumentNullException(nameof(funcAsync));
+            ValidateParam(inputFactTypes, outputFactType);
+            OutputFactType = outputFactType;
+        }
+
+        private void ValidateParam(List<IFactType> inputFactTypes, IFactType outputFactType)
+        {
             if (outputFactType == null)
                 throw new ArgumentNullException(nameof(outputFactType));
 
-            OutputFactType = outputFactType.CannotIsType<ISpecialFact>(nameof(outputFactType));
+            outputFactType.CannotIsType<ISpecialFact>(nameof(outputFactType));
 
             if (InputFactTypes.Any(factType => factType.EqualsFactType(outputFactType)))
                 throw new ArgumentException("Cannot request a fact calculated according to the rule.", nameof(inputFactTypes));
