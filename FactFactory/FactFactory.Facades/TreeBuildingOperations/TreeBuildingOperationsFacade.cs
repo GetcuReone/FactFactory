@@ -458,11 +458,15 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
             foreach(var context in request.WantActionContexts)
             {
+                if (!request.Filters.Exists(filter => context.WantAction.Option.HasFlag(filter)))
+                    continue;
+
                 var requestForAction = new BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer>
                 {
                     Context = context,
                     FactRules = request
                         .FactRules
+                        .Where(factRule => request.Filters.Exists(filter => factRule.Option.HasFlag(filter)))
                         .OrderByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction, TFactContainer>(context))
                         .ToList(),
                 };

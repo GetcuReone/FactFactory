@@ -78,6 +78,7 @@ namespace GetcuReone.FactFactory
             {
                 FactRules = rules,
                 WantActionContexts = contexts,
+                Filters = new List<FactWorkOption> { FactWorkOption.CanExcecuteParallel, FactWorkOption.CanExecuteSync }
             };
 
             if (!treeBuildingOperations.TryBuildTrees(request, out var result))
@@ -86,12 +87,12 @@ namespace GetcuReone.FactFactory
             foreach(var item in result.TreesByActions)
                 treeBuildingOperations.CalculateTreeAndDeriveWantFacts(item.Key, item.Value);
 
-            contexts.ForEach(context =>
+            foreach(var context in result.TreesByActions.Keys.Select(key => key.Context))
             {
                 var wantFactsInfos = WantFactsInfos.FirstOrDefault(info => info.WantAction == context.WantAction && info.Container == context.Container);
                 if (wantFactsInfos != null)
                     WantFactsInfos.Remove(wantFactsInfos);
-            });
+            }
         }
 
         private IWantActionContext<TWantAction, TFactContainer> GetWantActionContext(WantFactsInfo<TWantAction, TFactContainer> wantFactsInfo, ITreeBuildingOperations treeBuilding, ISingleEntityOperations singleEntity, IFactTypeCache cache)
