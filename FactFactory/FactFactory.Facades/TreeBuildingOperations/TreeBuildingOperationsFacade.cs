@@ -540,9 +540,9 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         {
             foreach (var tree in treeByFactRules)
             {
+                var context = tree.Context;
                 foreach (var group in GetIndependentNodeGroups(tree))
                 {
-                    var context = tree.Context;
                     var syncNodes = new List<NodeByFactRule<TFactRule>>();
                     var syncAndParallelNodes = new List<NodeByFactRule<TFactRule>>();
 
@@ -577,6 +577,85 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                             using (context.Container.CreateIgnoreReadOnlySpace())
                                 context.Container.Add(fact);
                         });
+                }
+            }
+
+            wantActionInfo.Context.SingleEntity.DeriveWantFacts(wantActionInfo);
+        }
+
+        /// <inheritdoc/>
+        public virtual async ValueTask CalculateTreeAndDeriveWantFactsAsync<TFactRule, TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo, IEnumerable<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> treeByFactRules)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            foreach (var tree in treeByFactRules)
+            {
+                var context = tree.Context;
+                foreach (var group in GetIndependentNodeGroups(tree))
+                {
+                    var syncNodes = new List<NodeByFactRule<TFactRule>>();
+                    var syncAndParallelNodes = new List<NodeByFactRule<TFactRule>>();
+                    var asyncNodes = new List<NodeByFactRule<TFactRule>>();
+                    var asyncAndParallelNodes = new List<NodeByFactRule<TFactRule>>();
+
+                    foreach (var node in group)
+                    {
+                        if (!context.SingleEntity.NeedCalculateFact(node, context))
+                            continue;
+
+                        if (node.Info.Rule.Option.HasFlag(FactWorkOption.CanExecuteSync))
+                        {
+                            if (node.Info.Rule.Option.HasFlag(FactWorkOption.CanExcecuteParallel))
+                                syncAndParallelNodes.Add(node);
+                            else
+                                syncNodes.Add(node);
+                        }
+                        else if (node.Info.Rule.Option.HasFlag(FactWorkOption.CanExecuteAsync))
+                        {
+                            if (node.Info.Rule.Option.HasFlag(FactWorkOption.CanExcecuteParallel))
+                                asyncAndParallelNodes.Add(node);
+                            else
+                                asyncNodes.Add(node);
+                        }
+                        else
+                            throw FactFactoryHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"The tree contains non-synchronous and non-asynchronous rule <{node.Info.Rule}>.");
+                    }
+
+                    if (syncNodes.Count != 0)
+                        syncNodes.ForEach(node =>
+                        {
+                            var fact = context.SingleEntity.CalculateFact(node, context);
+                            using (context.Container.CreateIgnoreReadOnlySpace())
+                                context.Container.Add(fact);
+                        });
+
+                    if (syncAndParallelNodes.Count != 0)
+                        Parallel.ForEach(syncAndParallelNodes, node =>
+                        {
+                            var fact = context.SingleEntity.CalculateFact(node, context);
+                            using (context.Container.CreateIgnoreReadOnlySpace())
+                                context.Container.Add(fact);
+                        });
+
+                    if (asyncNodes.Count != 0)
+                        foreach(var node in asyncNodes)
+                        {
+                            var fact = await context.SingleEntity.CalculateFactAsync(node, context);
+                            using (context.Container.CreateIgnoreReadOnlySpace())
+                                context.Container.Add(fact);
+                        }
+
+                    if (asyncAndParallelNodes.Count != 0)
+                    {
+                        var tasks = asyncAndParallelNodes.ConvertAll(node => context.SingleEntity.CalculateFactAsync(node, context));
+                        foreach(var task in tasks)
+                        {
+                            var fact = await task;
+                            using (context.Container.CreateIgnoreReadOnlySpace())
+                                context.Container.Add(fact);
+                        }
+                    }
                 }
             }
 

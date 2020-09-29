@@ -804,6 +804,16 @@
             <param name="wantActionInfo">Information about the WantAction.</param>
             <param name="treeByFactRules">Trees that need to be calculated to output a facts.</param>
         </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ITreeBuildingOperations.CalculateTreeAndDeriveWantFactsAsync``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``1,``2},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}})">
+            <summary>
+            Async calculate trees and derive fact.
+            </summary>
+            <typeparam name="TFactRule"></typeparam>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="wantActionInfo">Information about the WantAction.</param>
+            <param name="treeByFactRules">Trees that need to be calculated to output a facts.</param>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact">
             <summary>
             A special fact that is created using a factory when building a tree or calculating facts.
