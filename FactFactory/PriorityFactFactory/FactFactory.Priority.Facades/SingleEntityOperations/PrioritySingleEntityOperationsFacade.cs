@@ -1,7 +1,9 @@
-﻿using GetcuReone.FactFactory.Facades.SingleEntityOperations;
+﻿using FactFactory.Priority.Interfaces;
+using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
+using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
 {
@@ -29,18 +31,17 @@ namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public override bool TryCalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context, out IFact fact)
+        public override IFact CalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
         {
-            var result = base.TryCalculateFact(node, context, out fact);
+            IPriorityFact priority = node.Info.Rule.GetPriorityFact(context);
+            return base.CalculateFact(node, context).SetPriority(priority);
+        }
 
-            if (result)
-            {
-                var priority = node.Info.Rule.GetPriorityFact(context);
-                if (priority != null)
-                    fact.SetPriority(priority);
-            }
-
-            return result;
+        /// <inheritdoc/>
+        public override async ValueTask<IFact> CalculateFactAsync<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
+        {
+            IPriorityFact priority = node.Info.Rule.GetPriorityFact(context);
+            return (await base.CalculateFactAsync(node, context)).SetPriority(priority);
         }
     }
 }

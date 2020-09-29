@@ -6,6 +6,7 @@ using GetcuReone.FactFactory.Priority;
 using GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 {
@@ -121,18 +122,17 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public override bool TryCalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context, out IFact fact)
+        public override IFact CalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
         {
-            var result = base.TryCalculateFact(node, context, out fact);
+            var version = node.Info.Rule.InputFactTypes.GetVersionFact(context);
+            return base.CalculateFact(node, context).SetVersion(version);
+        }
 
-            if (result)
-            {
-                var version = node.Info.Rule.InputFactTypes.GetVersionFact(context);
-                if (version != null)
-                    fact.SetVersion(version);
-            }
-
-            return result;
+        /// <inheritdoc/>
+        public override async ValueTask<IFact> CalculateFactAsync<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
+        {
+            var version = node.Info.Rule.InputFactTypes.GetVersionFact(context);
+            return (await base.CalculateFactAsync(node, context)).SetVersion(version);
         }
     }
 }

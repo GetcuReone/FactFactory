@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
@@ -32,9 +33,26 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
             if (Count == 0)
                 return true;
 
-            return this
-                .All(n => n.Info.Rule.InputFactTypes
-                    .All(type => !node.Info.Rule.OutputFactType.EqualsFactType(type)));
+            var rule = node.Info.Rule;
+
+            foreach(var independentNode in this)
+            {
+                var independentRule = independentNode.Info.Rule;
+
+                if (independentRule.OutputFactType.EqualsFactType(rule.OutputFactType))
+                    return false;
+
+                foreach (var inputType in independentRule.InputFactTypes)
+                {
+                    if (inputType.EqualsFactType(rule.OutputFactType))
+                        return false;
+
+                    if (rule.InputFactTypes.Any(type => type.EqualsFactType(inputType)) && inputType.IsFactType<IConditionFact>())
+                        return false;
+                }
+            }
+
+            return true;
         }
     }
 }
