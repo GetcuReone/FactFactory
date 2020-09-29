@@ -659,7 +659,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 }
             }
 
-            wantActionInfo.Context.SingleEntity.DeriveWantFacts(wantActionInfo);
+            if (wantActionInfo.Context.WantAction.Option.HasFlag(FactWorkOption.CanExecuteSync))
+                wantActionInfo.Context.SingleEntity.DeriveWantFacts(wantActionInfo);
+            else
+                await wantActionInfo.Context.SingleEntity.DeriveWantFactsAsync(wantActionInfo);
         }
     }
 }
