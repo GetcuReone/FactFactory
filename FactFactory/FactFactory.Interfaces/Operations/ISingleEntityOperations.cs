@@ -150,5 +150,15 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         void DeriveWantFacts<TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo)
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// Async run <paramref name="wantActionInfo"/> with input facts.
+        /// </summary>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="wantActionInfo"></param>
+        ValueTask DeriveWantFactsAsync<TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }

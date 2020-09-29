@@ -223,5 +223,23 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         {
             return x.CompareTo(y);
         }
+
+        /// <inheritdoc/>
+        public virtual async ValueTask DeriveWantFactsAsync<TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            var context = wantActionInfo.Context;
+
+            foreach (var condition in wantActionInfo.SuccessConditions)
+                using (context.Container.CreateIgnoreReadOnlySpace())
+                    context.Container.Add(condition);
+
+            await context.WantAction.InvokeAsync(GetRequireFacts(context.WantAction, context));
+
+            foreach (var condition in wantActionInfo.SuccessConditions)
+                using (context.Container.CreateIgnoreReadOnlySpace())
+                    context.Container.Remove(condition);
+        }
     }
 }
