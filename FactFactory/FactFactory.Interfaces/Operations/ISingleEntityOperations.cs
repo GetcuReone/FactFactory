@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Interfaces.Operations
 {
@@ -99,6 +100,20 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
             where TFactContainer : IFactContainer;
 
         /// <summary>
+        /// Do I need to recalculate the fact.
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="node"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        bool NeedCalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
+
+        /// <summary>
         /// Calculate fact by rule from node.
         /// </summary>
         /// <typeparam name="TFactRule"></typeparam>
@@ -106,9 +121,22 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="node"></param>
         /// <param name="context"></param>
-        /// <param name="fact"></param>
         /// <returns></returns>
-        bool TryCalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context, out IFact fact)
+        IFact CalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// Calculate fact by rule from node.
+        /// </summary>
+        /// <typeparam name="TFactRule"></typeparam>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="node"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        ValueTask<IFact> CalculateFactAsync<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;

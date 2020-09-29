@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions.Entities;
+using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
@@ -10,6 +11,7 @@ using GetcuReone.FactFactory.Interfaces.Operations.Entities.Enums;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 {
@@ -540,14 +542,41 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             {
                 foreach (var group in GetIndependentNodeGroups(tree))
                 {
+                    var context = tree.Context;
+                    var syncNodes = new List<NodeByFactRule<TFactRule>>();
+                    var syncAndParallelNodes = new List<NodeByFactRule<TFactRule>>();
+
                     foreach (var node in group)
                     {
-                        if (tree.Context.SingleEntity.TryCalculateFact(node, tree.Context, out IFact fact))
+                        if (!context.SingleEntity.NeedCalculateFact(node, context))
+                            continue;
+
+                        if (node.Info.Rule.Option.HasFlag(FactWorkOption.CanExecuteSync))
                         {
-                            using (wantActionInfo.Context.Container.CreateIgnoreReadOnlySpace())
-                                wantActionInfo.Context.Container.Add(fact);
+                            if (node.Info.Rule.Option.HasFlag(FactWorkOption.CanExcecuteParallel))
+                                syncAndParallelNodes.Add(node);
+                            else
+                                syncNodes.Add(node);
                         }
+                        else
+                            throw FactFactoryHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"The tree contains non-synchronous rule <{node.Info.Rule}>.");
                     }
+
+                    if (syncNodes.Count != 0)
+                        syncNodes.ForEach(node => 
+                        {
+                            var fact = context.SingleEntity.CalculateFact(node, context);
+                            using (context.Container.CreateIgnoreReadOnlySpace())
+                                context.Container.Add(fact);
+                        });
+
+                    if (syncAndParallelNodes.Count != 0)
+                        Parallel.ForEach(syncAndParallelNodes, node => 
+                        {
+                            var fact = context.SingleEntity.CalculateFact(node, context);
+                            using (context.Container.CreateIgnoreReadOnlySpace())
+                                context.Container.Add(fact);
+                        });
                 }
             }
 
