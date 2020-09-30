@@ -70,6 +70,9 @@
             <param name="y"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.DeriveWantFactsAsync``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1})">
+            <inheritdoc/>
+        </member>
         <member name="T:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsHelper">
             <summary>
             Helper.

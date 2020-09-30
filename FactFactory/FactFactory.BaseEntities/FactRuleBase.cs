@@ -26,10 +26,11 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="func">Func for calculate.</param>
         /// <param name="inputFactTypes">Information on input factacles rules.</param>
         /// <param name="outputFactType">Information on output fact.</param>
+        /// <param name="option">Options for a rule.</param>
         /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
         /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
-        protected FactRuleBase(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
-            : base(inputFactTypes, FactWorkOption.CanExecuteSync)
+        protected FactRuleBase(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
+            : base(inputFactTypes, option)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
             ValidateParam(inputFactTypes, outputFactType);
@@ -42,10 +43,11 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="funcAsync">Func for calculate.</param>
         /// <param name="inputFactTypes">Information on input factacles rules.</param>
         /// <param name="outputFactType">Information on output fact.</param>
+        /// <param name="option">Options for a rule.</param>
         /// <exception cref="ArgumentNullException"><paramref name="funcAsync"/> or <paramref name="outputFactType"/> is null.</exception>
         /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
-        protected FactRuleBase(Func<IEnumerable<IFact>, ValueTask<IFact>> funcAsync, List<IFactType> inputFactTypes, IFactType outputFactType)
-            : base(inputFactTypes, FactWorkOption.CanExecuteAsync)
+        protected FactRuleBase(Func<IEnumerable<IFact>, ValueTask<IFact>> funcAsync, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
+            : base(inputFactTypes, option)
         {
             _funcAsync = funcAsync ?? throw new ArgumentNullException(nameof(funcAsync));
             ValidateParam(inputFactTypes, outputFactType);

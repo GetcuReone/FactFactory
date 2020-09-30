@@ -342,6 +342,12 @@
             </summary>
             <param name="requireFacts">The facts required for run.</param>
         </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IWantAction.InvokeAsync(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <summary>
+            Async run action.
+            </summary>
+            <param name="requireFacts">The facts required for run.</param>
+        </member>
         <member name="T:GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreeForFactInfoRequest`3">
             <summary>
             Request for <see cref="M:GetcuReone.FactFactory.Interfaces.Operations.ITreeBuildingOperations.TryBuildTreeForFactInfo``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreeForFactInfoRequest{``0,``1,``2},GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}@,System.Collections.Generic.List{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail}@)"/>.
@@ -739,6 +745,14 @@
         <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.DeriveWantFacts``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1})">
             <summary>
             Run <paramref name="wantActionInfo"/> with input facts.
+            </summary>
+            <typeparam name="TWantAction"></typeparam>
+            <typeparam name="TFactContainer"></typeparam>
+            <param name="wantActionInfo"></param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.DeriveWantFactsAsync``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1})">
+            <summary>
+            Async run <paramref name="wantActionInfo"/> with input facts.
             </summary>
             <typeparam name="TWantAction"></typeparam>
             <typeparam name="TFactContainer"></typeparam>
