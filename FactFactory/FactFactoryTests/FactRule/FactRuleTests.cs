@@ -27,7 +27,7 @@ namespace FactFactoryTests.FactRule
         {
             GivenEmpty()
                 .When("Create factRule.", _ => 
-                    new Rule(facts => { return new OtherFact(default); }, null, GetFactType<OtherFact>()))
+                    new Rule(facts => { return new OtherFact(default); }, null, GetFactType<OtherFact>(), FactWorkOption.CanExecuteSync))
                 .Then("Check input param.", rule => 
                     Assert.AreEqual(0, rule.InputFactTypes.Count, "InpuTFactTypes is not empty."));
         }
@@ -44,7 +44,11 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule.", factInner => 
                 {
                     fact = factInner;
-                    return new Rule(facts => { return new OtherFact(default); }, new List<IFactType> { fact.GetFactType() }, GetFactType<OtherFact>());
+                    return new Rule(
+                        facts => { return new OtherFact(default); },
+                        new List<IFactType> { fact.GetFactType() },
+                        GetFactType<OtherFact>(),
+                        FactWorkOption.CanExecuteSync);
                 })
                 .Then("Check input param.", rule => 
                 {
@@ -65,7 +69,11 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule.", factInner =>
                 {
                     fact = factInner;
-                    return new Rule(facts => { return new OtherFact(default); }, new List<IFactType> { fact.GetFactType(), fact.GetFactType(), fact.GetFactType() }, GetFactType<OtherFact>());
+                    return new Rule(
+                        facts => { return new OtherFact(default); },
+                        new List<IFactType> { fact.GetFactType(), fact.GetFactType(), fact.GetFactType() },
+                        GetFactType<OtherFact>(),
+                        FactWorkOption.CanExecuteSync);
                 })
                 .Then("Check input param.", rule =>
                 {
@@ -85,7 +93,11 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule.", factInner =>
                 {
                     fact = factInner;
-                    return new Rule(facts => { return fact; }, null, fact.GetFactType());
+                    return new Rule(
+                        facts => { return fact; },
+                        null,
+                        fact.GetFactType(),
+                        FactWorkOption.CanExecuteSync);
                 })
                 .ThenIsTrue(rule => rule.OutputFactType.EqualsFactType(fact.GetFactType()),
                     errorMessage: "factual information does not match.");
@@ -101,7 +113,7 @@ namespace FactFactoryTests.FactRule
 
             GivenEmpty()
                 .When("Create rule,", _ =>
-                    ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, IFact>), null, null)))
+                    ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, IFact>), null, null, FactWorkOption.CanExecuteSync)))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.ParamName, paramName,
                     errorMessage: "Another parameter name expected.");
@@ -117,7 +129,7 @@ namespace FactFactoryTests.FactRule
 
             GivenEmpty()
                 .When("Create rule,", _ =>
-                    ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, ValueTask<IFact>>), null, null)))
+                    ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, ValueTask<IFact>>), null, null, FactWorkOption.CanExecuteSync)))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.ParamName, paramName,
                     errorMessage: "Another parameter name expected.");
@@ -145,7 +157,11 @@ namespace FactFactoryTests.FactRule
                         return new OtherFact(date.AddDays(number));
                     };
 
-                    return new Rule(func, container.Select(fact => fact.GetFactType()).ToList(), GetFactType<OtherFact>());
+                    return new Rule(
+                        func,
+                        container.Select(fact => fact.GetFactType()).ToList(),
+                        GetFactType<OtherFact>(),
+                        FactWorkOption.CanExecuteSync);
                 })
                 .When("Run method.", rule => 
                     rule.Calculate(container))

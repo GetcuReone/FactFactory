@@ -17,7 +17,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create wantAction without version.")]
-        //[Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactWithoutVersionedRuleTestCase()
         {
             const long expectedValue = 1_000;

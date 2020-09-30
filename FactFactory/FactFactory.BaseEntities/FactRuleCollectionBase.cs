@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.BaseEntities
@@ -98,21 +99,19 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="func">func for calculate.</param>
         /// <param name="inputFactTypes">information on input factacles rules.</param>
         /// <param name="outputFactType">information on output fact.</param>
+        /// <param name="option"></param>
         /// <returns></returns>
-        protected abstract TFactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType);
+        protected abstract TFactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option);
 
         /// <summary>
-        /// Return the correct fact.
+        /// Creation method <typeparamref name="TFactRule"/>.
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <param name="container"></param>
-        /// <param name="wantAction"></param>
+        /// <param name="func">func for calculate.</param>
+        /// <param name="inputFactTypes">information on input factacles rules.</param>
+        /// <param name="outputFactType">information on output fact.</param>
+        /// <param name="option">Options for a rule.</param>
         /// <returns></returns>
-        protected virtual TFact GetCorrectFact<TFact>(IFactContainer container, IWantAction wantAction)
-            where TFact : IFact
-        {
-            return container.GetFact<TFact>();
-        }
+        protected abstract TFactRule CreateFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option);
 
         /// <summary>
         /// Rules equality.
@@ -162,14 +161,16 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <summary>
         /// Add a rule without input facts.
         /// </summary>
-        /// <typeparam name="TFactResult">Type of fact result.</typeparam>
+        /// <typeparam name="TFactOut">Type of fact result.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
-        public void Add<TFactResult>(Func<TFactResult> rule)
-            where TFactResult : IFact
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactOut>(Func<TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFactOut : IFact
         {
             Add(CreateFactRule(facts => rule(),
                 null,
-                GetFactType<TFactResult>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -178,15 +179,17 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactOut>(
-            Func<TFactIn1, TFactOut> rule)
+            Func<TFactIn1, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
         {
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>()),
                 new List<IFactType> { GetFactType<TFactIn1>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -196,8 +199,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -205,7 +209,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -216,8 +221,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -226,7 +232,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -238,8 +245,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -249,7 +257,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -262,8 +271,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation..</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -274,7 +284,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -288,8 +299,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -301,7 +313,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -316,8 +329,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -330,7 +344,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -346,8 +361,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -361,7 +377,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -378,8 +395,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -394,7 +412,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -412,8 +431,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -429,7 +449,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -448,8 +469,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -466,7 +488,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -486,8 +509,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -505,7 +529,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -526,8 +551,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -546,7 +572,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -568,8 +595,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -589,7 +617,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>(), facts.GetFact<TFactIn14>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>()},
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -612,8 +641,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn15">Type 15 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -634,7 +664,8 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>(), facts.GetFact<TFactIn14>(), facts.GetFact<TFactIn15>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>
@@ -658,8 +689,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFactIn16">Type 16 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, TFactOut>(
-            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, TFactOut> rule)
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, TFactOut> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactOut : IFact
             where TFactIn1 : IFact
             where TFactIn2 : IFact
@@ -681,7 +713,1128 @@ namespace GetcuReone.FactFactory.BaseEntities
             Add(CreateFactRule(
                 facts => rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>(), facts.GetFact<TFactIn14>(), facts.GetFact<TFactIn15>(), facts.GetFact<TFactIn16>()),
                 new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>(), GetFactType<TFactIn16>() },
-                GetFactType<TFactOut>()));
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule without input facts.
+        /// </summary>
+        /// <typeparam name="TFactOut">Type of fact result.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactOut>(Func<ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(),
+                null,
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 1 input facts.
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactOut>(
+            Func<TFactIn1, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>()),
+                new List<IFactType> { GetFactType<TFactIn1>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 2 input facts.
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactOut>(
+            Func<TFactIn1, TFactIn2, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 3 input facts.
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 4 input facts.
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 5 input facts.
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation..</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 6 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 7 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 8 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 9 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 10 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 11 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 12 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 13 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 14 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
+            where TFactIn14 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>(), facts.GetFact<TFactIn14>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 15 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+        /// <typeparam name="TFactIn15">Type 15 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
+            where TFactIn14 : IFact
+            where TFactIn15 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>(), facts.GetFact<TFactIn14>(), facts.GetFact<TFactIn15>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 16 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+        /// <typeparam name="TFactIn15">Type 15 input fact.</typeparam>
+        /// <typeparam name="TFactIn16">Type 16 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
+            where TFactIn14 : IFact
+            where TFactIn15 : IFact
+            where TFactIn16 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>(), facts.GetFact<TFactIn14>(), facts.GetFact<TFactIn15>(), facts.GetFact<TFactIn16>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>(), GetFactType<TFactIn16>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule without input facts.
+        /// </summary>
+        /// <typeparam name="TFactOut">Type of fact result.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactOut>(Func<Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(),
+                null,
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 1 input facts.
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactOut>(
+            Func<TFactIn1, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>()),
+                new List<IFactType> { GetFactType<TFactIn1>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 2 input facts.
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactOut>(
+            Func<TFactIn1, TFactIn2, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 3 input facts.
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 4 input facts.
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 5 input facts.
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation..</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 6 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 7 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 8 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 9 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 10 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 11 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 12 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 13 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 14 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
+            where TFactIn14 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>(), facts.GetFact<TFactIn14>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 15 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+        /// <typeparam name="TFactIn15">Type 15 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
+            where TFactIn14 : IFact
+            where TFactIn15 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>(), facts.GetFact<TFactIn14>(), facts.GetFact<TFactIn15>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>() },
+                GetFactType<TFactOut>(),
+                option));
+        }
+
+        /// <summary>
+        /// Add a rule with 16 input facts
+        /// </summary>
+        /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+        /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+        /// <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+        /// <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+        /// <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+        /// <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+        /// <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+        /// <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+        /// <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+        /// <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+        /// <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+        /// <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+        /// <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+        /// <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+        /// <typeparam name="TFactIn15">Type 15 input fact.</typeparam>
+        /// <typeparam name="TFactIn16">Type 16 input fact.</typeparam>
+        /// <typeparam name="TFactOut">Type output fact.</typeparam>
+        /// <param name="rule">Rule of fact calculation.</param>
+        /// <param name="option">Options for a rule.</param>
+        public void Add<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, TFactOut>(
+            Func<TFactIn1, TFactIn2, TFactIn3, TFactIn4, TFactIn5, TFactIn6, TFactIn7, TFactIn8, TFactIn9, TFactIn10, TFactIn11, TFactIn12, TFactIn13, TFactIn14, TFactIn15, TFactIn16, Task<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            where TFactOut : IFact
+            where TFactIn1 : IFact
+            where TFactIn2 : IFact
+            where TFactIn3 : IFact
+            where TFactIn4 : IFact
+            where TFactIn5 : IFact
+            where TFactIn6 : IFact
+            where TFactIn7 : IFact
+            where TFactIn8 : IFact
+            where TFactIn9 : IFact
+            where TFactIn10 : IFact
+            where TFactIn11 : IFact
+            where TFactIn12 : IFact
+            where TFactIn13 : IFact
+            where TFactIn14 : IFact
+            where TFactIn15 : IFact
+            where TFactIn16 : IFact
+        {
+            Add(CreateFactRule(
+                async facts => await rule(facts.GetFact<TFactIn1>(), facts.GetFact<TFactIn2>(), facts.GetFact<TFactIn3>(), facts.GetFact<TFactIn4>(), facts.GetFact<TFactIn5>(), facts.GetFact<TFactIn6>(), facts.GetFact<TFactIn7>(), facts.GetFact<TFactIn8>(), facts.GetFact<TFactIn9>(), facts.GetFact<TFactIn10>(), facts.GetFact<TFactIn11>(), facts.GetFact<TFactIn12>(), facts.GetFact<TFactIn13>(), facts.GetFact<TFactIn14>(), facts.GetFact<TFactIn15>(), facts.GetFact<TFactIn16>()),
+                new List<IFactType> { GetFactType<TFactIn1>(), GetFactType<TFactIn2>(), GetFactType<TFactIn3>(), GetFactType<TFactIn4>(), GetFactType<TFactIn5>(), GetFactType<TFactIn6>(), GetFactType<TFactIn7>(), GetFactType<TFactIn8>(), GetFactType<TFactIn9>(), GetFactType<TFactIn10>(), GetFactType<TFactIn11>(), GetFactType<TFactIn12>(), GetFactType<TFactIn13>(), GetFactType<TFactIn14>(), GetFactType<TFactIn15>(), GetFactType<TFactIn16>() },
+                GetFactType<TFactOut>(),
+                option));
         }
 
         /// <summary>

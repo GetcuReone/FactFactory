@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Entities
 {
@@ -44,9 +45,15 @@ namespace GetcuReone.FactFactory.Entities
         }
 
         /// <inheritdoc/>
-        protected override FactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType)
+        protected override FactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
         {
-            return new FactRule(func, inputFactTypes, outputFactType);
+            return new FactRule(func, inputFactTypes, outputFactType, option);
+        }
+
+        /// <inheritdoc/>
+        protected override FactRule CreateFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
+        {
+            return new FactRule(func, inputFactTypes, outputFactType, option);
         }
     }
 }
