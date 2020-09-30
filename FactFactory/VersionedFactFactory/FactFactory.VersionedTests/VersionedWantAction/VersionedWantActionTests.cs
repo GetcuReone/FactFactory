@@ -14,7 +14,7 @@ namespace FactFactory.VersionedTests.VersionedWantAction
     {
         private VWantAction CreateVersionedWantAction(params IFactType[] factTypes)
         {
-            return new VWantAction(ct => { }, factTypes.ToList());
+            return new VWantAction(ct => { }, factTypes.ToList(), FactWorkOption.CanExecuteSync);
         }
 
         [TestMethod]

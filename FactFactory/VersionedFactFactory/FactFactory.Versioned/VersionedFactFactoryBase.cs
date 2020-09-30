@@ -44,7 +44,8 @@ namespace GetcuReone.FactFactory.Versioned
             WantFacts(
                 CreateWantAction(
                     facts => fact = facts.GetFact<TFactResult>(),
-                    inputFacts),
+                    inputFacts,
+                    FactWorkOption.CanExecuteSync),
                 container);
 
             Derive();

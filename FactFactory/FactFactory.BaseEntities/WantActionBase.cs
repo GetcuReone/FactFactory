@@ -19,8 +19,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
-        protected WantActionBase(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
-            : base(factTypes, FactWorkOption.CanExecuteSync)
+        /// <param name="option">WantAction options.</param>
+        protected WantActionBase(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option)
+            : base(factTypes, option)
         {
             _action = wantAction ?? throw new ArgumentNullException(nameof(wantAction));
             Validate(factTypes);
@@ -31,8 +32,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <param name="wantActionAsync">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
-        protected WantActionBase(Func<IEnumerable<IFact>, ValueTask> wantActionAsync, List<IFactType> factTypes)
-            : base(factTypes, FactWorkOption.CanExecuteSync)
+        /// <param name="option">WantAction options.</param>
+        protected WantActionBase(Func<IEnumerable<IFact>, ValueTask> wantActionAsync, List<IFactType> factTypes, FactWorkOption option)
+            : base(factTypes, option)
         {
             _actionAsync = wantActionAsync ?? throw new ArgumentNullException(nameof(wantActionAsync));
             Validate(factTypes);

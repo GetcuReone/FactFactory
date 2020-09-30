@@ -15,6 +15,7 @@ using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory
@@ -140,7 +141,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => fact = facts.GetFact<TFactResult>(),
-                    inputFacts),
+                    inputFacts,
+                    FactWorkOption.CanExecuteSync),
                 container);
 
             Derive();
@@ -181,8 +183,18 @@ namespace GetcuReone.FactFactory
         /// </summary>
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
+        /// <param name="option">WantAction option.</param>
         /// <returns></returns>
-        protected abstract TWantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes);
+        protected abstract TWantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option);
+
+        /// <summary>
+        /// Creation method <typeparamref name="TWantAction"/>.
+        /// </summary>
+        /// <param name="wantAction">Action taken after deriving a fact.</param>
+        /// <param name="factTypes">Facts required to launch an action.</param>
+        /// <param name="option">WantAction option.</param>
+        /// <returns></returns>
+        protected abstract TWantAction CreateWantAction(Func<IEnumerable<IFact>, ValueTask> wantAction, List<IFactType> factTypes, FactWorkOption option);
 
         /// <summary>
         /// Requesting a desired fact through action.
@@ -212,7 +224,8 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact1">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
-        public virtual void WantFacts<TFact1>(Action<TFact1> wantFactAction, TFactContainer container = null)
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1>(Action<TFact1> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
         {
             var inputFacts = new List<IFactType> { GetFactType<TFact1>() };
@@ -220,7 +233,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -231,8 +245,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact2">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2>(
-            Action<TFact1, TFact2> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
         {
@@ -241,7 +256,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -253,8 +269,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact3">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3>(
-            Action<TFact1, TFact2, TFact3> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -264,7 +281,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -277,8 +295,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact4">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4>(
-            Action<TFact1, TFact2, TFact3, TFact4> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -289,7 +308,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -303,8 +323,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact5">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -316,7 +337,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -331,8 +353,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact6">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -345,7 +368,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -361,8 +385,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact7">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -376,7 +401,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -393,8 +419,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact8">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -409,7 +436,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -427,8 +455,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact9">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -444,7 +473,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -463,8 +493,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact10">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -481,7 +512,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -501,8 +533,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact11">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -520,7 +553,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -541,8 +575,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact12">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -561,7 +596,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -583,8 +619,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact13">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -604,7 +641,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -627,8 +665,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact14">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -649,7 +688,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -673,8 +713,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact15">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -696,7 +737,8 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>(), facts.GetFact<TFact15>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
                 container);
         }
 
@@ -721,8 +763,9 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact16">Type fact.</typeparam>
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16> wantFactAction, TFactContainer container = null)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -745,7 +788,1158 @@ namespace GetcuReone.FactFactory
             WantFacts(
                 CreateWantAction(
                     facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>(), facts.GetFact<TFact15>(), facts.GetFact<TFact16>()),
-                    inputFacts),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1>(Func<TFact1, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2>(
+            Func<TFact1, TFact2, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3>(
+            Func<TFact1, TFact2, TFact3, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4>(
+            Func<TFact1, TFact2, TFact3, TFact4, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7,ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <typeparam name="TFact14">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
+            where TFact14 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <typeparam name="TFact14">Type fact.</typeparam>
+        /// <typeparam name="TFact15">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
+            where TFact14 : IFact
+            where TFact15 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>(), facts.GetFact<TFact15>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <typeparam name="TFact14">Type fact.</typeparam>
+        /// <typeparam name="TFact15">Type fact.</typeparam>
+        /// <typeparam name="TFact16">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16, ValueTask> wantFactAction, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
+            where TFact14 : IFact
+            where TFact15 : IFact
+            where TFact16 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>(), GetFactType<TFact16>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => wantFactAction(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>(), facts.GetFact<TFact15>(), facts.GetFact<TFact16>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1>(Func<TFact1, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2>(
+            Func<TFact1, TFact2, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3>(
+            Func<TFact1, TFact2, TFact3, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4>(
+            Func<TFact1, TFact2, TFact3, TFact4, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <typeparam name="TFact14">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
+            where TFact14 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <typeparam name="TFact14">Type fact.</typeparam>
+        /// <typeparam name="TFact15">Type fact.</typeparam>
+        /// <param name="wantFactActionAsync">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
+            where TFact14 : IFact
+            where TFact15 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>(), facts.GetFact<TFact15>()),
+                    inputFacts,
+                    option),
+                container);
+        }
+
+        /// <summary>
+        /// Requesting desired facts through action.
+        /// </summary>
+        /// <typeparam name="TFact1">Type fact.</typeparam>
+        /// <typeparam name="TFact2">Type fact.</typeparam>
+        /// <typeparam name="TFact3">Type fact.</typeparam>
+        /// <typeparam name="TFact4">Type fact.</typeparam>
+        /// <typeparam name="TFact5">Type fact.</typeparam>
+        /// <typeparam name="TFact6">Type fact.</typeparam>
+        /// <typeparam name="TFact7">Type fact.</typeparam>
+        /// <typeparam name="TFact8">Type fact.</typeparam>
+        /// <typeparam name="TFact9">Type fact.</typeparam>
+        /// <typeparam name="TFact10">Type fact.</typeparam>
+        /// <typeparam name="TFact11">Type fact.</typeparam>
+        /// <typeparam name="TFact12">Type fact.</typeparam>
+        /// <typeparam name="TFact13">Type fact.</typeparam>
+        /// <typeparam name="TFact14">Type fact.</typeparam>
+        /// <typeparam name="TFact15">Type fact.</typeparam>
+        /// <typeparam name="TFact16">Type fact.</typeparam>
+        /// <param name="wantFactAction">Desired action.</param>
+        /// <param name="container">Fact container.</param>
+        /// <param name="option">FactWork options.</param>
+        public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16>(
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16, Task> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            where TFact1 : IFact
+            where TFact2 : IFact
+            where TFact3 : IFact
+            where TFact4 : IFact
+            where TFact5 : IFact
+            where TFact6 : IFact
+            where TFact7 : IFact
+            where TFact8 : IFact
+            where TFact9 : IFact
+            where TFact10 : IFact
+            where TFact11 : IFact
+            where TFact12 : IFact
+            where TFact13 : IFact
+            where TFact14 : IFact
+            where TFact15 : IFact
+            where TFact16 : IFact
+        {
+            var inputFacts = new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>(), GetFactType<TFact4>(), GetFactType<TFact5>(), GetFactType<TFact6>(), GetFactType<TFact7>(), GetFactType<TFact8>(), GetFactType<TFact9>(), GetFactType<TFact10>(), GetFactType<TFact11>(), GetFactType<TFact12>(), GetFactType<TFact13>(), GetFactType<TFact14>(), GetFactType<TFact15>(), GetFactType<TFact16>() };
+
+            WantFacts(
+                CreateWantAction(
+                    async facts => await wantFactActionAsync(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>(), facts.GetFact<TFact4>(), facts.GetFact<TFact5>(), facts.GetFact<TFact6>(), facts.GetFact<TFact7>(), facts.GetFact<TFact8>(), facts.GetFact<TFact9>(), facts.GetFact<TFact10>(), facts.GetFact<TFact11>(), facts.GetFact<TFact12>(), facts.GetFact<TFact13>(), facts.GetFact<TFact14>(), facts.GetFact<TFact15>(), facts.GetFact<TFact16>()),
+                    inputFacts,
+                    option),
                 container);
         }
 

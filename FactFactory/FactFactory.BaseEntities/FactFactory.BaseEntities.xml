@@ -1221,19 +1221,21 @@
             Base class for <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Constructor.
             </summary>
             <param name="wantAction">Action taken after deriving a fact.</param>
             <param name="factTypes">Facts required to launch an action.</param>
+            <param name="option">WantAction options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Constructor.
             </summary>
             <param name="wantActionAsync">Action taken after deriving a fact.</param>
             <param name="factTypes">Facts required to launch an action.</param>
+            <param name="option">WantAction options.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.ToString">
             <summary>

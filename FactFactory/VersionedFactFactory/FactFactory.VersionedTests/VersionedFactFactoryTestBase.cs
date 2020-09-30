@@ -1,10 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.VersionedTests.CommonFacts;
-using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 using WAction = GetcuReone.FactFactory.Entities.WantAction;
@@ -21,7 +18,7 @@ namespace FactFactory.VersionedTests
         public virtual void Initialize()
         {
             Container = new Container(GetVersionFacts());
-            WantAction = new WAction(ct => { }, new List<IFactType> { GetFactType<FactResult>() });
+            WantAction = GetWantAction((FactResult f) => { });
         }
 
         protected virtual List<IVersionFact> GetVersionFacts()
