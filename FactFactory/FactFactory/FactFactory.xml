@@ -66,7 +66,10 @@
         <member name="M:GetcuReone.FactFactory.FactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer})">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.FactFactoryBase`4">
@@ -121,12 +124,22 @@
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.GetFactTypeCache">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Creation method <typeparamref name="TWantAction"/>.
             </summary>
             <param name="wantAction">Action taken after deriving a fact.</param>
             <param name="factTypes">Facts required to launch an action.</param>
+            <param name="option">WantAction option.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CreateWantAction(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Creation method <typeparamref name="TWantAction"/>.
+            </summary>
+            <param name="wantAction">Action taken after deriving a fact.</param>
+            <param name="factTypes">Facts required to launch an action.</param>
+            <param name="option">WantAction option.</param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts(`2,`3)">
@@ -137,15 +150,16 @@
             <param name="container"></param>
             <exception cref="T:GetcuReone.FactFactory.Exceptions.FactFactoryException">The action has already been requested before.</exception>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``1(System.Action{``0},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``1(System.Action{``0},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
             <typeparam name="TFact1">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``2(System.Action{``0,``1},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``2(System.Action{``0,``1},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -153,8 +167,9 @@
             <typeparam name="TFact2">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``3(System.Action{``0,``1,``2},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``3(System.Action{``0,``1,``2},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -163,8 +178,9 @@
             <typeparam name="TFact3">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``4(System.Action{``0,``1,``2,``3},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``4(System.Action{``0,``1,``2,``3},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -174,8 +190,9 @@
             <typeparam name="TFact4">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``5(System.Action{``0,``1,``2,``3,``4},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``5(System.Action{``0,``1,``2,``3,``4},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -186,8 +203,9 @@
             <typeparam name="TFact5">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``6(System.Action{``0,``1,``2,``3,``4,``5},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``6(System.Action{``0,``1,``2,``3,``4,``5},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -199,8 +217,9 @@
             <typeparam name="TFact6">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``7(System.Action{``0,``1,``2,``3,``4,``5,``6},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``7(System.Action{``0,``1,``2,``3,``4,``5,``6},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -213,8 +232,9 @@
             <typeparam name="TFact7">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``8(System.Action{``0,``1,``2,``3,``4,``5,``6,``7},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``8(System.Action{``0,``1,``2,``3,``4,``5,``6,``7},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -228,8 +248,9 @@
             <typeparam name="TFact8">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``9(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``9(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -244,8 +265,9 @@
             <typeparam name="TFact9">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``10(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``10(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -261,8 +283,9 @@
             <typeparam name="TFact10">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``11(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``11(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -279,8 +302,9 @@
             <typeparam name="TFact11">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``12(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``12(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -298,8 +322,9 @@
             <typeparam name="TFact12">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``13(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``13(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -318,8 +343,9 @@
             <typeparam name="TFact13">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``14(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``14(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -339,8 +365,9 @@
             <typeparam name="TFact14">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``15(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``15(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -361,8 +388,9 @@
             <typeparam name="TFact15">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``16(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},`3)">
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``16(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Requesting desired facts through action.
             </summary>
@@ -384,6 +412,535 @@
             <typeparam name="TFact16">Type fact.</typeparam>
             <param name="wantFactAction">Desired action.</param>
             <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``1(System.Func{``0,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``2(System.Func{``0,``1,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``3(System.Func{``0,``1,``2,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``4(System.Func{``0,``1,``2,``3,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``5(System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``6(System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``7(System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <typeparam name="TFact12">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <typeparam name="TFact12">Type fact.</typeparam>
+            <typeparam name="TFact13">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <typeparam name="TFact12">Type fact.</typeparam>
+            <typeparam name="TFact13">Type fact.</typeparam>
+            <typeparam name="TFact14">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <typeparam name="TFact12">Type fact.</typeparam>
+            <typeparam name="TFact13">Type fact.</typeparam>
+            <typeparam name="TFact14">Type fact.</typeparam>
+            <typeparam name="TFact15">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <typeparam name="TFact12">Type fact.</typeparam>
+            <typeparam name="TFact13">Type fact.</typeparam>
+            <typeparam name="TFact14">Type fact.</typeparam>
+            <typeparam name="TFact15">Type fact.</typeparam>
+            <typeparam name="TFact16">Type fact.</typeparam>
+            <param name="wantFactAction">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``1(System.Func{``0,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``2(System.Func{``0,``1,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``3(System.Func{``0,``1,``2,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``4(System.Func{``0,``1,``2,``3,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``5(System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``6(System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``7(System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <typeparam name="TFact12">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <typeparam name="TFact12">Type fact.</typeparam>
+            <typeparam name="TFact13">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <typeparam name="TFact12">Type fact.</typeparam>
+            <typeparam name="TFact13">Type fact.</typeparam>
+            <typeparam name="TFact14">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <typeparam name="TFact12">Type fact.</typeparam>
+            <typeparam name="TFact13">Type fact.</typeparam>
+            <typeparam name="TFact14">Type fact.</typeparam>
+            <typeparam name="TFact15">Type fact.</typeparam>
+            <param name="wantFactActionAsync">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System.Threading.Tasks.Task},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Requesting desired facts through action.
+            </summary>
+            <typeparam name="TFact1">Type fact.</typeparam>
+            <typeparam name="TFact2">Type fact.</typeparam>
+            <typeparam name="TFact3">Type fact.</typeparam>
+            <typeparam name="TFact4">Type fact.</typeparam>
+            <typeparam name="TFact5">Type fact.</typeparam>
+            <typeparam name="TFact6">Type fact.</typeparam>
+            <typeparam name="TFact7">Type fact.</typeparam>
+            <typeparam name="TFact8">Type fact.</typeparam>
+            <typeparam name="TFact9">Type fact.</typeparam>
+            <typeparam name="TFact10">Type fact.</typeparam>
+            <typeparam name="TFact11">Type fact.</typeparam>
+            <typeparam name="TFact12">Type fact.</typeparam>
+            <typeparam name="TFact13">Type fact.</typeparam>
+            <typeparam name="TFact14">Type fact.</typeparam>
+            <typeparam name="TFact15">Type fact.</typeparam>
+            <typeparam name="TFact16">Type fact.</typeparam>
+            <param name="wantFactAction">Desired action.</param>
+            <param name="container">Fact container.</param>
+            <param name="option">FactWork options.</param>
         </member>
         <member name="T:GetcuReone.FactFactory.Helpers.InnerFactFactoryHelper">
             <summary>

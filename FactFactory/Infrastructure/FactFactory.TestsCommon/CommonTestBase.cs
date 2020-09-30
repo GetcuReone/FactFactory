@@ -100,7 +100,8 @@ namespace FactFactory.TestsCommon
         {
             return new WantAction(
                 facts => action(facts.GetFact<TFact1>()),
-                new List<IFactType> { GetFactType<TFact1>() });
+                new List<IFactType> { GetFactType<TFact1>() },
+                FactWorkOption.CanExecuteSync);
         }
 
         protected WantAction GetWantAction<TFact1, TFact2>(Action<TFact1, TFact2> action)
@@ -109,7 +110,8 @@ namespace FactFactory.TestsCommon
         {
             return new WantAction(
                 facts => action(facts.GetFact<TFact1>(), facts.GetFact<TFact2>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() });
+                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() },
+                FactWorkOption.CanExecuteSync);
         }
 
         protected WantAction GetWantAction<TFact1, TFact2, TFact3>(Action<TFact1, TFact2, TFact3> action)
@@ -119,7 +121,8 @@ namespace FactFactory.TestsCommon
         {
             return new WantAction(
                 facts => action(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() });
+                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() },
+                FactWorkOption.CanExecuteSync);
         }
     }
 }
