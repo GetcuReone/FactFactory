@@ -199,6 +199,12 @@
             Derive the facts.
             </summary>
         </member>
+        <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.DeriveAsync">
+            <summary>
+            Asynchronously derive the facts.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.IFactFactory`4.WantFacts(`2,`3)">
             <summary>
             Requesting a desired fact through action.
