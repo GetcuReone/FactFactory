@@ -40,9 +40,9 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Calling synchronous rules.")]
+        [Description("Calling synchronous rule.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public async Task CallingSynchronousRulesTestCase()
+        public async Task CallingSynchronousRuleTestCase()
         {
             Input16Fact fact16 = null;
             const int expectedValue = 16;
@@ -85,6 +85,36 @@ namespace FactFactoryTests.FactFactoryT
                 .And("Want actions.", factory => factory.WantFacts(async (Input16Fact fact) => 
                 {
                     await Task.Delay(Timeouts.Millisecond.Hundred);
+                    fact16 = fact;
+                }))
+                .WhenAsync("Derive.", factory => factory.DeriveAsync())
+                .Then("Check result.", () =>
+                {
+                    Assert.AreEqual(fact16, expectedValue);
+                })
+                .RunAsync();
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Calling synchronous wantAction.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public async Task CallingSynchronousWantActionTestCase()
+        {
+            Input16Fact fact16 = null;
+            const int expectedValue = 16;
+
+            await GivenCreateFactFactory()
+                .AndAddRules(new Collection
+                {
+                    async () =>
+                    {
+                        await Task.Delay(Timeouts.Millisecond.Hundred);
+                        return new Input16Fact(expectedValue);
+                    }
+                })
+                .And("Want actions.", factory => factory.WantFacts((Input16Fact fact) =>
+                {
                     fact16 = fact;
                 }))
                 .WhenAsync("Derive.", factory => factory.DeriveAsync())
