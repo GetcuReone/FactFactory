@@ -27,7 +27,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
                 .And("Check result.", types =>
                 {
                     Assert.AreEqual(0, types.Count());
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -47,7 +48,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
                 {
                     Assert.AreEqual(1, types.Count());
                     Assert.IsTrue(types.First().IsFactType<Input2Fact>());
-                });
+                })
+                .Run();
         }
     }
 }

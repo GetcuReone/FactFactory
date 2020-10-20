@@ -22,7 +22,7 @@ namespace FactFactoryTests.FactRuleCollection
     {
         private Collection Collection { get; set; }
 
-        private GivenBlock<Collection> GivenCreateCollection(bool isReadOnly)
+        private GivenBlock<object, Collection> GivenCreateCollection(bool isReadOnly)
         {
             return Given("Create collection", () => new Collection(null, isReadOnly));
         }
@@ -46,7 +46,8 @@ namespace FactFactoryTests.FactRuleCollection
                 {
                     Assert.AreEqual(1, Collection.Count, "Collection is empty.");
                     Assert.AreEqual(0, Collection[0].InputFactTypes.Count, "Different number of input parameters was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -74,7 +75,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -103,7 +105,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -133,7 +136,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -163,7 +167,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -194,7 +199,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -226,7 +232,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -259,7 +266,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -293,7 +301,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -328,7 +337,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -364,7 +374,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -401,7 +412,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -439,7 +451,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -478,7 +491,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -518,7 +532,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -559,7 +574,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -601,7 +617,8 @@ namespace FactFactoryTests.FactRuleCollection
 
                     foreach (IFactType factType in factTypes)
                         Assert.IsTrue(inpuTFactTypes.Any(item => item.EqualsFactType(factType)), $"No input fact information found {factType.FactName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -617,7 +634,8 @@ namespace FactFactoryTests.FactRuleCollection
                 {
                     return ExpectedException<ArgumentException>(() => Collection.Add(() => new Input10Fact(11)));
                 })
-                .ThenIsNotNull();
+                .ThenIsNotNull()
+                .Run();
         }
 
         [TestMethod]
@@ -631,7 +649,8 @@ namespace FactFactoryTests.FactRuleCollection
                 {
                     return ExpectedException<ArgumentException>(() => Collection.Add(() => new NotContained<Input10Fact>()));
                 })
-                .ThenIsNotNull();
+                .ThenIsNotNull()
+                .Run();
         }
 
         [TestMethod]
@@ -649,10 +668,12 @@ namespace FactFactoryTests.FactRuleCollection
                     Collection.Copy())
                 .ThenIsNotNull()
                 .AndAreNotEqual(Collection)
-                .AndAreEqual(copyCollection => copyCollection.Count, Collection.Count(),
-                    errorMessage: "Collections should have the same amount of rules.")
-                .AndAreEqual(copyCollection => copyCollection[0], factRule,
-                    errorMessage: "The collection contains another rule.");
+                .And("Check result", copyCollection => 
+                {
+                    Assert.AreEqual(Collection.Count, copyCollection.Count, "Collections should have the same amount of rules.");
+                    Assert.AreEqual(factRule, copyCollection[0], "The collection contains another rule.");
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -666,7 +687,8 @@ namespace FactFactoryTests.FactRuleCollection
             GivenCreateCollection(true)
                 .When("Add rule.", rules => 
                     ExpectedFactFactoryException(() => rules.Add(null)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason)
+                .Run();
         }
 
         [TestMethod]
@@ -680,7 +702,8 @@ namespace FactFactoryTests.FactRuleCollection
             GivenCreateCollection(true)
                 .When("Remove rule", rules => 
                     ExpectedFactFactoryException(() => rules.Remove(null)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason)
+                .Run();
         }
 
         [TestMethod]
@@ -694,7 +717,8 @@ namespace FactFactoryTests.FactRuleCollection
             GivenCreateCollection(true)
                 .When("Clear", rules => 
                     ExpectedFactFactoryException(() => rules.Clear()))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason)
+                .Run();
         }
 
         [TestMethod]
@@ -708,7 +732,8 @@ namespace FactFactoryTests.FactRuleCollection
             GivenCreateCollection(true)
                 .When("Insert rule", rules => 
                     ExpectedFactFactoryException(() => rules.Insert(0, null)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason)
+                .Run();
         }
 
         [TestMethod]
@@ -722,7 +747,8 @@ namespace FactFactoryTests.FactRuleCollection
             GivenCreateCollection(true)
                 .When("RemoveAt rule", rules => 
                     ExpectedFactFactoryException(() => rules.RemoveAt(0)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason)
+                .Run();
         }
 
         [TestMethod]
@@ -735,7 +761,8 @@ namespace FactFactoryTests.FactRuleCollection
 
             GivenCreateCollection(true)
                 .When("Add by index", rules => ExpectedFactFactoryException(() => rules[0] = null))
-                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason)
+                .Run();
         }
     }
 }

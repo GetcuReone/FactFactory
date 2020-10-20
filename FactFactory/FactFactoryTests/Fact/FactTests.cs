@@ -1,5 +1,6 @@
 ﻿using System;
 using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory;
@@ -22,7 +23,8 @@ namespace FactFactoryTests.Fact
             GivenEmpty()
                 .When("Create fact.", _ => 
                     new DateTimeFact(operationDate))
-                .ThenFactEquals(operationDate);
+                .ThenFactValueEquals(operationDate)
+                .Run();
         }
 
         [TestMethod]
@@ -35,7 +37,8 @@ namespace FactFactoryTests.Fact
                 .When("Run method.", fact => 
                     fact.GetFactType())
                 .Then("Check result.", factInfo => 
-                    Assert.IsTrue(factInfo is FactType<DateTimeFact>, "a different type of factual information was expected"));
+                    Assert.IsTrue(factInfo is FactType<DateTimeFact>, "a different type of factual information was expected"))
+                .Run();
         }
     }
 }

@@ -40,7 +40,8 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                 .When("Get compatible rules.", facade =>
                     facade.GetCompatibleRules(wantAction, Collection, context))
                 .ThenIsNotNull()
-                .AndAreEqual(Collection);
+                .AndAreEqual(Collection)
+                .Run();
         }
 
         [TestMethod]
@@ -64,7 +65,8 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                     Assert.AreEqual(1, collection.Count());
                     return collection.First();
                 })
-                .AndAreEqual(Collection[2]);
+                .AndAreEqual(Collection[2])
+                .Run();
         }
 
         [TestMethod]
@@ -88,7 +90,8 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                     Assert.AreEqual(2, collection.Count());
                     return collection.Last();
                 })
-                .AndAreEqual(Collection[3]);
+                .AndAreEqual(Collection[3])
+                .Run();
         }
 
         [TestMethod]
@@ -112,7 +115,8 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                     Assert.AreEqual(1, collection.Count());
                     return collection.First();
                 })
-                .AndAreEqual(Collection[2]);
+                .AndAreEqual(Collection[2])
+                .Run();
         }
 
         [TestMethod]
@@ -136,7 +140,8 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                     Assert.AreEqual(2, collection.Count());
                     return collection.Last();
                 })
-                .AndAreEqual(Collection[3]);
+                .AndAreEqual(Collection[3])
+                .Run();
         }
     }
 }

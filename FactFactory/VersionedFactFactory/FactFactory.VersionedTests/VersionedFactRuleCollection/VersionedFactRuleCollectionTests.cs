@@ -22,7 +22,8 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
             GivenCreateCollection()
                 .When("Add rule.", collection => 
                     collection.Add((Fact1 fact) => new FactResult(fact.Value)))
-                .ThenIsTrue(colletion => colletion.Count == 1);
+                .ThenIsTrue(colletion => colletion.Count == 1)
+                .Run();
         }
 
         [TestMethod]
@@ -48,7 +49,8 @@ namespace FactFactory.VersionedTests.VersionedFactRuleCollection
                     Assert.AreEqual(originalsCollection.Count(), copyCollection.Count(), "Collections should have the same amount of rules");
 
                     Assert.AreEqual(factRule, copyCollection[0], "The collection contains another rule.");
-                });
+                })
+                .Run();
         }
     }
 }

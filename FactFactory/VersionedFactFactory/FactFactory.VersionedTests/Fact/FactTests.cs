@@ -1,4 +1,5 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,7 +20,8 @@ namespace FactFactory.VersionedTests.Fact
             GivenEmpty()
                 .When("Create fact.", _ =>
                     new FactResult(expectedValue))
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
     }
 }

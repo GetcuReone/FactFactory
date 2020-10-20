@@ -46,7 +46,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     (Version1 v, Cert_Validation cert) => new Cert_ValidationNotNull(cert.Value),
                 })
                 .When("Derive fact.", factory => factory.DeriveFact<Cert, Version1>(container))
-                .ThenAreEqual(fact => fact.Value, certificate);
+                .ThenAreEqual(fact => fact.Value, certificate)
+                .Run();
         }
     }
 }

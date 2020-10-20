@@ -31,7 +31,8 @@ namespace FactFactoryTests.FactFactoryT
                     (Input2Fact fact) => new Input1Fact(fact.Value + 1),
                 })
                 .When("Derive fact1.", factory => factory.DeriveFact<Input1Fact>())
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -57,7 +58,8 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Derive.", factory => 
                     factory.DeriveFact<Input11Fact>(container))
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -79,7 +81,8 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Run Derive.", factFactory
                     => ExpectedDeriveException(() => factFactory.DeriveFact<ResultFact>(container)))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage)
+                .Run();
         }
 
         [TestMethod]
@@ -98,7 +101,8 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Derive.", factory => 
                     ExpectedDeriveException(() => factory.DeriveFact<ResultFact>()))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage)
+                .Run();
         }
     }
 }
