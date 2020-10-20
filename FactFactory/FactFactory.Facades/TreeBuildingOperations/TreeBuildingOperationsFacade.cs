@@ -580,7 +580,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 }
             }
 
-            wantActionInfo.Context.SingleEntity.DeriveWantFacts(wantActionInfo);
+            if (wantActionInfo.Context.WantAction.Option.HasFlag(FactWorkOption.CanExecuteSync))
+                wantActionInfo.Context.SingleEntity.DeriveWantFacts(wantActionInfo);
+            else
+                throw FactFactoryHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"Non-synchronous wantAction <{wantActionInfo}>.");
         }
 
         /// <inheritdoc/>
@@ -661,8 +664,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
             if (wantActionInfo.Context.WantAction.Option.HasFlag(FactWorkOption.CanExecuteSync))
                 wantActionInfo.Context.SingleEntity.DeriveWantFacts(wantActionInfo);
-            else
+            else if (wantActionInfo.Context.WantAction.Option.HasFlag(FactWorkOption.CanExecuteAsync))
                 await wantActionInfo.Context.SingleEntity.DeriveWantFactsAsync(wantActionInfo);
+            else
+                throw FactFactoryHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"Non-synchronous and non-asynchronous wantAction <{wantActionInfo}>.");
         }
     }
 }

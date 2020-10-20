@@ -96,6 +96,42 @@ namespace GetcuReone.FactFactory
             }
         }
 
+        /// <inheritdoc/>
+        public virtual async ValueTask DeriveAsync()
+        {
+            // Create static context data.
+            IFactTypeCache cache = GetFactTypeCache();
+            ISingleEntityOperations singleEntityOperations = GetSingleEntityOperations();
+            ITreeBuildingOperations treeBuildingOperations = GetTreeBuildingOperations();
+
+            // Validate container and get contexts.
+            var contexts = WantFactsInfos.ConvertAll(info =>
+                GetWantActionContext(info, treeBuildingOperations, singleEntityOperations, cache));
+
+            // Validating rules.
+            TFactRuleCollection rules = singleEntityOperations.ValidateAndGetRules<TFactRule, TFactRuleCollection>(Rules);
+
+            var request = new BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+            {
+                FactRules = rules,
+                WantActionContexts = contexts,
+                Filters = new List<FactWorkOption> { FactWorkOption.CanExcecuteParallel, FactWorkOption.CanExecuteSync, FactWorkOption.CanExecuteAsync }
+            };
+
+            if (!treeBuildingOperations.TryBuildTrees(request, out var result))
+                throw CommonHelper.CreateDeriveException(result.DeriveErrorDetails);
+
+            foreach (var item in result.TreesByActions)
+                await treeBuildingOperations.CalculateTreeAndDeriveWantFactsAsync(item.Key, item.Value);
+
+            foreach (var context in result.TreesByActions.Keys.Select(key => key.Context))
+            {
+                var wantFactsInfos = WantFactsInfos.FirstOrDefault(info => info.WantAction == context.WantAction && info.Container == context.Container);
+                if (wantFactsInfos != null)
+                    WantFactsInfos.Remove(wantFactsInfos);
+            }
+        }
+
         private IWantActionContext<TWantAction, TFactContainer> GetWantActionContext(WantFactsInfo<TWantAction, TFactContainer> wantFactsInfo, ITreeBuildingOperations treeBuilding, ISingleEntityOperations singleEntity, IFactTypeCache cache)
         {
             singleEntity.ValidateContainer(wantFactsInfo.Container);
@@ -146,6 +182,35 @@ namespace GetcuReone.FactFactory
                 container);
 
             Derive();
+
+            WantFactsInfos.AddRange(previousWantFacts);
+
+            return fact;
+        }
+
+        /// <summary>
+        /// Derive <typeparamref name="TFactResult"/>.
+        /// </summary>
+        /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public virtual async ValueTask<TFactResult> DeriveFactAsync<TFactResult>(TFactContainer container = null) where TFactResult : IFact
+        {
+            TFactResult fact = default;
+
+            var previousWantFacts = new List<WantFactsInfo<TWantAction, TFactContainer>>(WantFactsInfos);
+            WantFactsInfos.Clear();
+
+            var inputFacts = new List<IFactType> { GetFactType<TFactResult>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => fact = facts.GetFact<TFactResult>(),
+                    inputFacts,
+                    FactWorkOption.CanExecuteSync),
+                container);
+
+            await DeriveAsync();
 
             WantFactsInfos.AddRange(previousWantFacts);
 
