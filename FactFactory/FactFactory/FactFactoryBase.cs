@@ -1911,7 +1911,7 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFact14">Type fact.</typeparam>
         /// <typeparam name="TFact15">Type fact.</typeparam>
         /// <typeparam name="TFact16">Type fact.</typeparam>
-        /// <param name="wantFactAction">Desired action.</param>
+        /// <param name="wantFactActionAsync">Desired action.</param>
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16>(
