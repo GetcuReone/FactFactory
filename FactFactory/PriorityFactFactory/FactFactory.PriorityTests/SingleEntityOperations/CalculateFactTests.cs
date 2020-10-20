@@ -4,7 +4,6 @@ using FactFactory.PriorityTests.SingleEntityOperations.Env;
 using FactFactory.TestsCommon;
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
@@ -68,7 +67,8 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
                     errorMessage: "result must have type FactResult.")
                 .AndAreEqual(fact => fact.Value, expectedValue)
                 .AndIsTrue(fact => fact.GetPriorityOrNull() != null)
-                .AndIsTrue(fact => fact.GetPriorityOrNull() is IPriorityFact);
+                .AndIsTrue(fact => fact.GetPriorityOrNull() is IPriorityFact)
+                .Run();
         }
     }
 }

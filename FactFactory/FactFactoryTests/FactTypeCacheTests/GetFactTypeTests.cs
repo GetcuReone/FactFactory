@@ -1,9 +1,8 @@
-﻿using FactFactoryTests.FactTypeCacheTests.Env;
-using FactFactory.TestsCommon;
+﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
+using FactFactoryTests.FactTypeCacheTests.Env;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
-using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactoryTests.FactTypeCacheTests
@@ -26,7 +25,8 @@ namespace FactFactoryTests.FactTypeCacheTests
                     expectedValue = cache.GetFactType(fact);
                 })
                 .When("Get type from cache.", cache => cache.GetFactType(fact))
-                .ThenAreEqual(expectedValue);
+                .Then("Check result.", factType => Assert.AreEqual(expectedValue, factType))
+                .Run();
         }
     }
 }

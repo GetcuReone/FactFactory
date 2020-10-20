@@ -20,12 +20,12 @@ namespace FactFactoryTests.FactType
     [TestClass]
     public sealed class FactTypeTest : TestBase
     {
-        private GivenBlock<OtherFact> GivenCreateOtherFact(DateTime dateTime)
+        private GivenBlock<object, OtherFact> GivenCreateOtherFact(DateTime dateTime)
         {
             return Given("Create OthreFact.", () => new OtherFact(dateTime));
         }
 
-        private GivenBlock<FactType<TFact>> GivenCreateFactType<TFact>()
+        private GivenBlock<object, FactType<TFact>> GivenCreateFactType<TFact>()
             where TFact : IFact
         {
             return Given($"Create fact type for {typeof(TFact).Name}.", () => new FactType<TFact>());

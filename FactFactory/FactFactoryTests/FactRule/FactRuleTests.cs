@@ -29,7 +29,8 @@ namespace FactFactoryTests.FactRule
                 .When("Create factRule.", _ => 
                     new Rule(facts => { return new OtherFact(default); }, null, GetFactType<OtherFact>(), FactWorkOption.CanExecuteSync))
                 .Then("Check input param.", rule => 
-                    Assert.AreEqual(0, rule.InputFactTypes.Count, "InpuTFactTypes is not empty."));
+                    Assert.AreEqual(0, rule.InputFactTypes.Count, "InpuTFactTypes is not empty."))
+                .Run();
         }
 
         [TestMethod]
@@ -54,7 +55,8 @@ namespace FactFactoryTests.FactRule
                 {
                     Assert.AreEqual(1, rule.InputFactTypes.Count, "InpuTFactTypes is empty");
                     Assert.IsTrue(rule.InputFactTypes.First().EqualsFactType(fact.GetFactType()), "factual information does not match");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -78,7 +80,8 @@ namespace FactFactoryTests.FactRule
                 .Then("Check input param.", rule =>
                 {
                     Assert.AreEqual(3, rule.InputFactTypes.Count, "InpuTFactTypes is not empty.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -100,7 +103,8 @@ namespace FactFactoryTests.FactRule
                         FactWorkOption.CanExecuteSync);
                 })
                 .ThenIsTrue(rule => rule.OutputFactType.EqualsFactType(fact.GetFactType()),
-                    errorMessage: "factual information does not match.");
+                    errorMessage: "factual information does not match.")
+                .Run();
         }
 
         [TestMethod]
@@ -116,7 +120,8 @@ namespace FactFactoryTests.FactRule
                     ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, IFact>), null, null, FactWorkOption.CanExecuteSync)))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.ParamName, paramName,
-                    errorMessage: "Another parameter name expected.");
+                    errorMessage: "Another parameter name expected.")
+                .Run();
         }
 
         [TestMethod]
@@ -132,7 +137,8 @@ namespace FactFactoryTests.FactRule
                     ExpectedException<ArgumentNullException>(() => new Rule(default(Func<IEnumerable<IFact>, ValueTask<IFact>>), null, null, FactWorkOption.CanExecuteSync)))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.ParamName, paramName,
-                    errorMessage: "Another parameter name expected.");
+                    errorMessage: "Another parameter name expected.")
+                .Run();
         }
 
         [TestMethod]
@@ -172,7 +178,8 @@ namespace FactFactoryTests.FactRule
                         Assert.AreEqual(operationDate.AddDays(1), otherFact.Value, "Dates do not match.");
                     else
                         Assert.Fail($"fact have type {fact.GetType().FullName}.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -188,7 +195,8 @@ namespace FactFactoryTests.FactRule
                     ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new IntFact(default))))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.Message, expectedReason,
-                    errorMessage: "Another message expected.");
+                    errorMessage: "Another message expected.")
+                .Run();
         }
 
         [TestMethod]
@@ -204,7 +212,8 @@ namespace FactFactoryTests.FactRule
                     ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new CannotDerived<Input10Fact>())))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.Message, expectedReason,
-                    errorMessage: "Another message expected.");
+                    errorMessage: "Another message expected.")
+                .Run();
         }
 
         [TestMethod]
@@ -220,7 +229,8 @@ namespace FactFactoryTests.FactRule
                     ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new NotContained<Input10Fact>())))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.Message, expectedReason,
-                    errorMessage: "Another message expected.");
+                    errorMessage: "Another message expected.")
+                .Run();
         }
 
         [TestMethod]
@@ -236,7 +246,8 @@ namespace FactFactoryTests.FactRule
                     ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new Contained<Input10Fact>())))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.Message, expectedReason,
-                    errorMessage: "Another message expected.");
+                    errorMessage: "Another message expected.")
+                .Run();
         }
 
         [TestMethod]
@@ -252,7 +263,8 @@ namespace FactFactoryTests.FactRule
                     ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new CanDerived<Input10Fact>())))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.Message, expectedReason,
-                    errorMessage: "Another message expected.");
+                    errorMessage: "Another message expected.")
+                .Run();
         }
     }
 }

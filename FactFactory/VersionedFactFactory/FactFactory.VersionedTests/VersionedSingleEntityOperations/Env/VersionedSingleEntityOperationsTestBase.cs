@@ -7,7 +7,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations.Env
     [TestClass]
     public abstract class VersionedSingleEntityOperationsTestBase : VersionedFactFactoryTestBase
     {
-        protected virtual GivenBlock<VersionedSingleEntityOperationsFacade> GivenCreateFacade()
+        protected virtual GivenBlock<object, VersionedSingleEntityOperationsFacade> GivenCreateFacade()
         {
             return Given("Create SingleEntityOperationsFacade", () => GetFacade<VersionedSingleEntityOperationsFacade>());
         }

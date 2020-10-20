@@ -27,7 +27,8 @@ namespace FactFactory.VersionedTests.Version
                     v2 = new Version1_1())
                 .When("Compare version.", _ =>
                     v1.CompareTo(v2))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -45,7 +46,8 @@ namespace FactFactory.VersionedTests.Version
                     v2 = new Version1_1())
                 .When("Compare version.", _ =>
                     v2.CompareTo(v1))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -63,7 +65,8 @@ namespace FactFactory.VersionedTests.Version
                     v2 = new Version1_1())
                 .When("Compare version.", _ =>
                     v2.CompareTo(v1))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -81,7 +84,8 @@ namespace FactFactory.VersionedTests.Version
                     uintVersion = new Version1())
                 .When("Compare version.", _ =>
                     ExpectedFactFactoryException(() => v1.CompareTo(uintVersion)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason)
+                .Run();
         }
     }
 }

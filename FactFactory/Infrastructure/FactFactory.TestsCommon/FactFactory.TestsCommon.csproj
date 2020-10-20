@@ -13,8 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GetcuReone.GetcuTestAdapter" Version="[1.1.7,)" />
-    <PackageReference Include="GetcuReone.GwtTestFramework" Version="[1.2.2,)" />
+    <PackageReference Include="GetcuReone.GetcuTestAdapter" Version="[1.2.0,)" />
+    <PackageReference Include="GetcuReone.GwtTestFramework" Version="[2.0.1,)" />
   </ItemGroup>
 
   <ItemGroup>

@@ -24,7 +24,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
             GivenCreateFacade()
                 .When("Check compatible.", facade => 
                     facade.CompatibleRule(first, second, context))
-                .ThenIsTrue();
+                .ThenIsTrue()
+                .Run();
         }
     }
 }

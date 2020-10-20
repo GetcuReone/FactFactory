@@ -9,7 +9,7 @@ namespace FactFactoryTests.FactTypeCacheTests.Env
     [TestClass]
     public abstract class FactTypeCacheTestBase : CommonTestBase
     {
-        protected virtual GivenBlock<IFactTypeCache> GivenCreateCahce()
+        protected virtual GivenBlock<object, IFactTypeCache> GivenCreateCahce()
         {
             return Given("Create fact type cache.", () => (IFactTypeCache)new FactTypeCache());
         }

@@ -33,7 +33,8 @@ namespace FactFactory.PriorityTests.PriorityFactFactory
                 .When("Derive fact.", factory =>
                     factory.DeriveFact<FactResult>(container))
                 .ThenIsNotNull()
-                .AndAreEqual(fact => fact.Value, expectedValue);
+                .AndAreEqual(fact => fact.Value, expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -57,7 +58,8 @@ namespace FactFactory.PriorityTests.PriorityFactFactory
                 .When("Derive fact.", factory =>
                     factory.DeriveFact<FactResult>(container))
                 .ThenIsNotNull()
-                .AndAreEqual(fact => fact.Value, expectedValue);
+                .AndAreEqual(fact => fact.Value, expectedValue)
+                .Run();
         }
     }
 }

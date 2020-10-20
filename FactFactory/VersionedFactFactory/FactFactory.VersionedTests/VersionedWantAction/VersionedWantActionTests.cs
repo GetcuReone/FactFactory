@@ -31,7 +31,8 @@ namespace FactFactory.VersionedTests.VersionedWantAction
                 .And("Check result.", versionType =>
                 {
                     Assert.IsTrue(GetFactType<Version1>().EqualsFactType(versionType), $"{nameof(versionType)} does not store version information");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -43,7 +44,8 @@ namespace FactFactory.VersionedTests.VersionedWantAction
             GivenEmpty()
                 .When("Create wantAction without version", _ =>
                     CreateVersionedWantAction(GetFactType<Fact1>()))
-                .ThenNotContainVersionType();
+                .ThenNotContainVersionType()
+                .Run();
         }
     }
 }

@@ -39,7 +39,8 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
             GivenCreateFacade()
                 .When("Check method compare.", facade =>
                     facade.CompareFactRules(firstRule, secondRule, Context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -55,7 +56,8 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
             GivenCreateFacade()
                 .When("Check method compare.", facade =>
                     facade.CompareFactRules(firstRule, secondRule, Context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -71,7 +73,8 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
             GivenCreateFacade()
                 .When("Check method compare.", facade =>
                     facade.CompareFactRules(firstRule, secondRule, Context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -87,7 +90,8 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
             GivenCreateFacade()
                 .When("Check method compare.", facade =>
                     facade.CompareFactRules(firstRule, secondRule, Context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
     }
 }

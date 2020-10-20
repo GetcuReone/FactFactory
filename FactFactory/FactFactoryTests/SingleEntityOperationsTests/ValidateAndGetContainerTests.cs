@@ -23,7 +23,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
             GivenCreateFacade()
                 .When("Run method ValidateAndGetRules.", facade =>
                     ExpectedDeriveException(() => facade.ValidateContainer(container)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason)
+                .Run();
         }
     }
 }

@@ -24,7 +24,8 @@ namespace FactFactoryTests.WantAction
                     ExpectedException<ArgumentNullException>(() => new WAction((Action<IEnumerable<IFact>>)null, null, FactWorkOption.CanExecuteSync)))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.ParamName, "wantAction",
-                    errorMessage: "Expectend another property name.");
+                    errorMessage: "Expectend another property name.")
+                .Run();
         }
 
         [TestMethod]
@@ -39,7 +40,8 @@ namespace FactFactoryTests.WantAction
                 .When("Run method.", wantAction => 
                     wantAction.Invoke(new GetcuReone.FactFactory.Entities.FactContainer()))
                 .Then("Check result.", _ => 
-                    Assert.IsTrue(isRun, "Invoke not run."));
+                    Assert.IsTrue(isRun, "Invoke not run."))
+                .Run();
         }
 
         [TestMethod]
@@ -56,7 +58,8 @@ namespace FactFactoryTests.WantAction
                 .And("Check error.", ex =>
                 {
                     Assert.AreEqual(expectedReason, ex.Message, "Expectend another message.");
-                });
+                })
+                .Run();
         }
     }
 }
