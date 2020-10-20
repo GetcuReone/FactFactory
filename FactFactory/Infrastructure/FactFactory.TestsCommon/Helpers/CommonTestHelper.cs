@@ -80,5 +80,14 @@ namespace FactFactory.TestsCommon.Helpers
                 .AndAreEqual(fact => fact.Value, expectedValue,
                     errorMessage: $"A different meaning of the {typeof(TFact).Name} fact was expected", blockName: $"Check assert {typeof(TFact).Name} fact.");
         }
+
+        public static ThenBlock<TFact, TFact> ThenFactValueEquals<TInput, TFact, TFactValue>(this WhenAsyncBlock<TInput, TFact> whenBlock, TFactValue expectedValue)
+            where TFact : FactBase<TFactValue>
+        {
+            return whenBlock
+                .ThenIsNotNull()
+                .AndAreEqual(fact => fact.Value, expectedValue,
+                    errorMessage: $"A different meaning of the {typeof(TFact).Name} fact was expected", blockName: $"Check assert {typeof(TFact).Name} fact.");
+        }
     }
 }
