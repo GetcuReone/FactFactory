@@ -6,6 +6,7 @@ using GetcuReone.FactFactory.Versioned.BaseEntities;
 using GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Versioned
 {
@@ -49,6 +50,37 @@ namespace GetcuReone.FactFactory.Versioned
                 container);
 
             Derive();
+
+            WantFactsInfos.AddRange(previousWantFacts);
+
+            return fact;
+        }
+
+        /// <summary>
+        /// Derive <typeparamref name="TFactResult"/> with version.
+        /// </summary>
+        /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
+        /// <typeparam name="TVersion">Type of version fact.</typeparam>
+        /// <returns></returns>
+        public virtual async ValueTask<TFactResult> DeriveFactAsync<TFactResult, TVersion>(TFactContainer container = null)
+            where TFactResult : IFact
+            where TVersion : IVersionFact
+        {
+            TFactResult fact = default;
+
+            var previousWantFacts = new List<WantFactsInfo<TWantAction, TFactContainer>>(WantFactsInfos);
+            WantFactsInfos.Clear();
+
+            var inputFacts = new List<IFactType> { GetFactType<TFactResult>(), GetFactType<TVersion>() };
+
+            WantFacts(
+                CreateWantAction(
+                    facts => fact = facts.GetFact<TFactResult>(),
+                    inputFacts,
+                    FactWorkOption.CanExecuteSync),
+                container);
+
+            await DeriveAsync();
 
             WantFactsInfos.AddRange(previousWantFacts);
 
