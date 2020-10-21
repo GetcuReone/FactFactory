@@ -138,16 +138,20 @@ namespace FactFactoryTests.FactFactoryT
             await GivenCreateFactFactory()
                 .AndAddRules(new Collection
                 {
-                    {async () =>
                     {
-                        await Task.Delay(Timeouts.Millisecond.Hundred);
-                        return new Input10Fact(10);
-                    }, FactWorkOption.CanExcecuteParallel | FactWorkOption.CanExecuteAsync},
-                    {async () =>
+                        async () =>
+                        {
+                            await Task.Delay(Timeouts.Millisecond.Hundred);
+                            return new Input10Fact(10);
+                        }, FactWorkOption.CanExcecuteParallel | FactWorkOption.CanExecuteAsync
+                    },
                     {
-                        await Task.Delay(Timeouts.Millisecond.Hundred);
-                        return new Input6Fact(6);
-                    }, FactWorkOption.CanExcecuteParallel | FactWorkOption.CanExecuteAsync},
+                        async () =>
+                        {
+                            await Task.Delay(Timeouts.Millisecond.Hundred);
+                            return new Input6Fact(6);
+                        }, FactWorkOption.CanExcecuteParallel | FactWorkOption.CanExecuteAsync
+                    },
                     (Input6Fact fact6, Input10Fact fact10) =>
                     {
                         return new Input16Fact(fact6 + fact10);
