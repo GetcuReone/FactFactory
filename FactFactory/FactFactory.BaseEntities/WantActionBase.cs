@@ -64,7 +64,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public virtual async ValueTask InvokeAsync(IEnumerable<IFact> requireFacts)
         {
-            await _actionAsync(requireFacts);
+            await _actionAsync(requireFacts).ConfigureAwait(false);
         }
     }
 }

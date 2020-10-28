@@ -644,14 +644,17 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     if (asyncNodes.Count != 0)
                         foreach(var node in asyncNodes)
                         {
-                            var fact = await context.SingleEntity.CalculateFactAsync(node, context);
+                            var fact = await context.SingleEntity.CalculateFactAsync(node, context).ConfigureAwait(false);
                             using (context.Container.CreateIgnoreReadOnlySpace())
                                 context.Container.Add(fact);
                         }
 
                     if (asyncAndParallelNodes.Count != 0)
                     {
-                        var facts = await asyncAndParallelNodes.ConvertAll(node => context.SingleEntity.CalculateFactAsync(node, context)).WhenAll();
+                        var facts = await asyncAndParallelNodes
+                            .ConvertAll(node => context.SingleEntity.CalculateFactAsync(node, context))
+                            .WhenAll()
+                            .ConfigureAwait(false);
                         foreach(var fact in facts)
                             using (context.Container.CreateIgnoreReadOnlySpace())
                                 context.Container.Add(fact);
@@ -662,7 +665,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             if (wantActionInfo.Context.WantAction.Option.HasFlag(FactWorkOption.CanExecuteSync))
                 wantActionInfo.Context.SingleEntity.DeriveWantFacts(wantActionInfo);
             else if (wantActionInfo.Context.WantAction.Option.HasFlag(FactWorkOption.CanExecuteAsync))
-                await wantActionInfo.Context.SingleEntity.DeriveWantFactsAsync(wantActionInfo);
+                await wantActionInfo.Context.SingleEntity.DeriveWantFactsAsync(wantActionInfo).ConfigureAwait(false);
             else
                 throw FactFactoryHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"Non-synchronous and non-asynchronous wantAction <{wantActionInfo}>.");
         }

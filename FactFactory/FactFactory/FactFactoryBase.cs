@@ -122,7 +122,7 @@ namespace GetcuReone.FactFactory
                 throw CommonHelper.CreateDeriveException(result.DeriveErrorDetails);
 
             foreach (var item in result.TreesByActions)
-                await treeBuildingOperations.CalculateTreeAndDeriveWantFactsAsync(item.Key, item.Value);
+                await treeBuildingOperations.CalculateTreeAndDeriveWantFactsAsync(item.Key, item.Value).ConfigureAwait(false);
 
             foreach (var context in result.TreesByActions.Keys.Select(key => key.Context))
             {
@@ -210,7 +210,7 @@ namespace GetcuReone.FactFactory
                     FactWorkOption.CanExecuteSync),
                 container);
 
-            await DeriveAsync();
+            await DeriveAsync().ConfigureAwait(false);
 
             WantFactsInfos.AddRange(previousWantFacts);
 

@@ -207,7 +207,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     toAwait.Add(valueTask.AsTask());
             }
 
-            result.AddRange(await Task.WhenAll(toAwait));
+            result.AddRange(await Task.WhenAll(toAwait).ConfigureAwait(false));
 
             return result;
         }

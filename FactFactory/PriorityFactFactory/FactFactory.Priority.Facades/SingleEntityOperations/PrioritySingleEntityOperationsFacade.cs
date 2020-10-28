@@ -41,7 +41,7 @@ namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
         public override async ValueTask<IFact> CalculateFactAsync<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
         {
             IPriorityFact priority = node.Info.Rule.GetPriorityFact(context);
-            return (await base.CalculateFactAsync(node, context)).SetPriority(priority);
+            return (await base.CalculateFactAsync(node, context).ConfigureAwait(false)).SetPriority(priority);
         }
     }
 }
