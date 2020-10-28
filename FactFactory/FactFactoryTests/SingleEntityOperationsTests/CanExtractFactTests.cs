@@ -15,7 +15,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         [TestMethod]
         [TestCategory(TC.Objects.Rule), TestCategory(GetcuReoneTC.Unit)]
         [Description("Can extract.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Second.One)]
         public void CanExtractTestCase()
         {
             var container = new Container

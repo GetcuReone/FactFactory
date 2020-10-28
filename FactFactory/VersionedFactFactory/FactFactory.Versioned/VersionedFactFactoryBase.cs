@@ -80,7 +80,7 @@ namespace GetcuReone.FactFactory.Versioned
                     FactWorkOption.CanExecuteSync),
                 container);
 
-            await DeriveAsync();
+            await DeriveAsync().ConfigureAwait(false);
 
             WantFactsInfos.AddRange(previousWantFacts);
 

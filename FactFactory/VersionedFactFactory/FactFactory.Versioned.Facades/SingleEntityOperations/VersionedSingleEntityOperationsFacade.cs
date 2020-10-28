@@ -132,7 +132,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         public override async ValueTask<IFact> CalculateFactAsync<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
         {
             var version = node.Info.Rule.InputFactTypes.GetVersionFact(context);
-            return (await base.CalculateFactAsync(node, context)).SetVersion(version);
+            return (await base.CalculateFactAsync(node, context).ConfigureAwait(false)).SetVersion(version);
         }
     }
 }

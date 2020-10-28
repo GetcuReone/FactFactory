@@ -185,7 +185,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 facts => rule.CalculateAsync(facts),
                 GetRequireFacts(rule, context));
 
-            IFact fact = await taskFact;
+            IFact fact = await taskFact.ConfigureAwait(false);
             fact.SetCalculateByRule();
 
             foreach (var condition in node.Info.SuccessConditions)
@@ -235,7 +235,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 using (context.Container.CreateIgnoreReadOnlySpace())
                     context.Container.Add(condition);
 
-            await context.WantAction.InvokeAsync(GetRequireFacts(context.WantAction, context));
+            await context.WantAction.InvokeAsync(GetRequireFacts(context.WantAction, context)).ConfigureAwait(false);
 
             foreach (var condition in wantActionInfo.SuccessConditions)
                 using (context.Container.CreateIgnoreReadOnlySpace())
