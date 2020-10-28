@@ -5,6 +5,7 @@ using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
@@ -191,6 +192,24 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 Info = node.Info,
                 Parent = newParent,
             };
+        }
+
+        internal static async ValueTask<IReadOnlyCollection<TResult>> WhenAll<TResult>(this IEnumerable<ValueTask<TResult>> tasks)
+        {
+            var result = new List<TResult>(tasks.Count());
+            var toAwait = new List<Task<TResult>>();
+
+            foreach (var valueTask in tasks)
+            {
+                if (valueTask.IsCompletedSuccessfully)
+                    result.Add(valueTask.Result);
+                else
+                    toAwait.Add(valueTask.AsTask());
+            }
+
+            result.AddRange(await Task.WhenAll(toAwait));
+
+            return result;
         }
     }
 }
