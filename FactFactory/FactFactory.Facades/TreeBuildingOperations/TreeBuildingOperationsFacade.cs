@@ -651,13 +651,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
                     if (asyncAndParallelNodes.Count != 0)
                     {
-                        var tasks = asyncAndParallelNodes.ConvertAll(node => context.SingleEntity.CalculateFactAsync(node, context));
-                        foreach(var task in tasks)
-                        {
-                            var fact = await task;
+                        var facts = await asyncAndParallelNodes.ConvertAll(node => context.SingleEntity.CalculateFactAsync(node, context)).WhenAll();
+                        foreach(var fact in facts)
                             using (context.Container.CreateIgnoreReadOnlySpace())
                                 context.Container.Add(fact);
-                        }
                     }
                 }
             }
