@@ -104,10 +104,9 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                                 continue;
                             }
 
-                            var needRules = context
-                                .FactRules
-                                .Where(rule => rule.OutputFactType.EqualsFactType(needFact) && !rule.RuleContainBranch(node))
-                                .ToList();
+                            var needRules = nodeInfo
+                                .CompatibleRules
+                                .FindAll(rule => rule.OutputFactType.EqualsFactType(needFact) && !rule.RuleContainBranch(node));
 
                             if (needRules.Count > 0)
                             {
@@ -301,7 +300,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     factType
                 );
 
-                if (conditionFact.Condition(nodeInfo.Rule, context.FactRules, context))
+                if (conditionFact.Condition(nodeInfo.Rule, nodeInfo.CompatibleRules, context))
                 {
                     nodeInfo.SuccessConditions.Add(conditionFact);
                     return true;

@@ -39,10 +39,11 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
             var nodeInfos = needRules.ConvertAll(rule => new NodeByFactRuleInfo<TFactRule>
             {
-                SuccessConditions = new List<IConditionFact>(),
+                SuccessConditions = new List<IConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IConditionFact>())),
                 FailedConditions = new List<IConditionFact>(),
                 Rule = rule,
-                RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList()
+                RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
+                CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context).ToList(),
             });
 
             return nodeInfos.ConvertAll(info =>
@@ -139,9 +140,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     nodeInfo = new NodeByFactRuleInfo<TFactRule>
                     {
                         Rule = rule,
-                        SuccessConditions = new List<IConditionFact>(),
+                        SuccessConditions = new List<IConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IConditionFact>())),
                         FailedConditions = new List<IConditionFact>(),
                         RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
+                        CompatibleRules = rule.GetCompatibleRulesEx(parentNode.Info.CompatibleRules, context).ToList(),
                     };
 
                 result.Add(new NodeByFactRule<TFactRule>

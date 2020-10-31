@@ -536,6 +536,11 @@
             Required fact types.
             </summary>
         </member>
+        <member name="P:GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRuleInfo`1.CompatibleRules">
+            <summary>
+            Compatible rules.
+            </summary>
+        </member>
         <member name="M:GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRuleInfo`1.ToString">
             <inheritdoc/>
         </member>
