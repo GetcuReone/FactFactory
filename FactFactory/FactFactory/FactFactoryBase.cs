@@ -34,13 +34,6 @@ namespace GetcuReone.FactFactory
         /// </summary>
         protected List<WantFactsInfo<TWantAction, TFactContainer>> WantFactsInfos { get; } = new List<WantFactsInfo<TWantAction, TFactContainer>>();
 
-        public override ValueTask<TObj> CreateObjectAsync<TParameter, TObj>(Func<TParameter, ValueTask<TObj>> factoryFunc, TParameter parameters)
-        {
-            if (factoryFunc == null)
-                throw new ArgumentNullException(nameof(factoryFunc), "Input function is null.");
-            return factoryFunc(parameters);
-        }
-
         /// <inheritdoc/>
         public abstract TFactRuleCollection Rules { get; }
 
