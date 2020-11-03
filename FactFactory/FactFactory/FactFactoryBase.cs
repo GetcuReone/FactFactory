@@ -23,7 +23,7 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Base class for fact factory.
     /// </summary>
-    public abstract class FactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : FactoryBase, IFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>, IAbstractFactory, IFactTypeCreation, IFacadeCreation
+    public abstract class FactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : FactoryBase, IFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>, IFactTypeCreation, IFacadeCreation
         where TFactContainer : FactContainerBase
         where TFactRule : FactRuleBase
         where TFactRuleCollection : FactRuleCollectionBase<TFactRule>
@@ -33,6 +33,13 @@ namespace GetcuReone.FactFactory
         /// WantFacts.
         /// </summary>
         protected List<WantFactsInfo<TWantAction, TFactContainer>> WantFactsInfos { get; } = new List<WantFactsInfo<TWantAction, TFactContainer>>();
+
+        public override ValueTask<TObj> CreateObjectAsync<TParameter, TObj>(Func<TParameter, ValueTask<TObj>> factoryFunc, TParameter parameters)
+        {
+            if (factoryFunc == null)
+                throw new ArgumentNullException(nameof(factoryFunc), "Input function is null.");
+            return factoryFunc(parameters);
+        }
 
         /// <inheritdoc/>
         public abstract TFactRuleCollection Rules { get; }
@@ -69,7 +76,7 @@ namespace GetcuReone.FactFactory
             ITreeBuildingOperations treeBuildingOperations = GetTreeBuildingOperations();
 
             // Validate container and get contexts.
-            var contexts = WantFactsInfos.ConvertAll(info => 
+            var contexts = WantFactsInfos.ConvertAll(info =>
                 GetWantActionContext(info, treeBuildingOperations, singleEntityOperations, cache));
 
             // Validating rules.
@@ -85,10 +92,10 @@ namespace GetcuReone.FactFactory
             if (!treeBuildingOperations.TryBuildTrees(request, out var result))
                 throw CommonHelper.CreateDeriveException(result.DeriveErrorDetails);
 
-            foreach(var item in result.TreesByActions)
+            foreach (var item in result.TreesByActions)
                 treeBuildingOperations.CalculateTreeAndDeriveWantFacts(item.Key, item.Value);
 
-            foreach(var context in result.TreesByActions.Keys.Select(key => key.Context))
+            foreach (var context in result.TreesByActions.Keys.Select(key => key.Context))
             {
                 var wantFactsInfos = WantFactsInfos.FirstOrDefault(info => info.WantAction == context.WantAction && info.Container == context.Container);
                 if (wantFactsInfos != null)
@@ -148,7 +155,7 @@ namespace GetcuReone.FactFactory
 
             if (!defaultFacts.IsNullOrEmpty())
             {
-                foreach(var defaultFact in defaultFacts)
+                foreach (var defaultFact in defaultFacts)
                 {
                     if (!context.Container.Contains(defaultFact))
                         using (context.Container.CreateIgnoreReadOnlySpace())
@@ -276,7 +283,7 @@ namespace GetcuReone.FactFactory
             if (WantFactsInfos.Any(info => info.WantAction == wantAction && info.Container == factContainer))
                 throw CommonHelper.CreateException(ErrorCode.InvalidData, "Action already requested.");
 
-            WantFactsInfos.Add(new WantFactsInfo<TWantAction, TFactContainer> 
+            WantFactsInfos.Add(new WantFactsInfo<TWantAction, TFactContainer>
             {
                 Container = factContainer,
                 WantAction = wantAction,
@@ -1027,7 +1034,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7,ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, ValueTask> wantFactActionAsync, TFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
