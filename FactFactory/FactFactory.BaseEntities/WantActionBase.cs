@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.BaseEntities
 {
@@ -10,18 +11,37 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// </summary>
     public abstract class WantActionBase : FactWorkBase, IWantAction
     {
-        private readonly Action<IEnumerable<IFact>> _action2;
+        private readonly Action<IEnumerable<IFact>> _action;
+        private readonly Func<IEnumerable<IFact>, ValueTask> _actionAsync;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
-        protected WantActionBase(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
-            : base(factTypes)
+        /// <param name="option">WantAction options.</param>
+        protected WantActionBase(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option)
+            : base(factTypes, option)
         {
-            _action2 = wantAction ?? throw new ArgumentNullException(nameof(wantAction));
+            _action = wantAction ?? throw new ArgumentNullException(nameof(wantAction));
+            Validate(factTypes);
+        }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="wantActionAsync">Action taken after deriving a fact.</param>
+        /// <param name="factTypes">Facts required to launch an action.</param>
+        /// <param name="option">WantAction options.</param>
+        protected WantActionBase(Func<IEnumerable<IFact>, ValueTask> wantActionAsync, List<IFactType> factTypes, FactWorkOption option)
+            : base(factTypes, option)
+        {
+            _actionAsync = wantActionAsync ?? throw new ArgumentNullException(nameof(wantActionAsync));
+            Validate(factTypes);
+        }
+
+        private void Validate(List<IFactType> factTypes)
+        {
             if (InputFactTypes.IsNullOrEmpty())
                 throw new ArgumentException("factTypes cannot be empty. The desired action should request a fact on entry.");
         }
@@ -38,7 +58,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public virtual void Invoke(IEnumerable<IFact> requireFacts)
         {
-            _action2(requireFacts);
+            _action(requireFacts);
+        }
+
+        /// <inheritdoc/>
+        public virtual async ValueTask InvokeAsync(IEnumerable<IFact> requireFacts)
+        {
+            await _actionAsync(requireFacts).ConfigureAwait(false);
         }
     }
 }

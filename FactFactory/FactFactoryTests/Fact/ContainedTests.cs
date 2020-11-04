@@ -21,7 +21,8 @@ namespace FactFactoryTests.Fact
                 .Then("Check fact type.", fact =>
                 {
                     Assert.IsTrue(fact.GetFactType() is FactType<CanDerived<ResultFact>>, "Expected another FactType.");
-                });
+                })
+                .Run();
         }
     }
 }

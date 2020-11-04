@@ -11,7 +11,7 @@ namespace FactFactory.PriorityTests.PriorityFactFactory.Env
     [TestClass]
     public abstract class PriorityFactFactoryTestBase : PriorityTests.PriorityFactFactoryTestBase
     {
-        protected GivenBlock<GetcuReone.FactFactory.Priority.PriorityFactFactory> GivenCreateFactFactory()
+        protected GivenBlock<object, GetcuReone.FactFactory.Priority.PriorityFactFactory> GivenCreateFactFactory()
         {
             return Given("Create PriorityFactFactory.", () => 
                 new GetcuReone.FactFactory.Priority.PriorityFactFactory(GetPriorityFacts));

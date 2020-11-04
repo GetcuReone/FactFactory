@@ -12,24 +12,13 @@ namespace FactFactory.VersionedTests
 {
     public static class VersionedFactFactoryHelper
     {
-        public static ThenBlock<TFact> ThenFactEquals<TExpectedValue, TFact>(this WhenBlock<TFact> whenBlock, TExpectedValue expectedValue)
-            where TFact : FactBase<TExpectedValue>
-        {
-            return whenBlock
-                .ThenIsNotNull()
-                .And($"Check assert {typeof(TFact).Name} fact.", fact =>
-                {
-                    Assert.AreEqual(expectedValue, fact, $"Expected another {fact.GetFactType().FactName} value.");
-                });
-        }
-
-        public static ThenBlock<IFactType> ThenGetVersionType<TFactWork>(this WhenBlock<TFactWork> whenBlock)
+        public static ThenBlock<TFactWork, IFactType> ThenGetVersionType<TInput, TFactWork>(this WhenBlock<TInput, TFactWork> whenBlock)
             where TFactWork : IFactWork
         {
             return whenBlock.ThenIsNotNull().And("Get type of version.", work => work.InputFactTypes?.GetVersionFactType());
         }
 
-        public static ThenBlock<TFactWork> ThenNotContainVersionType<TFactWork>(this WhenBlock<TFactWork> whenBlock)
+        public static ThenBlock<TFactWork, TFactWork> ThenNotContainVersionType<TInput, TFactWork>(this WhenBlock<TInput, TFactWork> whenBlock)
             where TFactWork : IFactWork
         {
             return whenBlock

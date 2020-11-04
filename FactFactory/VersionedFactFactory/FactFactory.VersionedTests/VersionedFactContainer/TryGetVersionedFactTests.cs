@@ -3,6 +3,7 @@ using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactContainer.Env;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FactFactory.VersionedTests.VersionedFactContainer
@@ -31,12 +32,13 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                         Fact = fact,
                     };
                 })
-                .Then("Check result.", result =>
-                {
-                    Assert.IsTrue(result.Success, "Fact not found.");
-                    Assert.IsNotNull(result.Fact, "Fact cannot be null.");
-                    Assert.IsNull(result.Fact.GetVersionOrNull(), "Version must be null.");
-                });
+                .ThenIsTrue(result => result.Success,
+                    errorMessage: "Fact not found.")
+                .AndAreNotEqual(result => result.Fact, null,
+                    errorMessage: "Fact cannot be null.")
+                .AndAreEqual(result => result.Fact.GetVersionOrNull(), null,
+                    errorMessage: "Fact cannot be null.")
+                .Run();
         }
 
         [TestMethod]
@@ -60,12 +62,13 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                         Fact = fact,
                     };
                 })
-                .Then("Check result.", result =>
-                {
-                    Assert.IsTrue(result.Success, "Fact not found.");
-                    Assert.IsNotNull(result.Fact, "Fact cannot be null.");
-                    Assert.IsTrue(result.Fact.GetVersionOrNull() is Version1, "Expected different version.");
-                });
+                .ThenIsTrue(result => result.Success,
+                    errorMessage: "Fact not found.")
+                .AndAreNotEqual(result => result.Fact, null,
+                    errorMessage: "Fact cannot be null.")
+                .AndIsTrue(result => result.Fact.GetVersionOrNull() is Version1,
+                    errorMessage: "Expected different version.")
+                .Run();
         }
 
         [TestMethod]
@@ -89,12 +92,13 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                         Fact = fact,
                     };
                 })
-                .Then("Check result.", result =>
-                {
-                    Assert.IsTrue(result.Success, "Fact not found.");
-                    Assert.IsNotNull(result.Fact, "Fact cannot be null.");
-                    Assert.IsTrue(result.Fact.GetVersionOrNull() is Version2, "Expected different version.");
-                });
+                .ThenIsTrue(result => result.Success,
+                    errorMessage: "Fact not found.")
+                .AndAreNotEqual(result => result.Fact, null,
+                    errorMessage: "Fact cannot be null.")
+                .AndIsTrue(result => result.Fact.GetVersionOrNull() is Version2,
+                    errorMessage: "Expected different version.")
+                .Run();
         }
 
         [TestMethod]
@@ -121,7 +125,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 {
                     Assert.IsFalse(result.Success, "Fact not found.");
                     Assert.IsNull(result.Fact, "Fact must be null.");
-                });
+                })
+                .Run();
         }
     }
 }

@@ -30,7 +30,8 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Derive fact.", factory =>
                     factory.DeriveFact<Input3Fact>())
-                .ThenFactEquals(value * value);
+                .ThenFactValueEquals(value * value)
+                .Run();
         }
 
         [TestMethod]
@@ -49,7 +50,8 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Derive fact", factory => 
                     factory.DeriveFact<Input1Fact>())
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
     }
 }

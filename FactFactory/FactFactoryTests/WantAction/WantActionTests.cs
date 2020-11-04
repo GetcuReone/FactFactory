@@ -1,7 +1,5 @@
 ﻿using FactFactory.TestsCommon;
-using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
-using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
@@ -22,12 +20,12 @@ namespace FactFactoryTests.WantAction
         public void CreateWantActionWithoutActionTestCase()
         {
             GivenEmpty()
-                .When("Create WantAction.", _ => ExpectedException<ArgumentNullException>(() => new WAction(null, null)))
+                .When("Create WantAction.", _ => 
+                    ExpectedException<ArgumentNullException>(() => new WAction((Action<IEnumerable<IFact>>)null, null, FactWorkOption.CanExecuteSync)))
                 .ThenIsNotNull()
-                .And("Check error.", ex => 
-                {
-                    Assert.AreEqual("wantAction", ex.ParamName, "Expectend another property name.");
-                });
+                .AndAreEqual(ex => ex.ParamName, "wantAction",
+                    errorMessage: "Expectend another property name.")
+                .Run();
         }
 
         [TestMethod]
@@ -38,11 +36,12 @@ namespace FactFactoryTests.WantAction
         {
             bool isRun = false;
 
-            Given("Create WantAction.", () => new WAction(ct => isRun = true, new List<IFactType> { GetFactType<OtherFact>() }))
+            Given("Create WantAction.", () => new WAction(ct => isRun = true, new List<IFactType> { GetFactType<OtherFact>() }, FactWorkOption.CanExecuteSync))
                 .When("Run method.", wantAction => 
                     wantAction.Invoke(new GetcuReone.FactFactory.Entities.FactContainer()))
                 .Then("Check result.", _ => 
-                    Assert.IsTrue(isRun, "Invoke not run."));
+                    Assert.IsTrue(isRun, "Invoke not run."))
+                .Run();
         }
 
         [TestMethod]
@@ -54,12 +53,13 @@ namespace FactFactoryTests.WantAction
             const string expectedReason = "factTypes cannot be empty. The desired action should request a fact on entry.";
             GivenEmpty()
                 .When("Create WantAction.", _ => 
-                    ExpectedException<ArgumentException>(() => new WAction(ct => { }, null)))
+                    ExpectedException<ArgumentException>(() => new WAction(ct => { }, null, FactWorkOption.CanExecuteSync)))
                 .ThenIsNotNull()
                 .And("Check error.", ex =>
                 {
                     Assert.AreEqual(expectedReason, ex.Message, "Expectend another message.");
-                });
+                })
+                .Run();
         }
     }
 }

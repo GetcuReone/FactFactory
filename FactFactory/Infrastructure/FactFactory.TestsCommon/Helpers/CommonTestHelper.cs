@@ -24,7 +24,7 @@ namespace FactFactory.TestsCommon.Helpers
                 Assert.Fail($"Expected '{errorCode}' code and reason '{errorMessage}'.");
         }
 
-        public static ThenBlock<InvalidDeriveOperationException> ThenAssertErrorDetail(this WhenBlock<InvalidDeriveOperationException> whenBlock, string errorCode, string errorMessage)
+        public static ThenBlock<InvalidDeriveOperationException, InvalidDeriveOperationException> ThenAssertErrorDetail<TInput>(this WhenBlock<TInput, InvalidDeriveOperationException> whenBlock, string errorCode, string errorMessage)
         {
             return whenBlock
                 .Then($"Check error with code {errorCode}", error =>
@@ -38,7 +38,7 @@ namespace FactFactory.TestsCommon.Helpers
                 });
         }
 
-        public static ThenBlock<InvalidDeriveOperationException> AndAssertErrorDetail(this ThenBlock<InvalidDeriveOperationException> whenBlock, string errorCode, string errorMessage)
+        public static ThenBlock<InvalidDeriveOperationException, InvalidDeriveOperationException> AndAssertErrorDetail<TInput>(this ThenBlock<TInput, InvalidDeriveOperationException> whenBlock, string errorCode, string errorMessage)
         {
             return whenBlock.And($"Check error with code {errorCode}", error =>
             {
@@ -51,7 +51,7 @@ namespace FactFactory.TestsCommon.Helpers
             });
         }
 
-        public static ThenBlock<FactFactoryException> ThenAssertErrorDetail(this WhenBlock<FactFactoryException> whenBlock, string errorCode, string errorMessage)
+        public static ThenBlock<FactFactoryException, FactFactoryException> ThenAssertErrorDetail<TInput>(this WhenBlock<TInput, FactFactoryException> whenBlock, string errorCode, string errorMessage)
         {
             return whenBlock
                 .ThenIsNotNull()
@@ -66,10 +66,28 @@ namespace FactFactory.TestsCommon.Helpers
             return fact;
         }
 
-        public static GivenBlock<TFactory> AndAddRules<TFactory>(this GivenBlock<TFactory> givenBlock, FactRuleCollectionBase<FactRule> factRules)
+        public static GivenBlock<TFactory, TFactory> AndAddRules<TInput, TFactory>(this GivenBlock<TInput, TFactory> givenBlock, FactRuleCollectionBase<FactRule> factRules)
             where TFactory : FactFactoryBase<FactRule, FactRuleCollection, WantAction, FactContainer>
         {
             return givenBlock.And("Add rules", factory => factory.Rules.AddRange(factRules));
+        }
+
+        public static ThenBlock<TFact, TFact> ThenFactValueEquals<TInput, TFact, TFactValue>(this WhenBlock<TInput, TFact> whenBlock, TFactValue expectedValue)
+            where TFact : FactBase<TFactValue>
+        {
+            return whenBlock
+                .ThenIsNotNull()
+                .AndAreEqual(fact => fact.Value, expectedValue,
+                    errorMessage: $"A different meaning of the {typeof(TFact).Name} fact was expected", blockName: $"Check assert {typeof(TFact).Name} fact.");
+        }
+
+        public static ThenBlock<TFact, TFact> ThenFactValueEquals<TInput, TFact, TFactValue>(this WhenAsyncBlock<TInput, TFact> whenBlock, TFactValue expectedValue)
+            where TFact : FactBase<TFactValue>
+        {
+            return whenBlock
+                .ThenIsNotNull()
+                .AndAreEqual(fact => fact.Value, expectedValue,
+                    errorMessage: $"A different meaning of the {typeof(TFact).Name} fact was expected", blockName: $"Check assert {typeof(TFact).Name} fact.");
         }
     }
 }

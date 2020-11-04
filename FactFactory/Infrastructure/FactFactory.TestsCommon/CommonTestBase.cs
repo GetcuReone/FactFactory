@@ -10,6 +10,7 @@ using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.GetcuTestAdapter;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FactFactory.TestsCommon
 {
@@ -48,26 +49,28 @@ namespace FactFactory.TestsCommon
             };
         }
 
-        protected FactRule GetFactRule<TFactResult>(Func<TFactResult> func)
+        protected FactRule GetFactRule<TFactResult>(Func<TFactResult> func, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFactResult : IFact
         {
             return new FactRule(
                 facts => func(),
                 new List<IFactType>(),
-                GetFactType<TFactResult>());
+                GetFactType<TFactResult>(),
+                option);
         }
 
-        protected FactRule GetFactRule<TFact1, TFactResult>(Func<TFact1, TFactResult> func)
+        protected FactRule GetFactRule<TFact1, TFactResult>(Func<TFact1, TFactResult> func, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFactResult : IFact
         {
             return new FactRule(
                 facts => func(facts.GetFact<TFact1>()),
                 new List<IFactType> { GetFactType<TFact1>() },
-                GetFactType<TFactResult>());
+                GetFactType<TFactResult>(),
+                option);
         }
 
-        protected FactRule GetFactRule<TFact1, TFact2, TFactResult>(Func<TFact1, TFact2, TFactResult> func)
+        protected FactRule GetFactRule<TFact1, TFact2, TFactResult>(Func<TFact1, TFact2, TFactResult> func, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFactResult : IFact
@@ -75,10 +78,11 @@ namespace FactFactory.TestsCommon
             return new FactRule(
                 facts => func(facts.GetFact<TFact1>(), facts.GetFact<TFact2>()),
                 new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() },
-                GetFactType<TFactResult>());
+                GetFactType<TFactResult>(),
+                option);
         }
 
-        protected FactRule GetFactRule<TFact1, TFact2, TFact3, TFactResult>(Func<TFact1, TFact2, TFact3, TFactResult> func)
+        protected FactRule GetFactRule<TFact1, TFact2, TFact3, TFactResult>(Func<TFact1, TFact2, TFact3, TFactResult> func, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -87,7 +91,8 @@ namespace FactFactory.TestsCommon
             return new FactRule(
                 facts => func(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>()),
                 new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() },
-                GetFactType<TFactResult>());
+                GetFactType<TFactResult>(),
+                option);
         }
 
         protected WantAction GetWantAction<TFact1>(Action<TFact1> action)
@@ -95,7 +100,8 @@ namespace FactFactory.TestsCommon
         {
             return new WantAction(
                 facts => action(facts.GetFact<TFact1>()),
-                new List<IFactType> { GetFactType<TFact1>() });
+                new List<IFactType> { GetFactType<TFact1>() },
+                FactWorkOption.CanExecuteSync);
         }
 
         protected WantAction GetWantAction<TFact1, TFact2>(Action<TFact1, TFact2> action)
@@ -104,7 +110,8 @@ namespace FactFactory.TestsCommon
         {
             return new WantAction(
                 facts => action(facts.GetFact<TFact1>(), facts.GetFact<TFact2>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() });
+                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>() },
+                FactWorkOption.CanExecuteSync);
         }
 
         protected WantAction GetWantAction<TFact1, TFact2, TFact3>(Action<TFact1, TFact2, TFact3> action)
@@ -114,7 +121,8 @@ namespace FactFactory.TestsCommon
         {
             return new WantAction(
                 facts => action(facts.GetFact<TFact1>(), facts.GetFact<TFact2>(), facts.GetFact<TFact3>()),
-                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() });
+                new List<IFactType> { GetFactType<TFact1>(), GetFactType<TFact2>(), GetFactType<TFact3>() },
+                FactWorkOption.CanExecuteSync);
         }
     }
 }

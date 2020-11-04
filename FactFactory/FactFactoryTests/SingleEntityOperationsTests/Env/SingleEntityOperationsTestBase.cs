@@ -26,7 +26,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests.Env
             };
         }
 
-        protected virtual GivenBlock<SingleEntityOperationsFacade> GivenCreateFacade()
+        protected virtual GivenBlock<object, SingleEntityOperationsFacade> GivenCreateFacade()
         {
             return Given("Create SingleEntityOperationsFacade", () => GetFacade<SingleEntityOperationsFacade>());
         }

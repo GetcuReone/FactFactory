@@ -39,9 +39,6 @@
         <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetRequiredTypesOfFacts``3(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.TryCalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2},GetcuReone.FactFactory.Interfaces.IFact@)">
-            <inheritdoc/>
-        </member>
         <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetRequireFacts``3(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
             <summary>
             Get the facts needed to enter the work.
@@ -53,16 +50,14 @@
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.NeedRecalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
-            <summary>
-            Do I need to recalculate the fact.
-            </summary>
-            <typeparam name="TFactRule"></typeparam>
-            <typeparam name="TWantAction"></typeparam>
-            <typeparam name="TFactContainer"></typeparam>
-            <param name="node"></param>
-            <param name="context"></param>
-            <returns></returns>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.NeedCalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CalculateFactAsync``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})">
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.DeriveWantFacts``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1})">
             <inheritdoc/>
@@ -74,6 +69,9 @@
             <param name="x"></param>
             <param name="y"></param>
             <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.DeriveWantFactsAsync``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1})">
+            <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsHelper">
             <summary>
@@ -137,6 +135,12 @@
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.GetIndependentNodeGroups``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.CalculateTreeAndDeriveWantFacts``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``1,``2},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.CalculateTreeAndDeriveWantFactsAsync``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``1,``2},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}})">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsHelper.GetTreesByRequest``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreeForFactInfoRequest{``0,``1,``2})">

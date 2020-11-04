@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using System;
+using System.Threading;
 
 namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
 {
@@ -11,12 +12,14 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         internal IgnoreReadOnlySpace(TFactContainer container)
         {
             _container = container;
+            Monitor.Enter(_container);
             _container.IsReadOnly = false;
         }
 
         public void Dispose()
         {
             _container.IsReadOnly = true;
+            Monitor.Exit(_container);
         }
     }
 }

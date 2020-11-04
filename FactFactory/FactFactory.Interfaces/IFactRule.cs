@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Interfaces
 {
@@ -18,5 +19,12 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <param name="requireFacts">The facts required for the calculation.</param>
         /// <returns></returns>
         IFact Calculate(IEnumerable<IFact> requireFacts);
+
+        /// <summary>
+        /// Calculate fact asynchronously.
+        /// </summary>
+        /// <param name="requireFacts"></param>
+        /// <returns></returns>
+        ValueTask<IFact> CalculateAsync(IEnumerable<IFact> requireFacts);
     }
 }

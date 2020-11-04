@@ -37,7 +37,8 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                 .And("Check result.", types =>
                 {
                     Assert.AreEqual(0, types.Count());
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -57,7 +58,8 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                 {
                     Assert.AreEqual(1, types.Count());
                     Assert.IsTrue(types.First().IsFactType<Fact1>());
-                });
+                })
+                .Run();
         }
     }
 }

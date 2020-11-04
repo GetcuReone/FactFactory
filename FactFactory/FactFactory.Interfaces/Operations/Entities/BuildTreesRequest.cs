@@ -21,5 +21,10 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// List of rules that take part in the construction of trees.
         /// </summary>
         public TFactRuleCollection FactRules { get; set; }
+
+        /// <summary>
+        /// Filter for WantAction and FactRule.
+        /// </summary>
+        public List<FactWorkOption> Filters { get; set; }
     }
 }

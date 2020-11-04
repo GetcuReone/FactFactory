@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FactFactory.TestsCommon;
+﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
@@ -10,6 +9,7 @@ using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
@@ -29,7 +29,8 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .When("Derive facts.", factory => 
                     ExpectedDeriveException(() => factory.DeriveFact<Input10Fact>()))
-                .ThenAssertErrorDetail(ErrorCode.EmptyRuleCollection, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.EmptyRuleCollection, expectedReason)
+                .Run();
         }
 
         [TestMethod]
@@ -80,7 +81,8 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Derive facts.", factFactory =>
                     factFactory.DeriveFact<Input1Fact>(container))
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -144,7 +146,8 @@ namespace FactFactoryTests.FactFactoryT
                 .When("Derive facts.", factFactory => 
                     factFactory.DeriveFact<Input1Fact>(container))
                 .Then("Check result.", _ => 
-                    Assert.AreEqual(expectedValue, counter, "It had to work out 5 rules"));
+                    Assert.AreEqual(expectedValue, counter, "It had to work out 5 rules"))
+                .Run();
         }
 
         [TestMethod]
@@ -162,7 +165,8 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .When("Run DeriveFact.", factFactory =>
                     factFactory.DeriveFact<Input10Fact>(container))
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -180,7 +184,8 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<Input6Fact>(container))
-                .ThenAreEqual(input6Fact);
+                .ThenAreEqual(input6Fact)
+                .Run();
         }
 
         [TestMethod]
@@ -214,7 +219,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.IsNull(fact7, "fact7 cannot derived");
                     Assert.IsNull(fact16, "fact16 cannot derived");
                     Assert.IsNull(fact6, "fact6 cannot derived");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -248,15 +254,15 @@ namespace FactFactoryTests.FactFactoryT
                 .When("Derive facts", fact =>
                 {
                     factory.Derive();
-                    return fact;
                 })
-                .ThenAreEqual(fact7)
+                .Then("Check Input7Fact.", fact => Assert.AreEqual(fact, fact7))
                 .And("Check result.", _ =>
                 {
                     Assert.IsNotNull(fact7, "fact7 must derived");
                     Assert.IsNotNull(fact16, "fact16 must derived");
                     Assert.IsNotNull(fact6, "fact6 must derived");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -268,7 +274,8 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .When("Run Derive.", factFactory =>
                     factFactory.DeriveFact<NotContained<OtherFact>>())
-                .ThenIsNotNull();
+                .ThenIsNotNull()
+                .Run();
         }
 
         [TestMethod]
@@ -286,7 +293,8 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .When("Run Derive.", factFactory => 
                     ExpectedDeriveException(() => factFactory.DeriveFact<NotContained<OtherFact>>(container)))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage)
+                .Run();
         }
 
         [TestMethod]
@@ -298,7 +306,8 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .When("Run Derive.", factFactory =>
                     factFactory.DeriveFact<CannotDerived<OtherFact>>())
-                .ThenIsNotNull();
+                .ThenIsNotNull()
+                .Run();
         }
 
         [TestMethod]
@@ -316,7 +325,8 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .When("Run Derive.", factFactory => 
                     ExpectedDeriveException(() => factFactory.DeriveFact<CannotDerived<OtherFact>>(container)))
-                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage);
+                .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage)
+                .Run();
         }
 
         [TestMethod]
@@ -338,7 +348,8 @@ namespace FactFactoryTests.FactFactoryT
                 .And("Check Container.", _ => 
                 {
                     Assert.AreEqual(1, container.Count(), "Container must be empty");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -356,7 +367,8 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Run Derive.", factFactory => 
                     ExpectedDeriveException(factFactory.Derive))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason)
+                .Run();
         }
 
         [TestMethod]
@@ -378,7 +390,8 @@ namespace FactFactoryTests.FactFactoryT
                 .AndAreEqual(factory => factory.W_FactsInfos.Count, 1)
                 .When("Derive.", factFactory =>
                     factFactory.Derive())
-                .ThenAreEqual(factory => factory.W_FactsInfos.Count, 0);
+                .ThenAreEqual(factory => factory.W_FactsInfos.Count, 0)
+                .Run();
         }
 
         [TestMethod]
@@ -401,7 +414,8 @@ namespace FactFactoryTests.FactFactoryT
                 .And("Want facts.", factFactory => factFactory.WantFacts((ResultFact _) => { }, container))
                 .When("Call Derive.", factFactory =>
                     ExpectedDeriveException(factFactory.Derive))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedMessage);
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedMessage)
+                .Run();
         }
     }
 }

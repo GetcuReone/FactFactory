@@ -2,7 +2,6 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
-using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
@@ -49,7 +48,8 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     Assert.IsNotNull(fact16, "fact16 is not derived");
                     Assert.AreEqual(expectedValue, fact16.Value, "unexpected value");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -66,7 +66,8 @@ namespace FactFactoryTests.FactFactoryT
                     factory.WantFacts((OtherFact fact) => { }))
                 .When("Derive facts.", factory => 
                     ExpectedDeriveException(() => factory.Derive()))
-                .ThenAssertErrorDetail(ErrorCode.RuleNotFound, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.RuleNotFound, expectedReason)
+                .Run();
         }
 
         [TestMethod]
@@ -117,7 +118,8 @@ namespace FactFactoryTests.FactFactoryT
                         for (int j = 0; i < expectedNeedFacts.Count; i++)
                             Assert.IsTrue(expectedNeedFacts[j].EqualsFactType(needFacts[j]), "Another missing fact was expected.");
                     }
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -172,7 +174,8 @@ namespace FactFactoryTests.FactFactoryT
                                 Assert.IsTrue(expectedNeedFacts[j].EqualsFactType(needFacts[j]), "Another missing fact was expected.");
                         } 
                     }
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -252,7 +255,8 @@ namespace FactFactoryTests.FactFactoryT
                         for (int j = 0; i < expectedNeedFacts.Count; i++)
                             Assert.IsTrue(expectedNeedFacts[j].EqualsFactType(needFacts[j]), "Another missing fact was expected.");
                     }
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -308,7 +312,8 @@ namespace FactFactoryTests.FactFactoryT
                         for (int j = 0; i < expectedNeedFacts.Count; i++)
                             Assert.IsTrue(expectedNeedFacts[j].EqualsFactType(needFacts[j]), "Another missing fact was expected.");
                     }
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -345,7 +350,8 @@ namespace FactFactoryTests.FactFactoryT
 
                     for (int i = 0; i < expectedNeedFacts.Count; i++)
                         Assert.IsTrue(expectedNeedFacts[i].EqualsFactType(needFacts[i]), "Another missing fact was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -377,7 +383,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.IsNotNull(input6Fact, "input6Fact is not derived");
                     Assert.IsNotNull(input16Fact, "input16Fact is not derived");
                     Assert.IsNotNull(input7Fact, "input7Fact is not derived");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -407,7 +414,8 @@ namespace FactFactoryTests.FactFactoryT
                  })
                  .When("Derive.", factFactory =>
                     factFactory.DeriveFact<ResultFact>())
-                 .ThenFactEquals(expectedValue);
+                 .ThenFactValueEquals(expectedValue)
+                 .Run();
         }
 
         [TestMethod]
@@ -431,7 +439,8 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<ResultFact>(container))
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -451,7 +460,8 @@ namespace FactFactoryTests.FactFactoryT
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<ResultFact>())
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
     }
 }

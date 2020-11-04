@@ -7,6 +7,7 @@ using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
@@ -112,38 +113,6 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             return factWork.InputFactTypes.Where(factType => !CanExtractFact(factType, factWork, context));
         }
 
-        /// <inheritdoc/>
-        public virtual bool TryCalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context, out IFact fact)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
-        {
-            fact = null;
-            var rule = node.Info.Rule;
-            if (context.Container.Any(f => context.Cache.GetFactType(f).EqualsFactType(rule.OutputFactType)))
-            {
-                if (!NeedRecalculateFact(node, context))
-                    return false;
-            }
-
-            foreach (var condition in node.Info.SuccessConditions)
-                using (context.Container.CreateIgnoreReadOnlySpace())
-                    context.Container.Add(condition);
-
-            fact = Factory
-                .CreateObject(
-                    facts => rule.Calculate(facts),
-                    GetRequireFacts(rule, context))
-                .SetCalculateByRule();
-
-
-            foreach (var condition in node.Info.SuccessConditions)
-                using (context.Container.CreateIgnoreReadOnlySpace())
-                    context.Container.Remove(condition);
-
-            return true;
-        }
-
         /// <summary>
         /// Get the facts needed to enter the work.
         /// </summary>
@@ -165,16 +134,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 .ToList();
         }
 
-        /// <summary>
-        /// Do I need to recalculate the fact.
-        /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="node"></param>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        protected virtual bool NeedRecalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
+        /// <inheritdoc/>
+        public virtual bool NeedCalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
@@ -182,6 +143,54 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             return node.Parent != null
                 ? !CanExtractFact(node.Info.Rule.OutputFactType, node.Parent.Info.Rule, context)
                 : !CanExtractFact(node.Info.Rule.OutputFactType, context.WantAction, context);
+        }
+
+        /// <inheritdoc/>
+        public virtual IFact CalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            var rule = node.Info.Rule;
+
+            foreach (var condition in node.Info.SuccessConditions)
+                using (context.Container.CreateIgnoreReadOnlySpace())
+                    context.Container.Add(condition);
+
+            var fact = Factory.CreateObject(
+                facts => rule.Calculate(facts),
+                GetRequireFacts(rule, context));
+            fact.SetCalculateByRule();
+
+            foreach (var condition in node.Info.SuccessConditions)
+                using (context.Container.CreateIgnoreReadOnlySpace())
+                    context.Container.Remove(condition);
+
+            return fact;
+        }
+
+        /// <inheritdoc/>
+        public virtual async ValueTask<IFact> CalculateFactAsync<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            var rule = node.Info.Rule;
+
+            foreach (var condition in node.Info.SuccessConditions)
+                using (context.Container.CreateIgnoreReadOnlySpace())
+                    context.Container.Add(condition);
+
+            IFact fact = await Factory
+                .CreateObject(facts => rule.CalculateAsync(facts), GetRequireFacts(rule, context))
+                .ConfigureAwait(false);
+            fact.SetCalculateByRule();
+
+            foreach (var condition in node.Info.SuccessConditions)
+                using (context.Container.CreateIgnoreReadOnlySpace())
+                    context.Container.Remove(condition);
+
+            return fact;
         }
 
         /// <inheritdoc/>
@@ -211,6 +220,24 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         public virtual int CompareFacts(IFact x, IFact y)
         {
             return x.CompareTo(y);
+        }
+
+        /// <inheritdoc/>
+        public virtual async ValueTask DeriveWantFactsAsync<TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            var context = wantActionInfo.Context;
+
+            foreach (var condition in wantActionInfo.SuccessConditions)
+                using (context.Container.CreateIgnoreReadOnlySpace())
+                    context.Container.Add(condition);
+
+            await context.WantAction.InvokeAsync(GetRequireFacts(context.WantAction, context)).ConfigureAwait(false);
+
+            foreach (var condition in wantActionInfo.SuccessConditions)
+                using (context.Container.CreateIgnoreReadOnlySpace())
+                    context.Container.Remove(condition);
         }
     }
 }

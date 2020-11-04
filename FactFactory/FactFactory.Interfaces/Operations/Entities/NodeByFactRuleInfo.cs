@@ -29,6 +29,11 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// </summary>
         public List<IFactType> RequiredFactTypes { get; set; }
 
+        /// <summary>
+        /// Compatible rules.
+        /// </summary>
+        public List<TFactRule> CompatibleRules { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {

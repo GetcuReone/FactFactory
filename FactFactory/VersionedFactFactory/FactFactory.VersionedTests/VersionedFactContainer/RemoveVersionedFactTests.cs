@@ -35,7 +35,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 {
                     foreach (var fact in container)
                         Assert.AreNotEqual(factResultWithoutVersion, fact, "Fact without version not removed.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -64,7 +65,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 {
                     foreach (var fact in container)
                         Assert.AreNotEqual(factResult1, fact, "Fact with first version not removed.");
-                });
+                })
+                .Run();
         }
     }
 }

@@ -5,6 +5,7 @@ using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
@@ -38,10 +39,11 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
             var nodeInfos = needRules.ConvertAll(rule => new NodeByFactRuleInfo<TFactRule>
             {
-                SuccessConditions = new List<IConditionFact>(),
+                SuccessConditions = new List<IConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IConditionFact>())),
                 FailedConditions = new List<IConditionFact>(),
                 Rule = rule,
-                RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList()
+                RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
+                CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context).ToList(),
             });
 
             return nodeInfos.ConvertAll(info =>
@@ -138,9 +140,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     nodeInfo = new NodeByFactRuleInfo<TFactRule>
                     {
                         Rule = rule,
-                        SuccessConditions = new List<IConditionFact>(),
+                        SuccessConditions = new List<IConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IConditionFact>())),
                         FailedConditions = new List<IConditionFact>(),
                         RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
+                        CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context).ToList(),
                     };
 
                 result.Add(new NodeByFactRule<TFactRule>
@@ -191,6 +194,24 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 Info = node.Info,
                 Parent = newParent,
             };
+        }
+
+        internal static async ValueTask<IReadOnlyCollection<TResult>> WhenAll<TResult>(this IEnumerable<ValueTask<TResult>> tasks)
+        {
+            var result = new List<TResult>(tasks.Count());
+            var toAwait = new List<Task<TResult>>();
+
+            foreach (var valueTask in tasks)
+            {
+                if (valueTask.IsCompletedSuccessfully)
+                    result.Add(valueTask.Result);
+                else
+                    toAwait.Add(valueTask.AsTask());
+            }
+
+            result.AddRange(await Task.WhenAll(toAwait).ConfigureAwait(false));
+
+            return result;
         }
     }
 }

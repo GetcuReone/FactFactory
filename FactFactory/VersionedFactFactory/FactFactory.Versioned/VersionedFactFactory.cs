@@ -4,6 +4,7 @@ using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Versioned.Entities;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Versioned
 {
@@ -44,9 +45,15 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <inheritdoc/>
-        protected override WantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes)
+        protected override WantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option)
         {
-            return new WantAction(wantAction, factTypes);
+            return new WantAction(wantAction, factTypes, option);
+        }
+
+        /// <inheritdoc/>
+        protected override WantAction CreateWantAction(Func<IEnumerable<IFact>, ValueTask> wantAction, List<IFactType> factTypes, FactWorkOption option)
+        {
+            return new WantAction(wantAction, factTypes, option);
         }
 
         /// <inheritdoc/>

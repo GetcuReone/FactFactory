@@ -1,35 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <DocumentationFile>FactFactory.xml</DocumentationFile>
-    <RootNamespace>GetcuReone.FactFactory</RootNamespace>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <DocumentationFile>FactFactory.xml</DocumentationFile>
+        <RootNamespace>GetcuReone.FactFactory</RootNamespace>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-    <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
-    <FileVersion>$(majorVersion).0.0.0</FileVersion>
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
+        <DelaySign>false</DelaySign>
+        <AssemblyVersion>$(majorVersion).$(minorVersion).0.0</AssemblyVersion>
+        <FileVersion>$(majorVersion).$(minorVersion).0.0</FileVersion>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="ComboPatterns" Version="[3.0.2,)" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\FactFactory.BaseEntities\FactFactory.BaseEntities.csproj" />
+        <ProjectReference Include="..\FactFactory.Common\FactFactory.Common.csproj" />
+        <ProjectReference Include="..\FactFactory.Entities\FactFactory.Entities.csproj" />
+        <ProjectReference Include="..\FactFactory.Facades\FactFactory.Facades.csproj" />
+        <ProjectReference Include="..\FactFactory.Interfaces\FactFactory.Interfaces.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\FactFactory.BaseEntities\FactFactory.BaseEntities.csproj" />
-    <ProjectReference Include="..\FactFactory.Common\FactFactory.Common.csproj" />
-    <ProjectReference Include="..\FactFactory.Entities\FactFactory.Entities.csproj" />
-    <ProjectReference Include="..\FactFactory.Facades\FactFactory.Facades.csproj" />
-    <ProjectReference Include="..\FactFactory.Interfaces\FactFactory.Interfaces.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="FactFactory.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <None Update="FactFactory.xml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 
 </Project>

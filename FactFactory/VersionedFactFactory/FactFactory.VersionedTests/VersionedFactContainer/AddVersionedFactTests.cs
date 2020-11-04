@@ -23,10 +23,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
             GivenCreateContainer()
                 .When("added versioned fact.", container => 
                     container.Add(new Version1()))
-                .Then("Check result.", container =>
-                {
-                    Assert.IsTrue(container.Contains<Version1>(), "Version fact not contained in container.");
-                });
+                .ThenIsTrue(container => container.Contains<Version1>(),
+                    errorMessage: "Version fact not contained in container.")
+                .Run();
         }
 
         [TestMethod]
@@ -41,11 +40,11 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(new Version1());
                     container.Add(new Version2());
                 })
-                .Then("Check result.", container =>
-                {
-                    Assert.IsTrue(container.Contains<Version1>(), "Version fact not contained in container.");
-                    Assert.IsTrue(container.Contains<Version2>(), "Version fact not contained in container.");
-                });
+                .ThenIsTrue(container => container.Contains<Version1>(),
+                    errorMessage: $"{nameof(Version1)} fact not contained in container.")
+                .AndIsTrue(container => container.Contains<Version2>(),
+                    errorMessage: $"{nameof(Version2)} fact not contained in container.")
+                .Run();
         }
 
         [TestMethod]
@@ -61,7 +60,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(new Version1()))
                 .When("second addition of versioned fact.", container => 
                     ExpectedFactFactoryException(() => container.Add(new Version1())))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason)
+                .Run();
         }
 
         [TestMethod]
@@ -77,7 +77,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(new FactResult(0).SetVersionParam(new Version1())))
                 .When("second addition of versioned fact.", container => 
                     ExpectedFactFactoryException(() => container.Add(new FactResult(0).SetVersionParam(new Version1()))))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason)
+                .Run();
         }
 
         [TestMethod]
@@ -99,7 +100,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 .AndIsTrue(container => 
                     container.First().GetVersionOrNull() is Version1, errorMessage: "FactResult with 1 version not contained in container.")
                 .AndIsTrue(container =>
-                    container.Last().GetVersionOrNull() is Version2, errorMessage: "FactResult with 2 version not contained in container.");
+                    container.Last().GetVersionOrNull() is Version2, errorMessage: "FactResult with 2 version not contained in container.")
+                .Run();
         }
     }
 }
