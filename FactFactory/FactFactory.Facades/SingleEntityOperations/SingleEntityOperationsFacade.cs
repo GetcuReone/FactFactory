@@ -181,8 +181,9 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 using (context.Container.CreateIgnoreReadOnlySpace())
                     context.Container.Add(condition);
 
-            var task = Factory.CreateObject(facts => rule.CalculateAsync(facts), GetRequireFacts(rule, context));
-            IFact fact = await task.ConfigureAwait(false);
+            IFact fact = await Factory
+                .CreateObject(facts => rule.CalculateAsync(facts), GetRequireFacts(rule, context))
+                .ConfigureAwait(false);
             fact.SetCalculateByRule();
 
             foreach (var condition in node.Info.SuccessConditions)
