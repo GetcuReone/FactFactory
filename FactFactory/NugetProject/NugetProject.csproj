@@ -15,10 +15,10 @@
         <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
             Changes:
-            - in this change, we tried to change the API of the library and make it more convenient.
-            - we also added the ability to use individual containers for each separate fact request.
-            - another important part of this update was the implementation of the priority fact factory.
-            - added Container in DeriveErrorDetail.
+            - added the ability to call the factory asynchronously.
+            - added support for the async/await pattern.
+            - added the ability to run rules in parallel.
+            - when building a tree, the list of compatible rules is calculated for each rule separately.
             - fix bugs.
         </PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -71,8 +71,8 @@
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
         <DelaySign>false</DelaySign>
-        <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
-        <FileVersion>$(majorVersion).0.0.0</FileVersion>
+        <AssemblyVersion>$(majorVersion).$(minorVersion).0.0</AssemblyVersion>
+        <FileVersion>$(majorVersion).$(minorVersion).0.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>

@@ -182,7 +182,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                     context.Container.Add(condition);
 
             IFact fact = await Factory
-                .CreateObjectAsync(facts => rule.CalculateAsync(facts), GetRequireFacts(rule, context))
+                .CreateObject(facts => rule.CalculateAsync(facts), GetRequireFacts(rule, context))
                 .ConfigureAwait(false);
             fact.SetCalculateByRule();
 
