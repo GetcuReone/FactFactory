@@ -1,12 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
-using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
-using Rule = GetcuReone.FactFactory.Entities.FactRule;
 using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactoryTests.FactRule
@@ -21,7 +16,7 @@ namespace FactFactoryTests.FactRule
         public void Initialize()
         {
             Container = new Container();
-            WantAction = new WAction(ct => { }, new List<IFactType> { GetFactType<ResultFact>() });
+            WantAction = GetWantAction((ResultFact _) => { });
         }
     }
 }

@@ -7,7 +7,7 @@ namespace FactFactory.PriorityTests.SingleEntityOperations.Env
     [TestClass]
     public abstract class PrioritySingleEntityOperationsTestBase : PriorityFactFactoryTestBase
     {
-        protected GivenBlock<PrioritySingleEntityOperationsFacade> GivenCreateFacade()
+        protected GivenBlock<object, PrioritySingleEntityOperationsFacade> GivenCreateFacade()
         {
             return Given("Create PrioritySingleEntityOperationsFacade facade.", () => GetFacade<PrioritySingleEntityOperationsFacade>());
         }

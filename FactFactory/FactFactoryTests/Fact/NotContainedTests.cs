@@ -21,7 +21,8 @@ namespace FactFactoryTests.Fact
                 .Then("Check fact type.", fact =>
                 {
                     Assert.IsTrue(fact.GetFactType() is FactType<NotContained<ResultFact>>, "Expected another FactType.");
-                });
+                })
+                .Run();
         }
     }
 }

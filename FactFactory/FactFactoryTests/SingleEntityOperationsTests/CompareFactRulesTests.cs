@@ -24,7 +24,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Compare rules.", facade => facade.CompareFactRules(first, second, context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -40,7 +41,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Compare rules.", facade => facade.CompareFactRules(first, second, context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -56,7 +58,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Compare rules.", facade => facade.CompareFactRules(first, second, context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -72,7 +75,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Compare rules.", facade => facade.CompareFactRules(first, second, context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -88,7 +92,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Compare rules.", facade => facade.CompareFactRules(first, second, context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -104,7 +109,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Compare rules.", facade => facade.CompareFactRules(first, second, context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -120,7 +126,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Compare rules.", facade => facade.CompareFactRules(first, second, context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -136,7 +143,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Compare rules.", facade => facade.CompareFactRules(first, second, context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -152,7 +160,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
 
             GivenCreateFacade()
                 .When("Compare rules.", facade => facade.CompareFactRules(first, second, context))
-                .ThenAreEqual(expectedValue);
+                .ThenAreEqual(expectedValue)
+                .Run();
         }
     }
 }

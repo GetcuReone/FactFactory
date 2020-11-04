@@ -26,7 +26,8 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .And("Check result.", versionType =>
                 {
                     Assert.IsTrue(GetFactType<Version1>().EqualsFactType(versionType), $"{nameof(versionType)} does not store version information");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -38,7 +39,8 @@ namespace FactFactory.VersionedTests.VersionedFactRule
             GivenEmpty()
                 .When("Create rule with version.", _ =>
                     GetFactRule((Fact1 _) => new FactResult(default)))
-                .ThenNotContainVersionType();
+                .ThenNotContainVersionType()
+                .Run();
         }
 
         [TestMethod]
@@ -49,15 +51,14 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         {
             Container container = null;
 
-            Given("Create container", () => container = new Container())
+             Given("Create container", () => container = new Container())
                 .And("Create rule", () => 
                     GetFactRule(() => new FactResult(default)))
                 .When("Run calculate", rule => 
                     rule.Calculate(container))
                 .ThenIsNotNull()
-                .And("Get version.", fact =>
-                    fact.GetVersionOrNull())
-                .AndIsNull();
+                .AndAreEqual(fact => fact.GetVersionOrNull(), null)
+                .Run();
         }
 
         [TestMethod]
@@ -77,7 +78,8 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .Then("Check error", ex =>
                 {
                     Assert.AreEqual(expectedReason, ex.Message, "Another message expected");
-                });
+                })
+                .Run();
         }
     }
 }

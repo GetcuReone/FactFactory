@@ -24,7 +24,8 @@ namespace FactFactory.DefaultTests.Fact
                 .When("Create NotContainet.", () => 
                     new NotContained<FactResult>())
                 .ThenIsTrue(fact => 
-                    fact.GetFactType() is FactType<NotContained<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage);
+                    fact.GetFactType() is FactType<NotContained<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
+                .Run();
         }
 
         [TestMethod]
@@ -37,7 +38,8 @@ namespace FactFactory.DefaultTests.Fact
                 .When("Create NotContainet.", () 
                     => new Contained<FactResult>())
                 .ThenIsTrue(fact => 
-                    fact.GetFactType() is FactType<Contained<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage);
+                    fact.GetFactType() is FactType<Contained<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
+                .Run();
         }
 
         [TestMethod]
@@ -50,7 +52,8 @@ namespace FactFactory.DefaultTests.Fact
                 .When("Create NotContainet.", () => 
                     new CannotDerived<FactResult>())
                 .ThenIsTrue(fact => 
-                    fact.GetFactType() is FactType<CannotDerived<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage);
+                    fact.GetFactType() is FactType<CannotDerived<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
+                .Run();
         }
 
         [TestMethod]
@@ -63,7 +66,8 @@ namespace FactFactory.DefaultTests.Fact
                 .When("Create NotContainet.", () 
                     => new CanDerived<FactResult>())
                 .ThenIsTrue(fact => 
-                    fact.GetFactType() is FactType<CanDerived<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage);
+                    fact.GetFactType() is FactType<CanDerived<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
+                .Run();
         }
     }
 }

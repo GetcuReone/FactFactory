@@ -144,7 +144,10 @@
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer})">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetDefaultContainer">
@@ -159,6 +162,14 @@
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.DeriveFact``2(`3)">
+            <summary>
+            Derive <typeparamref name="TFactResult"/> with version.
+            </summary>
+            <typeparam name="TFactResult">Type of desired fact.</typeparam>
+            <typeparam name="TVersion">Type of version fact.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.DeriveFactAsync``2(`3)">
             <summary>
             Derive <typeparamref name="TFactResult"/> with version.
             </summary>

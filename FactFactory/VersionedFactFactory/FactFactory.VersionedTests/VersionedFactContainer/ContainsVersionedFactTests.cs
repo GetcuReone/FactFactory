@@ -22,8 +22,10 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(new FactResult(0).SetVersionParam(new Version1()));
                     container.Add(new FactResult(0));
                 })
-                .When("Run Contains method", container => container.Contains<FactResult>())
-                .ThenIsTrue(errorMessage: "Fact not contained");
+                .When("Run Contains method", container => 
+                    container.Contains<FactResult>())
+                .ThenIsTrue(errorMessage: "Fact not contained")
+                .Run();
         }
 
         [TestMethod]
@@ -38,8 +40,10 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(new FactResult(0).SetVersionParam(new Version1()));
                     container.Add(new FactResult(0));
                 })
-                .When("Run Contains method", container => container.ContainsByVersion<FactResult>(new Version1()))
-                .ThenIsTrue(errorMessage: "Fact not contained");
+                .When("Run Contains method", container => 
+                    container.ContainsByVersion<FactResult>(new Version1()))
+                .ThenIsTrue(errorMessage: "Fact not contained")
+                .Run();
         }
 
         [TestMethod]
@@ -53,8 +57,10 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 {
                     container.Add(new FactResult(0).SetVersionParam(new Version1()));
                 })
-                .When("Run Contains method", container => container.Contains<FactResult>())
-                .ThenIsFalse(errorMessage: "Fact contained");
+                .When("Run Contains method", container => 
+                    container.Contains<FactResult>())
+                .ThenIsFalse(errorMessage: "Fact contained")
+                .Run();
         }
     }
 }

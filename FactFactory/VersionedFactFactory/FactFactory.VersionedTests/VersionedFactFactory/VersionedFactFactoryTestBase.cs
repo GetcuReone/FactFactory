@@ -11,7 +11,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
     [TestClass]
     public abstract class VersionedFactFactoryTestBase : CommonTestBase
     {
-        protected GivenBlock<V_FactFactory> GivenCreateVersionedFactFactory()
+        protected GivenBlock<object, V_FactFactory> GivenCreateVersionedFactFactory()
         {
             return Given("Create versioned fact factory.", () => new V_FactFactory(context => GetDefaultFacts()));
         }

@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces.Operations;
+using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Interfaces
 {
@@ -24,6 +25,12 @@ namespace GetcuReone.FactFactory.Interfaces
         /// Derive the facts.
         /// </summary>
         void Derive();
+
+        /// <summary>
+        /// Asynchronously derive the facts.
+        /// </summary>
+        /// <returns></returns>
+        ValueTask DeriveAsync();
 
         /// <summary>
         /// Requesting a desired fact through action.

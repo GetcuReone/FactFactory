@@ -23,7 +23,8 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
             GivenCreateFacade()
                 .When("Check compatible.", facade => 
                     facade.CompatibleRule(first, second, GetWantActionContext(wantAction, Container, facade)))
-                .ThenIsTrue();
+                .ThenIsTrue()
+                .Run();
         }
 
         [TestMethod]
@@ -39,7 +40,8 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
             GivenCreateFacade()
                 .When("Check compatible.", facade =>
                     facade.CompatibleRule(second, first, GetWantActionContext(wantAction, Container, facade)))
-                .ThenIsFalse();
+                .ThenIsFalse()
+                .Run();
         }
     }
 }

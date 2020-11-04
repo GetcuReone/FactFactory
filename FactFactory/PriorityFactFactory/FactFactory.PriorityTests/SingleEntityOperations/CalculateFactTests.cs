@@ -2,8 +2,8 @@
 using FactFactory.PriorityTests.CommonFacts;
 using FactFactory.PriorityTests.SingleEntityOperations.Env;
 using FactFactory.TestsCommon;
+using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
@@ -16,7 +16,7 @@ using System.Collections.Generic;
 namespace FactFactory.PriorityTests.SingleEntityOperations
 {
     [TestClass]
-    public sealed class TryCalculateFactTests : PrioritySingleEntityOperationsTestBase
+    public sealed class CalculateFactTests : PrioritySingleEntityOperationsTestBase
     {
         public FactRule Rule { get; set; }
         public NodeByFactRuleInfo<FactRule> NodeInfo { get; set; }
@@ -55,26 +55,20 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
         public void CalculateFactTestCase()
         {
             var fact = new Fact1(1);
-            IFact result = null;
             const long expectedValue = 2;
 
             GivenCreateFacade()
                 .And("Add fact1.", _ =>
                     Context.Container.Add(fact))
                 .When("Check TryCalculateFact method.", facade =>
-                    facade.TryCalculateFact(Node, Context, out result))
-                .ThenIsTrue()
-                .And("Check fact type", () =>
-                {
-                    if (result is FactResult factResult)
-                        return factResult;
-
-                    Assert.Fail("result must have type FactResult.");
-                    return null;
-                })
+                    (FactBase<long>)facade.CalculateFact(Node, Context))
+                .ThenIsNotNull()
+                .AndIsTrue(fact => fact is FactResult, 
+                    errorMessage: "result must have type FactResult.")
                 .AndAreEqual(fact => fact.Value, expectedValue)
                 .AndIsTrue(fact => fact.GetPriorityOrNull() != null)
-                .AndIsTrue(fact => fact.GetPriorityOrNull() is IPriorityFact);
+                .AndIsTrue(fact => fact.GetPriorityOrNull() is IPriorityFact)
+                .Run();
         }
     }
 }

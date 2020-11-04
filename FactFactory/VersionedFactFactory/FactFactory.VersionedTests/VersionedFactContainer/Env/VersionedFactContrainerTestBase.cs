@@ -8,7 +8,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer.Env
     [TestClass]
     public abstract class VersionedFactContrainerTestBase : CommonTestBase
     {
-        protected GivenBlock<Container> GivenCreateContainer()
+        protected GivenBlock<object, Container> GivenCreateContainer()
         {
             return Given("Create container", () => new Container());
         }

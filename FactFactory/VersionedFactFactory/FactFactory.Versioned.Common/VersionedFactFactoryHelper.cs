@@ -128,5 +128,28 @@ namespace GetcuReone.FactFactory.Versioned
             fact.AddParameter(new FactParameter(VersionedFactParametersCodes.Version, version));
             return fact;
         }
+
+        /// <summary>
+        /// Is relevant fact by versioned.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <param name="fact">Fact.</param>
+        /// <param name="maxVersion">Max version (optional).</param>
+        /// <returns></returns>
+        public static bool IsRelevantFactByVersioned<TFact>(this TFact fact, IVersionFact maxVersion)
+            where TFact : IFact
+        {
+            if (maxVersion == null || !fact.IsCalculatedByRule())
+                return true;
+
+            var value = fact.GetParameter(VersionedFactParametersCodes.Version)?.Value;
+
+            if (value == null)
+                return false;
+            if (value is IVersionFact factVersion)
+                return maxVersion.CompareTo(factVersion) >= 0;
+
+            return false;
+        }
     }
 }

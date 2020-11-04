@@ -144,24 +144,39 @@
             Information on output fact.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Constructor.
             </summary>
             <param name="func">Func for calculate.</param>
             <param name="inputFactTypes">Information on input factacles rules.</param>
             <param name="outputFactType">Information on output fact.</param>
-            /// <exception cref="T:System.ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
+            <param name="option">Options for a rule.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="funcAsync">Func for calculate.</param>
+            <param name="inputFactTypes">Information on input factacles rules.</param>
+            <param name="outputFactType">Information on output fact.</param>
+            <param name="option">Options for a rule.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="funcAsync"/> or <paramref name="outputFactType"/> is null.</exception>
             <exception cref="T:System.ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.EqualsWork``3(``0,``1,``2)">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.ToString">
-            <inheritdoc />
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.CalculateAsync(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <inheritdoc/>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.Calculate(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleBase.ToString">
+            <inheritdoc />
         </member>
         <member name="T:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1">
             <summary>
@@ -208,22 +223,24 @@
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.GetFactType``1">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Creation method <typeparamref name="TFactRule"/>.
             </summary>
             <param name="func">func for calculate.</param>
             <param name="inputFactTypes">information on input factacles rules.</param>
             <param name="outputFactType">information on output fact.</param>
+            <param name="option"></param>
             <returns></returns>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.GetCorrectFact``1(GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.IWantAction)">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
-            Return the correct fact.
+            Creation method <typeparamref name="TFactRule"/>.
             </summary>
-            <typeparam name="TFact"></typeparam>
-            <param name="container"></param>
-            <param name="wantAction"></param>
+            <param name="func">func for calculate.</param>
+            <param name="inputFactTypes">information on input factacles rules.</param>
+            <param name="outputFactType">information on output fact.</param>
+            <param name="option">Options for a rule.</param>
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.EqualsRules(`0,`0)">
@@ -240,22 +257,24 @@
             </summary>
             <param name="item"></param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``1(System.Func{``0})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``1(System.Func{``0},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule without input facts.
             </summary>
-            <typeparam name="TFactResult">Type of fact result.</typeparam>
+            <typeparam name="TFactOut">Type of fact result.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``2(System.Func{``0,``1})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``2(System.Func{``0,``1},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 1 input facts.
             </summary>
             <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``3(System.Func{``0,``1,``2})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``3(System.Func{``0,``1,``2},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 2 input facts.
             </summary>
@@ -263,8 +282,9 @@
             <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``4(System.Func{``0,``1,``2,``3})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``4(System.Func{``0,``1,``2,``3},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 3 input facts.
             </summary>
@@ -273,8 +293,9 @@
             <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``5(System.Func{``0,``1,``2,``3,``4})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``5(System.Func{``0,``1,``2,``3,``4},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 4 input facts.
             </summary>
@@ -284,8 +305,9 @@
             <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``6(System.Func{``0,``1,``2,``3,``4,``5})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``6(System.Func{``0,``1,``2,``3,``4,``5},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 5 input facts.
             </summary>
@@ -296,8 +318,9 @@
             <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation..</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``7(System.Func{``0,``1,``2,``3,``4,``5,``6})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``7(System.Func{``0,``1,``2,``3,``4,``5,``6},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 6 input facts
             </summary>
@@ -309,8 +332,9 @@
             <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 7 input facts
             </summary>
@@ -323,8 +347,9 @@
             <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 8 input facts
             </summary>
@@ -338,8 +363,9 @@
             <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 9 input facts
             </summary>
@@ -354,8 +380,9 @@
             <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 10 input facts
             </summary>
@@ -371,8 +398,9 @@
             <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 11 input facts
             </summary>
@@ -389,8 +417,9 @@
             <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 12 input facts
             </summary>
@@ -408,8 +437,9 @@
             <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 13 input facts
             </summary>
@@ -428,8 +458,9 @@
             <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 14 input facts
             </summary>
@@ -449,8 +480,9 @@
             <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 15 input facts
             </summary>
@@ -471,8 +503,9 @@
             <typeparam name="TFactIn15">Type 15 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``17(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``17(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Add a rule with 16 input facts
             </summary>
@@ -494,6 +527,279 @@
             <typeparam name="TFactIn16">Type 16 input fact.</typeparam>
             <typeparam name="TFactOut">Type output fact.</typeparam>
             <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``1(System.Func{System.Threading.Tasks.ValueTask{``0}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule without input facts.
+            </summary>
+            <typeparam name="TFactOut">Type of fact result.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``2(System.Func{``0,System.Threading.Tasks.ValueTask{``1}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 1 input facts.
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``3(System.Func{``0,``1,System.Threading.Tasks.ValueTask{``2}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 2 input facts.
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``4(System.Func{``0,``1,``2,System.Threading.Tasks.ValueTask{``3}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 3 input facts.
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``5(System.Func{``0,``1,``2,``3,System.Threading.Tasks.ValueTask{``4}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 4 input facts.
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``6(System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.ValueTask{``5}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 5 input facts.
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation..</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``7(System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.ValueTask{``6}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 6 input facts
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``8(System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.ValueTask{``7}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 7 input facts
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+            <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.ValueTask{``8}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 8 input facts
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+            <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+            <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System.Threading.Tasks.ValueTask{``9}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 9 input facts
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+            <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+            <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+            <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System.Threading.Tasks.ValueTask{``10}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 10 input facts
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+            <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+            <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+            <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+            <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System.Threading.Tasks.ValueTask{``11}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 11 input facts
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+            <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+            <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+            <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+            <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+            <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System.Threading.Tasks.ValueTask{``12}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 12 input facts
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+            <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+            <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+            <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+            <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+            <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+            <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System.Threading.Tasks.ValueTask{``13}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 13 input facts
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+            <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+            <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+            <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+            <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+            <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+            <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+            <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System.Threading.Tasks.ValueTask{``14}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 14 input facts
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+            <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+            <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+            <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+            <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+            <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+            <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+            <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+            <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System.Threading.Tasks.ValueTask{``15}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 15 input facts
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+            <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+            <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+            <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+            <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+            <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+            <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+            <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+            <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+            <typeparam name="TFactIn15">Type 15 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.Add``17(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System.Threading.Tasks.ValueTask{``16}},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Add a rule with 16 input facts
+            </summary>
+            <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
+            <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
+            <typeparam name="TFactIn3">Type 3 input fact.</typeparam>
+            <typeparam name="TFactIn4">Type 4 input fact.</typeparam>
+            <typeparam name="TFactIn5">Type 5 input fact.</typeparam>
+            <typeparam name="TFactIn6">Type 6 input fact.</typeparam>
+            <typeparam name="TFactIn7">Type 7 input fact.</typeparam>
+            <typeparam name="TFactIn8">Type 8 input fact.</typeparam>
+            <typeparam name="TFactIn9">Type 9 input fact.</typeparam>
+            <typeparam name="TFactIn10">Type 10 input fact.</typeparam>
+            <typeparam name="TFactIn11">Type 11 input fact.</typeparam>
+            <typeparam name="TFactIn12">Type 12 input fact.</typeparam>
+            <typeparam name="TFactIn13">Type 13 input fact.</typeparam>
+            <typeparam name="TFactIn14">Type 14 input fact.</typeparam>
+            <typeparam name="TFactIn15">Type 15 input fact.</typeparam>
+            <typeparam name="TFactIn16">Type 16 input fact.</typeparam>
+            <typeparam name="TFactOut">Type output fact.</typeparam>
+            <param name="rule">Rule of fact calculation.</param>
+            <param name="option">Options for a rule.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
             <summary>
@@ -617,11 +923,15 @@
         <member name="P:GetcuReone.FactFactory.BaseEntities.FactWorkBase.InputFactTypes">
             <inheritdoc/>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="P:GetcuReone.FactFactory.BaseEntities.FactWorkBase.Option">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Constructor.
             </summary>
             <param name="factTypes">Fact types.</param>
+            <param name="option">FactWork option.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.FactWorkBase.EqualsFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})">
             <summary>
@@ -639,12 +949,21 @@
             Base class for <see cref="T:GetcuReone.FactFactory.Interfaces.IWantAction"/>.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType})">
+        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
             <summary>
             Constructor.
             </summary>
             <param name="wantAction">Action taken after deriving a fact.</param>
             <param name="factTypes">Facts required to launch an action.</param>
+            <param name="option">WantAction options.</param>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="wantActionAsync">Action taken after deriving a fact.</param>
+            <param name="factTypes">Facts required to launch an action.</param>
+            <param name="option">WantAction options.</param>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.ToString">
             <summary>
@@ -653,6 +972,9 @@
             <returns></returns>
         </member>
         <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.Invoke(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.FactFactory.BaseEntities.WantActionBase.InvokeAsync(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})">
             <inheritdoc/>
         </member>
         <member name="T:GetcuReone.FactFactory.FactType`1">

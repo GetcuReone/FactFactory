@@ -3,12 +3,9 @@ using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactContainer.Env;
 using GetcuReone.FactFactory.Constants;
-using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
-using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
 
 namespace FactFactory.VersionedTests.VersionedFactContainer
 {
@@ -36,7 +33,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(factResultWithoutVersion);
                 })
                 .When("Try get fact.", container => container.GetFact<FactResult>())
-                .ThenAreEqual(factResultWithoutVersion);
+                .ThenAreEqual(factResultWithoutVersion)
+                .Run();
         }
 
         [TestMethod]
@@ -61,7 +59,8 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 })
                 .When("Try get fact.", container => 
                     container.GetFactByVersion<FactResult>(version1))
-                .ThenAreEqual(factResult1);
+                .ThenAreEqual(factResult1)
+                .Run();
         }
 
         [TestMethod]
@@ -84,8 +83,10 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(factResult2);
                     container.Add(factResultWithoutVersion);
                 })
-                .When("Try get fact.", container => container.GetFactByVersion<FactResult>(version2))
-                .ThenAreEqual(factResult2);
+                .When("Try get fact.", container => 
+                    container.GetFactByVersion<FactResult>(version2))
+                .ThenAreEqual(factResult2)
+                .Run();
         }
 
         [TestMethod]
@@ -102,8 +103,10 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     container.Add(new FactResult(0).SetVersionParam(new Version1()));
                     container.Add(new FactResult(0));
                 })
-                .When("Try get fact.", container => ExpectedFactFactoryException(() => container.GetFactByVersion<FactResult>(new Version2())))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason);
+                .When("Try get fact.", container => 
+                    ExpectedFactFactoryException(() => container.GetFactByVersion<FactResult>(new Version2())))
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason)
+                .Run();
         }
     }
 }

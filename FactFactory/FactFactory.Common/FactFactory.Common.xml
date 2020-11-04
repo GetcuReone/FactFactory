@@ -181,5 +181,23 @@
             <param name="y"></param>
             <returns></returns>
         </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.WhereFactsByFactType(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)">
+            <summary>
+            Get an array of facts of a specific type.
+            </summary>
+            <param name="facts">Facts.</param>
+            <param name="factType">Required type.</param>
+            <param name="cache">Cache (optional).</param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.FactFactory.FactFactoryHelper.WhereFactsByFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)">
+            <summary>
+            Get an array of facts of a specific types.
+            </summary>
+            <param name="facts">Facts.</param>
+            <param name="factTypes">Required types.</param>
+            <param name="cache">Cache (optional).</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

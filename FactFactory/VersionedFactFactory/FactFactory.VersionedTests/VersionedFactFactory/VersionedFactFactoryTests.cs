@@ -1,4 +1,5 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
@@ -17,7 +18,7 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create wantAction without version.")]
-        //[Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactWithoutVersionedRuleTestCase()
         {
             const long expectedValue = 1_000;
@@ -37,7 +38,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<FactResult>())
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -63,7 +65,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .When("Derive fact.", factFactory => 
                     factFactory.DeriveFact<FactResult, Version1>())
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -98,7 +101,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
 
                     Assert.AreEqual(1, result1.Value, "Expected another value.");
                     Assert.AreEqual(1, result2.Value, "Expected another value.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -146,7 +150,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 {
                     Assert.AreEqual(1, counterFact2, "Fact2 was supposed to pay 1 time.");
                     Assert.AreEqual(1, counterFact1, "Fact1 was supposed to pay 1 times.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -212,7 +217,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                     Assert.AreEqual(10, counterAction1, "Expected another value counterAction1.");
                     Assert.AreEqual(10, counterAction2, "Expected another value counterAction2.");
                     Assert.AreEqual(10, counterAction3, "Expected another value counterAction3.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -235,7 +241,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .When("Derive fact.", factFactory => 
                     factFactory.DeriveFact<FactResult, Version2>(container))
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -257,7 +264,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<FactResult, Version1>(container))
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -276,7 +284,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             GivenCreateVersionedFactFactory()
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<FactResult, Version2>(container))
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -295,7 +304,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<FactResult, Version2>())
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -314,7 +324,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             GivenCreateVersionedFactFactory()
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<FactResult, Version2>(container))
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
 
         [TestMethod]
@@ -340,7 +351,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<FactResult>())
-                .ThenFactEquals(expectedValue);
+                .ThenFactValueEquals(expectedValue)
+                .Run();
         }
     }
 }

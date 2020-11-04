@@ -38,7 +38,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.IsNotNull(input1Fact, "input1Fact cannot be null.");
 
                     Assert.AreEqual(startValue + 1, input1Fact.Value, "another input1Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -74,7 +75,8 @@ namespace FactFactoryTests.FactFactoryT
 
                     Assert.AreEqual(startValue + 1, input1Fact.Value, "another input1Fact value was expected.");
                     Assert.AreEqual(startValue + 2, input2Fact.Value, "another input2Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -115,7 +117,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 1, input1Fact.Value, "another input1Fact value was expected.");
                     Assert.AreEqual(startValue + 2, input2Fact.Value, "another input2Fact value was expected.");
                     Assert.AreEqual(startValue + 3, input3Fact.Value, "another input3Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -161,7 +164,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 2, input2Fact.Value, "another input2Fact value was expected.");
                     Assert.AreEqual(startValue + 3, input3Fact.Value, "another input3Fact value was expected.");
                     Assert.AreEqual(startValue + 4, input4Fact.Value, "another input4Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -212,7 +216,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 3, input3Fact.Value, "another input3Fact value was expected.");
                     Assert.AreEqual(startValue + 4, input4Fact.Value, "another input4Fact value was expected.");
                     Assert.AreEqual(startValue + 5, input5Fact.Value, "another input5Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -268,7 +273,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 4, input4Fact.Value, "another input4Fact value was expected.");
                     Assert.AreEqual(startValue + 5, input5Fact.Value, "another input5Fact value was expected.");
                     Assert.AreEqual(startValue + 6, input6Fact.Value, "another input6Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -329,7 +335,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 5, input5Fact.Value, "another input5Fact value was expected.");
                     Assert.AreEqual(startValue + 6, input6Fact.Value, "another input6Fact value was expected.");
                     Assert.AreEqual(startValue + 7, input7Fact.Value, "another input7Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -395,7 +402,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 6, input6Fact.Value, "another input6Fact value was expected.");
                     Assert.AreEqual(startValue + 7, input7Fact.Value, "another input7Fact value was expected.");
                     Assert.AreEqual(startValue + 8, input8Fact.Value, "another input8Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -466,7 +474,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 7, input7Fact.Value, "another input7Fact value was expected.");
                     Assert.AreEqual(startValue + 8, input8Fact.Value, "another input8Fact value was expected.");
                     Assert.AreEqual(startValue + 9, input9Fact.Value, "another input9Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -542,7 +551,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 8, input8Fact.Value, "another input8Fact value was expected.");
                     Assert.AreEqual(startValue + 9, input9Fact.Value, "another input9Fact value was expected.");
                     Assert.AreEqual(startValue + 10, input10Fact.Value, "another input10Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -623,7 +633,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 9, input9Fact.Value, "another input9Fact value was expected.");
                     Assert.AreEqual(startValue + 10, input10Fact.Value, "another input10Fact value was expected.");
                     Assert.AreEqual(startValue + 11, input11Fact.Value, "another input11Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -709,7 +720,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 10, input10Fact.Value, "another input10Fact value was expected.");
                     Assert.AreEqual(startValue + 11, input11Fact.Value, "another input11Fact value was expected.");
                     Assert.AreEqual(startValue + 12, input12Fact.Value, "another input12Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -800,7 +812,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 11, input11Fact.Value, "another input11Fact value was expected.");
                     Assert.AreEqual(startValue + 12, input12Fact.Value, "another input12Fact value was expected.");
                     Assert.AreEqual(startValue + 13, input13Fact.Value, "another input13Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -896,7 +909,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 12, input12Fact.Value, "another input12Fact value was expected.");
                     Assert.AreEqual(startValue + 13, input13Fact.Value, "another input13Fact value was expected.");
                     Assert.AreEqual(startValue + 14, input14Fact.Value, "another input14act value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -997,7 +1011,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 13, input13Fact.Value, "another input13Fact value was expected.");
                     Assert.AreEqual(startValue + 14, input14Fact.Value, "another input14act value was expected.");
                     Assert.AreEqual(startValue + 15, input15Fact.Value, "another input15Fact value was expected.");
-                });
+                })
+                .Run();
         }
 
         [TestMethod]
@@ -1103,7 +1118,8 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 14, input14Fact.Value, "another input14act value was expected.");
                     Assert.AreEqual(startValue + 15, input15Fact.Value, "another input15Fact value was expected.");
                     Assert.AreEqual(startValue + 16, input16Fact.Value, "another input16Fact value was expected.");
-                });
+                })
+                .Run();
         }
     }
 }

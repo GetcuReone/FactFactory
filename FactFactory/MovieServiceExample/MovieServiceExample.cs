@@ -5,6 +5,7 @@ using MovieServiceExample.Entities;
 using MovieServiceExample.Facts;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MovieServiceExample
 {
@@ -82,6 +83,15 @@ namespace MovieServiceExample
 
                 // If we have a movie and a discount size, then we can calculate the cost of the movie.
                 (MovieFact movieFact, MovieDiscountFact movieDiscountFact) => new MoviePurchasePriceFact(movieFact.Value.Cost - movieDiscountFact.Value),
+
+                // Let's add a rule to demonstrate asynchronous communication
+                async (MovieFact movieFact, MovieDiscountFact movieDiscountFact) =>
+                {
+                    // Simulate work
+                    await Task.Delay(200);
+
+                    return new MoviePurchasePriceFactAsync(movieFact.Value.Cost - movieDiscountFact.Value);
+                },
             };
 
             Factory = new FactFactory();
@@ -127,6 +137,28 @@ namespace MovieServiceExample
 
             // We ask the factory to calculate the cost of buying a movie for our user.
             int price = Factory.DeriveFact<MoviePurchasePriceFact>(container).Value;
+
+            // For this user, the discount for this movie is not configured. Therefore we expect full value.
+            Assert.AreEqual(MovieDB.Single(m => m.Id == movieId).Cost, price, "We expected a different purchase price.");
+        }
+
+        [TestMethod]
+        [Description("Calculate the cost of a 'My Hero Academia: Heroes Rising' movie for a 'John Cornero' user.")]
+        public async Task CalculatingCostBuyingMovie_WithAsyncRule()
+        {
+            // We have information about the user's mail and the identifier of the film, what he wants to buy.
+            string email = "john_cornero@example.com";
+            int movieId = 1;
+
+            // Let's tell the factory what we know
+            var container = new FactContainer
+            {
+                new UserEmailFact(email),
+                new MovieIdFact(movieId),
+            };
+
+            // We ask the factory to calculate the cost of buying a movie for our user.
+            var price = await Factory.DeriveFactAsync<MoviePurchasePriceFactAsync>(container);
 
             // For this user, the discount for this movie is not configured. Therefore we expect full value.
             Assert.AreEqual(MovieDB.Single(m => m.Id == movieId).Cost, price, "We expected a different purchase price.");
