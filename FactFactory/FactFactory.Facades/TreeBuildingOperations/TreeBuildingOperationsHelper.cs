@@ -143,7 +143,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         SuccessConditions = new List<IConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IConditionFact>())),
                         FailedConditions = new List<IConditionFact>(),
                         RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
-                        CompatibleRules = rule.GetCompatibleRulesEx(parentNode.Info.CompatibleRules, context).ToList(),
+                        CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context).ToList(),
                     };
 
                 result.Add(new NodeByFactRule<TFactRule>
