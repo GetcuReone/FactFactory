@@ -82,14 +82,6 @@
             WantFacts.
             </summary>
         </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CreateObject``2(System.Func{``0,``1},``0)">
-            <inheritdoc/>
-            <exception cref="T:System.ArgumentNullException">if <paramref name="factoryFunc"/> is null.</exception>
-        </member>
-        <member name="M:GetcuReone.FactFactory.FactFactoryBase`4.CreateObjectAsync``2(System.Func{``0,System.Threading.Tasks.ValueTask{``1}},``0)">
-            <inheritdoc/>
-            <exception cref="T:System.ArgumentNullException">if <paramref name="factoryFunc"/> is null.</exception>
-        </member>
         <member name="P:GetcuReone.FactFactory.FactFactoryBase`4.Rules">
             <inheritdoc/>
         </member>

@@ -15,7 +15,7 @@
     <ItemGroup>
         <PackageReference Include="GetcuReone.GetcuTestAdapter" Version="[1.2.0,)" />
         <PackageReference Include="GetcuReone.GwtTestFramework" Version="[2.0.2,)" />
-        <PackageReference Include="ComboPatterns" Version="[3.2.0,)" />
+        <PackageReference Include="ComboPatterns" Version="[3.2.1,)" />
     </ItemGroup>
 
     <ItemGroup>
