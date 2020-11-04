@@ -12,7 +12,7 @@
         <Description>My implementation of a machine that can derive facts from other facts</Description>
         <RepositoryUrl>https://github.com/GetcuReone/FactFactory.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageTags>factfactory fact getcureone combopatterns</PackageTags>
+        <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
             Changes:
             - in this change, we tried to change the API of the library and make it more convenient.
