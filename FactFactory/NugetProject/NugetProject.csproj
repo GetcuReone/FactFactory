@@ -4,8 +4,6 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
 
-        <GitIssuesUrl>https://github.com/GetcuReone/FactFactory/issues</GitIssuesUrl>
-
         <Authors>Itua Juel-Gaben</Authors>
         <PackageId>GetcuReone.FactFactory</PackageId>
         <Product>FactFactory</Product>
