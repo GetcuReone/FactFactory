@@ -9,7 +9,7 @@
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
         <DelaySign>false</DelaySign>
-        <AssemblyVersion>$(majorVersion).0).0.0</AssemblyVersion>
+        <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
         <FileVersion>$(majorVersion).0.0.0</FileVersion>
     </PropertyGroup>
 
