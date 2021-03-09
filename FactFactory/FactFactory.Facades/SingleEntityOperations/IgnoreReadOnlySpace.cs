@@ -8,17 +8,21 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         where TFactContainer : IFactContainer
     {
         private readonly TFactContainer _container;
+        private readonly bool _previousValue;
 
         internal IgnoreReadOnlySpace(TFactContainer container)
         {
             _container = container;
             Monitor.Enter(_container);
-            _container.IsReadOnly = false;
+            _previousValue = _container.IsReadOnly;
+            if (_previousValue)
+                _container.IsReadOnly = false;
         }
 
         public void Dispose()
         {
-            _container.IsReadOnly = true;
+            if (_previousValue != _container.IsReadOnly)
+                _container.IsReadOnly = _previousValue;
             Monitor.Exit(_container);
         }
     }
