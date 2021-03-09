@@ -157,9 +157,13 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 using (context.Container.CreateIgnoreReadOnlySpace())
                     context.Container.Add(condition);
 
+            var requiredFacts = GetRequireFacts(rule, context);
+            if (!CanInvokeWork(requiredFacts, rule, context.Cache))
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"Can't calculate the '{rule}' rule.", context.WantAction, context.Container);
+
             var fact = Factory.CreateObject(
                 facts => rule.Calculate(facts),
-                GetRequireFacts(rule, context));
+                requiredFacts);
             fact.SetCalculateByRule();
 
             foreach (var condition in node.Info.SuccessConditions)
@@ -181,8 +185,12 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 using (context.Container.CreateIgnoreReadOnlySpace())
                     context.Container.Add(condition);
 
+            var requiredFacts = GetRequireFacts(rule, context);
+            if (!CanInvokeWork(requiredFacts, rule, context.Cache))
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"Can't calculate the '{rule}' rule.", context.WantAction, context.Container);
+
             IFact fact = await Factory
-                .CreateObject(facts => rule.CalculateAsync(facts), GetRequireFacts(rule, context))
+                .CreateObject(facts => rule.CalculateAsync(facts), requiredFacts)
                 .ConfigureAwait(false);
             fact.SetCalculateByRule();
 
@@ -204,7 +212,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 using (context.Container.CreateIgnoreReadOnlySpace())
                     context.Container.Add(condition);
 
-            context.WantAction.Invoke(GetRequireFacts(context.WantAction, context));
+            var requiredFacts = GetRequireFacts(context.WantAction, context);
+            if (!CanInvokeWork(requiredFacts, context.WantAction, context.Cache))
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"Can't invoke the '{context.WantAction}' action.", context.WantAction, context.Container);
+
+            context.WantAction.Invoke(requiredFacts);
 
             foreach (var condition in wantActionInfo.SuccessConditions)
                 using (context.Container.CreateIgnoreReadOnlySpace())
@@ -233,11 +245,35 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 using (context.Container.CreateIgnoreReadOnlySpace())
                     context.Container.Add(condition);
 
-            await context.WantAction.InvokeAsync(GetRequireFacts(context.WantAction, context)).ConfigureAwait(false);
+            var requiredFacts = GetRequireFacts(context.WantAction, context);
+            if (!CanInvokeWork(requiredFacts, context.WantAction, context.Cache))
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"Can't invoke the '{context.WantAction}' action.", context.WantAction, context.Container);
+
+            await context.WantAction.InvokeAsync(requiredFacts).ConfigureAwait(false);
 
             foreach (var condition in wantActionInfo.SuccessConditions)
                 using (context.Container.CreateIgnoreReadOnlySpace())
                     context.Container.Remove(condition);
+        }
+
+        /// <summary>
+        /// Is it possible to start a <see cref="IFactWork"/>.
+        /// </summary>
+        /// <typeparam name="TFactWork"></typeparam>
+        /// <param name="inputFacts">Input facts.</param>
+        /// <param name="factWork"></param>
+        /// <param name="cache"></param>
+        /// <returns></returns>
+        public virtual bool CanInvokeWork<TFactWork>(IEnumerable<IFact> inputFacts, TFactWork factWork, IFactTypeCache cache)
+            where TFactWork : IFactWork
+        {
+            foreach(IFactType requiredFactType in factWork.InputFactTypes)
+            {
+                if (inputFacts.All(inputFact => !cache.GetFactType(inputFact).EqualsFactType(requiredFactType)))
+                    return false;
+            }
+
+            return true;
         }
     }
 }

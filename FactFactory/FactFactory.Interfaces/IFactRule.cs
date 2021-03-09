@@ -23,7 +23,7 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <summary>
         /// Calculate fact asynchronously.
         /// </summary>
-        /// <param name="requireFacts"></param>
+        /// <param name="requireFacts">Facts for calculation.</param>
         /// <returns></returns>
         ValueTask<IFact> CalculateAsync(IEnumerable<IFact> requireFacts);
     }
