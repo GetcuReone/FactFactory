@@ -4,6 +4,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <AssemblyName>GetcuReone.$(MSBuildProjectName).Main</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
