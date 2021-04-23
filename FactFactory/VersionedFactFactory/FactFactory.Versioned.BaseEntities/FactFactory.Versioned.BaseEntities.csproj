@@ -1,28 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="..\..\.buildTools\GetcuReone.Lib.props" />
+
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <DocumentationFile>FactFactory.Versioned.BaseEntities.xml</DocumentationFile>
-        <RootNamespace>GetcuReone.FactFactory.BaseEntities.Facades</RootNamespace>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
-        <DelaySign>false</DelaySign>
-        <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
-        <FileVersion>$(majorVersion).0.0.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\FactFactory.BaseEntities\FactFactory.BaseEntities.csproj" />
       <ProjectReference Include="..\FactFactory.Versioned.Common\FactFactory.Versioned.Common.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Update="FactFactory.Versioned.BaseEntities.xml">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
     </ItemGroup>
 
 </Project>

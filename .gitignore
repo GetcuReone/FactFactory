@@ -88,6 +88,7 @@ StyleCopReport.xml
 *.svclog
 *.scc
 *.snk
+GetcuReone.FactFactory*.xml
 
 # Chutzpah Test files
 _Chutzpah*

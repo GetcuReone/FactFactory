@@ -31,7 +31,7 @@ namespace InfrastructureTests
         public void NugetHaveNeedFilesTestCase()
         {
             string nugetId = $"GetcuReone.{_projectName}";
-            string libPattern = $"lib/{TargetFramework}/" + "{0}";
+            string libPattern = $"lib/{TargetFramework}/GetcuReone." + "{0}";
             var files = new string[]
             {
                 string.Format(libPattern, $"{_projectName}.dll"),
@@ -110,7 +110,7 @@ namespace InfrastructureTests
             {
             };
             string majorVersion = BuildConfiguration == "Release"
-                ? Environment.GetEnvironmentVariable("majorVersion") ?? "1"
+                ? Environment.GetEnvironmentVariable("majorVersion") ?? "3"
                 : "1";
             string excpectedAssemblyVersion = $"{majorVersion}.0.0.0";
 
