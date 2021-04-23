@@ -20,15 +20,15 @@
 
     <dependencies>
       <group targetFramework=".$TargetFramework$">
-        <dependency id="ComboPatterns" version="[3.3.1,)" />
+        <dependency id="ComboPatterns" version="[4.0.0,)" />
         <dependency id="System.Threading.Tasks.Extensions" version="[4.5.4,)" />
       </group>
     </dependencies>
   </metadata>
 
   <files>
-    <file src="bin\$Configuration$\$TargetFramework$\FactFactory**dll" target="lib\$TargetFramework$" />
-    <file src="bin\$Configuration$\$TargetFramework$\FactFactory**xml" target="lib\$TargetFramework$" />
+    <file src="bin\$Configuration$\$TargetFramework$\GetcuReone.FactFactory**dll" target="lib\$TargetFramework$" />
+    <file src="bin\$Configuration$\$TargetFramework$\GetcuReone.FactFactory**xml" target="lib\$TargetFramework$" />
     <file src="bin\$Configuration$\$TargetFramework$\$PackageLicenseFile$" target="" />
     <file src="bin\$Configuration$\$TargetFramework$\README.md" target="" />
   </files>

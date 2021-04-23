@@ -1,27 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="..\..\.buildTools\GetcuReone.Lib.props" />
+
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <DocumentationFile>FactFactory.Versioned.Interfaces.xml</DocumentationFile>
-        <RootNamespace>GetcuReone.FactFactory.Versioned.Interfaces</RootNamespace>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
-        <DelaySign>false</DelaySign>
-        <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
-        <FileVersion>$(majorVersion).0.0.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\FactFactory.Interfaces\FactFactory.Interfaces.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Update="FactFactory.Versioned.Interfaces.xml">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
     </ItemGroup>
 
 </Project>

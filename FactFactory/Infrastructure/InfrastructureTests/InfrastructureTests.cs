@@ -31,11 +31,11 @@ namespace InfrastructureTests
         public void NugetHaveNeedFilesTestCase()
         {
             string nugetId = $"GetcuReone.{_projectName}";
-            string libPattern = $"lib/{TargetFramework}/" + "{0}";
+            string libPattern = $"lib/{TargetFramework}/GetcuReone." + "{0}";
             var files = new string[]
             {
-                string.Format(libPattern, $"{_projectName}.dll"),
-                string.Format(libPattern, $"{_projectName}.xml"),
+                string.Format(libPattern, $"{_projectName}.Main.dll"),
+                string.Format(libPattern, $"{_projectName}.Main.xml"),
                 string.Format(libPattern, $"{_projectName}.Common.dll"),
                 string.Format(libPattern, $"{_projectName}.Common.xml"),
                 string.Format(libPattern, $"{_projectName}.Interfaces.dll"),
@@ -110,7 +110,7 @@ namespace InfrastructureTests
             {
             };
             string majorVersion = BuildConfiguration == "Release"
-                ? Environment.GetEnvironmentVariable("majorVersion") ?? "1"
+                ? Environment.GetEnvironmentVariable("majorVersion") ?? "3"
                 : "1";
             string excpectedAssemblyVersion = $"{majorVersion}.0.0.0";
 

@@ -1,17 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="..\..\.buildTools\GetcuReone.Lib.props" />
+
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <DocumentationFile>FactFactory.Versioned.Facades.xml</DocumentationFile>
-        <RootNamespace>GetcuReone.FactFactory.Versioned.Facades</RootNamespace>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
-        <DelaySign>false</DelaySign>
-        <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
-        <FileVersion>$(majorVersion).0.0.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,12 +11,6 @@
       <ProjectReference Include="..\..\PriorityFactFactory\FactFactory.Priority.Facades\FactFactory.Priority.Facades.csproj" />
       <ProjectReference Include="..\FactFactory.Versioned.Common\FactFactory.Versioned.Common.csproj" />
       <ProjectReference Include="..\FactFactory.Versioned.Interfaces\FactFactory.Versioned.Interfaces.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Update="FactFactory.Versioned.Facades.xml">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
     </ItemGroup>
 
 </Project>

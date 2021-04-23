@@ -55,9 +55,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.Priority.Facade
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.PriorityTests", "PriorityFactFactory\FactFactory.PriorityTests\FactFactory.PriorityTests.csproj", "{5582E471-A762-41B1-B291-51B997C72567}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactFactory.Priority", "PriorityFactFactory\FactFactory.Priority\FactFactory.Priority.csproj", "{8A9086E8-8396-498C-B19D-0694C4AD3C77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactFactory.Priority", "PriorityFactFactory\FactFactory.Priority\FactFactory.Priority.csproj", "{8A9086E8-8396-498C-B19D-0694C4AD3C77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Priority_MovieServiceExample", "PriorityFactFactory\Priority_MovieServiceExample\Priority_MovieServiceExample.csproj", "{F346F924-E810-4814-B074-039962B9961B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Priority_MovieServiceExample", "PriorityFactFactory\Priority_MovieServiceExample\Priority_MovieServiceExample.csproj", "{F346F924-E810-4814-B074-039962B9961B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".buildTools", ".buildTools", "{823155B9-53BB-40F3-9105-53C4843366B5}"
+	ProjectSection(SolutionItems) = preProject
+		.buildTools\GetcuReone.Common.props = .buildTools\GetcuReone.Common.props
+		.buildTools\GetcuReone.Lib.props = .buildTools\GetcuReone.Lib.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
