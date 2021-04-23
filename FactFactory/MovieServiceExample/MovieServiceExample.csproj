@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="..\.buildTools\GetcuReone.Common.props" />
+
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
 

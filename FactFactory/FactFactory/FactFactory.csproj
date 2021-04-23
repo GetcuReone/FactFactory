@@ -1,17 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="..\.buildTools\GetcuReone.Lib.props" />
+
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <DocumentationFile>FactFactory.xml</DocumentationFile>
-        <RootNamespace>GetcuReone.FactFactory</RootNamespace>
-    </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
-        <DelaySign>false</DelaySign>
-        <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
-        <FileVersion>$(majorVersion).0.0.0</FileVersion>
+        <!--If removed, the name of the package is duplicated and a conflict will arise.-->
+        <AssemblyName>GetcuReone.$(MSBuildProjectName).Main</AssemblyName>
+        <DocumentationFile>GetcuReone.$(MSBuildProjectName).Main.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="FactFactory.xml">
+        <None Update="GetcuReone.$(MSBuildProjectName).Main.xml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>

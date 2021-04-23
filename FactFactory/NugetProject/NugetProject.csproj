@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="..\.buildTools\GetcuReone.Common.props" />
+
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
 
-        <Authors>Itua Juel-Gaben</Authors>
         <PackageId>GetcuReone.FactFactory</PackageId>
         <Product>FactFactory</Product>
         <Description>My implementation of a machine that can derive facts from other facts</Description>
@@ -13,12 +14,7 @@
         <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
             Changes:
-            - added the ability to call the factory asynchronously.
-            - added support for the async/await pattern.
-            - added the ability to run rules in parallel.
-            - when building a tree, the list of compatible rules is calculated for each rule separately.
-            - fix bugs.
-            - fix assembly version
+            - changed assembly name
         </PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>
@@ -31,14 +27,6 @@
 
     <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(PackageVersion)'==''">
-        <PackageVersion>1.0.0</PackageVersion>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(RepositoryBranch)'==''">
-        <RepositoryBranch>develop</RepositoryBranch>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -64,14 +52,6 @@
         <!--Transfer another information-->
         <NuspecProperties>$(NuspecProperties);Configuration=$(Configuration)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);TargetFramework=$(TargetFramework)</NuspecProperties>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
-        <DelaySign>false</DelaySign>
-        <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
-        <FileVersion>$(majorVersion).0.0.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
