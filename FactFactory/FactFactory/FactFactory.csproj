@@ -4,6 +4,8 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+
+        <!--If removed, the name of the package is duplicated and a conflict will arise.-->
         <AssemblyName>GetcuReone.$(MSBuildProjectName).Main</AssemblyName>
     </PropertyGroup>
 
