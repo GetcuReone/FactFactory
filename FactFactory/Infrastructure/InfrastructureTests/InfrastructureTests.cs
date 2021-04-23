@@ -73,7 +73,7 @@ namespace InfrastructureTests
                 "README.md",
             };
 
-            VerifyNugetContainsFiles(_solutionFolder, nugetId, files.Length + 4, files);
+            VerifyNugetContainsFiles(_solutionFolder, nugetId, files.Length + 3, files);
         }
 
         [TestMethod]
