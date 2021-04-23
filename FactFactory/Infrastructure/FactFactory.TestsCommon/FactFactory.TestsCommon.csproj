@@ -1,19 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="..\..\.buildTools\GetcuReone.Common.props" />
+
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
-        <DelaySign>false</DelaySign>
-        <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
-        <FileVersion>$(majorVersion).0.0.0</FileVersion>
-    </PropertyGroup>
-
     <ItemGroup>
-        <PackageReference Include="GetcuReone.GetcuTestAdapter" Version="[1.3.3,)" />
+        <PackageReference Include="GetcuReone.GetcuTestAdapter" Version="[1.3.4,)" />
     </ItemGroup>
 
     <ItemGroup>
