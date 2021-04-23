@@ -35,7 +35,7 @@ namespace InfrastructureTests
             var files = new string[]
             {
                 string.Format(libPattern, $"{_projectName}.Main.dll"),
-                string.Format(libPattern, $"{_projectName}.xml"),
+                string.Format(libPattern, $"{_projectName}.Main.xml"),
                 string.Format(libPattern, $"{_projectName}.Common.dll"),
                 string.Format(libPattern, $"{_projectName}.Common.xml"),
                 string.Format(libPattern, $"{_projectName}.Interfaces.dll"),
