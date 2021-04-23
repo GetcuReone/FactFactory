@@ -7,6 +7,7 @@
 
         <!--If removed, the name of the package is duplicated and a conflict will arise.-->
         <AssemblyName>GetcuReone.$(MSBuildProjectName).Main</AssemblyName>
+        <DocumentationFile>GetcuReone.$(MSBuildProjectName).Main.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,6 +16,12 @@
         <ProjectReference Include="..\FactFactory.Entities\FactFactory.Entities.csproj" />
         <ProjectReference Include="..\FactFactory.Facades\FactFactory.Facades.csproj" />
         <ProjectReference Include="..\FactFactory.Interfaces\FactFactory.Interfaces.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="GetcuReone.$(MSBuildProjectName).Main.xml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>
