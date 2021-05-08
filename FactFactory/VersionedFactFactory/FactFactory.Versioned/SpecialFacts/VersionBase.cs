@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
@@ -51,6 +52,14 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         public override string ToString()
         {
             return $"Version <{VersionValue}>";
+        }
+
+        /// <inheritdoc/>
+        public override bool EqualsInfo(ISpecialFact specialFact)
+        {
+            return specialFact != null
+                && specialFact is IVersionFact versionedFact
+                && CompareTo(versionedFact) == 0;
         }
     }
 }

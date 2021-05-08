@@ -5,5 +5,11 @@
     /// </summary>
     public interface ISpecialFact : IFact
     {
+        /// <summary>
+        /// Comparison of information about a special fact.
+        /// </summary>
+        /// <param name="specialFact"></param>
+        /// <returns></returns>
+        bool EqualsInfo(ISpecialFact specialFact);
     }
 }

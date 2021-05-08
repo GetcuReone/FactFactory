@@ -7,5 +7,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
     /// </summary>
     public abstract class SpecialFactBase : FactBase, ISpecialFact
     {
+        /// <inheritdoc/>
+        public abstract bool EqualsInfo(ISpecialFact specialFact);
     }
 }
