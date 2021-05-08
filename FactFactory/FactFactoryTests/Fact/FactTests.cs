@@ -72,7 +72,7 @@ namespace FactFactoryTests.Fact
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetFactParametersTestCase()
         {
-            const string code1 = "factParamCode";
+            const string code1 = "factParamCode1";
             var obj1 = new object();
             const string code2 = "factParamCode2";
             var obj2 = new object();
@@ -89,11 +89,11 @@ namespace FactFactoryTests.Fact
                     errorMessage: "Different number of parameters expected.")
                 .AndAreEqual(parameters => parameters.First().Code, code1,
                     errorMessage: "Other parameter1 code expected")
-                .AndAreEqual(parameter => parameter.First().Value, obj1,
+                .AndAreEqual(parameters => parameters.First().Value, obj1,
                     errorMessage: "Other parameter1 value expected.")
-                .AndAreEqual(parameters => parameters.First().Code, code2,
+                .AndAreEqual(parameters => parameters.Skip(1).First().Code, code2,
                     errorMessage: "Other parameter2 code expected")
-                .AndAreEqual(parameter => parameter.First().Value, obj2,
+                .AndAreEqual(parameters => parameters.Skip(1).First().Value, obj2,
                     errorMessage: "Other parameter2 value expected.")
                 .Run();
         }
