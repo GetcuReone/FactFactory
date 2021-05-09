@@ -18,6 +18,7 @@
             - added getting ISingleEntityOperations.GetFactEqualityComparer to compare facts
             - added FactEqualityComparer to compare facts
             - container has become more versatile
+            - added FactContainerWriter
         </PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>

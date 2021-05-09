@@ -161,8 +161,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             var rule = node.Info.Rule;
 
             foreach (var condition in node.Info.SuccessConditions)
-                using (context.Container.GetWriter())
-                    context.Container.Add(condition);
+                using (var writer = context.Container.GetWriter())
+                    writer.Add(condition);
 
             var requiredFacts = GetRequireFacts(rule, context);
             if (!CanInvokeWork(requiredFacts, rule, context.Cache))
@@ -174,8 +174,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             fact.SetCalculateByRule();
 
             foreach (var condition in node.Info.SuccessConditions)
-                using (context.Container.GetWriter())
-                    context.Container.Remove(condition);
+                using (var writer = context.Container.GetWriter())
+                    writer.Remove(condition);
 
             return fact;
         }
@@ -189,8 +189,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             var rule = node.Info.Rule;
 
             foreach (var condition in node.Info.SuccessConditions)
-                using (context.Container.GetWriter())
-                    context.Container.Add(condition);
+                using (var writer = context.Container.GetWriter())
+                    writer.Add(condition);
 
             var requiredFacts = GetRequireFacts(rule, context);
             if (!CanInvokeWork(requiredFacts, rule, context.Cache))
@@ -202,8 +202,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             fact.SetCalculateByRule();
 
             foreach (var condition in node.Info.SuccessConditions)
-                using (context.Container.GetWriter())
-                    context.Container.Remove(condition);
+                using (var writer = context.Container.GetWriter())
+                    writer.Remove(condition);
 
             return fact;
         }
@@ -216,8 +216,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             var context = wantActionInfo.Context;
 
             foreach (var condition in wantActionInfo.SuccessConditions)
-                using (context.Container.GetWriter())
-                    context.Container.Add(condition);
+                using (var writer = context.Container.GetWriter())
+                    writer.Add(condition);
 
             var requiredFacts = GetRequireFacts(context.WantAction, context);
             if (!CanInvokeWork(requiredFacts, context.WantAction, context.Cache))
@@ -226,8 +226,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             context.WantAction.Invoke(requiredFacts);
 
             foreach (var condition in wantActionInfo.SuccessConditions)
-                using (context.Container.GetWriter())
-                    context.Container.Remove(condition);
+                using (var writer = context.Container.GetWriter())
+                    writer.Remove(condition);
         }
 
         /// <summary>
@@ -249,8 +249,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             var context = wantActionInfo.Context;
 
             foreach (var condition in wantActionInfo.SuccessConditions)
-                using (context.Container.GetWriter())
-                    context.Container.Add(condition);
+                using (var writer = context.Container.GetWriter())
+                    writer.Add(condition);
 
             var requiredFacts = GetRequireFacts(context.WantAction, context);
             if (!CanInvokeWork(requiredFacts, context.WantAction, context.Cache))
@@ -259,8 +259,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             await context.WantAction.InvokeAsync(requiredFacts).ConfigureAwait(false);
 
             foreach (var condition in wantActionInfo.SuccessConditions)
-                using (context.Container.GetWriter())
-                    context.Container.Remove(condition);
+                using (var writer = context.Container.GetWriter())
+                    writer.Remove(condition);
         }
 
         /// <summary>

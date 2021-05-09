@@ -156,8 +156,8 @@ namespace GetcuReone.FactFactory
                 foreach (var defaultFact in defaultFacts)
                 {
                     if (!context.Container.Contains(defaultFact))
-                        using (context.Container.GetWriter())
-                            context.Container.Add(defaultFact);
+                        using (var writer = context.Container.GetWriter())
+                            writer.Add(defaultFact);
                 }
             }
 

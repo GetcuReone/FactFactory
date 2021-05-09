@@ -565,16 +565,16 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         syncNodes.ForEach(node => 
                         {
                             var fact = context.SingleEntity.CalculateFact(node, context);
-                            using (context.Container.GetWriter())
-                                context.Container.Add(fact);
+                            using (var writer = context.Container.GetWriter())
+                                writer.Add(fact);
                         });
 
                     if (syncAndParallelNodes.Count != 0)
                         Parallel.ForEach(syncAndParallelNodes, node => 
                         {
                             var fact = context.SingleEntity.CalculateFact(node, context);
-                            using (context.Container.GetWriter())
-                                context.Container.Add(fact);
+                            using (var writer = context.Container.GetWriter())
+                                writer.Add(fact);
                         });
                 }
             }
@@ -628,24 +628,24 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         syncNodes.ForEach(node =>
                         {
                             var fact = context.SingleEntity.CalculateFact(node, context);
-                            using (context.Container.GetWriter())
-                                context.Container.Add(fact);
+                            using (var writer = context.Container.GetWriter())
+                                writer.Add(fact);
                         });
 
                     if (syncAndParallelNodes.Count != 0)
                         Parallel.ForEach(syncAndParallelNodes, node =>
                         {
                             var fact = context.SingleEntity.CalculateFact(node, context);
-                            using (context.Container.GetWriter())
-                                context.Container.Add(fact);
+                            using (var writer = context.Container.GetWriter())
+                                writer.Add(fact);
                         });
 
                     if (asyncNodes.Count != 0)
                         foreach(var node in asyncNodes)
                         {
                             var fact = await context.SingleEntity.CalculateFactAsync(node, context).ConfigureAwait(false);
-                            using (context.Container.GetWriter())
-                                context.Container.Add(fact);
+                            using (var writer = context.Container.GetWriter())
+                                writer.Add(fact);
                         }
 
                     if (asyncAndParallelNodes.Count != 0)
@@ -655,8 +655,8 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                             .WhenAll()
                             .ConfigureAwait(false);
                         foreach(var fact in facts)
-                            using (context.Container.GetWriter())
-                                context.Container.Add(fact);
+                            using (var writer = context.Container.GetWriter())
+                                writer.Add(fact);
                     }
                 }
             }

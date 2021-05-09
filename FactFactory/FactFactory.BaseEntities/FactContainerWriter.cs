@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace GetcuReone.FactFactory.BaseEntities
@@ -24,6 +25,46 @@ namespace GetcuReone.FactFactory.BaseEntities
             _previousValue = _container.IsReadOnly;
             if (_previousValue)
                 _container.IsReadOnly = false;
+        }
+
+        /// <summary>
+        /// Add fact.
+        /// </summary>
+        /// <param name="fact">Fact.</param>
+        /// <typeparam name="TFact">Type of fact to add.</typeparam>
+        public void Add<TFact>(TFact fact) 
+            where TFact : IFact
+        {
+            _container.Add(fact);
+        }
+
+        /// <summary>
+        /// Add facts.
+        /// </summary>
+        /// <param name="facts">Fact set.</param>
+        public void AddRange(IEnumerable<IFact> facts)
+        {
+            _container.AddRange(facts);
+        }
+
+        /// <summary>
+        /// Remove fact.
+        /// </summary>
+        /// <typeparam name="TFact">Type of fact to delete.</typeparam>
+        public void Remove<TFact>()
+            where TFact : IFact
+        {
+            _container.Remove<TFact>();
+        }
+
+        /// <summary>
+        /// Remove fact.
+        /// </summary>
+        /// <param name="fact"></param>
+        /// <typeparam name="TFact">Type of fact to delete.</typeparam>
+        public void Remove<TFact>(TFact fact) where TFact : IFact
+        {
+            _container.Remove(fact);
         }
 
         /// <inheritdoc/>
