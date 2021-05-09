@@ -14,7 +14,10 @@
         <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
             Changes:
-            - changed assembly name
+            - added getting ISingleEntityOperations.GetFactComparer to compare facts
+            - added getting ISingleEntityOperations.GetFactEqualityComparer to compare facts
+            - added FactEqualityComparer to compare facts
+            - container has become more versatile
         </PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>
