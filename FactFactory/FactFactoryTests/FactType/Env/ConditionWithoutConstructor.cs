@@ -39,12 +39,22 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
+        public bool EqualsInfo(ISpecialFact specialFact)
+        {
+            throw new NotImplementedException();
+        }
+
         public IFactType GetFactType()
         {
             throw new NotImplementedException();
         }
 
         public IFactParameter GetParameter(string parameterCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IReadOnlyCollection<IFactParameter> GetParameters()
         {
             throw new NotImplementedException();
         }

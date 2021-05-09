@@ -22,6 +22,14 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public bool IsReadOnly { get; set; }
 
+        /// <inheritdoc/>
+        /// <remarks>If the value is not specified, then <see cref="FactEqualityComparer.GetDefault"/> will be used.</remarks>
+        public IEqualityComparer<IFact> EqualityComparer { get; set; }
+
+        /// <inheritdoc/>
+        /// <remarks>If the value is not specified, then <see cref="CommonHelper.CompareTo(IFact, IFact)"/> will be used.</remarks>
+        public IComparer<IFact> Comparer { get; set; }
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -55,12 +63,17 @@ namespace GetcuReone.FactFactory.BaseEntities
             IsReadOnly = isReadOnly;
         }
 
-        private void InnerAdd<TFact>(TFact fact) where TFact : IFact
+        private IEqualityComparer<IFact> GetEqualityComparer()
+        {
+            return EqualityComparer ?? FactEqualityComparer.GetDefault();
+        }
+
+        private void InnerAdd<TFact>(TFact fact, IEqualityComparer<IFact> comparer) where TFact : IFact
         {
             IFactType factType = fact.GetFactType();
 
-            if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType)))
-                throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"The fact container already contains {factType.FactName} type of fact.");
+            if (ContainerList.Contains(fact, comparer))
+                throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The fact container already contains '{factType.FactName}' fact.");
 
             ContainerList.Add(fact);
         }
@@ -86,7 +99,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         public virtual void Add<TFact>(TFact fact) where TFact : IFact
         {
             CheckReadOnly();
-            InnerAdd(fact);
+            InnerAdd(fact, GetEqualityComparer());
         }
 
         /// <inheritdoc/>
@@ -95,8 +108,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             CheckReadOnly();
 
+            var comparer = GetEqualityComparer();
             foreach (IFact fact in facts)
-                InnerAdd(fact);
+                InnerAdd(fact, comparer);
         }
 
         /// <inheritdoc/>
@@ -109,7 +123,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         public virtual bool Contains<TFact>(TFact fact) where TFact : IFact
         {
             IFactType factType = fact.GetFactType();
-            return ContainerList.Exists(f => f.GetFactType().EqualsFactType(factType));
+            return ContainerList.Contains(fact, GetEqualityComparer());
         }
 
         /// <inheritdoc/>
@@ -149,7 +163,11 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public virtual bool TryGetFact<TFact>(out TFact fact) where TFact : IFact
         {
-            IFact innerFact = ContainerList.SingleOrDefault(item => item is TFact);
+            var destFactType = GetFactType<TFact>();
+            IFact innerFact = ContainerList
+                .Where(f => f.GetFactType().EqualsFactType(destFactType))
+                .OrderByDescending(f => f, Comparer ?? Comparer<IFact>.Create((x, y) => x.CompareTo(y)))
+                .FirstOrDefault();
 
             if (innerFact == null)
             {

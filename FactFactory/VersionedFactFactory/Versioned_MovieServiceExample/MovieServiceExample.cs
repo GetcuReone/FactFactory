@@ -30,7 +30,7 @@ namespace Versioned_MovieServiceExample
         /// The method returns instances of all versions used in the rules.
         /// </summary>
         /// <returns></returns>
-        private List<IVersionFact> GetAllVersion(IWantActionContext<WantAction, VersionedFactContainer> context)
+        private List<IVersionFact> GetAllVersion(IWantActionContext<WantAction, FactContainer> context)
         {
             return new List<IVersionFact>
             {
@@ -135,7 +135,7 @@ namespace Versioned_MovieServiceExample
             int movieId = 1;
 
             // Let's tell the factory what we know
-            var container = new VersionedFactContainer
+            var container = new FactContainer
             {
                 new UserEmailFact(email),
                 new MovieIdFact(movieId),
@@ -157,7 +157,7 @@ namespace Versioned_MovieServiceExample
             int movieId = 1;
 
             // Let's tell the factory what we know
-            var container = new VersionedFactContainer
+            var container = new FactContainer
             {
                 new UserEmailFact(email),
                 new MovieIdFact(movieId),
@@ -179,7 +179,7 @@ namespace Versioned_MovieServiceExample
             int movieId = 1;
 
             // Let's tell the factory what we know
-            var container = new VersionedFactContainer
+            var container = new FactContainer
             {
                 new UserEmailFact(email),
                 new MovieIdFact(movieId),

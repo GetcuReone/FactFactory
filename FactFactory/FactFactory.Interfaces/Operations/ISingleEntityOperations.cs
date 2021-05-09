@@ -160,5 +160,21 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         ValueTask DeriveWantFactsAsync<TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo)
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// Get <see cref="IEqualityComparer{T}"/> for <see cref="IFact"/>.
+        /// </summary>
+        /// <returns><see cref="IEqualityComparer{T}"/> for <see cref="IFact"/></returns>
+        IEqualityComparer<IFact> GetFactEqualityComparer<TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// Get <see cref="IComparer{T}"/> for <see cref="IFact"/>.
+        /// </summary>
+        /// <returns><see cref="IComparer{T}"/> for <see cref="IFact"/></returns>
+        IComparer<IFact> GetFactComparer<TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer;
     }
 }

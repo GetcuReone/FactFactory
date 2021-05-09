@@ -1,4 +1,5 @@
 ﻿using GetcuReone.ComboPatterns.Facade;
+using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
@@ -51,7 +52,13 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             if (container.Any(fact => fact is IConditionFact))
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, $"Container contains {nameof(IConditionFact)} facts.");
 
-            container.IsReadOnly = true;
+            IEqualityComparer<IFact> comparer = container.EqualityComparer ?? FactEqualityComparer.GetDefault();
+
+            foreach(var fact in container)
+            {
+                if (container.Count(f => comparer.Equals(f, fact)) != 1)
+                    throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, $"Using the IEqualityComparer<IFact>, the '{fact.GetFactType().FactName}' fact was not found in the container or was found multiple times.");
+            }
         }
 
         /// <inheritdoc/>
@@ -274,6 +281,24 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             }
 
             return true;
+        }
+
+        /// <inheritdoc/>
+        public IEqualityComparer<IFact> GetFactEqualityComparer<TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            return context?.Cache != null
+                ? new FactEqualityComparer(context.Cache)
+                : FactEqualityComparer.GetDefault();
+        }
+
+        /// <inheritdoc/>
+        public IComparer<IFact> GetFactComparer<TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            return Comparer<IFact>.Create(CompareFacts);
         }
     }
 }

@@ -38,35 +38,5 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 })
                 .Run();
         }
-
-        [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Remove a fact the first version.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void RemoveFactWithFirstVersionTestCase()
-        {
-            var version1 = new Version1();
-            var version2 = new Version2();
-
-            var factResult1 = new FactResult(0).SetVersionParam(version1);
-            var factResult2 = new FactResult(0).SetVersionParam(version2);
-            var factResultWithoutVersion = new FactResult(0);
-
-            GivenCreateContainer()
-                .And("Added versioned fact.", container =>
-                {
-                    container.Add(factResult1);
-                    container.Add(factResult2);
-                    container.Add(factResultWithoutVersion);
-                })
-                .When("Try get fact.", container => 
-                    container.RemoveByVersion<FactResult>(version1))
-                .Then("Check result.", container =>
-                {
-                    foreach (var fact in container)
-                        Assert.AreNotEqual(factResult1, fact, "Fact with first version not removed.");
-                })
-                .Run();
-        }
     }
 }

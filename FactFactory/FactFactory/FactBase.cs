@@ -1,6 +1,7 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace GetcuReone.FactFactory
@@ -32,6 +33,13 @@ namespace GetcuReone.FactFactory
         public virtual IFactParameter GetParameter(string parameterCode)
         {
             return _parameters?.FirstOrDefault(p => p.Code == parameterCode);
+        }
+
+        /// <inheritdoc/>
+        public IReadOnlyCollection<IFactParameter> GetParameters()
+        {
+            return _parameters?.ToReadOnlyCollection() 
+                ?? new ReadOnlyCollection<IFactParameter>(new List<IFactParameter>(0));
         }
     }
 

@@ -3,8 +3,8 @@ using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Versioned.BaseEntities
@@ -12,6 +12,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     /// <summary>
     /// Base class for versioned fact container.
     /// </summary>
+    [Obsolete("Use FactContainerBase. FactContainerBase class has become universal")]
     public abstract class VersionedFactContainerBase : FactContainerBase
     {
         /// <summary>
@@ -36,49 +37,6 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         /// <param name="isReadOnly"></param>
         protected VersionedFactContainerBase(IEnumerable<IFact> facts, bool isReadOnly) : base(facts, isReadOnly)
         {
-        }
-
-        private void InnerAdd<TFact>(TFact fact) where TFact : IFact
-        {
-            IFactType factType = fact.GetFactType();
-
-            if (fact is ISpecialFact)
-            {
-                if (ContainerList.Any(f => f.GetFactType().EqualsFactType(factType)))
-                    throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The fact container already contains {factType.FactName} type of fact.");
-            }
-            else
-            {
-                var factVersion = fact.GetVersionOrNull();
-                foreach (var f in ContainerList)
-                {
-                    if (f.GetFactType().EqualsFactType(factType) && f.HasVersion(factVersion))
-                    {
-                        if (factVersion != null)
-                            throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {factType.FactName} with version equal to version {factVersion.GetFactType().FactName}.");
-                        else
-                            throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The container already contains fact type {factType.FactName} withuot version.");
-                    }
-                }
-            }
-
-            ContainerList.Add(fact);
-        }
-
-        /// <inheritdoc/>
-        public override void Add<TFact>(TFact fact)
-        {
-            CheckReadOnly();
-            InnerAdd(fact);
-        }
-
-        /// <inheritdoc/>
-        public override void AddRange(IEnumerable<IFact> facts)
-        {
-            CheckReadOnly();
-
-            foreach (IFact fact in facts)
-                InnerAdd(fact);
         }
 
         /// <summary>
@@ -137,15 +95,6 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
         public override bool Contains<TFact>()
         {
             return ContainsByVersion<TFact>(null);
-        }
-
-        /// <inheritdoc/>
-        public override bool Contains<TFact>(TFact fact)
-        {
-            var factType = fact.GetFactType();
-            var version = fact.GetVersionOrNull();
-
-            return ContainerList.Exists(f => f.GetFactType().EqualsFactType(factType) && f.HasVersion(version));
         }
 
         /// <summary>
