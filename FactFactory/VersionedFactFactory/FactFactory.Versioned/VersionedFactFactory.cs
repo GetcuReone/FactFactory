@@ -11,9 +11,9 @@ namespace GetcuReone.FactFactory.Versioned
     /// <summary>
     /// Default implementation of versioned fact factory <see cref="VersionedFactFactoryBase{TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
     /// </summary>
-    public class VersionedFactFactory : VersionedFactFactoryBase<FactRule, FactRuleCollection, WantAction, VersionedFactContainer>
+    public class VersionedFactFactory : VersionedFactFactoryBase<FactRule, FactRuleCollection, WantAction, FactContainer>
     {
-        private readonly Func<IWantActionContext<WantAction, VersionedFactContainer>, IEnumerable<IFact>> _getDefaultFactsFunc;
+        private readonly Func<IWantActionContext<WantAction, FactContainer>, IEnumerable<IFact>> _getDefaultFactsFunc;
 
         /// <summary>
         /// Rule collection.
@@ -32,14 +32,14 @@ namespace GetcuReone.FactFactory.Versioned
         /// Constructor.
         /// </summary>
         /// <param name="getDefaultFactsFunc">Function that returns default facts.</param>
-        public VersionedFactFactory(Func<IWantActionContext<WantAction, VersionedFactContainer>, IEnumerable<IFact>> getDefaultFactsFunc)
+        public VersionedFactFactory(Func<IWantActionContext<WantAction, FactContainer>, IEnumerable<IFact>> getDefaultFactsFunc)
         {
             _getDefaultFactsFunc = getDefaultFactsFunc;
             Rules = new FactRuleCollection();
         }
 
         /// <inheritdoc/>
-        protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext<WantAction, VersionedFactContainer> context)
+        protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext<WantAction, FactContainer> context)
         {
             return _getDefaultFactsFunc?.Invoke(context) ?? base.GetDefaultFacts(context);
         }
@@ -57,9 +57,9 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <inheritdoc/>
-        protected override VersionedFactContainer GetDefaultContainer()
+        protected override FactContainer GetDefaultContainer()
         {
-            return new VersionedFactContainer();
+            return new FactContainer();
         }
     }
 }

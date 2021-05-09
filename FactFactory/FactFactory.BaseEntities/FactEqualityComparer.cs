@@ -113,5 +113,14 @@ namespace GetcuReone.FactFactory.BaseEntities
                 case IFact _: return 1;
             }
         }
+
+        /// <summary>
+        /// Get default.
+        /// </summary>
+        /// <returns></returns>
+        public static FactEqualityComparer GetDefault()
+        {
+            return new FactEqualityComparer(new FactTypeCache());
+        }
     }
 }

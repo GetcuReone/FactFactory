@@ -53,7 +53,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddTwoIdenticalVersionedFactsContainerTestCase()
         {
-            string expectedReason = $"The fact container already contains {typeof(Version1).Name} type of fact.";
+            string expectedReason = $"The fact container already contains '{typeof(Version1).Name}' fact.";
 
             GivenCreateContainer()
                 .And("first addition of versioned fact.", container => 
@@ -70,7 +70,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddTwoFactsWithIdenticalVersionsContainerTestCase()
         {
-            string expectedReason = $"The container already contains fact type {GetFactType<FactResult>().FactName} with version equal to version {GetFactType<Version1>().FactName}.";
+            string expectedReason = $"The fact container already contains '{GetFactType<FactResult>().FactName}' fact.";
 
             GivenCreateContainer()
                 .And("first addition of versioned fact.", container => 
