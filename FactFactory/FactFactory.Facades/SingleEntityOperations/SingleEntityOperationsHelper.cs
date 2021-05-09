@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Constants;
+﻿using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 
@@ -9,12 +10,6 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
     /// </summary>
     public static class SingleEntityOperationsHelper
     {
-        internal static IgnoreReadOnlySpace<TFactContainer> CreateIgnoreReadOnlySpace<TFactContainer>(this TFactContainer container)
-            where TFactContainer : IFactContainer
-        {
-            return new IgnoreReadOnlySpace<TFactContainer>(container);
-        }
-
         /// <summary>
         /// Set a parameter indicating that the fact was calculated using the rule.
         /// </summary>
@@ -25,6 +20,18 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         {
             fact.AddParameter(new FactParameter(FactParametersCodes.CalculateByRule, true));
             return fact;
+        }
+
+        /// <summary>
+        /// Get <see cref="FactContainerWriter{TFactContainer}"/> writer.
+        /// </summary>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public static FactContainerWriter<TFactContainer> GetWriter<TFactContainer>(this TFactContainer container)
+            where TFactContainer : IFactContainer
+        {
+            return new FactContainerWriter<TFactContainer>(container);
         }
     }
 }

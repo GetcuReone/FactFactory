@@ -2,15 +2,22 @@
 using System;
 using System.Threading;
 
-namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
+namespace GetcuReone.FactFactory.BaseEntities
 {
-    internal class IgnoreReadOnlySpace<TFactContainer> : IDisposable
+    /// <summary>
+    /// Writer to write facts in a container.
+    /// </summary>
+    public class FactContainerWriter<TFactContainer> : IDisposable
         where TFactContainer : IFactContainer
     {
         private readonly TFactContainer _container;
         private readonly bool _previousValue;
 
-        internal IgnoreReadOnlySpace(TFactContainer container)
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="container"></param>
+        public FactContainerWriter(TFactContainer container)
         {
             _container = container;
             Monitor.Enter(_container);
@@ -19,7 +26,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 _container.IsReadOnly = false;
         }
 
-        public void Dispose()
+        /// <inheritdoc/>
+        public virtual void Dispose()
         {
             if (_previousValue != _container.IsReadOnly)
                 _container.IsReadOnly = _previousValue;

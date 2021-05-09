@@ -151,7 +151,7 @@ namespace GetcuReone.FactFactory
                 foreach (var defaultFact in defaultFacts)
                 {
                     if (!context.Container.Contains(defaultFact))
-                        using (context.Container.CreateIgnoreReadOnlySpace())
+                        using (context.Container.GetWriter())
                             context.Container.Add(defaultFact);
                 }
             }

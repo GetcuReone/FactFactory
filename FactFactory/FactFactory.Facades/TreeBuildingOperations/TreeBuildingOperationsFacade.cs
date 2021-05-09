@@ -565,7 +565,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         syncNodes.ForEach(node => 
                         {
                             var fact = context.SingleEntity.CalculateFact(node, context);
-                            using (context.Container.CreateIgnoreReadOnlySpace())
+                            using (context.Container.GetWriter())
                                 context.Container.Add(fact);
                         });
 
@@ -573,7 +573,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         Parallel.ForEach(syncAndParallelNodes, node => 
                         {
                             var fact = context.SingleEntity.CalculateFact(node, context);
-                            using (context.Container.CreateIgnoreReadOnlySpace())
+                            using (context.Container.GetWriter())
                                 context.Container.Add(fact);
                         });
                 }
@@ -628,7 +628,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         syncNodes.ForEach(node =>
                         {
                             var fact = context.SingleEntity.CalculateFact(node, context);
-                            using (context.Container.CreateIgnoreReadOnlySpace())
+                            using (context.Container.GetWriter())
                                 context.Container.Add(fact);
                         });
 
@@ -636,7 +636,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         Parallel.ForEach(syncAndParallelNodes, node =>
                         {
                             var fact = context.SingleEntity.CalculateFact(node, context);
-                            using (context.Container.CreateIgnoreReadOnlySpace())
+                            using (context.Container.GetWriter())
                                 context.Container.Add(fact);
                         });
 
@@ -644,7 +644,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         foreach(var node in asyncNodes)
                         {
                             var fact = await context.SingleEntity.CalculateFactAsync(node, context).ConfigureAwait(false);
-                            using (context.Container.CreateIgnoreReadOnlySpace())
+                            using (context.Container.GetWriter())
                                 context.Container.Add(fact);
                         }
 
@@ -655,7 +655,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                             .WhenAll()
                             .ConfigureAwait(false);
                         foreach(var fact in facts)
-                            using (context.Container.CreateIgnoreReadOnlySpace())
+                            using (context.Container.GetWriter())
                                 context.Container.Add(fact);
                     }
                 }
