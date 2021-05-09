@@ -19,14 +19,19 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="cache">Fact type cache.</param>
         public FactEqualityComparer(IFactTypeCache cache)
         {
+            if (cache == null)
+                throw new ArgumentNullException(nameof(cache));
+
             _cache = cache;
         }
 
         /// <inheritdoc/>
         public override bool Equals(IFact x, IFact y)
         {
-            if (x == null & y == null)
-                return true;
+            if (x == null)
+                return y == null;
+            else if (y == null)
+                return false;
 
             if (x is ISpecialFact xSpecialFact && y is ISpecialFact ySpecialFact)
                 return xSpecialFact.EqualsInfo(ySpecialFact);
