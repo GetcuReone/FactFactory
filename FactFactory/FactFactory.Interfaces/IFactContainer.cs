@@ -13,6 +13,16 @@ namespace GetcuReone.FactFactory.Interfaces
         bool IsReadOnly { get; set; }
 
         /// <summary>
+        /// <see cref="IEqualityComparer{T}"/> for <see cref="IFact"/>.
+        /// </summary>
+        IEqualityComparer<IFact> EqualityComparer { get; set; }
+
+        /// <summary>
+        /// <see cref="IComparer{T}"/> for <see cref="IFact"/>.
+        /// </summary>
+        IComparer<IFact> Comparer { get; set; }
+
+        /// <summary>
         /// Add fact.
         /// </summary>
         /// <param name="fact">Fact.</param>

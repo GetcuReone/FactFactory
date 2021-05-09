@@ -17,6 +17,12 @@ namespace GetcuReone.FactFactory.SpecialFacts
             where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
+
+        /// <inheritdoc/>
+        public override bool EqualsInfo(ISpecialFact specialFact)
+        {
+            return false;
+        }
     }
 
     /// <inheritdoc/>

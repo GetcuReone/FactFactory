@@ -134,7 +134,6 @@ namespace GetcuReone.FactFactory
 
         private IWantActionContext<TWantAction, TFactContainer> GetWantActionContext(WantFactsInfo<TWantAction, TFactContainer> wantFactsInfo, ITreeBuildingOperations treeBuilding, ISingleEntityOperations singleEntity, IFactTypeCache cache)
         {
-            singleEntity.ValidateContainer(wantFactsInfo.Container);
             var context = new WantActionContext<TWantAction, TFactContainer>
             {
                 Cache = cache,
@@ -143,6 +142,12 @@ namespace GetcuReone.FactFactory
                 TreeBuilding = treeBuilding,
                 WantAction = wantFactsInfo.WantAction,
             };
+            if (context.Container.EqualityComparer == null)
+                context.Container.EqualityComparer = context.SingleEntity.GetFactEqualityComparer(context);
+            if (context.Container.Comparer == null)
+                context.Container.Comparer = context.SingleEntity.GetFactComparer(context);
+            context.Container.IsReadOnly = true;
+            singleEntity.ValidateContainer(wantFactsInfo.Container);
 
             var defaultFacts = GetDefaultFacts(context);
 

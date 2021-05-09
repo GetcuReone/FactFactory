@@ -1,6 +1,8 @@
 ﻿using FactFactory.Priority.Interfaces;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using GetcuReone.FactFactory.SpecialFacts;
 
 namespace GetcuReone.FactFactory.Priority.SpecialFacts
 {
@@ -8,7 +10,7 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
     /// Base class for <see cref="IPriorityFact"/>.
     /// </summary>
     /// <typeparam name="TPriorityValue">Priority value type.</typeparam>
-    public abstract class PriorityBase<TPriorityValue> : FactBase, IPriorityFact
+    public abstract class PriorityBase<TPriorityValue> : SpecialFactBase, IPriorityFact
     {
         /// <summary>
         /// Priority value.
@@ -43,6 +45,14 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
         public static implicit operator TPriorityValue(PriorityBase<TPriorityValue> fact)
         {
             return fact.PriorityValue;
+        }
+
+        /// <inheritdoc/>
+        public override bool EqualsInfo(ISpecialFact specialFact)
+        {
+            return specialFact != null
+                && specialFact is IPriorityFact priorityFact
+                && CompareTo(priorityFact) == 0;
         }
     }
 }
