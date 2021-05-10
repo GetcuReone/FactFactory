@@ -25,5 +25,24 @@ namespace GetcuReone.FactFactoryTests.Fact
                 .ThenIsNotNull()
                 .Run();
         }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Add two parameters with the same code.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void AddTwoParametersWithSameCodeTestCase()
+        {
+            const string code = "FactParamCode";
+            const string expectedMessage = "FactParameter with FactParamCode code already contained.";
+
+            Given("Create fact.", () => new DateTimeFact(default))
+                .And("Add parameter.", fact => 
+                    fact.AddParameter(new FactParameter(code, new object())))
+                .When("Add parameter.", fact =>
+                    ExpectedException<ArgumentException>(() => fact.AddParameter(new FactParameter(code, new object()))))
+                .ThenIsNotNull()
+                .AndAreEqual(error => error.Message, expectedMessage)
+                .Run();
+        }
     }
 }

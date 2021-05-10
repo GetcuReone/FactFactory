@@ -25,6 +25,8 @@ namespace GetcuReone.FactFactory
         {
             if (_parameters == null)
                 _parameters = new List<IFactParameter>();
+            else if (_parameters.Exists(param => param.Code.Equals(parameter.Code, StringComparison.Ordinal)))
+                throw new ArgumentException($"FactParameter with {parameter.Code} code already contained.");
 
             _parameters.Add(parameter);
         }
@@ -32,7 +34,7 @@ namespace GetcuReone.FactFactory
         /// <inheritdoc/>
         public virtual IFactParameter GetParameter(string parameterCode)
         {
-            return _parameters?.FirstOrDefault(p => p.Code == parameterCode);
+            return _parameters?.FirstOrDefault(p => p.Code.Equals(parameterCode, StringComparison.Ordinal));
         }
 
         /// <inheritdoc/>
