@@ -1,14 +1,13 @@
-﻿using System;
-using System.Linq;
-using FactFactory.TestsCommon;
+﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
-using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
 
 namespace FactFactoryTests.Fact
 {
