@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
+using System;
 
 namespace GetcuReone.FactFactory.BaseEntities
 {
@@ -14,6 +15,8 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="value"></param>
         protected FactParameterBase(string code, object value)
         {
+            if (string.IsNullOrEmpty(code))
+                throw new ArgumentNullException(nameof(code), "Code is null or empty.");
             Code = code;
             Value = value;
         }
