@@ -6,6 +6,7 @@ using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -284,21 +285,81 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public IEqualityComparer<IFact> GetFactEqualityComparer<TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
+        public virtual IEqualityComparer<IFact> GetFactEqualityComparer<TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
-            return context?.Cache != null
-                ? new FactEqualityComparer(context.Cache)
-                : FactEqualityComparer.GetDefault();
+            return new FactEqualityComparer((first, second) => EqualsFacts(first, second, context));
         }
 
         /// <inheritdoc/>
-        public IComparer<IFact> GetFactComparer<TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
+        public virtual IComparer<IFact> GetFactComparer<TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
             return Comparer<IFact>.Create(CompareFacts);
+        }
+
+        /// <summary>
+        /// Checking the equality of facts.
+        /// </summary>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public virtual bool EqualsFacts<TWantAction, TFactContainer>(IFact first, IFact second, IWantActionContext<TWantAction, TFactContainer> context)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            if (!FactEqualityComparer.EqualsFacts(first, second, cache: context.Cache, includeFactParams: false))
+                return false;
+
+            IReadOnlyCollection<IFactParameter> firstParameters = first.GetParameters();
+            IReadOnlyCollection<IFactParameter> secondParameters = second.GetParameters();
+
+            if (firstParameters.IsNullOrEmpty() && secondParameters.IsNullOrEmpty())
+                return true;
+            if (firstParameters.IsNullOrEmpty() || secondParameters.IsNullOrEmpty())
+                return false;
+            if (firstParameters.Count != secondParameters.Count)
+                return false;
+
+            foreach (IFactParameter xParameter in firstParameters)
+            {
+                bool found = false;
+
+                foreach (IFactParameter yParameter in secondParameters)
+                {
+                    if (EqualsFactParameters(xParameter, yParameter, context))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                    return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Checking the equality of fact parameters.
+        /// </summary>
+        /// <typeparam name="TWantAction"></typeparam>
+        /// <typeparam name="TFactContainer"></typeparam>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public virtual bool EqualsFactParameters<TWantAction, TFactContainer>(IFactParameter first, IFactParameter second, IWantActionContext<TWantAction, TFactContainer> context)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            return FactEqualityComparer.EqualsFactParameters(first, second);
         }
     }
 }

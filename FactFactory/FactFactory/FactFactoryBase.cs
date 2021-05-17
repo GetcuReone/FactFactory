@@ -142,10 +142,8 @@ namespace GetcuReone.FactFactory
                 TreeBuilding = treeBuilding,
                 WantAction = wantFactsInfo.WantAction,
             };
-            if (context.Container.EqualityComparer == null)
-                context.Container.EqualityComparer = context.SingleEntity.GetFactEqualityComparer(context);
-            if (context.Container.Comparer == null)
-                context.Container.Comparer = context.SingleEntity.GetFactComparer(context);
+            context.Container.EqualityComparer = context.SingleEntity.GetFactEqualityComparer(context);
+            context.Container.Comparer = context.SingleEntity.GetFactComparer(context);
             context.Container.IsReadOnly = true;
             singleEntity.ValidateContainer(wantFactsInfo.Container);
 
