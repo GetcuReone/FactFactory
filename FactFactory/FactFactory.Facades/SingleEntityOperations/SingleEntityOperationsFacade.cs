@@ -313,6 +313,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
+            if (first == null && second == null)
+                return true;
             if (!FactEqualityComparer.EqualsFacts(first, second, cache: context.Cache, includeFactParams: false))
                 return false;
 
