@@ -1,5 +1,4 @@
 ﻿using FactFactory.TestsCommon;
-using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.GwtTestFramework.Entities;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,9 +11,7 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
     {
         protected GivenBlock<F_EqualityComparer, F_EqualityComparer> GivenCreateComparer()
         {
-            return Given("Create cache.", () => new FactTypeCache())
-                .AndIsNotNull()
-                .And("Create FactEqualityComparer.", cache => new F_EqualityComparer(cache))
+            return Given("Create cache.", () => F_EqualityComparer.GetDefault())
                 .AndIsNotNull();
         }
     }
