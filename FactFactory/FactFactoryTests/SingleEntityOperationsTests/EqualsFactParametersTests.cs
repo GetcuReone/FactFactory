@@ -1,17 +1,18 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
+using FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.FactFactoryTests.CommonFacts;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using F_EqualityComparer = GetcuReone.FactFactory.BaseEntities.FactEqualityComparer;
 
-namespace GetcuReone.FactFactoryTests.FactEqualityComparer
+namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
 {
     [TestClass]
-    public sealed class EqualsFactParameterTests : FactEqualityComparerTestBase
+    public sealed class EqualsFactParametersTests : SingleEntityOperationsTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
@@ -19,9 +20,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void EmptyFactParametersTestCase()
         {
-            GivenCreateComparer()
-                .When("Run EqualsFactParameters.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(null, null))
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(null, null, context))
                 .ThenIsTrue()
                 .Run();
         }
@@ -33,10 +36,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
         public void FirstParameterIsNullTestCase()
         {
             const string factParamCode = "factParamCode";
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
-            GivenCreateComparer()
-                .When("Run EqualsFactParameters.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(new FactParameter(factParamCode, null), null))
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(new FactParameter(factParamCode, null), null, context))
                 .ThenIsFalse()
                 .Run();
         }
@@ -48,10 +52,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
         public void SecondParameterIsNullTestCase()
         {
             const string factParamCode = "factParamCode";
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
-            GivenCreateComparer()
-                .When("Run EqualsFactParameters.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(null, new FactParameter(factParamCode, null)))
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(null, new FactParameter(factParamCode, null), context))
                 .ThenIsFalse()
                 .Run();
         }
@@ -65,10 +70,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, null);
             var secondParam = new FactParameter(factParamCode, null);
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
-            GivenCreateComparer()
-                .When("Run EqualsFactParameters.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(firstParam, secondParam))
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(firstParam, secondParam, context))
                 .ThenIsTrue()
                 .Run();
         }
@@ -82,10 +88,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, null);
             var secondParam = new FactParameter(factParamCode, new object());
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
-            GivenCreateComparer()
-                .When("Create object.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(firstParam, secondParam))
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(firstParam, secondParam, context))
                 .ThenIsFalse()
                 .Run();
         }
@@ -99,10 +106,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new object());
             var secondParam = new FactParameter(factParamCode, null);
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
-            GivenCreateComparer()
-                .When("Run EqualsFactParameters.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(firstParam, secondParam))
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(firstParam, secondParam, context))
                 .ThenIsFalse()
                 .Run();
         }
@@ -116,10 +124,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new object());
             var secondParam = new FactParameter(factParamCode, new object());
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
-            GivenCreateComparer()
-                .When("Run EqualsFactParameters.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(firstParam, secondParam))
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(firstParam, secondParam, context))
                 .ThenIsFalse()
                 .Run();
         }
@@ -133,10 +142,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new object());
             var secondParam = new FactParameter(factParamCode, firstParam.Value);
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
-            GivenCreateComparer()
-                .When("Run EqualsFactParameters.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(firstParam, secondParam))
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(firstParam, secondParam, context))
                 .ThenIsTrue()
                 .Run();
         }
@@ -150,10 +160,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new SpecialFact1());
             var secondParam = new FactParameter(factParamCode, new SpecialFact2());
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
-            GivenCreateComparer()
-                .When("Run EqualsFactParameters.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(firstParam, secondParam))
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(firstParam, secondParam, context))
                 .ThenIsFalse()
                 .Run();
         }
@@ -167,10 +178,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new SpecialFact());
             var secondParam = new FactParameter(factParamCode, new SpecialFact());
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
-            GivenCreateComparer()
-                .When("Run EqualsFactParameters.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(firstParam, secondParam))
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(firstParam, secondParam, context))
                 .ThenIsTrue()
                 .Run();
         }
@@ -184,10 +196,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new Contained<IntFact>());
             var secondParam = new FactParameter(factParamCode, new Contained<OtherFact>());
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
-            GivenCreateComparer()
-                .When("Run EqualsFactParameters.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(firstParam, secondParam))
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(firstParam, secondParam, context))
                 .ThenIsFalse()
                 .Run();
         }
@@ -201,10 +214,11 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new Contained<IntFact>());
             var secondParam = new FactParameter(factParamCode, new Contained<IntFact>());
+            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
-            GivenCreateComparer()
-                .When("Run EqualsFactParameters.", _ =>
-                    F_EqualityComparer.EqualsFactParameters(firstParam, secondParam))
+            GivenCreateFacade()
+                .When("Run EqualsFactParameters.", facade =>
+                    facade.EqualsFactParameters(firstParam, secondParam, context))
                 .ThenIsFalse()
                 .Run();
         }
