@@ -15,7 +15,7 @@ namespace FactFactory.VersionedTests
         public static ThenBlock<TFactWork, IFactType> ThenGetVersionType<TInput, TFactWork>(this WhenBlock<TInput, TFactWork> whenBlock)
             where TFactWork : IFactWork
         {
-            return whenBlock.ThenIsNotNull().And("Get type of version.", work => work.InputFactTypes?.GetVersionFactType());
+            return whenBlock.ThenIsNotNull().And("Get type of version.", work => work.InputFactTypes?.FirstVersionFactType());
         }
 
         public static ThenBlock<TFactWork, TFactWork> ThenNotContainVersionType<TInput, TFactWork>(this WhenBlock<TInput, TFactWork> whenBlock)
@@ -23,7 +23,7 @@ namespace FactFactory.VersionedTests
         {
             return whenBlock
                 .ThenIsNotNull()
-                .And("Get type of version.", work => Assert.IsNull(work.InputFactTypes?.GetVersionFactType()));
+                .And("Get type of version.", work => Assert.IsNull(work.InputFactTypes?.FirstVersionFactType()));
         }
 
         public static TFact SetVersionParam<TFact>(this TFact fact, IVersionFact version)

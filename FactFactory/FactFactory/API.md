@@ -95,7 +95,13 @@ GetcuReone.FactFactory.SpecialFacts
 
 ##### Summary
 
-*Inherit from parent.*
+A fact condition that tests whether a tree can be built for the `TFact` fact.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact | The type of fact for which the condition is met. |
 
 <a name='M-GetcuReone-FactFactory-SpecialFacts-CanDerived`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
 ### Condition\`\`4() `method`
@@ -103,6 +109,10 @@ GetcuReone.FactFactory.SpecialFacts
 ##### Summary
 
 *Inherit from parent.*
+
+##### Summary
+
+Checks if a tree can be built for the fact.
 
 ##### Parameters
 
@@ -117,7 +127,13 @@ GetcuReone.FactFactory.SpecialFacts
 
 ##### Summary
 
-*Inherit from parent.*
+A fact condition that tests whether a tree cannot be built for the `TFact` fact.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact | The type of fact for which the condition is met. |
 
 <a name='M-GetcuReone-FactFactory-SpecialFacts-CannotDerived`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
 ### Condition\`\`4() `method`
@@ -125,6 +141,10 @@ GetcuReone.FactFactory.SpecialFacts
 ##### Summary
 
 *Inherit from parent.*
+
+##### Summary
+
+Checks if a tree cannot be built for the `TFact` fact.
 
 ##### Parameters
 
@@ -194,7 +214,13 @@ GetcuReone.FactFactory.SpecialFacts
 
 ##### Summary
 
-*Inherit from parent.*
+Fact condition. Checks if a `TFact` fact can be retrieved from a container.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact | The type of fact for which the condition is met. |
 
 <a name='M-GetcuReone-FactFactory-SpecialFacts-Contained`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
 ### Condition\`\`4() `method`
@@ -202,6 +228,10 @@ GetcuReone.FactFactory.SpecialFacts
 ##### Summary
 
 *Inherit from parent.*
+
+##### Summary
+
+Checks if a `TFact` fact can be retrieved from a container.
 
 ##### Parameters
 
@@ -304,13 +334,13 @@ Value fact.
 
 ##### Summary
 
-Extract [Value](#P-GetcuReone-FactFactory-FactBase`1-Value 'GetcuReone.FactFactory.FactBase`1.Value').
+Extracts [Value](#P-GetcuReone-FactFactory-FactBase`1-Value 'GetcuReone.FactFactory.FactBase`1.Value').
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| fact | [GetcuReone.FactFactory.FactBase{\`0})~\`0](#T-GetcuReone-FactFactory-FactBase{`0}-~`0 'GetcuReone.FactFactory.FactBase{`0})~`0') |  |
+| fact | [GetcuReone.FactFactory.FactBase{\`0})~\`0](#T-GetcuReone-FactFactory-FactBase{`0}-~`0 'GetcuReone.FactFactory.FactBase{`0})~`0') | Fact. |
 
 <a name='T-GetcuReone-FactFactory-FactFactory'></a>
 ## FactFactory `type`
@@ -352,7 +382,7 @@ Constructor.
 
 ##### Summary
 
-Collection of rules for derive facts
+*Inherit from parent.*
 
 <a name='M-GetcuReone-FactFactory-FactFactory-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### CreateWantAction() `method`
@@ -428,11 +458,11 @@ WantFacts.
 
 ##### Summary
 
-Creation method `TWantAction`.
+Creates `TWantAction`.
 
 ##### Returns
 
-
+WantAction.
 
 ##### Parameters
 
@@ -447,11 +477,11 @@ Creation method `TWantAction`.
 
 ##### Summary
 
-Creation method `TWantAction`.
+Creates `TWantAction`.
 
 ##### Returns
 
-
+WantAction.
 
 ##### Parameters
 
@@ -492,13 +522,13 @@ Derive `TFactResult`.
 
 ##### Returns
 
-
+Fact `TFactResult`.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| container | [\`3](#T-`3 '`3') |  |
+| container | [\`3](#T-`3 '`3') | Fact container. |
 
 ##### Generic Types
 
@@ -534,11 +564,11 @@ Derive `TFactResult`.
 
 ##### Summary
 
-Get default container.
+Returns default container.
 
 ##### Returns
 
-
+Default container.
 
 ##### Parameters
 
@@ -549,11 +579,11 @@ This method has no parameters.
 
 ##### Summary
 
-Return the fact set that will be contained in the default container.
+Returns the fact set that will be contained in the default container.
 
 ##### Returns
 
-
+The set of facts added to the default container
 
 ##### Parameters
 
@@ -588,7 +618,11 @@ This method has no parameters.
 
 ##### Summary
 
-*Inherit from parent.*
+Returns [FactTypeCache](#T-GetcuReone-FactFactory-BaseEntities-FactTypeCache 'GetcuReone.FactFactory.BaseEntities.FactTypeCache').
+
+##### Returns
+
+Instanse [FactTypeCache](#T-GetcuReone-FactFactory-BaseEntities-FactTypeCache 'GetcuReone.FactFactory.BaseEntities.FactTypeCache').
 
 ##### Parameters
 
@@ -599,7 +633,11 @@ This method has no parameters.
 
 ##### Summary
 
-*Inherit from parent.*
+Returns [SingleEntityOperationsFacade](#T-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade').
+
+##### Returns
+
+Instanse [SingleEntityOperationsFacade](#T-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade').
 
 ##### Parameters
 
@@ -610,7 +648,11 @@ This method has no parameters.
 
 ##### Summary
 
-*Inherit from parent.*
+Returns [TreeBuildingOperationsFacade](#T-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade').
+
+##### Returns
+
+Instanse [TreeBuildingOperationsFacade](#T-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade').
 
 ##### Parameters
 
@@ -1568,7 +1610,13 @@ GetcuReone.FactFactory.SpecialFacts
 
 ##### Summary
 
-*Inherit from parent.*
+Fact condition. Checks if a `TFact` fact cannot be retrieved from a container.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact | The type of fact for which the condition is met. |
 
 <a name='M-GetcuReone-FactFactory-SpecialFacts-NotContained`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
 ### Condition\`\`4() `method`
@@ -1576,6 +1624,10 @@ GetcuReone.FactFactory.SpecialFacts
 ##### Summary
 
 *Inherit from parent.*
+
+##### Summary
+
+Checks if a `TFact` fact cannot be retrieved from a container.
 
 ##### Parameters
 

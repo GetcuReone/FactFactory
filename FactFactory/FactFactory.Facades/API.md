@@ -567,7 +567,7 @@ GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
 ##### Summary
 
-Get nodes by rules.
+Returns nodes by rules.
 
 ##### Returns
 

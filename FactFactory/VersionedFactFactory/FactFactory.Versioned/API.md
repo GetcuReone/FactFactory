@@ -4,10 +4,10 @@
 ## Contents
 
 - [DateTimeVersionBase](#T-GetcuReone-FactFactory-Versioned-SpecialFacts-DateTimeVersionBase 'GetcuReone.FactFactory.Versioned.SpecialFacts.DateTimeVersionBase')
-  - [#ctor(version)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-DateTimeVersionBase-#ctor-System-DateTime- 'GetcuReone.FactFactory.Versioned.SpecialFacts.DateTimeVersionBase.#ctor(System.DateTime)')
+  - [#ctor()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-DateTimeVersionBase-#ctor-System-DateTime- 'GetcuReone.FactFactory.Versioned.SpecialFacts.DateTimeVersionBase.#ctor(System.DateTime)')
   - [CompareTo()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-DateTimeVersionBase-CompareTo-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.SpecialFacts.DateTimeVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
 - [IntVersionBase](#T-GetcuReone-FactFactory-Versioned-SpecialFacts-IntVersionBase 'GetcuReone.FactFactory.Versioned.SpecialFacts.IntVersionBase')
-  - [#ctor(version)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-IntVersionBase-#ctor-System-Int32- 'GetcuReone.FactFactory.Versioned.SpecialFacts.IntVersionBase.#ctor(System.Int32)')
+  - [#ctor()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-IntVersionBase-#ctor-System-Int32- 'GetcuReone.FactFactory.Versioned.SpecialFacts.IntVersionBase.#ctor(System.Int32)')
   - [CompareTo()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-IntVersionBase-CompareTo-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.SpecialFacts.IntVersionBase.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
 - [LongVersionBase](#T-GetcuReone-FactFactory-Versioned-SpecialFacts-LongVersionBase 'GetcuReone.FactFactory.Versioned.SpecialFacts.LongVersionBase')
   - [#ctor(version)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-LongVersionBase-#ctor-System-Int64- 'GetcuReone.FactFactory.Versioned.SpecialFacts.LongVersionBase.#ctor(System.Int64)')
@@ -24,7 +24,7 @@
 - [VersionBase\`1](#T-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1')
   - [#ctor(version)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-#ctor-`0- 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.#ctor(`0)')
   - [VersionValue](#P-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-VersionValue 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.VersionValue')
-  - [CompareTo()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-CompareTo-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
+  - [CompareTo(other)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-CompareTo-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
   - [CreateIncompatibilityVersionException(versionedFact)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-CreateIncompatibilityVersionException-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.CreateIncompatibilityVersionException(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
   - [EqualsInfo()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
   - [op_Implicit(fact)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-op_Implicit-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase{`0}-~`0 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.op_Implicit(GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase{`0})~`0')
@@ -54,17 +54,15 @@ GetcuReone.FactFactory.Versioned.SpecialFacts
 Base class for [DateTime](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.DateTime 'System.DateTime') based version facts.
 
 <a name='M-GetcuReone-FactFactory-Versioned-SpecialFacts-DateTimeVersionBase-#ctor-System-DateTime-'></a>
-### #ctor(version) `constructor`
+### #ctor() `constructor`
 
 ##### Summary
 
-Constructor.
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| version | [System.DateTime](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.DateTime 'System.DateTime') | version |
+This constructor has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Versioned-SpecialFacts-DateTimeVersionBase-CompareTo-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact-'></a>
 ### CompareTo() `method`
@@ -89,17 +87,15 @@ GetcuReone.FactFactory.Versioned.SpecialFacts
 Base class for [Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') based version facts.
 
 <a name='M-GetcuReone-FactFactory-Versioned-SpecialFacts-IntVersionBase-#ctor-System-Int32-'></a>
-### #ctor(version) `constructor`
+### #ctor() `constructor`
 
 ##### Summary
 
-Constructor.
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| version | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | version |
+This constructor has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Versioned-SpecialFacts-IntVersionBase-CompareTo-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact-'></a>
 ### CompareTo() `method`
@@ -272,7 +268,7 @@ Constructor.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| version | [\`0](#T-`0 '`0') | version |
+| version | [\`0](#T-`0 '`0') | Value version. |
 
 <a name='P-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-VersionValue'></a>
 ### VersionValue `property`
@@ -282,15 +278,21 @@ Constructor.
 Value version.
 
 <a name='M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-CompareTo-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact-'></a>
-### CompareTo() `method`
+### CompareTo(other) `method`
 
 ##### Summary
 
-*Inherit from parent.*
+Compares the version fact to the `other`.
+
+##### Returns
+
+1 - more, 0 - equal, -1 less.
 
 ##### Parameters
 
-This method has no parameters.
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| other | [GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact](#T-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact 'GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact') | Version fact for comparison |
 
 <a name='M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-CreateIncompatibilityVersionException-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact-'></a>
 ### CreateIncompatibilityVersionException(versionedFact) `method`
@@ -325,13 +327,13 @@ This method has no parameters.
 
 ##### Summary
 
-Extract [VersionValue](#P-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-VersionValue 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.VersionValue').
+Extracts [VersionValue](#P-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-VersionValue 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.VersionValue').
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| fact | [GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase{\`0})~\`0](#T-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase{`0}-~`0 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase{`0})~`0') |  |
+| fact | [GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase{\`0})~\`0](#T-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase{`0}-~`0 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase{`0})~`0') | Version value. |
 
 <a name='M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-ToString'></a>
 ### ToString() `method`
@@ -384,7 +386,7 @@ Constructor.
 
 ##### Summary
 
-Rule collection.
+*Inherit from parent.*
 
 <a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### CreateWantAction() `method`
@@ -490,7 +492,11 @@ This method has no parameters.
 
 ##### Summary
 
-*Inherit from parent.*
+Returns the [VersionedSingleEntityOperationsFacade](#T-GetcuReone-FactFactory-Versioned-Facades-SingleEntityOperations-VersionedSingleEntityOperationsFacade 'GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade').
+
+##### Returns
+
+Instance [VersionedSingleEntityOperationsFacade](#T-GetcuReone-FactFactory-Versioned-Facades-SingleEntityOperations-VersionedSingleEntityOperationsFacade 'GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations.VersionedSingleEntityOperationsFacade').
 
 ##### Parameters
 

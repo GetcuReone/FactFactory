@@ -104,13 +104,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         protected abstract TFactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option);
 
         /// <summary>
-        /// Creation method <typeparamref name="TFactRule"/>.
+        /// Creates <typeparamref name="TFactRule"/>.
         /// </summary>
         /// <param name="func">func for calculate.</param>
         /// <param name="inputFactTypes">information on input factacles rules.</param>
         /// <param name="outputFactType">information on output fact.</param>
         /// <param name="option">Options for a rule.</param>
-        /// <returns></returns>
+        /// <returns>Fact rule.</returns>
         protected abstract TFactRule CreateFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option);
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add rule.
+        /// Adds rule.
         /// </summary>
         /// <param name="item"></param>
         public void Add(TFactRule item)
@@ -159,7 +159,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule without input facts.
+        /// Adds a rule without input facts.
         /// </summary>
         /// <typeparam name="TFactOut">Type of fact result.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
@@ -174,7 +174,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 1 input facts.
+        /// Adds a rule with 1 input facts.
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
@@ -193,7 +193,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 2 input facts.
+        /// Adds a rule with 2 input facts.
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -214,7 +214,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 3 input facts.
+        /// Adds a rule with 3 input facts.
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -237,7 +237,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 4 input facts.
+        /// Adds a rule with 4 input facts.
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -262,7 +262,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 5 input facts.
+        /// Adds a rule with 5 input facts.
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -289,7 +289,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 6 input facts
+        /// Adds a rule with 6 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -318,7 +318,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 7 input facts
+        /// Adds a rule with 7 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -349,7 +349,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 8 input facts
+        /// Adds a rule with 8 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -382,7 +382,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 9 input facts
+        /// Adds a rule with 9 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -417,7 +417,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 10 input facts
+        /// Adds a rule with 10 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -454,7 +454,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 11 input facts
+        /// Adds a rule with 11 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -493,7 +493,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 12 input facts
+        /// Adds a rule with 12 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -534,7 +534,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 13 input facts
+        /// Adds a rule with 13 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -577,7 +577,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 14 input facts
+        /// Adds a rule with 14 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -622,7 +622,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 15 input facts
+        /// Adds a rule with 15 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -669,7 +669,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 16 input facts
+        /// Adds a rule with 16 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -718,7 +718,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule without input facts.
+        /// Adds a rule without input facts.
         /// </summary>
         /// <typeparam name="TFactOut">Type of fact result.</typeparam>
         /// <param name="rule">Rule of fact calculation.</param>
@@ -734,7 +734,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 1 input facts.
+        /// Adds a rule with 1 input facts.
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactOut">Type output fact.</typeparam>
@@ -753,7 +753,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 2 input facts.
+        /// Adds a rule with 2 input facts.
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -774,7 +774,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 3 input facts.
+        /// Adds a rule with 3 input facts.
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -797,7 +797,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 4 input facts.
+        /// Adds a rule with 4 input facts.
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -822,7 +822,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 5 input facts.
+        /// Adds a rule with 5 input facts.
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -849,7 +849,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 6 input facts
+        /// Adds a rule with 6 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -878,7 +878,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 7 input facts
+        /// Adds a rule with 7 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -909,7 +909,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 8 input facts
+        /// Adds a rule with 8 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -942,7 +942,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 9 input facts
+        /// Adds a rule with 9 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -977,7 +977,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 10 input facts
+        /// Adds a rule with 10 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -1014,7 +1014,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 11 input facts
+        /// Adds a rule with 11 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -1053,7 +1053,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 12 input facts
+        /// Adds a rule with 12 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -1094,7 +1094,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 13 input facts
+        /// Adds a rule with 13 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -1137,7 +1137,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 14 input facts
+        /// Adds a rule with 14 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -1182,7 +1182,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 15 input facts
+        /// Adds a rule with 15 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -1229,7 +1229,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add a rule with 16 input facts
+        /// Adds a rule with 16 input facts
         /// </summary>
         /// <typeparam name="TFactIn1">Type 1 input fact.</typeparam>
         /// <typeparam name="TFactIn2">Type 2 input fact.</typeparam>
@@ -1330,7 +1330,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Sort collection.
+        /// Sorts collection.
         /// </summary>
         /// <param name="comparer"></param>
         public void Sort(IComparer<TFactRule> comparer)

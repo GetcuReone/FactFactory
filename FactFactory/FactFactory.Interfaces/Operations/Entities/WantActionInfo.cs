@@ -7,6 +7,8 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Info for WantAction from context.
     /// </summary>
+    /// <typeparam name="TWantAction">WantAction type.</typeparam>
+    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
     public class WantActionInfo<TWantAction, TFactContainer>
         where TWantAction : IWantAction
         where TFactContainer : IFactContainer

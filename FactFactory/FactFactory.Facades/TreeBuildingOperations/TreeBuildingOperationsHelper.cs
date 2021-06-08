@@ -115,7 +115,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         }
 
         /// <summary>
-        /// Get nodes by rules.
+        /// Returns nodes by rules.
         /// </summary>
         /// <typeparam name="TFactRule"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>

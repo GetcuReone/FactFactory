@@ -35,7 +35,7 @@
   - [Reason](#P-GetcuReone-FactFactory-Exceptions-Entities-ErrorDetail-Reason 'GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail.Reason')
   - [ToString()](#M-GetcuReone-FactFactory-Exceptions-Entities-ErrorDetail-ToString 'GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail.ToString')
 - [FactFactoryException](#T-GetcuReone-FactFactory-Exceptions-FactFactoryException 'GetcuReone.FactFactory.Exceptions.FactFactoryException')
-  - [#ctor(details)](#M-GetcuReone-FactFactory-Exceptions-FactFactoryException-#ctor-System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Exceptions-Entities-ErrorDetail}- 'GetcuReone.FactFactory.Exceptions.FactFactoryException.#ctor(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail})')
+  - [#ctor()](#M-GetcuReone-FactFactory-Exceptions-FactFactoryException-#ctor-System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Exceptions-Entities-ErrorDetail}- 'GetcuReone.FactFactory.Exceptions.FactFactoryException.#ctor(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail})')
 - [FactFactoryExceptionBase\`1](#T-GetcuReone-FactFactory-Exceptions-FactFactoryExceptionBase`1 'GetcuReone.FactFactory.Exceptions.FactFactoryExceptionBase`1')
   - [#ctor(details)](#M-GetcuReone-FactFactory-Exceptions-FactFactoryExceptionBase`1-#ctor-System-Collections-Generic-IReadOnlyCollection{`0}- 'GetcuReone.FactFactory.Exceptions.FactFactoryExceptionBase`1.#ctor(System.Collections.Generic.IReadOnlyCollection{`0})')
   - [Details](#P-GetcuReone-FactFactory-Exceptions-FactFactoryExceptionBase`1-Details 'GetcuReone.FactFactory.Exceptions.FactFactoryExceptionBase`1.Details')
@@ -108,7 +108,7 @@
   - [#ctor()](#M-GetcuReone-FactFactory-Interfaces-Operations-Entities-IndependentNodeGroup`1-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{`0}}- 'GetcuReone.FactFactory.Interfaces.Operations.Entities.IndependentNodeGroup`1.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{`0}})')
   - [CanAdd(node)](#M-GetcuReone-FactFactory-Interfaces-Operations-Entities-IndependentNodeGroup`1-CanAdd-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{`0}- 'GetcuReone.FactFactory.Interfaces.Operations.Entities.IndependentNodeGroup`1.CanAdd(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{`0})')
 - [InvalidDeriveOperationException](#T-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException 'GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException')
-  - [#ctor(details)](#M-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException-#ctor-System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Exceptions-Entities-DeriveErrorDetail}- 'GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException.#ctor(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail})')
+  - [#ctor()](#M-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException-#ctor-System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Exceptions-Entities-DeriveErrorDetail}- 'GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException.#ctor(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail})')
 - [ISingleEntityOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations')
   - [CalculateFact\`\`3(node,context)](#M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-CalculateFact``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.CalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [CalculateFactAsync\`\`3(node,context)](#M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-CalculateFactAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.CalculateFactAsync``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
@@ -185,9 +185,9 @@ Request for [TryBuildTreeForFactInfo\`\`3](#M-GetcuReone-FactFactory-Interfaces-
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreeForFactInfoRequest`3-Context'></a>
 ### Context `property`
@@ -218,9 +218,9 @@ Request.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionRequest`3-Context'></a>
 ### Context `property`
@@ -251,9 +251,9 @@ Result.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionResult`3-DeriveErrorDetail'></a>
 ### DeriveErrorDetail `property`
@@ -286,6 +286,15 @@ GetcuReone.FactFactory.Interfaces.Operations.Entities
 ##### Summary
 
 Request.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
+| TFactRuleCollection | Fact rule collection type. |
 
 <a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest`4-FactRules'></a>
 ### FactRules `property`
@@ -323,9 +332,9 @@ Result.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesResult`3-DeriveErrorDetails'></a>
 ### DeriveErrorDetails `property`
@@ -438,7 +447,7 @@ GetcuReone.FactFactory.Exceptions.Entities
 
 ##### Summary
 
-Error detail
+Error detail.
 
 <a name='M-GetcuReone-FactFactory-Exceptions-Entities-ErrorDetail-#ctor-System-String,System-String-'></a>
 ### #ctor(code,reason) `constructor`
@@ -473,11 +482,7 @@ Error reason.
 
 ##### Summary
 
-String representation of an object.
-
-##### Returns
-
-
+*Inherit from parent.*
 
 ##### Parameters
 
@@ -495,17 +500,15 @@ GetcuReone.FactFactory.Exceptions
 Base error for FactFactory
 
 <a name='M-GetcuReone-FactFactory-Exceptions-FactFactoryException-#ctor-System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Exceptions-Entities-ErrorDetail}-'></a>
-### #ctor(details) `constructor`
+### #ctor() `constructor`
 
 ##### Summary
 
-Constructor
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| details | [System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlyCollection 'System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail}') |  |
+This constructor has no parameters.
 
 <a name='T-GetcuReone-FactFactory-Exceptions-FactFactoryExceptionBase`1'></a>
 ## FactFactoryExceptionBase\`1 `type`
@@ -590,7 +593,7 @@ A condition that determines whether the current fact can be added to the contain
 
 ##### Returns
 
-
+Has the condition been met?
 
 ##### Parameters
 
@@ -693,7 +696,7 @@ Get parameter by code.
 
 ##### Returns
 
-
+Fact parameter.
 
 ##### Parameters
 
@@ -710,7 +713,7 @@ Return parameters of a fact.
 
 ##### Returns
 
-
+Fact parameters.
 
 ##### Parameters
 
@@ -800,7 +803,7 @@ Is this type of fact contained.
 
 ##### Returns
 
-
+Did you manage to get the fact?
 
 ##### Parameters
 
@@ -821,13 +824,13 @@ Is this type of fact contained.
 
 ##### Returns
 
-
+Is the fact contained?
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| fact | [\`\`0](#T-``0 '``0') |  |
+| fact | [\`\`0](#T-``0 '``0') | Fact. |
 
 ##### Generic Types
 
@@ -844,7 +847,7 @@ Get fact.
 
 ##### Returns
 
-
+Fact.
 
 ##### Parameters
 
@@ -977,7 +980,7 @@ Get [IFactTypeCache](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCa
 
 ##### Returns
 
-
+Instanse [IFactTypeCache](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache 'GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache').
 
 ##### Parameters
 
@@ -992,7 +995,7 @@ Get [ISingleEntityOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-IS
 
 ##### Returns
 
-
+Instanse [ISingleEntityOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations').
 
 ##### Parameters
 
@@ -1007,7 +1010,7 @@ Get [ITreeBuildingOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-IT
 
 ##### Returns
 
-
+Instanse [ITreeBuildingOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-ITreeBuildingOperations 'GetcuReone.FactFactory.Interfaces.Operations.ITreeBuildingOperations').
 
 ##### Parameters
 
@@ -1111,7 +1114,7 @@ Calculate fact.
 
 ##### Returns
 
-
+Fact.
 
 ##### Parameters
 
@@ -1128,7 +1131,7 @@ Calculate fact asynchronously.
 
 ##### Returns
 
-
+Fact.
 
 ##### Parameters
 
@@ -1205,7 +1208,7 @@ Create an fact of this type. Method created for condition facts.
 
 ##### Returns
 
-
+Fact.
 
 ##### Parameters
 
@@ -1239,7 +1242,7 @@ Is it possible to convert a fact type to a `TFact`.
 
 ##### Returns
 
-
+Can a fact be converted to a `TFact` type.
 
 ##### Parameters
 
@@ -1267,23 +1270,23 @@ Fact type cache.
 
 ##### Summary
 
-Get fact type from cache or new.
+Returns fact type from cache or new.
 
 ##### Returns
 
-
+Fact type info.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| fact | [\`\`0](#T-``0 '``0') |  |
+| fact | [\`\`0](#T-``0 '``0') | Fact. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFact |  |
+| TFact | Fact type. |
 
 <a name='T-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCreation'></a>
 ## IFactTypeCreation `type`
@@ -1301,7 +1304,7 @@ Interface for creating a fact type.
 
 ##### Summary
 
-Get fact type from `TFact`.
+Returns fact type from `TFact`.
 
 ##### Returns
 
@@ -1351,7 +1354,7 @@ Work equality.
 
 ##### Returns
 
-
+`workFact` equal `wantAction`?
 
 ##### Parameters
 
@@ -1402,7 +1405,7 @@ Independent node group.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
+| TFactRule | Rule type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-Entities-IndependentNodeGroup`1-#ctor'></a>
 ### #ctor() `constructor`
@@ -1455,17 +1458,15 @@ GetcuReone.FactFactory.Exceptions
 [FactFactoryException](#T-GetcuReone-FactFactory-Exceptions-FactFactoryException 'GetcuReone.FactFactory.Exceptions.FactFactoryException') for method [IFactFactory\`4](#T-GetcuReone-FactFactory-Interfaces-IFactFactory`4 'GetcuReone.FactFactory.Interfaces.IFactFactory`4').
 
 <a name='M-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException-#ctor-System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Exceptions-Entities-DeriveErrorDetail}-'></a>
-### #ctor(details) `constructor`
+### #ctor() `constructor`
 
 ##### Summary
 
-Constructor.
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| details | [System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlyCollection 'System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail}') |  |
+This constructor has no parameters.
 
 <a name='T-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations'></a>
 ## ISingleEntityOperations `type`
@@ -1487,22 +1488,22 @@ Calculate fact by rule from node.
 
 ##### Returns
 
-
+Fact.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') |  |
-| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') |  |
+| node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') | Node. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') | Context. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-CalculateFactAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### CalculateFactAsync\`\`3(node,context) `method`
@@ -1513,22 +1514,22 @@ Calculate fact by rule from node.
 
 ##### Returns
 
-
+Fact.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') |  |
-| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') |  |
+| node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') | Node. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') | Context. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-CanExtractFact``3-GetcuReone-FactFactory-Interfaces-IFactType,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### CanExtractFact\`\`3(factType,factWork,context) `method`
@@ -1539,7 +1540,7 @@ Is it possible to get a fact by type `factType` from a container for a `factWork
 
 ##### Returns
 
-
+Is it possible to extract a fact?
 
 ##### Parameters
 
@@ -1553,9 +1554,9 @@ Is it possible to get a fact by type `factType` from a container for a `factWork
 
 | Name | Description |
 | ---- | ----------- |
-| TFactWork |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactWork | Work type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-CompatibleRule``4-``0,``1,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
 ### CompatibleRule\`\`4(target,rule,context) `method`
@@ -1566,7 +1567,7 @@ True - if the target is consistent with the rule.
 
 ##### Returns
 
-
+Are the rules compatible?
 
 ##### Parameters
 
@@ -1580,10 +1581,10 @@ True - if the target is consistent with the rule.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactWork |  |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactWork | Work type. |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-DeriveWantFacts``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1}-'></a>
 ### DeriveWantFacts\`\`2(wantActionInfo) `method`
@@ -1596,14 +1597,14 @@ Run `wantActionInfo` with input facts.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| wantActionInfo | [GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{\`\`0,\`\`1}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1}') |  |
+| wantActionInfo | [GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{\`\`0,\`\`1}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1}') | WantAction info. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TWantAction |  |
-| TFactContainer |  |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-DeriveWantFactsAsync``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1}-'></a>
 ### DeriveWantFactsAsync\`\`2(wantActionInfo) `method`
@@ -1616,21 +1617,21 @@ Async run `wantActionInfo` with input facts.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| wantActionInfo | [GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{\`\`0,\`\`1}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1}') |  |
+| wantActionInfo | [GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{\`\`0,\`\`1}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1}') | WantAction info. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TWantAction |  |
-| TFactContainer |  |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-GetCompatibleRules``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
 ### GetCompatibleRules\`\`4(target,factRules,context) `method`
 
 ##### Summary
 
-Get compatible rules.
+Returns rules compatible with `target`.
 
 ##### Returns
 
@@ -1644,12 +1645,21 @@ Compatible rules.
 | factRules | [System.Collections.Generic.IEnumerable{\`\`1}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``1}') | List of rules. |
 | context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`2,\`\`3}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3}') | Context. |
 
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactWork | Work type. |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
+
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-GetFactComparer``2-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``0,``1}-'></a>
 ### GetFactComparer\`\`2() `method`
 
 ##### Summary
 
-Get [IComparer\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IComparer`1 'System.Collections.Generic.IComparer`1') for [IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact').
+Returns [IComparer\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IComparer`1 'System.Collections.Generic.IComparer`1') for [IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact').
 
 ##### Returns
 
@@ -1659,12 +1669,19 @@ Get [IComparer\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&
 
 This method has no parameters.
 
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
+
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-GetFactEqualityComparer``2-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``0,``1}-'></a>
 ### GetFactEqualityComparer\`\`2() `method`
 
 ##### Summary
 
-Get [IEqualityComparer\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEqualityComparer`1 'System.Collections.Generic.IEqualityComparer`1') for [IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact').
+Returns [IEqualityComparer\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEqualityComparer`1 'System.Collections.Generic.IEqualityComparer`1') for [IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact').
 
 ##### Returns
 
@@ -1674,16 +1691,23 @@ Get [IEqualityComparer\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev
 
 This method has no parameters.
 
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
+
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-GetRequiredTypesOfFacts``3-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### GetRequiredTypesOfFacts\`\`3(factWork,context) `method`
 
 ##### Summary
 
-Get types of facts that cannot be extracted from the container.
+Returns types of facts that cannot be extracted from the container.
 
 ##### Returns
 
-
+Types of facts that cannot be extracted from the container.
 
 ##### Parameters
 
@@ -1696,26 +1720,26 @@ Get types of facts that cannot be extracted from the container.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactWork |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactWork | Work type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-GetRuleComparer``3-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### GetRuleComparer\`\`3(context) `method`
 
 ##### Summary
 
-Get comparer for [IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule').
+Returns comparer for [IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule').
 
 ##### Returns
 
-
+Compare for rule.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') |  |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') | Context. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-NeedCalculateFact``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### NeedCalculateFact\`\`3(node,context) `method`
@@ -1726,22 +1750,22 @@ Do I need to recalculate the fact.
 
 ##### Returns
 
-
+Do I need to recalculate the fact?
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') |  |
-| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') |  |
+| node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') | Node. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') | Context. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-ValidateAndGetRules``2-``1-'></a>
 ### ValidateAndGetRules\`\`2(ruleCollection) `method`
@@ -1752,20 +1776,20 @@ Validate and return a copy of the rules.
 
 ##### Returns
 
-
+Rules.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| ruleCollection | [\`\`1](#T-``1 '``1') |  |
+| ruleCollection | [\`\`1](#T-``1 '``1') | Rules. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TFactRuleCollection |  |
+| TFactRule | Rule type. |
+| TFactRuleCollection | Rule collection type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-ValidateContainer``1-``0-'></a>
 ### ValidateContainer\`\`1(container) `method`
@@ -1788,7 +1812,7 @@ Validate and return a copy of the container.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactContainer |  |
+| TFactContainer | Fact container type. |
 
 <a name='T-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact'></a>
 ## ISpecialFact `type`
@@ -1806,17 +1830,17 @@ Basic interface for special facts.
 
 ##### Summary
 
-Comparison of information about a special fact.
+Checks equality with `specialFact`.
 
 ##### Returns
 
-
+Are the facts equal?
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| specialFact | [GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact') |  |
+| specialFact | [GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact') | Special fact. |
 
 <a name='T-GetcuReone-FactFactory-Interfaces-Operations-ITreeBuildingOperations'></a>
 ## ITreeBuildingOperations `type`
@@ -1847,9 +1871,9 @@ Calculate trees and derive fact.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ITreeBuildingOperations-CalculateTreeAndDeriveWantFactsAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``1,``2},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}}-'></a>
 ### CalculateTreeAndDeriveWantFactsAsync\`\`3(wantActionInfo,treeByFactRules) `method`
@@ -1869,9 +1893,9 @@ Async calculate trees and derive fact.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ITreeBuildingOperations-GetIndependentNodeGroups``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}-'></a>
 ### GetIndependentNodeGroups\`\`3(treeByFactRule) `method`
@@ -1882,21 +1906,21 @@ List of groups of independent nodes.
 
 ##### Returns
 
-
+Independent node groups.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| treeByFactRule | [GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{\`\`0,\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}') |  |
+| treeByFactRule | [GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{\`\`0,\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}') | Decision tree built for the rule. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ITreeBuildingOperations-TryBuildTreeForFactInfo``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreeForFactInfoRequest{``0,``1,``2},GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}@,System-Collections-Generic-List{GetcuReone-FactFactory-Exceptions-Entities-DeriveFactErrorDetail}@-'></a>
 ### TryBuildTreeForFactInfo\`\`3(request,treeResult,deriveFactErrorDetails) `method`
@@ -1921,9 +1945,9 @@ True - build tree. False - not build tree.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ITreeBuildingOperations-TryBuildTrees``4-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest{``0,``1,``2,``3},GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesResult{``0,``2,``3}@-'></a>
 ### TryBuildTrees\`\`4(request,result) `method`
@@ -1934,7 +1958,7 @@ Try build trees for wantActions.
 
 ##### Returns
 
-
+Did you manage to build a tree?
 
 ##### Parameters
 
@@ -1947,10 +1971,10 @@ Try build trees for wantActions.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TFactRuleCollection |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
+| TFactRuleCollection | Rule collection type. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ITreeBuildingOperations-TryBuildTreesForWantAction``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionRequest{``0,``1,``2},GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionResult{``0,``1,``2}@-'></a>
 ### TryBuildTreesForWantAction\`\`3(request,result) `method`
@@ -1974,9 +1998,9 @@ True - build trees. False - not build trees.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='T-GetcuReone-FactFactory-Interfaces-IWantAction'></a>
 ## IWantAction `type`
@@ -2055,7 +2079,7 @@ Node.
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
+| TFactRule | Rule type. |
 
 <a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule`1-Childs'></a>
 ### Childs `property`
@@ -2088,6 +2112,12 @@ GetcuReone.FactFactory.Interfaces.Operations.Entities
 ##### Summary
 
 Node info.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactRule | Rule type. |
 
 <a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRuleInfo`1-CompatibleRules'></a>
 ### CompatibleRules `property`
@@ -2145,6 +2175,14 @@ GetcuReone.FactFactory.Interfaces.Operations.Entities
 ##### Summary
 
 A tree built by type of fact rule.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactRule | Rule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule`3-Context'></a>
 ### Context `property`
@@ -2246,6 +2284,13 @@ GetcuReone.FactFactory.Interfaces.Operations.Entities
 
 Info for WantAction from context.
 
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
+
 <a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo`2-Context'></a>
 ### Context `property`
 
@@ -2282,8 +2327,8 @@ Information about 'WantFacts'.
 
 | Name | Description |
 | ---- | ----------- |
-| TWantAction |  |
-| TFactContainer |  |
+| TWantAction | WantAction type. |
+| TFactContainer | Fact container type. |
 
 <a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantFactsInfo`2-Container'></a>
 ### Container `property`

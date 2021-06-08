@@ -18,7 +18,7 @@ namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
         /// <param name="factWork">Work for which we learn about the possibility of using the fact.</param>
         /// <param name="compatibleRules">Compatible rules.</param>
         /// <param name="context">Context.</param>
-        /// <returns></returns>
+        /// <returns>Has the condition been met?</returns>
         /// <remarks>
         /// Using it, you can determine which rule and under what conditions can be used to build a rule tree.
         /// </remarks>

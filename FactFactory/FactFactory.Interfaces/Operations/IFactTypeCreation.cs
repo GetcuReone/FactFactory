@@ -6,7 +6,7 @@
     public interface IFactTypeCreation
     {
         /// <summary>
-        /// Get fact type from <typeparamref name="TFact"/>.
+        /// Returns fact type from <typeparamref name="TFact"/>.
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
         /// <returns></returns>

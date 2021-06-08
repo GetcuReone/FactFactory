@@ -7,6 +7,9 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// A tree built by type of fact rule.
     /// </summary>
+    /// <typeparam name="TFactRule">Rule type.</typeparam>
+    /// <typeparam name="TWantAction">WantAction type.</typeparam>
+    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
     public class TreeByFactRule<TFactRule, TWantAction, TFactContainer>
         where TFactRule : IFactRule
         where TWantAction : IWantAction

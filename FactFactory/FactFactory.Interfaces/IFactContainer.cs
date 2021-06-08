@@ -60,22 +60,22 @@ namespace GetcuReone.FactFactory.Interfaces
         /// Get fact.
         /// </summary>
         /// <typeparam name="TFact">Type of fact to return.</typeparam>
-        /// <returns></returns>
+        /// <returns>Fact.</returns>
         TFact GetFact<TFact>() where TFact : IFact;
 
         /// <summary>
         /// Is this type of fact contained.
         /// </summary>
         /// <typeparam name="TFact">type of fact to check for.</typeparam>
-        /// <returns></returns>
+        /// <returns>Did you manage to get the fact?</returns>
         bool Contains<TFact>() where TFact : IFact;
 
         /// <summary>
         /// Is this type of fact contained.
         /// </summary>
         /// <typeparam name="TFact">type of fact to check for.</typeparam>
-        /// <param name="fact"></param>
-        /// <returns></returns>
+        /// <param name="fact">Fact.</param>
+        /// <returns>Is the fact contained?</returns>
         bool Contains<TFact>(TFact fact) where TFact : IFact;
 
         /// <summary>

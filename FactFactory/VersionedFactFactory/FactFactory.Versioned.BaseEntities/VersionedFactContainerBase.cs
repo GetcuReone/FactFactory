@@ -15,26 +15,17 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
     [Obsolete("Use FactContainerBase. FactContainerBase class has become universal")]
     public abstract class VersionedFactContainerBase : FactContainerBase
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
+        /// <inheritdoc/>
         protected VersionedFactContainerBase() : base(null)
         {
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="facts">An array of facts to add to the container.</param>
+        /// <inheritdoc/>
         protected VersionedFactContainerBase(IEnumerable<IFact> facts) : base(facts, false)
         {
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="facts">An array of facts to add to the container.</param>
-        /// <param name="isReadOnly"></param>
+        /// <inheritdoc/>
         protected VersionedFactContainerBase(IEnumerable<IFact> facts, bool isReadOnly) : base(facts, isReadOnly)
         {
         }
@@ -62,7 +53,7 @@ namespace GetcuReone.FactFactory.Versioned.BaseEntities
                 if (!itemType.EqualsFactType(type))
                     continue;
 
-                if (item.HasVersion(version))
+                if (item.HasVersionParameter(version))
                 {
                     fact = (TFact)item;
                     return true;

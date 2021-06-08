@@ -28,7 +28,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add fact.
+        /// Adds fact.
         /// </summary>
         /// <param name="fact">Fact.</param>
         /// <typeparam name="TFact">Type of fact to add.</typeparam>
@@ -39,7 +39,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Add facts.
+        /// Adds facts.
         /// </summary>
         /// <param name="facts">Fact set.</param>
         public void AddRange(IEnumerable<IFact> facts)
@@ -48,7 +48,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Remove fact.
+        /// Removes fact.
         /// </summary>
         /// <typeparam name="TFact">Type of fact to delete.</typeparam>
         public void Remove<TFact>()
@@ -58,7 +58,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Remove fact.
+        /// Removes fact.
         /// </summary>
         /// <param name="fact"></param>
         /// <typeparam name="TFact">Type of fact to delete.</typeparam>

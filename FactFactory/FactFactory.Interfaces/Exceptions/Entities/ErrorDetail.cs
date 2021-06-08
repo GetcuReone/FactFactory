@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GetcuReone.FactFactory.Exceptions.Entities
+﻿namespace GetcuReone.FactFactory.Exceptions.Entities
 {
     /// <summary>
-    /// Error detail
+    /// Error detail.
     /// </summary>
     public class ErrorDetail
     {
@@ -30,10 +26,7 @@ namespace GetcuReone.FactFactory.Exceptions.Entities
         /// </summary>
         public string Reason { get; }
 
-        /// <summary>
-        /// String representation of an object.
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"[{Code}] {Reason}";

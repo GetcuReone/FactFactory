@@ -23,9 +23,7 @@
   - [GetFact\`\`1(facts)](#M-GetcuReone-FactFactory-FactFactoryHelper-GetFact``1-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.FactFactoryHelper.GetFact``1(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
   - [IsCalculatedByRule\`\`1(fact)](#M-GetcuReone-FactFactory-FactFactoryHelper-IsCalculatedByRule``1-``0- 'GetcuReone.FactFactory.FactFactoryHelper.IsCalculatedByRule``1(``0)')
   - [IsNullOrEmpty\`\`1(items)](#M-GetcuReone-FactFactory-FactFactoryHelper-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'GetcuReone.FactFactory.FactFactoryHelper.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
-  - [IsValidFactType\`\`1(factType)](#M-GetcuReone-FactFactory-FactFactoryHelper-IsValidFactType``1-GetcuReone-FactFactory-Interfaces-IFactType- 'GetcuReone.FactFactory.FactFactoryHelper.IsValidFactType``1(GetcuReone.FactFactory.Interfaces.IFactType)')
   - [ToReadOnlyCollection\`\`1(items)](#M-GetcuReone-FactFactory-FactFactoryHelper-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}- 'GetcuReone.FactFactory.FactFactoryHelper.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})')
-  - [VerifyFactTypes\`\`1(factTypes)](#M-GetcuReone-FactFactory-FactFactoryHelper-VerifyFactTypes``1-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactType}- 'GetcuReone.FactFactory.FactFactoryHelper.VerifyFactTypes``1(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})')
   - [WhereFactsByFactType(facts,factType,cache)](#M-GetcuReone-FactFactory-FactFactoryHelper-WhereFactsByFactType-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.FactFactoryHelper.WhereFactsByFactType(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
   - [WhereFactsByFactTypes(facts,factTypes,cache)](#M-GetcuReone-FactFactory-FactFactoryHelper-WhereFactsByFactTypes-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.FactFactoryHelper.WhereFactsByFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
 - [FactParametersCodes](#T-GetcuReone-FactFactory-Constants-FactParametersCodes 'GetcuReone.FactFactory.Constants.FactParametersCodes')
@@ -104,20 +102,20 @@ Cannot is `TFact`.
 
 ##### Returns
 
-
+`type`.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| type | [GetcuReone.FactFactory.Interfaces.IFactType](#T-GetcuReone-FactFactory-Interfaces-IFactType 'GetcuReone.FactFactory.Interfaces.IFactType') |  |
-| paramName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') |  |
+| type | [GetcuReone.FactFactory.Interfaces.IFactType](#T-GetcuReone-FactFactory-Interfaces-IFactType 'GetcuReone.FactFactory.Interfaces.IFactType') | Type fact info. |
+| paramName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Parameter name. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFact |  |
+| TFact | Type fact. |
 
 <a name='M-GetcuReone-FactFactory-FactFactoryHelper-CompareTo-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact-'></a>
 ### CompareTo(x,y) `method`
@@ -170,24 +168,24 @@ Create [InvalidDeriveOperationException](#T-GetcuReone-FactFactory-Exceptions-In
 
 ##### Returns
 
-
+Exception.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| details | [System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlyCollection 'System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail}') |  |
+| details | [System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IReadOnlyCollection 'System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail}') | Error deteils. |
 
 <a name='M-GetcuReone-FactFactory-FactFactoryHelper-CreateDeriveException-System-String,System-String-'></a>
 ### CreateDeriveException(code,reason) `method`
 
 ##### Summary
 
-Create [InvalidDeriveOperationException](#T-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException 'GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException').
+Creates [InvalidDeriveOperationException](#T-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException 'GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException').
 
 ##### Returns
 
-
+Exception.
 
 ##### Parameters
 
@@ -201,11 +199,11 @@ Create [InvalidDeriveOperationException](#T-GetcuReone-FactFactory-Exceptions-In
 
 ##### Summary
 
-Create [InvalidDeriveOperationException](#T-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException 'GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException').
+Creates [InvalidDeriveOperationException](#T-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException 'GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException').
 
 ##### Returns
 
-
+Exception.
 
 ##### Parameters
 
@@ -221,11 +219,11 @@ Create [InvalidDeriveOperationException](#T-GetcuReone-FactFactory-Exceptions-In
 
 ##### Summary
 
-Create [InvalidDeriveOperationException](#T-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException 'GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException').
+Creates [InvalidDeriveOperationException](#T-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException 'GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException').
 
 ##### Returns
 
-
+Exception.
 
 ##### Parameters
 
@@ -246,7 +244,7 @@ Create [FactFactoryException](#T-GetcuReone-FactFactory-Exceptions-FactFactoryEx
 
 ##### Returns
 
-
+Exception.
 
 ##### Parameters
 
@@ -285,7 +283,7 @@ Fact or null.
 
 ##### Summary
 
-Get first fact by type `TFact`.
+Returns first fact by type `TFact`.
 
 ##### Returns
 
@@ -335,42 +333,19 @@ True - `items` is null or empty
 
 ##### Returns
 
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| items | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') |  |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TItem |  |
-
-<a name='M-GetcuReone-FactFactory-FactFactoryHelper-IsValidFactType``1-GetcuReone-FactFactory-Interfaces-IFactType-'></a>
-### IsValidFactType\`\`1(factType) `method`
-
-##### Summary
-
-Is the fact type valid.
-
-##### Returns
-
-
+`items` is empty or null?
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| factType | [GetcuReone.FactFactory.Interfaces.IFactType](#T-GetcuReone-FactFactory-Interfaces-IFactType 'GetcuReone.FactFactory.Interfaces.IFactType') |  |
+| items | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | Collection. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFactBase |  |
+| TItem | Type items. |
 
 <a name='M-GetcuReone-FactFactory-FactFactoryHelper-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}-'></a>
 ### ToReadOnlyCollection\`\`1(items) `method`
@@ -381,38 +356,19 @@ Convert list to [ReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.qu
 
 ##### Returns
 
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| items | [System.Collections.Generic.IList{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IList 'System.Collections.Generic.IList{``0}') |  |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TItem |  |
-
-<a name='M-GetcuReone-FactFactory-FactFactoryHelper-VerifyFactTypes``1-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactType}-'></a>
-### VerifyFactTypes\`\`1(factTypes) `method`
-
-##### Summary
-
-Type checking facts.
+Read-only collection.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| factTypes | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType}') |  |
+| items | [System.Collections.Generic.IList{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IList 'System.Collections.Generic.IList{``0}') | Coollection. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFactBase |  |
+| TItem | Type item. |
 
 <a name='M-GetcuReone-FactFactory-FactFactoryHelper-WhereFactsByFactType-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-'></a>
 ### WhereFactsByFactType(facts,factType,cache) `method`

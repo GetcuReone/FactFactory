@@ -23,7 +23,7 @@ GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
 ##### Summary
 
-*Inherit from parent.*
+Single operations on entities of the FactFactory. Sharpened for work with [IVersionFact](#T-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact 'GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact').
 
 <a name='M-GetcuReone-FactFactory-Versioned-Facades-SingleEntityOperations-VersionedSingleEntityOperationsFacade-CalculateFact``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### CalculateFact\`\`3() `method`
@@ -36,6 +36,10 @@ GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
 This method has no parameters.
 
+##### Remarks
+
+Adds a versioned fact to the parameters of the calculated fact.
+
 <a name='M-GetcuReone-FactFactory-Versioned-Facades-SingleEntityOperations-VersionedSingleEntityOperationsFacade-CalculateFactAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### CalculateFactAsync\`\`3() `method`
 
@@ -46,6 +50,10 @@ This method has no parameters.
 ##### Parameters
 
 This method has no parameters.
+
+##### Remarks
+
+Adds a [IVersionFact](#T-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact 'GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact') to the parameters of the calculated fact.
 
 <a name='M-GetcuReone-FactFactory-Versioned-Facades-SingleEntityOperations-VersionedSingleEntityOperationsFacade-CanExtractFact``3-GetcuReone-FactFactory-Interfaces-IFactType,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### CanExtractFact\`\`3() `method`
@@ -58,6 +66,10 @@ This method has no parameters.
 
 This method has no parameters.
 
+##### Remarks
+
+Additionally checks version compatibility.
+
 <a name='M-GetcuReone-FactFactory-Versioned-Facades-SingleEntityOperations-VersionedSingleEntityOperationsFacade-CompareFactRules``3-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### CompareFactRules\`\`3() `method`
 
@@ -68,6 +80,10 @@ This method has no parameters.
 ##### Parameters
 
 This method has no parameters.
+
+##### Remarks
+
+Additionally checks version compatibility.
 
 <a name='M-GetcuReone-FactFactory-Versioned-Facades-SingleEntityOperations-VersionedSingleEntityOperationsFacade-CompareFacts-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact-'></a>
 ### CompareFacts() `method`
@@ -80,6 +96,10 @@ This method has no parameters.
 
 This method has no parameters.
 
+##### Remarks
+
+Additionally checks version compatibility.
+
 <a name='M-GetcuReone-FactFactory-Versioned-Facades-SingleEntityOperations-VersionedSingleEntityOperationsFacade-CompatibleRule``4-``0,``1,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
 ### CompatibleRule\`\`4() `method`
 
@@ -90,6 +110,10 @@ This method has no parameters.
 ##### Parameters
 
 This method has no parameters.
+
+##### Remarks
+
+Additionally checks version compatibility.
 
 <a name='M-GetcuReone-FactFactory-Versioned-Facades-SingleEntityOperations-VersionedSingleEntityOperationsFacade-GetCompatibleRules``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
 ### GetCompatibleRules\`\`4() `method`
@@ -102,6 +126,10 @@ This method has no parameters.
 
 This method has no parameters.
 
+##### Remarks
+
+Additionally checks version compatibility.
+
 <a name='M-GetcuReone-FactFactory-Versioned-Facades-SingleEntityOperations-VersionedSingleEntityOperationsFacade-GetRequiredTypesOfFacts``3-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### GetRequiredTypesOfFacts\`\`3() `method`
 
@@ -113,6 +141,10 @@ This method has no parameters.
 
 This method has no parameters.
 
+##### Remarks
+
+Additionally checks version compatibility.
+
 <a name='M-GetcuReone-FactFactory-Versioned-Facades-SingleEntityOperations-VersionedSingleEntityOperationsFacade-GetRequireFacts``3-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### GetRequireFacts\`\`3() `method`
 
@@ -123,3 +155,7 @@ This method has no parameters.
 ##### Parameters
 
 This method has no parameters.
+
+##### Remarks
+
+Additionally checks version compatibility.

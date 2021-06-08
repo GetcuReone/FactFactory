@@ -24,8 +24,6 @@ namespace GetcuReone.FactFactory.BaseEntities
             IFactType factType = fact.GetFactType();
             _cache.Add(fact, factType);
             return factType;
-
-            //return fact.GetFactType();
         }
     }
 }

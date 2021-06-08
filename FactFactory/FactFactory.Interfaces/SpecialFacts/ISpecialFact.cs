@@ -6,10 +6,10 @@
     public interface ISpecialFact : IFact
     {
         /// <summary>
-        /// Comparison of information about a special fact.
+        /// Checks equality with <paramref name="specialFact"/>.
         /// </summary>
-        /// <param name="specialFact"></param>
-        /// <returns></returns>
+        /// <param name="specialFact">Special fact.</param>
+        /// <returns>Are the facts equal?</returns>
         bool EqualsInfo(ISpecialFact specialFact);
     }
 }
