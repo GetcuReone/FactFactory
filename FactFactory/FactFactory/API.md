@@ -1,0 +1,1604 @@
+<a name='assembly'></a>
+# GetcuReone.FactFactory.Main
+
+## Contents
+
+- [CanDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-CanDerived`1 'GetcuReone.FactFactory.SpecialFacts.CanDerived`1')
+  - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-CanDerived`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.CanDerived`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
+- [CannotDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-CannotDerived`1 'GetcuReone.FactFactory.SpecialFacts.CannotDerived`1')
+  - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-CannotDerived`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.CannotDerived`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
+- [ConditionFactBase](#T-GetcuReone-FactFactory-SpecialFacts-ConditionFactBase 'GetcuReone.FactFactory.SpecialFacts.ConditionFactBase')
+  - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-ConditionFactBase-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.ConditionFactBase.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
+  - [EqualsInfo()](#M-GetcuReone-FactFactory-SpecialFacts-ConditionFactBase-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.SpecialFacts.ConditionFactBase.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
+- [ConditionFactBase\`1](#T-GetcuReone-FactFactory-SpecialFacts-ConditionFactBase`1 'GetcuReone.FactFactory.SpecialFacts.ConditionFactBase`1')
+  - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-ConditionFactBase`1-GetFactType``1 'GetcuReone.FactFactory.SpecialFacts.ConditionFactBase`1.GetFactType``1')
+- [Contained\`1](#T-GetcuReone-FactFactory-SpecialFacts-Contained`1 'GetcuReone.FactFactory.SpecialFacts.Contained`1')
+  - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-Contained`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.Contained`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
+- [FactBase](#T-GetcuReone-FactFactory-FactBase 'GetcuReone.FactFactory.FactBase')
+  - [AddParameter()](#M-GetcuReone-FactFactory-FactBase-AddParameter-GetcuReone-FactFactory-Interfaces-IFactParameter- 'GetcuReone.FactFactory.FactBase.AddParameter(GetcuReone.FactFactory.Interfaces.IFactParameter)')
+  - [GetFactType()](#M-GetcuReone-FactFactory-FactBase-GetFactType 'GetcuReone.FactFactory.FactBase.GetFactType')
+  - [GetParameter()](#M-GetcuReone-FactFactory-FactBase-GetParameter-System-String- 'GetcuReone.FactFactory.FactBase.GetParameter(System.String)')
+  - [GetParameters()](#M-GetcuReone-FactFactory-FactBase-GetParameters 'GetcuReone.FactFactory.FactBase.GetParameters')
+- [FactBase\`1](#T-GetcuReone-FactFactory-FactBase`1 'GetcuReone.FactFactory.FactBase`1')
+  - [#ctor(value)](#M-GetcuReone-FactFactory-FactBase`1-#ctor-`0- 'GetcuReone.FactFactory.FactBase`1.#ctor(`0)')
+  - [Value](#P-GetcuReone-FactFactory-FactBase`1-Value 'GetcuReone.FactFactory.FactBase`1.Value')
+  - [op_Implicit(fact)](#M-GetcuReone-FactFactory-FactBase`1-op_Implicit-GetcuReone-FactFactory-FactBase{`0}-~`0 'GetcuReone.FactFactory.FactBase`1.op_Implicit(GetcuReone.FactFactory.FactBase{`0})~`0')
+- [FactFactory](#T-GetcuReone-FactFactory-FactFactory 'GetcuReone.FactFactory.FactFactory')
+  - [#ctor()](#M-GetcuReone-FactFactory-FactFactory-#ctor 'GetcuReone.FactFactory.FactFactory.#ctor')
+  - [#ctor(getDefaultFactsFunc)](#M-GetcuReone-FactFactory-FactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}- 'GetcuReone.FactFactory.FactFactory.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}})')
+  - [Rules](#P-GetcuReone-FactFactory-FactFactory-Rules 'GetcuReone.FactFactory.FactFactory.Rules')
+  - [CreateWantAction()](#M-GetcuReone-FactFactory-FactFactory-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [CreateWantAction()](#M-GetcuReone-FactFactory-FactFactory-CreateWantAction-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactory.CreateWantAction(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [GetDefaultContainer()](#M-GetcuReone-FactFactory-FactFactory-GetDefaultContainer 'GetcuReone.FactFactory.FactFactory.GetDefaultContainer')
+  - [GetDefaultFacts()](#M-GetcuReone-FactFactory-FactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer}- 'GetcuReone.FactFactory.FactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer})')
+- [FactFactoryBase\`4](#T-GetcuReone-FactFactory-FactFactoryBase`4 'GetcuReone.FactFactory.FactFactoryBase`4')
+  - [Rules](#P-GetcuReone-FactFactory-FactFactoryBase`4-Rules 'GetcuReone.FactFactory.FactFactoryBase`4.Rules')
+  - [WantFactsInfos](#P-GetcuReone-FactFactory-FactFactoryBase`4-WantFactsInfos 'GetcuReone.FactFactory.FactFactoryBase`4.WantFactsInfos')
+  - [CreateWantAction(wantAction,factTypes,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [CreateWantAction(wantAction,factTypes,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-CreateWantAction-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.CreateWantAction(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Derive()](#M-GetcuReone-FactFactory-FactFactoryBase`4-Derive 'GetcuReone.FactFactory.FactFactoryBase`4.Derive')
+  - [DeriveAsync()](#M-GetcuReone-FactFactory-FactFactoryBase`4-DeriveAsync 'GetcuReone.FactFactory.FactFactoryBase`4.DeriveAsync')
+  - [DeriveFact\`\`1(container)](#M-GetcuReone-FactFactory-FactFactoryBase`4-DeriveFact``1-`3- 'GetcuReone.FactFactory.FactFactoryBase`4.DeriveFact``1(`3)')
+  - [DeriveFactAsync\`\`1(container)](#M-GetcuReone-FactFactory-FactFactoryBase`4-DeriveFactAsync``1-`3- 'GetcuReone.FactFactory.FactFactoryBase`4.DeriveFactAsync``1(`3)')
+  - [GetDefaultContainer()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetDefaultContainer 'GetcuReone.FactFactory.FactFactoryBase`4.GetDefaultContainer')
+  - [GetDefaultFacts(context)](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{`2,`3}- 'GetcuReone.FactFactory.FactFactoryBase`4.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{`2,`3})')
+  - [GetFacade\`\`1()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetFacade``1 'GetcuReone.FactFactory.FactFactoryBase`4.GetFacade``1')
+  - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetFactType``1 'GetcuReone.FactFactory.FactFactoryBase`4.GetFactType``1')
+  - [GetFactTypeCache()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetFactTypeCache 'GetcuReone.FactFactory.FactFactoryBase`4.GetFactTypeCache')
+  - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetSingleEntityOperations 'GetcuReone.FactFactory.FactFactoryBase`4.GetSingleEntityOperations')
+  - [GetTreeBuildingOperations()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetTreeBuildingOperations 'GetcuReone.FactFactory.FactFactoryBase`4.GetTreeBuildingOperations')
+  - [WantFacts(wantAction,container)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts-`2,`3- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts(`2,`3)')
+  - [WantFacts\`\`1(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``1-System-Action{``0},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``1(System.Action{``0},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`1(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``1-System-Func{``0,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``1(System.Func{``0,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`10(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``10-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``10(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`10(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``10-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`11(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``11-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``11(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`11(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``11-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`12(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``12-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``12(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`12(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``12-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`13(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``13-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``13(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`13(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``13-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`14(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``14-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``14(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`14(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``14-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`15(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``15-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``15(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`15(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``15-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`16(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``16-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``16(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`16(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``16-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`2(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``2-System-Action{``0,``1},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``2(System.Action{``0,``1},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`2(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``2-System-Func{``0,``1,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``2(System.Func{``0,``1,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`3(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``3-System-Action{``0,``1,``2},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``3(System.Action{``0,``1,``2},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`3(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``3-System-Func{``0,``1,``2,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``3(System.Func{``0,``1,``2,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`4(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``4-System-Action{``0,``1,``2,``3},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``4(System.Action{``0,``1,``2,``3},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`4(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``4-System-Func{``0,``1,``2,``3,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``4(System.Func{``0,``1,``2,``3,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`5(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``5-System-Action{``0,``1,``2,``3,``4},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``5(System.Action{``0,``1,``2,``3,``4},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`5(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``5-System-Func{``0,``1,``2,``3,``4,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``5(System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`6(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``6-System-Action{``0,``1,``2,``3,``4,``5},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``6(System.Action{``0,``1,``2,``3,``4,``5},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`6(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``6-System-Func{``0,``1,``2,``3,``4,``5,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``6(System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`7(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``7-System-Action{``0,``1,``2,``3,``4,``5,``6},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``7(System.Action{``0,``1,``2,``3,``4,``5,``6},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`7(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``7-System-Func{``0,``1,``2,``3,``4,``5,``6,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``7(System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`8(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``8-System-Action{``0,``1,``2,``3,``4,``5,``6,``7},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``8(System.Action{``0,``1,``2,``3,``4,``5,``6,``7},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`8(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``8-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`9(wantFactAction,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``9-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``9(System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [WantFacts\`\`9(wantFactActionAsync,container,option)](#M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``9-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.FactFactoryBase`4.WantFacts``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System.Threading.Tasks.ValueTask},`3,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+- [InnerFactFactoryHelper](#T-GetcuReone-FactFactory-Helpers-InnerFactFactoryHelper 'GetcuReone.FactFactory.Helpers.InnerFactFactoryHelper')
+- [NotContained\`1](#T-GetcuReone-FactFactory-SpecialFacts-NotContained`1 'GetcuReone.FactFactory.SpecialFacts.NotContained`1')
+  - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-NotContained`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.NotContained`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
+- [SpecialFactBase](#T-GetcuReone-FactFactory-SpecialFacts-SpecialFactBase 'GetcuReone.FactFactory.SpecialFacts.SpecialFactBase')
+  - [EqualsInfo()](#M-GetcuReone-FactFactory-SpecialFacts-SpecialFactBase-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.SpecialFacts.SpecialFactBase.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-CanDerived`1'></a>
+## CanDerived\`1 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-CanDerived`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+### Condition\`\`4() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-CannotDerived`1'></a>
+## CannotDerived\`1 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-CannotDerived`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+### Condition\`\`4() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-ConditionFactBase'></a>
+## ConditionFactBase `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+Base class for [IConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact').
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-ConditionFactBase-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+### Condition\`\`4() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-ConditionFactBase-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact-'></a>
+### EqualsInfo() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-ConditionFactBase`1'></a>
+## ConditionFactBase\`1 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-ConditionFactBase`1-GetFactType``1'></a>
+### GetFactType\`\`1() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-Contained`1'></a>
+## Contained\`1 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-Contained`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+### Condition\`\`4() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-FactBase'></a>
+## FactBase `type`
+
+##### Namespace
+
+GetcuReone.FactFactory
+
+##### Summary
+
+Base class for fact.
+
+<a name='M-GetcuReone-FactFactory-FactBase-AddParameter-GetcuReone-FactFactory-Interfaces-IFactParameter-'></a>
+### AddParameter() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactBase-GetFactType'></a>
+### GetFactType() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactBase-GetParameter-System-String-'></a>
+### GetParameter() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactBase-GetParameters'></a>
+### GetParameters() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-FactBase`1'></a>
+## FactBase\`1 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactValue | Type fact value. |
+
+<a name='M-GetcuReone-FactFactory-FactBase`1-#ctor-`0-'></a>
+### #ctor(value) `constructor`
+
+##### Summary
+
+Constructor.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| value | [\`0](#T-`0 '`0') | Fact value. |
+
+<a name='P-GetcuReone-FactFactory-FactBase`1-Value'></a>
+### Value `property`
+
+##### Summary
+
+Value fact.
+
+<a name='M-GetcuReone-FactFactory-FactBase`1-op_Implicit-GetcuReone-FactFactory-FactBase{`0}-~`0'></a>
+### op_Implicit(fact) `method`
+
+##### Summary
+
+Extract [Value](#P-GetcuReone-FactFactory-FactBase`1-Value 'GetcuReone.FactFactory.FactBase`1.Value').
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| fact | [GetcuReone.FactFactory.FactBase{\`0})~\`0](#T-GetcuReone-FactFactory-FactBase{`0}-~`0 'GetcuReone.FactFactory.FactBase{`0})~`0') |  |
+
+<a name='T-GetcuReone-FactFactory-FactFactory'></a>
+## FactFactory `type`
+
+##### Namespace
+
+GetcuReone.FactFactory
+
+##### Summary
+
+Factory default implementation.
+
+<a name='M-GetcuReone-FactFactory-FactFactory-#ctor'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+Constructor.
+
+##### Parameters
+
+This constructor has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}-'></a>
+### #ctor(getDefaultFactsFunc) `constructor`
+
+##### Summary
+
+Constructor.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| getDefaultFactsFunc | [System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}') | Function that returns a list of facts by default. |
+
+<a name='P-GetcuReone-FactFactory-FactFactory-Rules'></a>
+### Rules `property`
+
+##### Summary
+
+Collection of rules for derive facts
+
+<a name='M-GetcuReone-FactFactory-FactFactory-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### CreateWantAction() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactory-CreateWantAction-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### CreateWantAction() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactory-GetDefaultContainer'></a>
+### GetDefaultContainer() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer}-'></a>
+### GetDefaultFacts() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-FactFactoryBase`4'></a>
+## FactFactoryBase\`4 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory
+
+##### Summary
+
+Base class for fact factory.
+
+<a name='P-GetcuReone-FactFactory-FactFactoryBase`4-Rules'></a>
+### Rules `property`
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='P-GetcuReone-FactFactory-FactFactoryBase`4-WantFactsInfos'></a>
+### WantFactsInfos `property`
+
+##### Summary
+
+WantFacts.
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### CreateWantAction(wantAction,factTypes,option) `method`
+
+##### Summary
+
+Creation method `TWantAction`.
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantAction | [System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}') | Action taken after deriving a fact. |
+| factTypes | [System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}') | Facts required to launch an action. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | WantAction option. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-CreateWantAction-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### CreateWantAction(wantAction,factTypes,option) `method`
+
+##### Summary
+
+Creation method `TWantAction`.
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantAction | [System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask}') | Action taken after deriving a fact. |
+| factTypes | [System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}') | Facts required to launch an action. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | WantAction option. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-Derive'></a>
+### Derive() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-DeriveAsync'></a>
+### DeriveAsync() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-DeriveFact``1-`3-'></a>
+### DeriveFact\`\`1(container) `method`
+
+##### Summary
+
+Derive `TFactResult`.
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| container | [\`3](#T-`3 '`3') |  |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactResult | Type of desired fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-DeriveFactAsync``1-`3-'></a>
+### DeriveFactAsync\`\`1(container) `method`
+
+##### Summary
+
+Derive `TFactResult`.
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| container | [\`3](#T-`3 '`3') |  |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactResult | Type of desired fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-GetDefaultContainer'></a>
+### GetDefaultContainer() `method`
+
+##### Summary
+
+Get default container.
+
+##### Returns
+
+
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{`2,`3}-'></a>
+### GetDefaultFacts(context) `method`
+
+##### Summary
+
+Return the fact set that will be contained in the default container.
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`2,\`3}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{`2,`3} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{`2,`3}') | Context. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-GetFacade``1'></a>
+### GetFacade\`\`1() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-GetFactType``1'></a>
+### GetFactType\`\`1() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-GetFactTypeCache'></a>
+### GetFactTypeCache() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-GetSingleEntityOperations'></a>
+### GetSingleEntityOperations() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-GetTreeBuildingOperations'></a>
+### GetTreeBuildingOperations() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts-`2,`3-'></a>
+### WantFacts(wantAction,container) `method`
+
+##### Summary
+
+Requesting a desired fact through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantAction | [\`2](#T-`2 '`2') |  |
+| container | [\`3](#T-`3 '`3') |  |
+
+##### Exceptions
+
+| Name | Description |
+| ---- | ----------- |
+| [GetcuReone.FactFactory.Exceptions.FactFactoryException](#T-GetcuReone-FactFactory-Exceptions-FactFactoryException 'GetcuReone.FactFactory.Exceptions.FactFactoryException') | The action has already been requested before. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``1-System-Action{``0},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`1(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``1-System-Func{``0,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`1(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``10-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`10(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``10-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`10(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``11-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`11(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``11-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`11(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``12-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`12(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10,\`\`11}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+| TFact12 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``12-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`12(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10,\`\`11,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+| TFact12 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``13-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`13(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10,\`\`11,\`\`12}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+| TFact12 | Type fact. |
+| TFact13 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``13-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`13(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10,\`\`11,\`\`12,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+| TFact12 | Type fact. |
+| TFact13 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``14-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`14(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10,\`\`11,\`\`12,\`\`13}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+| TFact12 | Type fact. |
+| TFact13 | Type fact. |
+| TFact14 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``14-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`14(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10,\`\`11,\`\`12,\`\`13,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+| TFact12 | Type fact. |
+| TFact13 | Type fact. |
+| TFact14 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``15-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`15(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10,\`\`11,\`\`12,\`\`13,\`\`14}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+| TFact12 | Type fact. |
+| TFact13 | Type fact. |
+| TFact14 | Type fact. |
+| TFact15 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``15-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`15(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10,\`\`11,\`\`12,\`\`13,\`\`14,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+| TFact12 | Type fact. |
+| TFact13 | Type fact. |
+| TFact14 | Type fact. |
+| TFact15 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``16-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`16(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10,\`\`11,\`\`12,\`\`13,\`\`14,\`\`15}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+| TFact12 | Type fact. |
+| TFact13 | Type fact. |
+| TFact14 | Type fact. |
+| TFact15 | Type fact. |
+| TFact16 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``16-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`16(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,\`\`9,\`\`10,\`\`11,\`\`12,\`\`13,\`\`14,\`\`15,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+| TFact10 | Type fact. |
+| TFact11 | Type fact. |
+| TFact12 | Type fact. |
+| TFact13 | Type fact. |
+| TFact14 | Type fact. |
+| TFact15 | Type fact. |
+| TFact16 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``2-System-Action{``0,``1},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`2(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``2-System-Func{``0,``1,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`2(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``3-System-Action{``0,``1,``2},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`3(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``3-System-Func{``0,``1,``2,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`3(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``4-System-Action{``0,``1,``2,``3},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`4(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``4-System-Func{``0,``1,``2,``3,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`4(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``5-System-Action{``0,``1,``2,``3,``4},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`5(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``5-System-Func{``0,``1,``2,``3,``4,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`5(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``6-System-Action{``0,``1,``2,``3,``4,``5},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`6(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4,``5}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``6-System-Func{``0,``1,``2,``3,``4,``5,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`6(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``7-System-Action{``0,``1,``2,``3,``4,``5,``6},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`7(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4,``5,``6}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``7-System-Func{``0,``1,``2,``3,``4,``5,``6,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`7(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``8-System-Action{``0,``1,``2,``3,``4,``5,``6,``7},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`8(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4,``5,``6,``7}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``8-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`8(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``9-System-Action{``0,``1,``2,``3,``4,``5,``6,``7,``8},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`9(wantFactAction,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactAction | [System.Action{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-WantFacts``9-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System-Threading-Tasks-ValueTask},`3,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### WantFacts\`\`9(wantFactActionAsync,container,option) `method`
+
+##### Summary
+
+Requesting desired facts through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantFactActionAsync | [System.Func{\`\`0,\`\`1,\`\`2,\`\`3,\`\`4,\`\`5,\`\`6,\`\`7,\`\`8,System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System.Threading.Tasks.ValueTask}') | Desired action. |
+| container | [\`3](#T-`3 '`3') | Fact container. |
+| option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | FactWork options. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact1 | Type fact. |
+| TFact2 | Type fact. |
+| TFact3 | Type fact. |
+| TFact4 | Type fact. |
+| TFact5 | Type fact. |
+| TFact6 | Type fact. |
+| TFact7 | Type fact. |
+| TFact8 | Type fact. |
+| TFact9 | Type fact. |
+
+<a name='T-GetcuReone-FactFactory-Helpers-InnerFactFactoryHelper'></a>
+## InnerFactFactoryHelper `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Helpers
+
+##### Summary
+
+Helper for [FactFactoryBase\`4](#T-GetcuReone-FactFactory-FactFactoryBase`4 'GetcuReone.FactFactory.FactFactoryBase`4')
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-NotContained`1'></a>
+## NotContained\`1 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-NotContained`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+### Condition\`\`4() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-SpecialFactBase'></a>
+## SpecialFactBase `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+Base class for [ISpecialFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact').
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-SpecialFactBase-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact-'></a>
+### EqualsInfo() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.

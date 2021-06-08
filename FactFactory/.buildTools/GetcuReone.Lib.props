@@ -5,7 +5,15 @@
 
     <PropertyGroup>
         <DocumentationFile>GetcuReone.$(MSBuildProjectName).xml</DocumentationFile>
+        <DocumentationMarkdown>$(MSBuildProjectDirectory)\API.md</DocumentationMarkdown>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Vsxmd" Version="[1.3.0,)">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
     <ItemGroup>
         <None Update="GetcuReone.$(MSBuildProjectName).xml">
