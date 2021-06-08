@@ -39,7 +39,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Running asynchronous rules in parallel with facts and conditions.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Second.One)]
         public async Task RunningAsynchronousRulesInParallelWithFactConditionsTestCase()
         {
             const int expectedValue = 16;
