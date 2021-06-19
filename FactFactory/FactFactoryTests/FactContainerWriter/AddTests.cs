@@ -42,7 +42,7 @@ namespace GetcuReone.FactFactoryTests.FactContainerWriter
                 .When("Add fact.", writer =>
                 {
                     using (writer)
-                        container.Add(new IntFact(default));
+                        writer.Add(new IntFact(default));
                 })
                 .Then("Check container.", () =>
                     Assert.IsTrue(container.Contains<IntFact>()))

@@ -134,6 +134,8 @@
 - [WantActionBase](#T-GetcuReone-FactFactory-BaseEntities-WantActionBase 'GetcuReone.FactFactory.BaseEntities.WantActionBase')
   - [#ctor(wantAction,factTypes,option)](#M-GetcuReone-FactFactory-BaseEntities-WantActionBase-#ctor-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [#ctor(wantActionAsync,factTypes,option)](#M-GetcuReone-FactFactory-BaseEntities-WantActionBase-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [AddUsedRule()](#M-GetcuReone-FactFactory-BaseEntities-WantActionBase-AddUsedRule-GetcuReone-FactFactory-Interfaces-IFactRule- 'GetcuReone.FactFactory.BaseEntities.WantActionBase.AddUsedRule(GetcuReone.FactFactory.Interfaces.IFactRule)')
+  - [GetUsedRules()](#M-GetcuReone-FactFactory-BaseEntities-WantActionBase-GetUsedRules 'GetcuReone.FactFactory.BaseEntities.WantActionBase.GetUsedRules')
   - [Invoke()](#M-GetcuReone-FactFactory-BaseEntities-WantActionBase-Invoke-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.BaseEntities.WantActionBase.Invoke(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
   - [InvokeAsync()](#M-GetcuReone-FactFactory-BaseEntities-WantActionBase-InvokeAsync-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.BaseEntities.WantActionBase.InvokeAsync(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
   - [ToString()](#M-GetcuReone-FactFactory-BaseEntities-WantActionBase-ToString 'GetcuReone.FactFactory.BaseEntities.WantActionBase.ToString')
@@ -2348,6 +2350,28 @@ Constructor.
 | wantActionAsync | [System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask}') | Action taken after deriving a fact. |
 | factTypes | [System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType}') | Facts required to launch an action. |
 | option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | WantAction options. |
+
+<a name='M-GetcuReone-FactFactory-BaseEntities-WantActionBase-AddUsedRule-GetcuReone-FactFactory-Interfaces-IFactRule-'></a>
+### AddUsedRule() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-BaseEntities-WantActionBase-GetUsedRules'></a>
+### GetUsedRules() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='M-GetcuReone-FactFactory-BaseEntities-WantActionBase-Invoke-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}-'></a>
 ### Invoke() `method`

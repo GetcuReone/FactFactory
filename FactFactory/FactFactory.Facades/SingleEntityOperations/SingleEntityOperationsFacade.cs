@@ -171,7 +171,9 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             var fact = Factory.CreateObject(
                 facts => rule.Calculate(facts),
                 requiredFacts);
+
             fact.SetCalculateByRule();
+            context.WantAction.AddUsedRule(rule);
 
             foreach (var condition in node.Info.SuccessConditions)
                 using (var writer = context.Container.GetWriter())
@@ -199,7 +201,9 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             IFact fact = await Factory
                 .CreateObject(facts => rule.CalculateAsync(facts), requiredFacts)
                 .ConfigureAwait(false);
+
             fact.SetCalculateByRule();
+            context.WantAction.AddUsedRule(rule);
 
             foreach (var condition in node.Info.SuccessConditions)
                 using (var writer = context.Container.GetWriter())

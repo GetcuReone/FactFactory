@@ -18,6 +18,9 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\FactFactoryTests\FactFactoryTests.csproj" />
+        <ProjectReference Include="..\..\PriorityFactFactory\FactFactory.PriorityTests\FactFactory.PriorityTests.csproj" />
+        <ProjectReference Include="..\..\VersionedFactFactory\FactFactory.VersionedTests\FactFactory.VersionedTests.csproj" />
         <ProjectReference Include="..\FactFactory.TestsCommon\FactFactory.TestsCommon.csproj" />
     </ItemGroup>
 

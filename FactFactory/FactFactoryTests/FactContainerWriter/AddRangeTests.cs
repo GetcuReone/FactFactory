@@ -54,7 +54,7 @@ namespace GetcuReone.FactFactoryTests.FactContainerWriter
                 .When("Add fact.", writer =>
                 {
                     using (writer)
-                        container.AddRange(facts);
+                        writer.AddRange(facts);
                 })
                 .Then("Check container.", () =>
                     Assert.IsTrue(container.Contains<IntFact>()))
