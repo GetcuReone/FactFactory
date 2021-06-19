@@ -23,13 +23,13 @@ namespace GetcuReone.FactFactory.Interfaces
         /// Get parameter by code.
         /// </summary>
         /// <param name="parameterCode">Parameter code.</param>
-        /// <returns></returns>
+        /// <returns>Fact parameter.</returns>
         IFactParameter GetParameter(string parameterCode);
 
         /// <summary>
         /// Return parameters of a fact.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Fact parameters.</returns>
         IReadOnlyCollection<IFactParameter> GetParameters();
     }
 }

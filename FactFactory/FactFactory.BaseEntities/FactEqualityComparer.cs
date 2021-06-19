@@ -148,7 +148,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Get default.
+        /// Returns default.
         /// </summary>
         /// <returns></returns>
         public static FactEqualityComparer GetDefault()

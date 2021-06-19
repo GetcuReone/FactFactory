@@ -426,7 +426,7 @@ Constructor.
 
 ##### Summary
 
-Add fact.
+Adds fact.
 
 ##### Parameters
 
@@ -445,7 +445,7 @@ Add fact.
 
 ##### Summary
 
-Add facts.
+Adds facts.
 
 ##### Parameters
 
@@ -469,7 +469,7 @@ This method has no parameters.
 
 ##### Summary
 
-Remove fact.
+Removes fact.
 
 ##### Parameters
 
@@ -486,7 +486,7 @@ This method has no parameters.
 
 ##### Summary
 
-Remove fact.
+Removes fact.
 
 ##### Parameters
 
@@ -578,7 +578,7 @@ Checking the equality of facts.
 
 ##### Summary
 
-Get default.
+Returns default.
 
 ##### Returns
 
@@ -870,7 +870,7 @@ The rule at the specified index
 
 ##### Summary
 
-Add rule.
+Adds rule.
 
 ##### Parameters
 
@@ -883,7 +883,7 @@ Add rule.
 
 ##### Summary
 
-Add a rule without input facts.
+Adds a rule without input facts.
 
 ##### Parameters
 
@@ -903,7 +903,7 @@ Add a rule without input facts.
 
 ##### Summary
 
-Add a rule without input facts.
+Adds a rule without input facts.
 
 ##### Parameters
 
@@ -923,7 +923,7 @@ Add a rule without input facts.
 
 ##### Summary
 
-Add a rule with 9 input facts
+Adds a rule with 9 input facts
 
 ##### Parameters
 
@@ -952,7 +952,7 @@ Add a rule with 9 input facts
 
 ##### Summary
 
-Add a rule with 9 input facts
+Adds a rule with 9 input facts
 
 ##### Parameters
 
@@ -981,7 +981,7 @@ Add a rule with 9 input facts
 
 ##### Summary
 
-Add a rule with 10 input facts
+Adds a rule with 10 input facts
 
 ##### Parameters
 
@@ -1011,7 +1011,7 @@ Add a rule with 10 input facts
 
 ##### Summary
 
-Add a rule with 10 input facts
+Adds a rule with 10 input facts
 
 ##### Parameters
 
@@ -1041,7 +1041,7 @@ Add a rule with 10 input facts
 
 ##### Summary
 
-Add a rule with 11 input facts
+Adds a rule with 11 input facts
 
 ##### Parameters
 
@@ -1072,7 +1072,7 @@ Add a rule with 11 input facts
 
 ##### Summary
 
-Add a rule with 11 input facts
+Adds a rule with 11 input facts
 
 ##### Parameters
 
@@ -1103,7 +1103,7 @@ Add a rule with 11 input facts
 
 ##### Summary
 
-Add a rule with 12 input facts
+Adds a rule with 12 input facts
 
 ##### Parameters
 
@@ -1135,7 +1135,7 @@ Add a rule with 12 input facts
 
 ##### Summary
 
-Add a rule with 12 input facts
+Adds a rule with 12 input facts
 
 ##### Parameters
 
@@ -1167,7 +1167,7 @@ Add a rule with 12 input facts
 
 ##### Summary
 
-Add a rule with 13 input facts
+Adds a rule with 13 input facts
 
 ##### Parameters
 
@@ -1200,7 +1200,7 @@ Add a rule with 13 input facts
 
 ##### Summary
 
-Add a rule with 13 input facts
+Adds a rule with 13 input facts
 
 ##### Parameters
 
@@ -1233,7 +1233,7 @@ Add a rule with 13 input facts
 
 ##### Summary
 
-Add a rule with 14 input facts
+Adds a rule with 14 input facts
 
 ##### Parameters
 
@@ -1267,7 +1267,7 @@ Add a rule with 14 input facts
 
 ##### Summary
 
-Add a rule with 14 input facts
+Adds a rule with 14 input facts
 
 ##### Parameters
 
@@ -1301,7 +1301,7 @@ Add a rule with 14 input facts
 
 ##### Summary
 
-Add a rule with 15 input facts
+Adds a rule with 15 input facts
 
 ##### Parameters
 
@@ -1336,7 +1336,7 @@ Add a rule with 15 input facts
 
 ##### Summary
 
-Add a rule with 15 input facts
+Adds a rule with 15 input facts
 
 ##### Parameters
 
@@ -1371,7 +1371,7 @@ Add a rule with 15 input facts
 
 ##### Summary
 
-Add a rule with 16 input facts
+Adds a rule with 16 input facts
 
 ##### Parameters
 
@@ -1407,7 +1407,7 @@ Add a rule with 16 input facts
 
 ##### Summary
 
-Add a rule with 16 input facts
+Adds a rule with 16 input facts
 
 ##### Parameters
 
@@ -1443,7 +1443,7 @@ Add a rule with 16 input facts
 
 ##### Summary
 
-Add a rule with 1 input facts.
+Adds a rule with 1 input facts.
 
 ##### Parameters
 
@@ -1464,7 +1464,7 @@ Add a rule with 1 input facts.
 
 ##### Summary
 
-Add a rule with 1 input facts.
+Adds a rule with 1 input facts.
 
 ##### Parameters
 
@@ -1485,7 +1485,7 @@ Add a rule with 1 input facts.
 
 ##### Summary
 
-Add a rule with 2 input facts.
+Adds a rule with 2 input facts.
 
 ##### Parameters
 
@@ -1507,7 +1507,7 @@ Add a rule with 2 input facts.
 
 ##### Summary
 
-Add a rule with 2 input facts.
+Adds a rule with 2 input facts.
 
 ##### Parameters
 
@@ -1529,7 +1529,7 @@ Add a rule with 2 input facts.
 
 ##### Summary
 
-Add a rule with 3 input facts.
+Adds a rule with 3 input facts.
 
 ##### Parameters
 
@@ -1552,7 +1552,7 @@ Add a rule with 3 input facts.
 
 ##### Summary
 
-Add a rule with 3 input facts.
+Adds a rule with 3 input facts.
 
 ##### Parameters
 
@@ -1575,7 +1575,7 @@ Add a rule with 3 input facts.
 
 ##### Summary
 
-Add a rule with 4 input facts.
+Adds a rule with 4 input facts.
 
 ##### Parameters
 
@@ -1599,7 +1599,7 @@ Add a rule with 4 input facts.
 
 ##### Summary
 
-Add a rule with 4 input facts.
+Adds a rule with 4 input facts.
 
 ##### Parameters
 
@@ -1623,7 +1623,7 @@ Add a rule with 4 input facts.
 
 ##### Summary
 
-Add a rule with 5 input facts.
+Adds a rule with 5 input facts.
 
 ##### Parameters
 
@@ -1648,7 +1648,7 @@ Add a rule with 5 input facts.
 
 ##### Summary
 
-Add a rule with 5 input facts.
+Adds a rule with 5 input facts.
 
 ##### Parameters
 
@@ -1673,7 +1673,7 @@ Add a rule with 5 input facts.
 
 ##### Summary
 
-Add a rule with 6 input facts
+Adds a rule with 6 input facts
 
 ##### Parameters
 
@@ -1699,7 +1699,7 @@ Add a rule with 6 input facts
 
 ##### Summary
 
-Add a rule with 6 input facts
+Adds a rule with 6 input facts
 
 ##### Parameters
 
@@ -1725,7 +1725,7 @@ Add a rule with 6 input facts
 
 ##### Summary
 
-Add a rule with 7 input facts
+Adds a rule with 7 input facts
 
 ##### Parameters
 
@@ -1752,7 +1752,7 @@ Add a rule with 7 input facts
 
 ##### Summary
 
-Add a rule with 7 input facts
+Adds a rule with 7 input facts
 
 ##### Parameters
 
@@ -1779,7 +1779,7 @@ Add a rule with 7 input facts
 
 ##### Summary
 
-Add a rule with 8 input facts
+Adds a rule with 8 input facts
 
 ##### Parameters
 
@@ -1807,7 +1807,7 @@ Add a rule with 8 input facts
 
 ##### Summary
 
-Add a rule with 8 input facts
+Adds a rule with 8 input facts
 
 ##### Parameters
 
@@ -1939,11 +1939,11 @@ Creation method `TFactRule`.
 
 ##### Summary
 
-Creation method `TFactRule`.
+Creates `TFactRule`.
 
 ##### Returns
 
-
+Fact rule.
 
 ##### Parameters
 
@@ -2102,7 +2102,7 @@ Removes the element at the specified index of the [FactRuleCollectionBase\`1](#T
 
 ##### Summary
 
-Sort collection.
+Sorts collection.
 
 ##### Parameters
 
@@ -2137,7 +2137,11 @@ GetcuReone.FactFactory
 
 ##### Summary
 
-Fact type
+*Inherit from parent.*
+
+##### Summary
+
+Fact type.
 
 <a name='T-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1'></a>
 ## FactTypeBase\`1 `type`
@@ -2154,7 +2158,7 @@ Contains fact type information.
 
 | Name | Description |
 | ---- | ----------- |
-| TFact |  |
+| TFact | Fact type. |
 
 <a name='P-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1-FactName'></a>
 ### FactName `property`
@@ -2372,11 +2376,7 @@ This method has no parameters.
 
 ##### Summary
 
-String representation of an object
-
-##### Returns
-
-
+*Inherit from parent.*
 
 ##### Parameters
 

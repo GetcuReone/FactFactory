@@ -18,19 +18,12 @@ namespace GetcuReone.FactFactory.Entities
         {
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="factRules"></param>
+        /// <inheritdoc/>
         public FactRuleCollection(IEnumerable<FactRule> factRules) : base(factRules)
         {
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="factRules"></param>
-        /// <param name="isReadOnly"></param>
+        /// <inheritdoc/>
         public FactRuleCollection(IEnumerable<FactRule> factRules, bool isReadOnly) : base(factRules, isReadOnly)
         {
         }

@@ -18,7 +18,10 @@ namespace GetcuReone.FactFactory.Versioned
         where TFactRuleCollection : FactRuleCollectionBase<TFactRule>
         where TWantAction : WantActionBase
     {
-        /// <inheritdoc/>
+        /// <summary>
+        /// Returns the <see cref="VersionedSingleEntityOperationsFacade"/>.
+        /// </summary>
+        /// <returns>Instance <see cref="VersionedSingleEntityOperationsFacade"/>.</returns>
         public override ISingleEntityOperations GetSingleEntityOperations()
         {
             return GetFacade<VersionedSingleEntityOperationsFacade>();

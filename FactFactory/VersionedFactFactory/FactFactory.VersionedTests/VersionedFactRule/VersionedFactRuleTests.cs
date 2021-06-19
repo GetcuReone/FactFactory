@@ -57,7 +57,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .When("Run calculate", rule => 
                     rule.Calculate(container))
                 .ThenIsNotNull()
-                .AndAreEqual(fact => fact.GetVersionOrNull(), null)
+                .AndAreEqual(fact => fact.FindVersionParameter(), null)
                 .Run();
         }
 

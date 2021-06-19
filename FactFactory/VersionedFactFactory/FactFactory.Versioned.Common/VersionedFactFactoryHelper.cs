@@ -15,28 +15,28 @@ namespace GetcuReone.FactFactory.Versioned
     public static class VersionedFactFactoryHelper
     {
         /// <summary>
-        /// Get version fact.
+        /// Find parameter by <see cref="VersionedFactParametersCodes.Version"/>.
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <param name="fact"></param>
-        /// <returns></returns>
-        public static IVersionFact GetVersionOrNull<TFact>(this TFact fact)
+        /// <typeparam name="TFact">Type fact.</typeparam>
+        /// <param name="fact">Fact.</param>
+        /// <returns><see cref="IVersionFact"/> fact or null.</returns>
+        public static IVersionFact FindVersionParameter<TFact>(this TFact fact)
             where TFact : IFact
         {
             return fact.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
         }
 
         /// <summary>
-        /// The fact has a version.
+        /// Checks the value of the version of the <paramref name="fact"/>.
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <param name="fact"></param>
-        /// <param name="version"></param>
-        /// <returns></returns>
-        public static bool HasVersion<TFact>(this TFact fact, IVersionFact version)
+        /// <typeparam name="TFact">Type fact.</typeparam>
+        /// <param name="fact">Fact.</param>
+        /// <param name="version">Version fact.</param>
+        /// <returns>Does the version match the fact of the <paramref name="version"/>?</returns>
+        public static bool HasVersionParameter<TFact>(this TFact fact, IVersionFact version)
             where TFact : IFact
         {
-            var factVersion = fact.GetVersionOrNull();
+            var factVersion = fact.FindVersionParameter();
 
             if (version == null)
                 return factVersion == null;
@@ -47,39 +47,43 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Return the fact type of a version.
+        /// Returns the first type of fact that implements the <see cref="IVersionFact"/> type.
         /// </summary>
-        /// <param name="factTypes"></param>
-        /// <returns></returns>
-        public static IFactType GetVersionFactType(this IEnumerable<IFactType> factTypes)
+        /// <param name="factTypes">List fact types.</param>
+        /// <returns>First found fact type inherited from <see cref="IVersionFact"/></returns>
+        public static IFactType FirstVersionFactType(this IEnumerable<IFactType> factTypes)
         {
             return factTypes.FirstOrDefault(type => type.IsFactType<IVersionFact>());
         }
 
         /// <summary>
-        /// The first version fact of the same type.
+        /// Searches for the first occurrence of a version fact.
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
+        /// <typeparam name="TFact">Type fact.</typeparam>
         /// <param name="facts">Fact list.</param>
-        /// <param name="factType">Fact type of version.</param>
+        /// <param name="factType">Fact type of <see cref="IVersionFact"/>.</param>
         /// <param name="cache">Cache.</param>
-        /// <returns>Version or null.</returns>
-        public static IVersionFact FirstVersionByFactType<TFact>(this IEnumerable<TFact> facts, IFactType factType, IFactTypeCache cache)
+        /// <returns><see cref="IVersionFact"/> fact or null.</returns>
+        public static IVersionFact FirstVersionFactByFactType<TFact>(this IEnumerable<TFact> facts, IFactType factType, IFactTypeCache cache)
             where TFact : IFact
         {
             return facts.FirstFactByFactType(factType, cache) as IVersionFact;
         }
 
         /// <summary>
-        /// Compare fact rules by version.
+        /// Compares rules based on version facts.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="context"></param>
-        /// <returns></returns>
+        /// <typeparam name="TFactRule">Type rule.</typeparam>
+        /// <typeparam name="TWantAction">Type wantAction.</typeparam>
+        /// <typeparam name="TFactContainer">Type fact container.</typeparam>
+        /// <param name="x">First rule.</param>
+        /// <param name="y">Second rule.</param>
+        /// <param name="context">Context.</param>
+        /// <returns>
+        /// 1 - <paramref name="x"/> rule is greater than the <paramref name="y"/>,
+        /// 0 - <paramref name="x"/> rule is equal than the <paramref name="y"/>,
+        /// -1 - <paramref name="x"/> rule is less than the <paramref name="y"/>.
+        /// </returns>
         public static int CompareByVersion<TFactRule, TWantAction, TFactContainer>(this TFactRule x, TFactRule y, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
@@ -93,19 +97,23 @@ namespace GetcuReone.FactFactory.Versioned
             if (yVersionType == null)
                 return -1;
 
-            IVersionFact xVersion = context.Container.FirstVersionByFactType(xVersionType, context.Cache);
-            IVersionFact yVersion = context.Container.FirstVersionByFactType(yVersionType, context.Cache);
+            IVersionFact xVersion = context.Container.FirstVersionFactByFactType(xVersionType, context.Cache);
+            IVersionFact yVersion = context.Container.FirstVersionFactByFactType(yVersionType, context.Cache);
 
             return xVersion.CompareTo(yVersion);
         }
 
         /// <summary>
-        /// Compare facts by version.
+        /// Compares facts by version facts in parameters.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
-        public static int CompareByVersion(this IFact x, IFact y)
+        /// <param name="x">Fist fact.</param>
+        /// <param name="y">Second fact.</param>
+        /// <returns>
+        /// 1 - <paramref name="x"/> fact is greater than the <paramref name="y"/>,
+        /// 0 - <paramref name="x"/> fact is equal than the <paramref name="y"/>,
+        /// -1 - <paramref name="x"/> fact is less than the <paramref name="y"/>.
+        /// </returns>
+        public static int CompareByVersionParameter(this IFact x, IFact y)
         {
             var xVersion = x.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
             var yVersion = y.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
@@ -119,23 +127,24 @@ namespace GetcuReone.FactFactory.Versioned
         }
 
         /// <summary>
-        /// Set version.
+        /// Adds a version fact to parameters.
         /// </summary>
-        /// <param name="fact"></param>
-        /// <param name="version"></param>
-        public static IFact SetVersion(this IFact fact, IVersionFact version)
+        /// <param name="fact">Fact.</param>
+        /// <param name="version">Verion fact.</param>
+        /// <returns><paramref name="fact"/>.</returns>
+        public static IFact AddVerionParameter(this IFact fact, IVersionFact version)
         {
             fact.AddParameter(new FactParameter(VersionedFactParametersCodes.Version, version));
             return fact;
         }
 
         /// <summary>
-        /// Is relevant fact by versioned.
+        /// Checks if a fact contains a valid version.
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
+        /// <typeparam name="TFact">Type fact.</typeparam>
         /// <param name="fact">Fact.</param>
         /// <param name="maxVersion">Max version (optional).</param>
-        /// <returns></returns>
+        /// <returns>Whether the version of the fact is within the valid versions?</returns>
         public static bool IsRelevantFactByVersioned<TFact>(this TFact fact, IVersionFact maxVersion)
             where TFact : IFact
         {

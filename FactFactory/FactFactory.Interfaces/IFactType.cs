@@ -23,14 +23,14 @@ namespace GetcuReone.FactFactory.Interfaces
         /// Is it possible to convert a fact type to a <typeparamref name="TFact"/>.
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
-        /// <returns></returns>
+        /// <returns>Can a fact be converted to a <typeparamref name="TFact"/> type.</returns>
         bool IsFactType<TFact>() where TFact : IFact;
 
         /// <summary>
         /// Create an fact of this type. Method created for condition facts.
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
-        /// <returns></returns>
+        /// <returns>Fact.</returns>
         TFact CreateConditionFact<TFact>() where TFact : IConditionFact;
     }
 }

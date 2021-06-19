@@ -36,7 +36,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                     errorMessage: "Fact not found.")
                 .AndAreNotEqual(result => result.Fact, null,
                     errorMessage: "Fact cannot be null.")
-                .AndAreEqual(result => result.Fact.GetVersionOrNull(), null,
+                .AndAreEqual(result => result.Fact.FindVersionParameter(), null,
                     errorMessage: "Fact cannot be null.")
                 .Run();
         }

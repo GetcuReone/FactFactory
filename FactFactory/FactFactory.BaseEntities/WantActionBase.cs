@@ -46,10 +46,7 @@ namespace GetcuReone.FactFactory.BaseEntities
                 throw new ArgumentException("factTypes cannot be empty. The desired action should request a fact on entry.");
         }
 
-        /// <summary>
-        /// String representation of an object
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"({string.Join(", ", InputFactTypes.Select(f => f.FactName).ToList())})";

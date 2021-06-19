@@ -9,10 +9,7 @@ namespace GetcuReone.FactFactory.Exceptions
     /// </summary>
     public class InvalidDeriveOperationException : FactFactoryExceptionBase<DeriveErrorDetail>
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="details"></param>
+        /// <inheritdoc/>
         public InvalidDeriveOperationException(IReadOnlyCollection<DeriveErrorDetail> details) : base(details)
         {
         }

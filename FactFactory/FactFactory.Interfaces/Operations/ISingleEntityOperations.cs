@@ -14,7 +14,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Validate and return a copy of the container.
         /// </summary>
-        /// <typeparam name="TFactContainer"></typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
         /// <param name="container"></param>
         /// <returns></returns>
         void ValidateContainer<TFactContainer>(TFactContainer container) where TFactContainer : IFactContainer;
@@ -22,27 +22,34 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Validate and return a copy of the rules.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TFactRuleCollection"></typeparam>
-        /// <param name="ruleCollection"></param>
-        /// <returns></returns>
+        /// <typeparam name="TFactRule">Rule type.</typeparam>
+        /// <typeparam name="TFactRuleCollection">Rule collection type.</typeparam>
+        /// <param name="ruleCollection">Rules.</param>
+        /// <returns>Rules.</returns>
         TFactRuleCollection ValidateAndGetRules<TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
             where TFactRule : IFactRule
             where TFactRuleCollection : IFactRuleCollection<TFactRule>;
 
         /// <summary>
-        /// Get comparer for <see cref="IFactRule"/>.
+        /// Returns comparer for <see cref="IFactRule"/>.
+        /// <typeparam name="TFactRule">Rule type.</typeparam>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
         /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
+        /// <param name="context">Context.</param>
+        /// <returns>Compare for rule.</returns>
         IComparer<TFactRule> GetRuleComparer<TFactRule, TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
 
         /// <summary>
-        /// Get compatible rules.
+        /// Returns rules compatible with <paramref name="target"/>.
         /// </summary>
+        /// <typeparam name="TFactWork">Work type.</typeparam>
+        /// <typeparam name="TFactRule">Rule type.</typeparam>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
         /// <param name="target">The purpose with which the rules must be compatible.</param>
         /// <param name="factRules">List of rules.</param>
         /// <param name="context">Context.</param>
@@ -56,14 +63,14 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// True - if the target is consistent with the rule.
         /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
+        /// <typeparam name="TFactWork">Work type.</typeparam>
+        /// <typeparam name="TFactRule">Rule type.</typeparam>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
         /// <param name="target">The purpose with which the rules must be compatible.</param>
         /// <param name="rule">Fact rule.</param>
         /// <param name="context">Context.</param>
-        /// <returns></returns>
+        /// <returns>Are the rules compatible?</returns>
         bool CompatibleRule<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, TFactRule rule, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TFactRule : IFactRule
@@ -73,27 +80,27 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Is it possible to get a fact by type <paramref name="factType"/> from a container for a <paramref name="factWork"/>.
         /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
+        /// <typeparam name="TFactWork">Work type.</typeparam>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
         /// <param name="factType">Extracted fact type.</param>
         /// <param name="factWork"><see cref="IFactWork"/> for which to extract a fact.</param>
         /// <param name="context">Context.</param>
-        /// <returns></returns>
+        /// <returns>Is it possible to extract a fact?</returns>
         bool CanExtractFact<TFactWork, TWantAction, TFactContainer>(IFactType factType, TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
 
         /// <summary>
-        /// Get types of facts that cannot be extracted from the container.
+        /// Returns types of facts that cannot be extracted from the container.
         /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
+        /// <typeparam name="TFactWork">Work type.</typeparam>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
         /// <param name="factWork">Purpose for which facts are needed.</param>
         /// <param name="context">Context.</param>
-        /// <returns></returns>
+        /// <returns>Types of facts that cannot be extracted from the container.</returns>
         IEnumerable<IFactType> GetRequiredTypesOfFacts<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TWantAction : IWantAction
@@ -102,12 +109,12 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Do I need to recalculate the fact.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="node"></param>
-        /// <param name="context"></param>
-        /// <returns></returns>
+        /// <typeparam name="TFactRule">Rule type.</typeparam>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
+        /// <param name="node">Node.</param>
+        /// <param name="context">Context.</param>
+        /// <returns>Do I need to recalculate the fact?</returns>
         bool NeedCalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
@@ -116,12 +123,12 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Calculate fact by rule from node.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="node"></param>
-        /// <param name="context"></param>
-        /// <returns></returns>
+        /// <typeparam name="TFactRule">Rule type.</typeparam>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
+        /// <param name="node">Node.</param>
+        /// <param name="context">Context.</param>
+        /// <returns>Fact.</returns>
         IFact CalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
@@ -130,12 +137,12 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Calculate fact by rule from node.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="node"></param>
-        /// <param name="context"></param>
-        /// <returns></returns>
+        /// <typeparam name="TFactRule">Rule type.</typeparam>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
+        /// <param name="node">Node.</param>
+        /// <param name="context">Context.</param>
+        /// <returns>Fact.</returns>
         ValueTask<IFact> CalculateFactAsync<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
@@ -144,9 +151,9 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Run <paramref name="wantActionInfo"/> with input facts.
         /// </summary>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="wantActionInfo"></param>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
+        /// <param name="wantActionInfo">WantAction info.</param>
         void DeriveWantFacts<TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo)
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
@@ -154,24 +161,28 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Async run <paramref name="wantActionInfo"/> with input facts.
         /// </summary>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="wantActionInfo"></param>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
+        /// <param name="wantActionInfo">WantAction info.</param>
         ValueTask DeriveWantFactsAsync<TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo)
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
 
         /// <summary>
-        /// Get <see cref="IEqualityComparer{T}"/> for <see cref="IFact"/>.
+        /// Returns <see cref="IEqualityComparer{T}"/> for <see cref="IFact"/>.
         /// </summary>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
         /// <returns><see cref="IEqualityComparer{T}"/> for <see cref="IFact"/></returns>
         IEqualityComparer<IFact> GetFactEqualityComparer<TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
 
         /// <summary>
-        /// Get <see cref="IComparer{T}"/> for <see cref="IFact"/>.
+        /// Returns <see cref="IComparer{T}"/> for <see cref="IFact"/>.
         /// </summary>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
         /// <returns><see cref="IComparer{T}"/> for <see cref="IFact"/></returns>
         IComparer<IFact> GetFactComparer<TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
             where TWantAction : IWantAction

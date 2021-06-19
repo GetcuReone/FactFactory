@@ -4,11 +4,11 @@
 ## Contents
 
 - [PriorityFactFactoryHelper](#T-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper')
-  - [CompareByPriority(x,y)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriority-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.CompareByPriority(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)')
+  - [AddPriorityParameter\`\`2(fact,priority)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-AddPriorityParameter``2-``0,``1- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.AddPriorityParameter``2(``0,``1)')
   - [CompareByPriority\`\`3(x,y,context)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriority``3-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.CompareByPriority``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
-  - [FirstPriorityByFactType\`\`1(facts,factType,cache)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FirstPriorityByFactType``1-System-Collections-Generic-IEnumerable{``0},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.FirstPriorityByFactType``1(System.Collections.Generic.IEnumerable{``0},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
-  - [GetPriorityOrNull\`\`1(fact)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-GetPriorityOrNull``1-``0- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.GetPriorityOrNull``1(``0)')
-  - [SetPriority\`\`2(fact,priority)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-SetPriority``2-``0,``1- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.SetPriority``2(``0,``1)')
+  - [CompareByPriorityParameter(x,y)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriorityParameter-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.CompareByPriorityParameter(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)')
+  - [FindPriorityParameter\`\`1(fact)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FindPriorityParameter``1-``0- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.FindPriorityParameter``1(``0)')
+  - [FirstPriorityFactByFactType\`\`1(facts,factType,cache)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FirstPriorityFactByFactType``1-System-Collections-Generic-IEnumerable{``0},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.FirstPriorityFactByFactType``1(System.Collections.Generic.IEnumerable{``0},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
 - [PriorityFactParametersCodes](#T-GetcuReone-FactFactory-Priority-Constants-PriorityFactParametersCodes 'GetcuReone.FactFactory.Priority.Constants.PriorityFactParametersCodes')
   - [Priority](#F-GetcuReone-FactFactory-Priority-Constants-PriorityFactParametersCodes-Priority 'GetcuReone.FactFactory.Priority.Constants.PriorityFactParametersCodes.Priority')
 
@@ -23,61 +23,109 @@ GetcuReone.FactFactory.Priority
 
 Helper for PriorityFactFactory.
 
-<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriority-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact-'></a>
-### CompareByPriority(x,y) `method`
+<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-AddPriorityParameter``2-``0,``1-'></a>
+### AddPriorityParameter\`\`2(fact,priority) `method`
 
 ##### Summary
 
-Compare by priority.
+Adds a priority fact to parameters.
 
 ##### Returns
 
-
+`fact`.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| x | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') |  |
-| y | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') |  |
+| fact | [\`\`0](#T-``0 '``0') | Fact. |
+| priority | [\`\`1](#T-``1 '``1') | Priority fact. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact | Type fact |
+| TPriority | Type priority fact. |
 
 <a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriority``3-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### CompareByPriority\`\`3(x,y,context) `method`
 
 ##### Summary
 
-Compare fact rules by 'priority'.
+Compares rules based on priority facts.
 
 ##### Returns
 
-
+1 - `x` rule is greater than the `y`, 0 - `x` rule is equal than the `y`, -1 - `x` rule is less than the `y`.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| x | [\`\`0](#T-``0 '``0') |  |
-| y | [\`\`0](#T-``0 '``0') |  |
-| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') |  |
+| x | [\`\`0](#T-``0 '``0') | First rule. |
+| y | [\`\`0](#T-``0 '``0') | Second rule. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') | Context. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | Type rule. |
+| TWantAction | Type wantAction. |
+| TFactContainer | Type fact container. |
 
-<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FirstPriorityByFactType``1-System-Collections-Generic-IEnumerable{``0},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-'></a>
-### FirstPriorityByFactType\`\`1(facts,factType,cache) `method`
+<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriorityParameter-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact-'></a>
+### CompareByPriorityParameter(x,y) `method`
 
 ##### Summary
 
-The first 'priority' fact of the same type.
+Compares facts by priority facts in parameters.
 
 ##### Returns
 
-Priority or null.
+1 - `x` fact is greater than the `y`, 0 - `x` fact is equal than the `y`, -1 - `x` fact is less than the `y`.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| x | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Fist fact. |
+| y | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Second fact. |
+
+<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FindPriorityParameter``1-``0-'></a>
+### FindPriorityParameter\`\`1(fact) `method`
+
+##### Summary
+
+Find parameter by [Priority](#F-GetcuReone-FactFactory-Priority-Constants-PriorityFactParametersCodes-Priority 'GetcuReone.FactFactory.Priority.Constants.PriorityFactParametersCodes.Priority').
+
+##### Returns
+
+[IPriorityFact](#T-FactFactory-Priority-Interfaces-IPriorityFact 'FactFactory.Priority.Interfaces.IPriorityFact') fact or null.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| fact | [\`\`0](#T-``0 '``0') | Fact. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact | Type fact. |
+
+<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FirstPriorityFactByFactType``1-System-Collections-Generic-IEnumerable{``0},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-'></a>
+### FirstPriorityFactByFactType\`\`1(facts,factType,cache) `method`
+
+##### Summary
+
+Searches for the first occurrence of a priority fact.
+
+##### Returns
+
+[IPriorityFact](#T-FactFactory-Priority-Interfaces-IPriorityFact 'FactFactory.Priority.Interfaces.IPriorityFact') fact or null.
 
 ##### Parameters
 
@@ -91,55 +139,7 @@ Priority or null.
 
 | Name | Description |
 | ---- | ----------- |
-| TFact |  |
-
-<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-GetPriorityOrNull``1-``0-'></a>
-### GetPriorityOrNull\`\`1(fact) `method`
-
-##### Summary
-
-Get priority fact.
-
-##### Returns
-
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| fact | [\`\`0](#T-``0 '``0') |  |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFact |  |
-
-<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-SetPriority``2-``0,``1-'></a>
-### SetPriority\`\`2(fact,priority) `method`
-
-##### Summary
-
-Set parameter 'priority'.
-
-##### Returns
-
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| fact | [\`\`0](#T-``0 '``0') |  |
-| priority | [\`\`1](#T-``1 '``1') |  |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFact |  |
-| TPriority |  |
+| TFact | Type fact. |
 
 <a name='T-GetcuReone-FactFactory-Priority-Constants-PriorityFactParametersCodes'></a>
 ## PriorityFactParametersCodes `type`

@@ -51,10 +51,10 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Return the fact set that will be contained in the default container.
+        /// Returns the fact set that will be contained in the default container.
         /// </summary>
         /// <param name="context">Context.</param>
-        /// <returns></returns>
+        /// <returns>The set of facts added to the default container</returns>
         protected virtual IEnumerable<IFact> GetDefaultFacts(IWantActionContext<TWantAction, TFactContainer> context)
         {
             return Enumerable.Empty<IFact>();
@@ -166,8 +166,8 @@ namespace GetcuReone.FactFactory
         /// Derive <typeparamref name="TFactResult"/>.
         /// </summary>
         /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
-        /// <param name="container"></param>
-        /// <returns></returns>
+        /// <param name="container">Fact container.</param>
+        /// <returns>Fact <typeparamref name="TFactResult"/>.</returns>
         public virtual TFactResult DeriveFact<TFactResult>(TFactContainer container = null) where TFactResult : IFact
         {
             TFactResult fact = default;
@@ -221,24 +221,33 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Get default container.
+        /// Returns default container.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Default container.</returns>
         protected abstract TFactContainer GetDefaultContainer();
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Returns <see cref="TreeBuildingOperationsFacade"/>.
+        /// </summary>
+        /// <returns>Instanse <see cref="TreeBuildingOperationsFacade"/>.</returns>
         public virtual ITreeBuildingOperations GetTreeBuildingOperations()
         {
             return GetFacade<TreeBuildingOperationsFacade>();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Returns <see cref="SingleEntityOperationsFacade"/>.
+        /// </summary>
+        /// <returns>Instanse <see cref="SingleEntityOperationsFacade"/>.</returns>
         public virtual ISingleEntityOperations GetSingleEntityOperations()
         {
             return GetFacade<SingleEntityOperationsFacade>();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Returns <see cref="FactTypeCache"/>.
+        /// </summary>
+        /// <returns>Instanse <see cref="FactTypeCache"/>.</returns>
         public virtual IFactTypeCache GetFactTypeCache()
         {
             return new FactTypeCache();
@@ -247,21 +256,21 @@ namespace GetcuReone.FactFactory
         #region overloads method WantFact
 
         /// <summary>
-        /// Creation method <typeparamref name="TWantAction"/>.
+        /// Creates <typeparamref name="TWantAction"/>.
         /// </summary>
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
         /// <param name="option">WantAction option.</param>
-        /// <returns></returns>
+        /// <returns>WantAction.</returns>
         protected abstract TWantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option);
 
         /// <summary>
-        /// Creation method <typeparamref name="TWantAction"/>.
+        /// Creates <typeparamref name="TWantAction"/>.
         /// </summary>
         /// <param name="wantAction">Action taken after deriving a fact.</param>
         /// <param name="factTypes">Facts required to launch an action.</param>
         /// <param name="option">WantAction option.</param>
-        /// <returns></returns>
+        /// <returns>WantAction.</returns>
         protected abstract TWantAction CreateWantAction(Func<IEnumerable<IFact>, ValueTask> wantAction, List<IFactType> factTypes, FactWorkOption option);
 
         /// <summary>

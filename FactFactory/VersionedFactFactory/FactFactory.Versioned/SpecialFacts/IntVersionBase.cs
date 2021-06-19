@@ -7,10 +7,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
     /// </summary>
     public abstract class IntVersionBase : VersionBase<int>
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="version">version</param>
+        /// <inheritdoc/>
         protected IntVersionBase(int version) : base(version)
         {
         }

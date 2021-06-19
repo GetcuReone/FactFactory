@@ -7,7 +7,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Independent node group.
     /// </summary>
-    /// <typeparam name="TFactRule"></typeparam>
+    /// <typeparam name="TFactRule">Rule type.</typeparam>
     public class IndependentNodeGroup<TFactRule> : List<NodeByFactRule<TFactRule>>
         where TFactRule : IFactRule
     {

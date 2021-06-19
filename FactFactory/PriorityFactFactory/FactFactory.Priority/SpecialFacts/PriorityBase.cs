@@ -7,7 +7,7 @@ using GetcuReone.FactFactory.SpecialFacts;
 namespace GetcuReone.FactFactory.Priority.SpecialFacts
 {
     /// <summary>
-    /// Base class for <see cref="IPriorityFact"/>.
+    /// Base class. <inheritdoc cref="IPriorityFact"/>
     /// </summary>
     /// <typeparam name="TPriorityValue">Priority value type.</typeparam>
     public abstract class PriorityBase<TPriorityValue> : SpecialFactBase, IPriorityFact
@@ -23,14 +23,18 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
             PriorityValue = value;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Compares the priority fact to the <paramref name="other"/>.
+        /// </summary>
+        /// <param name="other">Priority fact for comparison</param>
+        /// <returns>1 - more, 0 - equal, -1 less.</returns>
         public abstract int CompareTo(IPriorityFact other);
 
         /// <summary>
-        /// Error creating version incompatibility.
+        /// Creates an error creating incompatibility priority facts.
         /// </summary>
-        /// <param name="priorityFact"></param>
-        /// <returns></returns>
+        /// <param name="priorityFact">Priority fact.</param>
+        /// <returns>Error creating incompatibility priority facts.</returns>
         protected virtual FactFactoryException CreateIncompatibilityVersionException(IPriorityFact priorityFact)
         {
             return FactFactoryHelper.CreateException(
@@ -39,9 +43,9 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
         }
 
         /// <summary>
-        /// Extract <see cref="PriorityBase{TPriorityValue}.PriorityValue"/>.
+        /// Extracts the <see cref="PriorityBase{TPriorityValue}.PriorityValue"/>.
         /// </summary>
-        /// <param name="fact"></param>
+        /// <param name="fact">Priority fact.</param>
         public static implicit operator TPriorityValue(PriorityBase<TPriorityValue> fact)
         {
             return fact.PriorityValue;

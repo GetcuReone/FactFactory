@@ -15,9 +15,7 @@ namespace GetcuReone.FactFactory.Versioned
     {
         private readonly Func<IWantActionContext<WantAction, FactContainer>, IEnumerable<IFact>> _getDefaultFactsFunc;
 
-        /// <summary>
-        /// Rule collection.
-        /// </summary>
+        /// <inheritdoc/>
         public override FactRuleCollection Rules { get; }
 
         /// <summary>

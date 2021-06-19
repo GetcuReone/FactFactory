@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Contains fact type information.
     /// </summary>
-    /// <typeparam name="TFact"></typeparam>
+    /// <typeparam name="TFact">Fact type.</typeparam>
     public abstract class FactTypeBase<TFact> : IFactType
         where TFact : IFact
     {

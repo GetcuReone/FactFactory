@@ -66,8 +66,8 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
                 .AndIsTrue(fact => fact is FactResult, 
                     errorMessage: "result must have type FactResult.")
                 .AndAreEqual(fact => fact.Value, expectedValue)
-                .AndIsTrue(fact => fact.GetPriorityOrNull() != null)
-                .AndIsTrue(fact => fact.GetPriorityOrNull() is IPriorityFact)
+                .AndIsTrue(fact => fact.FindPriorityParameter() != null)
+                .AndIsTrue(fact => fact.FindPriorityParameter() is IPriorityFact)
                 .Run();
         }
     }

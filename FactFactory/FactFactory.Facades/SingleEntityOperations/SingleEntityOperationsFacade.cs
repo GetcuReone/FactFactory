@@ -6,7 +6,6 @@ using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

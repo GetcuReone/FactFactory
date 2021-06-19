@@ -3,7 +3,7 @@
 namespace GetcuReone.FactFactory.Priority.SpecialFacts
 {
     /// <summary>
-    /// Base class for priority fact with value of type <see cref="uint"/>.
+    /// Base class for priority fact with value of type <see cref="ulong"/>.
     /// </summary>
     public class ULongPriorityBase : PriorityBase<ulong>
     {

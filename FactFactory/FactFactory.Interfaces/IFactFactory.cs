@@ -42,19 +42,19 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <summary>
         /// Get <see cref="ITreeBuildingOperations"/>.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Instanse <see cref="ITreeBuildingOperations"/>.</returns>
         ITreeBuildingOperations GetTreeBuildingOperations();
 
         /// <summary>
         /// Get <see cref="ISingleEntityOperations"/>.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Instanse <see cref="ISingleEntityOperations"/>.</returns>
         ISingleEntityOperations GetSingleEntityOperations();
 
         /// <summary>
         /// Get <see cref="IFactTypeCache"/>.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Instanse <see cref="IFactTypeCache"/>.</returns>
         IFactTypeCache GetFactTypeCache();
     }
 }

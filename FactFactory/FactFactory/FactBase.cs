@@ -45,7 +45,7 @@ namespace GetcuReone.FactFactory
         }
     }
 
-    /// /// <inheritdoc/>
+    /// <inheritdoc/>
     /// <typeparam name="TFactValue">Type fact value.</typeparam>
     public abstract class FactBase<TFactValue> : FactBase
     {
@@ -64,9 +64,9 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Extract <see cref="FactBase{TFactValue}.Value"/>.
+        /// Extracts <see cref="FactBase{TFactValue}.Value"/>.
         /// </summary>
-        /// <param name="fact"></param>
+        /// <param name="fact">Fact.</param>
         public static implicit operator TFactValue(FactBase<TFactValue> fact)
         {
             return fact.Value;

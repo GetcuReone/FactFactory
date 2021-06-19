@@ -98,9 +98,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 .AndIsTrue(container =>
                     container.All(fact => fact is FactResult), errorMessage: "Only one type of fact was expected.")
                 .AndIsTrue(container => 
-                    container.First().GetVersionOrNull() is Version1, errorMessage: "FactResult with 1 version not contained in container.")
+                    container.First().FindVersionParameter() is Version1, errorMessage: "FactResult with 1 version not contained in container.")
                 .AndIsTrue(container =>
-                    container.Last().GetVersionOrNull() is Version2, errorMessage: "FactResult with 2 version not contained in container.")
+                    container.Last().FindVersionParameter() is Version2, errorMessage: "FactResult with 2 version not contained in container.")
                 .Run();
         }
     }

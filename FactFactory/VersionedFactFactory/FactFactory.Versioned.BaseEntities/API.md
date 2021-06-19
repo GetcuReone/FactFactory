@@ -5,8 +5,8 @@
 
 - [VersionedFactContainerBase](#T-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase')
   - [#ctor()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-#ctor 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.#ctor')
-  - [#ctor(facts)](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
-  - [#ctor(facts,isReadOnly)](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)')
+  - [#ctor()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
+  - [#ctor()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)')
   - [Contains\`\`1()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-Contains``1 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Contains``1')
   - [ContainsByVersion\`\`1(version)](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-ContainsByVersion``1-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.ContainsByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
   - [GetFact\`\`1()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-GetFact``1 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.GetFact``1')
@@ -32,38 +32,33 @@ Base class for versioned fact container.
 
 ##### Summary
 
-Constructor.
+*Inherit from parent.*
 
 ##### Parameters
 
 This constructor has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}-'></a>
-### #ctor(facts) `constructor`
+### #ctor() `constructor`
 
 ##### Summary
 
-Constructor.
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| facts | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}') | An array of facts to add to the container. |
+This constructor has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean-'></a>
-### #ctor(facts,isReadOnly) `constructor`
+### #ctor() `constructor`
 
 ##### Summary
 
-Constructor.
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| facts | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}') | An array of facts to add to the container. |
-| isReadOnly | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') |  |
+This constructor has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-Contains``1'></a>
 ### Contains\`\`1() `method`

@@ -5,17 +5,17 @@
 
 - [FactContainer](#T-GetcuReone-FactFactory-Entities-FactContainer 'GetcuReone.FactFactory.Entities.FactContainer')
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactContainer-#ctor 'GetcuReone.FactFactory.Entities.FactContainer.#ctor')
-  - [#ctor(facts)](#M-GetcuReone-FactFactory-Entities-FactContainer-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
-  - [#ctor(facts,isReadOnly)](#M-GetcuReone-FactFactory-Entities-FactContainer-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean- 'GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)')
+  - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactContainer-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
+  - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactContainer-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean- 'GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)')
 - [FactParameter](#T-GetcuReone-FactFactory-Entities-FactParameter 'GetcuReone.FactFactory.Entities.FactParameter')
-  - [#ctor(code,value)](#M-GetcuReone-FactFactory-Entities-FactParameter-#ctor-System-String,System-Object- 'GetcuReone.FactFactory.Entities.FactParameter.#ctor(System.String,System.Object)')
+  - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactParameter-#ctor-System-String,System-Object- 'GetcuReone.FactFactory.Entities.FactParameter.#ctor(System.String,System.Object)')
 - [FactRule](#T-GetcuReone-FactFactory-Entities-FactRule 'GetcuReone.FactFactory.Entities.FactRule')
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactRule-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactRule-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
 - [FactRuleCollection](#T-GetcuReone-FactFactory-Entities-FactRuleCollection 'GetcuReone.FactFactory.Entities.FactRuleCollection')
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-#ctor 'GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor')
-  - [#ctor(factRules)](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Entities-FactRule}- 'GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule})')
-  - [#ctor(factRules,isReadOnly)](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Entities-FactRule},System-Boolean- 'GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule},System.Boolean)')
+  - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Entities-FactRule}- 'GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule})')
+  - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Entities-FactRule},System-Boolean- 'GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule},System.Boolean)')
   - [Copy()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-Copy 'GetcuReone.FactFactory.Entities.FactRuleCollection.Copy')
   - [CreateFactRule()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Entities.FactRuleCollection.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [CreateFactRule()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Entities.FactRuleCollection.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
@@ -46,31 +46,26 @@ Constructor.
 This constructor has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Entities-FactContainer-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}-'></a>
-### #ctor(facts) `constructor`
+### #ctor() `constructor`
 
 ##### Summary
 
-Constructor.
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| facts | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}') | An array of facts to add to the container. |
+This constructor has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Entities-FactContainer-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean-'></a>
-### #ctor(facts,isReadOnly) `constructor`
+### #ctor() `constructor`
 
 ##### Summary
 
-Constructor.
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| facts | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}') | An array of facts to add to the container. |
-| isReadOnly | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') |  |
+This constructor has no parameters.
 
 <a name='T-GetcuReone-FactFactory-Entities-FactParameter'></a>
 ## FactParameter `type`
@@ -84,18 +79,15 @@ GetcuReone.FactFactory.Entities
 Fact parameter.
 
 <a name='M-GetcuReone-FactFactory-Entities-FactParameter-#ctor-System-String,System-Object-'></a>
-### #ctor(code,value) `constructor`
+### #ctor() `constructor`
 
 ##### Summary
 
-Constructor.
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| code | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') |  |
-| value | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') |  |
+This constructor has no parameters.
 
 <a name='T-GetcuReone-FactFactory-Entities-FactRule'></a>
 ## FactRule `type`
@@ -153,31 +145,26 @@ Constructor.
 This constructor has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Entities-FactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Entities-FactRule}-'></a>
-### #ctor(factRules) `constructor`
+### #ctor() `constructor`
 
 ##### Summary
 
-Constructor.
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| factRules | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule}') |  |
+This constructor has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Entities-FactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Entities-FactRule},System-Boolean-'></a>
-### #ctor(factRules,isReadOnly) `constructor`
+### #ctor() `constructor`
 
 ##### Summary
 
-Constructor.
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| factRules | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule}') |  |
-| isReadOnly | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') |  |
+This constructor has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Entities-FactRuleCollection-Copy'></a>
 ### Copy() `method`
