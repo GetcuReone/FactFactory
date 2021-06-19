@@ -1127,7 +1127,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Check the existence of the rules calculated fact after calculation.")]
-        //[Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CheckExistenceRulesCalculatedFactAfterDeriveTestCase()
         {
             const int startValue = 4;

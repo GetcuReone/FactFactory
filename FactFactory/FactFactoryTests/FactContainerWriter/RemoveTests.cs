@@ -70,7 +70,7 @@ namespace GetcuReone.FactFactoryTests.FactContainerWriter
                 .When("Add fact.", writer =>
                 {
                     using (writer)
-                        container.Remove<IntFact>();
+                        writer.Remove<IntFact>();
                 })
                 .Then("Check container.", () =>
                     Assert.IsFalse(container.Contains<IntFact>()))
@@ -96,7 +96,7 @@ namespace GetcuReone.FactFactoryTests.FactContainerWriter
                 .When("Add fact.", writer =>
                 {
                     using (writer)
-                        container.Remove(fact);
+                        writer.Remove(fact);
                 })
                 .Then("Check container.", () =>
                     Assert.IsFalse(container.Contains<IntFact>()))
