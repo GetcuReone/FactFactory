@@ -1,8 +1,10 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
 namespace FactFactoryTests.FactFactoryT
@@ -1118,6 +1120,34 @@ namespace FactFactoryTests.FactFactoryT
                     Assert.AreEqual(startValue + 14, input14Fact.Value, "another input14act value was expected.");
                     Assert.AreEqual(startValue + 15, input15Fact.Value, "another input15Fact value was expected.");
                     Assert.AreEqual(startValue + 16, input16Fact.Value, "another input16Fact value was expected.");
+                })
+                .Run();
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.WantAction), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Check the existence of the rules calculated fact after calculation.")]
+        //[Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void CheckExistenceRulesCalculatedFactAfterDeriveTestCase()
+        {
+            const int startValue = 4;
+            const int expectedCountRules = 3;
+            var wantAction = GetWantAction((Input3Fact fact) => { });
+
+            GivenCreateFactFactory()
+                .AndAddRules(new Collection
+                {
+                    () => new Input1Fact(startValue + 1),
+                    (Input1Fact fact) => new Input2Fact(fact.Value + 1),
+                    (Input2Fact fact) => new Input3Fact(fact.Value + 1),
+                })
+                .And("Want facts.", factory =>
+                    factory.WantFacts(wantAction, null))
+                .When("Derive.", factory =>
+                    factory.Derive())
+                .Then("Check rules calculated fact", () =>
+                {
+                    Assert.AreEqual(expectedCountRules, wantAction.GetUsedRules().Count(), "Different number of rules expected.");
                 })
                 .Run();
         }

@@ -23,8 +23,6 @@ namespace GetcuReone.FactFactory.BaseEntities
             _container = container;
             Monitor.Enter(_container);
             _previousValue = _container.IsReadOnly;
-            if (_previousValue)
-                _container.IsReadOnly = false;
         }
 
         /// <summary>
@@ -35,7 +33,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFact>(TFact fact) 
             where TFact : IFact
         {
+            if (_container.IsReadOnly)
+                _container.IsReadOnly = false;
+
             _container.Add(fact);
+
+            if (_previousValue != _container.IsReadOnly)
+                _container.IsReadOnly = _previousValue;
         }
 
         /// <summary>
@@ -44,7 +48,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="facts">Fact set.</param>
         public void AddRange(IEnumerable<IFact> facts)
         {
+            if (_container.IsReadOnly)
+                _container.IsReadOnly = false;
+
             _container.AddRange(facts);
+
+            if (_previousValue != _container.IsReadOnly)
+                _container.IsReadOnly = _previousValue;
         }
 
         /// <summary>
@@ -54,7 +64,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Remove<TFact>()
             where TFact : IFact
         {
+            if (_container.IsReadOnly)
+                _container.IsReadOnly = false;
+
             _container.Remove<TFact>();
+
+            if (_previousValue != _container.IsReadOnly)
+                _container.IsReadOnly = _previousValue;
         }
 
         /// <summary>
@@ -64,7 +80,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFact">Type of fact to delete.</typeparam>
         public void Remove<TFact>(TFact fact) where TFact : IFact
         {
+            if (_container.IsReadOnly)
+                _container.IsReadOnly = false;
+
             _container.Remove(fact);
+
+            if (_previousValue != _container.IsReadOnly)
+                _container.IsReadOnly = _previousValue;
         }
 
         /// <inheritdoc/>
