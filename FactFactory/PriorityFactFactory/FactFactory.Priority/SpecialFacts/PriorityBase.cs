@@ -7,7 +7,7 @@ using GetcuReone.FactFactory.SpecialFacts;
 namespace GetcuReone.FactFactory.Priority.SpecialFacts
 {
     /// <summary>
-    /// Base class for <see cref="IPriorityFact"/>.
+    /// Base class. <inheritdoc cref="IPriorityFact"/>
     /// </summary>
     /// <typeparam name="TPriorityValue">Priority value type.</typeparam>
     public abstract class PriorityBase<TPriorityValue> : SpecialFactBase, IPriorityFact
