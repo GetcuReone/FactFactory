@@ -21,7 +21,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Check method Derive.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Second.One)]
         public void DeriveTestCase()
         {
             Input16Fact fact16 = null;
