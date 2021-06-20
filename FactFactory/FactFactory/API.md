@@ -3,6 +3,19 @@
 
 ## Contents
 
+- [BuildCanDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-BuildCanDerived`1 'GetcuReone.FactFactory.SpecialFacts.BuildCanDerived`1')
+  - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCanDerived`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.BuildCanDerived`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
+- [BuildCannotDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-BuildCannotDerived`1 'GetcuReone.FactFactory.SpecialFacts.BuildCannotDerived`1')
+  - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCannotDerived`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.BuildCannotDerived`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
+- [BuildConditionFactBase](#T-GetcuReone-FactFactory-SpecialFacts-BuildConditionFactBase 'GetcuReone.FactFactory.SpecialFacts.BuildConditionFactBase')
+  - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-BuildConditionFactBase-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.BuildConditionFactBase.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
+  - [EqualsInfo()](#M-GetcuReone-FactFactory-SpecialFacts-BuildConditionFactBase-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.SpecialFacts.BuildConditionFactBase.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
+- [BuildConditionFactBase\`1](#T-GetcuReone-FactFactory-SpecialFacts-BuildConditionFactBase`1 'GetcuReone.FactFactory.SpecialFacts.BuildConditionFactBase`1')
+  - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-BuildConditionFactBase`1-GetFactType``1 'GetcuReone.FactFactory.SpecialFacts.BuildConditionFactBase`1.GetFactType``1')
+- [BuildContained\`1](#T-GetcuReone-FactFactory-SpecialFacts-BuildContained`1 'GetcuReone.FactFactory.SpecialFacts.BuildContained`1')
+  - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-BuildContained`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.BuildContained`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
+- [BuildNotContained\`1](#T-GetcuReone-FactFactory-SpecialFacts-BuildNotContained`1 'GetcuReone.FactFactory.SpecialFacts.BuildNotContained`1')
+  - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-BuildNotContained`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.BuildNotContained`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
 - [CanDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-CanDerived`1 'GetcuReone.FactFactory.SpecialFacts.CanDerived`1')
   - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-CanDerived`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.CanDerived`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
 - [CannotDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-CannotDerived`1 'GetcuReone.FactFactory.SpecialFacts.CannotDerived`1')
@@ -85,6 +98,189 @@
   - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-NotContained`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.NotContained`1.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
 - [SpecialFactBase](#T-GetcuReone-FactFactory-SpecialFacts-SpecialFactBase 'GetcuReone.FactFactory.SpecialFacts.SpecialFactBase')
   - [EqualsInfo()](#M-GetcuReone-FactFactory-SpecialFacts-SpecialFactBase-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.SpecialFacts.SpecialFactBase.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-BuildCanDerived`1'></a>
+## BuildCanDerived\`1 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+Fact condition that checks if a tree can be built for the fact `TFact` at the tree building stage.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact | The type of fact for which the condition is met. |
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCanDerived`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+### Condition\`\`4() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Summary
+
+Checks if a tree can be built for the fact.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-BuildCannotDerived`1'></a>
+## BuildCannotDerived\`1 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+A fact condition that tests whether a tree cannot be built for the `TFact` fact at the tree building stage.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact | The type of fact for which the condition is met. |
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCannotDerived`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+### Condition\`\`4() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Summary
+
+Checks if a tree cannot be built for the `TFact` fact.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-BuildConditionFactBase'></a>
+## BuildConditionFactBase `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+Base class for [IBuildConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IBuildConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IBuildConditionFact').
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildConditionFactBase-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+### Condition\`\`4() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildConditionFactBase-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact-'></a>
+### EqualsInfo() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-BuildConditionFactBase`1'></a>
+## BuildConditionFactBase\`1 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildConditionFactBase`1-GetFactType``1'></a>
+### GetFactType\`\`1() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-BuildContained`1'></a>
+## BuildContained\`1 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+Fact condition. Checks if a `TFact` fact can be retrieved from a container at the tree building stage.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact | The type of fact for which the condition is met. |
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildContained`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+### Condition\`\`4() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Summary
+
+Checks if a `TFact` fact can be retrieved from a container.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-SpecialFacts-BuildNotContained`1'></a>
+## BuildNotContained\`1 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.SpecialFacts
+
+##### Summary
+
+Fact condition. Checks if a `TFact` fact cannot be retrieved from a container at the tree building stage.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact | The type of fact for which the condition is met. |
+
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildNotContained`1-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+### Condition\`\`4() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Summary
+
+Checks if a `TFact` fact cannot be retrieved from a container.
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-GetcuReone-FactFactory-SpecialFacts-CanDerived`1'></a>
 ## CanDerived\`1 `type`

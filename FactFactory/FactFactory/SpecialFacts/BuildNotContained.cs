@@ -1,16 +1,14 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
-using System;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.SpecialFacts
 {
     /// <summary>
-    /// Fact condition. Checks if a <typeparamref name="TFact"/> fact cannot be retrieved from a container.
+    /// Fact condition. Checks if a <typeparamref name="TFact"/> fact cannot be retrieved from a container at the tree building stage.
     /// </summary>
     /// <typeparam name="TFact">The type of fact for which the condition is met.</typeparam>
-    [Obsolete("Will be deleted. Used BuildNotContained")]
-    public class NotContained<TFact> : ConditionFactBase<TFact>
+    public class BuildNotContained<TFact> : BuildConditionFactBase<TFact>
         where TFact : IFact
     {
         /// <summary>
