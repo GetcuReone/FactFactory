@@ -1,5 +1,4 @@
 ﻿using GetcuReone.FactFactory.Interfaces.Context;
-using System;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
@@ -7,8 +6,7 @@ namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
     /// <summary>
     /// A special fact that is created using a factory when building a tree or calculating facts.
     /// </summary>
-    [Obsolete("Will be deleted. Used IBuildConditionFact")]
-    public interface IConditionFact : ISpecialFact
+    public interface IBuildConditionFact : ISpecialFact
     {
         /// <summary>
         /// A condition that determines whether the current fact can be added to the container when deriving.

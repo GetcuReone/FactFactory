@@ -43,6 +43,8 @@
   - [CanExcecuteParallel](#F-GetcuReone-FactFactory-Interfaces-FactWorkOption-CanExcecuteParallel 'GetcuReone.FactFactory.Interfaces.FactWorkOption.CanExcecuteParallel')
   - [CanExecuteAsync](#F-GetcuReone-FactFactory-Interfaces-FactWorkOption-CanExecuteAsync 'GetcuReone.FactFactory.Interfaces.FactWorkOption.CanExecuteAsync')
   - [CanExecuteSync](#F-GetcuReone-FactFactory-Interfaces-FactWorkOption-CanExecuteSync 'GetcuReone.FactFactory.Interfaces.FactWorkOption.CanExecuteSync')
+- [IBuildConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IBuildConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IBuildConditionFact')
+  - [Condition\`\`4(factWork,compatibleRules,context)](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IBuildConditionFact-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IBuildConditionFact.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
 - [IConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact')
   - [Condition\`\`4(factWork,compatibleRules,context)](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IConditionFact-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IConditionFact.Condition``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
 - [ICopy\`1](#T-GetcuReone-FactFactory-Interfaces-ICopy`1 'GetcuReone.FactFactory.Interfaces.ICopy`1')
@@ -574,6 +576,49 @@ Work can be done asynchronously.
 ##### Summary
 
 Work can be done synchronously.
+
+<a name='T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IBuildConditionFact'></a>
+## IBuildConditionFact `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Interfaces.SpecialFacts
+
+##### Summary
+
+A special fact that is created using a factory when building a tree or calculating facts.
+
+<a name='M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IBuildConditionFact-Condition``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+### Condition\`\`4(factWork,compatibleRules,context) `method`
+
+##### Summary
+
+A condition that determines whether the current fact can be added to the container when deriving.
+
+##### Returns
+
+Has the condition been met?
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| factWork | [\`\`0](#T-``0 '``0') | Work for which we learn about the possibility of using the fact. |
+| compatibleRules | [System.Collections.Generic.IEnumerable{\`\`1}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``1}') | Compatible rules. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`2,\`\`3}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3}') | Context. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactWork |  |
+| TFactRule |  |
+| TWantAction |  |
+| TFactContainer |  |
+
+##### Remarks
+
+Using it, you can determine which rule and under what conditions can be used to build a rule tree.
 
 <a name='T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IConditionFact'></a>
 ## IConditionFact `type`

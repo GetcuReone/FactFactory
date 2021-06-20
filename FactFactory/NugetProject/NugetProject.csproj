@@ -19,6 +19,7 @@
             - added FactEqualityComparer to compare facts
             - container has become more versatile
             - added FactContainerWriter
+            - IConditionFact changed to IBuildConditionFact
         </PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>
