@@ -52,24 +52,24 @@
             public const string RuleCollection = "rule_collection_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.IContainedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildContained{TFact}"/>.
             /// </summary>
-            public const string Contained = "contained_test";
+            public const string BuildContained = "build_contained_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.INotContainedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildNotContained{TFact}"/>.
             /// </summary>
-            public const string NotContained = "not_contained_test";
+            public const string BuildNotContained = "build_not_contained_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.ICannotDerivedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildCannotDerived{TFact}"/>.
             /// </summary>
-            public const string CannotDerived = "cannot_derived_test";
+            public const string BuildCannotDerived = "build_cannot_derived_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.ICanDerivedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.CanDerived{TFact}"/>.
             /// </summary>
-            public const string CanDerived = "can_derived_test";
+            public const string BuildCanDerived = "build_can_derived_test";
 
             /// <summary>
             /// <see cref="GetcuReone.FactFactory.Interfaces.IFact"/>.

@@ -10,13 +10,13 @@ using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 namespace FactFactoryTests.FactFactoryT
 {
     [TestClass]
-    public sealed class NotContainedTests : FactFactoryTestBase
+    public sealed class BuildNotContainedTests : FactFactoryTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Objects.NotContained), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Rule challenge with facts NotContained.")]
+        [TestCategory(TC.Objects.BuildNotContained), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Rule challenge with facts BuildNotContained.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void RunRuleWithTwoInputNotContainedFactTestCase()
+        public void RunRuleWithTwoInputBuildNotContainedFactTestCase()
         {
             const int value = 24;
 
@@ -24,8 +24,8 @@ namespace FactFactoryTests.FactFactoryT
                 .AndRulesNotNul()
                 .AndAddRules(new Collection
                 {
-                    (NotContained<Input1Fact> f) => new Input1Fact(value),
-                    (NotContained<Input2Fact> f) => new Input2Fact(value),
+                    (BuildNotContained<Input1Fact> f) => new Input1Fact(value),
+                    (BuildNotContained<Input2Fact> f) => new Input2Fact(value),
                     (Input1Fact f1, Input2Fact f2) => new Input3Fact(f1 * f2),
                 })
                 .When("Derive fact.", factory =>
@@ -35,10 +35,10 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.NotContained), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Rule challenge with fact NotContained.")]
+        [TestCategory(TC.Objects.BuildNotContained), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Rule challenge with fact BuildNotContained.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void RunRuleWithInputNotContainedFactTestCase()
+        public void RunRuleWithInputBuildNotContainedFactTestCase()
         {
             const int expectedValue = 24;
 
@@ -46,7 +46,7 @@ namespace FactFactoryTests.FactFactoryT
                 .AndRulesNotNul()
                 .AndAddRules(new Collection
                 {
-                    (NotContained<Input1Fact> f) => new Input1Fact(expectedValue),
+                    (BuildNotContained<Input1Fact> f) => new Input1Fact(expectedValue),
                 })
                 .When("Derive fact", factory => 
                     factory.DeriveFact<Input1Fact>())

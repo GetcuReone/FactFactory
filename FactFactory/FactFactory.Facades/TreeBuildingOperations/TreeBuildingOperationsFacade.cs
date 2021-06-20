@@ -213,7 +213,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
                 if (rule.InputFactTypes.Count == 0)
                     finishedNodesInCurrentLevel.Add(node.Info, node);
-                else if (node.Info.RequiredFactTypes.All(requiredFactType => !requiredFactType.IsFactType<IConditionFact>() && copabilitiesFinishedRules.Any(r => r.OutputFactType.EqualsFactType(requiredFactType))))
+                else if (node.Info.RequiredFactTypes.All(requiredFactType => !requiredFactType.IsFactType<IBuildConditionFact>() && copabilitiesFinishedRules.Any(r => r.OutputFactType.EqualsFactType(requiredFactType))))
                     finishedNodesInCurrentLevel.Add(node.Info, node);
                 else if (copabilitiesFinishedRules.Any(r => r.EqualsWork(rule, context.WantAction, context.Container)))
                     finishedNodesInCurrentLevel.Add(node.Info, node);
@@ -286,7 +286,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             where TFactContainer : IFactContainer
         {
             // Exclude condition special facts
-            if (factType.IsFactType<IConditionFact>())
+            if (factType.IsFactType<IBuildConditionFact>())
             {
                 var nodeInfo = node.Info;
 
@@ -296,7 +296,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     return false;
 
                 var conditionFact = Factory.CreateObject(
-                    type => type.CreateConditionFact<IConditionFact>(),
+                    type => type.CreateBuildConditionFact<IBuildConditionFact>(),
                     factType
                 );
 
@@ -368,8 +368,8 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             var deriveFactErrorDetails = new List<DeriveFactErrorDetail>();
             var wantActionInfo = new WantActionInfo<TWantAction, TFactContainer>
             {
-                FailedConditions = new List<IConditionFact>(),
-                SuccessConditions = new List<IConditionFact>(),
+                FailedConditions = new List<IBuildConditionFact>(),
+                SuccessConditions = new List<IBuildConditionFact>(),
                 Context = context,
             };
             result = new BuildTreesForWantActionResult<TFactRule, TWantAction, TFactContainer>
@@ -380,13 +380,13 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
             foreach (var needFactType in context.SingleEntity.GetRequiredTypesOfFacts(context.WantAction, context))
             {
-                if (needFactType.IsFactType<IConditionFact>())
+                if (needFactType.IsFactType<IBuildConditionFact>())
                 {
                     if (wantActionInfo.SuccessConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(needFactType)) || wantActionInfo.FailedConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(needFactType)))
                         continue;
 
                     var condition = Factory.CreateObject(
-                        type => type.CreateConditionFact<IConditionFact>(),
+                        type => type.CreateBuildConditionFact<IBuildConditionFact>(),
                         needFactType
                     );
 

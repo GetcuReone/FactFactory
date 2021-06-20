@@ -134,12 +134,12 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
 
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Different condition fact.")]
+        [Description("Different build condition fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DifferentConditionFactTestCase()
+        public void DifferentBuildConditionFactTestCase()
         {
-            var fact1 = new Contained<IntFact>();
-            var fact2 = new Contained<OtherFact>();
+            var fact1 = new BuildContained<IntFact>();
+            var fact2 = new BuildContained<OtherFact>();
 
             GivenCreateComparer()
                 .When("Run Equals.", comparer =>
@@ -150,12 +150,12 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
 
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Same condition fact.")]
+        [Description("Same build condition fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void SameConditionFactTestCase()
+        public void SameBuildConditionFactTestCase()
         {
-            var fact1 = new Contained<OtherFact>();
-            var fact2 = new Contained<OtherFact>();
+            var fact1 = new BuildContained<OtherFact>();
+            var fact2 = new BuildContained<OtherFact>();
 
             GivenCreateComparer()
                 .When("Run Equals.", comparer =>

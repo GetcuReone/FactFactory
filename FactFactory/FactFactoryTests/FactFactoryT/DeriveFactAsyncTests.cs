@@ -17,7 +17,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Rule run asynchronously.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Second.One)]
         public async Task RunDeriveFactAsyncTestCase()
         {
             const int expectedValue = 16;
@@ -52,14 +52,14 @@ namespace FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     {
-                        async (Input1Fact fact, Contained<Input1Fact> _) =>
+                        async (Input1Fact fact, BuildContained<Input1Fact> _) =>
                         {
                             return await Task.Run(() => new Input6Fact(fact * 6));
                         },
                         FactWorkOption.CanExecuteAsync | FactWorkOption.CanExcecuteParallel
                     },
                     {
-                        async (Input1Fact fact, Contained<Input1Fact> _) =>
+                        async (Input1Fact fact, BuildContained<Input1Fact> _) =>
                         {
                             return await Task.Run(() => new Input10Fact(fact * 10));
                         },

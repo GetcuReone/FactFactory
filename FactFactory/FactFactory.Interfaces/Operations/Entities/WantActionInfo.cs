@@ -19,13 +19,13 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         public IWantActionContext<TWantAction, TFactContainer> Context { get; set; }
 
         /// <summary>
-        /// List of fact conditions. Successfully completed conditions for WantAction from context.
+        /// List of fact conditions. Successfully completed conditions for WantAction from <see cref="Context"/>.
         /// </summary>
-        public List<IConditionFact> SuccessConditions { get; set; }
+        public List<IBuildConditionFact> SuccessConditions { get; set; }
 
         /// <summary>
-        /// List of fact conditions. Failed conditions for WantAction from context.
+        /// List of fact conditions. Failed conditions for WantAction from <see cref="Context"/>.
         /// </summary>
-        public List<IConditionFact> FailedConditions { get; set; }
+        public List<IBuildConditionFact> FailedConditions { get; set; }
     }
 }

@@ -177,13 +177,13 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
 
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Different values condition facts.")]
+        [Description("Different values build condition facts.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DifferentValuesConditionFactsTestCase()
+        public void DifferentValuesBuildConditionFactsTestCase()
         {
             const string factParamCode = "factParamCode";
-            var firstParam = new FactParameter(factParamCode, new Contained<IntFact>());
-            var secondParam = new FactParameter(factParamCode, new Contained<OtherFact>());
+            var firstParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
+            var secondParam = new FactParameter(factParamCode, new BuildContained<OtherFact>());
 
             GivenCreateComparer()
                 .When("Run EqualsFactParameters.", _ =>
@@ -194,13 +194,13 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
 
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Same values condition facts.")]
+        [Description("Same values build condition facts.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SameValuesConditionFactsTestCase()
         {
             const string factParamCode = "factParamCode";
-            var firstParam = new FactParameter(factParamCode, new Contained<IntFact>());
-            var secondParam = new FactParameter(factParamCode, new Contained<IntFact>());
+            var firstParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
+            var secondParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
 
             GivenCreateComparer()
                 .When("Run EqualsFactParameters.", _ =>

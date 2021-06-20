@@ -10,10 +10,10 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace FactFactoryTests.FactFactoryT
 {
     [TestClass]
-    public sealed class ContainedTests : FactFactoryTestBase
+    public sealed class BuildContainedTests : FactFactoryTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Objects.Contained), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [TestCategory(TC.Objects.BuildContained), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Create a ResultFact if the Input1Fact is contained in the container.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateResultFactIfInput1FactContainedTestCase()
@@ -27,8 +27,8 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
                 {
-                    (Contained<Input1Fact> _, Input1Fact fact) => new ResultFact(fact.Value),
-                    (NotContained<Input1Fact> _) => new ResultFact(-1),
+                    (BuildContained<Input1Fact> _, Input1Fact fact) => new ResultFact(fact.Value),
+                    (BuildNotContained<Input1Fact> _) => new ResultFact(-1),
                 })
                 .When("Derive.", factFactory => 
                     factFactory.DeriveFact<ResultFact>(container))

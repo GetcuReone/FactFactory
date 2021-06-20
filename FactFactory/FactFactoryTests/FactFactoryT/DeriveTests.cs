@@ -21,7 +21,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Check method Derive.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Second.One)]
         public void DeriveTestCase()
         {
             Input16Fact fact16 = null;
@@ -435,7 +435,7 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     () => new Input1Fact(default),
                     (Input1Fact fact) => new ResultFact(1_000),
-                    (Condition_ContainedOtherFact condition) => new ResultFact(expectedValue),
+                    (BuildCondition_ContainedOtherFact condition) => new ResultFact(expectedValue),
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<ResultFact>(container))
@@ -456,7 +456,7 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     () => new OtherFact(default),
                     (OtherFact fact) => new ResultFact(expectedValue),
-                    (Condition_ContainedOtherFact condition) => new ResultFact(10),
+                    (BuildCondition_ContainedOtherFact condition) => new ResultFact(10),
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<ResultFact>())

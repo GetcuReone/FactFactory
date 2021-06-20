@@ -147,12 +147,12 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
 
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Different condition fact.")]
+        [Description("Different build condition fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DifferentConditionFactTestCase()
         {
-            var fact1 = new Contained<IntFact>();
-            var fact2 = new Contained<OtherFact>();
+            var fact1 = new BuildContained<IntFact>();
+            var fact2 = new BuildContained<OtherFact>();
             var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
             GivenCreateFacade()
@@ -164,12 +164,12 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
 
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Same condition fact.")]
+        [Description("Same build condition fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SameConditionFactTestCase()
         {
-            var fact1 = new Contained<OtherFact>();
-            var fact2 = new Contained<OtherFact>();
+            var fact1 = new BuildContained<OtherFact>();
+            var fact2 = new BuildContained<OtherFact>();
             var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
             GivenCreateFacade()

@@ -23,7 +23,23 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
+        [Obsolete("Will be delete. Use CreateBuildConditionFact")]
         public virtual TFactResult CreateConditionFact<TFactResult>() where TFactResult : IConditionFact
+        {
+            var type = typeof(TFact);
+            var resultType = typeof(TFactResult);
+
+            if (!resultType.IsAssignableFrom(type))
+                throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} does not implement {resultType.FullName} type.");
+            else if (type.GetConstructor(Type.EmptyTypes) == null)
+                throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} doesn't have a default constructor.");
+
+
+            return (TFactResult)Activator.CreateInstance(type, false);
+        }
+        
+        /// <inheritdoc/>
+        public virtual TFactResult CreateBuildConditionFact<TFactResult>() where TFactResult : IBuildConditionFact
         {
             var type = typeof(TFact);
             var resultType = typeof(TFactResult);

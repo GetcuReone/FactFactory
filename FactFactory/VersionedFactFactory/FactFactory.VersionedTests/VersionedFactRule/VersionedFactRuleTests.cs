@@ -62,7 +62,7 @@ namespace FactFactory.VersionedTests.VersionedFactRule
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.BuildNotContained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Return version fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ReturnVersiondFactTestCase()

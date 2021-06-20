@@ -1,5 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using System.Collections.Generic;
+using System;
 
 namespace GetcuReone.FactFactory.Interfaces
 {
@@ -31,6 +31,14 @@ namespace GetcuReone.FactFactory.Interfaces
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
         /// <returns>Fact.</returns>
+        [Obsolete("Will be delete. Use CreateBuildConditionFact")]
         TFact CreateConditionFact<TFact>() where TFact : IConditionFact;
+        
+        /// <summary>
+        /// Create an fact of this type. Method created for build condition facts.
+        /// </summary>
+        /// <typeparam name="TFact"></typeparam>
+        /// <returns>Fact.</returns>
+        TFact CreateBuildConditionFact<TFact>() where TFact : IBuildConditionFact;
     }
 }

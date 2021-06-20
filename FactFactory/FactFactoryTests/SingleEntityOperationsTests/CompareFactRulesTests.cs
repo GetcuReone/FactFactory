@@ -119,7 +119,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ComparisonWithConditionFacts_1_TestCase()
         {
-            var first = GetFactRule((SpecialFact _, Condition_ContainedOtherFact __) => new ResultFact(default));
+            var first = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
             var second = GetFactRule((SpecialFact _, Input1Fact __) => new ResultFact(default));
             var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
             const int expectedValue = 1;
@@ -136,8 +136,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ComparisonWithConditionFacts_2_TestCase()
         {
-            var first = GetFactRule((SpecialFact _, Condition_ContainedOtherFact __) => new ResultFact(default));
-            var second = GetFactRule((SpecialFact _, Condition_ContainedOtherFact __) => new ResultFact(default));
+            var first = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
+            var second = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
             var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
             const int expectedValue = 0;
 
@@ -154,7 +154,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         public void ComparisonWithConditionFacts_3_TestCase()
         {
             var first = GetFactRule((SpecialFact _, Input1Fact __) => new ResultFact(default));
-            var second = GetFactRule((SpecialFact _, Condition_ContainedOtherFact __) => new ResultFact(default));
+            var second = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
             var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
             const int expectedValue = -1;
 

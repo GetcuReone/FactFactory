@@ -68,7 +68,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("WantAction run asynchronously.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Second.One)]
         public async Task WantActionRunAsynchronouslyTestCase()
         {
             Input16Fact fact16 = null;
@@ -99,7 +99,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Calling synchronous wantAction.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Second.One)]
         public async Task CallingSynchronousWantActionTestCase()
         {
             Input16Fact fact16 = null;
@@ -129,7 +129,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Running asynchronous rules in parallel.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Second.One)]
         public async Task RunningAsynchronousRulesInParallelTestCase()
         {
             Input16Fact fact16 = null;

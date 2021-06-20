@@ -12,13 +12,13 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace FactFactoryTests.FactFactoryT
 {
     [TestClass]
-    public sealed class CannotDerivedTests : FactFactoryTestBase
+    public sealed class BuildCannotDerivedTests : FactFactoryTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive the fact through the rule with the CannotDerived fact.")]
+        [TestCategory(TC.Objects.BuildCannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Derive the fact through the rule with the BuildCannotDerived fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveUseRuleWithNCannotDerivedTestCase()
+        public void DeriveUseRuleWithBuildCannotDerivedTestCase()
         {
             const int value = 2;
             const int expectedValue = 3;
@@ -27,7 +27,7 @@ namespace FactFactoryTests.FactFactoryT
                 .AndRulesNotNul()
                 .AndAddRules(new Collection
                 {
-                    (CannotDerived<Input3Fact> _) => new Input2Fact(value),
+                    (BuildCannotDerived<Input3Fact> _) => new Input2Fact(value),
                     (Input2Fact fact) => new Input1Fact(fact.Value + 1),
                 })
                 .When("Derive fact1.", factory => factory.DeriveFact<Input1Fact>())
@@ -36,10 +36,10 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive with CannotDerived fact.")]
+        [TestCategory(TC.Objects.BuildCannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Derive with BuildCannotDerived fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveWithCannotDerivedTestCase()
+        public void DeriveWithBuildCannotDerivedTestCase()
         {
             const int value = 14;
             const int expectedValue = 37;
@@ -53,7 +53,7 @@ namespace FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     (Input12Fact fact) => new Input11Fact(fact.Value + 11),
-                    (Input14Fact fact, CannotDerived<Input9Fact> no) => new Input12Fact(fact.Value + 12),
+                    (Input14Fact fact, BuildCannotDerived<Input9Fact> no) => new Input12Fact(fact.Value + 12),
                     (Input8Fact fact) => new Input9Fact(fact.Value + 12)
                 })
                 .When("Derive.", factory => 
@@ -63,7 +63,7 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.BuildCannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("We derive a fact that is calculated on the basis of an uninduced fact that is in the container.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFromRuleAndWithFactInContanierTestCase()
@@ -77,7 +77,7 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
                 {
-                    (CannotDerived<Input1Fact> _) => new ResultFact(default),
+                    (BuildCannotDerived<Input1Fact> _) => new ResultFact(default),
                 })
                 .When("Run Derive.", factFactory
                     => ExpectedDeriveException(() => factFactory.DeriveFact<ResultFact>(container)))
@@ -86,7 +86,7 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.CannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.BuildCannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive a fact using a recursive rules.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DeriveFactFromRecursiveRulesTestCase()
@@ -96,8 +96,8 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
                 {
-                    (CannotDerived<Input1Fact> _) => new ResultFact(default),
-                    (CannotDerived<ResultFact> _) => new Input1Fact(default),
+                    (BuildCannotDerived<Input1Fact> _) => new ResultFact(default),
+                    (BuildCannotDerived<ResultFact> _) => new Input1Fact(default),
                 })
                 .When("Derive.", factory => 
                     ExpectedDeriveException(() => factory.DeriveFact<ResultFact>()))

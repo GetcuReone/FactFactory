@@ -141,7 +141,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             switch (obj)
             {
                 case null: return 0;
-                case IConditionFact _: return 3;
+                case IBuildConditionFact _: return 3;
                 case ISpecialFact _: return 2;
                 case IFact _: return 1;
             }

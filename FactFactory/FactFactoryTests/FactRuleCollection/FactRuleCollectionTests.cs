@@ -640,14 +640,14 @@ namespace FactFactoryTests.FactRuleCollection
 
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.RuleCollection), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Add a rule with a NotContained on the output.")]
+        [Description("Add a rule with a BuildNotContained on the output.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void AddRuleWithNotContainedOutTestCase()
+        public void AddRuleWithBuildNotContainedOutTestCase()
         {
             GivenEmpty()
                 .When("Add rule already contains", _ =>
                 {
-                    return ExpectedException<ArgumentException>(() => Collection.Add(() => new NotContained<Input10Fact>()));
+                    return ExpectedException<ArgumentException>(() => Collection.Add(() => new BuildNotContained<Input10Fact>()));
                 })
                 .ThenIsNotNull()
                 .Run();
