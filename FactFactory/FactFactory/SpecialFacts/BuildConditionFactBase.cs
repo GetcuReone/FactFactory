@@ -2,16 +2,14 @@
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using System;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.SpecialFacts
 {
     /// <summary>
-    /// Base class for <see cref="IConditionFact"/>.
+    /// Base class for <see cref="IBuildConditionFact"/>.
     /// </summary>
-    [Obsolete("Will be deleted. Used BuildConditionFactBase")]
-    public abstract class ConditionFactBase : SpecialFactBase, IConditionFact
+    public abstract class BuildConditionFactBase : SpecialFactBase, IBuildConditionFact
     {
         /// <inheritdoc/>
         public abstract bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
@@ -28,8 +26,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
     }
 
     /// <inheritdoc/>
-    [Obsolete("Will be deleted. Used BuildConditionFactBase")]
-    public abstract class ConditionFactBase<TFact> : ConditionFactBase, IFactTypeCreation
+    public abstract class BuildConditionFactBase<TFact> : BuildConditionFactBase, IFactTypeCreation
         where TFact : IFact
     {
         /// <inheritdoc/>

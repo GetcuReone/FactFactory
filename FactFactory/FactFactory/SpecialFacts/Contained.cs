@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
+using System;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.SpecialFacts
@@ -8,6 +9,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
     /// Fact condition. Checks if a <typeparamref name="TFact"/> fact can be retrieved from a container.
     /// </summary>
     /// <typeparam name="TFact">The type of fact for which the condition is met.</typeparam>
+    [Obsolete("Will be deleted. Used BuildContained")]
     public class Contained<TFact> : ConditionFactBase<TFact>
         where TFact : IFact
     {
