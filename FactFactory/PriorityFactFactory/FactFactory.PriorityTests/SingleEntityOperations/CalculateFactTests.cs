@@ -29,9 +29,9 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
             Rule = GetFactRule((Priority1 p, Fact1 f) => new FactResult(f.Value + p));
             NodeInfo = new NodeByFactRuleInfo<FactRule>
             {
-                FailedConditions = new List<IConditionFact>(),
+                FailedConditions = new List<IBuildConditionFact>(),
                 Rule = Rule,
-                SuccessConditions = new List<IConditionFact>(),
+                SuccessConditions = new List<IBuildConditionFact>(),
             };
             Node = new NodeByFactRule<FactRule>
             {

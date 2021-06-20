@@ -200,16 +200,16 @@ namespace FactFactoryTests.FactRule
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Return NoDerive fact.")]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.BuildCannotDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Return BuildCannotDerive fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void ReturnNoDeriveFactTestCase()
+        public void ReturnBuildCannotDeriveFactTestCase()
         {
             string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
 
             GivenEmpty()
                 .When("Create rule.", _ =>
-                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new CannotDerived<Input10Fact>())))
+                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new BuildCannotDerived<Input10Fact>())))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.Message, expectedReason,
                     errorMessage: "Another message expected.")
@@ -217,16 +217,16 @@ namespace FactFactoryTests.FactRule
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Return NotContained fact.")]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.BuildNotContained), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Return BuildNotContained fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void ReturnNotContainedFactTestCase()
+        public void ReturnBuildNotContainedFactTestCase()
         {
             string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
 
             GivenEmpty()
                 .When("Create rule.", _ =>
-                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new NotContained<Input10Fact>())))
+                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new BuildNotContained<Input10Fact>())))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.Message, expectedReason,
                     errorMessage: "Another message expected.")
@@ -234,16 +234,16 @@ namespace FactFactoryTests.FactRule
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.Contained), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Return Contained fact.")]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.BuildContained), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Return BuildContained fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void ReturnContainedFactTestCase()
+        public void ReturnBuildContainedFactTestCase()
         {
             string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
 
             GivenEmpty()
                 .When("Create rule.", _ =>
-                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new Contained<Input10Fact>())))
+                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new BuildContained<Input10Fact>())))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.Message, expectedReason,
                     errorMessage: "Another message expected.")
@@ -251,16 +251,16 @@ namespace FactFactoryTests.FactRule
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.CanDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Return CanDerived fact.")]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.BuildCanDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Return BuildCanDerived fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void ReturnCanDerivedFactTestCase()
+        public void ReturnBuildCanDerivedFactTestCase()
         {
             string expectedReason = $"Parameter outputFactType should not be converted into {typeof(ISpecialFact).FullName}";
 
             GivenEmpty()
                 .When("Create rule.", _ =>
-                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new CanDerived<Input10Fact>())))
+                    ExpectedException<ArgumentException>(() => GetFactRule((IntFact _) => new BuildCanDerived<Input10Fact>())))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.Message, expectedReason,
                     errorMessage: "Another message expected.")

@@ -8,19 +8,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactoryTests.Fact
 {
     [TestClass]
-    public sealed class CanDerivedTests : CommonTestBase
+    public sealed class BuildCanDerivedTests : CommonTestBase
     {
         [TestMethod]
-        [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.CanDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get FactType for CanDerived fact.")]
+        [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.BuildCanDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Get FactType for BuildCanDerived fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void GetFactTypeForCanDerivedFactTestCase()
+        public void GetFactTypeForBuildCanDerivedFactTestCase()
         {
             GivenEmpty()
-                .When("Create CanDerived.", () => new CanDerived<ResultFact>())
+                .When("Create CanDerived.", () => new BuildCanDerived<ResultFact>())
                 .Then("Check fact type.", fact =>
                 {
-                    Assert.IsTrue(fact.GetFactType() is FactType<CanDerived<ResultFact>>, "Expected another FactType.");
+                    Assert.IsTrue(fact.GetFactType() is FactType<BuildCanDerived<ResultFact>>, "Expected another FactType.");
                 })
                 .Run();
         }

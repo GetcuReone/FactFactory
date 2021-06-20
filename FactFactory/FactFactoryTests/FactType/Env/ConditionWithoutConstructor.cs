@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace FactFactoryTests.FactType.Env
 {
-    internal class ConditionWithoutConstructor : IFact, IConditionFact
+    internal class ConditionWithoutConstructor : IFact, IBuildConditionFact
     {
         private ConditionWithoutConstructor()
         {

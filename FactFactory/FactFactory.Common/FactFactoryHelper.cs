@@ -181,8 +181,8 @@ namespace GetcuReone.FactFactory
                     : -1;
             }
 
-            int xCountCondition = x.InputFactTypes.Count(factType => factType.IsFactType<IConditionFact>());
-            int yCountCondition = y.InputFactTypes.Count(factType => factType.IsFactType<IConditionFact>());
+            int xCountCondition = x.InputFactTypes.Count(factType => factType.IsFactType<IBuildConditionFact>());
+            int yCountCondition = y.InputFactTypes.Count(factType => factType.IsFactType<IBuildConditionFact>());
 
             if (xCountCondition != yCountCondition)
             {

@@ -6,6 +6,7 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,6 +14,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
 {
     internal static class ConditionHelper
     {
+        [Obsolete("Will be delete.")]
         internal static bool CanDeriveFact<TFactWork, TFactRule, TWantAction, TFactContainer>(IConditionFact conditionFact, IFactType searchFactType, TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TFactRule : IFactRule

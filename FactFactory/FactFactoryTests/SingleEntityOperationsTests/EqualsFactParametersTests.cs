@@ -189,13 +189,13 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
 
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Different values condition facts.")]
+        [Description("Different values build condition facts.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DifferentValuesConditionFactsTestCase()
         {
             const string factParamCode = "factParamCode";
-            var firstParam = new FactParameter(factParamCode, new Contained<IntFact>());
-            var secondParam = new FactParameter(factParamCode, new Contained<OtherFact>());
+            var firstParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
+            var secondParam = new FactParameter(factParamCode, new BuildContained<OtherFact>());
             var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
             GivenCreateFacade()
@@ -207,13 +207,13 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
 
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Same values condition facts.")]
+        [Description("Same values build condition facts.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SameValuesConditionFactsTestCase()
         {
             const string factParamCode = "factParamCode";
-            var firstParam = new FactParameter(factParamCode, new Contained<IntFact>());
-            var secondParam = new FactParameter(factParamCode, new Contained<IntFact>());
+            var firstParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
+            var secondParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
             var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
             GivenCreateFacade()

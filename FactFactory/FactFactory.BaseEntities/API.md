@@ -118,6 +118,7 @@
 - [FactType\`1](#T-GetcuReone-FactFactory-FactType`1 'GetcuReone.FactFactory.FactType`1')
 - [FactTypeBase\`1](#T-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1 'GetcuReone.FactFactory.BaseEntities.FactTypeBase`1')
   - [FactName](#P-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1-FactName 'GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.FactName')
+  - [CreateBuildConditionFact\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1-CreateBuildConditionFact``1 'GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.CreateBuildConditionFact``1')
   - [CreateConditionFact\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1-CreateConditionFact``1 'GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.CreateConditionFact``1')
   - [EqualsFactType\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1-EqualsFactType``1-``0- 'GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.EqualsFactType``1(``0)')
   - [IsFactType\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1-IsFactType``1 'GetcuReone.FactFactory.BaseEntities.FactTypeBase`1.IsFactType``1')
@@ -2168,6 +2169,17 @@ Contains fact type information.
 ##### Summary
 
 *Inherit from parent.*
+
+<a name='M-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1-CreateBuildConditionFact``1'></a>
+### CreateBuildConditionFact\`\`1() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='M-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1-CreateConditionFact``1'></a>
 ### CreateConditionFact\`\`1() `method`

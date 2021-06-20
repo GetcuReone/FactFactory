@@ -92,6 +92,7 @@
   - [FactRules](#P-GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext`3-FactRules 'GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext`3.FactRules')
 - [IFactType](#T-GetcuReone-FactFactory-Interfaces-IFactType 'GetcuReone.FactFactory.Interfaces.IFactType')
   - [FactName](#P-GetcuReone-FactFactory-Interfaces-IFactType-FactName 'GetcuReone.FactFactory.Interfaces.IFactType.FactName')
+  - [CreateBuildConditionFact\`\`1()](#M-GetcuReone-FactFactory-Interfaces-IFactType-CreateBuildConditionFact``1 'GetcuReone.FactFactory.Interfaces.IFactType.CreateBuildConditionFact``1')
   - [CreateConditionFact\`\`1()](#M-GetcuReone-FactFactory-Interfaces-IFactType-CreateConditionFact``1 'GetcuReone.FactFactory.Interfaces.IFactType.CreateConditionFact``1')
   - [EqualsFactType\`\`1(factInfo)](#M-GetcuReone-FactFactory-Interfaces-IFactType-EqualsFactType``1-``0- 'GetcuReone.FactFactory.Interfaces.IFactType.EqualsFactType``1(``0)')
   - [IsFactType\`\`1()](#M-GetcuReone-FactFactory-Interfaces-IFactType-IsFactType``1 'GetcuReone.FactFactory.Interfaces.IFactType.IsFactType``1')
@@ -1246,6 +1247,27 @@ Fact type.
 
 Fact name.
 
+<a name='M-GetcuReone-FactFactory-Interfaces-IFactType-CreateBuildConditionFact``1'></a>
+### CreateBuildConditionFact\`\`1() `method`
+
+##### Summary
+
+Create an fact of this type. Method created for build condition facts.
+
+##### Returns
+
+Fact.
+
+##### Parameters
+
+This method has no parameters.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFact |  |
+
 <a name='M-GetcuReone-FactFactory-Interfaces-IFactType-CreateConditionFact``1'></a>
 ### CreateConditionFact\`\`1() `method`
 
@@ -2378,14 +2400,14 @@ Context.
 
 ##### Summary
 
-List of fact conditions. Failed conditions for WantAction from context.
+List of fact conditions. Failed conditions for WantAction from [Context](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo`2-Context 'GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.Context').
 
 <a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo`2-SuccessConditions'></a>
 ### SuccessConditions `property`
 
 ##### Summary
 
-List of fact conditions. Successfully completed conditions for WantAction from context.
+List of fact conditions. Successfully completed conditions for WantAction from [Context](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo`2-Context 'GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo`2.Context').
 
 <a name='T-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantFactsInfo`2'></a>
 ## WantFactsInfo\`2 `type`

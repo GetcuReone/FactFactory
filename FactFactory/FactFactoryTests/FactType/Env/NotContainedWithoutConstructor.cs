@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace FactFactoryTests.FactType.Env
 {
-    internal class NotContainedWithoutConstructor : ConditionFactBase, IConditionFact
+    internal class NotContainedWithoutConstructor : BuildConditionFactBase, IBuildConditionFact
     {
         private NotContainedWithoutConstructor()
         {

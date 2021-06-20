@@ -39,8 +39,8 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
             var nodeInfos = needRules.ConvertAll(rule => new NodeByFactRuleInfo<TFactRule>
             {
-                SuccessConditions = new List<IConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IConditionFact>())),
-                FailedConditions = new List<IConditionFact>(),
+                SuccessConditions = new List<IBuildConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IBuildConditionFact>())),
+                FailedConditions = new List<IBuildConditionFact>(),
                 Rule = rule,
                 RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
                 CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context).ToList(),
@@ -140,8 +140,8 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     nodeInfo = new NodeByFactRuleInfo<TFactRule>
                     {
                         Rule = rule,
-                        SuccessConditions = new List<IConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IConditionFact>())),
-                        FailedConditions = new List<IConditionFact>(),
+                        SuccessConditions = new List<IBuildConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IBuildConditionFact>())),
+                        FailedConditions = new List<IBuildConditionFact>(),
                         RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
                         CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context).ToList(),
                     };

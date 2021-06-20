@@ -47,7 +47,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
                     if (inputType.EqualsFactType(rule.OutputFactType))
                         return false;
 
-                    if (rule.InputFactTypes.Any(type => type.EqualsFactType(inputType)) && inputType.IsFactType<IConditionFact>())
+                    if (rule.InputFactTypes.Any(type => type.EqualsFactType(inputType)) && inputType.IsFactType<IBuildConditionFact>())
                         return false;
                 }
             }

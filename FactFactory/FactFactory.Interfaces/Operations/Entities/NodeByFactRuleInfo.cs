@@ -18,12 +18,12 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// <summary>
         /// List of fact conditions. Successfully completed conditions for <see cref="Rule"/>.
         /// </summary>
-        public List<IConditionFact> SuccessConditions { get; set; }
+        public List<IBuildConditionFact> SuccessConditions { get; set; }
 
         /// <summary>
         /// List of fact conditions. Failed conditions for <see cref="Rule"/>.
         /// </summary>
-        public List<IConditionFact> FailedConditions { get; set; }
+        public List<IBuildConditionFact> FailedConditions { get; set; }
 
         /// <summary>
         /// Required fact types.

@@ -52,14 +52,14 @@ namespace FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     {
-                        async (Input1Fact fact, Contained<Input1Fact> _) =>
+                        async (Input1Fact fact, BuildContained<Input1Fact> _) =>
                         {
                             return await Task.Run(() => new Input6Fact(fact * 6));
                         },
                         FactWorkOption.CanExecuteAsync | FactWorkOption.CanExcecuteParallel
                     },
                     {
-                        async (Input1Fact fact, Contained<Input1Fact> _) =>
+                        async (Input1Fact fact, BuildContained<Input1Fact> _) =>
                         {
                             return await Task.Run(() => new Input10Fact(fact * 10));
                         },

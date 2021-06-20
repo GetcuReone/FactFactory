@@ -266,25 +266,25 @@ namespace FactFactoryTests.FactFactoryT
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Successful derive NotContained.")]
+        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.BuildNotContained), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Successful derive BuildNotContained.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void SuccessfulDeriveNotContainedTestCase()
+        public void SuccessfulDeriveBuildNotContainedTestCase()
         {
             GivenCreateFactFactory()
                 .When("Run Derive.", factFactory =>
-                    factFactory.DeriveFact<NotContained<OtherFact>>())
+                    factFactory.DeriveFact<BuildNotContained<OtherFact>>())
                 .ThenIsNotNull()
                 .Run();
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Unsuccessful derive NotContained.")]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.BuildNotContained), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Unsuccessful derive BuildNotContained.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void UnsuccessfulDeriveNotContainedTestCase()
+        public void UnsuccessfulDeriveBuildNotContainedTestCase()
         {
-            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(NotContained<OtherFact>).Name}).";
+            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(BuildNotContained<OtherFact>).Name}).";
             var container = new Container
             {
                 new OtherFact(default),
@@ -292,31 +292,31 @@ namespace FactFactoryTests.FactFactoryT
 
             GivenCreateFactFactory()
                 .When("Run Derive.", factFactory => 
-                    ExpectedDeriveException(() => factFactory.DeriveFact<NotContained<OtherFact>>(container)))
+                    ExpectedDeriveException(() => factFactory.DeriveFact<BuildNotContained<OtherFact>>(container)))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage)
                 .Run();
         }
 
         [TestMethod]
-        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Successful derive CannotDerived.")]
+        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.BuildCannotDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Successful derive BuildCannotDerived.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void SuccessfulDeriveCannotDerivedTestCase()
+        public void SuccessfulDeriveBuildCannotDerivedTestCase()
         {
             GivenCreateFactFactory()
                 .When("Run Derive.", factFactory =>
-                    factFactory.DeriveFact<CannotDerived<OtherFact>>())
+                    factFactory.DeriveFact<BuildCannotDerived<OtherFact>>())
                 .ThenIsNotNull()
                 .Run();
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.CannotDerived), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Unsuccessful derive CannotDerived.")]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.BuildCannotDerived), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Unsuccessful derive BuildCannotDerived.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void UnsuccessfulDeriveCannotDerivedTestCase()
+        public void UnsuccessfulDeriveBuildCannotDerivedTestCase()
         {
-            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(CannotDerived<OtherFact>).Name}).";
+            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(BuildCannotDerived<OtherFact>).Name}).";
             var container = new Container
             {
                 new OtherFact(default),
@@ -324,7 +324,7 @@ namespace FactFactoryTests.FactFactoryT
 
             GivenCreateFactFactory()
                 .When("Run Derive.", factFactory => 
-                    ExpectedDeriveException(() => factFactory.DeriveFact<CannotDerived<OtherFact>>(container)))
+                    ExpectedDeriveException(() => factFactory.DeriveFact<BuildCannotDerived<OtherFact>>(container)))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage)
                 .Run();
         }
@@ -396,14 +396,14 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Container contains RuntimeSpecialFact.")]
+        [Description("Container contains SpecialFact in runtime.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ContainerContainsConditionFactTestCase()
         {
-            string expectedMessage = $"Container contains {nameof(IConditionFact)} facts.";
+            string expectedMessage = $"Container contains {nameof(IBuildConditionFact)} facts.";
             var container = new Container
             {
-                new CanDerived<ResultFact>(),
+                new BuildCanDerived<ResultFact>(),
             };
 
             GivenCreateFactFactory()
