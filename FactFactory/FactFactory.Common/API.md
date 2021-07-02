@@ -10,6 +10,8 @@
   - [InvalidFactType](#F-GetcuReone-FactFactory-Constants-ErrorCode-InvalidFactType 'GetcuReone.FactFactory.Constants.ErrorCode.InvalidFactType')
   - [InvalidOperation](#F-GetcuReone-FactFactory-Constants-ErrorCode-InvalidOperation 'GetcuReone.FactFactory.Constants.ErrorCode.InvalidOperation')
   - [RuleNotFound](#F-GetcuReone-FactFactory-Constants-ErrorCode-RuleNotFound 'GetcuReone.FactFactory.Constants.ErrorCode.RuleNotFound')
+- [ErrorResources](#T-GetcuReone-FactFactory-Resources-ErrorResources 'GetcuReone.FactFactory.Resources.ErrorResources')
+  - [OnWantActionCannotBePerformedSynchronously\`\`1(wantAction)](#M-GetcuReone-FactFactory-Resources-ErrorResources-OnWantActionCannotBePerformedSynchronously``1-``0- 'GetcuReone.FactFactory.Resources.ErrorResources.OnWantActionCannotBePerformedSynchronously``1(``0)')
 - [FactFactoryHelper](#T-GetcuReone-FactFactory-FactFactoryHelper 'GetcuReone.FactFactory.FactFactoryHelper')
   - [CannotIsType\`\`1(type,paramName)](#M-GetcuReone-FactFactory-FactFactoryHelper-CannotIsType``1-GetcuReone-FactFactory-Interfaces-IFactType,System-String- 'GetcuReone.FactFactory.FactFactoryHelper.CannotIsType``1(GetcuReone.FactFactory.Interfaces.IFactType,System.String)')
   - [CompareTo(x,y)](#M-GetcuReone-FactFactory-FactFactoryHelper-CompareTo-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.FactFactoryHelper.CompareTo(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)')
@@ -81,6 +83,40 @@ Invalid operation.
 ##### Summary
 
 Rule not found.
+
+<a name='T-GetcuReone-FactFactory-Resources-ErrorResources'></a>
+## ErrorResources `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Resources
+
+##### Summary
+
+Error resources.
+
+<a name='M-GetcuReone-FactFactory-Resources-ErrorResources-OnWantActionCannotBePerformedSynchronously``1-``0-'></a>
+### OnWantActionCannotBePerformedSynchronously\`\`1(wantAction) `method`
+
+##### Summary
+
+Action cannot be performed synchronously.
+
+##### Returns
+
+Error text.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantAction | [\`\`0](#T-``0 '``0') | WantAction. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TWantAction | Type wantAction. |
 
 <a name='T-GetcuReone-FactFactory-FactFactoryHelper'></a>
 ## FactFactoryHelper `type`

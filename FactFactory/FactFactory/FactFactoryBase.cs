@@ -5,6 +5,7 @@ using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Facades.FactEngine;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Facades.TreeBuildingOperations;
 using GetcuReone.FactFactory.Helpers;
@@ -67,33 +68,19 @@ namespace GetcuReone.FactFactory
             IFactTypeCache cache = GetFactTypeCache();
             ISingleEntityOperations singleEntityOperations = GetSingleEntityOperations();
             ITreeBuildingOperations treeBuildingOperations = GetTreeBuildingOperations();
+            IFactEngine engine = GetFactEngine();
 
             // Validate container and get contexts.
             var contexts = WantFactsInfos.ConvertAll(info =>
                 GetWantActionContext(info, treeBuildingOperations, singleEntityOperations, cache));
 
-            // Validating rules.
-            TFactRuleCollection rules = singleEntityOperations.ValidateAndGetRules<TFactRule, TFactRuleCollection>(Rules);
-
-            var request = new BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+            engine.DeriveWantAction(contexts.ConvertAll(context => new DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
             {
-                FactRules = rules,
-                WantActionContexts = contexts,
-                Filters = new List<FactWorkOption> { FactWorkOption.CanExcecuteParallel, FactWorkOption.CanExecuteSync }
-            };
+                Context = context,
+                Rules = Rules,
+            }));
 
-            if (!treeBuildingOperations.TryBuildTrees(request, out var result))
-                throw CommonHelper.CreateDeriveException(result.DeriveErrorDetails);
-
-            foreach (var item in result.TreesByActions)
-                treeBuildingOperations.CalculateTreeAndDeriveWantFacts(item.Key, item.Value);
-
-            foreach (var context in result.TreesByActions.Keys.Select(key => key.Context))
-            {
-                var wantFactsInfos = WantFactsInfos.FirstOrDefault(info => info.WantAction == context.WantAction && info.Container == context.Container);
-                if (wantFactsInfos != null)
-                    WantFactsInfos.Remove(wantFactsInfos);
-            }
+            WantFactsInfos.Clear();
         }
 
         /// <inheritdoc/>
@@ -103,33 +90,19 @@ namespace GetcuReone.FactFactory
             IFactTypeCache cache = GetFactTypeCache();
             ISingleEntityOperations singleEntityOperations = GetSingleEntityOperations();
             ITreeBuildingOperations treeBuildingOperations = GetTreeBuildingOperations();
+            IFactEngine engine = GetFactEngine();
 
             // Validate container and get contexts.
             var contexts = WantFactsInfos.ConvertAll(info =>
                 GetWantActionContext(info, treeBuildingOperations, singleEntityOperations, cache));
 
-            // Validating rules.
-            TFactRuleCollection rules = singleEntityOperations.ValidateAndGetRules<TFactRule, TFactRuleCollection>(Rules);
-
-            var request = new BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+            await engine.DeriveWantActionAsync(contexts.ConvertAll(context => new DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
             {
-                FactRules = rules,
-                WantActionContexts = contexts,
-                Filters = new List<FactWorkOption> { FactWorkOption.CanExcecuteParallel, FactWorkOption.CanExecuteSync, FactWorkOption.CanExecuteAsync }
-            };
+                Context = context,
+                Rules = Rules,
+            }));
 
-            if (!treeBuildingOperations.TryBuildTrees(request, out var result))
-                throw CommonHelper.CreateDeriveException(result.DeriveErrorDetails);
-
-            foreach (var item in result.TreesByActions)
-                await treeBuildingOperations.CalculateTreeAndDeriveWantFactsAsync(item.Key, item.Value).ConfigureAwait(false);
-
-            foreach (var context in result.TreesByActions.Keys.Select(key => key.Context))
-            {
-                var wantFactsInfos = WantFactsInfos.FirstOrDefault(info => info.WantAction == context.WantAction && info.Container == context.Container);
-                if (wantFactsInfos != null)
-                    WantFactsInfos.Remove(wantFactsInfos);
-            }
+            WantFactsInfos.Clear();
         }
 
         private IWantActionContext<TWantAction, TFactContainer> GetWantActionContext(WantFactsInfo<TWantAction, TFactContainer> wantFactsInfo, ITreeBuildingOperations treeBuilding, ISingleEntityOperations singleEntity, IFactTypeCache cache)
@@ -145,7 +118,6 @@ namespace GetcuReone.FactFactory
             context.Container.EqualityComparer = context.SingleEntity.GetFactEqualityComparer(context);
             context.Container.Comparer = context.SingleEntity.GetFactComparer(context);
             context.Container.IsReadOnly = true;
-            singleEntity.ValidateContainer(wantFactsInfo.Container);
 
             var defaultFacts = GetDefaultFacts(context);
 
@@ -251,6 +223,15 @@ namespace GetcuReone.FactFactory
         public virtual IFactTypeCache GetFactTypeCache()
         {
             return new FactTypeCache();
+        }
+
+        /// <summary>
+        /// Returns <see cref="FactEngineFacade"/>.
+        /// </summary>
+        /// <returns>Instanse <see cref="FactEngineFacade"/>.</returns>
+        public virtual IFactEngine GetFactEngine()
+        {
+            return GetFacade<FactEngineFacade>();
         }
 
         #region overloads method WantFact
