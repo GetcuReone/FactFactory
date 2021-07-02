@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces.Operations;
+using System;
 using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Interfaces
@@ -40,21 +41,30 @@ namespace GetcuReone.FactFactory.Interfaces
         void WantFacts(TWantAction wantAction, TFactContainer container);
 
         /// <summary>
-        /// Get <see cref="ITreeBuildingOperations"/>.
+        /// Returns <see cref="ITreeBuildingOperations"/> instance.
         /// </summary>
         /// <returns>Instanse <see cref="ITreeBuildingOperations"/>.</returns>
+        [Obsolete("Will be removed from the interface and will remain only in the base implementation.")]
         ITreeBuildingOperations GetTreeBuildingOperations();
 
         /// <summary>
-        /// Get <see cref="ISingleEntityOperations"/>.
+        /// Returns <see cref="ISingleEntityOperations"/> instance.
         /// </summary>
         /// <returns>Instanse <see cref="ISingleEntityOperations"/>.</returns>
+        [Obsolete("Will be removed from the interface and will remain only in the base implementation.")]
         ISingleEntityOperations GetSingleEntityOperations();
 
         /// <summary>
-        /// Get <see cref="IFactTypeCache"/>.
+        /// Returns <see cref="IFactTypeCache"/> instance.
         /// </summary>
         /// <returns>Instanse <see cref="IFactTypeCache"/>.</returns>
+        [Obsolete("Will be removed from the interface and will remain only in the base implementation.")]
         IFactTypeCache GetFactTypeCache();
+
+        /// <summary>
+        /// Returns <see cref="IFactEngine"/> instance.
+        /// </summary>
+        /// <returns>Instanse <see cref="IFactEngine"/></returns>
+        IFactEngine GetFactEngine();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -49,6 +50,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <param name="request">Request.</param>
         /// <param name="result">Result.</param>
         /// <returns>Did you manage to build a tree?</returns>
+        [Obsolete("Will be deleted. Logic moved to IFactEngine.DeriveWantAction and IFactEngine.DeriveWantActionAsync methods")]
         bool TryBuildTrees<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>(BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request, out BuildTreesResult<TFactRule, TWantAction, TFactContainer> result)
             where TFactRule : IFactRule
             where TFactRuleCollection : IFactRuleCollection<TFactRule>

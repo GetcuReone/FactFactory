@@ -56,6 +56,7 @@
   - [GetDefaultContainer()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetDefaultContainer 'GetcuReone.FactFactory.FactFactoryBase`4.GetDefaultContainer')
   - [GetDefaultFacts(context)](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{`2,`3}- 'GetcuReone.FactFactory.FactFactoryBase`4.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{`2,`3})')
   - [GetFacade\`\`1()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetFacade``1 'GetcuReone.FactFactory.FactFactoryBase`4.GetFacade``1')
+  - [GetFactEngine()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetFactEngine 'GetcuReone.FactFactory.FactFactoryBase`4.GetFactEngine')
   - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetFactType``1 'GetcuReone.FactFactory.FactFactoryBase`4.GetFactType``1')
   - [GetFactTypeCache()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetFactTypeCache 'GetcuReone.FactFactory.FactFactoryBase`4.GetFactTypeCache')
   - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-FactFactoryBase`4-GetSingleEntityOperations 'GetcuReone.FactFactory.FactFactoryBase`4.GetSingleEntityOperations')
@@ -793,6 +794,21 @@ The set of facts added to the default container
 ##### Summary
 
 *Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-FactFactoryBase`4-GetFactEngine'></a>
+### GetFactEngine() `method`
+
+##### Summary
+
+Returns [FactEngineFacade](#T-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade 'GetcuReone.FactFactory.Facades.FactEngine.FactEngineFacade').
+
+##### Returns
+
+Instanse [FactEngineFacade](#T-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade 'GetcuReone.FactFactory.Facades.FactEngine.FactEngineFacade').
 
 ##### Parameters
 

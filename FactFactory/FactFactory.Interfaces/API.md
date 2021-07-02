@@ -29,6 +29,9 @@
   - [#ctor(requiredFact,needFacts)](#M-GetcuReone-FactFactory-Exceptions-Entities-DeriveFactErrorDetail-#ctor-GetcuReone-FactFactory-Interfaces-IFactType,System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Interfaces-IFactType}- 'GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail.#ctor(GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})')
   - [NeedFacts](#P-GetcuReone-FactFactory-Exceptions-Entities-DeriveFactErrorDetail-NeedFacts 'GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail.NeedFacts')
   - [RequiredFact](#P-GetcuReone-FactFactory-Exceptions-Entities-DeriveFactErrorDetail-RequiredFact 'GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail.RequiredFact')
+- [DeriveWantActionRequest\`4](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`4 'GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest`4')
+  - [Context](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`4-Context 'GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest`4.Context')
+  - [Rules](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`4-Rules 'GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest`4.Rules')
 - [ErrorDetail](#T-GetcuReone-FactFactory-Exceptions-Entities-ErrorDetail 'GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail')
   - [#ctor(code,reason)](#M-GetcuReone-FactFactory-Exceptions-Entities-ErrorDetail-#ctor-System-String,System-String- 'GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail.#ctor(System.String,System.String)')
   - [Code](#P-GetcuReone-FactFactory-Exceptions-Entities-ErrorDetail-Code 'GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail.Code')
@@ -67,10 +70,14 @@
   - [Remove\`\`1()](#M-GetcuReone-FactFactory-Interfaces-IFactContainer-Remove``1 'GetcuReone.FactFactory.Interfaces.IFactContainer.Remove``1')
   - [Remove\`\`1(fact)](#M-GetcuReone-FactFactory-Interfaces-IFactContainer-Remove``1-``0- 'GetcuReone.FactFactory.Interfaces.IFactContainer.Remove``1(``0)')
   - [TryGetFact\`\`1(fact)](#M-GetcuReone-FactFactory-Interfaces-IFactContainer-TryGetFact``1-``0@- 'GetcuReone.FactFactory.Interfaces.IFactContainer.TryGetFact``1(``0@)')
+- [IFactEngine](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine 'GetcuReone.FactFactory.Interfaces.Operations.IFactEngine')
+  - [DeriveWantAction\`\`4(requests)](#M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantAction``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}- 'GetcuReone.FactFactory.Interfaces.Operations.IFactEngine.DeriveWantAction``4(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0,``1,``2,``3}})')
+  - [DeriveWantActionAsync\`\`4(requests)](#M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantActionAsync``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}- 'GetcuReone.FactFactory.Interfaces.Operations.IFactEngine.DeriveWantActionAsync``4(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0,``1,``2,``3}})')
 - [IFactFactory\`4](#T-GetcuReone-FactFactory-Interfaces-IFactFactory`4 'GetcuReone.FactFactory.Interfaces.IFactFactory`4')
   - [Rules](#P-GetcuReone-FactFactory-Interfaces-IFactFactory`4-Rules 'GetcuReone.FactFactory.Interfaces.IFactFactory`4.Rules')
   - [Derive()](#M-GetcuReone-FactFactory-Interfaces-IFactFactory`4-Derive 'GetcuReone.FactFactory.Interfaces.IFactFactory`4.Derive')
   - [DeriveAsync()](#M-GetcuReone-FactFactory-Interfaces-IFactFactory`4-DeriveAsync 'GetcuReone.FactFactory.Interfaces.IFactFactory`4.DeriveAsync')
+  - [GetFactEngine()](#M-GetcuReone-FactFactory-Interfaces-IFactFactory`4-GetFactEngine 'GetcuReone.FactFactory.Interfaces.IFactFactory`4.GetFactEngine')
   - [GetFactTypeCache()](#M-GetcuReone-FactFactory-Interfaces-IFactFactory`4-GetFactTypeCache 'GetcuReone.FactFactory.Interfaces.IFactFactory`4.GetFactTypeCache')
   - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Interfaces-IFactFactory`4-GetSingleEntityOperations 'GetcuReone.FactFactory.Interfaces.IFactFactory`4.GetSingleEntityOperations')
   - [GetTreeBuildingOperations()](#M-GetcuReone-FactFactory-Interfaces-IFactFactory`4-GetTreeBuildingOperations 'GetcuReone.FactFactory.Interfaces.IFactFactory`4.GetTreeBuildingOperations')
@@ -442,6 +449,40 @@ Facts that were not enough to derive.
 ##### Summary
 
 The fact that tried to derive.
+
+<a name='T-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`4'></a>
+## DeriveWantActionRequest\`4 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Interfaces.Operations.Entities
+
+##### Summary
+
+Request.
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactRule | Type of rules used. |
+| TFactRuleCollection | Rule collection type. |
+| TWantAction | Type wantAction |
+| TFactContainer | Type container |
+
+<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`4-Context'></a>
+### Context `property`
+
+##### Summary
+
+The context in which the calculations will be made.
+
+<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`4-Rules'></a>
+### Rules `property`
+
+##### Summary
+
+Collection of rules used for calculations.
 
 <a name='T-GetcuReone-FactFactory-Exceptions-Entities-ErrorDetail'></a>
 ## ErrorDetail `type`
@@ -966,6 +1007,61 @@ Try get fact.
 | ---- | ----------- |
 | TFact | Type of fact to return. |
 
+<a name='T-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine'></a>
+## IFactEngine `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Interfaces.Operations
+
+##### Summary
+
+Engine for calculating facts
+
+<a name='M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantAction``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}-'></a>
+### DeriveWantAction\`\`4(requests) `method`
+
+##### Summary
+
+Build a trees and calculate facts for `requests`.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| requests | [System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{\`\`0,\`\`1,\`\`2,\`\`3}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0,``1,``2,``3}}') | Requests. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactRule | Type of rules used. |
+| TFactRuleCollection | Rule collection type. |
+| TWantAction | Type wantAction |
+| TFactContainer | Type container |
+
+<a name='M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantActionAsync``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}-'></a>
+### DeriveWantActionAsync\`\`4(requests) `method`
+
+##### Summary
+
+Build a trees and calculate facts for `requests`.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| requests | [System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{\`\`0,\`\`1,\`\`2,\`\`3}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0,``1,``2,``3}}') | Requests. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactRule | Type of rules used. |
+| TFactRuleCollection | Rule collection type. |
+| TWantAction | Type wantAction |
+| TFactContainer | Type container |
+
 <a name='T-GetcuReone-FactFactory-Interfaces-IFactFactory`4'></a>
 ## IFactFactory\`4 `type`
 
@@ -1019,12 +1115,27 @@ Asynchronously derive the facts.
 
 This method has no parameters.
 
+<a name='M-GetcuReone-FactFactory-Interfaces-IFactFactory`4-GetFactEngine'></a>
+### GetFactEngine() `method`
+
+##### Summary
+
+Returns [IFactEngine](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine 'GetcuReone.FactFactory.Interfaces.Operations.IFactEngine') instance.
+
+##### Returns
+
+Instanse [IFactEngine](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine 'GetcuReone.FactFactory.Interfaces.Operations.IFactEngine')
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='M-GetcuReone-FactFactory-Interfaces-IFactFactory`4-GetFactTypeCache'></a>
 ### GetFactTypeCache() `method`
 
 ##### Summary
 
-Get [IFactTypeCache](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache 'GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache').
+Returns [IFactTypeCache](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache 'GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache') instance.
 
 ##### Returns
 
@@ -1039,7 +1150,7 @@ This method has no parameters.
 
 ##### Summary
 
-Get [ISingleEntityOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations').
+Returns [ISingleEntityOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations') instance.
 
 ##### Returns
 
@@ -1054,7 +1165,7 @@ This method has no parameters.
 
 ##### Summary
 
-Get [ITreeBuildingOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-ITreeBuildingOperations 'GetcuReone.FactFactory.Interfaces.Operations.ITreeBuildingOperations').
+Returns [ITreeBuildingOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-ITreeBuildingOperations 'GetcuReone.FactFactory.Interfaces.Operations.ITreeBuildingOperations') instance.
 
 ##### Returns
 

@@ -365,6 +365,8 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     factFactory.collection = null;
                 })
+                .And("Want facts.", factFactory => 
+                    factFactory.WantFacts((DefaultFact fact) => { }))
                 .When("Run Derive.", factFactory => 
                     ExpectedDeriveException(factFactory.Derive))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason)
