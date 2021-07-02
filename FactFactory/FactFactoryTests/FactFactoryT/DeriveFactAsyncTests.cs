@@ -31,7 +31,8 @@ namespace FactFactoryTests.FactFactoryT
                         return new Input16Fact(expectedValue);
                     }
                 })
-                .WhenAsync("Derive.", factory => factory.DeriveFactAsync<Input16Fact>())
+                .WhenAsync("Derive.", factory =>
+                    factory.DeriveFactAsync<Input16Fact>())
                 .ThenFactValueEquals(expectedValue)
                 .RunAsync();
         }
