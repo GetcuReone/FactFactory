@@ -1,12 +1,11 @@
 ﻿using GetcuReone.FactFactory.Interfaces.Context;
-using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
 {
     /// <summary>
-    /// A special fact that is created when building a tree. Used to check the condition.
+    /// A special fact that is created when calculating facts. Used to check the condition.
     /// </summary>
-    public interface IBuildConditionFact : ISpecialFact
+    public interface IRuntimeCondition
     {
         /// <summary>
         /// A condition that determines whether the current fact can be added to the container when deriving.
@@ -16,13 +15,12 @@ namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
         /// <typeparam name="TWantAction">Type wantAction.</typeparam>
         /// <typeparam name="TFactContainer">Type fact container.</typeparam>
         /// <param name="factWork">Work for which we learn about the possibility of using the fact.</param>
-        /// <param name="compatibleRules">Compatible rules.</param>
         /// <param name="context">Context.</param>
         /// <returns>Has the condition been met?</returns>
         /// <remarks>
-        /// Using it, you can determine which rule and under what conditions can be used to build a rule tree.
+        /// With it, you can determine which rule and under what conditions can be used when calculating facts.
         /// </remarks>
-        bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
+        bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IFactRulesContext<TFactRule, TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TFactRule : IFactRule
             where TWantAction : IWantAction
