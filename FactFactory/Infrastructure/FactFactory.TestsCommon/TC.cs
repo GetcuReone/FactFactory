@@ -52,17 +52,17 @@
             public const string RuleCollection = "rule_collection_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildContained{TFact}"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildContained{TFact}"/>.
             /// </summary>
             public const string BuildContained = "build_contained_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildNotContained{TFact}"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildNotContained{TFact}"/>.
             /// </summary>
             public const string BuildNotContained = "build_not_contained_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildCannotDerived{TFact}"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildCannotDerived{TFact}"/>.
             /// </summary>
             public const string BuildCannotDerived = "build_cannot_derived_test";
 

@@ -1,7 +1,7 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using GetcuReone.FactFactory.SpecialFacts;
+using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using System;
 using System.Collections.Generic;
 

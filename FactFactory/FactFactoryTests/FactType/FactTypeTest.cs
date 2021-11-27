@@ -7,7 +7,7 @@ using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using GetcuReone.FactFactory.SpecialFacts;
+using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework;
 using GetcuReone.GwtTestFramework.Entities;

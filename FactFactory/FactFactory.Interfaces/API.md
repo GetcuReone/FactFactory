@@ -119,8 +119,8 @@
   - [CanAdd(node)](#M-GetcuReone-FactFactory-Interfaces-Operations-Entities-IndependentNodeGroup`1-CanAdd-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{`0}- 'GetcuReone.FactFactory.Interfaces.Operations.Entities.IndependentNodeGroup`1.CanAdd(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{`0})')
 - [InvalidDeriveOperationException](#T-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException 'GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException')
   - [#ctor()](#M-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException-#ctor-System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Exceptions-Entities-DeriveErrorDetail}- 'GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException.#ctor(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail})')
-- [IRuntimeCondition](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeCondition 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeCondition')
-  - [Condition\`\`4(factWork,context)](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeCondition-Condition``4-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1,``2,``3}- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeCondition.Condition``4(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{``1,``2,``3})')
+- [IRuntimeConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact')
+  - [Condition\`\`4(factWork,context)](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact-Condition``4-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1,``2,``3}- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact.Condition``4(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{``1,``2,``3})')
 - [ISingleEntityOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations')
   - [CalculateFact\`\`3(node,context)](#M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-CalculateFact``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.CalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [CalculateFactAsync\`\`3(node,context)](#M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-CalculateFactAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.CalculateFactAsync``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
@@ -1650,8 +1650,8 @@ GetcuReone.FactFactory.Exceptions
 
 This constructor has no parameters.
 
-<a name='T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeCondition'></a>
-## IRuntimeCondition `type`
+<a name='T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact'></a>
+## IRuntimeConditionFact `type`
 
 ##### Namespace
 
@@ -1661,7 +1661,7 @@ GetcuReone.FactFactory.Interfaces.SpecialFacts
 
 A special fact that is created when calculating facts. Used to check the condition.
 
-<a name='M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeCondition-Condition``4-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1,``2,``3}-'></a>
+<a name='M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact-Condition``4-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1,``2,``3}-'></a>
 ### Condition\`\`4(factWork,context) `method`
 
 ##### Summary

@@ -4,7 +4,7 @@ using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.SpecialFacts
+namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
 {
     /// <summary>
     /// Base class for <see cref="IBuildConditionFact"/>.
@@ -26,6 +26,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
     }
 
     /// <inheritdoc/>
+    /// <typeparam name="TFact">The type of fact for which the condition is met.</typeparam>
     public abstract class BuildConditionFactBase<TFact> : BuildConditionFactBase, IFactTypeCreation
         where TFact : IFact
     {

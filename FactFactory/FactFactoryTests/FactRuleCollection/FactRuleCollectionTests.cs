@@ -5,6 +5,7 @@ using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.SpecialFacts;
+using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Entities;
 using GetcuReone.GwtTestFramework.Helpers;

@@ -1,7 +1,7 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.SpecialFacts;
+using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

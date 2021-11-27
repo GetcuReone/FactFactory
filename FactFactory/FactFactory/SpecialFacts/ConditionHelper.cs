@@ -106,5 +106,51 @@ namespace GetcuReone.FactFactory.SpecialFacts
                 throw;
             }
         }
+        
+        internal static bool CanDeriveFact<TFactWork, TFactRule, TWantAction, TFactContainer>(IRuntimeConditionFact conditionFact, IFactType searchFactType, TFactWork factWork, IFactRulesContext<TFactRule, TWantAction, TFactContainer> context)
+            where TFactWork : IFactWork
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            if (context.SingleEntity.CanExtractFact(searchFactType, factWork, context))
+                return true;
+
+            var rulesWithoutConditionFact = context.FactRules
+                .Where(rule => rule.InputFactTypes
+                    .All(factType => !factType.EqualsFactType(context.Cache.GetFactType(conditionFact))))
+                .ToList();
+
+            var request = new BuildTreeForFactInfoRequest<TFactRule, TWantAction, TFactContainer>
+            {
+                WantFactType = searchFactType,
+                Context = new FactRulesContext<TFactRule, TWantAction, TFactContainer>
+                {
+                    Cache = context.Cache,
+                    Container = context.Container,
+                    FactRules = rulesWithoutConditionFact,
+                    SingleEntity = context.SingleEntity,
+                    TreeBuilding = context.TreeBuilding,
+                    WantAction = context.WantAction,
+                },
+            };
+
+            try
+            {
+                return context.TreeBuilding.TryBuildTreeForFactInfo(request, out var _, out var _);
+            }
+            catch (InvalidDeriveOperationException ex)
+            {
+                if (ex.Details != null && ex.Details.Count == 1)
+                {
+                    DeriveErrorDetail detail = ex.Details.First();
+
+                    if (detail.Code == ErrorCode.RuleNotFound || detail.Code == ErrorCode.EmptyRuleCollection)
+                        return false;
+                }
+
+                throw;
+            }
+        }
     }
 }
