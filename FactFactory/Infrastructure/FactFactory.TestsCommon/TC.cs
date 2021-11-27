@@ -27,22 +27,22 @@
         public static class Objects
         {
             /// <summary>
-            /// Fact rule <see cref="GetcuReone.FactFactory.Interfaces.IFactRule{TFact}"/>.
+            /// Fact rule <see cref="GetcuReone.FactFactory.Interfaces.IFactRule"/>.
             /// </summary>
             public const string Rule = "rule_test";
 
             /// <summary>
-            /// Fact container <see cref="GetcuReone.FactFactory.Interfaces.IFactContainer{TFact}"/>.
+            /// Fact container <see cref="GetcuReone.FactFactory.Interfaces.IFactContainer"/>.
             /// </summary>
             public const string Container = "container_test";
 
             /// <summary>
-            /// Desired action <see cref="GetcuReone.FactFactory.Interfaces.IWantAction{TFact}"/>.
+            /// Desired action <see cref="GetcuReone.FactFactory.Interfaces.IWantAction"/>.
             /// </summary>
             public const string WantAction = "want_action_test";
 
             /// <summary>
-            /// Fact factory <see cref="GetcuReone.FactFactory.Interfaces.IFactFactory{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
+            /// Fact factory <see cref="GetcuReone.FactFactory.Interfaces.IFactFactory{TFactRule, TFactRuleCollection, TWantAction, TFactContainer}"/>.
             /// </summary>
             public const string Factory = "factory_test";
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+
+    <!-- Common settings for libraries-->
+
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-assembly-info.props"/>
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-publisher-info.props"/>
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-signature.props"/>
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-documentation.props"/>
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-code-analysis.props"/>
+
+    <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+
+</Project>

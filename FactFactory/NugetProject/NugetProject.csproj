@@ -1,37 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\.buildTools\GetcuReone.Common.props" />
+    <Import Project="..\.build-props\getcureone-nuget.props" />
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
 
         <PackageId>GetcuReone.FactFactory</PackageId>
-        <Product>FactFactory</Product>
         <Description>My implementation of a machine that can derive facts from other facts</Description>
-        <RepositoryUrl>https://github.com/GetcuReone/FactFactory.git</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
         <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
             Changes:
-            - added getting ISingleEntityOperations.GetFactComparer to compare facts
-            - added getting ISingleEntityOperations.GetFactEqualityComparer to compare facts
-            - added FactEqualityComparer to compare facts
-            - container has become more versatile
-            - added FactContainerWriter
-            - IConditionFact changed to IBuildConditionFact
+            - corrected the props in the solution
         </PackageReleaseNotes>
-        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>
-        <Copyright>Copyright © 2020 $(Authors)</Copyright>
-        <NeutralLanguage>en-US</NeutralLanguage>
-        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
-        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -143,11 +123,5 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
-
-    <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
-        <ItemGroup>
-            <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'all'))" />
-        </ItemGroup>
-    </Target>
 
 </Project>

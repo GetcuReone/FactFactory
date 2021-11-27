@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GetcuReone.Versioned_MovieServiceExample</name>
+    </assembly>
+    <members>
+        <member name="T:Versioned_MovieServiceExample.Facts.MovieDiscountFact">
+            <summary>
+            The fact stores information about the size of the discount
+            </summary>
+        </member>
+        <member name="T:Versioned_MovieServiceExample.Facts.MovieFact">
+            <summary>
+            The fact stores information about the movie
+            </summary>
+        </member>
+        <member name="T:Versioned_MovieServiceExample.Facts.MovieIdFact">
+            <summary>
+            Fact stores movie id information
+            </summary>
+        </member>
+        <member name="T:Versioned_MovieServiceExample.Facts.MoviePurchasePriceFact">
+            <summary>
+            The fact stores information about the cost of buying a movie for the user
+            </summary>
+        </member>
+        <member name="T:Versioned_MovieServiceExample.Facts.UserEmailFact">
+            <summary>
+            Fact stores user email information
+            </summary>
+        </member>
+        <member name="T:Versioned_MovieServiceExample.Facts.UserFact">
+            <summary>
+            Fact stores user information
+            </summary>
+        </member>
+        <member name="M:Versioned_MovieServiceExample.MovieServiceExample.GetAllVersion(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer})">
+            <summary>
+            The method returns instances of all versions used in the rules.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
