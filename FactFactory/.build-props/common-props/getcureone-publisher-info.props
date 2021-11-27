@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+
+    <!-- Publisher Information-->
+
+    <PropertyGroup>
+        <Authors>Itua Juel-Gaben</Authors>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <Copyright>Copyright © 2020 $(Authors)</Copyright>
+    </PropertyGroup>
+
+</Project>
