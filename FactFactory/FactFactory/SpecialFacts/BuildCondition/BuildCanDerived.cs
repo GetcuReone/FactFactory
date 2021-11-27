@@ -2,7 +2,7 @@
 using GetcuReone.FactFactory.Interfaces.Context;
 using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.SpecialFacts
+namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
 {
     /// <summary>
     /// Fact condition that checks if a tree can be built for the fact <typeparamref name = "TFact" /> at the tree building stage.

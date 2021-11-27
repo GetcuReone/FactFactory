@@ -2,16 +2,17 @@
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using System.Collections.Generic;
 
-namespace GetcuReone.FactFactory.SpecialFacts
+namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
 {
     /// <summary>
-    /// Base class for <see cref="IRuntimeConditionFact"/>.
+    /// Base class for <see cref="IBuildConditionFact"/>.
     /// </summary>
-    public abstract class RuntimeConditionFactBase : SpecialFactBase, IRuntimeConditionFact
+    public abstract class BuildConditionFactBase : SpecialFactBase, IBuildConditionFact
     {
         /// <inheritdoc/>
-        public abstract bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IFactRulesContext<TFactRule, TWantAction, TFactContainer> context)
+        public abstract bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TFactRule : IFactRule
             where TWantAction : IWantAction
@@ -25,7 +26,8 @@ namespace GetcuReone.FactFactory.SpecialFacts
     }
 
     /// <inheritdoc/>
-    public abstract class RuntimeConditionFactBase<TFact> : RuntimeConditionFactBase, IFactTypeCreation
+    /// <typeparam name="TFact">The type of fact for which the condition is met.</typeparam>
+    public abstract class BuildConditionFactBase<TFact> : BuildConditionFactBase, IFactTypeCreation
         where TFact : IFact
     {
         /// <inheritdoc/>

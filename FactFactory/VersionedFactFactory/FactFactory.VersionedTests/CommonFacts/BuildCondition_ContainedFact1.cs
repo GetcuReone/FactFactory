@@ -1,5 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces.Context;
-using GetcuReone.FactFactory.SpecialFacts;
+using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using System.Collections.Generic;
 
 namespace FactFactory.VersionedTests.CommonFacts
