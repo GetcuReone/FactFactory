@@ -5,7 +5,7 @@ namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
     /// <summary>
     /// A special fact that is created when calculating facts. Used to check the condition.
     /// </summary>
-    public interface IRuntimeCondition
+    public interface IRuntimeConditionFact
     {
         /// <summary>
         /// A condition that determines whether the current fact can be added to the container when deriving.
