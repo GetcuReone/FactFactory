@@ -11,8 +11,10 @@ namespace GetcuReone.FactFactory.BaseEntities
     public class FactContainerWriter<TFactContainer> : IDisposable
         where TFactContainer : IFactContainer
     {
-        private readonly TFactContainer _container;
+        private const string disposeError = "The current writer has been disposed.";
+        private TFactContainer _container;
         private readonly bool _previousValue;
+        private bool _disposed;
 
         /// <summary>
         /// Constructor.
@@ -23,6 +25,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             _container = container;
             Monitor.Enter(_container);
             _previousValue = _container.IsReadOnly;
+            _disposed = false;
         }
 
         /// <summary>
@@ -33,6 +36,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add<TFact>(TFact fact) 
             where TFact : IFact
         {
+            if (_disposed)
+                throw new ObjectDisposedException(GetType().Name, disposeError);
+
             if (_container.IsReadOnly)
                 _container.IsReadOnly = false;
 
@@ -48,6 +54,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="facts">Fact set.</param>
         public void AddRange(IEnumerable<IFact> facts)
         {
+            if (_disposed)
+                throw new ObjectDisposedException(GetType().Name, disposeError);
+
             if (_container.IsReadOnly)
                 _container.IsReadOnly = false;
 
@@ -64,6 +73,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Remove<TFact>()
             where TFact : IFact
         {
+            if (_disposed)
+                throw new ObjectDisposedException(GetType().Name, disposeError);
+
             if (_container.IsReadOnly)
                 _container.IsReadOnly = false;
 
@@ -80,6 +92,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <typeparam name="TFact">Type of fact to delete.</typeparam>
         public void Remove<TFact>(TFact fact) where TFact : IFact
         {
+            if (_disposed)
+                throw new ObjectDisposedException(GetType().Name, disposeError);
+
             if (_container.IsReadOnly)
                 _container.IsReadOnly = false;
 
@@ -92,9 +107,16 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public virtual void Dispose()
         {
+            if (_disposed)
+                return;
+
+            _disposed = true;
+
             if (_previousValue != _container.IsReadOnly)
                 _container.IsReadOnly = _previousValue;
+
             Monitor.Exit(_container);
+            _container = default(TFactContainer);
         }
     }
 }

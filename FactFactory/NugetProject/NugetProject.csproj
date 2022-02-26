@@ -10,6 +10,7 @@
         <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
             Changes:
+            - fixed dispose in FactContainerWriter
             - corrected the props in the solution
         </PackageReleaseNotes>
     </PropertyGroup>
