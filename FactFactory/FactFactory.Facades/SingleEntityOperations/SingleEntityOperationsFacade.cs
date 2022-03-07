@@ -51,6 +51,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "Container cannot be null.");
             if (container.Any(fact => fact is IBuildConditionFact))
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, $"Container contains {nameof(IBuildConditionFact)} facts.");
+            if (container.Any(fact => fact is IRuntimeConditionFact))
+                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, $"Container contains {nameof(IRuntimeConditionFact)} facts.");
 
             IEqualityComparer<IFact> comparer = container.EqualityComparer ?? FactEqualityComparer.GetDefault();
 
