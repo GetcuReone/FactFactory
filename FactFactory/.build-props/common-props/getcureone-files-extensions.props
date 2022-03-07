@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+
+    <!-- Add extension files to the project -->
+
+    <ItemGroup>
+      <Compile Include="$(MSBuildThisFileDirectory)\..\..\.build-props\files\extensions\ArrayExtensions.cs" Link="Extensions\ArrayExtensions.cs" />
+      <Compile Include="$(MSBuildThisFileDirectory)\..\..\.build-props\files\extensions\EnumerableExtensions.cs" Link="Extensions\EnumerableExtensions.cs" />
+      <Compile Include="$(MSBuildThisFileDirectory)\..\..\.build-props\files\extensions\ListExtensions.cs" Link="Extensions\ListExtensions.cs" />
+    </ItemGroup>
+
+</Project>
