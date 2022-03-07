@@ -8,6 +8,7 @@
     <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-signature.props"/>
     <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-documentation.props"/>
     <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-code-analysis.props"/>
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-files-extensions.props"/>
 
     <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>

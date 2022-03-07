@@ -3,6 +3,10 @@
 
 ## Contents
 
+- [ArrayExtensions](#T--ArrayExtensions '.ArrayExtensions')
+  - [IsNullOrEmpty\`\`1(items)](#M-ArrayExtensions-IsNullOrEmpty``1-``0[]- 'ArrayExtensions.IsNullOrEmpty``1(``0[])')
+- [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
+  - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [ErrorCode](#T-GetcuReone-FactFactory-Constants-ErrorCode 'GetcuReone.FactFactory.Constants.ErrorCode')
   - [EmptyRuleCollection](#F-GetcuReone-FactFactory-Constants-ErrorCode-EmptyRuleCollection 'GetcuReone.FactFactory.Constants.ErrorCode.EmptyRuleCollection')
   - [FactCannotDerived](#F-GetcuReone-FactFactory-Constants-ErrorCode-FactCannotDerived 'GetcuReone.FactFactory.Constants.ErrorCode.FactCannotDerived')
@@ -24,12 +28,73 @@
   - [FirstFactByFactType\`\`1(facts,factType,cache)](#M-GetcuReone-FactFactory-FactFactoryHelper-FirstFactByFactType``1-System-Collections-Generic-IEnumerable{``0},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.FactFactoryHelper.FirstFactByFactType``1(System.Collections.Generic.IEnumerable{``0},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
   - [GetFact\`\`1(facts)](#M-GetcuReone-FactFactory-FactFactoryHelper-GetFact``1-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.FactFactoryHelper.GetFact``1(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
   - [IsCalculatedByRule\`\`1(fact)](#M-GetcuReone-FactFactory-FactFactoryHelper-IsCalculatedByRule``1-``0- 'GetcuReone.FactFactory.FactFactoryHelper.IsCalculatedByRule``1(``0)')
-  - [IsNullOrEmpty\`\`1(items)](#M-GetcuReone-FactFactory-FactFactoryHelper-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'GetcuReone.FactFactory.FactFactoryHelper.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
-  - [ToReadOnlyCollection\`\`1(items)](#M-GetcuReone-FactFactory-FactFactoryHelper-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}- 'GetcuReone.FactFactory.FactFactoryHelper.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})')
   - [WhereFactsByFactType(facts,factType,cache)](#M-GetcuReone-FactFactory-FactFactoryHelper-WhereFactsByFactType-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.FactFactoryHelper.WhereFactsByFactType(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
   - [WhereFactsByFactTypes(facts,factTypes,cache)](#M-GetcuReone-FactFactory-FactFactoryHelper-WhereFactsByFactTypes-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.FactFactoryHelper.WhereFactsByFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
 - [FactParametersCodes](#T-GetcuReone-FactFactory-Constants-FactParametersCodes 'GetcuReone.FactFactory.Constants.FactParametersCodes')
   - [CalculateByRule](#F-GetcuReone-FactFactory-Constants-FactParametersCodes-CalculateByRule 'GetcuReone.FactFactory.Constants.FactParametersCodes.CalculateByRule')
+- [ListExtensions](#T--ListExtensions '.ListExtensions')
+  - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
+  - [ToReadOnlyCollection\`\`1(items)](#M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}- 'ListExtensions.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})')
+
+<a name='T--ArrayExtensions'></a>
+## ArrayExtensions `type`
+
+##### Namespace
+
+
+
+<a name='M-ArrayExtensions-IsNullOrEmpty``1-``0[]-'></a>
+### IsNullOrEmpty\`\`1(items) `method`
+
+##### Summary
+
+True - `items` is null or empty
+
+##### Returns
+
+`items` is empty or null?
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| items | [\`\`0[]](#T-``0[] '``0[]') | Collection. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TItem | Type items. |
+
+<a name='T--EnumerableExtensions'></a>
+## EnumerableExtensions `type`
+
+##### Namespace
+
+
+
+<a name='M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}-'></a>
+### IsNullOrEmpty\`\`1(items) `method`
+
+##### Summary
+
+True - `items` is null or empty
+
+##### Returns
+
+`items` is empty or null?
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| items | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | Collection. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TItem | Type items. |
 
 <a name='T-GetcuReone-FactFactory-Constants-ErrorCode'></a>
 ## ErrorCode `type`
@@ -360,52 +425,6 @@ Was the fact calculated using the rule.
 | ---- | ----------- |
 | TFact |  |
 
-<a name='M-GetcuReone-FactFactory-FactFactoryHelper-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}-'></a>
-### IsNullOrEmpty\`\`1(items) `method`
-
-##### Summary
-
-True - `items` is null or empty
-
-##### Returns
-
-`items` is empty or null?
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| items | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | Collection. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TItem | Type items. |
-
-<a name='M-GetcuReone-FactFactory-FactFactoryHelper-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}-'></a>
-### ToReadOnlyCollection\`\`1(items) `method`
-
-##### Summary
-
-Convert list to [ReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.ObjectModel.ReadOnlyCollection`1 'System.Collections.ObjectModel.ReadOnlyCollection`1')
-
-##### Returns
-
-Read-only collection.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| items | [System.Collections.Generic.IList{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IList 'System.Collections.Generic.IList{``0}') | Coollection. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TItem | Type item. |
-
 <a name='M-GetcuReone-FactFactory-FactFactoryHelper-WhereFactsByFactType-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-'></a>
 ### WhereFactsByFactType(facts,factType,cache) `method`
 
@@ -461,3 +480,56 @@ Default codes for fact parameter.
 ##### Summary
 
 Was the fact calculated using the rule.
+
+<a name='T--ListExtensions'></a>
+## ListExtensions `type`
+
+##### Namespace
+
+
+
+<a name='M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}-'></a>
+### IsNullOrEmpty\`\`1(items) `method`
+
+##### Summary
+
+True - `items` is null or empty
+
+##### Returns
+
+`items` is empty or null?
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| items | [System.Collections.Generic.List{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{``0}') | Collection. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TItem | Type items. |
+
+<a name='M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}-'></a>
+### ToReadOnlyCollection\`\`1(items) `method`
+
+##### Summary
+
+Convert list to [ReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.ObjectModel.ReadOnlyCollection`1 'System.Collections.ObjectModel.ReadOnlyCollection`1')
+
+##### Returns
+
+Read-only collection.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| items | [System.Collections.Generic.IList{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IList 'System.Collections.Generic.IList{``0}') | Coollection. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TItem | Type item. |

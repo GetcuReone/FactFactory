@@ -4,5 +4,37 @@
         <name>GetcuReone.NugetProject</name>
     </assembly>
     <members>
+        <member name="M:ArrayExtensions.IsNullOrEmpty``1(``0[])">
+            <summary>
+            True - <paramref name="items"/> is null or empty
+            </summary>
+            <typeparam name="TItem">Type items.</typeparam>
+            <param name="items">Collection.</param>
+            <returns><paramref name="items"/> is empty or null?</returns>
+        </member>
+        <member name="M:EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            True - <paramref name="items"/> is null or empty
+            </summary>
+            <typeparam name="TItem">Type items.</typeparam>
+            <param name="items">Collection.</param>
+            <returns><paramref name="items"/> is empty or null?</returns>
+        </member>
+        <member name="M:ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})">
+            <summary>
+            True - <paramref name="items"/> is null or empty
+            </summary>
+            <typeparam name="TItem">Type items.</typeparam>
+            <param name="items">Collection.</param>
+            <returns><paramref name="items"/> is empty or null?</returns>
+        </member>
+        <member name="M:ListExtensions.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Convert list to <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1"/>
+            </summary>
+            <typeparam name="TItem">Type item.</typeparam>
+            <param name="items">Coollection.</param>
+            <returns>Read-only collection.</returns>
+        </member>
     </members>
 </doc>

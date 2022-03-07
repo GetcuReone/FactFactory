@@ -3,6 +3,10 @@
 
 ## Contents
 
+- [ArrayExtensions](#T--ArrayExtensions '.ArrayExtensions')
+  - [IsNullOrEmpty\`\`1(items)](#M-ArrayExtensions-IsNullOrEmpty``1-``0[]- 'ArrayExtensions.IsNullOrEmpty``1(``0[])')
+- [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
+  - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [FactContainerBase](#T-GetcuReone-FactFactory-BaseEntities-FactContainerBase 'GetcuReone.FactFactory.BaseEntities.FactContainerBase')
   - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-FactContainerBase-#ctor 'GetcuReone.FactFactory.BaseEntities.FactContainerBase.#ctor')
   - [#ctor(facts)](#M-GetcuReone-FactFactory-BaseEntities-FactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.BaseEntities.FactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
@@ -132,6 +136,9 @@
   - [EqualsWork\`\`3()](#M-GetcuReone-FactFactory-BaseEntities-FactWorkBase-EqualsWork``3-``0,``1,``2- 'GetcuReone.FactFactory.BaseEntities.FactWorkBase.EqualsWork``3(``0,``1,``2)')
 - [FactWorkContext\`4](#T-GetcuReone-FactFactory-BaseEntities-Context-FactWorkContext`4 'GetcuReone.FactFactory.BaseEntities.Context.FactWorkContext`4')
   - [FactWork](#P-GetcuReone-FactFactory-BaseEntities-Context-FactWorkContext`4-FactWork 'GetcuReone.FactFactory.BaseEntities.Context.FactWorkContext`4.FactWork')
+- [ListExtensions](#T--ListExtensions '.ListExtensions')
+  - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
+  - [ToReadOnlyCollection\`\`1(items)](#M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}- 'ListExtensions.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})')
 - [WantActionBase](#T-GetcuReone-FactFactory-BaseEntities-WantActionBase 'GetcuReone.FactFactory.BaseEntities.WantActionBase')
   - [#ctor(wantAction,factTypes,option)](#M-GetcuReone-FactFactory-BaseEntities-WantActionBase-#ctor-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [#ctor(wantActionAsync,factTypes,option)](#M-GetcuReone-FactFactory-BaseEntities-WantActionBase-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
@@ -143,6 +150,66 @@
 - [WantActionContext\`2](#T-GetcuReone-FactFactory-BaseEntities-Context-WantActionContext`2 'GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2')
   - [Container](#P-GetcuReone-FactFactory-BaseEntities-Context-WantActionContext`2-Container 'GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2.Container')
   - [WantAction](#P-GetcuReone-FactFactory-BaseEntities-Context-WantActionContext`2-WantAction 'GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2.WantAction')
+
+<a name='T--ArrayExtensions'></a>
+## ArrayExtensions `type`
+
+##### Namespace
+
+
+
+<a name='M-ArrayExtensions-IsNullOrEmpty``1-``0[]-'></a>
+### IsNullOrEmpty\`\`1(items) `method`
+
+##### Summary
+
+True - `items` is null or empty
+
+##### Returns
+
+`items` is empty or null?
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| items | [\`\`0[]](#T-``0[] '``0[]') | Collection. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TItem | Type items. |
+
+<a name='T--EnumerableExtensions'></a>
+## EnumerableExtensions `type`
+
+##### Namespace
+
+
+
+<a name='M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}-'></a>
+### IsNullOrEmpty\`\`1(items) `method`
+
+##### Summary
+
+True - `items` is null or empty
+
+##### Returns
+
+`items` is empty or null?
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| items | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | Collection. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TItem | Type items. |
 
 <a name='T-GetcuReone-FactFactory-BaseEntities-FactContainerBase'></a>
 ## FactContainerBase `type`
@@ -2321,6 +2388,59 @@ GetcuReone.FactFactory.BaseEntities.Context
 ##### Summary
 
 *Inherit from parent.*
+
+<a name='T--ListExtensions'></a>
+## ListExtensions `type`
+
+##### Namespace
+
+
+
+<a name='M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}-'></a>
+### IsNullOrEmpty\`\`1(items) `method`
+
+##### Summary
+
+True - `items` is null or empty
+
+##### Returns
+
+`items` is empty or null?
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| items | [System.Collections.Generic.List{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{``0}') | Collection. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TItem | Type items. |
+
+<a name='M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}-'></a>
+### ToReadOnlyCollection\`\`1(items) `method`
+
+##### Summary
+
+Convert list to [ReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.ObjectModel.ReadOnlyCollection`1 'System.Collections.ObjectModel.ReadOnlyCollection`1')
+
+##### Returns
+
+Read-only collection.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| items | [System.Collections.Generic.IList{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IList 'System.Collections.Generic.IList{``0}') | Coollection. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TItem | Type item. |
 
 <a name='T-GetcuReone-FactFactory-BaseEntities-WantActionBase'></a>
 ## WantActionBase `type`

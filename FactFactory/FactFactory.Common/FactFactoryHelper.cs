@@ -6,7 +6,6 @@ using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace GetcuReone.FactFactory
@@ -16,28 +15,6 @@ namespace GetcuReone.FactFactory
     /// </summary>
     public static class FactFactoryHelper
     {
-        /// <summary>
-        /// True - <paramref name="items"/> is null or empty
-        /// </summary>
-        /// <typeparam name="TItem">Type items.</typeparam>
-        /// <param name="items">Collection.</param>
-        /// <returns><paramref name="items"/> is empty or null?</returns>
-        public static bool IsNullOrEmpty<TItem>(this IEnumerable<TItem> items)
-        {
-            return items == null || !items.Any();
-        }
-
-        /// <summary>
-        /// Convert list to <see cref="ReadOnlyCollection{TItem}"/>
-        /// </summary>
-        /// <typeparam name="TItem">Type item.</typeparam>
-        /// <param name="items">Coollection.</param>
-        /// <returns>Read-only collection.</returns>
-        public static ReadOnlyCollection<TItem> ToReadOnlyCollection<TItem>(this IList<TItem> items)
-        {
-            return new ReadOnlyCollection<TItem>(items);
-        }
-
         /// <summary>
         /// Create <see cref="FactFactoryException"/>
         /// </summary>
