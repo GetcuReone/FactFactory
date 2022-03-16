@@ -3,7 +3,7 @@
 internal static class ListExtensions
 {
     /// <summary>
-    /// True - <paramref name="items"/> is null or empty
+    /// True - <paramref name="items"/> is null or empty.
     /// </summary>
     /// <typeparam name="TItem">Type items.</typeparam>
     /// <param name="items">Collection.</param>
