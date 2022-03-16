@@ -177,7 +177,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
             foreach (var factSet in notFoundFactSet)
                 if (factSet.Count != 0)
-                    deriveFactErrorDetails.Add(new DeriveFactErrorDetail(request.WantFactType, factSet.ToReadOnlyCollection()));
+                    deriveFactErrorDetails.Add(new DeriveFactErrorDetail(request.WantFactType, factSet.AsReadOnly()));
 
             return false;
         }

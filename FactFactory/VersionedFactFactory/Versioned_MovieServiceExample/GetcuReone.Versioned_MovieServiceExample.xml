@@ -64,13 +64,5 @@
             <param name="items">Collection.</param>
             <returns><paramref name="items"/> is empty or null?</returns>
         </member>
-        <member name="M:ListExtensions.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})">
-            <summary>
-            Convert list to <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1"/>
-            </summary>
-            <typeparam name="TItem">Type item.</typeparam>
-            <param name="items">Coollection.</param>
-            <returns>Read-only collection.</returns>
-        </member>
     </members>
 </doc>

@@ -77,7 +77,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public virtual IEnumerable<IFactRule> GetUsedRules()
         {
-            return _usedRules?.ToReadOnlyCollection() ?? Enumerable.Empty<IFactRule>();
+            return _usedRules?.AsReadOnly() ?? Enumerable.Empty<IFactRule>();
         }
     }
 }
