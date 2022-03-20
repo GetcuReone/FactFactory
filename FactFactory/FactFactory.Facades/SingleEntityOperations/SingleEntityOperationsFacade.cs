@@ -174,10 +174,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                     return result;
             }
 
-            using var writer = context.Container.GetWriter();
-
-            buildSuccessConditions.ForEach(writer.Add);
-            runtimeConditions.ForEach(writer.Add);
+            using (var writer = context.Container.GetWriter())
+            {
+                buildSuccessConditions.ForEach(writer.Add);
+                runtimeConditions.ForEach(writer.Add); 
+            }
 
             var requiredFacts = GetRequireFacts(rule, context);
             if (!CanInvokeWork(requiredFacts, rule, context.Cache))
@@ -190,8 +191,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             fact.SetCalculateByRule();
             context.WantAction.AddUsedRule(rule);
 
-            buildSuccessConditions.ForEach(writer.Remove);
-            runtimeConditions.ForEach(writer.Remove);
+            using (var writer = context.Container.GetWriter())
+            {
+                buildSuccessConditions.ForEach(writer.Remove);
+                runtimeConditions.ForEach(writer.Remove); 
+            }
 
             return fact;
         }
@@ -213,10 +217,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                     return result;
             }
 
-            using var writer = context.Container.GetWriter();
-
-            buildSuccessConditions.ForEach(writer.Add);
-            runtimeConditions.ForEach(writer.Add);
+            using (var writer = context.Container.GetWriter())
+            {
+                buildSuccessConditions.ForEach(writer.Add);
+                runtimeConditions.ForEach(writer.Add); 
+            }
 
             var requiredFacts = GetRequireFacts(rule, context);
             if (!CanInvokeWork(requiredFacts, rule, context.Cache))
@@ -229,8 +234,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             fact.SetCalculateByRule();
             context.WantAction.AddUsedRule(rule);
 
-            buildSuccessConditions.ForEach(writer.Remove);
-            runtimeConditions.ForEach(writer.Remove);
+            using (var writer = context.Container.GetWriter())
+            {
+                buildSuccessConditions.ForEach(writer.Remove);
+                runtimeConditions.ForEach(writer.Remove); 
+            }
 
             return fact;
         }
@@ -249,10 +257,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                         ErrorCode.RuntimeCondition,
                         $"Failed to meet {context.Cache.GetFactType(condition).FactName} for {wantAction} and find another solution.");
 
-            using var writer = context.Container.GetWriter();
-
-            buildSuccessConditions.ForEach(writer.Add);
-            runtimeConditions.ForEach(writer.Add);
+            using (var writer = context.Container.GetWriter())
+            {
+                buildSuccessConditions.ForEach(writer.Add);
+                runtimeConditions.ForEach(writer.Add);
+            }
 
             var requiredFacts = GetRequireFacts(context.WantAction, context);
             if (!CanInvokeWork(requiredFacts, context.WantAction, context.Cache))
@@ -260,8 +269,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
 
             context.WantAction.Invoke(requiredFacts);
 
-            buildSuccessConditions.ForEach(writer.Remove);
-            runtimeConditions.ForEach(writer.Remove);
+            using (var writer = context.Container.GetWriter())
+            {
+                buildSuccessConditions.ForEach(writer.Remove);
+                runtimeConditions.ForEach(writer.Remove); 
+            }
         }
 
         /// <summary>
@@ -283,16 +295,17 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             (var context, var wantAction, var buildSuccessConditions, var runtimeConditions) =
                 (wantActionInfo.Context, wantActionInfo.Context.WantAction, wantActionInfo.BuildSuccessConditions, wantActionInfo.RuntimeConditions);
 
-            foreach (var condition in runtimeConditions)
+            foreach (IRuntimeConditionFact condition in runtimeConditions)
                 if (!RuntimeCondition(condition, context))
                     throw CommonHelper.CreateDeriveException(
                         ErrorCode.RuntimeCondition,
                         $"Failed to meet {context.Cache.GetFactType(condition).FactName} for {wantAction} and find another solution.");
 
-            using var writer = context.Container.GetWriter();
-
-            buildSuccessConditions.ForEach(writer.Add);
-            runtimeConditions.ForEach(writer.Add);
+            using (var writer = context.Container.GetWriter())
+            {
+                buildSuccessConditions.ForEach(writer.Add);
+                runtimeConditions.ForEach(writer.Add); 
+            }
 
             var requiredFacts = GetRequireFacts(context.WantAction, context);
             if (!CanInvokeWork(requiredFacts, context.WantAction, context.Cache))
@@ -300,8 +313,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
 
             await context.WantAction.InvokeAsync(requiredFacts).ConfigureAwait(false);
 
-            buildSuccessConditions.ForEach(writer.Remove);
-            runtimeConditions.ForEach(writer.Remove);
+            using (var writer = context.Container.GetWriter())
+            {
+                buildSuccessConditions.ForEach(writer.Remove);
+                runtimeConditions.ForEach(writer.Remove); 
+            }
         }
 
         /// <summary>
@@ -464,7 +480,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 Engine = engine,
             };
 
-            if (condition.TryGetRelatedRulse(out IFactRuleCollection<TFactRule> rules))
+            if (condition.TryGetRelatedRules(context, out IFactRuleCollection<TFactRule> rules))
             {
                 rulesContext.FactRules = rules;
 
@@ -550,7 +566,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 Engine = engine,
             };
 
-            if (condition.TryGetRelatedRulse(out IFactRuleCollection<TFactRule> rules))
+            if (condition.TryGetRelatedRules(context, out IFactRuleCollection<TFactRule> rules))
             {
                 rulesContext.FactRules = rules;
 

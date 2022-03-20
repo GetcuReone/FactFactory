@@ -94,11 +94,10 @@
 - [RNotContained\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RNotContained`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RNotContained`1')
   - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RNotContained`1-Condition``4-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1,``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RNotContained`1.Condition``4(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{``1,``2,``3})')
 - [RuntimeConditionFactBase](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RuntimeConditionFactBase')
-  - [FactRules](#P-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-FactRules 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RuntimeConditionFactBase.FactRules')
   - [Condition\`\`4()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-Condition``4-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1,``2,``3}- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RuntimeConditionFactBase.Condition``4(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{``1,``2,``3})')
   - [EqualsInfo()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RuntimeConditionFactBase.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
-  - [SetRelatedRules\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-SetRelatedRules``1-GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0}- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RuntimeConditionFactBase.SetRelatedRules``1(GetcuReone.FactFactory.Interfaces.IFactRuleCollection{``0})')
-  - [TryGetRelatedRulse\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-TryGetRelatedRulse``1-GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0}@- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RuntimeConditionFactBase.TryGetRelatedRulse``1(GetcuReone.FactFactory.Interfaces.IFactRuleCollection{``0}@)')
+  - [SetGetRelatedRulesFunc\`\`3()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-SetGetRelatedRulesFunc``3-System-Func{``0,GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2},GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0}},``0,GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0}- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RuntimeConditionFactBase.SetGetRelatedRulesFunc``3(System.Func{``0,GetcuReone.FactFactory.Interfaces.IFactRuleCollection{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2},GetcuReone.FactFactory.Interfaces.IFactRuleCollection{``0}},``0,GetcuReone.FactFactory.Interfaces.IFactRuleCollection{``0})')
+  - [TryGetRelatedRules\`\`3()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-TryGetRelatedRules``3-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2},GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0}@- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RuntimeConditionFactBase.TryGetRelatedRules``3(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2},GetcuReone.FactFactory.Interfaces.IFactRuleCollection{``0}@)')
 - [RuntimeConditionFactBase\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RuntimeConditionFactBase`1')
   - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase`1-GetFactType``1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RuntimeConditionFactBase`1.GetFactType``1')
 - [SpecialFactBase](#T-GetcuReone-FactFactory-SpecialFacts-SpecialFactBase 'GetcuReone.FactFactory.SpecialFacts.SpecialFactBase')
@@ -1834,13 +1833,6 @@ GetcuReone.FactFactory.SpecialFacts.RuntimeCondition
 
 Base class for [IRuntimeConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact').
 
-<a name='P-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-FactRules'></a>
-### FactRules `property`
-
-##### Summary
-
-*Inherit from parent.*
-
 <a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-Condition``4-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1,``2,``3}-'></a>
 ### Condition\`\`4() `method`
 
@@ -1863,8 +1855,8 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-SetRelatedRules``1-GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0}-'></a>
-### SetRelatedRules\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-SetGetRelatedRulesFunc``3-System-Func{``0,GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2},GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0}},``0,GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0}-'></a>
+### SetGetRelatedRulesFunc\`\`3() `method`
 
 ##### Summary
 
@@ -1874,8 +1866,8 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-TryGetRelatedRulse``1-GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0}@-'></a>
-### TryGetRelatedRulse\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RuntimeConditionFactBase-TryGetRelatedRules``3-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2},GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0}@-'></a>
+### TryGetRelatedRules\`\`3() `method`
 
 ##### Summary
 

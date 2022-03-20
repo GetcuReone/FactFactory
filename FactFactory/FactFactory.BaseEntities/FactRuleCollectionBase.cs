@@ -727,7 +727,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             where TFactOut : IFact
         {
             Add(CreateFactRule(
-                async facts => await rule(),
+                async facts => await rule().ConfigureAwait(false),
                 null,
                 GetFactType<TFactOut>(),
                 option));

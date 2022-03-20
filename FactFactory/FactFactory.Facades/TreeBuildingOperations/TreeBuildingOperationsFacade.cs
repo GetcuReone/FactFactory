@@ -337,8 +337,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     factType
                 );
 
-                condition.SetRelatedRules(
-                    context.FactRules.FindAll(r => !r.EqualsWork(node.Info.Rule, context.WantAction, context.Container)));
+                condition.SetGetRelatedRulesFunc<TFactRule, TWantAction, TFactContainer>(GetRelatedRules, node.Info.Rule, context.FactRules);
 
                 nodeInfo.RuntimeConditions.Add(condition);
 
@@ -717,6 +716,24 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 await wantActionInfo.Context.SingleEntity.DeriveWantFactsAsync(wantActionInfo).ConfigureAwait(false);
             else
                 throw FactFactoryHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"Non-synchronous and non-asynchronous wantAction <{wantActionInfo}>.");
+        }
+
+        /// <summary>
+        /// Return related facts.
+        /// </summary>
+        /// <typeparam name="TFactRule">Type rule.</typeparam>
+        /// <typeparam name="TWantAction">Type wantAction.</typeparam>
+        /// <typeparam name="TFactContainer">Type fact container.</typeparam>
+        /// <param name="rule">Fact rule.</param>
+        /// <param name="rules">Fact rules.</param>
+        /// <param name="context">Context.</param>
+        /// <returns>Related fact rules.</returns>
+        private IFactRuleCollection<TFactRule> GetRelatedRules<TFactRule, TWantAction, TFactContainer>(TFactRule rule, IFactRuleCollection<TFactRule> rules, IWantActionContext<TWantAction, TFactContainer> context)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            return rules.FindAll(r => !r.EqualsWork(rule, context.WantAction, context.Container));
         }
     }
 }

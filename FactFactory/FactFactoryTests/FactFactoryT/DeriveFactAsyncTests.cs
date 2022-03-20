@@ -17,7 +17,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Rule run asynchronously.")]
-        [Timeout(Timeouts.Second.One)]
+        //[Timeout(Timeouts.Second.One)]
         public async Task RunDeriveFactAsyncTestCase()
         {
             const int expectedValue = 16;
@@ -27,7 +27,7 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     async () =>
                     {
-                        await Task.Delay(Timeouts.Millisecond.Hundred);
+                        await Task.Delay(Timeouts.Millisecond.Hundred).ConfigureAwait(false);
                         return new Input16Fact(expectedValue);
                     }
                 })
