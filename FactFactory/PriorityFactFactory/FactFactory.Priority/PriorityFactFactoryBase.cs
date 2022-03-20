@@ -15,7 +15,7 @@ namespace GetcuReone.FactFactory.Priority
         /// Returns the <see cref="PrioritySingleEntityOperationsFacade"/>.
         /// </summary>
         /// <returns>Instance <see cref="PrioritySingleEntityOperationsFacade"/>.</returns>
-        public override ISingleEntityOperations GetSingleEntityOperations()
+        protected override ISingleEntityOperations GetSingleEntityOperations()
         {
             return GetFacade<PrioritySingleEntityOperationsFacade>();
         }

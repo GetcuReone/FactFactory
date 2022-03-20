@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces.Context;
+using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
 {
@@ -7,6 +8,21 @@ namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
     /// </summary>
     public interface IRuntimeConditionFact : ISpecialFact
     {
+        /// <summary>
+        /// Set related fact rules.
+        /// </summary>
+        /// <typeparam name="TFactRule">FactRule type.</typeparam>
+        /// <param name="rules">Fact rules.</param>
+        void SetRelatedRules<TFactRule>(IFactRuleCollection<TFactRule> rules) where TFactRule : IFactRule;
+
+        /// <summary>
+        /// Try get related fact rules
+        /// </summary>
+        /// <typeparam name="TFactRule">FactRule type.</typeparam>
+        /// <param name="rules">Fact rules.</param>
+        /// <returns>True - was able to return the associated fact rules.</returns>
+        bool TryGetRelatedRulse<TFactRule>(out IFactRuleCollection<TFactRule> rules) where TFactRule : IFactRule;
+
         /// <summary>
         /// A condition that determines whether the current fact can be added to the container when deriving.
         /// </summary>

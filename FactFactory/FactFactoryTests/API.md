@@ -7,11 +7,9 @@
   - [IsNullOrEmpty\`\`1(items)](#M-ArrayExtensions-IsNullOrEmpty``1-``0[]- 'ArrayExtensions.IsNullOrEmpty``1(``0[])')
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
-- [FactFactoryCustom](#T-FactFactoryTests-FactFactoryT-Env-FactFactoryCustom 'FactFactoryTests.FactFactoryT.Env.FactFactoryCustom')
-  - [CreateWantAction()](#M-FactFactoryTests-FactFactoryT-Env-FactFactoryCustom-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'FactFactoryTests.FactFactoryT.Env.FactFactoryCustom.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [CreateWantAction()](#M-FactFactoryTests-FactFactoryT-Env-FactFactoryCustom-CreateWantAction-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'FactFactoryTests.FactFactoryT.Env.FactFactoryCustom.CreateWantAction(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
+- [RContainedTests](#T-GetcuReone-FactFactoryTests-FactFactoryT-RContainedTests 'GetcuReone.FactFactoryTests.FactFactoryT.RContainedTests')
 
 <a name='T--ArrayExtensions'></a>
 ## ArrayExtensions `type`
@@ -25,7 +23,7 @@
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -55,7 +53,7 @@ True - `items` is null or empty
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -73,35 +71,6 @@ True - `items` is null or empty
 | ---- | ----------- |
 | TItem | Type items. |
 
-<a name='T-FactFactoryTests-FactFactoryT-Env-FactFactoryCustom'></a>
-## FactFactoryCustom `type`
-
-##### Namespace
-
-FactFactoryTests.FactFactoryT.Env
-
-<a name='M-FactFactoryTests-FactFactoryT-Env-FactFactoryCustom-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
-### CreateWantAction() `method`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-FactFactoryTests-FactFactoryT-Env-FactFactoryCustom-CreateWantAction-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
-### CreateWantAction() `method`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This method has no parameters.
-
 <a name='T--ListExtensions'></a>
 ## ListExtensions `type`
 
@@ -114,7 +83,7 @@ This method has no parameters.
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -131,3 +100,14 @@ True - `items` is null or empty
 | Name | Description |
 | ---- | ----------- |
 | TItem | Type items. |
+
+<a name='T-GetcuReone-FactFactoryTests-FactFactoryT-RContainedTests'></a>
+## RContainedTests `type`
+
+##### Namespace
+
+GetcuReone.FactFactoryTests.FactFactoryT
+
+##### Summary
+
+[RContained\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RContained`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RContained`1') testing class.

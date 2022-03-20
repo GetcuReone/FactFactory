@@ -2,7 +2,7 @@
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using System.Collections.Generic;
+using System;
 
 namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
 {
@@ -12,7 +12,7 @@ namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
     public abstract class BuildConditionFactBase : SpecialFactBase, IBuildConditionFact
     {
         /// <inheritdoc/>
-        public abstract bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
+        public abstract bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context, Func<IWantActionContext<TWantAction, TFactContainer>, IFactRuleCollection<TFactRule>> getCompatibleRules)
             where TFactWork : IFactWork
             where TFactRule : IFactRule
             where TWantAction : IWantAction

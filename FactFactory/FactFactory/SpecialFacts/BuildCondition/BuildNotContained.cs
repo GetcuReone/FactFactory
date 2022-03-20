@@ -1,6 +1,6 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
-using System.Collections.Generic;
+using System;
 
 namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
 {
@@ -15,7 +15,7 @@ namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
         /// Checks if a <typeparamref name="TFact"/> fact cannot be retrieved from a container.
         /// </summary>
         /// <inheritdoc/>
-        public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
+        public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context, Func<IWantActionContext<TWantAction, TFactContainer>, IFactRuleCollection<TFactRule>> getCompatibleRules)
         {
             return !context.SingleEntity.CanExtractFact(GetFactType<TFact>(), factWork, context);
         }

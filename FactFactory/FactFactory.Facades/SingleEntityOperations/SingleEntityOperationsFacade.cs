@@ -1,11 +1,14 @@
 ﻿using GetcuReone.ComboPatterns.Facade;
 using GetcuReone.FactFactory.BaseEntities;
+using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -85,7 +88,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual IEnumerable<TFactRule> GetCompatibleRules<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, IEnumerable<TFactRule> factRules, IWantActionContext<TWantAction, TFactContainer> context)
+        public virtual IFactRuleCollection<TFactRule> GetCompatibleRules<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, IFactRuleCollection<TFactRule> factRules, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TFactRule : IFactRule
             where TWantAction : IWantAction
@@ -119,7 +122,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
-            return factWork.InputFactTypes.Where(factType => !CanExtractFact(factType, factWork, context));
+            return factWork.InputFactTypes.Where(factType => !context.SingleEntity.CanExtractFact(factType, factWork, context));
         }
 
         /// <summary>
@@ -160,11 +163,17 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
-            var rule = node.Info.Rule;
+            (var rule, var buildSuccessConditions, var runtimeConditions) = 
+                (node.Info.Rule, node.Info.BuildSuccessConditions, node.Info.RuntimeConditions);
 
-            foreach (var condition in node.Info.SuccessConditions)
-                using (var writer = context.Container.GetWriter())
-                    writer.Add(condition);
+            foreach (IRuntimeConditionFact condition in runtimeConditions)
+                if (TryCalculateFactByRuntimeCondition(rule, condition, context, out IFact resultFact))
+                    return resultFact;
+
+            using var writer = context.Container.GetWriter();
+
+            buildSuccessConditions.ForEach(writer.Add);
+            runtimeConditions.ForEach(writer.Add);
 
             var requiredFacts = GetRequireFacts(rule, context);
             if (!CanInvokeWork(requiredFacts, rule, context.Cache))
@@ -177,9 +186,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             fact.SetCalculateByRule();
             context.WantAction.AddUsedRule(rule);
 
-            foreach (var condition in node.Info.SuccessConditions)
-                using (var writer = context.Container.GetWriter())
-                    writer.Remove(condition);
+            buildSuccessConditions.ForEach(writer.Remove);
+            runtimeConditions.ForEach(writer.Remove);
 
             return fact;
         }
@@ -192,7 +200,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         {
             var rule = node.Info.Rule;
 
-            foreach (var condition in node.Info.SuccessConditions)
+            foreach (var condition in node.Info.BuildSuccessConditions)
                 using (var writer = context.Container.GetWriter())
                     writer.Add(condition);
 
@@ -207,7 +215,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             fact.SetCalculateByRule();
             context.WantAction.AddUsedRule(rule);
 
-            foreach (var condition in node.Info.SuccessConditions)
+            foreach (var condition in node.Info.BuildSuccessConditions)
                 using (var writer = context.Container.GetWriter())
                     writer.Remove(condition);
 
@@ -219,11 +227,19 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
-            var context = wantActionInfo.Context;
+            (var context, var wantAction, var buildSuccessConditions, var runtimeConditions) =
+                (wantActionInfo.Context, wantActionInfo.Context.WantAction, wantActionInfo.BuildSuccessConditions, wantActionInfo.RuntimeConditions);
 
-            foreach (var condition in wantActionInfo.SuccessConditions)
-                using (var writer = context.Container.GetWriter())
-                    writer.Add(condition);
+            foreach (var condition in runtimeConditions)
+                if (!RuntimeCondition(condition, context))
+                    throw CommonHelper.CreateDeriveException(
+                        ErrorCode.RuntimeCondition,
+                        $"Failed to meet {context.Cache.GetFactType(condition).FactName} for {wantAction} and find another solution.");
+
+            using var writer = context.Container.GetWriter();
+
+            buildSuccessConditions.ForEach(writer.Add);
+            runtimeConditions.ForEach(writer.Add);
 
             var requiredFacts = GetRequireFacts(context.WantAction, context);
             if (!CanInvokeWork(requiredFacts, context.WantAction, context.Cache))
@@ -231,9 +247,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
 
             context.WantAction.Invoke(requiredFacts);
 
-            foreach (var condition in wantActionInfo.SuccessConditions)
-                using (var writer = context.Container.GetWriter())
-                    writer.Remove(condition);
+            buildSuccessConditions.ForEach(writer.Remove);
+            runtimeConditions.ForEach(writer.Remove);
         }
 
         /// <summary>
@@ -254,7 +269,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         {
             var context = wantActionInfo.Context;
 
-            foreach (var condition in wantActionInfo.SuccessConditions)
+            foreach (var condition in wantActionInfo.BuildSuccessConditions)
                 using (var writer = context.Container.GetWriter())
                     writer.Add(condition);
 
@@ -264,7 +279,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
 
             await context.WantAction.InvokeAsync(requiredFacts).ConfigureAwait(false);
 
-            foreach (var condition in wantActionInfo.SuccessConditions)
+            foreach (var condition in wantActionInfo.BuildSuccessConditions)
                 using (var writer = context.Container.GetWriter())
                     writer.Remove(condition);
         }
@@ -367,6 +382,148 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             where TFactContainer : IFactContainer
         {
             return FactEqualityComparer.EqualsFactParameters(first, second);
+        }
+
+        /// <inheritdoc/>
+        public TWantAction CreateWantAction<TWantAction>(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option) where TWantAction : IWantAction
+        {
+            var result = new WantAction(wantAction, factTypes, option);
+
+            if (result is TWantAction converted)
+                return converted;
+
+            throw CommonHelper.CreateException(
+                ErrorCode.InvalidData,
+                $"The result of the ISingleEntityOperations.CreateWantAction cannot be converted to the type {typeof(TWantAction).Name}.");
+        }
+
+        /// <inheritdoc/>
+        public TWantAction CreateWantAction<TWantAction>(Func<IEnumerable<IFact>, ValueTask> wantAction, List<IFactType> factTypes, FactWorkOption option) where TWantAction : IWantAction
+        {
+            var result = new WantAction(wantAction, factTypes, option);
+
+            if (result is TWantAction converted)
+                return converted;
+
+            throw CommonHelper.CreateException(
+                ErrorCode.InvalidData,
+                $"The result of the ISingleEntityOperations.CreateWantAction cannot be converted to the type {typeof(TWantAction).Name}.");
+        }
+
+        /// <inheritdoc/>
+        public virtual IFactType GetFactType<TFact>() where TFact : IFact
+        {
+            return new FactType<TFact>();
+        }
+
+        /// <summary>
+        /// Try to calculate a fact based on a <paramref name="condition"/>.
+        /// </summary>
+        /// <typeparam name="TFactRule">Type rule.</typeparam>
+        /// <typeparam name="TWantAction">Type wantAction.</typeparam>
+        /// <typeparam name="TFactContainer">Type fact container.</typeparam>
+        /// <param name="rule">Rule for which the condition is checked.</param>
+        /// <param name="condition">Condition.</param>
+        /// <param name="context">Context.</param>
+        /// <param name="result">Calculated fact.</param>
+        /// <returns>True - The <paramref name="condition"/> was not fulfilled and the fact had to be recalculated.</returns>
+        private bool TryCalculateFactByRuntimeCondition<TFactRule, TWantAction, TFactContainer>(TFactRule rule, IRuntimeConditionFact condition, IWantActionContext<TWantAction, TFactContainer> context, out IFact result)
+            where TFactRule : IFactRule
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            result = default;
+            (var wantAction, var container, var engine, var singleOperations, var treeOperations, var cache) =
+                (context.WantAction, context.Container, context.Engine, context.SingleEntity, context.TreeBuilding, context.Cache);
+
+            var rulesContext = new FactRulesContext<TFactRule, TWantAction, TFactContainer>
+            {
+                Cache = cache,
+                Container = container,
+                SingleEntity = singleOperations,
+                TreeBuilding = treeOperations,
+                WantAction = wantAction,
+                Engine = engine,
+            };
+
+            if (condition.TryGetRelatedRulse(out IFactRuleCollection<TFactRule> rules))
+            {
+                rulesContext.FactRules = rules;
+
+                if (condition.Condition(rule, rulesContext))
+                    return false;
+
+                IFact resultFact = null;
+                var inputTypes = new List<IFactType>(wantAction.InputFactTypes.Where(t => t.IsFactType<ISpecialFact>()));
+                inputTypes.Add(rule.OutputFactType);
+
+                var wantContext = new WantActionContext<TWantAction, TFactContainer>
+                {
+                    Cache = cache,
+                    Container = container,
+                    Engine = engine,
+                    SingleEntity = singleOperations,
+                    TreeBuilding = treeOperations,
+                    WantAction = singleOperations.CreateWantAction<TWantAction>(
+                        facts => { resultFact = facts.FirstFactByFactType(rule.OutputFactType, context.Cache); },
+                        inputTypes,
+                        wantAction.Option)
+                };
+
+                var requests = new List<DeriveWantActionRequest<TFactRule, IFactRuleCollection<TFactRule>, TWantAction, TFactContainer>>
+                {
+                    new DeriveWantActionRequest<TFactRule, IFactRuleCollection<TFactRule>, TWantAction, TFactContainer>
+                    {
+                        Rules = rules,
+                        Context = wantContext
+                    }
+                };
+
+                context.Engine.DeriveWantAction(requests);
+
+                foreach (var usedRule in wantContext.WantAction.GetUsedRules())
+                    wantAction.AddUsedRule(usedRule);
+
+                using var rWriter = context.Container.GetWriter();
+                rWriter.Remove(resultFact);
+
+                result = resultFact;
+                return true;
+            }
+            else if (!condition.Condition(rule, rulesContext))
+            {
+                throw CommonHelper.CreateDeriveException(
+                    ErrorCode.RuntimeCondition,
+                    $"Failed to meet {rulesContext.Cache.GetFactType(condition).FactName} for {rule} and find another solution.");
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks for a <paramref name="condition"/>
+        /// </summary>
+        /// <typeparam name="TWantAction">Type wantAction.</typeparam>
+        /// <typeparam name="TFactContainer">Type fact container.</typeparam>
+        /// <param name="condition">Condition.</param>
+        /// <param name="context">Context.</param>
+        /// <returns>Result <see cref="IRuntimeConditionFact.Condition{TFactWork, TFactRule, TWantAction, TFactContainer}(TFactWork, IFactRulesContext{TFactRule, TWantAction, TFactContainer})"/>.</returns>
+        private bool RuntimeCondition<TWantAction, TFactContainer>(IRuntimeConditionFact condition, IWantActionContext<TWantAction, TFactContainer> context)
+            where TWantAction : IWantAction
+            where TFactContainer : IFactContainer
+        {
+            var wantAction = context.WantAction;
+            var rulesContext = new FactRulesContext<IFactRule, TWantAction, TFactContainer>
+            {
+                Cache = context.Cache,
+                Container = context.Container,
+                SingleEntity = context.SingleEntity,
+                TreeBuilding = context.TreeBuilding,
+                WantAction = wantAction,
+                Engine = context.Engine,
+            };
+
+            return condition.Condition(wantAction, rulesContext);
         }
     }
 }

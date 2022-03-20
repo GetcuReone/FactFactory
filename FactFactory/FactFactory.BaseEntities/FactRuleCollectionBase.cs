@@ -17,7 +17,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     public abstract class FactRuleCollectionBase<TFactRule>: IFactRuleCollection<TFactRule>, IFactTypeCreation
         where TFactRule : IFactRule
     {
-        private readonly List<TFactRule> _list;
+        private List<TFactRule> _list;
 
         /// <summary>
         /// Gets or sets the rule at the specified index.
@@ -1404,6 +1404,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             _list.RemoveAt(index);
         }
 
+        /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
@@ -1413,6 +1414,36 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <see cref="FactRuleCollectionBase{TFactRule}"/> copy method.
         /// </summary>
         /// <returns>Copied <see cref="FactRuleCollectionBase{TFactRule}"/>.</returns>
-        public abstract IFactRuleCollection<TFactRule> Copy();
+        public virtual IFactRuleCollection<TFactRule> Copy()
+        {
+            var result = (FactRuleCollectionBase<TFactRule>) Empty();
+            result._list = new List<TFactRule>(_list);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Return a copy of an object without rules.
+        /// </summary>
+        /// <returns>Copy of object without rules.</returns>
+        protected abstract IFactRuleCollection<TFactRule> Empty();
+
+        /// <inheritdoc/>
+        public virtual IFactRuleCollection<TFactRule> FindAll(Func<TFactRule, bool> predicate)
+        {
+            var result = (FactRuleCollectionBase<TFactRule>) Empty();
+            result._list = new List<TFactRule>(_list.Where(predicate));
+
+            return result;
+        }
+
+        /// <inheritdoc/>
+        public IFactRuleCollection<TFactRule> SortByDescending<TKey>(Func<TFactRule, TKey> keySelector, IComparer<TKey> comparer)
+        {
+            var result = (FactRuleCollectionBase<TFactRule>)Empty();
+            result._list = new List<TFactRule>(_list.OrderByDescending(keySelector, comparer));
+
+            return result;
+        }
     }
 }

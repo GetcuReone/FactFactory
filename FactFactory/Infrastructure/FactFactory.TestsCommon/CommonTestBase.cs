@@ -44,7 +44,10 @@ namespace FactFactory.TestsCommon
             return ExpectedException<InvalidDeriveOperationException>(action);
         }
 
-        /// <inheritdoc cref="IFactFactory{TFactRule, TFactRuleCollection, TWantAction, TFactContainer}.GetFactTypeCache"/>
+        /// <summary>
+        /// Get fact type cache.
+        /// </summary>
+        /// <returns>Fact type cahce.</returns>
         protected IFactTypeCache GetFactTypeCache()
         {
             return new FactTypeCache();

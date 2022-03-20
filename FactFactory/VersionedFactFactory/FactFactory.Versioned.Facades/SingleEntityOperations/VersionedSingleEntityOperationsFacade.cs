@@ -32,7 +32,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        public override IEnumerable<TFactRule> GetCompatibleRules<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, IEnumerable<TFactRule> factRules, IWantActionContext<TWantAction, TFactContainer> context)
+        public override IFactRuleCollection<TFactRule> GetCompatibleRules<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, IFactRuleCollection<TFactRule> factRules, IWantActionContext<TWantAction, TFactContainer> context)
         {
             var result = base.GetCompatibleRules(target, factRules, context);
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
@@ -40,7 +40,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (maxVersion == null)
                 return result;
 
-            return result.Where(rule => rule.CompatibleRule(maxVersion, context));
+            return result.FindAll(rule => rule.CompatibleRule(maxVersion, context));
         }
 
         /// <inheritdoc/>

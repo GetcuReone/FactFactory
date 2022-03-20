@@ -20,18 +20,16 @@
   - [#ctor()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-#ctor 'GetcuReone.FactFactory.Priority.PriorityFactFactory.#ctor')
   - [#ctor(getDefaultFactsFunc)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}- 'GetcuReone.FactFactory.Priority.PriorityFactFactory.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}})')
   - [Rules](#P-GetcuReone-FactFactory-Priority-PriorityFactFactory-Rules 'GetcuReone.FactFactory.Priority.PriorityFactFactory.Rules')
-  - [CreateWantAction()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Priority.PriorityFactFactory.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [CreateWantAction()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-CreateWantAction-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Priority.PriorityFactFactory.CreateWantAction(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [GetDefaultContainer()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-GetDefaultContainer 'GetcuReone.FactFactory.Priority.PriorityFactFactory.GetDefaultContainer')
   - [GetDefaultFacts()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer}- 'GetcuReone.FactFactory.Priority.PriorityFactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer})')
 - [PriorityFactFactoryBase\`4](#T-GetcuReone-FactFactory-Priority-PriorityFactFactoryBase`4 'GetcuReone.FactFactory.Priority.PriorityFactFactoryBase`4')
   - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryBase`4-GetSingleEntityOperations 'GetcuReone.FactFactory.Priority.PriorityFactFactoryBase`4.GetSingleEntityOperations')
-- [UintPriorityBase](#T-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase 'GetcuReone.FactFactory.Priority.SpecialFacts.UintPriorityBase')
-  - [#ctor()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase-#ctor-System-UInt32- 'GetcuReone.FactFactory.Priority.SpecialFacts.UintPriorityBase.#ctor(System.UInt32)')
-  - [CompareTo()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.UintPriorityBase.CompareTo(FactFactory.Priority.Interfaces.IPriorityFact)')
 - [ULongPriorityBase](#T-GetcuReone-FactFactory-Priority-SpecialFacts-ULongPriorityBase 'GetcuReone.FactFactory.Priority.SpecialFacts.ULongPriorityBase')
   - [#ctor()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-ULongPriorityBase-#ctor-System-UInt64- 'GetcuReone.FactFactory.Priority.SpecialFacts.ULongPriorityBase.#ctor(System.UInt64)')
   - [CompareTo()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-ULongPriorityBase-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.ULongPriorityBase.CompareTo(FactFactory.Priority.Interfaces.IPriorityFact)')
+- [UintPriorityBase](#T-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase 'GetcuReone.FactFactory.Priority.SpecialFacts.UintPriorityBase')
+  - [#ctor()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase-#ctor-System-UInt32- 'GetcuReone.FactFactory.Priority.SpecialFacts.UintPriorityBase.#ctor(System.UInt32)')
+  - [CompareTo()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.UintPriorityBase.CompareTo(FactFactory.Priority.Interfaces.IPriorityFact)')
 
 <a name='T--ArrayExtensions'></a>
 ## ArrayExtensions `type`
@@ -45,7 +43,7 @@
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -75,7 +73,7 @@ True - `items` is null or empty
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -105,7 +103,7 @@ True - `items` is null or empty
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -258,28 +256,6 @@ Constructot.
 
 *Inherit from parent.*
 
-<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactory-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
-### CreateWantAction() `method`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactory-CreateWantAction-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
-### CreateWantAction() `method`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This method has no parameters.
-
 <a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactory-GetDefaultContainer'></a>
 ### GetDefaultContainer() `method`
 
@@ -328,39 +304,6 @@ Instance [PrioritySingleEntityOperationsFacade](#T-GetcuReone-FactFactory-Priori
 
 This method has no parameters.
 
-<a name='T-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase'></a>
-## UintPriorityBase `type`
-
-##### Namespace
-
-GetcuReone.FactFactory.Priority.SpecialFacts
-
-##### Summary
-
-Base class for priority fact with value of type [UInt32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.UInt32 'System.UInt32').
-
-<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase-#ctor-System-UInt32-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact-'></a>
-### CompareTo() `method`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This method has no parameters.
-
 <a name='T-GetcuReone-FactFactory-Priority-SpecialFacts-ULongPriorityBase'></a>
 ## ULongPriorityBase `type`
 
@@ -384,6 +327,39 @@ Base class for priority fact with value of type [UInt64](http://msdn.microsoft.c
 This constructor has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-ULongPriorityBase-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact-'></a>
+### CompareTo() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase'></a>
+## UintPriorityBase `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Priority.SpecialFacts
+
+##### Summary
+
+Base class for priority fact with value of type [UInt32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.UInt32 'System.UInt32').
+
+<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase-#ctor-System-UInt32-'></a>
+### #ctor() `constructor`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This constructor has no parameters.
+
+<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-UintPriorityBase-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact-'></a>
 ### CompareTo() `method`
 
 ##### Summary

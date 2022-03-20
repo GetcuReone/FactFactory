@@ -41,7 +41,7 @@
         </member>
         <member name="M:ArrayExtensions.IsNullOrEmpty``1(``0[])">
             <summary>
-            True - <paramref name="items"/> is null or empty
+            True - <paramref name="items"/> is null or empty.
             </summary>
             <typeparam name="TItem">Type items.</typeparam>
             <param name="items">Collection.</param>
@@ -49,7 +49,7 @@
         </member>
         <member name="M:EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            True - <paramref name="items"/> is null or empty
+            True - <paramref name="items"/> is null or empty.
             </summary>
             <typeparam name="TItem">Type items.</typeparam>
             <param name="items">Collection.</param>
@@ -57,7 +57,7 @@
         </member>
         <member name="M:ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})">
             <summary>
-            True - <paramref name="items"/> is null or empty
+            True - <paramref name="items"/> is null or empty.
             </summary>
             <typeparam name="TItem">Type items.</typeparam>
             <param name="items">Collection.</param>

@@ -7,19 +7,16 @@ namespace GetcuReone.FactFactory.Interfaces.Context
     /// </summary>
     public interface IFactFactoryContext
     {
-        /// <summary>
-        /// Fact type cache.
-        /// </summary>
+        /// <inheritdoc cref="IFactTypeCache"/>
         IFactTypeCache Cache { get; }
 
-        /// <summary>
-        /// Single operations on entities of the FactFactory.
-        /// </summary>
+        /// <inheritdoc cref="ISingleEntityOperations"/>
         ISingleEntityOperations SingleEntity { get; }
 
-        /// <summary>
-        /// Tree building operations.
-        /// </summary>
+        /// <inheritdoc cref="ITreeBuildingOperations"/>
         ITreeBuildingOperations TreeBuilding { get; }
+
+        /// <inheritdoc cref="IFactEngine"/>
+        IFactEngine Engine { get; }
     }
 }

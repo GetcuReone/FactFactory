@@ -48,9 +48,8 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
                     Context = context,
                     FactRules = request
                         .Rules
-                        .Where(factRule => factRule.Option.HasFlag(FactWorkOption.CanExecuteSync))
-                        .OrderByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction, TFactContainer>(context))
-                        .ToList(),
+                        .FindAll(factRule => factRule.Option.HasFlag(FactWorkOption.CanExecuteSync))
+                        .SortByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction, TFactContainer>(context)),
                 };
 
                 if (context.TreeBuilding.TryBuildTreesForWantAction(requestForAction, out var resultForAction))
@@ -89,8 +88,7 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
                     Context = context,
                     FactRules = request
                         .Rules
-                        .OrderByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction, TFactContainer>(context))
-                        .ToList(),
+                        .SortByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction, TFactContainer>(context)),
                 };
 
                 if (context.TreeBuilding.TryBuildTreesForWantAction(requestForAction, out var resultForAction))

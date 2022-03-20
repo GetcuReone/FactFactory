@@ -1,4 +1,6 @@
-﻿namespace GetcuReone.FactFactory.Constants
+﻿using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+
+namespace GetcuReone.FactFactory.Constants
 {
     /// <summary>
     /// Error codes.
@@ -34,5 +36,11 @@
         /// Invalid operation.
         /// </summary>
         public const string InvalidOperation = "InvalidOperation";
+
+        /// <summary>
+        /// Failed to meet <see cref="IRuntimeConditionFact.Condition{TFactWork, TFactRule, TWantAction, TFactContainer}(TFactWork, Interfaces.Context.IFactRulesContext{TFactRule, TWantAction, TFactContainer})"/>
+        /// and find another solution
+        /// </summary>
+        public const string RuntimeCondition = "Buildcondition";
     }
 }

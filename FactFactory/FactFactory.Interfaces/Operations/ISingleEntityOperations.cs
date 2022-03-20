@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
     /// <summary>
     /// Single operations on entities of the FactFactory.
     /// </summary>
-    public interface ISingleEntityOperations
+    public interface ISingleEntityOperations : IFactTypeCreation
     {
         /// <summary>
         /// Validate and return a copy of the container.
@@ -54,7 +54,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <param name="factRules">List of rules.</param>
         /// <param name="context">Context.</param>
         /// <returns>Compatible rules.</returns>
-        IEnumerable<TFactRule> GetCompatibleRules<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, IEnumerable<TFactRule> factRules, IWantActionContext<TWantAction, TFactContainer> context)
+        IFactRuleCollection<TFactRule> GetCompatibleRules<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, IFactRuleCollection<TFactRule> factRules, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TFactRule : IFactRule
             where TWantAction : IWantAction
@@ -187,5 +187,19 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         IComparer<IFact> GetFactComparer<TWantAction, TFactContainer>(IWantActionContext<TWantAction, TFactContainer> context)
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer;
+
+        /// <summary>
+        /// Creates <typeparamref name="TWantAction"/>.
+        /// </summary>
+        /// <param name="wantAction">Action taken after deriving a fact.</param>
+        /// <param name="factTypes">Facts required to launch an action.</param>
+        /// <param name="option">WantAction option.</param>
+        /// <returns>WantAction.</returns>
+        TWantAction CreateWantAction<TWantAction>(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option)
+            where TWantAction : IWantAction;
+
+        /// <inheritdoc cref="CreateWantAction{TWantAction}(Action{IEnumerable{IFact}}, List{IFactType}, FactWorkOption)"/>
+        TWantAction CreateWantAction<TWantAction>(Func<IEnumerable<IFact>, ValueTask> wantAction, List<IFactType> factTypes, FactWorkOption option)
+            where TWantAction : IWantAction;
     }
 }

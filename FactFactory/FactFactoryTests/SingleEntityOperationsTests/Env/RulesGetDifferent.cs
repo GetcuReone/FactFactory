@@ -1,5 +1,4 @@
-﻿using GetcuReone.FactFactory;
-using GetcuReone.FactFactory.BaseEntities;
+﻿using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -29,6 +28,11 @@ namespace FactFactoryTests.SingleEntityOperationsTests.Env
             }
 
             protected override Rule CreateFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
+            {
+                throw new NotImplementedException();
+            }
+
+            protected override IFactRuleCollection<Rule> Empty()
             {
                 throw new NotImplementedException();
             }

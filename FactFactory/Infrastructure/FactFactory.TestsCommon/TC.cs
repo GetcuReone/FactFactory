@@ -67,7 +67,7 @@
             public const string BuildCannotDerived = "build_cannot_derived_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.SpecialFacts.CanDerived{TFact}"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildCanDerived{TFact}"/>.
             /// </summary>
             public const string BuildCanDerived = "build_can_derived_test";
 

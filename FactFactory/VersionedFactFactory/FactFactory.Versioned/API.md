@@ -33,19 +33,17 @@
   - [CompareTo(other)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-CompareTo-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.CompareTo(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
   - [CreateIncompatibilityVersionException(versionedFact)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-CreateIncompatibilityVersionException-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.CreateIncompatibilityVersionException(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
   - [EqualsInfo()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
-  - [op_Implicit(fact)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-op_Implicit-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase{`0}-~`0 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.op_Implicit(GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase{`0})~`0')
   - [ToString()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-ToString 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.ToString')
+  - [op_Implicit(fact)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-op_Implicit-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase{`0}-~`0 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase`1.op_Implicit(GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase{`0})~`0')
 - [VersionedFactFactory](#T-GetcuReone-FactFactory-Versioned-VersionedFactFactory 'GetcuReone.FactFactory.Versioned.VersionedFactFactory')
   - [#ctor()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-#ctor 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.#ctor')
   - [#ctor(getDefaultFactsFunc)](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}- 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}})')
   - [Rules](#P-GetcuReone-FactFactory-Versioned-VersionedFactFactory-Rules 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.Rules')
-  - [CreateWantAction()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [CreateWantAction()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-CreateWantAction-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.CreateWantAction(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [GetDefaultContainer()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-GetDefaultContainer 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetDefaultContainer')
   - [GetDefaultFacts()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer}- 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer})')
 - [VersionedFactFactoryBase\`4](#T-GetcuReone-FactFactory-Versioned-VersionedFactFactoryBase`4 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4')
-  - [DeriveFact\`\`2()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryBase`4-DeriveFact``2-`3- 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.DeriveFact``2(`3)')
   - [DeriveFactAsync\`\`2()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryBase`4-DeriveFactAsync``2-`3- 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.DeriveFactAsync``2(`3)')
+  - [DeriveFact\`\`2()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryBase`4-DeriveFact``2-`3- 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.DeriveFact``2(`3)')
   - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryBase`4-GetSingleEntityOperations 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryBase`4.GetSingleEntityOperations')
 
 <a name='T--ArrayExtensions'></a>
@@ -60,7 +58,7 @@
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -123,7 +121,7 @@ This method has no parameters.
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -186,7 +184,7 @@ This method has no parameters.
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -418,6 +416,17 @@ Error creating version incompatibility.
 
 This method has no parameters.
 
+<a name='M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-ToString'></a>
+### ToString() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-op_Implicit-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase{`0}-~`0'></a>
 ### op_Implicit(fact) `method`
 
@@ -430,17 +439,6 @@ Extracts [VersionValue](#P-GetcuReone-FactFactory-Versioned-SpecialFacts-Version
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | fact | [GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase{\`0})~\`0](#T-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase{`0}-~`0 'GetcuReone.FactFactory.Versioned.SpecialFacts.VersionBase{`0})~`0') | Version value. |
-
-<a name='M-GetcuReone-FactFactory-Versioned-SpecialFacts-VersionBase`1-ToString'></a>
-### ToString() `method`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This method has no parameters.
 
 <a name='T-GetcuReone-FactFactory-Versioned-VersionedFactFactory'></a>
 ## VersionedFactFactory `type`
@@ -484,28 +482,6 @@ Constructor.
 
 *Inherit from parent.*
 
-<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-CreateWantAction-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
-### CreateWantAction() `method`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-CreateWantAction-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
-### CreateWantAction() `method`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This method has no parameters.
-
 <a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-GetDefaultContainer'></a>
 ### GetDefaultContainer() `method`
 
@@ -539,8 +515,8 @@ GetcuReone.FactFactory.Versioned
 
 Base class for versioned fact factory.
 
-<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryBase`4-DeriveFact``2-`3-'></a>
-### DeriveFact\`\`2() `method`
+<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryBase`4-DeriveFactAsync``2-`3-'></a>
+### DeriveFactAsync\`\`2() `method`
 
 ##### Summary
 
@@ -561,8 +537,8 @@ This method has no parameters.
 | TFactResult | Type of desired fact. |
 | TVersion | Type of version fact. |
 
-<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryBase`4-DeriveFactAsync``2-`3-'></a>
-### DeriveFactAsync\`\`2() `method`
+<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryBase`4-DeriveFact``2-`3-'></a>
+### DeriveFact\`\`2() `method`
 
 ##### Summary
 
