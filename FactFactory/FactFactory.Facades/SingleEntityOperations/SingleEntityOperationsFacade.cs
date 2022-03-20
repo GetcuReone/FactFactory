@@ -453,6 +453,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 if (condition.Condition(rule, rulesContext))
                     return false;
 
+                if (rules.Count == 0 || !rules.Any(r => r.OutputFactType.EqualsFactType(rule.OutputFactType)))
+                    throw CommonHelper.CreateDeriveException(
+                        ErrorCode.RuntimeCondition,
+                        $"Failed to meet {rulesContext.Cache.GetFactType(condition).FactName} for {rule} and find another solution.");
+
                 IFact resultFact = null;
                 var inputTypes = new List<IFactType>(wantAction.InputFactTypes.Where(t => t.IsFactType<ISpecialFact>()));
                 inputTypes.Add(rule.OutputFactType);

@@ -2,11 +2,12 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.SpecialFacts.RuntimeCondition;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using System.Linq;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
@@ -71,6 +72,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Derive fact by alternative solution.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void RContained_DeriveFactByAlternativeSolutionTestCase()
         {
             const int expectedValue = 1;
@@ -88,6 +90,47 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                     factory.DeriveFact<ResultFact>(new Container()))
                 .ThenIsNotNull()
                 .AndAreEqual(fact => fact.Value, expectedValue)
+                .Run();
+        }
+        
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("There is no alternative route.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void RContained_ThereIsNoAlternativeRouteTestCase()
+        {
+            const int expectedValue = 1;
+
+            GivenCreateFactFactory()
+                .AndAddRules(new Collection
+                {
+                    () => new Input1Fact(expectedValue),
+                    (RContained<Input2Fact> _, Input1Fact fact) => new ResultFact(fact)
+                })
+                .When("Derive facts.", factory =>
+                    ExpectedDeriveException(() => factory.DeriveFact<ResultFact>(new Container())))
+                .ThenIsNotNull()
+                .AndIsTrue(error => error.Details.Any(d => d.Code == ErrorCode.RuntimeCondition))
+                .Run();
+        }
+
+        [TestMethod]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Impossible WantAction request.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void RContained_ImpossibleWantActionRequestTestCase()
+        {
+            GivenCreateFactFactory()
+                .AndAddRules(new Collection
+                {
+                    () => new ResultFact(default)
+                })
+                .And("Want facts.", factory =>
+                    factory.WantFacts((RContained<Input1Fact> _, ResultFact fact) => { }, new Container()))
+                .When("Derive facts.", factory =>
+                    ExpectedDeriveException(factory.Derive))
+                .ThenIsNotNull()
+                .AndIsTrue(error => error.Details.Any(d => d.Code == ErrorCode.RuntimeCondition))
                 .Run();
         }
     }
