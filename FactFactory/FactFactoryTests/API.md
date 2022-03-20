@@ -9,7 +9,10 @@
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
+- [RCanDerivedTests](#T-GetcuReone-FactFactoryTests-FactFactoryT-RCanDerivedTests 'GetcuReone.FactFactoryTests.FactFactoryT.RCanDerivedTests')
+- [RCannotDerivedTests](#T-GetcuReone-FactFactoryTests-FactFactoryT-RCannotDerivedTests 'GetcuReone.FactFactoryTests.FactFactoryT.RCannotDerivedTests')
 - [RContainedTests](#T-GetcuReone-FactFactoryTests-FactFactoryT-RContainedTests 'GetcuReone.FactFactoryTests.FactFactoryT.RContainedTests')
+- [RNotContainedTests](#T-GetcuReone-FactFactoryTests-FactFactoryT-RNotContainedTests 'GetcuReone.FactFactoryTests.FactFactoryT.RNotContainedTests')
 
 <a name='T--ArrayExtensions'></a>
 ## ArrayExtensions `type`
@@ -101,6 +104,28 @@ True - `items` is null or empty.
 | ---- | ----------- |
 | TItem | Type items. |
 
+<a name='T-GetcuReone-FactFactoryTests-FactFactoryT-RCanDerivedTests'></a>
+## RCanDerivedTests `type`
+
+##### Namespace
+
+GetcuReone.FactFactoryTests.FactFactoryT
+
+##### Summary
+
+[RCanDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCanDerived`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RCanDerived`1') testing class.
+
+<a name='T-GetcuReone-FactFactoryTests-FactFactoryT-RCannotDerivedTests'></a>
+## RCannotDerivedTests `type`
+
+##### Namespace
+
+GetcuReone.FactFactoryTests.FactFactoryT
+
+##### Summary
+
+[RCannotDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCannotDerived`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RCannotDerived`1') testing class.
+
 <a name='T-GetcuReone-FactFactoryTests-FactFactoryT-RContainedTests'></a>
 ## RContainedTests `type`
 
@@ -111,3 +136,14 @@ GetcuReone.FactFactoryTests.FactFactoryT
 ##### Summary
 
 [RContained\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RContained`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RContained`1') testing class.
+
+<a name='T-GetcuReone-FactFactoryTests-FactFactoryT-RNotContainedTests'></a>
+## RNotContainedTests `type`
+
+##### Namespace
+
+GetcuReone.FactFactoryTests.FactFactoryT
+
+##### Summary
+
+[RNotContained\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RNotContained`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RNotContained`1') testing class.
