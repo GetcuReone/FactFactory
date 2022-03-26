@@ -20,12 +20,11 @@
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-#ctor 'GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor')
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Entities-FactRule}- 'GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule})')
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Entities-FactRule},System-Boolean- 'GetcuReone.FactFactory.Entities.FactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Entities.FactRule},System.Boolean)')
-  - [Copy()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-Copy 'GetcuReone.FactFactory.Entities.FactRuleCollection.Copy')
   - [CreateFactRule()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Entities.FactRuleCollection.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [CreateFactRule()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Entities.FactRuleCollection.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Empty()](#M-GetcuReone-FactFactory-Entities-FactRuleCollection-Empty 'GetcuReone.FactFactory.Entities.FactRuleCollection.Empty')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
-  - [ToReadOnlyCollection\`\`1(items)](#M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}- 'ListExtensions.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})')
 - [WantAction](#T-GetcuReone-FactFactory-Entities-WantAction 'GetcuReone.FactFactory.Entities.WantAction')
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-WantAction-#ctor-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Entities.WantAction.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-WantAction-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Entities.WantAction.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
@@ -42,7 +41,7 @@
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -72,7 +71,7 @@ True - `items` is null or empty
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -233,21 +232,6 @@ This constructor has no parameters.
 
 This constructor has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Entities-FactRuleCollection-Copy'></a>
-### Copy() `method`
-
-##### Summary
-
-[FactRuleCollectionBase\`1](#T-GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase`1 'GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1') copy method.
-
-##### Returns
-
-Copied [FactRuleCollection](#T-GetcuReone-FactFactory-Entities-FactRuleCollection 'GetcuReone.FactFactory.Entities.FactRuleCollection').
-
-##### Parameters
-
-This method has no parameters.
-
 <a name='M-GetcuReone-FactFactory-Entities-FactRuleCollection-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### CreateFactRule() `method`
 
@@ -270,6 +254,17 @@ This method has no parameters.
 
 This method has no parameters.
 
+<a name='M-GetcuReone-FactFactory-Entities-FactRuleCollection-Empty'></a>
+### Empty() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='T--ListExtensions'></a>
 ## ListExtensions `type`
 
@@ -282,7 +277,7 @@ This method has no parameters.
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -299,29 +294,6 @@ True - `items` is null or empty
 | Name | Description |
 | ---- | ----------- |
 | TItem | Type items. |
-
-<a name='M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}-'></a>
-### ToReadOnlyCollection\`\`1(items) `method`
-
-##### Summary
-
-Convert list to [ReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.ObjectModel.ReadOnlyCollection`1 'System.Collections.ObjectModel.ReadOnlyCollection`1')
-
-##### Returns
-
-Read-only collection.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| items | [System.Collections.Generic.IList{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IList 'System.Collections.Generic.IList{``0}') | Coollection. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TItem | Type item. |
 
 <a name='T-GetcuReone-FactFactory-Entities-WantAction'></a>
 ## WantAction `type`

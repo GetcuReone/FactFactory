@@ -22,7 +22,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// Returns the <see cref="VersionedSingleEntityOperationsFacade"/>.
         /// </summary>
         /// <returns>Instance <see cref="VersionedSingleEntityOperationsFacade"/>.</returns>
-        public override ISingleEntityOperations GetSingleEntityOperations()
+        protected override ISingleEntityOperations GetSingleEntityOperations()
         {
             return GetFacade<VersionedSingleEntityOperationsFacade>();
         }
@@ -39,13 +39,18 @@ namespace GetcuReone.FactFactory.Versioned
         {
             TFactResult fact = default;
 
+            var singleOperations = GetSingleEntityOperationsOnce();
             var previousWantFacts = new List<WantFactsInfo<TWantAction, TFactContainer>>(WantFactsInfos);
+            var inputFacts = new List<IFactType> 
+            { 
+                singleOperations.GetFactType<TFactResult>(),
+                singleOperations.GetFactType<TVersion>()
+            };
+            
             WantFactsInfos.Clear();
 
-            var inputFacts = new List<IFactType> { GetFactType<TFactResult>(), GetFactType<TVersion>() };
-
             WantFacts(
-                CreateWantAction(
+                singleOperations.CreateWantAction<TWantAction>(
                     facts => fact = facts.GetFact<TFactResult>(),
                     inputFacts,
                     FactWorkOption.CanExecuteSync),
@@ -70,13 +75,18 @@ namespace GetcuReone.FactFactory.Versioned
         {
             TFactResult fact = default;
 
+            var singleOperations = GetSingleEntityOperationsOnce();
             var previousWantFacts = new List<WantFactsInfo<TWantAction, TFactContainer>>(WantFactsInfos);
+            var inputFacts = new List<IFactType> 
+            { 
+                singleOperations.GetFactType<TFactResult>(), 
+                singleOperations.GetFactType<TVersion>()
+            };
+            
             WantFactsInfos.Clear();
 
-            var inputFacts = new List<IFactType> { GetFactType<TFactResult>(), GetFactType<TVersion>() };
-
             WantFacts(
-                CreateWantAction(
+                singleOperations.CreateWantAction<TWantAction>(
                     facts => fact = facts.GetFact<TFactResult>(),
                     inputFacts,
                     FactWorkOption.CanExecuteSync),

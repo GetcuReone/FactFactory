@@ -2,9 +2,7 @@
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Action = GetcuReone.FactFactory.Entities.WantAction;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
@@ -24,18 +22,6 @@ namespace FactFactoryTests.FactFactoryT.Env
         protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext<GetcuReone.FactFactory.Entities.WantAction, Container> context)
         {
             return DefaultFacts;
-        }
-
-        /// <inheritdoc/>
-        protected override Action CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option)
-        {
-            return new Action(wantAction, factTypes, option);
-        }
-
-        /// <inheritdoc/>
-        protected override Action CreateWantAction(Func<IEnumerable<IFact>, ValueTask> wantAction, List<IFactType> factTypes, FactWorkOption option)
-        {
-            return new Action(wantAction, factTypes, option);
         }
 
         protected override Container GetDefaultContainer()

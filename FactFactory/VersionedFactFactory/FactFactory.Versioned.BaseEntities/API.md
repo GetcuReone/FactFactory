@@ -9,19 +9,18 @@
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
-  - [ToReadOnlyCollection\`\`1(items)](#M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}- 'ListExtensions.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})')
 - [VersionedFactContainerBase](#T-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase')
   - [#ctor()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-#ctor 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.#ctor')
   - [#ctor()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
   - [#ctor()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)')
-  - [Contains\`\`1()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-Contains``1 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Contains``1')
   - [ContainsByVersion\`\`1(version)](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-ContainsByVersion``1-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.ContainsByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
-  - [GetFact\`\`1()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-GetFact``1 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.GetFact``1')
+  - [Contains\`\`1()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-Contains``1 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Contains``1')
   - [GetFactByVersion\`\`1(version)](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-GetFactByVersion``1-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.GetFactByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
-  - [Remove\`\`1()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-Remove``1 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Remove``1')
+  - [GetFact\`\`1()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-GetFact``1 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.GetFact``1')
   - [RemoveByVersion\`\`1(version)](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-RemoveByVersion``1-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.RemoveByVersion``1(GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
-  - [TryGetFact\`\`1()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-TryGetFact``1-``0@- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.TryGetFact``1(``0@)')
+  - [Remove\`\`1()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-Remove``1 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.Remove``1')
   - [TryGetFactByVersion\`\`1(fact,version)](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-TryGetFactByVersion``1-``0@,GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.TryGetFactByVersion``1(``0@,GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
+  - [TryGetFact\`\`1()](#M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-TryGetFact``1-``0@- 'GetcuReone.FactFactory.Versioned.BaseEntities.VersionedFactContainerBase.TryGetFact``1(``0@)')
 
 <a name='T--ArrayExtensions'></a>
 ## ArrayExtensions `type`
@@ -35,7 +34,7 @@
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -65,7 +64,7 @@ True - `items` is null or empty
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -95,7 +94,7 @@ True - `items` is null or empty
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -112,29 +111,6 @@ True - `items` is null or empty
 | Name | Description |
 | ---- | ----------- |
 | TItem | Type items. |
-
-<a name='M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}-'></a>
-### ToReadOnlyCollection\`\`1(items) `method`
-
-##### Summary
-
-Convert list to [ReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.ObjectModel.ReadOnlyCollection`1 'System.Collections.ObjectModel.ReadOnlyCollection`1')
-
-##### Returns
-
-Read-only collection.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| items | [System.Collections.Generic.IList{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IList 'System.Collections.Generic.IList{``0}') | Coollection. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TItem | Type item. |
 
 <a name='T-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase'></a>
 ## VersionedFactContainerBase `type`
@@ -180,17 +156,6 @@ This constructor has no parameters.
 
 This constructor has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-Contains``1'></a>
-### Contains\`\`1() `method`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This method has no parameters.
-
 <a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-ContainsByVersion``1-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact-'></a>
 ### ContainsByVersion\`\`1(version) `method`
 
@@ -214,8 +179,8 @@ Does an `TFact` type fact with version `version`.
 | ---- | ----------- |
 | TFact |  |
 
-<a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-GetFact``1'></a>
-### GetFact\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-Contains``1'></a>
+### Contains\`\`1() `method`
 
 ##### Summary
 
@@ -244,8 +209,8 @@ Return a fact of `TFact` type with version equal to `version`.
 | ---- | ----------- |
 | TFact | Type of fact you need. |
 
-<a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-Remove``1'></a>
-### Remove\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-GetFact``1'></a>
+### GetFact\`\`1() `method`
 
 ##### Summary
 
@@ -274,8 +239,8 @@ Remove a fact of `TFact` type with version equal to `version`.
 | ---- | ----------- |
 | TFact | Type of fact you need. |
 
-<a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-TryGetFact``1-``0@-'></a>
-### TryGetFact\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-Remove``1'></a>
+### Remove\`\`1() `method`
 
 ##### Summary
 
@@ -304,3 +269,14 @@ Try to return a fact of `TFact` type with version equal to `version`.
 | Name | Description |
 | ---- | ----------- |
 | TFact | Type of fact you need. |
+
+<a name='M-GetcuReone-FactFactory-Versioned-BaseEntities-VersionedFactContainerBase-TryGetFact``1-``0@-'></a>
+### TryGetFact\`\`1() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.

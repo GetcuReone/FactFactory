@@ -27,7 +27,7 @@ namespace GetcuReone.FactFactory
                 new List<ErrorDetail>
                 {
                     new ErrorDetail(code, reason)
-                }.ToReadOnlyCollection());
+                }.AsReadOnly());
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace GetcuReone.FactFactory
             return new InvalidDeriveOperationException(new List<DeriveErrorDetail>
             {
                 new DeriveErrorDetail(code, reason, requiredAction, container, requiredFacts),
-            }.ToReadOnlyCollection());
+            }.AsReadOnly());
         }
 
         /// <summary>

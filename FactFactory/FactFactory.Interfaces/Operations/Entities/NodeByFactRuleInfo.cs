@@ -16,14 +16,19 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         public TFactRule Rule { get; set; }
 
         /// <summary>
-        /// List of fact conditions. Successfully completed conditions for <see cref="Rule"/>.
+        /// List of successfully <see cref="IBuildConditionFact"/>. Successfully completed conditions for <see cref="Rule"/>.
         /// </summary>
-        public List<IBuildConditionFact> SuccessConditions { get; set; }
+        public List<IBuildConditionFact> BuildSuccessConditions { get; set; }
 
         /// <summary>
-        /// List of fact conditions. Failed conditions for <see cref="Rule"/>.
+        /// List of failed <see cref="IBuildConditionFact"/>. Failed conditions for <see cref="Rule"/>.
         /// </summary>
-        public List<IBuildConditionFact> FailedConditions { get; set; }
+        public List<IBuildConditionFact> BuildFailedConditions { get; set; }
+
+        /// <summary>
+        /// List of <see cref="IRuntimeConditionFact"/>.
+        /// </summary>
+        public List<IRuntimeConditionFact> RuntimeConditions { get; set; }
 
         /// <summary>
         /// Required fact types.
@@ -33,7 +38,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// <summary>
         /// Compatible rules.
         /// </summary>
-        public List<TFactRule> CompatibleRules { get; set; }
+        public IFactRuleCollection<TFactRule> CompatibleRules { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

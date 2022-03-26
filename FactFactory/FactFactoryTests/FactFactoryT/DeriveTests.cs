@@ -463,5 +463,21 @@ namespace FactFactoryTests.FactFactoryT
                 .ThenFactValueEquals(expectedValue)
                 .Run();
         }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory), TestCategory(TC.Objects.Fact), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Get fact from container.")]
+        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        public void GetFactFormContainerTestCase()
+        {
+            var fact = new ResultFact(default);
+            var container = new Container { fact };
+
+            GivenCreateFactFactory()
+                .When("Derive fact.", factory =>
+                    factory.DeriveFact<ResultFact>(container))
+                .ThenAreEqual(fact)
+                .Run();
+        }
     }
 }

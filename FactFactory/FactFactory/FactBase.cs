@@ -40,7 +40,7 @@ namespace GetcuReone.FactFactory
         /// <inheritdoc/>
         public IReadOnlyCollection<IFactParameter> GetParameters()
         {
-            return _parameters?.ToReadOnlyCollection() 
+            return _parameters?.AsReadOnly() 
                 ?? new ReadOnlyCollection<IFactParameter>(new List<IFactParameter>(0));
         }
     }

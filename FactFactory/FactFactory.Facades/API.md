@@ -8,48 +8,55 @@
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [FactEngineFacade](#T-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade 'GetcuReone.FactFactory.Facades.FactEngine.FactEngineFacade')
-  - [DeriveWantAction\`\`4()](#M-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade-DeriveWantAction``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}- 'GetcuReone.FactFactory.Facades.FactEngine.FactEngineFacade.DeriveWantAction``4(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0,``1,``2,``3}})')
   - [DeriveWantActionAsync\`\`4()](#M-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade-DeriveWantActionAsync``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}- 'GetcuReone.FactFactory.Facades.FactEngine.FactEngineFacade.DeriveWantActionAsync``4(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0,``1,``2,``3}})')
+  - [DeriveWantAction\`\`4()](#M-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade-DeriveWantAction``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}- 'GetcuReone.FactFactory.Facades.FactEngine.FactEngineFacade.DeriveWantAction``4(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0,``1,``2,``3}})')
   - [Validate\`\`4(requests)](#M-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade-Validate``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}- 'GetcuReone.FactFactory.Facades.FactEngine.FactEngineFacade.Validate``4(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0,``1,``2,``3}})')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
-  - [ToReadOnlyCollection\`\`1(items)](#M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}- 'ListExtensions.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})')
 - [SingleEntityOperationsFacade](#T-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade')
-  - [CalculateFact\`\`3()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CalculateFact``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [CalculateFactAsync\`\`3()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CalculateFactAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CalculateFactAsync``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
+  - [CalculateFact\`\`3()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CalculateFact``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [CanExtractFact\`\`3()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CanExtractFact``3-GetcuReone-FactFactory-Interfaces-IFactType,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CanExtractFact``3(GetcuReone.FactFactory.Interfaces.IFactType,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [CanInvokeWork\`\`1(inputFacts,factWork,cache)](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CanInvokeWork``1-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},``0,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CanInvokeWork``1(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},``0,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
   - [CompareFactRules\`\`3(x,y,context)](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CompareFactRules``3-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CompareFactRules``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [CompareFacts(x,y)](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CompareFacts-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CompareFacts(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)')
   - [CompatibleRule\`\`4()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CompatibleRule``4-``0,``1,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CompatibleRule``4(``0,``1,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
-  - [DeriveWantFacts\`\`2()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-DeriveWantFacts``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.DeriveWantFacts``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1})')
+  - [CreateWantAction\`\`1()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CreateWantAction``1-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CreateWantAction``1(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [CreateWantAction\`\`1()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CreateWantAction``1-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CreateWantAction``1(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [DeriveWantFactsAsync\`\`2()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-DeriveWantFactsAsync``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.DeriveWantFactsAsync``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1})')
+  - [DeriveWantFacts\`\`2()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-DeriveWantFacts``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.DeriveWantFacts``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``0,``1})')
   - [EqualsFactParameters\`\`2(first,second,context)](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-EqualsFactParameters``2-GetcuReone-FactFactory-Interfaces-IFactParameter,GetcuReone-FactFactory-Interfaces-IFactParameter,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``0,``1}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.EqualsFactParameters``2(GetcuReone.FactFactory.Interfaces.IFactParameter,GetcuReone.FactFactory.Interfaces.IFactParameter,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``0,``1})')
   - [EqualsFacts\`\`2(first,second,context)](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-EqualsFacts``2-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``0,``1}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.EqualsFacts``2(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``0,``1})')
-  - [GetCompatibleRules\`\`4()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetCompatibleRules``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetCompatibleRules``4(``0,System.Collections.Generic.IEnumerable{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
+  - [GetCompatibleRules\`\`4()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetCompatibleRules``4-``0,GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetCompatibleRules``4(``0,GetcuReone.FactFactory.Interfaces.IFactRuleCollection{``1},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``2,``3})')
   - [GetFactComparer\`\`2()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetFactComparer``2-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``0,``1}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetFactComparer``2(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``0,``1})')
   - [GetFactEqualityComparer\`\`2()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetFactEqualityComparer``2-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``0,``1}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetFactEqualityComparer``2(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``0,``1})')
-  - [GetRequiredTypesOfFacts\`\`3()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetRequiredTypesOfFacts``3-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetRequiredTypesOfFacts``3(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
+  - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetFactType``1 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetFactType``1')
   - [GetRequireFacts\`\`3(factWork,context)](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetRequireFacts``3-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetRequireFacts``3(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
+  - [GetRequiredTypesOfFacts\`\`3()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetRequiredTypesOfFacts``3-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetRequiredTypesOfFacts``3(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [GetRuleComparer\`\`3()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetRuleComparer``3-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.GetRuleComparer``3(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [NeedCalculateFact\`\`3()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-NeedCalculateFact``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.NeedCalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
+  - [RuntimeCondition\`\`2(condition,context)](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-RuntimeCondition``2-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``0,``1}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.RuntimeCondition``2(GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``0,``1})')
+  - [TryCalculateFactByRuntimeConditionAsync\`\`3(rule,condition,context)](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-TryCalculateFactByRuntimeConditionAsync``3-``0,GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.TryCalculateFactByRuntimeConditionAsync``3(``0,GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
+  - [TryCalculateFactByRuntimeCondition\`\`3(rule,condition,context)](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-TryCalculateFactByRuntimeCondition``3-``0,GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.TryCalculateFactByRuntimeCondition``3(``0,GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [ValidateAndGetRules\`\`2()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-ValidateAndGetRules``2-``1- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.ValidateAndGetRules``2(``1)')
   - [ValidateContainer\`\`1()](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-ValidateContainer``1-``0- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.ValidateContainer``1(``0)')
 - [SingleEntityOperationsHelper](#T-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsHelper 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsHelper')
   - [GetWriter\`\`1(container)](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsHelper-GetWriter``1-``0- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsHelper.GetWriter``1(``0)')
   - [SetCalculateByRule\`\`1(fact)](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsHelper-SetCalculateByRule``1-``0- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsHelper.SetCalculateByRule``1(``0)')
 - [TreeBuildingOperationsFacade](#T-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade')
-  - [CalculateTreeAndDeriveWantFacts\`\`3()](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-CalculateTreeAndDeriveWantFacts``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``1,``2},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.CalculateTreeAndDeriveWantFacts``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``1,``2},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}})')
   - [CalculateTreeAndDeriveWantFactsAsync\`\`3()](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-CalculateTreeAndDeriveWantFactsAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``1,``2},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.CalculateTreeAndDeriveWantFactsAsync``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``1,``2},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}})')
+  - [CalculateTreeAndDeriveWantFacts\`\`3()](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-CalculateTreeAndDeriveWantFacts``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``1,``2},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.CalculateTreeAndDeriveWantFacts``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.WantActionInfo{``1,``2},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}})')
+  - [CanRemoveFromNeedFactTypes\`\`3(factType,node,context,copatibleAllFinishedNodes)](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-CanRemoveFromNeedFactTypes``3-GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``0,``1,``2},System-Collections-Generic-Dictionary{GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRuleInfo{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0}}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.CanRemoveFromNeedFactTypes``3(GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{``0,``1,``2},System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRuleInfo{``0},GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}})')
   - [GetIndependentNodeGroups\`\`3()](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-GetIndependentNodeGroups``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.GetIndependentNodeGroups``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2})')
+  - [GetRelatedRules\`\`3(rule,rules,context)](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-GetRelatedRules``3-``0,GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.GetRelatedRules``3(``0,GetcuReone.FactFactory.Interfaces.IFactRuleCollection{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [SyncTreeLevelAndFinishedNodes\`\`3(treeLevel,finishedNodes,context)](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-SyncTreeLevelAndFinishedNodes``3-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0}},System-Collections-Generic-Dictionary{GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRuleInfo{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0}},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.SyncTreeLevelAndFinishedNodes``3(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}},System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRuleInfo{``0},GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [TryBuildTreeForFactInfo\`\`3()](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-TryBuildTreeForFactInfo``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreeForFactInfoRequest{``0,``1,``2},GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}@,System-Collections-Generic-List{GetcuReone-FactFactory-Exceptions-Entities-DeriveFactErrorDetail}@- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.TryBuildTreeForFactInfo``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreeForFactInfoRequest{``0,``1,``2},GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}@,System.Collections.Generic.List{GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail}@)')
-  - [TryBuildTrees\`\`4()](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-TryBuildTrees``4-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest{``0,``1,``2,``3},GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesResult{``0,``2,``3}@- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.TryBuildTrees``4(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest{``0,``1,``2,``3},GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesResult{``0,``2,``3}@)')
   - [TryBuildTreesForWantAction\`\`3()](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-TryBuildTreesForWantAction``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionRequest{``0,``1,``2},GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionResult{``0,``1,``2}@- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.TryBuildTreesForWantAction``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionRequest{``0,``1,``2},GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionResult{``0,``1,``2}@)')
+  - [TryBuildTrees\`\`4()](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-TryBuildTrees``4-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest{``0,``1,``2,``3},GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesResult{``0,``2,``3}@- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.TryBuildTrees``4(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest{``0,``1,``2,``3},GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesResult{``0,``2,``3}@)')
   - [TryRemoveRootNode\`\`3(node,treeByFactRule,level)](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-TryRemoveRootNode``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2},System-Int32- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.TryRemoveRootNode``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2},System.Int32)')
   - [TrySyncTreeLevelsAndFinishedNodes\`\`3(treeByFactRule,level,finishedNodes)](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-TrySyncTreeLevelsAndFinishedNodes``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2},System-Int32,System-Collections-Generic-Dictionary{GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRuleInfo{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0}}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsFacade.TrySyncTreeLevelsAndFinishedNodes``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2},System.Int32,System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRuleInfo{``0},GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}})')
 - [TreeBuildingOperationsHelper](#T-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsHelper 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsHelper')
-  - [GetNodesByRules\`\`3(rules,treeByFactRule,parentNode)](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsHelper-GetNodesByRules``3-System-Collections-Generic-List{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsHelper.GetNodesByRules``3(System.Collections.Generic.List{``0},GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2})')
+  - [GetNodesByRules\`\`3(rules,treeByFactRule,parentNode)](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsHelper-GetNodesByRules``3-System-Collections-Generic-IEnumerable{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsHelper.GetNodesByRules``3(System.Collections.Generic.IEnumerable{``0},GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2})')
   - [GetTreesByRequest\`\`3(request)](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsHelper-GetTreesByRequest``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreeForFactInfoRequest{``0,``1,``2}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsHelper.GetTreesByRequest``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreeForFactInfoRequest{``0,``1,``2})')
   - [GetUniqueRulesFromTree\`\`3(treeByFactRule)](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsHelper-GetUniqueRulesFromTree``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsHelper.GetUniqueRulesFromTree``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2})')
   - [RuleContainBranch\`\`1(rule,nodeFromBranch)](#M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsHelper-RuleContainBranch``1-``0,GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0}- 'GetcuReone.FactFactory.Facades.TreeBuildingOperations.TreeBuildingOperationsHelper.RuleContainBranch``1(``0,GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0})')
@@ -66,7 +73,7 @@
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -96,7 +103,7 @@ True - `items` is null or empty
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -125,8 +132,8 @@ GetcuReone.FactFactory.Facades.FactEngine
 
 *Inherit from parent.*
 
-<a name='M-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade-DeriveWantAction``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}-'></a>
-### DeriveWantAction\`\`4() `method`
+<a name='M-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade-DeriveWantActionAsync``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}-'></a>
+### DeriveWantActionAsync\`\`4() `method`
 
 ##### Summary
 
@@ -136,8 +143,8 @@ GetcuReone.FactFactory.Facades.FactEngine
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade-DeriveWantActionAsync``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}-'></a>
-### DeriveWantActionAsync\`\`4() `method`
+<a name='M-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade-DeriveWantAction``4-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0,``1,``2,``3}}-'></a>
+### DeriveWantAction\`\`4() `method`
 
 ##### Summary
 
@@ -172,7 +179,7 @@ Validates `requests`.
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -190,29 +197,6 @@ True - `items` is null or empty
 | ---- | ----------- |
 | TItem | Type items. |
 
-<a name='M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}-'></a>
-### ToReadOnlyCollection\`\`1(items) `method`
-
-##### Summary
-
-Convert list to [ReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.ObjectModel.ReadOnlyCollection`1 'System.Collections.ObjectModel.ReadOnlyCollection`1')
-
-##### Returns
-
-Read-only collection.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| items | [System.Collections.Generic.IList{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IList 'System.Collections.Generic.IList{``0}') | Coollection. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TItem | Type item. |
-
 <a name='T-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade'></a>
 ## SingleEntityOperationsFacade `type`
 
@@ -224,8 +208,8 @@ GetcuReone.FactFactory.Facades.SingleEntityOperations
 
 Single operations on entities of the FactFactory.
 
-<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CalculateFact``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
-### CalculateFact\`\`3() `method`
+<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CalculateFactAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
+### CalculateFactAsync\`\`3() `method`
 
 ##### Summary
 
@@ -235,8 +219,8 @@ Single operations on entities of the FactFactory.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CalculateFactAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
-### CalculateFactAsync\`\`3() `method`
+<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CalculateFact``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
+### CalculateFact\`\`3() `method`
 
 ##### Summary
 
@@ -330,8 +314,19 @@ Comparison of facts.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-DeriveWantFacts``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1}-'></a>
-### DeriveWantFacts\`\`2() `method`
+<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CreateWantAction``1-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### CreateWantAction\`\`1() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CreateWantAction``1-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+### CreateWantAction\`\`1() `method`
 
 ##### Summary
 
@@ -343,6 +338,17 @@ This method has no parameters.
 
 <a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-DeriveWantFactsAsync``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1}-'></a>
 ### DeriveWantFactsAsync\`\`2() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-DeriveWantFacts``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``0,``1}-'></a>
+### DeriveWantFacts\`\`2() `method`
 
 ##### Summary
 
@@ -404,7 +410,7 @@ Checking the equality of facts.
 | TWantAction |  |
 | TFactContainer |  |
 
-<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetCompatibleRules``4-``0,System-Collections-Generic-IEnumerable{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
+<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetCompatibleRules``4-``0,GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``1},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``2,``3}-'></a>
 ### GetCompatibleRules\`\`4() `method`
 
 ##### Summary
@@ -437,8 +443,8 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetRequiredTypesOfFacts``3-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
-### GetRequiredTypesOfFacts\`\`3() `method`
+<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetFactType``1'></a>
+### GetFactType\`\`1() `method`
 
 ##### Summary
 
@@ -474,6 +480,17 @@ Get the facts needed to enter the work.
 | TWantAction |  |
 | TFactContainer |  |
 
+<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetRequiredTypesOfFacts``3-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
+### GetRequiredTypesOfFacts\`\`3() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
 <a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-GetRuleComparer``3-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### GetRuleComparer\`\`3() `method`
 
@@ -495,6 +512,85 @@ This method has no parameters.
 ##### Parameters
 
 This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-RuntimeCondition``2-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``0,``1}-'></a>
+### RuntimeCondition\`\`2(condition,context) `method`
+
+##### Summary
+
+Checks for a `condition`
+
+##### Returns
+
+Result [Condition\`\`4](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact-Condition``4-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1,``2,``3}- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact.Condition``4(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{``1,``2,``3})').
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| condition | [GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact') | Condition. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`0,\`\`1}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``0,``1} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``0,``1}') | Context. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TWantAction | Type wantAction. |
+| TFactContainer | Type fact container. |
+
+<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-TryCalculateFactByRuntimeConditionAsync``3-``0,GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
+### TryCalculateFactByRuntimeConditionAsync\`\`3(rule,condition,context) `method`
+
+##### Summary
+
+Try to calculate a fact based on a `condition`.
+
+##### Returns
+
+True - The `condition` was not fulfilled and the fact had to be recalculated.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| rule | [\`\`0](#T-``0 '``0') | Rule for which the condition is checked. |
+| condition | [GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact') | Condition. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') | Context. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactRule | Type rule. |
+| TWantAction | Type wantAction. |
+| TFactContainer | Type fact container. |
+
+<a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-TryCalculateFactByRuntimeCondition``3-``0,GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
+### TryCalculateFactByRuntimeCondition\`\`3(rule,condition,context) `method`
+
+##### Summary
+
+Try to calculate a fact based on a `condition`.
+
+##### Returns
+
+True - The `condition` was not fulfilled and the fact had to be recalculated.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| rule | [\`\`0](#T-``0 '``0') | Rule for which the condition is checked. |
+| condition | [GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact') | Condition. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') | Context. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactRule | Type rule. |
+| TWantAction | Type wantAction. |
+| TFactContainer | Type fact container. |
 
 <a name='M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-ValidateAndGetRules``2-``1-'></a>
 ### ValidateAndGetRules\`\`2() `method`
@@ -582,17 +678,6 @@ GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
 Tree building operations.
 
-<a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-CalculateTreeAndDeriveWantFacts``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``1,``2},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}}-'></a>
-### CalculateTreeAndDeriveWantFacts\`\`3() `method`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This method has no parameters.
-
 <a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-CalculateTreeAndDeriveWantFactsAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``1,``2},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}}-'></a>
 ### CalculateTreeAndDeriveWantFactsAsync\`\`3() `method`
 
@@ -604,6 +689,45 @@ This method has no parameters.
 
 This method has no parameters.
 
+<a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-CalculateTreeAndDeriveWantFacts``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-WantActionInfo{``1,``2},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}}-'></a>
+### CalculateTreeAndDeriveWantFacts\`\`3() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-CanRemoveFromNeedFactTypes``3-GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``0,``1,``2},System-Collections-Generic-Dictionary{GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRuleInfo{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0}}-'></a>
+### CanRemoveFromNeedFactTypes\`\`3(factType,node,context,copatibleAllFinishedNodes) `method`
+
+##### Summary
+
+Determines you can no longer consider the `factType` necessary.
+
+##### Returns
+
+True - may not be considered necessary
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| factType | [GetcuReone.FactFactory.Interfaces.IFactType](#T-GetcuReone-FactFactory-Interfaces-IFactType 'GetcuReone.FactFactory.Interfaces.IFactType') | Fact type info. |
+| node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') |  |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{\`\`0,\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``0,``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{``0,``1,``2}') |  |
+| copatibleAllFinishedNodes | [System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRuleInfo{\`\`0},GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.Dictionary 'System.Collections.Generic.Dictionary{GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRuleInfo{``0},GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}}') |  |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactRule | FactRole type. |
+| TWantAction | WantAction type. |
+| TFactContainer | FactContainer type. |
+
 <a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-GetIndependentNodeGroups``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}-'></a>
 ### GetIndependentNodeGroups\`\`3() `method`
 
@@ -614,6 +738,33 @@ This method has no parameters.
 ##### Parameters
 
 This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-GetRelatedRules``3-``0,GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
+### GetRelatedRules\`\`3(rule,rules,context) `method`
+
+##### Summary
+
+Return related facts.
+
+##### Returns
+
+Related fact rules.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| rule | [\`\`0](#T-``0 '``0') | Fact rule. |
+| rules | [GetcuReone.FactFactory.Interfaces.IFactRuleCollection{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-IFactRuleCollection{``0} 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection{``0}') | Fact rules. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') | Context. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactRule | Type rule. |
+| TWantAction | Type wantAction. |
+| TFactContainer | Type fact container. |
 
 <a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-SyncTreeLevelAndFinishedNodes``3-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0}},System-Collections-Generic-Dictionary{GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRuleInfo{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0}},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### SyncTreeLevelAndFinishedNodes\`\`3(treeLevel,finishedNodes,context) `method`
@@ -649,8 +800,8 @@ Synchronize the tree level with years ready for calculation.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-TryBuildTrees``4-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest{``0,``1,``2,``3},GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesResult{``0,``2,``3}@-'></a>
-### TryBuildTrees\`\`4() `method`
+<a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-TryBuildTreesForWantAction``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionRequest{``0,``1,``2},GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionResult{``0,``1,``2}@-'></a>
+### TryBuildTreesForWantAction\`\`3() `method`
 
 ##### Summary
 
@@ -660,8 +811,8 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-TryBuildTreesForWantAction``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionRequest{``0,``1,``2},GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionResult{``0,``1,``2}@-'></a>
-### TryBuildTreesForWantAction\`\`3() `method`
+<a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-TryBuildTrees``4-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest{``0,``1,``2,``3},GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesResult{``0,``2,``3}@-'></a>
+### TryBuildTrees\`\`4() `method`
 
 ##### Summary
 
@@ -676,7 +827,7 @@ This method has no parameters.
 
 ##### Summary
 
-Delete current node. Recursively delete parent nodes if they do not have other nodes calculating the fact from the child node.
+Delete current node.
 
 ##### Returns
 
@@ -686,17 +837,22 @@ True - remove root node.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') |  |
-| treeByFactRule | [GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{\`\`0,\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}') |  |
-| level | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') |  |
+| node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') | Node to be removed. |
+| treeByFactRule | [GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{\`\`0,\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}') | Rule tree. |
+| level | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Level in tree. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | FatcRule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | FactContainer type. |
+
+##### Remarks
+
+Recursively delete parent nodes
+if they do not have other nodes calculating the fact from the child node.
 
 <a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsFacade-TrySyncTreeLevelsAndFinishedNodes``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2},System-Int32,System-Collections-Generic-Dictionary{GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRuleInfo{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0}}-'></a>
 ### TrySyncTreeLevelsAndFinishedNodes\`\`3(treeByFactRule,level,finishedNodes) `method`
@@ -721,9 +877,9 @@ True - managed to sync root level
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | FatcRule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | FactContainer type. |
 
 <a name='T-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsHelper'></a>
 ## TreeBuildingOperationsHelper `type`
@@ -732,7 +888,7 @@ True - managed to sync root level
 
 GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
-<a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsHelper-GetNodesByRules``3-System-Collections-Generic-List{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}-'></a>
+<a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsHelper-GetNodesByRules``3-System-Collections-Generic-IEnumerable{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2}-'></a>
 ### GetNodesByRules\`\`3(rules,treeByFactRule,parentNode) `method`
 
 ##### Summary
@@ -741,23 +897,23 @@ Returns nodes by rules.
 
 ##### Returns
 
-
+Node list.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| rules | [System.Collections.Generic.List{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{``0}') |  |
-| treeByFactRule | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') |  |
-| parentNode | [GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{\`\`0,\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}') |  |
+| rules | [System.Collections.Generic.IEnumerable{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{``0}') | List of rule. |
+| treeByFactRule | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') | Rule tree. |
+| parentNode | [GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{\`\`0,\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-TreeByFactRule{``0,``1,``2} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.TreeByFactRule{``0,``1,``2}') | Parent node. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
-| TFactRule |  |
-| TWantAction |  |
-| TFactContainer |  |
+| TFactRule | FatcRule type. |
+| TWantAction | WantAction type. |
+| TFactContainer | FactContainer type. |
 
 <a name='M-GetcuReone-FactFactory-Facades-TreeBuildingOperations-TreeBuildingOperationsHelper-GetTreesByRequest``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreeForFactInfoRequest{``0,``1,``2}-'></a>
 ### GetTreesByRequest\`\`3(request) `method`

@@ -14,6 +14,7 @@
   - [InvalidFactType](#F-GetcuReone-FactFactory-Constants-ErrorCode-InvalidFactType 'GetcuReone.FactFactory.Constants.ErrorCode.InvalidFactType')
   - [InvalidOperation](#F-GetcuReone-FactFactory-Constants-ErrorCode-InvalidOperation 'GetcuReone.FactFactory.Constants.ErrorCode.InvalidOperation')
   - [RuleNotFound](#F-GetcuReone-FactFactory-Constants-ErrorCode-RuleNotFound 'GetcuReone.FactFactory.Constants.ErrorCode.RuleNotFound')
+  - [RuntimeCondition](#F-GetcuReone-FactFactory-Constants-ErrorCode-RuntimeCondition 'GetcuReone.FactFactory.Constants.ErrorCode.RuntimeCondition')
 - [ErrorResources](#T-GetcuReone-FactFactory-Resources-ErrorResources 'GetcuReone.FactFactory.Resources.ErrorResources')
   - [OnWantActionCannotBePerformedSynchronously\`\`1(wantAction)](#M-GetcuReone-FactFactory-Resources-ErrorResources-OnWantActionCannotBePerformedSynchronously``1-``0- 'GetcuReone.FactFactory.Resources.ErrorResources.OnWantActionCannotBePerformedSynchronously``1(``0)')
 - [FactFactoryHelper](#T-GetcuReone-FactFactory-FactFactoryHelper 'GetcuReone.FactFactory.FactFactoryHelper')
@@ -32,9 +33,10 @@
   - [WhereFactsByFactTypes(facts,factTypes,cache)](#M-GetcuReone-FactFactory-FactFactoryHelper-WhereFactsByFactTypes-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.FactFactoryHelper.WhereFactsByFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
 - [FactParametersCodes](#T-GetcuReone-FactFactory-Constants-FactParametersCodes 'GetcuReone.FactFactory.Constants.FactParametersCodes')
   - [CalculateByRule](#F-GetcuReone-FactFactory-Constants-FactParametersCodes-CalculateByRule 'GetcuReone.FactFactory.Constants.FactParametersCodes.CalculateByRule')
+- [FactTypeExtensions](#T-GetcuReone-FactFactory-Extensions-FactTypeExtensions 'GetcuReone.FactFactory.Extensions.FactTypeExtensions')
+  - [IsBuildOrRuntimeFact(type)](#M-GetcuReone-FactFactory-Extensions-FactTypeExtensions-IsBuildOrRuntimeFact-GetcuReone-FactFactory-Interfaces-IFactType- 'GetcuReone.FactFactory.Extensions.FactTypeExtensions.IsBuildOrRuntimeFact(GetcuReone.FactFactory.Interfaces.IFactType)')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
-  - [ToReadOnlyCollection\`\`1(items)](#M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}- 'ListExtensions.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})')
 
 <a name='T--ArrayExtensions'></a>
 ## ArrayExtensions `type`
@@ -48,7 +50,7 @@
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -78,7 +80,7 @@ True - `items` is null or empty
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -148,6 +150,14 @@ Invalid operation.
 ##### Summary
 
 Rule not found.
+
+<a name='F-GetcuReone-FactFactory-Constants-ErrorCode-RuntimeCondition'></a>
+### RuntimeCondition `constants`
+
+##### Summary
+
+Failed to meet [Condition\`\`4](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact-Condition``4-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1,``2,``3}- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact.Condition``4(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{``1,``2,``3})')
+and find another solution
 
 <a name='T-GetcuReone-FactFactory-Resources-ErrorResources'></a>
 ## ErrorResources `type`
@@ -481,6 +491,34 @@ Default codes for fact parameter.
 
 Was the fact calculated using the rule.
 
+<a name='T-GetcuReone-FactFactory-Extensions-FactTypeExtensions'></a>
+## FactTypeExtensions `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Extensions
+
+##### Summary
+
+Extensions for [IFactType](#T-GetcuReone-FactFactory-Interfaces-IFactType 'GetcuReone.FactFactory.Interfaces.IFactType')
+
+<a name='M-GetcuReone-FactFactory-Extensions-FactTypeExtensions-IsBuildOrRuntimeFact-GetcuReone-FactFactory-Interfaces-IFactType-'></a>
+### IsBuildOrRuntimeFact(type) `method`
+
+##### Summary
+
+Checks if a `type` is fact [IBuildConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IBuildConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IBuildConditionFact') or [IRuntimeConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact').
+
+##### Returns
+
+True - `type` is [IBuildConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IBuildConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IBuildConditionFact') or [IRuntimeConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact').
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| type | [GetcuReone.FactFactory.Interfaces.IFactType](#T-GetcuReone-FactFactory-Interfaces-IFactType 'GetcuReone.FactFactory.Interfaces.IFactType') | Fact type. |
+
 <a name='T--ListExtensions'></a>
 ## ListExtensions `type`
 
@@ -493,7 +531,7 @@ Was the fact calculated using the rule.
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -510,26 +548,3 @@ True - `items` is null or empty
 | Name | Description |
 | ---- | ----------- |
 | TItem | Type items. |
-
-<a name='M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}-'></a>
-### ToReadOnlyCollection\`\`1(items) `method`
-
-##### Summary
-
-Convert list to [ReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.ObjectModel.ReadOnlyCollection`1 'System.Collections.ObjectModel.ReadOnlyCollection`1')
-
-##### Returns
-
-Read-only collection.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| items | [System.Collections.Generic.IList{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IList 'System.Collections.Generic.IList{``0}') | Coollection. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TItem | Type item. |

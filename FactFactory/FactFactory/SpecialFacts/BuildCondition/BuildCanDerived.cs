@@ -1,6 +1,6 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
-using System.Collections.Generic;
+using System;
 
 namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
 {
@@ -15,13 +15,13 @@ namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
         /// Checks if a tree can be built for the fact.
         /// </summary>
         /// <inheritdoc/>
-        public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
+        public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context, Func<IWantActionContext<TWantAction, TFactContainer>, IFactRuleCollection<TFactRule>> getCompatibleRules)
         {
             return ConditionHelper.CanDeriveFact(
                 this,
                 GetFactType<TFact>(),
                 factWork,
-                compatibleRules,
+                getCompatibleRules(context),
                 context);
         }
     }

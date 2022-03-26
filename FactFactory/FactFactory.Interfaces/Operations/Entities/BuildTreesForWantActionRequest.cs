@@ -1,5 +1,4 @@
 ﻿using GetcuReone.FactFactory.Interfaces.Context;
-using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
 {
@@ -22,6 +21,6 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// <summary>
         /// Fact rules.
         /// </summary>
-        public IEnumerable<TFactRule> FactRules { get; set; }
+        public IFactRuleCollection<TFactRule> FactRules { get; set; }
     }
 }

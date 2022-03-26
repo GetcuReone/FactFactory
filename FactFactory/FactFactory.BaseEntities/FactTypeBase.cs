@@ -21,10 +21,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             return factInfo is FactTypeBase<TFact>;
         }
-
+        
         /// <inheritdoc/>
-        [Obsolete("Will be delete. Use CreateBuildConditionFact")]
-        public virtual TFactResult CreateConditionFact<TFactResult>() where TFactResult : IConditionFact
+        public virtual TFactResult CreateBuildConditionFact<TFactResult>() where TFactResult : IBuildConditionFact
         {
             var type = typeof(TFact);
             var resultType = typeof(TFactResult);
@@ -39,7 +38,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
         
         /// <inheritdoc/>
-        public virtual TFactResult CreateBuildConditionFact<TFactResult>() where TFactResult : IBuildConditionFact
+        public virtual TFactResult CreateRuntimeConditionFact<TFactResult>() where TFactResult : IRuntimeConditionFact
         {
             var type = typeof(TFact);
             var resultType = typeof(TFactResult);

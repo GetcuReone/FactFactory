@@ -45,17 +45,5 @@ namespace GetcuReone.FactFactory
         {
             return _getDefaultFactsFunc?.Invoke(context);
         }
-
-        /// <inheritdoc/>
-        protected override WantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option)
-        {
-            return new WantAction(wantAction, factTypes, option);
-        }
-
-        /// <inheritdoc/>
-        protected override WantAction CreateWantAction(Func<IEnumerable<IFact>, ValueTask> wantAction, List<IFactType> factTypes, FactWorkOption option)
-        {
-            return new WantAction(wantAction, factTypes, option);
-        }
     }
 }

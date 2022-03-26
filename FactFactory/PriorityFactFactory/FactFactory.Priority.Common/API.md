@@ -9,11 +9,10 @@
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
-  - [ToReadOnlyCollection\`\`1(items)](#M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}- 'ListExtensions.ToReadOnlyCollection``1(System.Collections.Generic.IList{``0})')
 - [PriorityFactFactoryHelper](#T-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper')
   - [AddPriorityParameter\`\`2(fact,priority)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-AddPriorityParameter``2-``0,``1- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.AddPriorityParameter``2(``0,``1)')
-  - [CompareByPriority\`\`3(x,y,context)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriority``3-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.CompareByPriority``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [CompareByPriorityParameter(x,y)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriorityParameter-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.CompareByPriorityParameter(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)')
+  - [CompareByPriority\`\`3(x,y,context)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriority``3-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.CompareByPriority``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
   - [FindPriorityParameter\`\`1(fact)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FindPriorityParameter``1-``0- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.FindPriorityParameter``1(``0)')
   - [FirstPriorityFactByFactType\`\`1(facts,factType,cache)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FirstPriorityFactByFactType``1-System-Collections-Generic-IEnumerable{``0},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.FirstPriorityFactByFactType``1(System.Collections.Generic.IEnumerable{``0},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
 - [PriorityFactParametersCodes](#T-GetcuReone-FactFactory-Priority-Constants-PriorityFactParametersCodes 'GetcuReone.FactFactory.Priority.Constants.PriorityFactParametersCodes')
@@ -31,7 +30,7 @@
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -61,7 +60,7 @@ True - `items` is null or empty
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -91,7 +90,7 @@ True - `items` is null or empty
 
 ##### Summary
 
-True - `items` is null or empty
+True - `items` is null or empty.
 
 ##### Returns
 
@@ -108,29 +107,6 @@ True - `items` is null or empty
 | Name | Description |
 | ---- | ----------- |
 | TItem | Type items. |
-
-<a name='M-ListExtensions-ToReadOnlyCollection``1-System-Collections-Generic-IList{``0}-'></a>
-### ToReadOnlyCollection\`\`1(items) `method`
-
-##### Summary
-
-Convert list to [ReadOnlyCollection\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.ObjectModel.ReadOnlyCollection`1 'System.Collections.ObjectModel.ReadOnlyCollection`1')
-
-##### Returns
-
-Read-only collection.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| items | [System.Collections.Generic.IList{\`\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IList 'System.Collections.Generic.IList{``0}') | Coollection. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TItem | Type item. |
 
 <a name='T-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper'></a>
 ## PriorityFactFactoryHelper `type`
@@ -168,6 +144,26 @@ Adds a priority fact to parameters.
 | TFact | Type fact |
 | TPriority | Type priority fact. |
 
+<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriorityParameter-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact-'></a>
+### CompareByPriorityParameter(x,y) `method`
+
+##### Summary
+
+Compares facts by priority facts in parameters.
+
+##### Returns
+
+1 - `x` fact is greater than the `y`,
+0 - `x` fact is equal than the `y`,
+-1 - `x` fact is less than the `y`.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| x | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Fist fact. |
+| y | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Second fact. |
+
 <a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriority``3-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
 ### CompareByPriority\`\`3(x,y,context) `method`
 
@@ -177,7 +173,9 @@ Compares rules based on priority facts.
 
 ##### Returns
 
-1 - `x` rule is greater than the `y`, 0 - `x` rule is equal than the `y`, -1 - `x` rule is less than the `y`.
+1 - `x` rule is greater than the `y`,
+0 - `x` rule is equal than the `y`,
+-1 - `x` rule is less than the `y`.
 
 ##### Parameters
 
@@ -194,24 +192,6 @@ Compares rules based on priority facts.
 | TFactRule | Type rule. |
 | TWantAction | Type wantAction. |
 | TFactContainer | Type fact container. |
-
-<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriorityParameter-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact-'></a>
-### CompareByPriorityParameter(x,y) `method`
-
-##### Summary
-
-Compares facts by priority facts in parameters.
-
-##### Returns
-
-1 - `x` fact is greater than the `y`, 0 - `x` fact is equal than the `y`, -1 - `x` fact is less than the `y`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| x | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Fist fact. |
-| y | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Second fact. |
 
 <a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FindPriorityParameter``1-``0-'></a>
 ### FindPriorityParameter\`\`1(fact) `method`
