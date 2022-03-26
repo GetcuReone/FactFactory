@@ -546,7 +546,7 @@ Derive `TFactResult` with version.
 
 ##### Returns
 
-
+Derived fact.
 
 ##### Parameters
 

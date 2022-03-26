@@ -32,7 +32,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// </summary>
         /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
-        /// <returns></returns>
+        /// <returns>Derived fact.</returns>
         public virtual TFactResult DeriveFact<TFactResult, TVersion>(TFactContainer container = null)
             where TFactResult : IFact
             where TVersion : IVersionFact

@@ -9,10 +9,6 @@
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
-- [VersionedFactContainer](#T-GetcuReone-FactFactory-Versioned-Entities-VersionedFactContainer 'GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer')
-  - [#ctor()](#M-GetcuReone-FactFactory-Versioned-Entities-VersionedFactContainer-#ctor 'GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor')
-  - [#ctor()](#M-GetcuReone-FactFactory-Versioned-Entities-VersionedFactContainer-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
-  - [#ctor()](#M-GetcuReone-FactFactory-Versioned-Entities-VersionedFactContainer-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean- 'GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)')
 
 <a name='T--ArrayExtensions'></a>
 ## ArrayExtensions `type`
@@ -103,47 +99,3 @@ True - `items` is null or empty.
 | Name | Description |
 | ---- | ----------- |
 | TItem | Type items. |
-
-<a name='T-GetcuReone-FactFactory-Versioned-Entities-VersionedFactContainer'></a>
-## VersionedFactContainer `type`
-
-##### Namespace
-
-GetcuReone.FactFactory.Versioned.Entities
-
-##### Summary
-
-Versioned fact container.
-
-<a name='M-GetcuReone-FactFactory-Versioned-Entities-VersionedFactContainer-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-Constructor.
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='M-GetcuReone-FactFactory-Versioned-Entities-VersionedFactContainer-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='M-GetcuReone-FactFactory-Versioned-Entities-VersionedFactContainer-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.

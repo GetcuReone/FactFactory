@@ -41,23 +41,6 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
             where TFactContainer : IFactContainer;
 
         /// <summary>
-        /// Try build trees for wantActions.
-        /// </summary>
-        /// <typeparam name="TFactRule">Rule type.</typeparam>
-        /// <typeparam name="TWantAction">WantAction type.</typeparam>
-        /// <typeparam name="TFactContainer">Fact container type.</typeparam>
-        /// <typeparam name="TFactRuleCollection">Rule collection type.</typeparam>
-        /// <param name="request">Request.</param>
-        /// <param name="result">Result.</param>
-        /// <returns>Did you manage to build a tree?</returns>
-        [Obsolete("Will be deleted. Logic moved to IFactEngine.DeriveWantAction and IFactEngine.DeriveWantActionAsync methods")]
-        bool TryBuildTrees<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>(BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request, out BuildTreesResult<TFactRule, TWantAction, TFactContainer> result)
-            where TFactRule : IFactRule
-            where TFactRuleCollection : IFactRuleCollection<TFactRule>
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer;
-
-        /// <summary>
         /// List of groups of independent nodes.
         /// </summary>
         /// <typeparam name="TFactRule">Rule type.</typeparam>

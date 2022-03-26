@@ -5,7 +5,7 @@ using FactFactory.VersionedTests.VersionedSingleEntityOperations.Env;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 {
