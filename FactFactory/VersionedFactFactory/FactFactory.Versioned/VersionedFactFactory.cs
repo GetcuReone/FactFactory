@@ -1,10 +1,8 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using System;
+using System.Collections.Generic;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
-using GetcuReone.FactFactory.Versioned.Entities;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Versioned
 {
@@ -21,10 +19,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <summary>
         /// Constructor.
         /// </summary>
-        public VersionedFactFactory() : this(null)
-        {
-
-        }
+        public VersionedFactFactory() : this(null) { }
 
         /// <summary>
         /// Constructor.

@@ -494,48 +494,6 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         }
 
         /// <inheritdoc/>
-        public virtual bool TryBuildTrees<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>(BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request, out BuildTreesResult<TFactRule, TWantAction, TFactContainer> result)
-            where TFactRule : IFactRule
-            where TFactRuleCollection : IFactRuleCollection<TFactRule>
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
-        {
-            result = new BuildTreesResult<TFactRule, TWantAction, TFactContainer>
-            {
-                TreesByActions = new Dictionary<WantActionInfo<TWantAction, TFactContainer>, List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>>(),
-            };
-
-            foreach(var context in request.WantActionContexts)
-            {
-                if (!request.Filters.Exists(filter => context.WantAction.Option.HasFlag(filter)))
-                    continue;
-
-                var requestForAction = new BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer>
-                {
-                    Context = context,
-                    FactRules = request
-                        .FactRules
-                        .FindAll(factRule => request.Filters.Exists(filter => factRule.Option.HasFlag(filter)))
-                        .SortByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction, TFactContainer>(context)),
-                };
-
-                if (TryBuildTreesForWantAction(requestForAction, out var resultForAction))
-                {
-                    result.TreesByActions.Add(resultForAction.WantActionInfo, resultForAction.TreesResult);
-                }
-                else
-                {
-                    if (result.DeriveErrorDetails == null)
-                        result.DeriveErrorDetails = new List<DeriveErrorDetail>();
-
-                    result.DeriveErrorDetails.Add(resultForAction.DeriveErrorDetail);
-                }
-            }
-
-            return result.DeriveErrorDetails == null;
-        }
-
-        /// <inheritdoc/>
         public virtual List<IndependentNodeGroup<TFactRule>> GetIndependentNodeGroups<TFactRule, TWantAction, TFactContainer>(TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeByFactRule)
             where TFactRule : IFactRule
             where TWantAction : IWantAction

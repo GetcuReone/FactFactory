@@ -40,6 +40,7 @@
             - move method FactFactoryBase.GetFactType to ISingleEntityOperations
             - added method IFactRuleCollection.ConvertAll
             - change method signature IBuildConditionFact.Condition
+            - remove VersionedFactContainer. Use FactContainer
         </PackageReleaseNotes>
     </PropertyGroup>
 
