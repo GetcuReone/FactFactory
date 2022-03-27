@@ -11,8 +11,11 @@ namespace GetcuReone.FactFactory.Priority
         where TWantAction : WantActionBase
         where TFactContainer : FactContainerBase
     {
-        /// <inheritdoc/>
-        public override ISingleEntityOperations GetSingleEntityOperations()
+        /// <summary>
+        /// Returns the <see cref="PrioritySingleEntityOperationsFacade"/>.
+        /// </summary>
+        /// <returns>Instance <see cref="PrioritySingleEntityOperationsFacade"/>.</returns>
+        protected override ISingleEntityOperations GetSingleEntityOperations()
         {
             return GetFacade<PrioritySingleEntityOperationsFacade>();
         }

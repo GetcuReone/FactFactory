@@ -7,11 +7,7 @@ namespace GetcuReone.FactFactory.Entities
     /// </summary>
     public class FactParameter : FactParameterBase
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="code"></param>
-        /// <param name="value"></param>
+        /// <inheritdoc/>
         public FactParameter(string code, object value) : base(code, value)
         {
         }

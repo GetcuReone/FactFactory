@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+
+    <!-- Assembly Information-->
+
+    <PropertyGroup>
+        <RootNamespace>GetcuReone.$(MSBuildProjectName)</RootNamespace>
+        <AssemblyName>GetcuReone.$(MSBuildProjectName)</AssemblyName>
+        <MajorVersion>$([MSBuild]::ValueOrDefault('$(majorVersion)', '3'))</MajorVersion>
+        <MinorVersion>$([MSBuild]::ValueOrDefault('$(minorVersion)', '0'))</MinorVersion>
+        <PatchVersion>$([MSBuild]::ValueOrDefault('$(patchVersion)', '0'))</PatchVersion>
+        <PackageVersion>$(majorVersion).$(minorVersion).$(patchVersion)</PackageVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+        <FileVersion>$(majorVersion).$(minorVersion).$(patchVersion).0</FileVersion>
+    </PropertyGroup>
+
+</Project>

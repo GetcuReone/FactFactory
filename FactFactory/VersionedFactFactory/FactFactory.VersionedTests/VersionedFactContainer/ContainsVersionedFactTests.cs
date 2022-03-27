@@ -30,24 +30,6 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
 
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
-        [Description("A fact with a version is contained in the container.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void FactWithVersionContainedContainerTestCase()
-        {
-            GivenCreateContainer()
-                .And("Added versioned fact.", container =>
-                {
-                    container.Add(new FactResult(0).SetVersionParam(new Version1()));
-                    container.Add(new FactResult(0));
-                })
-                .When("Run Contains method", container => 
-                    container.ContainsByVersion<FactResult>(new Version1()))
-                .ThenIsTrue(errorMessage: "Fact not contained")
-                .Run();
-        }
-
-        [TestMethod]
-        [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Container), TestCategory(GetcuReoneTC.Unit)]
         [Description("A fact without a version is not contained in the container.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void FactWithoutVersionNotContainedContainerTestCase()
@@ -59,7 +41,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 })
                 .When("Run Contains method", container => 
                     container.Contains<FactResult>())
-                .ThenIsFalse(errorMessage: "Fact contained")
+                .ThenIsTrue(errorMessage: "Fact not contained")
                 .Run();
         }
     }

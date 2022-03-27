@@ -7,6 +7,8 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Info for WantAction from context.
     /// </summary>
+    /// <typeparam name="TWantAction">WantAction type.</typeparam>
+    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
     public class WantActionInfo<TWantAction, TFactContainer>
         where TWantAction : IWantAction
         where TFactContainer : IFactContainer
@@ -17,13 +19,18 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         public IWantActionContext<TWantAction, TFactContainer> Context { get; set; }
 
         /// <summary>
-        /// List of fact conditions. Successfully completed conditions for WantAction from context.
+        /// List of successfully <see cref="IBuildConditionFact"/>. Successfully completed conditions for WantAction from <see cref="Context"/>.
         /// </summary>
-        public List<IConditionFact> SuccessConditions { get; set; }
+        public List<IBuildConditionFact> BuildSuccessConditions { get; set; }
 
         /// <summary>
-        /// List of fact conditions. Failed conditions for WantAction from context.
+        /// List of failed <see cref="IBuildConditionFact"/>. Failed conditions for WantAction from <see cref="Context"/>.
         /// </summary>
-        public List<IConditionFact> FailedConditions { get; set; }
+        public List<IBuildConditionFact> BuildFailedConditions { get; set; }
+
+        /// <summary>
+        /// List of <see cref="IRuntimeConditionFact"/>.
+        /// </summary>
+        public List<IRuntimeConditionFact> RuntimeConditions { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
-using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.BaseEntities.Context
 {
@@ -11,6 +10,6 @@ namespace GetcuReone.FactFactory.BaseEntities.Context
         where TFactContainer : IFactContainer
     {
         /// <inheritdoc/>
-        public IEnumerable<TFactRule> FactRules { get; set; }
+        public IFactRuleCollection<TFactRule> FactRules { get; set; }
     }
 }

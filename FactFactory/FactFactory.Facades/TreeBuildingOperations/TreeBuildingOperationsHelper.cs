@@ -39,11 +39,12 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
             var nodeInfos = needRules.ConvertAll(rule => new NodeByFactRuleInfo<TFactRule>
             {
-                SuccessConditions = new List<IConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IConditionFact>())),
-                FailedConditions = new List<IConditionFact>(),
+                BuildSuccessConditions = new List<IBuildConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IBuildConditionFact>())),
+                BuildFailedConditions = new List<IBuildConditionFact>(),
+                RuntimeConditions = new List<IRuntimeConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IRuntimeConditionFact>())),
                 Rule = rule,
                 RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
-                CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context).ToList(),
+                CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context),
             });
 
             return nodeInfos.ConvertAll(info =>
@@ -82,7 +83,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 .ToDictionary(finishedNode => finishedNode.Key, finishedNode => finishedNode.Value);
         }
 
-        internal static IEnumerable<TFactRule> GetCompatibleRulesEx<TFactWork, TFactRule, TWantAction, TFactContainer>(this TFactWork target, IEnumerable<TFactRule> rules, IWantActionContext<TWantAction, TFactContainer> context)
+        internal static IFactRuleCollection<TFactRule> GetCompatibleRulesEx<TFactWork, TFactRule, TWantAction, TFactContainer>(this TFactWork target, IFactRuleCollection<TFactRule> rules, IWantActionContext<TWantAction, TFactContainer> context)
             where TFactWork : IFactWork
             where TFactRule : IFactRule
             where TWantAction : IWantAction
@@ -115,16 +116,16 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         }
 
         /// <summary>
-        /// Get nodes by rules.
+        /// Returns nodes by rules.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
-        /// <param name="rules"></param>
-        /// <param name="treeByFactRule"></param>
-        /// <param name="parentNode"></param>
-        /// <returns></returns>
-        public static List<NodeByFactRule<TFactRule>> GetNodesByRules<TFactRule, TWantAction, TFactContainer>(this List<TFactRule> rules, NodeByFactRule<TFactRule> parentNode, TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeByFactRule)
+        /// <typeparam name="TFactRule">FatcRule type.</typeparam>
+        /// <typeparam name="TWantAction">WantAction type.</typeparam>
+        /// <typeparam name="TFactContainer">FactContainer type.</typeparam>
+        /// <param name="rules">List of rule.</param>
+        /// <param name="treeByFactRule">Rule tree.</param>
+        /// <param name="parentNode">Parent node.</param>
+        /// <returns>Node list.</returns>
+        public static List<NodeByFactRule<TFactRule>> GetNodesByRules<TFactRule, TWantAction, TFactContainer>(this IEnumerable<TFactRule> rules, NodeByFactRule<TFactRule> parentNode, TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeByFactRule)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
@@ -140,10 +141,11 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     nodeInfo = new NodeByFactRuleInfo<TFactRule>
                     {
                         Rule = rule,
-                        SuccessConditions = new List<IConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IConditionFact>())),
-                        FailedConditions = new List<IConditionFact>(),
+                        BuildSuccessConditions = new List<IBuildConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IBuildConditionFact>())),
+                        BuildFailedConditions = new List<IBuildConditionFact>(),
+                        RuntimeConditions = new List<IRuntimeConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IRuntimeConditionFact>())),
                         RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
-                        CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context).ToList(),
+                        CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context),
                     };
 
                 result.Add(new NodeByFactRule<TFactRule>

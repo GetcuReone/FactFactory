@@ -8,10 +8,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
     /// </summary>
     public abstract class DateTimeVersionBase : VersionBase<DateTime>
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="version">version</param>
+        /// <inheritdoc/>
         protected DateTimeVersionBase(DateTime version) : base(version)
         {
         }

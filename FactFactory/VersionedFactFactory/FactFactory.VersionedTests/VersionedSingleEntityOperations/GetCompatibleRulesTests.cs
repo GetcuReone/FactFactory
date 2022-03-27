@@ -61,8 +61,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                 .AndAreNotEqual(Collection)
                 .And("Check result.", collection => 
                 {
-                    collection = collection.ToList();
-                    Assert.AreEqual(1, collection.Count());
+                    Assert.AreEqual(1, collection.Count);
                     return collection.First();
                 })
                 .AndAreEqual(Collection[2])
@@ -86,8 +85,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                 .AndAreNotEqual(Collection)
                 .And("Check result.", collection =>
                 {
-                    collection = collection.ToList();
-                    Assert.AreEqual(2, collection.Count());
+                    Assert.AreEqual(2, collection.Count);
                     return collection.Last();
                 })
                 .AndAreEqual(Collection[3])
@@ -111,8 +109,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                 .AndAreNotEqual(Collection)
                 .And("Check result.", collection =>
                 {
-                    collection = collection.ToList();
-                    Assert.AreEqual(1, collection.Count());
+                    Assert.AreEqual(1, collection.Count);
                     return collection.First();
                 })
                 .AndAreEqual(Collection[2])
@@ -136,8 +133,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
                 .AndAreNotEqual(Collection)
                 .And("Check result.", collection =>
                 {
-                    collection = collection.ToList();
-                    Assert.AreEqual(2, collection.Count());
+                    Assert.AreEqual(2, collection.Count);
                     return collection.Last();
                 })
                 .AndAreEqual(Collection[3])

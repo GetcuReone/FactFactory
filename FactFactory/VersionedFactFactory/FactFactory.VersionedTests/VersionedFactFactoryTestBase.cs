@@ -3,7 +3,7 @@ using FactFactory.VersionedTests.CommonFacts;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
 namespace FactFactory.VersionedTests

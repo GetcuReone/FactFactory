@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces.Operations;
+using System;
 using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Interfaces
@@ -38,23 +39,5 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <param name="wantAction">WantAction.</param>
         /// <param name="container">Fact container.</param>
         void WantFacts(TWantAction wantAction, TFactContainer container);
-
-        /// <summary>
-        /// Get <see cref="ITreeBuildingOperations"/>.
-        /// </summary>
-        /// <returns></returns>
-        ITreeBuildingOperations GetTreeBuildingOperations();
-
-        /// <summary>
-        /// Get <see cref="ISingleEntityOperations"/>.
-        /// </summary>
-        /// <returns></returns>
-        ISingleEntityOperations GetSingleEntityOperations();
-
-        /// <summary>
-        /// Get <see cref="IFactTypeCache"/>.
-        /// </summary>
-        /// <returns></returns>
-        IFactTypeCache GetFactTypeCache();
     }
 }

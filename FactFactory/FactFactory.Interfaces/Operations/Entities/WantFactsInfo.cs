@@ -3,8 +3,8 @@
     /// <summary>
     /// Information about 'WantFacts'.
     /// </summary>
-    /// <typeparam name="TWantAction"></typeparam>
-    /// <typeparam name="TFactContainer"></typeparam>
+    /// <typeparam name="TWantAction">WantAction type.</typeparam>
+    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
     public class WantFactsInfo<TWantAction, TFactContainer>
         where TWantAction : IWantAction
         where TFactContainer : IFactContainer

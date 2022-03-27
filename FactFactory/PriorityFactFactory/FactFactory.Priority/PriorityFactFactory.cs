@@ -3,7 +3,6 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Priority
 {
@@ -32,18 +31,6 @@ namespace GetcuReone.FactFactory.Priority
         {
             _getDefaultFactsFunc = getDefaultFactsFunc;
             Rules = new FactRuleCollection();
-        }
-
-        /// <inheritdoc/>
-        protected override WantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option)
-        {
-            return new WantAction(wantAction, factTypes, option);
-        }
-
-        /// <inheritdoc/>
-        protected override WantAction CreateWantAction(Func<IEnumerable<IFact>, ValueTask> wantAction, List<IFactType> factTypes, FactWorkOption option)
-        {
-            return new WantAction(wantAction, factTypes, option);
         }
 
         /// <inheritdoc/>

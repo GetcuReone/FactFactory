@@ -5,7 +5,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Node.
     /// </summary>
-    /// <typeparam name="TFactRule"></typeparam>
+    /// <typeparam name="TFactRule">Rule type.</typeparam>
     public class NodeByFactRule<TFactRule>
         where TFactRule : IFactRule
     {

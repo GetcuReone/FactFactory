@@ -1,13 +1,13 @@
 ﻿using FactFactory.TestsCommon;
+using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Bug73;
 using FactFactory.VersionedTests.VersionedFactFactory.Bug73.Entities;
-using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
-using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {

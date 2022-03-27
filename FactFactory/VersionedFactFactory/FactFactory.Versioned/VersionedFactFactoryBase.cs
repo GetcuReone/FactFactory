@@ -2,7 +2,6 @@
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
-using GetcuReone.FactFactory.Versioned.BaseEntities;
 using GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
@@ -14,13 +13,16 @@ namespace GetcuReone.FactFactory.Versioned
     /// Base class for versioned fact factory.
     /// </summary>
     public abstract class VersionedFactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : FactFactoryBase<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
-        where TFactContainer : VersionedFactContainerBase
+        where TFactContainer : FactContainerBase
         where TFactRule : FactRuleBase
         where TFactRuleCollection : FactRuleCollectionBase<TFactRule>
         where TWantAction : WantActionBase
     {
-        /// <inheritdoc/>
-        public override ISingleEntityOperations GetSingleEntityOperations()
+        /// <summary>
+        /// Returns the <see cref="VersionedSingleEntityOperationsFacade"/>.
+        /// </summary>
+        /// <returns>Instance <see cref="VersionedSingleEntityOperationsFacade"/>.</returns>
+        protected override ISingleEntityOperations GetSingleEntityOperations()
         {
             return GetFacade<VersionedSingleEntityOperationsFacade>();
         }
@@ -30,20 +32,25 @@ namespace GetcuReone.FactFactory.Versioned
         /// </summary>
         /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
-        /// <returns></returns>
+        /// <returns>Derived fact.</returns>
         public virtual TFactResult DeriveFact<TFactResult, TVersion>(TFactContainer container = null)
             where TFactResult : IFact
             where TVersion : IVersionFact
         {
             TFactResult fact = default;
 
+            var singleOperations = GetSingleEntityOperationsOnce();
             var previousWantFacts = new List<WantFactsInfo<TWantAction, TFactContainer>>(WantFactsInfos);
+            var inputFacts = new List<IFactType> 
+            { 
+                singleOperations.GetFactType<TFactResult>(),
+                singleOperations.GetFactType<TVersion>()
+            };
+            
             WantFactsInfos.Clear();
 
-            var inputFacts = new List<IFactType> { GetFactType<TFactResult>(), GetFactType<TVersion>() };
-
             WantFacts(
-                CreateWantAction(
+                singleOperations.CreateWantAction<TWantAction>(
                     facts => fact = facts.GetFact<TFactResult>(),
                     inputFacts,
                     FactWorkOption.CanExecuteSync),
@@ -68,13 +75,18 @@ namespace GetcuReone.FactFactory.Versioned
         {
             TFactResult fact = default;
 
+            var singleOperations = GetSingleEntityOperationsOnce();
             var previousWantFacts = new List<WantFactsInfo<TWantAction, TFactContainer>>(WantFactsInfos);
+            var inputFacts = new List<IFactType> 
+            { 
+                singleOperations.GetFactType<TFactResult>(), 
+                singleOperations.GetFactType<TVersion>()
+            };
+            
             WantFactsInfos.Clear();
 
-            var inputFacts = new List<IFactType> { GetFactType<TFactResult>(), GetFactType<TVersion>() };
-
             WantFacts(
-                CreateWantAction(
+                singleOperations.CreateWantAction<TWantAction>(
                     facts => fact = facts.GetFact<TFactResult>(),
                     inputFacts,
                     FactWorkOption.CanExecuteSync),

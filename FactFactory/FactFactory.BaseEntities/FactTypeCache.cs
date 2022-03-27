@@ -18,14 +18,20 @@ namespace GetcuReone.FactFactory.BaseEntities
             if (_cache.ContainsKey(fact))
                 return _cache[fact];
 
-            if (_cache.Count > 100)
-                _cache.Remove(_cache.Keys.First());
+            if (_cache.Count > 64)
+                lock(_cache)
+                    if (_cache.Count > 64)
+                        _cache.Remove(_cache.Keys.First());
 
-            IFactType factType = fact.GetFactType();
-            _cache.Add(fact, factType);
-            return factType;
+            lock(fact)
+            {
+                if (_cache.ContainsKey(fact))
+                    return _cache[fact];
 
-            //return fact.GetFactType();
+                IFactType factType = fact.GetFactType();
+                _cache.Add(fact, factType);
+                return factType;
+            }
         }
     }
 }

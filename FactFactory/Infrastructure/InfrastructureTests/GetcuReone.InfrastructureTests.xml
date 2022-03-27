@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GetcuReone.InfrastructureTests</name>
+    </assembly>
+    <members>
+        <member name="M:ArrayExtensions.IsNullOrEmpty``1(``0[])">
+            <summary>
+            True - <paramref name="items"/> is null or empty.
+            </summary>
+            <typeparam name="TItem">Type items.</typeparam>
+            <param name="items">Collection.</param>
+            <returns><paramref name="items"/> is empty or null?</returns>
+        </member>
+        <member name="M:EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            True - <paramref name="items"/> is null or empty.
+            </summary>
+            <typeparam name="TItem">Type items.</typeparam>
+            <param name="items">Collection.</param>
+            <returns><paramref name="items"/> is empty or null?</returns>
+        </member>
+        <member name="M:ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})">
+            <summary>
+            True - <paramref name="items"/> is null or empty.
+            </summary>
+            <typeparam name="TItem">Type items.</typeparam>
+            <param name="items">Collection.</param>
+            <returns><paramref name="items"/> is empty or null?</returns>
+        </member>
+    </members>
+</doc>

@@ -143,7 +143,7 @@ namespace MovieServiceExample
         }
 
         [TestMethod]
-        [Description("Calculate the cost of a 'My Hero Academia: Heroes Rising' movie for a 'John Cornero' user.")]
+        [Description("Async calculate the cost of a 'My Hero Academia: Heroes Rising' movie for a 'John Cornero' user.")]
         public async Task CalculatingCostBuyingMovie_WithAsyncRule()
         {
             // We have information about the user's mail and the identifier of the film, what he wants to buy.

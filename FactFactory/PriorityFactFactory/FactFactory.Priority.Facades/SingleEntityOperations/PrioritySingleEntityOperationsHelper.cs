@@ -14,7 +14,7 @@ namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
         {
             var priorityType = factWork.InputFactTypes?.FirstOrDefault(type => type.IsFactType<IPriorityFact>());
             return priorityType != null
-                ? context.Container.FirstPriorityByFactType(priorityType, context.Cache)
+                ? context.Container.FirstPriorityFactByFactType(priorityType, context.Cache)
                 : null;
         }
     }
