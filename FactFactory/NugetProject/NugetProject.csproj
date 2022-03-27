@@ -41,6 +41,7 @@
             - added method IFactRuleCollection.ConvertAll
             - change method signature IBuildConditionFact.Condition
             - remove VersionedFactContainer. Use FactContainer
+            - Made the fact tap cache thread-safe
         </PackageReleaseNotes>
     </PropertyGroup>
 
