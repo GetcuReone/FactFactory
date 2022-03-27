@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Contains fact type information.
     /// </summary>
-    /// <typeparam name="TFact"></typeparam>
+    /// <typeparam name="TFact">Fact type.</typeparam>
     public abstract class FactTypeBase<TFact> : IFactType
         where TFact : IFact
     {
@@ -21,9 +21,24 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             return factInfo is FactTypeBase<TFact>;
         }
-
+        
         /// <inheritdoc/>
-        public virtual TFactResult CreateConditionFact<TFactResult>() where TFactResult : IConditionFact
+        public virtual TFactResult CreateBuildConditionFact<TFactResult>() where TFactResult : IBuildConditionFact
+        {
+            var type = typeof(TFact);
+            var resultType = typeof(TFactResult);
+
+            if (!resultType.IsAssignableFrom(type))
+                throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} does not implement {resultType.FullName} type.");
+            else if (type.GetConstructor(Type.EmptyTypes) == null)
+                throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} doesn't have a default constructor.");
+
+
+            return (TFactResult)Activator.CreateInstance(type, false);
+        }
+        
+        /// <inheritdoc/>
+        public virtual TFactResult CreateRuntimeConditionFact<TFactResult>() where TFactResult : IRuntimeConditionFact
         {
             var type = typeof(TFact);
             var resultType = typeof(TFactResult);

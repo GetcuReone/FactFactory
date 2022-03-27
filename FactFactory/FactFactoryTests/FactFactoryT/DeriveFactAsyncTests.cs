@@ -2,7 +2,7 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.SpecialFacts;
+using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
@@ -17,7 +17,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Rule run asynchronously.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        //[Timeout(Timeouts.Second.One)]
         public async Task RunDeriveFactAsyncTestCase()
         {
             const int expectedValue = 16;
@@ -27,11 +27,12 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     async () =>
                     {
-                        await Task.Delay(Timeouts.Millisecond.Hundred);
+                        await Task.Delay(Timeouts.Millisecond.Hundred).ConfigureAwait(false);
                         return new Input16Fact(expectedValue);
                     }
                 })
-                .WhenAsync("Derive.", factory => factory.DeriveFactAsync<Input16Fact>())
+                .WhenAsync("Derive.", factory =>
+                    factory.DeriveFactAsync<Input16Fact>())
                 .ThenFactValueEquals(expectedValue)
                 .RunAsync();
         }
@@ -39,7 +40,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Running asynchronous rules in parallel with facts and conditions.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
+        [Timeout(Timeouts.Second.One)]
         public async Task RunningAsynchronousRulesInParallelWithFactConditionsTestCase()
         {
             const int expectedValue = 16;
@@ -52,14 +53,14 @@ namespace FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     {
-                        async (Input1Fact fact, Contained<Input1Fact> _) =>
+                        async (Input1Fact fact, BuildContained<Input1Fact> _) =>
                         {
                             return await Task.Run(() => new Input6Fact(fact * 6));
                         },
                         FactWorkOption.CanExecuteAsync | FactWorkOption.CanExcecuteParallel
                     },
                     {
-                        async (Input1Fact fact, Contained<Input1Fact> _) =>
+                        async (Input1Fact fact, BuildContained<Input1Fact> _) =>
                         {
                             return await Task.Run(() => new Input10Fact(fact * 10));
                         },

@@ -29,9 +29,10 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
             Rule = GetFactRule((Priority1 p, Fact1 f) => new FactResult(f.Value + p));
             NodeInfo = new NodeByFactRuleInfo<FactRule>
             {
-                FailedConditions = new List<IConditionFact>(),
+                BuildFailedConditions = new List<IBuildConditionFact>(),
                 Rule = Rule,
-                SuccessConditions = new List<IConditionFact>(),
+                BuildSuccessConditions = new List<IBuildConditionFact>(),
+                RuntimeConditions = new List<IRuntimeConditionFact>(),
             };
             Node = new NodeByFactRule<FactRule>
             {
@@ -66,8 +67,8 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
                 .AndIsTrue(fact => fact is FactResult, 
                     errorMessage: "result must have type FactResult.")
                 .AndAreEqual(fact => fact.Value, expectedValue)
-                .AndIsTrue(fact => fact.GetPriorityOrNull() != null)
-                .AndIsTrue(fact => fact.GetPriorityOrNull() is IPriorityFact)
+                .AndIsTrue(fact => fact.FindPriorityParameter() != null)
+                .AndIsTrue(fact => fact.FindPriorityParameter() is IPriorityFact)
                 .Run();
         }
     }

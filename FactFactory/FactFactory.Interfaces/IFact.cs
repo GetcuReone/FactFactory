@@ -1,4 +1,6 @@
-﻿namespace GetcuReone.FactFactory.Interfaces
+﻿using System.Collections.Generic;
+
+namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Fact interface.
@@ -21,7 +23,13 @@
         /// Get parameter by code.
         /// </summary>
         /// <param name="parameterCode">Parameter code.</param>
-        /// <returns></returns>
+        /// <returns>Fact parameter.</returns>
         IFactParameter GetParameter(string parameterCode);
+
+        /// <summary>
+        /// Return parameters of a fact.
+        /// </summary>
+        /// <returns>Fact parameters.</returns>
+        IReadOnlyCollection<IFactParameter> GetParameters();
     }
 }

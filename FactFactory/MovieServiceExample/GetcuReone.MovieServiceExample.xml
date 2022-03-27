@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GetcuReone.MovieServiceExample</name>
+    </assembly>
+    <members>
+        <member name="T:MovieServiceExample.Facts.MovieDiscountFact">
+            <summary>
+            The fact stores information about the size of the discount
+            </summary>
+        </member>
+        <member name="T:MovieServiceExample.Facts.MovieFact">
+            <summary>
+            The fact stores information about the movie
+            </summary>
+        </member>
+        <member name="T:MovieServiceExample.Facts.MovieIdFact">
+            <summary>
+            Fact stores movie id information
+            </summary>
+        </member>
+        <member name="T:MovieServiceExample.Facts.MoviePurchasePriceFact">
+            <summary>
+            The fact stores information about the cost of buying a movie for the user
+            </summary>
+        </member>
+        <member name="T:MovieServiceExample.Facts.MoviePurchasePriceFactAsync">
+            <summary>
+            The fact stores information about the cost of buying a movie for the user
+            </summary>
+        </member>
+        <member name="T:MovieServiceExample.Facts.UserEmailFact">
+            <summary>
+            Fact stores user email information
+            </summary>
+        </member>
+        <member name="T:MovieServiceExample.Facts.UserFact">
+            <summary>
+            Fact stores user information
+            </summary>
+        </member>
+        <member name="M:ArrayExtensions.IsNullOrEmpty``1(``0[])">
+            <summary>
+            True - <paramref name="items"/> is null or empty.
+            </summary>
+            <typeparam name="TItem">Type items.</typeparam>
+            <param name="items">Collection.</param>
+            <returns><paramref name="items"/> is empty or null?</returns>
+        </member>
+        <member name="M:EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            True - <paramref name="items"/> is null or empty.
+            </summary>
+            <typeparam name="TItem">Type items.</typeparam>
+            <param name="items">Collection.</param>
+            <returns><paramref name="items"/> is empty or null?</returns>
+        </member>
+        <member name="M:ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})">
+            <summary>
+            True - <paramref name="items"/> is null or empty.
+            </summary>
+            <typeparam name="TItem">Type items.</typeparam>
+            <param name="items">Collection.</param>
+            <returns><paramref name="items"/> is empty or null?</returns>
+        </member>
+    </members>
+</doc>

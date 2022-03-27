@@ -53,7 +53,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddTwoIdenticalVersionedFactsContainerTestCase()
         {
-            string expectedReason = $"The fact container already contains {typeof(Version1).Name} type of fact.";
+            string expectedReason = $"The fact container already contains '{typeof(Version1).Name}' fact.";
 
             GivenCreateContainer()
                 .And("first addition of versioned fact.", container => 
@@ -70,7 +70,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddTwoFactsWithIdenticalVersionsContainerTestCase()
         {
-            string expectedReason = $"The container already contains fact type {GetFactType<FactResult>().FactName} with version equal to version {GetFactType<Version1>().FactName}.";
+            string expectedReason = $"The fact container already contains '{GetFactType<FactResult>().FactName}' fact.";
 
             GivenCreateContainer()
                 .And("first addition of versioned fact.", container => 
@@ -98,9 +98,9 @@ namespace FactFactory.VersionedTests.VersionedFactContainer
                 .AndIsTrue(container =>
                     container.All(fact => fact is FactResult), errorMessage: "Only one type of fact was expected.")
                 .AndIsTrue(container => 
-                    container.First().GetVersionOrNull() is Version1, errorMessage: "FactResult with 1 version not contained in container.")
+                    container.First().FindVersionParameter() is Version1, errorMessage: "FactResult with 1 version not contained in container.")
                 .AndIsTrue(container =>
-                    container.Last().GetVersionOrNull() is Version2, errorMessage: "FactResult with 2 version not contained in container.")
+                    container.Last().FindVersionParameter() is Version2, errorMessage: "FactResult with 2 version not contained in container.")
                 .Run();
         }
     }

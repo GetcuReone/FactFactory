@@ -6,9 +6,9 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Request for <see cref="ITreeBuildingOperations.TryBuildTreeForFactInfo{TFactRule, TWantAction, TFactContainer}(BuildTreeForFactInfoRequest{TFactRule, TWantAction, TFactContainer}, out TreeByFactRule{TFactRule, TWantAction, TFactContainer}, out List{Exceptions.Entities.DeriveFactErrorDetail})"/>.
     /// </summary>
-    /// <typeparam name="TFactRule"></typeparam>
-    /// <typeparam name="TWantAction"></typeparam>
-    /// <typeparam name="TFactContainer"></typeparam>
+    /// <typeparam name="TFactRule">Rule type.</typeparam>
+    /// <typeparam name="TWantAction">WantAction type.</typeparam>
+    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
     public class BuildTreeForFactInfoRequest<TFactRule, TWantAction, TFactContainer>
         where TFactRule : IFactRule
         where TWantAction : IWantAction

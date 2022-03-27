@@ -14,9 +14,7 @@ namespace GetcuReone.FactFactory
     {
         private readonly Func<IWantActionContext<WantAction, FactContainer>, IEnumerable<IFact>> _getDefaultFactsFunc;
 
-        /// <summary>
-        /// Collection of rules for derive facts
-        /// </summary>
+        /// <inheritdoc/>
         public override FactRuleCollection Rules { get; }
 
         /// <summary>
@@ -46,18 +44,6 @@ namespace GetcuReone.FactFactory
         protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext<WantAction, FactContainer> context)
         {
             return _getDefaultFactsFunc?.Invoke(context);
-        }
-
-        /// <inheritdoc/>
-        protected override WantAction CreateWantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option)
-        {
-            return new WantAction(wantAction, factTypes, option);
-        }
-
-        /// <inheritdoc/>
-        protected override WantAction CreateWantAction(Func<IEnumerable<IFact>, ValueTask> wantAction, List<IFactType> factTypes, FactWorkOption option)
-        {
-            return new WantAction(wantAction, factTypes, option);
         }
     }
 }

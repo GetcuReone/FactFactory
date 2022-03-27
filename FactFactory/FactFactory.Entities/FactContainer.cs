@@ -14,17 +14,10 @@ namespace GetcuReone.FactFactory.Entities
         /// </summary>
         public FactContainer() { }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="facts">An array of facts to add to the container.</param>
+        /// <inheritdoc/>
         public FactContainer(IEnumerable<IFact> facts) : base(facts) { }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="facts">An array of facts to add to the container.</param>
-        /// <param name="isReadOnly"></param>
+        /// <inheritdoc/>
         public FactContainer(IEnumerable<IFact> facts, bool isReadOnly) : base(facts, isReadOnly)
         {
         }

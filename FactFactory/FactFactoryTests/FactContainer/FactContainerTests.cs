@@ -26,13 +26,13 @@ namespace FactFactoryTests.FactContainer
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void AddAnExistingFactTestCase()
         {
-            string expectedReason = $"The fact container already contains {GetFactType<IntFact>().FactName} type of fact.";
+            string expectedReason = $"The fact container already contains '{GetFactType<IntFact>().FactName}' fact.";
 
             GivenCreateContainer()
                 .And("Add fact.", container => container.Add(new IntFact(0)))
                 .When("Add an existing fact.", container => 
                     ExpectedFactFactoryException(() => container.Add(new IntFact(0))))
-                .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason)
+                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason)
                 .Run();
         }
 

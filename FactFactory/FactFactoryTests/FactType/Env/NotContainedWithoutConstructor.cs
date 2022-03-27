@@ -1,20 +1,19 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using GetcuReone.FactFactory.SpecialFacts;
+using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using System;
-using System.Collections.Generic;
 
 namespace FactFactoryTests.FactType.Env
 {
-    internal class NotContainedWithoutConstructor : ConditionFactBase, IConditionFact
+    internal class NotContainedWithoutConstructor : BuildConditionFactBase, IBuildConditionFact
     {
         private NotContainedWithoutConstructor()
         {
 
         }
 
-        public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
+        public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context, Func<IWantActionContext<TWantAction, TFactContainer>, IFactRuleCollection<TFactRule>> getCompatibleRules)
         {
             throw new NotImplementedException();
         }

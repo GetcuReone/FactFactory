@@ -7,7 +7,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Independent node group.
     /// </summary>
-    /// <typeparam name="TFactRule"></typeparam>
+    /// <typeparam name="TFactRule">Rule type.</typeparam>
     public class IndependentNodeGroup<TFactRule> : List<NodeByFactRule<TFactRule>>
         where TFactRule : IFactRule
     {
@@ -47,7 +47,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
                     if (inputType.EqualsFactType(rule.OutputFactType))
                         return false;
 
-                    if (rule.InputFactTypes.Any(type => type.EqualsFactType(inputType)) && inputType.IsFactType<IConditionFact>())
+                    if (rule.InputFactTypes.Any(type => type.EqualsFactType(inputType)) && inputType.IsFactType<IBuildConditionFact>())
                         return false;
                 }
             }

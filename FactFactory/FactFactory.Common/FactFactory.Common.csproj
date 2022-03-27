@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\.buildTools\GetcuReone.Lib.props" />
+    <Import Project="..\.build-props\getcureone-library.props" />
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <RootNamespace>GetcuReone.FactFactory</RootNamespace>
     </PropertyGroup>
+
 
     <ItemGroup>
       <ProjectReference Include="..\FactFactory.Interfaces\FactFactory.Interfaces.csproj" />

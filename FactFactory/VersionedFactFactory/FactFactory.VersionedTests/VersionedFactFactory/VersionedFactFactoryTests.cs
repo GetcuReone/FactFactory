@@ -1,14 +1,13 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
-using FactFactory.VersionedTests.VersionedFactFactory.Helpers;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Priority;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
-using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
@@ -277,8 +276,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             const long expectedValue = 1;
             var container = new Container
             {
-                new FactResult(expectedValue).SetPriority(new Priority1()).SetVersion(new Version1()),
-                new FactResult(expectedValue * 2).SetVersion(new Version2())
+                new FactResult(expectedValue).AddPriorityParameter(new Priority1()).AddVerionParameter(new Version1()),
+                new FactResult(expectedValue * 2).AddVerionParameter(new Version2())
             };
 
             GivenCreateVersionedFactFactory()
@@ -317,8 +316,8 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
             const long expectedValue = 1;
             var container = new Container
             {
-                new FactResult(expectedValue).SetVersion(new Version1()),
-                new FactResult(expectedValue * 2).SetCalculateByRule().SetVersion(new Version2())
+                new FactResult(expectedValue).AddVerionParameter(new Version1()),
+                new FactResult(expectedValue * 2).SetCalculateByRule().AddVerionParameter(new Version2())
             };
 
             GivenCreateVersionedFactFactory()

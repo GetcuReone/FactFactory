@@ -27,22 +27,22 @@
         public static class Objects
         {
             /// <summary>
-            /// Fact rule <see cref="GetcuReone.FactFactory.Interfaces.IFactRule{TFact}"/>.
+            /// Fact rule <see cref="GetcuReone.FactFactory.Interfaces.IFactRule"/>.
             /// </summary>
             public const string Rule = "rule_test";
 
             /// <summary>
-            /// Fact container <see cref="GetcuReone.FactFactory.Interfaces.IFactContainer{TFact}"/>.
+            /// Fact container <see cref="GetcuReone.FactFactory.Interfaces.IFactContainer"/>.
             /// </summary>
             public const string Container = "container_test";
 
             /// <summary>
-            /// Desired action <see cref="GetcuReone.FactFactory.Interfaces.IWantAction{TFact}"/>.
+            /// Desired action <see cref="GetcuReone.FactFactory.Interfaces.IWantAction"/>.
             /// </summary>
             public const string WantAction = "want_action_test";
 
             /// <summary>
-            /// Fact factory <see cref="GetcuReone.FactFactory.Interfaces.IFactFactory{TFact, TFactContainer, TFactRule, TFactRuleCollection, TWantAction}"/>.
+            /// Fact factory <see cref="GetcuReone.FactFactory.Interfaces.IFactFactory{TFactRule, TFactRuleCollection, TWantAction, TFactContainer}"/>.
             /// </summary>
             public const string Factory = "factory_test";
 
@@ -52,24 +52,24 @@
             public const string RuleCollection = "rule_collection_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.IContainedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildContained{TFact}"/>.
             /// </summary>
-            public const string Contained = "contained_test";
+            public const string BuildContained = "build_contained_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.INotContainedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildNotContained{TFact}"/>.
             /// </summary>
-            public const string NotContained = "not_contained_test";
+            public const string BuildNotContained = "build_not_contained_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.ICannotDerivedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildCannotDerived{TFact}"/>.
             /// </summary>
-            public const string CannotDerived = "cannot_derived_test";
+            public const string BuildCannotDerived = "build_cannot_derived_test";
 
             /// <summary>
-            /// <see cref="GetcuReone.FactFactory.Interfaces.SpecialFacts.ICanDerivedFact"/>.
+            /// <see cref="GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildCanDerived{TFact}"/>.
             /// </summary>
-            public const string CanDerived = "can_derived_test";
+            public const string BuildCanDerived = "build_can_derived_test";
 
             /// <summary>
             /// <see cref="GetcuReone.FactFactory.Interfaces.IFact"/>.

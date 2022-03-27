@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace FactFactoryTests.FactType.Env
 {
-    internal class ConditionWithoutConstructor : IFact, IConditionFact
+    internal class ConditionWithoutConstructor : IFact, IBuildConditionFact
     {
         private ConditionWithoutConstructor()
         {
@@ -30,11 +30,16 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IEnumerable<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
+        public bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context, Func<IWantActionContext<TWantAction, TFactContainer>, IFactRuleCollection<TFactRule>> getCompatibleRules)
             where TFactWork : IFactWork
             where TFactRule : IFactRule
             where TWantAction : IWantAction
             where TFactContainer : IFactContainer
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool EqualsInfo(ISpecialFact specialFact)
         {
             throw new NotImplementedException();
         }
@@ -45,6 +50,11 @@ namespace FactFactoryTests.FactType.Env
         }
 
         public IFactParameter GetParameter(string parameterCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IReadOnlyCollection<IFactParameter> GetParameters()
         {
             throw new NotImplementedException();
         }

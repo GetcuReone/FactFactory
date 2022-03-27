@@ -1,32 +1,48 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\.buildTools\GetcuReone.Common.props" />
+    <Import Project="..\.build-props\getcureone-nuget.props" />
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
 
         <PackageId>GetcuReone.FactFactory</PackageId>
-        <Product>FactFactory</Product>
         <Description>My implementation of a machine that can derive facts from other facts</Description>
-        <RepositoryUrl>https://github.com/GetcuReone/FactFactory.git</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
         <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
-            Changes:
-            - changed assembly name
+            Changes (4.0.0):
+            - fixed dispose in FactContainerWriter
+            - corrected the props in the solution
+
+            - IConditionFact renamed to IBuildConditionFact
+            - fact ConditionFactBase renamed to BuildConditionFactBase
+            - fact CanDerived renamed to BuildCanDerived
+            - fact CannotDerived renamed to BuildCannotDerived
+            - fact Contained renamed to BuildContained
+            - fact NotContained renamed to BuildNotContained
+
+            - added fact IRuntimeConditionFact
+
+            - IFactType.CreateConditionFact renamed to IFactType.CreateBuildConditionFact
+            - added method IFactType.CreateRuntimeConditionFact
+
+            - renamed property WantActionInfo.SuccessConditions to WantActionInfo.BuildSuccessConditions
+            - renamed property WantActionInfo.FailedConditions to WantActionInfo.BuildFailedConditions
+            - added property WantActionInfo.RuntimeConditions
+
+            - renamed property NodeByFactRuleInfo.SuccessConditions to NodeByFactRuleInfo.BuildSuccessConditions
+            - renamed property NodeByFactRuleInfo.FailedConditions to NodeByFactRuleInfo.FailedConditions
+            - added property NodeByFactRuleInfo.RuntimeConditions
+
+            - added extensions FactTypeExtensions
+            - added error code RuntimeCondition
+            - move method FactFactoryBase.CreateWantAction to ISingleEntityOperations
+            - FactFactoryBase is no longer inherited from IFactTypeCreation
+            - move method FactFactoryBase.GetFactType to ISingleEntityOperations
+            - added method IFactRuleCollection.ConvertAll
+            - change method signature IBuildConditionFact.Condition
+            - remove VersionedFactContainer. Use FactContainer
+            - Made the fact tap cache thread-safe
         </PackageReleaseNotes>
-        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>
-        <Copyright>Copyright © 2020 $(Authors)</Copyright>
-        <NeutralLanguage>en-US</NeutralLanguage>
-        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
-        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -138,11 +154,5 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
-
-    <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
-        <ItemGroup>
-            <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'all'))" />
-        </ItemGroup>
-    </Target>
 
 </Project>

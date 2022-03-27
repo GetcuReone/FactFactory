@@ -18,30 +18,14 @@ namespace GetcuReone.FactFactory.Entities
         {
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="factRules"></param>
+        /// <inheritdoc/>
         public FactRuleCollection(IEnumerable<FactRule> factRules) : base(factRules)
         {
         }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="factRules"></param>
-        /// <param name="isReadOnly"></param>
+        /// <inheritdoc/>
         public FactRuleCollection(IEnumerable<FactRule> factRules, bool isReadOnly) : base(factRules, isReadOnly)
         {
-        }
-
-        /// <summary>
-        /// <see cref="FactRuleCollectionBase{TFactRule}"/> copy method.
-        /// </summary>
-        /// <returns>Copied <see cref="FactRuleCollection"/>.</returns>
-        public override IFactRuleCollection<FactRule> Copy()
-        {
-            return new FactRuleCollection(this, IsReadOnly);
         }
 
         /// <inheritdoc/>
@@ -54,6 +38,12 @@ namespace GetcuReone.FactFactory.Entities
         protected override FactRule CreateFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
         {
             return new FactRule(func, inputFactTypes, outputFactType, option);
+        }
+
+        /// <inheritdoc/>
+        protected override IFactRuleCollection<FactRule> Empty()
+        {
+            return new FactRuleCollection(null, IsReadOnly);
         }
     }
 }

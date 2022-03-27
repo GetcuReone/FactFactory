@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+
+    <!-- Assembly signing settings-->
+
+    <PropertyGroup>
+        <SnkFilePath>$([MSBuild]::ValueOrDefault('$(snkFilePath)', '$(MSBuildThisFileDirectory)\..\..\..\..\..\..\GetcuReone.snk'))</SnkFilePath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
+        <DelaySign>false</DelaySign>
+    </PropertyGroup>
+
+</Project>

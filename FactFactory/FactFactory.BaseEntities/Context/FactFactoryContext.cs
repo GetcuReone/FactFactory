@@ -16,5 +16,8 @@ namespace GetcuReone.FactFactory.BaseEntities.Context
 
         /// <inheritdoc/>
         public ITreeBuildingOperations TreeBuilding { get; set; }
+
+        /// <inheritdoc/>
+        public IFactEngine Engine { get; set; }
     }
 }

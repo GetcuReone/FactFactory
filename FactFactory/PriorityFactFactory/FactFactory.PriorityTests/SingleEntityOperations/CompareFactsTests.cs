@@ -33,8 +33,8 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void WithSamePriorityTestCase()
         {
-            var fact1 = new FactResult(default).SetPriority(new Priority1());
-            var fact2 = new FactResult(default).SetPriority(new Priority1());
+            var fact1 = new FactResult(default).AddPriorityParameter(new Priority1());
+            var fact2 = new FactResult(default).AddPriorityParameter(new Priority1());
             const int expectedValue = 0;
 
             GivenCreateFacade()
@@ -49,8 +49,8 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void WithFirstAndSecondPrioritiesTestCase()
         {
-            var fact1 = new FactResult(default).SetPriority(new Priority1());
-            var fact2 = new FactResult(default).SetPriority(new Priority2());
+            var fact1 = new FactResult(default).AddPriorityParameter(new Priority1());
+            var fact2 = new FactResult(default).AddPriorityParameter(new Priority2());
             const int expectedValue = 1;
 
             GivenCreateFacade()
@@ -65,8 +65,8 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void WithSecondAndFirstPrioritiesTestCase()
         {
-            var fact1 = new FactResult(default).SetPriority(new Priority2());
-            var fact2 = new FactResult(default).SetPriority(new Priority1());
+            var fact1 = new FactResult(default).AddPriorityParameter(new Priority2());
+            var fact2 = new FactResult(default).AddPriorityParameter(new Priority1());
             const int expectedValue = -1;
 
             GivenCreateFacade()

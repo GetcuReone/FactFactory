@@ -1,5 +1,5 @@
 ﻿using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using System.Collections.Generic;
+using System;
 
 namespace GetcuReone.FactFactory.Interfaces
 {
@@ -23,14 +23,21 @@ namespace GetcuReone.FactFactory.Interfaces
         /// Is it possible to convert a fact type to a <typeparamref name="TFact"/>.
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
-        /// <returns></returns>
+        /// <returns>Can a fact be converted to a <typeparamref name="TFact"/> type.</returns>
         bool IsFactType<TFact>() where TFact : IFact;
+        
+        /// <summary>
+        /// Create an fact of this type. Method created for <see cref="IBuildConditionFact"/>.
+        /// </summary>
+        /// <typeparam name="TFact">Type fact.</typeparam>
+        /// <returns>Instans fact.</returns>
+        TFact CreateBuildConditionFact<TFact>() where TFact : IBuildConditionFact;
 
         /// <summary>
-        /// Create an fact of this type. Method created for condition facts.
+        /// Create an fact of this type. Method created for <see cref="IRuntimeConditionFact"/>.
         /// </summary>
-        /// <typeparam name="TFact"></typeparam>
-        /// <returns></returns>
-        TFact CreateConditionFact<TFact>() where TFact : IConditionFact;
+        /// <typeparam name="TFact">Type fact.</typeparam>
+        /// <returns>Instans fact.</returns>
+        TFact CreateRuntimeConditionFact<TFact>() where TFact : IRuntimeConditionFact;
     }
 }

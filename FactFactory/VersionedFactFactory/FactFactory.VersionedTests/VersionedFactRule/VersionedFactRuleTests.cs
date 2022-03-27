@@ -6,7 +6,7 @@ using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Container = GetcuReone.FactFactory.Versioned.Entities.VersionedFactContainer;
+using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactory.VersionedTests.VersionedFactRule
 {
@@ -57,12 +57,12 @@ namespace FactFactory.VersionedTests.VersionedFactRule
                 .When("Run calculate", rule => 
                     rule.Calculate(container))
                 .ThenIsNotNull()
-                .AndAreEqual(fact => fact.GetVersionOrNull(), null)
+                .AndAreEqual(fact => fact.FindVersionParameter(), null)
                 .Run();
         }
 
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.NotContained), TestCategory(GetcuReoneTC.Unit)]
+        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.Rule), TestCategory(TC.Objects.BuildNotContained), TestCategory(GetcuReoneTC.Unit)]
         [Description("Return version fact.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ReturnVersiondFactTestCase()
