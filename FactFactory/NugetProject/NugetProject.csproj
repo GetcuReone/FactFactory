@@ -9,7 +9,7 @@
         <Description>My implementation of a machine that can derive facts from other facts</Description>
         <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
-            Changes ($(Version)):
+            Changes ($(PackageVersion)):
             - update README file
         </PackageReleaseNotes>
     </PropertyGroup>
