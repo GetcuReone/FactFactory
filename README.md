@@ -1,6 +1,8 @@
 # GetcuReone.FactFactory
 
-Welcome to my Factory of Facts project. This project implements a mechanism for obtaining some facts on the basis of others.
+Welcome to my Fact Factory project. In this project, I realized my vision of the fact factory. It is a decision tree building mechanism for information processing.
+
+Think of the vertices of the graph as the information you describe, and the edges of the graph as the rules for calculating that information. A fact factory can build a decision tree to calculate one piece of information from another, using your rules to link between your set of information.
 
 [![NuGet version (GetcuReone.FactFactory)](https://img.shields.io/nuget/v/GetcuReone.FactFactory.svg?style=flat-square)](https://www.nuget.org/packages/GetcuReone.FactFactory/)
 [![Build status](https://dev.azure.com/GetcuReone-Studio/OpenSource-Projects/_apis/build/status/master-FactFactory?branchName=master)](https://dev.azure.com/GetcuReone-Studio/OpenSource-Projects/_build/latest?definitionId=23)
