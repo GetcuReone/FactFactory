@@ -1,13 +1,11 @@
-﻿using GetcuReone.FactFactory.Versioned.Interfaces;
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 
 namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
-    /// <summary>
-    /// Base class for {major.minor.patch} versions.
-    /// </summary>
-    public abstract class MajorMinorPatchVersionBase : VersionBase<string>
+    /// <inheritdoc/>
+    [Obsolete("Use BaseMajorMinorPatchVersion (deprecated in 4.0.2)")]
+    public abstract class MajorMinorPatchVersionBase : BaseMajorMinorPatchVersion
     {
         private readonly Version _version;
 
@@ -24,24 +22,6 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
                 throw new ArgumentException($"{version} version doesn't match regular expression <{pattern}>.");
 
             _version = new Version(version);
-        }
-
-        /// <inheritdoc/>
-        public override int CompareTo(IVersionFact other)
-        {
-            switch (other)
-            {
-                case MajorMinorPatchVersionBase version:
-                    return _version.CompareTo(version._version);
-                case FactBase<string> version:
-                    string pattern = @"^(\*|\d+(\.\d+){0,2}(\.\*)?)$";
-                    if (!Regex.IsMatch(version.Value, pattern))
-                        throw new ArgumentException($"{version} version doesn't match regular expression <{pattern}>.");
-                    return _version.CompareTo(new Version(version.Value));
-
-                default:
-                    throw CreateIncompatibilityVersionException(other);
-            }
         }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FactFactory.VersionedTests.VersionedSingleEntityOperations.Env
 {
     [TestClass]
-    public abstract class VersionedSingleEntityOperationsTestBase : VersionedFactFactoryTestBase
+    public abstract class VersionedSingleEntityOperationsTestBase : BaseVersionedFactFactoryTests
     {
         protected virtual GivenBlock<object, VersionedSingleEntityOperationsFacade> GivenCreateFacade()
         {

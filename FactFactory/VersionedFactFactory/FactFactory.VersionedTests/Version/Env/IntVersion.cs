@@ -2,7 +2,7 @@
 
 namespace FactFactory.VersionedTests.Version.Env
 {
-    internal sealed class IntVersion : IntVersionBase
+    internal sealed class IntVersion : BaseIntVersion
     {
         public IntVersion(int version) : base(version)
         {
