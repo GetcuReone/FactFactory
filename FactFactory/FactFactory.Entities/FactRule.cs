@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Rule of fact calculation.
     /// </summary>
-    public class FactRule : FactRuleBase
+    public class FactRule : BaseFactRule
     {
         /// <inheritdoc/>
         public FactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)

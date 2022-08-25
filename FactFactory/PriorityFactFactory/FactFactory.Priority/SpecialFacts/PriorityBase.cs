@@ -10,7 +10,7 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
     /// Base class for <see cref="IPriorityFact"/>.
     /// </summary>
     /// <typeparam name="TPriorityValue">Priority value type.</typeparam>
-    public abstract class PriorityBase<TPriorityValue> : SpecialFactBase, IPriorityFact
+    public abstract class PriorityBase<TPriorityValue> : BaseSpecialFact, IPriorityFact
     {
         /// <summary>
         /// Priority value.

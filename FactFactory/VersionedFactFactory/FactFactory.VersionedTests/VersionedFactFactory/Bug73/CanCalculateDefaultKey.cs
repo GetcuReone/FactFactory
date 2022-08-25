@@ -2,7 +2,7 @@
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Bug73
 {
-    internal sealed class CanCalculateDefaultKey : FactBase
+    internal sealed class CanCalculateDefaultKey : BaseFact
     {
     }
 }

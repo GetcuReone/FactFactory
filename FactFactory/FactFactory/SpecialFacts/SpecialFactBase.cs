@@ -1,13 +1,10 @@
-﻿using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+﻿using System;
 
 namespace GetcuReone.FactFactory.SpecialFacts
 {
-    /// <summary>
-    /// Base class for <see cref="ISpecialFact"/>.
-    /// </summary>
-    public abstract class SpecialFactBase : FactBase, ISpecialFact
+    /// <inheritdoc/>
+    [Obsolete("Use BaseSpecialFact (deprecated in 4.0.2)")]
+    public abstract class SpecialFactBase : BaseSpecialFact
     {
-        /// <inheritdoc/>
-        public abstract bool EqualsInfo(ISpecialFact specialFact);
     }
 }

@@ -3,28 +3,13 @@ using System;
 
 namespace GetcuReone.FactFactory.BaseEntities
 {
-    /// <summary>
-    /// Base class for parameter.
-    /// </summary>
-    public abstract class FactParameterBase : IFactParameter
+    /// <inheritdoc/>
+    [Obsolete("Use BaseFactParameter (deprecated in 4.0.2)")]
+    public abstract class FactParameterBase : BaseFactParameter
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="code"></param>
-        /// <param name="value"></param>
-        protected FactParameterBase(string code, object value)
+        /// <inheritdoc/>
+        protected FactParameterBase(string code, object value) : base(code, value)
         {
-            if (string.IsNullOrEmpty(code))
-                throw new ArgumentNullException(nameof(code), "Code is null or empty.");
-            Code = code;
-            Value = value;
         }
-
-        /// <inheritdoc/>
-        public string Code { get; }
-
-        /// <inheritdoc/>
-        public object Value { get; }
     }
 }

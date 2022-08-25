@@ -100,8 +100,8 @@ namespace FactFactory.TestsCommon.Helpers
         /// <param name="givenBlock">Previous given block</param>
         /// <param name="factRules">Fact rules</param>
         /// <returns>Given block.</returns>
-        public static GivenBlock<TFactory, TFactory> AndAddRules<TInput, TFactory>(this GivenBlock<TInput, TFactory> givenBlock, FactRuleCollectionBase<FactRule> factRules)
-            where TFactory : FactFactoryBase<FactRule, FactRuleCollection, WantAction, FactContainer>
+        public static GivenBlock<TFactory, TFactory> AndAddRules<TInput, TFactory>(this GivenBlock<TInput, TFactory> givenBlock, BaseFactRuleCollection<FactRule> factRules)
+            where TFactory : BaseFactFactory<FactRule, FactRuleCollection, WantAction, FactContainer>
         {
             return givenBlock.And("Add rules", factory => factory.Rules.AddRange(factRules));
         }

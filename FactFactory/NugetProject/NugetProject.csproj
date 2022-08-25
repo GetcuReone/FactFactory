@@ -13,7 +13,7 @@
         <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
             Changes ($(PackageVersion)):
-            - update description in package 
+            - renaming base classes ('base' is now a prefix)
         </PackageReleaseNotes>
     </PropertyGroup>
 
