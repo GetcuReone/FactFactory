@@ -156,7 +156,7 @@ namespace FactFactoryTests.FactRule
                     container.Add(new IntFact(1)))
                 .And("Create rule.", _ =>
                 {
-                    Func<IEnumerable<IFact>, FactBase> func = facts =>
+                    Func<IEnumerable<IFact>, BaseFact> func = facts =>
                     {
                         var date = facts.GetFact<DateTimeFact>().Value;
                         var number = facts.GetFact<IntFact>().Value;

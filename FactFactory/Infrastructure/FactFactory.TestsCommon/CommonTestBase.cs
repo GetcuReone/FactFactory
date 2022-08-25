@@ -18,7 +18,7 @@ namespace FactFactory.TestsCommon
     /// </summary>
     public abstract class CommonTestBase : GetcuReoneTestBase, IFactTypeCreation
     {
-        /// <inheritdoc cref="FactBase.GetFactType"/>
+        /// <inheritdoc cref="BaseFact.GetFactType"/>
         public virtual IFactType GetFactType<TFact>() where TFact : IFact
         {
             return new FactType<TFact>();

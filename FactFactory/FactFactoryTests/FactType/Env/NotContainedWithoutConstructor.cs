@@ -6,7 +6,7 @@ using System;
 
 namespace FactFactoryTests.FactType.Env
 {
-    internal class NotContainedWithoutConstructor : BuildConditionFactBase, IBuildConditionFact
+    internal class NotContainedWithoutConstructor : BaseBuildConditionFact, IBuildConditionFact
     {
         private NotContainedWithoutConstructor()
         {

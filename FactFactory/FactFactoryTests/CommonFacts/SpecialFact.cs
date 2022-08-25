@@ -3,7 +3,7 @@ using GetcuReone.FactFactory.SpecialFacts;
 
 namespace FactFactoryTests.CommonFacts
 {
-    internal class SpecialFact : SpecialFactBase
+    internal class SpecialFact : BaseSpecialFact
     {
         public override bool EqualsInfo(ISpecialFact specialFact)
         {

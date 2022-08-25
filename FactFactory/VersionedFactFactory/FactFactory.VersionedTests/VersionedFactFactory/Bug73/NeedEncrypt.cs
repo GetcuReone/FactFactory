@@ -2,7 +2,7 @@
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Bug73
 {
-    internal sealed class NeedEncrypt : FactBase
+    internal sealed class NeedEncrypt : BaseFact
     {
     }
 }

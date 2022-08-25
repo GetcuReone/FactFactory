@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.Priority
     /// <summary>
     /// Default priority fact factory.
     /// </summary>
-    public class PriorityFactFactory : PriorityFactFactoryBase<FactRule, FactRuleCollection, WantAction, FactContainer>
+    public class PriorityFactFactory : BasePriorityFactFactory<FactRule, FactRuleCollection, WantAction, FactContainer>
     {
         private readonly Func<IWantActionContext<WantAction, FactContainer>, IEnumerable<IFact>> _getDefaultFactsFunc;
 

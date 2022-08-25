@@ -9,7 +9,7 @@ using WAction = GetcuReone.FactFactory.Entities.WantAction;
 namespace FactFactory.VersionedTests
 {
     [TestClass]
-    public abstract class VersionedFactFactoryTestBase : CommonTestBase
+    public abstract class BaseVersionedFactFactoryTests : CommonTestBase
     {
         protected Container Container { get; private set; }
         protected WAction WantAction { get; private set; }

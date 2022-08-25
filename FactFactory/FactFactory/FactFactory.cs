@@ -1,16 +1,15 @@
-﻿using GetcuReone.FactFactory.Entities;
+﻿using System;
+using System.Collections.Generic;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory
 {
     /// <summary>
     /// Factory default implementation.
     /// </summary>
-    public class FactFactory : FactFactoryBase<FactRule, FactRuleCollection, WantAction, FactContainer>
+    public class FactFactory : BaseFactFactory<FactRule, FactRuleCollection, WantAction, FactContainer>
     {
         private readonly Func<IWantActionContext<WantAction, FactContainer>, IEnumerable<IFact>> _getDefaultFactsFunc;
 
