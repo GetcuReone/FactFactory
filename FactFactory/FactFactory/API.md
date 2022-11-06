@@ -1443,7 +1443,7 @@ Value fact.
 
 ##### Summary
 
-Extracts [](#!-FactBase<TFactValue>-Value 'FactBase<TFactValue>.Value').
+Extracts [Value](#P-GetcuReone-FactFactory-BaseFact`1-Value 'GetcuReone.FactFactory.BaseFact`1.Value').
 
 ##### Parameters
 

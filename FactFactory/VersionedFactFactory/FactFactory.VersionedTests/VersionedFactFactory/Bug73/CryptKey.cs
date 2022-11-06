@@ -2,10 +2,8 @@
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Bug73
 {
-    internal sealed class CryptKey : FactBase<string>
+    internal sealed class CryptKey : BaseFact<string>
     {
-        public CryptKey(string value) : base(value)
-        {
-        }
+        public CryptKey(string value) : base(value) { }
     }
 }

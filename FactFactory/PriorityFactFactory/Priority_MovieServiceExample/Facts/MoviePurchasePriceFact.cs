@@ -3,12 +3,10 @@
 namespace Priority_MovieServiceExample.Facts
 {
     /// <summary>
-    /// The fact stores information about the cost of buying a movie for the user
+    /// The fact stores information about the cost of buying a movie for the user.
     /// </summary>
-    public class MoviePurchasePriceFact : FactBase<int>
+    public class MoviePurchasePriceFact : BaseFact<int>
     {
-        public MoviePurchasePriceFact(int value) : base(value)
-        {
-        }
+        public MoviePurchasePriceFact(int value) : base(value) { }
     }
 }

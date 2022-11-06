@@ -64,7 +64,7 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Extracts <see cref="FactBase{TFactValue}.Value"/>.
+        /// Extracts <see cref="BaseFact{TFactValue}.Value"/>.
         /// </summary>
         /// <param name="fact">Fact.</param>
         public static implicit operator TFactValue(BaseFact<TFactValue> fact)

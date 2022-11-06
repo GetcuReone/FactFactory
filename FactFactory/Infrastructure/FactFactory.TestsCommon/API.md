@@ -407,7 +407,7 @@ This method has no parameters.
 
 ##### Summary
 
-Then block for check [](#!-FactBase<TFactValue>-Value 'FactBase<TFactValue>.Value').
+Then block for check [Value](#P-GetcuReone-FactFactory-BaseFact`1-Value 'GetcuReone.FactFactory.BaseFact`1.Value').
 
 ##### Returns
 

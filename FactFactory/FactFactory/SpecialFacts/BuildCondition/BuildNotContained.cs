@@ -8,7 +8,7 @@ namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
     /// Fact condition. Checks if a <typeparamref name="TFact"/> fact cannot be retrieved from a container at the tree building stage.
     /// </summary>
     /// <typeparam name="TFact">The type of fact for which the condition is met.</typeparam>
-    public class BuildNotContained<TFact> : BuildConditionFactBase<TFact>
+    public class BuildNotContained<TFact> : BaseBuildConditionFact<TFact>
         where TFact : IFact
     {
         /// <summary>
