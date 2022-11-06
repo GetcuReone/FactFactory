@@ -3,10 +3,8 @@ using System.IO;
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Bug73
 {
-    internal sealed class CertFileInfo : FactBase<FileInfo>
+    internal sealed class CertFileInfo : BaseFact<FileInfo>
     {
-        public CertFileInfo(FileInfo value) : base(value)
-        {
-        }
+        public CertFileInfo(FileInfo value) : base(value) { }
     }
 }

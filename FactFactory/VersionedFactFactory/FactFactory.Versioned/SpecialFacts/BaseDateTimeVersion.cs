@@ -9,9 +9,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
     public abstract class BaseDateTimeVersion : BaseVersion<DateTime>
     {
         /// <inheritdoc/>
-        protected BaseDateTimeVersion(DateTime version) : base(version)
-        {
-        }
+        protected BaseDateTimeVersion(DateTime version) : base(version) { }
 
         /// <inheritdoc/>
         public override int CompareTo(IVersionFact other)
@@ -20,7 +18,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
             {
                 case BaseVersion<DateTime> version:
                     return VersionValue.CompareTo(version.VersionValue);
-                case FactBase<DateTime> version:
+                case BaseFact<DateTime> version:
                     return VersionValue.CompareTo(version.Value);
 
                 default:

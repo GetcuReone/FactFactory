@@ -8,9 +8,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
     public abstract class BaseIntVersion : BaseVersion<int>
     {
         /// <inheritdoc/>
-        protected BaseIntVersion(int version) : base(version)
-        {
-        }
+        protected BaseIntVersion(int version) : base(version) { }
 
         /// <inheritdoc/>
         public override int CompareTo(IVersionFact other)
@@ -26,13 +24,13 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
                 case BaseVersion<ulong> version:
                     return VersionValue.CompareTo(version.VersionValue);
 
-                case FactBase<int> version:
+                case BaseFact<int> version:
                     return VersionValue.CompareTo(version.Value);
-                case FactBase<long> version:
+                case BaseFact<long> version:
                     return VersionValue.CompareTo(version.Value);
-                case FactBase<uint> version:
+                case BaseFact<uint> version:
                     return VersionValue.CompareTo(version.Value);
-                case FactBase<ulong> version:
+                case BaseFact<ulong> version:
                     return VersionValue.CompareTo(version.Value);
 
                 default:

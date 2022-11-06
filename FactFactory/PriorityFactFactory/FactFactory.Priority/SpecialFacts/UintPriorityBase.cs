@@ -26,13 +26,13 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
                 case PriorityBase<ulong> priority:
                     return priority.PriorityValue.CompareTo(PriorityValue);
 
-                case FactBase<int> priority:
+                case BaseFact<int> priority:
                     return priority.Value.CompareTo(PriorityValue);
-                case FactBase<uint> priority:
+                case BaseFact<uint> priority:
                     return priority.Value.CompareTo(PriorityValue);
-                case FactBase<long> priority:
+                case BaseFact<long> priority:
                     return priority.Value.CompareTo(PriorityValue);
-                case FactBase<ulong> priority:
+                case BaseFact<ulong> priority:
                     return priority.Value.CompareTo(PriorityValue);
 
                 default: throw CreateIncompatibilityVersionException(other);

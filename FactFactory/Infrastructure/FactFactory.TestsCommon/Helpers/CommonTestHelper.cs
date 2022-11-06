@@ -107,7 +107,7 @@ namespace FactFactory.TestsCommon.Helpers
         }
 
         /// <summary>
-        /// Then block for check <see cref="FactBase{TFactValue}.Value"/>.
+        /// Then block for check <see cref="BaseFact{TFactValue}.Value"/>.
         /// </summary>
         /// <typeparam name="TInput">Input type</typeparam>
         /// <typeparam name="TFact">Fact type</typeparam>
@@ -116,7 +116,7 @@ namespace FactFactory.TestsCommon.Helpers
         /// <param name="expectedValue">Expected value</param>
         /// <returns>Then block</returns>
         public static ThenBlock<TFact, TFact> ThenFactValueEquals<TInput, TFact, TFactValue>(this WhenBlock<TInput, TFact> whenBlock, TFactValue expectedValue)
-            where TFact : FactBase<TFactValue>
+            where TFact : BaseFact<TFactValue>
         {
             return whenBlock
                 .ThenIsNotNull()
@@ -126,7 +126,7 @@ namespace FactFactory.TestsCommon.Helpers
 
         /// <inheritdoc cref="ThenFactValueEquals{TInput, TFact, TFactValue}(WhenBlock{TInput, TFact}, TFactValue)"/>
         public static ThenBlock<TFact, TFact> ThenFactValueEquals<TInput, TFact, TFactValue>(this WhenAsyncBlock<TInput, TFact> whenBlock, TFactValue expectedValue)
-            where TFact : FactBase<TFactValue>
+            where TFact : BaseFact<TFactValue>
         {
             return whenBlock
                 .ThenIsNotNull()

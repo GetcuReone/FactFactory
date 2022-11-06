@@ -7,7 +7,7 @@ namespace GetcuReone.FactFactory.SpecialFacts.RuntimeCondition
     /// Fact condition. Checks if a <typeparamref name="TFact"/> fact can be retrieved from a container.
     /// </summary>
     /// <typeparam name="TFact">The type of fact for which the condition is met.</typeparam>
-    public class RContained<TFact> : RuntimeConditionFactBase<TFact>
+    public class RContained<TFact> : BaseRuntimeConditionFact<TFact>
         where TFact : IFact
     {
         /// <summary>

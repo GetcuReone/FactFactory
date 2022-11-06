@@ -2,10 +2,8 @@
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Bug73
 {
-    internal sealed class DecryptedText : FactBase<string>
+    internal sealed class DecryptedText : BaseFact<string>
     {
-        public DecryptedText(string value) : base(value)
-        {
-        }
+        public DecryptedText(string value) : base(value) { }
     }
 }

@@ -3,12 +3,10 @@
 namespace MovieServiceExample.Facts
 {
     /// <summary>
-    /// Fact stores user email information
+    /// Fact stores user email information.
     /// </summary>
-    public class UserEmailFact : FactBase<string>
+    public sealed class UserEmailFact : BaseFact<string>
     {
-        public UserEmailFact(string value) : base(value)
-        {
-        }
+        public UserEmailFact(string value) : base(value) { }
     }
 }

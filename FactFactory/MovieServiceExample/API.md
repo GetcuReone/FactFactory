@@ -116,7 +116,7 @@ MovieServiceExample.Facts
 
 ##### Summary
 
-The fact stores information about the size of the discount
+The fact stores information about the size of the discount.
 
 <a name='T-MovieServiceExample-Facts-MovieFact'></a>
 ## MovieFact `type`
@@ -127,7 +127,7 @@ MovieServiceExample.Facts
 
 ##### Summary
 
-The fact stores information about the movie
+The fact stores information about the movie.
 
 <a name='T-MovieServiceExample-Facts-MovieIdFact'></a>
 ## MovieIdFact `type`
@@ -138,7 +138,7 @@ MovieServiceExample.Facts
 
 ##### Summary
 
-Fact stores movie id information
+Fact stores movie id information.
 
 <a name='T-MovieServiceExample-Facts-MoviePurchasePriceFact'></a>
 ## MoviePurchasePriceFact `type`
@@ -149,7 +149,7 @@ MovieServiceExample.Facts
 
 ##### Summary
 
-The fact stores information about the cost of buying a movie for the user
+The fact stores information about the cost of buying a movie for the user.
 
 <a name='T-MovieServiceExample-Facts-MoviePurchasePriceFactAsync'></a>
 ## MoviePurchasePriceFactAsync `type`
@@ -160,7 +160,7 @@ MovieServiceExample.Facts
 
 ##### Summary
 
-The fact stores information about the cost of buying a movie for the user
+The fact stores information about the cost of buying a movie for the user.
 
 <a name='T-MovieServiceExample-Facts-UserEmailFact'></a>
 ## UserEmailFact `type`
@@ -171,7 +171,7 @@ MovieServiceExample.Facts
 
 ##### Summary
 
-Fact stores user email information
+Fact stores user email information.
 
 <a name='T-MovieServiceExample-Facts-UserFact'></a>
 ## UserFact `type`
@@ -182,4 +182,4 @@ MovieServiceExample.Facts
 
 ##### Summary
 
-Fact stores user information
+Fact stores user information.

@@ -33,7 +33,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
             {
                 case BaseMajorMinorPatchVersion version:
                     return _version.CompareTo(version._version);
-                case FactBase<string> version:
+                case BaseFact<string> version:
                     string pattern = @"^(\*|\d+(\.\d+){0,2}(\.\*)?)$";
                     if (!Regex.IsMatch(version.Value, pattern))
                         throw new ArgumentException($"{version} version doesn't match regular expression <{pattern}>.");
