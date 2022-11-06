@@ -12,7 +12,7 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace FactFactory.VersionedTests.VersionedFactFactory
 {
     [TestClass]
-    public sealed class VersionedFactFactoryTests : VersionedFactFactoryTestBase
+    public sealed class VersionedFactFactoryTests : BaseVersionedFactFactoryTests
     {
         [TestMethod]
         [TestCategory(TC.Projects.Versioned), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]

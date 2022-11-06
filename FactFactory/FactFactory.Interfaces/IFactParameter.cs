@@ -6,12 +6,12 @@
     public interface IFactParameter
     {
         /// <summary>
-        /// Code.
+        /// Parameter code.
         /// </summary>
         string Code { get; }
 
         /// <summary>
-        /// Value.
+        /// Parameter value.
         /// </summary>
         object Value { get; }
     }

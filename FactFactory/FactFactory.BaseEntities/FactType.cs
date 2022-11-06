@@ -7,7 +7,7 @@ namespace GetcuReone.FactFactory
     /// Fact type.
     /// </summary>
     /// <inheritdoc/>
-    public class FactType<TFact> : FactTypeBase<TFact>
+    public class FactType<TFact> : BaseFactType<TFact>
         where TFact: IFact
     {
     }

@@ -6,10 +6,8 @@ namespace Versioned_MovieServiceExample.Facts
     /// <summary>
     /// The fact stores information about the movie
     /// </summary>
-    public class MovieFact : FactBase<Movie>
+    public class MovieFact : BaseFact<Movie>
     {
-        public MovieFact(Movie value) : base(value)
-        {
-        }
+        public MovieFact(Movie value) : base(value) { }
     }
 }

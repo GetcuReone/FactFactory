@@ -16,12 +16,12 @@
         </member>
         <member name="T:Priority_MovieServiceExample.Facts.MovieIdFact">
             <summary>
-            Fact stores movie id information
+            Fact stores movie id information.
             </summary>
         </member>
         <member name="T:Priority_MovieServiceExample.Facts.MoviePurchasePriceFact">
             <summary>
-            The fact stores information about the cost of buying a movie for the user
+            The fact stores information about the cost of buying a movie for the user.
             </summary>
         </member>
         <member name="T:Priority_MovieServiceExample.Facts.UserEmailFact">

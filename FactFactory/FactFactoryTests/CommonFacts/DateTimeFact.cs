@@ -3,10 +3,8 @@ using System;
 
 namespace FactFactoryTests.CommonFacts
 {
-    internal sealed class DateTimeFact : FactBase<DateTime>
+    internal sealed class DateTimeFact : BaseFact<DateTime>
     {
-        public DateTimeFact(DateTime fact) : base(fact)
-        {
-        }
+        public DateTimeFact(DateTime fact) : base(fact) { }
     }
 }

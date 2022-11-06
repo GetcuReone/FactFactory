@@ -137,7 +137,7 @@ Priority_MovieServiceExample.Facts
 
 ##### Summary
 
-Fact stores movie id information
+Fact stores movie id information.
 
 <a name='T-Priority_MovieServiceExample-Facts-MoviePurchasePriceFact'></a>
 ## MoviePurchasePriceFact `type`
@@ -148,7 +148,7 @@ Priority_MovieServiceExample.Facts
 
 ##### Summary
 
-The fact stores information about the cost of buying a movie for the user
+The fact stores information about the cost of buying a movie for the user.
 
 <a name='T-Priority_MovieServiceExample-Facts-UserEmailFact'></a>
 ## UserEmailFact `type`

@@ -129,7 +129,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Running asynchronous rules in parallel.")]
-        [Timeout(Timeouts.Second.One)]
+        [Timeout(Timeouts.Second.Two)]
         public async Task RunningAsynchronousRulesInParallelTestCase()
         {
             Input16Fact fact16 = null;

@@ -62,7 +62,7 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
                 .And("Add fact1.", _ =>
                     Context.Container.Add(fact))
                 .When("Check TryCalculateFact method.", facade =>
-                    (FactBase<long>)facade.CalculateFact(Node, Context))
+                    (BaseFact<long>)facade.CalculateFact(Node, Context))
                 .ThenIsNotNull()
                 .AndIsTrue(fact => fact is FactResult, 
                     errorMessage: "result must have type FactResult.")

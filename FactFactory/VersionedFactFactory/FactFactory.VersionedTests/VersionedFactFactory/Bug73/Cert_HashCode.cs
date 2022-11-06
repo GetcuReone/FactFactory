@@ -2,10 +2,8 @@
 
 namespace FactFactory.VersionedTests.VersionedFactFactory.Bug73
 {
-    internal sealed class Cert_HashCode : FactBase<long>
+    internal sealed class Cert_HashCode : BaseFact<long>
     {
-        public Cert_HashCode(long value) : base(value)
-        {
-        }
+        public Cert_HashCode(long value) : base(value) { }
     }
 }

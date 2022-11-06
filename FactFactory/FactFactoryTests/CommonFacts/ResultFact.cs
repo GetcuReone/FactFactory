@@ -2,10 +2,8 @@
 
 namespace FactFactoryTests.CommonFacts
 {
-    internal sealed class ResultFact : FactBase<int>
+    internal sealed class ResultFact : BaseFact<int>
     {
-        public ResultFact(int fact) : base(fact)
-        {
-        }
+        public ResultFact(int fact) : base(fact) { }
     }
 }

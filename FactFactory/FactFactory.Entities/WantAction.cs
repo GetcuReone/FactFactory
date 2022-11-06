@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Desired action information.
     /// </summary>
-    public class WantAction : WantActionBase
+    public class WantAction : BaseWantAction
     {
         /// <inheritdoc/>
         public WantAction(Action<IEnumerable<IFact>> wantAction, List<IFactType> factTypes, FactWorkOption option) : base(wantAction, factTypes, option)

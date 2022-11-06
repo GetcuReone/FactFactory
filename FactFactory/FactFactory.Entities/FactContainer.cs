@@ -7,7 +7,7 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Fact collection.
     /// </summary>
-    public class FactContainer : FactContainerBase
+    public class FactContainer : BaseFactContainer
     {
         /// <summary>
         /// Constructor.

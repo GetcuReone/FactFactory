@@ -19,7 +19,7 @@
   - [GetWantAction\`\`2()](#M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``2-System-Action{``0,``1}- 'FactFactory.TestsCommon.CommonTestBase.GetWantAction``2(System.Action{``0,``1})')
   - [GetWantAction\`\`3(action)](#M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``3-System-Action{``0,``1,``2}- 'FactFactory.TestsCommon.CommonTestBase.GetWantAction``3(System.Action{``0,``1,``2})')
 - [CommonTestHelper](#T-FactFactory-TestsCommon-Helpers-CommonTestHelper 'FactFactory.TestsCommon.Helpers.CommonTestHelper')
-  - [AndAddRules\`\`2(givenBlock,factRules)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase{GetcuReone-FactFactory-Entities-FactRule}- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.AndAddRules``2(GetcuReone.GwtTestFramework.Entities.GivenBlock{``0,``1},GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{GetcuReone.FactFactory.Entities.FactRule})')
+  - [AndAddRules\`\`2(givenBlock,factRules)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection{GetcuReone-FactFactory-Entities-FactRule}- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.AndAddRules``2(GetcuReone.GwtTestFramework.Entities.GivenBlock{``0,``1},GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection{GetcuReone.FactFactory.Entities.FactRule})')
   - [AndAssertErrorDetail\`\`1(thenBlock,errorCode,errorMessage)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAssertErrorDetail``1-GetcuReone-GwtTestFramework-Entities-ThenBlock{``0,GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException},System-String,System-String- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.AndAssertErrorDetail``1(GetcuReone.GwtTestFramework.Entities.ThenBlock{``0,GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException},System.String,System.String)')
   - [SetCalculateByRuleParam\`\`1(fact)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-SetCalculateByRuleParam``1-``0- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.SetCalculateByRuleParam``1(``0)')
   - [ThenAssertErrorDetail\`\`1(whenBlock,errorCode,errorMessage)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-ThenAssertErrorDetail``1-GetcuReone-GwtTestFramework-Entities-WhenBlock{``0,GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException},System-String,System-String- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.ThenAssertErrorDetail``1(GetcuReone.GwtTestFramework.Entities.WhenBlock{``0,GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException},System.String,System.String)')
@@ -293,7 +293,7 @@ FactFactory.TestsCommon.Helpers
 
 Helper for test.
 
-<a name='M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase{GetcuReone-FactFactory-Entities-FactRule}-'></a>
+<a name='M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection{GetcuReone-FactFactory-Entities-FactRule}-'></a>
 ### AndAddRules\`\`2(givenBlock,factRules) `method`
 
 ##### Summary
@@ -309,7 +309,7 @@ Given block.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | givenBlock | [GetcuReone.GwtTestFramework.Entities.GivenBlock{\`\`0,\`\`1}](#T-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1} 'GetcuReone.GwtTestFramework.Entities.GivenBlock{``0,``1}') | Previous given block |
-| factRules | [GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{GetcuReone.FactFactory.Entities.FactRule}](#T-GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase{GetcuReone-FactFactory-Entities-FactRule} 'GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase{GetcuReone.FactFactory.Entities.FactRule}') | Fact rules |
+| factRules | [GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection{GetcuReone.FactFactory.Entities.FactRule}](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection{GetcuReone-FactFactory-Entities-FactRule} 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection{GetcuReone.FactFactory.Entities.FactRule}') | Fact rules |
 
 ##### Generic Types
 
@@ -407,7 +407,7 @@ This method has no parameters.
 
 ##### Summary
 
-Then block for check [Value](#P-GetcuReone-FactFactory-FactBase`1-Value 'GetcuReone.FactFactory.FactBase`1.Value').
+Then block for check [Value](#P-GetcuReone-FactFactory-BaseFact`1-Value 'GetcuReone.FactFactory.BaseFact`1.Value').
 
 ##### Returns
 

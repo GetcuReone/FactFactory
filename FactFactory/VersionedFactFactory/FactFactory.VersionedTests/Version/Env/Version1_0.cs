@@ -2,7 +2,7 @@
 
 namespace FactFactory.VersionedTests.Version.Env
 {
-    public class Version1_0 : MajorMinorPatchVersionBase
+    public class Version1_0 : BaseMajorMinorPatchVersion
     {
         public Version1_0() : base("1.0")
         {

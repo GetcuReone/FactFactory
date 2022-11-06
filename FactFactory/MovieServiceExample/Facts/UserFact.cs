@@ -4,12 +4,10 @@ using MovieServiceExample.Entities;
 namespace MovieServiceExample.Facts
 {
     /// <summary>
-    /// Fact stores user information
+    /// Fact stores user information.
     /// </summary>
-    public class UserFact : FactBase<User>
+    public sealed class UserFact : BaseFact<User>
     {
-        public UserFact(User value) : base(value)
-        {
-        }
+        public UserFact(User value) : base(value) { }
     }
 }

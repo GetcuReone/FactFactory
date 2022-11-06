@@ -100,14 +100,14 @@ namespace FactFactory.TestsCommon.Helpers
         /// <param name="givenBlock">Previous given block</param>
         /// <param name="factRules">Fact rules</param>
         /// <returns>Given block.</returns>
-        public static GivenBlock<TFactory, TFactory> AndAddRules<TInput, TFactory>(this GivenBlock<TInput, TFactory> givenBlock, FactRuleCollectionBase<FactRule> factRules)
-            where TFactory : FactFactoryBase<FactRule, FactRuleCollection, WantAction, FactContainer>
+        public static GivenBlock<TFactory, TFactory> AndAddRules<TInput, TFactory>(this GivenBlock<TInput, TFactory> givenBlock, BaseFactRuleCollection<FactRule> factRules)
+            where TFactory : BaseFactFactory<FactRule, FactRuleCollection, WantAction, FactContainer>
         {
             return givenBlock.And("Add rules", factory => factory.Rules.AddRange(factRules));
         }
 
         /// <summary>
-        /// Then block for check <see cref="FactBase{TFactValue}.Value"/>.
+        /// Then block for check <see cref="BaseFact{TFactValue}.Value"/>.
         /// </summary>
         /// <typeparam name="TInput">Input type</typeparam>
         /// <typeparam name="TFact">Fact type</typeparam>
@@ -116,7 +116,7 @@ namespace FactFactory.TestsCommon.Helpers
         /// <param name="expectedValue">Expected value</param>
         /// <returns>Then block</returns>
         public static ThenBlock<TFact, TFact> ThenFactValueEquals<TInput, TFact, TFactValue>(this WhenBlock<TInput, TFact> whenBlock, TFactValue expectedValue)
-            where TFact : FactBase<TFactValue>
+            where TFact : BaseFact<TFactValue>
         {
             return whenBlock
                 .ThenIsNotNull()
@@ -126,7 +126,7 @@ namespace FactFactory.TestsCommon.Helpers
 
         /// <inheritdoc cref="ThenFactValueEquals{TInput, TFact, TFactValue}(WhenBlock{TInput, TFact}, TFactValue)"/>
         public static ThenBlock<TFact, TFact> ThenFactValueEquals<TInput, TFact, TFactValue>(this WhenAsyncBlock<TInput, TFact> whenBlock, TFactValue expectedValue)
-            where TFact : FactBase<TFactValue>
+            where TFact : BaseFact<TFactValue>
         {
             return whenBlock
                 .ThenIsNotNull()

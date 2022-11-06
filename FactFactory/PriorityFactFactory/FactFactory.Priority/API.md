@@ -5,6 +5,8 @@
 
 - [ArrayExtensions](#T--ArrayExtensions '.ArrayExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ArrayExtensions-IsNullOrEmpty``1-``0[]- 'ArrayExtensions.IsNullOrEmpty``1(``0[])')
+- [BasePriorityFactFactory\`4](#T-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`4 'GetcuReone.FactFactory.Priority.BasePriorityFactFactory`4')
+  - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`4-GetSingleEntityOperations 'GetcuReone.FactFactory.Priority.BasePriorityFactFactory`4.GetSingleEntityOperations')
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
@@ -23,7 +25,6 @@
   - [GetDefaultContainer()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-GetDefaultContainer 'GetcuReone.FactFactory.Priority.PriorityFactFactory.GetDefaultContainer')
   - [GetDefaultFacts()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer}- 'GetcuReone.FactFactory.Priority.PriorityFactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer})')
 - [PriorityFactFactoryBase\`4](#T-GetcuReone-FactFactory-Priority-PriorityFactFactoryBase`4 'GetcuReone.FactFactory.Priority.PriorityFactFactoryBase`4')
-  - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryBase`4-GetSingleEntityOperations 'GetcuReone.FactFactory.Priority.PriorityFactFactoryBase`4.GetSingleEntityOperations')
 - [ULongPriorityBase](#T-GetcuReone-FactFactory-Priority-SpecialFacts-ULongPriorityBase 'GetcuReone.FactFactory.Priority.SpecialFacts.ULongPriorityBase')
   - [#ctor()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-ULongPriorityBase-#ctor-System-UInt64- 'GetcuReone.FactFactory.Priority.SpecialFacts.ULongPriorityBase.#ctor(System.UInt64)')
   - [CompareTo()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-ULongPriorityBase-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.ULongPriorityBase.CompareTo(FactFactory.Priority.Interfaces.IPriorityFact)')
@@ -60,6 +61,36 @@ True - `items` is null or empty.
 | Name | Description |
 | ---- | ----------- |
 | TItem | Type items. |
+
+<a name='T-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`4'></a>
+## BasePriorityFactFactory\`4 `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Priority
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Summary
+
+Base class for the fact factory working with priority rules
+
+<a name='M-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`4-GetSingleEntityOperations'></a>
+### GetSingleEntityOperations() `method`
+
+##### Summary
+
+Returns the [PrioritySingleEntityOperationsFacade](#T-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade').
+
+##### Returns
+
+Instance [PrioritySingleEntityOperationsFacade](#T-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade').
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T--EnumerableExtensions'></a>
 ## EnumerableExtensions `type`
@@ -288,21 +319,6 @@ GetcuReone.FactFactory.Priority
 ##### Summary
 
 *Inherit from parent.*
-
-<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryBase`4-GetSingleEntityOperations'></a>
-### GetSingleEntityOperations() `method`
-
-##### Summary
-
-Returns the [PrioritySingleEntityOperationsFacade](#T-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade').
-
-##### Returns
-
-Instance [PrioritySingleEntityOperationsFacade](#T-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade').
-
-##### Parameters
-
-This method has no parameters.
 
 <a name='T-GetcuReone-FactFactory-Priority-SpecialFacts-ULongPriorityBase'></a>
 ## ULongPriorityBase `type`

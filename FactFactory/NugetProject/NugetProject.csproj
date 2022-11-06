@@ -6,11 +6,14 @@
         <TargetFramework>netstandard2.0</TargetFramework>
 
         <PackageId>GetcuReone.FactFactory</PackageId>
-        <Description>My implementation of a machine that can derive facts from other facts</Description>
+        <Description>Welcome to my Fact Factory project. In this project, I realized my vision of the fact factory. It is a decision tree building mechanism for information processing.
+        
+        Think of the vertices of the graph as the information you describe, and the edges of the graph as the rules for calculating that information.
+        A fact factory can build a decision tree to calculate one piece of information from another, using your rules to link between your set of information.</Description>
         <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
             Changes ($(PackageVersion)):
-            - update README file
+            - renaming base classes ('base' is now a prefix)
         </PackageReleaseNotes>
     </PropertyGroup>
 

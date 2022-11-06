@@ -8,7 +8,7 @@ namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
     /// Fact condition that checks if a tree can be built for the fact <typeparamref name = "TFact" /> at the tree building stage.
     /// </summary>
     /// <typeparam name="TFact">The type of fact for which the condition is met.</typeparam>
-    public class BuildCanDerived<TFact> : BuildConditionFactBase<TFact>
+    public class BuildCanDerived<TFact> : BaseBuildConditionFact<TFact>
         where TFact : IFact
     {
         /// <summary>

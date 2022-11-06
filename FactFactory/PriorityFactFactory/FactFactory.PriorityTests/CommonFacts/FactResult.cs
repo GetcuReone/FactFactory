@@ -2,10 +2,8 @@
 
 namespace FactFactory.PriorityTests.CommonFacts
 {
-    internal class FactResult : FactBase<long>
+    internal sealed class FactResult : BaseFact<long>
     {
-        public FactResult(long value) : base(value)
-        {
-        }
+        public FactResult(long value) : base(value) { }
     }
 }

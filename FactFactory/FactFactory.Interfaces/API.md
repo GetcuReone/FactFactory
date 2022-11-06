@@ -1209,14 +1209,14 @@ Fact parameter.
 
 ##### Summary
 
-Code.
+Parameter code.
 
 <a name='P-GetcuReone-FactFactory-Interfaces-IFactParameter-Value'></a>
 ### Value `property`
 
 ##### Summary
 
-Value.
+Parameter value.
 
 <a name='T-GetcuReone-FactFactory-Interfaces-IFactRule'></a>
 ## IFactRule `type`

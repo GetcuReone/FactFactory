@@ -156,7 +156,7 @@ namespace FactFactoryTests.FactType
         {
             GivenCreateFactType<BuildNotContained<OtherFact>>()
                 .When("Create BuildNotContained fact.", factType => 
-                    factType.CreateBuildConditionFact<BuildConditionFactBase>())
+                    factType.CreateBuildConditionFact<BaseBuildConditionFact>())
                 .ThenIsNotNull()
                 .AndIsTrue(fact => fact is BuildNotContained<OtherFact>,
                     errorMessage: "Expected another type.")
@@ -169,11 +169,11 @@ namespace FactFactoryTests.FactType
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void CreateBuildNotContainedUsingWrongTypeTestCase()
         {
-            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(BuildConditionFactBase).FullName} type.";
+            string expectedReason = $"{typeof(OtherFact).FullName} does not implement {typeof(BaseBuildConditionFact).FullName} type.";
 
             GivenCreateFactType<OtherFact>()
                 .When("Create BuildNotContained fact.", factType => 
-                    ExpectedException<FactFactoryException>(() => factType.CreateBuildConditionFact<BuildConditionFactBase>()))
+                    ExpectedException<FactFactoryException>(() => factType.CreateBuildConditionFact<BaseBuildConditionFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason)
                 .Run();
         }
@@ -188,7 +188,7 @@ namespace FactFactoryTests.FactType
 
             GivenCreateFactType<NotContainedWithoutConstructor>()
                 .When("Create BuildNotContained fact.", factType => 
-                    ExpectedException<FactFactoryException>(() => factType.CreateBuildConditionFact<BuildConditionFactBase>()))
+                    ExpectedException<FactFactoryException>(() => factType.CreateBuildConditionFact<BaseBuildConditionFact>()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidFactType, expectedReason)
                 .Run();
         }

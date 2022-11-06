@@ -15,7 +15,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests.Env
             return new DifferenRules();
         }
 
-        private class DifferenRules : FactRuleCollectionBase<Rule>
+        private class DifferenRules : BaseFactRuleCollection<Rule>
         {
             public override IFactRuleCollection<Rule> Copy()
             {
