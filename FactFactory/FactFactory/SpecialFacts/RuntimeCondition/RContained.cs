@@ -14,7 +14,7 @@ namespace GetcuReone.FactFactory.SpecialFacts.RuntimeCondition
         /// Checks if a <typeparamref name="TFact"/> fact can be retrieved from a container.
         /// </summary>
         /// <inheritdoc/>
-        public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IFactRulesContext<TFactRule, TWantAction, TFactContainer> context)
+        public override bool Condition<TFactWork, TFactRule, TWantAction>(TFactWork factWork, IFactRulesContext<TFactRule, TWantAction> context)
         {
             return context.SingleEntity.CanExtractFact(GetFactType<TFact>(), factWork, context);
         }

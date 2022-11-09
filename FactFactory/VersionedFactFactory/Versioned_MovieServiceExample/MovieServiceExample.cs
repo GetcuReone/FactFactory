@@ -28,7 +28,7 @@ namespace Versioned_MovieServiceExample
         /// The method returns instances of all versions used in the rules.
         /// </summary>
         /// <returns></returns>
-        private List<IVersionFact> GetAllVersion(IWantActionContext<WantAction, FactContainer> context)
+        private List<IVersionFact> GetAllVersion(IWantActionContext<WantAction> context)
         {
             return new List<IVersionFact>
             {

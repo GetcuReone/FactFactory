@@ -17,7 +17,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
     {
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        public override int CompareFactRules<TFactRule, TWantAction, TFactContainer>(TFactRule x, TFactRule y, IWantActionContext<TWantAction, TFactContainer> context)
+        public override int CompareFactRules<TFactRule, TWantAction>(TFactRule x, TFactRule y, IWantActionContext<TWantAction> context)
         {
             int resultByPriority = x.CompareByPriority(y, context);
             if (resultByPriority != 0)
@@ -32,7 +32,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        public override IFactRuleCollection<TFactRule> GetCompatibleRules<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, IFactRuleCollection<TFactRule> factRules, IWantActionContext<TWantAction, TFactContainer> context)
+        public override IFactRuleCollection<TFactRule> GetCompatibleRules<TFactWork, TFactRule, TWantAction>(TFactWork target, IFactRuleCollection<TFactRule> factRules, IWantActionContext<TWantAction> context)
         {
             var result = base.GetCompatibleRules(target, factRules, context);
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
@@ -45,7 +45,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        public override bool CompatibleRule<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork target, TFactRule rule, IWantActionContext<TWantAction, TFactContainer> context)
+        public override bool CompatibleRule<TFactWork, TFactRule, TWantAction>(TFactWork target, TFactRule rule, IWantActionContext<TWantAction> context)
         {
             if (!base.CompatibleRule(target, rule, context))
                 return false;
@@ -64,7 +64,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        public override bool CanExtractFact<TFactWork, TWantAction, TFactContainer>(IFactType factType, TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
+        public override bool CanExtractFact<TFactWork, TWantAction>(IFactType factType, TFactWork factWork, IWantActionContext<TWantAction> context)
         {
             if (factType.IsFactType<ISpecialFact>())
                 return base.CanExtractFact(factType, factWork, context);
@@ -87,7 +87,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        public override IEnumerable<IFactType> GetRequiredTypesOfFacts<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
+        public override IEnumerable<IFactType> GetRequiredTypesOfFacts<TFactWork, TWantAction>(TFactWork factWork, IWantActionContext<TWantAction> context)
         {
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
@@ -100,7 +100,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        protected override IEnumerable<IFact> GetRequireFacts<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
+        protected override IEnumerable<IFact> GetRequireFacts<TFactWork, TWantAction>(TFactWork factWork, IWantActionContext<TWantAction> context)
         {
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
@@ -132,7 +132,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Adds a versioned fact to the parameters of the calculated fact.</remarks>
-        public override IFact CalculateFact<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
+        public override IFact CalculateFact<TFactRule, TWantAction>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction> context)
         {
             var version = node.Info.Rule.InputFactTypes.GetVersionFact(context);
             return base.CalculateFact(node, context).AddVerionParameter(version);
@@ -140,7 +140,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Adds a <see cref="Interfaces.IVersionFact"/> to the parameters of the calculated fact.</remarks>
-        public override async ValueTask<IFact> CalculateFactAsync<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction, TFactContainer> context)
+        public override async ValueTask<IFact> CalculateFactAsync<TFactRule, TWantAction>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction> context)
         {
             var version = node.Info.Rule.InputFactTypes.GetVersionFact(context);
             return (await base.CalculateFactAsync(node, context).ConfigureAwait(false)).AddVerionParameter(version);

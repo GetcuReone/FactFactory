@@ -13,8 +13,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// Base class for versioned fact factory.
     /// </summary>
     /// <inheritdoc/>
-    public abstract class BaseVersionedFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : BaseFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
-        where TFactContainer : BaseFactContainer
+    public abstract class BaseVersionedFactFactory<TFactRule, TFactRuleCollection, TWantAction> : BaseFactFactory<TFactRule, TFactRuleCollection, TWantAction>
         where TFactRule : BaseFactRule
         where TFactRuleCollection : BaseFactRuleCollection<TFactRule>
         where TWantAction : BaseWantAction
@@ -34,14 +33,14 @@ namespace GetcuReone.FactFactory.Versioned
         /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
         /// <returns>Derived fact.</returns>
-        public virtual TFactResult DeriveFact<TFactResult, TVersion>(TFactContainer container = null)
+        public virtual TFactResult DeriveFact<TFactResult, TVersion>(IFactContainer container = null)
             where TFactResult : IFact
             where TVersion : IVersionFact
         {
             TFactResult fact = default;
 
             var singleOperations = GetSingleEntityOperationsOnce();
-            var previousWantFacts = new List<WantFactsInfo<TWantAction, TFactContainer>>(WantFactsInfos);
+            var previousWantFacts = new List<WantFactsInfo<TWantAction>>(WantFactsInfos);
             var inputFacts = new List<IFactType> 
             { 
                 singleOperations.GetFactType<TFactResult>(),
@@ -70,14 +69,14 @@ namespace GetcuReone.FactFactory.Versioned
         /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
         /// <returns></returns>
-        public virtual async ValueTask<TFactResult> DeriveFactAsync<TFactResult, TVersion>(TFactContainer container = null)
+        public virtual async ValueTask<TFactResult> DeriveFactAsync<TFactResult, TVersion>(IFactContainer container = null)
             where TFactResult : IFact
             where TVersion : IVersionFact
         {
             TFactResult fact = default;
 
             var singleOperations = GetSingleEntityOperationsOnce();
-            var previousWantFacts = new List<WantFactsInfo<TWantAction, TFactContainer>>(WantFactsInfos);
+            var previousWantFacts = new List<WantFactsInfo<TWantAction>>(WantFactsInfos);
             var inputFacts = new List<IFactType> 
             { 
                 singleOperations.GetFactType<TFactResult>(), 

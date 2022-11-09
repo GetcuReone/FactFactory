@@ -15,7 +15,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer.Env
             return Given("Create container.", () => new Container())
                 .And("Add comparer.", container => 
                 {
-                    container.Comparer = GetFacade<VersionedSingleEntityOperationsFacade>().GetFactComparer<WantAction, Container>(null);
+                    container.Comparer = GetFacade<VersionedSingleEntityOperationsFacade>().GetFactComparer<WantAction>(null);
                 });
         }
     }

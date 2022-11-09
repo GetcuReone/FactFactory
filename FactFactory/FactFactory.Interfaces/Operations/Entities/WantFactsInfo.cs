@@ -4,10 +4,8 @@
     /// Information about 'WantFacts'.
     /// </summary>
     /// <typeparam name="TWantAction">WantAction type.</typeparam>
-    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
-    public class WantFactsInfo<TWantAction, TFactContainer>
+    public class WantFactsInfo<TWantAction>
         where TWantAction : IWantAction
-        where TFactContainer : IFactContainer
     {
         /// <summary>
         /// WantAction.
@@ -17,6 +15,6 @@
         /// <summary>
         /// Fact container.
         /// </summary>
-        public TFactContainer Container { get; set; }
+        public IFactContainer Container { get; set; }
     }
 }

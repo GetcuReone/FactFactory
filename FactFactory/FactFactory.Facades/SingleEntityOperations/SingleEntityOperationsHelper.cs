@@ -23,15 +23,13 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <summary>
-        /// Get <see cref="FactContainerWriter{TFactContainer}"/> writer.
+        /// Get <see cref="FactContainerWriter"/> writer.
         /// </summary>
-        /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="container"></param>
         /// <returns></returns>
-        public static FactContainerWriter<TFactContainer> GetWriter<TFactContainer>(this TFactContainer container)
-            where TFactContainer : IFactContainer
+        public static FactContainerWriter GetWriter(this IFactContainer container)
         {
-            return new FactContainerWriter<TFactContainer>(container);
+            return new FactContainerWriter(container);
         }
     }
 }

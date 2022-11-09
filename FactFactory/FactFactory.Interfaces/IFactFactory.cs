@@ -7,15 +7,13 @@ namespace GetcuReone.FactFactory.Interfaces
     /// <summary>
     /// Fact factory interface.
     /// </summary>
-    /// <typeparam name="TFactContainer">Type fact container.</typeparam>
     /// <typeparam name="TFactRule">Type fact rule.</typeparam>
     /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
     /// <typeparam name="TWantAction">Type 'want action'.</typeparam>
-    public interface IFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
+    public interface IFactFactory<TFactRule, TFactRuleCollection, TWantAction>
         where TFactRule : IFactRule
         where TFactRuleCollection : IFactRuleCollection<TFactRule>
         where TWantAction : IWantAction
-        where TFactContainer : IFactContainer
     {
         /// <summary>
         /// Collection of rules for derive facts.
@@ -38,6 +36,6 @@ namespace GetcuReone.FactFactory.Interfaces
         /// </summary>
         /// <param name="wantAction">WantAction.</param>
         /// <param name="container">Fact container.</param>
-        void WantFacts(TWantAction wantAction, TFactContainer container);
+        void WantFacts(TWantAction wantAction, IFactContainer container);
     }
 }
