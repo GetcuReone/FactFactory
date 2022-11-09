@@ -2,7 +2,7 @@
 
 namespace Priority_MovieServiceExample.Facts
 {
-    public class Priority1 : UintPriorityBase
+    public class Priority1 : BaseUintPriority
     {
         public Priority1() : base(1)
         {

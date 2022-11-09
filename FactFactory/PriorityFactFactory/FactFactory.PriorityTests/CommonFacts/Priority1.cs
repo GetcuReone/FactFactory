@@ -2,7 +2,7 @@
 
 namespace FactFactory.PriorityTests.CommonFacts
 {
-    internal class Priority1 : UintPriorityBase
+    internal class Priority1 : BaseUintPriority
     {
         public Priority1() : base(1)
         {
