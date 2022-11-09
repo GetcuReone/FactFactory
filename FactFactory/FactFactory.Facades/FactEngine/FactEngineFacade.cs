@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GetcuReone.ComboPatterns.Facade;
+﻿using GetcuReone.ComboPatterns.Facade;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Resources;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Facades.FactEngine
@@ -16,19 +15,18 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
     public class FactEngineFacade : FacadeBase, IFactEngine
     {
         /// <inheritdoc/>
-        public virtual void DeriveWantAction<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>(List<DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>> requests)
+        public virtual void DeriveWantAction<TFactRule, TFactRuleCollection, TWantAction>(List<DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction>> requests)
             where TFactRule : IFactRule
             where TFactRuleCollection : IFactRuleCollection<TFactRule>
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             Validate(requests);
 
-            var treesByActions = new Dictionary<WantActionInfo<TWantAction, TFactContainer>, List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>>();
+            var treesByActions = new Dictionary<WantActionInfo<TWantAction>, List<TreeByFactRule<TFactRule, TWantAction>>>();
             var deriveErrorDetails = new List<DeriveErrorDetail>();
 
 
-            foreach(DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request in requests)
+            foreach(DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction> request in requests)
             {
                 var context = request.Context;
 
@@ -43,13 +41,13 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
                     continue;
                 }
 
-                var requestForAction = new BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer>
+                var requestForAction = new BuildTreesForWantActionRequest<TFactRule, TWantAction>
                 {
                     Context = context,
                     FactRules = request
                         .Rules
                         .FindAll(factRule => factRule.Option.HasFlag(FactWorkOption.CanExecuteSync))
-                        .SortByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction, TFactContainer>(context)),
+                        .SortByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction>(context)),
                 };
 
                 if (context.TreeBuilding.TryBuildTreesForWantAction(requestForAction, out var resultForAction))
@@ -67,28 +65,27 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
         }
 
         /// <inheritdoc/>
-        public virtual async ValueTask DeriveWantActionAsync<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>(List<DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>> requests)
+        public virtual async ValueTask DeriveWantActionAsync<TFactRule, TFactRuleCollection, TWantAction>(List<DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction>> requests)
             where TFactRule : IFactRule
             where TFactRuleCollection : IFactRuleCollection<TFactRule>
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             Validate(requests);
 
-            var treesByActions = new Dictionary<WantActionInfo<TWantAction, TFactContainer>, List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>>();
+            var treesByActions = new Dictionary<WantActionInfo<TWantAction>, List<TreeByFactRule<TFactRule, TWantAction>>>();
             var deriveErrorDetails = new List<DeriveErrorDetail>();
 
 
-            foreach (DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request in requests)
+            foreach (DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction> request in requests)
             {
                 var context = request.Context;
 
-                var requestForAction = new BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer>
+                var requestForAction = new BuildTreesForWantActionRequest<TFactRule, TWantAction>
                 {
                     Context = context,
                     FactRules = request
                         .Rules
-                        .SortByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction, TFactContainer>(context)),
+                        .SortByDescending(r => r, context.SingleEntity.GetRuleComparer<TFactRule, TWantAction>(context)),
                 };
 
                 if (context.TreeBuilding.TryBuildTreesForWantAction(requestForAction, out var resultForAction))
@@ -109,16 +106,15 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
         /// Validates <paramref name="requests"/>.
         /// </summary>
         /// <param name="requests">Requests.</param>
-        protected virtual void Validate<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>(List<DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>> requests)
+        protected virtual void Validate<TFactRule, TFactRuleCollection, TWantAction>(List<DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction>> requests)
             where TFactRule : IFactRule
             where TFactRuleCollection : IFactRuleCollection<TFactRule>
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
-            var verifiedContainers = new List<TFactContainer>();
+            var verifiedContainers = new List<IFactContainer>();
             var verifiedRules = new List<TFactRuleCollection>();
 
-            foreach(DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> request in requests)
+            foreach(DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction> request in requests)
             {
                 var singleOperations = request.Context.SingleEntity;
 

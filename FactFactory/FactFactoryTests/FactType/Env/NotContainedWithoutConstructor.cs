@@ -13,7 +13,7 @@ namespace FactFactoryTests.FactType.Env
 
         }
 
-        public override bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context, Func<IWantActionContext<TWantAction, TFactContainer>, IFactRuleCollection<TFactRule>> getCompatibleRules)
+        public override bool Condition<TFactWork, TFactRule, TWantAction>(TFactWork factWork, IWantActionContext<TWantAction> context, Func<IWantActionContext<TWantAction>, IFactRuleCollection<TFactRule>> getCompatibleRules)
         {
             throw new NotImplementedException();
         }

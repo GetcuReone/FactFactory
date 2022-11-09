@@ -17,7 +17,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("Rule run asynchronously.")]
-        //[Timeout(Timeouts.Second.One)]
+        [Timeout(Timeouts.Second.One)]
         public async Task RunDeriveFactAsyncTestCase()
         {
             const int expectedValue = 16;

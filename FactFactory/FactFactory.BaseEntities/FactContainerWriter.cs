@@ -8,11 +8,10 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// <summary>
     /// Writer to write facts in a container.
     /// </summary>
-    public class FactContainerWriter<TFactContainer> : IDisposable
-        where TFactContainer : IFactContainer
+    public class FactContainerWriter : IDisposable
     {
         private const string disposeError = "The current writer has been disposed.";
-        private TFactContainer _container;
+        private IFactContainer _container;
         private readonly bool _previousValue;
         private bool _disposed;
 
@@ -20,7 +19,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Constructor.
         /// </summary>
         /// <param name="container"></param>
-        public FactContainerWriter(TFactContainer container)
+        public FactContainerWriter(IFactContainer container)
         {
             _container = container;
             Monitor.Enter(_container);
@@ -116,7 +115,7 @@ namespace GetcuReone.FactFactory.BaseEntities
                 _container.IsReadOnly = _previousValue;
 
             Monitor.Exit(_container);
-            _container = default(TFactContainer);
+            _container = default(IFactContainer);
         }
     }
 }

@@ -9,11 +9,9 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// </summary>
     /// <typeparam name="TFactRule">Rule type.</typeparam>
     /// <typeparam name="TWantAction">WantAction type.</typeparam>
-    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
-    public class TreeByFactRule<TFactRule, TWantAction, TFactContainer>
+    public class TreeByFactRule<TFactRule, TWantAction>
         where TFactRule : IFactRule
         where TWantAction : IWantAction
-        where TFactContainer : IFactContainer
     {
         /// <summary>
         /// Root node.
@@ -23,7 +21,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// <summary>
         /// Context.
         /// </summary>
-        public IFactRulesContext<TFactRule, TWantAction, TFactContainer> Context { get; set; }
+        public IFactRulesContext<TFactRule, TWantAction> Context { get; set; }
 
         /// <summary>
         /// Information about all the rules that were tested for the ability to use when building a tree.

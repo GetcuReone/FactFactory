@@ -57,17 +57,15 @@ namespace FactFactory.TestsCommon
         /// Get context for <see cref="IWantAction"/>.
         /// </summary>
         /// <typeparam name="TWantAction">Type <paramref name="wantAction"/></typeparam>
-        /// <typeparam name="TFactContainer">Type <paramref name="container"/></typeparam>
         /// <param name="wantAction">Desired action information</param>
         /// <param name="container">Fact container</param>
         /// <param name="singleEntity">Single operations on entities of the FactFactory</param>
         /// <param name="cache">Cache for fact type</param>
         /// <returns>Context for <see cref="IWantAction"/>.</returns>
-        protected virtual IWantActionContext<TWantAction, TFactContainer> GetWantActionContext<TWantAction, TFactContainer>(TWantAction wantAction, TFactContainer container, ISingleEntityOperations singleEntity = null, IFactTypeCache cache = null)
+        protected virtual IWantActionContext<TWantAction> GetWantActionContext<TWantAction>(TWantAction wantAction, IFactContainer container, ISingleEntityOperations singleEntity = null, IFactTypeCache cache = null)
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
-            return new WantActionContext<TWantAction, TFactContainer>
+            return new WantActionContext<TWantAction>
             {
                 Cache = cache ?? GetFactTypeCache(),
                 SingleEntity = singleEntity ?? GetFacade<SingleEntityOperationsFacade>(),

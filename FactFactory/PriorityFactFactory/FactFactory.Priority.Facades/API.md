@@ -10,9 +10,9 @@
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
 - [PrioritySingleEntityOperationsFacade](#T-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade')
-  - [CalculateFactAsync\`\`3(node,context)](#M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CalculateFactAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade.CalculateFactAsync``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
-  - [CalculateFact\`\`3(node,context)](#M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CalculateFact``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade.CalculateFact``3(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
-  - [CompareFactRules\`\`3(x,y,context)](#M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CompareFactRules``3-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade.CompareFactRules``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')
+  - [CalculateFactAsync\`\`2(node,context)](#M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CalculateFactAsync``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1}- 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade.CalculateFactAsync``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1})')
+  - [CalculateFact\`\`2(node,context)](#M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CalculateFact``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1}- 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade.CalculateFact``2(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0},GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1})')
+  - [CompareFactRules\`\`2(x,y,context)](#M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CompareFactRules``2-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1}- 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade.CompareFactRules``2(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1})')
   - [CompareFacts(x,y)](#M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CompareFacts-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations.PrioritySingleEntityOperationsFacade.CompareFacts(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)')
 
 <a name='T--ArrayExtensions'></a>
@@ -116,8 +116,8 @@ GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
 
 Single operations on entities of the FactFactory. Sharpened for work with [IPriorityFact](#T-FactFactory-Priority-Interfaces-IPriorityFact 'FactFactory.Priority.Interfaces.IPriorityFact').
 
-<a name='M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CalculateFactAsync``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
-### CalculateFactAsync\`\`3(node,context) `method`
+<a name='M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CalculateFactAsync``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1}-'></a>
+### CalculateFactAsync\`\`2(node,context) `method`
 
 ##### Summary
 
@@ -132,7 +132,7 @@ Fact.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') | Node containing information about the calculation rule. |
-| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') | Context |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1}') | Context |
 
 ##### Generic Types
 
@@ -142,8 +142,8 @@ Fact.
 | TWantAction | Type wantAction. |
 | TFactContainer | Type fact container. |
 
-<a name='M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CalculateFact``3-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
-### CalculateFact\`\`3(node,context) `method`
+<a name='M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CalculateFact``2-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0},GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1}-'></a>
+### CalculateFact\`\`2(node,context) `method`
 
 ##### Summary
 
@@ -158,7 +158,7 @@ Fact.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{\`\`0}](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule{``0} 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule{``0}') | Node containing information about the calculation rule. |
-| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') | Context |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1}') | Context |
 
 ##### Generic Types
 
@@ -166,15 +166,14 @@ Fact.
 | ---- | ----------- |
 | TFactRule | Type rule. |
 | TWantAction | Type wantAction. |
-| TFactContainer | Type fact container. |
 
-<a name='M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CompareFactRules``3-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}-'></a>
-### CompareFactRules\`\`3(x,y,context) `method`
+<a name='M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CompareFactRules``2-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1}-'></a>
+### CompareFactRules\`\`2(x,y,context) `method`
 
 ##### Summary
 
 Compares rules by priority and base attribute
-([CompareFactRules\`\`3](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CompareFactRules``3-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CompareFactRules``3(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2})')).
+([CompareFactRules\`\`2](#M-GetcuReone-FactFactory-Facades-SingleEntityOperations-SingleEntityOperationsFacade-CompareFactRules``2-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1}- 'GetcuReone.FactFactory.Facades.SingleEntityOperations.SingleEntityOperationsFacade.CompareFactRules``2(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1})')).
 
 ##### Returns
 
@@ -188,7 +187,7 @@ Compares rules by priority and base attribute
 | ---- | ---- | ----------- |
 | x | [\`\`0](#T-``0 '``0') | First rule. |
 | y | [\`\`0](#T-``0 '``0') | Secon role. |
-| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1,\`\`2}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1,``2} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1,``2}') | Context. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1}') | Context. |
 
 ##### Generic Types
 
@@ -196,7 +195,6 @@ Compares rules by priority and base attribute
 | ---- | ----------- |
 | TFactRule | Type rule. |
 | TWantAction | Type wantAction. |
-| TFactContainer | Type fact container. |
 
 <a name='M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CompareFacts-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact-'></a>
 ### CompareFacts(x,y) `method`

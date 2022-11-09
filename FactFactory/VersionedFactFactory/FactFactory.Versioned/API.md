@@ -31,20 +31,20 @@
   - [EqualsInfo()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion`1-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion`1.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
   - [ToString()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion`1-ToString 'GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion`1.ToString')
   - [op_Implicit(fact)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion`1-op_Implicit-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion{`0}-~`0 'GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion`1.op_Implicit(GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion{`0})~`0')
-- [BaseVersionedFactFactory\`4](#T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`4 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`4')
-  - [DeriveFactAsync\`\`2()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`4-DeriveFactAsync``2-`3- 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`4.DeriveFactAsync``2(`3)')
-  - [DeriveFact\`\`2()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`4-DeriveFact``2-`3- 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`4.DeriveFact``2(`3)')
-  - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`4-GetSingleEntityOperations 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`4.GetSingleEntityOperations')
+- [BaseVersionedFactFactory\`3](#T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`3 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`3')
+  - [DeriveFactAsync\`\`2()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`3-DeriveFactAsync``2-GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`3.DeriveFactAsync``2(GetcuReone.FactFactory.Interfaces.IFactContainer)')
+  - [DeriveFact\`\`2()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`3-DeriveFact``2-GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`3.DeriveFact``2(GetcuReone.FactFactory.Interfaces.IFactContainer)')
+  - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`3-GetSingleEntityOperations 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`3.GetSingleEntityOperations')
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
 - [VersionedFactFactory](#T-GetcuReone-FactFactory-Versioned-VersionedFactFactory 'GetcuReone.FactFactory.Versioned.VersionedFactFactory')
   - [#ctor()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-#ctor 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.#ctor')
-  - [#ctor(getDefaultFactsFunc)](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}- 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}})')
+  - [#ctor(getDefaultFactsFunc)](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}- 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}})')
   - [Rules](#P-GetcuReone-FactFactory-Versioned-VersionedFactFactory-Rules 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.Rules')
   - [GetDefaultContainer()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-GetDefaultContainer 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetDefaultContainer')
-  - [GetDefaultFacts()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer}- 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer})')
+  - [GetDefaultFacts()](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction}- 'GetcuReone.FactFactory.Versioned.VersionedFactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction})')
 
 <a name='T--ArrayExtensions'></a>
 ## ArrayExtensions `type`
@@ -380,8 +380,8 @@ Extracts [VersionValue](#P-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVer
 | ---- | ---- | ----------- |
 | fact | [GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion{\`0})~\`0](#T-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion{`0}-~`0 'GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion{`0})~`0') | Version value. |
 
-<a name='T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`4'></a>
-## BaseVersionedFactFactory\`4 `type`
+<a name='T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`3'></a>
+## BaseVersionedFactFactory\`3 `type`
 
 ##### Namespace
 
@@ -395,7 +395,7 @@ GetcuReone.FactFactory.Versioned
 
 Base class for versioned fact factory.
 
-<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`4-DeriveFactAsync``2-`3-'></a>
+<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`3-DeriveFactAsync``2-GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
 ### DeriveFactAsync\`\`2() `method`
 
 ##### Summary
@@ -417,7 +417,7 @@ This method has no parameters.
 | TFactResult | Type of desired fact. |
 | TVersion | Type of version fact. |
 
-<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`4-DeriveFact``2-`3-'></a>
+<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`3-DeriveFact``2-GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
 ### DeriveFact\`\`2() `method`
 
 ##### Summary
@@ -439,7 +439,7 @@ This method has no parameters.
 | TFactResult | Type of desired fact. |
 | TVersion | Type of version fact. |
 
-<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`4-GetSingleEntityOperations'></a>
+<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`3-GetSingleEntityOperations'></a>
 ### GetSingleEntityOperations() `method`
 
 ##### Summary
@@ -523,7 +523,7 @@ GetcuReone.FactFactory.Versioned
 
 ##### Summary
 
-Default implementation of versioned fact factory [BaseVersionedFactFactory\`4](#T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`4 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`4').
+Default implementation of versioned fact factory [BaseVersionedFactFactory\`3](#T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`3 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`3').
 
 <a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-#ctor'></a>
 ### #ctor() `constructor`
@@ -536,7 +536,7 @@ Constructor.
 
 This constructor has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}-'></a>
+<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}-'></a>
 ### #ctor(getDefaultFactsFunc) `constructor`
 
 ##### Summary
@@ -547,7 +547,7 @@ Constructor.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| getDefaultFactsFunc | [System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}') | Function that returns default facts. |
+| getDefaultFactsFunc | [System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}') | Function that returns default facts. |
 
 <a name='P-GetcuReone-FactFactory-Versioned-VersionedFactFactory-Rules'></a>
 ### Rules `property`
@@ -567,7 +567,7 @@ Constructor.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer}-'></a>
+<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction}-'></a>
 ### GetDefaultFacts() `method`
 
 ##### Summary

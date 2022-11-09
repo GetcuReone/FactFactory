@@ -17,7 +17,7 @@ namespace FactFactory.PriorityTests.PriorityFactFactory.Env
                 new GetcuReone.FactFactory.Priority.PriorityFactFactory(GetPriorityFacts));
         }
 
-        protected IEnumerable<IFact> GetPriorityFacts(IWantActionContext<WantAction, FactContainer> context)
+        protected IEnumerable<IFact> GetPriorityFacts(IWantActionContext<WantAction> context)
         {
             return new List<IFact>
             {

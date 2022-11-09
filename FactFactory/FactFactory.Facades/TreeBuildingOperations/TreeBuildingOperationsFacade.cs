@@ -22,17 +22,19 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
     public class TreeBuildingOperationsFacade : FacadeBase, ITreeBuildingOperations
     {
         /// <inheritdoc/>
-        public virtual bool TryBuildTreeForFactInfo<TFactRule, TWantAction, TFactContainer>(BuildTreeForFactInfoRequest<TFactRule, TWantAction, TFactContainer> request, out TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeResult, out List<DeriveFactErrorDetail> deriveFactErrorDetails)
+        public virtual bool TryBuildTreeForFactInfo<TFactRule, TWantAction>(
+            BuildTreeForFactInfoRequest<TFactRule, TWantAction> request,
+            out TreeByFactRule<TFactRule, TWantAction> treeResult,
+            out List<DeriveFactErrorDetail> deriveFactErrorDetails)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             var context = request.Context;
             treeResult = null;
             deriveFactErrorDetails = null;
 
             // find the rules that can calculate the fact
-            List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> treesByWantFactType = request.GetTreesByRequest();
+            List<TreeByFactRule<TFactRule, TWantAction>> treesByWantFactType = request.GetTreesByRequest();
             var treeReady = treesByWantFactType.FirstOrDefault(tree => tree.Status == TreeStatus.Built);
 
             if (treeReady != null)
@@ -150,7 +152,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         treeByWantFactType.Built();
                 }
 
-                List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> builtTrees = treesByWantFactType
+                List<TreeByFactRule<TFactRule, TWantAction>> builtTrees = treesByWantFactType
                     .FindAll(tree => tree.Status == TreeStatus.Built);
 
                 if (builtTrees.Count != 0)
@@ -188,15 +190,17 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// </summary>
         /// <typeparam name="TFactRule">FatcRule type.</typeparam>
         /// <typeparam name="TWantAction">WantAction type.</typeparam>
-        /// <typeparam name="TFactContainer">FactContainer type.</typeparam>
         /// <param name="treeByFactRule">Tree whose levels you want to synchronize.</param>
         /// <param name="level">The level at which to start synchronization.</param>
         /// <param name="finishedNodes"></param>
         /// <returns>True - managed to sync root level</returns>
-        private bool TrySyncTreeLevelsAndFinishedNodes<TFactRule, TWantAction, TFactContainer>(TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeByFactRule, int level, Dictionary<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>> finishedNodes)
+        private bool TrySyncTreeLevelsAndFinishedNodes<TFactRule, TWantAction>(
+            TreeByFactRule<TFactRule, TWantAction> treeByFactRule,
+            int level,
+            Dictionary<NodeByFactRuleInfo<TFactRule>,
+                NodeByFactRule<TFactRule>> finishedNodes)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             if (level < 0)
                 return true;
@@ -241,14 +245,16 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// </summary>
         /// <typeparam name="TFactRule"></typeparam>
         /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="treeLevel">Tree level.</param>
         /// <param name="finishedNodes">Nodes by which the rule can already be calculated. Key - node info, value - node</param>
         /// <param name="context">Context.</param>
-        private void SyncTreeLevelAndFinishedNodes<TFactRule, TWantAction, TFactContainer>(List<NodeByFactRule<TFactRule>> treeLevel, Dictionary<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>> finishedNodes, IWantActionContext<TWantAction, TFactContainer> context)
+        private void SyncTreeLevelAndFinishedNodes<TFactRule, TWantAction>(
+            List<NodeByFactRule<TFactRule>> treeLevel,
+            Dictionary<NodeByFactRuleInfo<TFactRule>,
+            NodeByFactRule<TFactRule>> finishedNodes,
+            IWantActionContext<TWantAction> context)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             foreach (var finishedNode in finishedNodes)
             {
@@ -288,16 +294,19 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// </summary>
         /// <typeparam name="TFactRule">FactRole type.</typeparam>
         /// <typeparam name="TWantAction">WantAction type.</typeparam>
-        /// <typeparam name="TFactContainer">FactContainer type.</typeparam>
         /// <param name="factType">Fact type info.</param>
         /// <param name="node"></param>
         /// <param name="context"></param>
         /// <param name="copatibleAllFinishedNodes"></param>
         /// <returns>True - may not be considered necessary</returns>
-        private bool CanRemoveFromNeedFactTypes<TFactRule, TWantAction, TFactContainer>(IFactType factType, NodeByFactRule<TFactRule> node, IFactRulesContext<TFactRule, TWantAction, TFactContainer> context, Dictionary<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>> copatibleAllFinishedNodes)
+        private bool CanRemoveFromNeedFactTypes<TFactRule, TWantAction>(
+            IFactType factType,
+            NodeByFactRule<TFactRule> node,
+            IFactRulesContext<TFactRule, TWantAction> context,
+            Dictionary<NodeByFactRuleInfo<TFactRule>,
+            NodeByFactRule<TFactRule>> copatibleAllFinishedNodes)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             // Exclude condition special facts
             if (factType.IsFactType<IBuildConditionFact>())
@@ -337,7 +346,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     factType
                 );
 
-                condition.SetGetRelatedRulesFunc<TFactRule, TWantAction, TFactContainer>(GetRelatedRules, node.Info.Rule, context.FactRules);
+                condition.SetGetRelatedRulesFunc<TFactRule, TWantAction>(GetRelatedRules, node.Info.Rule, context.FactRules);
 
                 nodeInfo.RuntimeConditions.Add(condition);
 
@@ -365,7 +374,6 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// </summary>
         /// <typeparam name="TFactRule">FatcRule type.</typeparam>
         /// <typeparam name="TWantAction">WantAction type.</typeparam>
-        /// <typeparam name="TFactContainer">FactContainer type.</typeparam>
         /// <param name="node">Node to be removed.</param>
         /// <param name="treeByFactRule">Rule tree.</param>
         /// <param name="level">Level in tree.</param>
@@ -374,10 +382,11 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// Recursively delete parent nodes
         /// if they do not have other nodes calculating the fact from the child node.
         /// </remarks>
-        private bool TryRemoveRootNode<TFactRule, TWantAction, TFactContainer>(NodeByFactRule<TFactRule> node, TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeByFactRule, int level)
+        private bool TryRemoveRootNode<TFactRule, TWantAction>(
+            NodeByFactRule<TFactRule> node,
+            TreeByFactRule<TFactRule, TWantAction> treeByFactRule, int level)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             treeByFactRule.Levels[level].Remove(node);
 
@@ -395,23 +404,24 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         }
 
         /// <inheritdoc/>
-        public bool TryBuildTreesForWantAction<TFactRule, TWantAction, TFactContainer>(BuildTreesForWantActionRequest<TFactRule, TWantAction, TFactContainer> request, out BuildTreesForWantActionResult<TFactRule, TWantAction, TFactContainer> result)
+        public bool TryBuildTreesForWantAction<TFactRule, TWantAction>(
+            BuildTreesForWantActionRequest<TFactRule, TWantAction> request,
+            out BuildTreesForWantActionResult<TFactRule, TWantAction> result)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             var context = request.Context;
             var deriveFactErrorDetails = new List<DeriveFactErrorDetail>();
-            var wantActionInfo = new WantActionInfo<TWantAction, TFactContainer>
+            var wantActionInfo = new WantActionInfo<TWantAction>
             {
                 BuildFailedConditions = new List<IBuildConditionFact>(),
                 BuildSuccessConditions = new List<IBuildConditionFact>(),
                 RuntimeConditions = new List<IRuntimeConditionFact>(),
                 Context = context,
             };
-            result = new BuildTreesForWantActionResult<TFactRule, TWantAction, TFactContainer>
+            result = new BuildTreesForWantActionResult<TFactRule, TWantAction>
             {
-                TreesResult = new List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>(),
+                TreesResult = new List<TreeByFactRule<TFactRule, TWantAction>>(),
                 WantActionInfo = wantActionInfo,
             };
 
@@ -451,10 +461,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     continue;
                 }
 
-                var requestFactType = new BuildTreeForFactInfoRequest<TFactRule, TWantAction, TFactContainer>
+                var requestFactType = new BuildTreeForFactInfoRequest<TFactRule, TWantAction>
                 {
                     WantFactType = needFactType,
-                    Context = new FactRulesContext<TFactRule, TWantAction, TFactContainer>
+                    Context = new FactRulesContext<TFactRule, TWantAction>
                     {
                         Cache = context.Cache,
                         Container = context.Container,
@@ -494,10 +504,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         }
 
         /// <inheritdoc/>
-        public virtual List<IndependentNodeGroup<TFactRule>> GetIndependentNodeGroups<TFactRule, TWantAction, TFactContainer>(TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeByFactRule)
+        public virtual List<IndependentNodeGroup<TFactRule>> GetIndependentNodeGroups<TFactRule, TWantAction>(
+            TreeByFactRule<TFactRule, TWantAction> treeByFactRule)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             var allGroups = new List<IndependentNodeGroup<TFactRule>>();
             FillChildIndependentNodeGroup(treeByFactRule.Root, allGroups);
@@ -537,10 +547,11 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         }
 
         /// <inheritdoc/>
-        public virtual void CalculateTreeAndDeriveWantFacts<TFactRule, TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo, IEnumerable<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> treeByFactRules)
+        public virtual void CalculateTreeAndDeriveWantFacts<TFactRule, TWantAction>(
+            WantActionInfo<TWantAction> wantActionInfo,
+            IEnumerable<TreeByFactRule<TFactRule, TWantAction>> treeByFactRules)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             foreach (var tree in treeByFactRules)
             {
@@ -593,10 +604,11 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         }
 
         /// <inheritdoc/>
-        public virtual async ValueTask CalculateTreeAndDeriveWantFactsAsync<TFactRule, TWantAction, TFactContainer>(WantActionInfo<TWantAction, TFactContainer> wantActionInfo, IEnumerable<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> treeByFactRules)
+        public virtual async ValueTask CalculateTreeAndDeriveWantFactsAsync<TFactRule, TWantAction>(
+            WantActionInfo<TWantAction> wantActionInfo,
+            IEnumerable<TreeByFactRule<TFactRule, TWantAction>> treeByFactRules)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             foreach (var tree in treeByFactRules)
             {
@@ -681,15 +693,14 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// </summary>
         /// <typeparam name="TFactRule">Type rule.</typeparam>
         /// <typeparam name="TWantAction">Type wantAction.</typeparam>
-        /// <typeparam name="TFactContainer">Type fact container.</typeparam>
         /// <param name="rule">Fact rule.</param>
         /// <param name="rules">Fact rules.</param>
         /// <param name="context">Context.</param>
         /// <returns>Related fact rules.</returns>
-        private IFactRuleCollection<TFactRule> GetRelatedRules<TFactRule, TWantAction, TFactContainer>(TFactRule rule, IFactRuleCollection<TFactRule> rules, IWantActionContext<TWantAction, TFactContainer> context)
+        private IFactRuleCollection<TFactRule> GetRelatedRules<TFactRule, TWantAction>(
+            TFactRule rule, IFactRuleCollection<TFactRule> rules, IWantActionContext<TWantAction> context)
             where TFactRule : IFactRule
             where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
         {
             return rules.FindAll(r => !r.EqualsWork(rule, context.WantAction, context.Container));
         }
