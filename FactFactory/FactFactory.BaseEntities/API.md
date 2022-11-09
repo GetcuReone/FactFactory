@@ -123,10 +123,6 @@
   - [ToString()](#M-GetcuReone-FactFactory-BaseEntities-BaseWantAction-ToString 'GetcuReone.FactFactory.BaseEntities.BaseWantAction.ToString')
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
-- [FactContainerBase](#T-GetcuReone-FactFactory-BaseEntities-FactContainerBase 'GetcuReone.FactFactory.BaseEntities.FactContainerBase')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-FactContainerBase-#ctor 'GetcuReone.FactFactory.BaseEntities.FactContainerBase.#ctor')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-FactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.BaseEntities.FactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-FactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean- 'GetcuReone.FactFactory.BaseEntities.FactContainerBase.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)')
 - [FactContainerWriter\`1](#T-GetcuReone-FactFactory-BaseEntities-FactContainerWriter`1 'GetcuReone.FactFactory.BaseEntities.FactContainerWriter`1')
   - [#ctor(container)](#M-GetcuReone-FactFactory-BaseEntities-FactContainerWriter`1-#ctor-`0- 'GetcuReone.FactFactory.BaseEntities.FactContainerWriter`1.#ctor(`0)')
   - [AddRange(facts)](#M-GetcuReone-FactFactory-BaseEntities-FactContainerWriter`1-AddRange-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.BaseEntities.FactContainerWriter`1.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
@@ -146,28 +142,13 @@
   - [Engine](#P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-Engine 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.Engine')
   - [SingleEntity](#P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-SingleEntity 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.SingleEntity')
   - [TreeBuilding](#P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-TreeBuilding 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.TreeBuilding')
-- [FactParameterBase](#T-GetcuReone-FactFactory-BaseEntities-FactParameterBase 'GetcuReone.FactFactory.BaseEntities.FactParameterBase')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-FactParameterBase-#ctor-System-String,System-Object- 'GetcuReone.FactFactory.BaseEntities.FactParameterBase.#ctor(System.String,System.Object)')
-- [FactRuleBase](#T-GetcuReone-FactFactory-BaseEntities-FactRuleBase 'GetcuReone.FactFactory.BaseEntities.FactRuleBase')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-FactRuleBase-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.FactRuleBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-FactRuleBase-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.FactRuleBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-- [FactRuleCollectionBase\`1](#T-GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase`1 'GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase`1-#ctor 'GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.#ctor')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase`1-#ctor-System-Collections-Generic-IEnumerable{`0}- 'GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.#ctor(System.Collections.Generic.IEnumerable{`0})')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase`1-#ctor-System-Collections-Generic-IEnumerable{`0},System-Boolean- 'GetcuReone.FactFactory.BaseEntities.FactRuleCollectionBase`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)')
 - [FactRulesContext\`3](#T-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext`3 'GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext`3')
   - [FactRules](#P-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext`3-FactRules 'GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext`3.FactRules')
-- [FactTypeBase\`1](#T-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1 'GetcuReone.FactFactory.BaseEntities.FactTypeBase`1')
 - [FactTypeCache](#T-GetcuReone-FactFactory-BaseEntities-FactTypeCache 'GetcuReone.FactFactory.BaseEntities.FactTypeCache')
   - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-FactTypeCache-GetFactType``1-``0- 'GetcuReone.FactFactory.BaseEntities.FactTypeCache.GetFactType``1(``0)')
 - [FactType\`1](#T-GetcuReone-FactFactory-FactType`1 'GetcuReone.FactFactory.FactType`1')
-- [FactWorkBase](#T-GetcuReone-FactFactory-BaseEntities-FactWorkBase 'GetcuReone.FactFactory.BaseEntities.FactWorkBase')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-FactWorkBase-#ctor-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.FactWorkBase.#ctor(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
-- [WantActionBase](#T-GetcuReone-FactFactory-BaseEntities-WantActionBase 'GetcuReone.FactFactory.BaseEntities.WantActionBase')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-WantActionBase-#ctor-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-WantActionBase-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.WantActionBase.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
 - [WantActionContext\`2](#T-GetcuReone-FactFactory-BaseEntities-Context-WantActionContext`2 'GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2')
   - [Container](#P-GetcuReone-FactFactory-BaseEntities-Context-WantActionContext`2-Container 'GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2.Container')
   - [WantAction](#P-GetcuReone-FactFactory-BaseEntities-Context-WantActionContext`2-WantAction 'GetcuReone.FactFactory.BaseEntities.Context.WantActionContext`2.WantAction')
@@ -2249,50 +2230,6 @@ True - `items` is null or empty.
 | ---- | ----------- |
 | TItem | Type items. |
 
-<a name='T-GetcuReone-FactFactory-BaseEntities-FactContainerBase'></a>
-## FactContainerBase `type`
-
-##### Namespace
-
-GetcuReone.FactFactory.BaseEntities
-
-##### Summary
-
-*Inherit from parent.*
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-FactContainerBase-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-FactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-FactContainerBase-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
 <a name='T-GetcuReone-FactFactory-BaseEntities-FactContainerWriter`1'></a>
 ## FactContainerWriter\`1 `type`
 
@@ -2535,105 +2472,6 @@ A context containing information within which current actions are taking place.
 
 *Inherit from parent.*
 
-<a name='T-GetcuReone-FactFactory-BaseEntities-FactParameterBase'></a>
-## FactParameterBase `type`
-
-##### Namespace
-
-GetcuReone.FactFactory.BaseEntities
-
-##### Summary
-
-*Inherit from parent.*
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-FactParameterBase-#ctor-System-String,System-Object-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='T-GetcuReone-FactFactory-BaseEntities-FactRuleBase'></a>
-## FactRuleBase `type`
-
-##### Namespace
-
-GetcuReone.FactFactory.BaseEntities
-
-##### Summary
-
-Base class for rules.
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-FactRuleBase-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-FactRuleBase-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='T-GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase`1'></a>
-## FactRuleCollectionBase\`1 `type`
-
-##### Namespace
-
-GetcuReone.FactFactory.BaseEntities
-
-##### Summary
-
-*Inherit from parent.*
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase`1-#ctor'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase`1-#ctor-System-Collections-Generic-IEnumerable{`0}-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-FactRuleCollectionBase`1-#ctor-System-Collections-Generic-IEnumerable{`0},System-Boolean-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
 <a name='T-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext`3'></a>
 ## FactRulesContext\`3 `type`
 
@@ -2647,17 +2485,6 @@ GetcuReone.FactFactory.BaseEntities.Context
 
 <a name='P-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext`3-FactRules'></a>
 ### FactRules `property`
-
-##### Summary
-
-*Inherit from parent.*
-
-<a name='T-GetcuReone-FactFactory-BaseEntities-FactTypeBase`1'></a>
-## FactTypeBase\`1 `type`
-
-##### Namespace
-
-GetcuReone.FactFactory.BaseEntities
 
 ##### Summary
 
@@ -2700,28 +2527,6 @@ GetcuReone.FactFactory
 
 Fact type.
 
-<a name='T-GetcuReone-FactFactory-BaseEntities-FactWorkBase'></a>
-## FactWorkBase `type`
-
-##### Namespace
-
-GetcuReone.FactFactory.BaseEntities
-
-##### Summary
-
-*Inherit from parent.*
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-FactWorkBase-#ctor-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
 <a name='T--ListExtensions'></a>
 ## ListExtensions `type`
 
@@ -2751,39 +2556,6 @@ True - `items` is null or empty.
 | Name | Description |
 | ---- | ----------- |
 | TItem | Type items. |
-
-<a name='T-GetcuReone-FactFactory-BaseEntities-WantActionBase'></a>
-## WantActionBase `type`
-
-##### Namespace
-
-GetcuReone.FactFactory.BaseEntities
-
-##### Summary
-
-*Inherit from parent.*
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-WantActionBase-#ctor-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
-
-<a name='M-GetcuReone-FactFactory-BaseEntities-WantActionBase-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
-### #ctor() `constructor`
-
-##### Summary
-
-*Inherit from parent.*
-
-##### Parameters
-
-This constructor has no parameters.
 
 <a name='T-GetcuReone-FactFactory-BaseEntities-Context-WantActionContext`2'></a>
 ## WantActionContext\`2 `type`
