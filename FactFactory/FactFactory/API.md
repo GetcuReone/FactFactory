@@ -6,7 +6,7 @@
 - [ArrayExtensions](#T--ArrayExtensions '.ArrayExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ArrayExtensions-IsNullOrEmpty``1-``0[]- 'ArrayExtensions.IsNullOrEmpty``1(``0[])')
 - [BaseBuildConditionFact](#T-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BaseBuildConditionFact 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BaseBuildConditionFact')
-  - [Condition\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BaseBuildConditionFact-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}- 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BaseBuildConditionFact.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection})')
+  - [Condition()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BaseBuildConditionFact-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}- 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BaseBuildConditionFact.Condition(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection})')
   - [EqualsInfo()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BaseBuildConditionFact-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BaseBuildConditionFact.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
 - [BaseBuildConditionFact\`1](#T-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BaseBuildConditionFact`1 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BaseBuildConditionFact`1')
   - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BaseBuildConditionFact`1-GetFactType``1 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BaseBuildConditionFact`1.GetFactType``1')
@@ -68,7 +68,7 @@
   - [Value](#P-GetcuReone-FactFactory-BaseFact`1-Value 'GetcuReone.FactFactory.BaseFact`1.Value')
   - [op_Implicit(fact)](#M-GetcuReone-FactFactory-BaseFact`1-op_Implicit-GetcuReone-FactFactory-BaseFact{`0}-~`0 'GetcuReone.FactFactory.BaseFact`1.op_Implicit(GetcuReone.FactFactory.BaseFact{`0})~`0')
 - [BaseRuntimeConditionFact](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-BaseRuntimeConditionFact 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.BaseRuntimeConditionFact')
-  - [Condition\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-BaseRuntimeConditionFact-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.BaseRuntimeConditionFact.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
+  - [Condition()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-BaseRuntimeConditionFact-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.BaseRuntimeConditionFact.Condition(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
   - [EqualsInfo()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-BaseRuntimeConditionFact-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.BaseRuntimeConditionFact.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
   - [SetGetRelatedRulesFunc()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-BaseRuntimeConditionFact-SetGetRelatedRulesFunc-System-Func{GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-IFactRuleCollection,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection},GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-IFactRuleCollection- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.BaseRuntimeConditionFact.SetGetRelatedRulesFunc(System.Func{GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.IFactRuleCollection,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection},GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.IFactRuleCollection)')
   - [TryGetRelatedRules()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-BaseRuntimeConditionFact-TryGetRelatedRules-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection@- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.BaseRuntimeConditionFact.TryGetRelatedRules(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection@)')
@@ -77,13 +77,13 @@
 - [BaseSpecialFact](#T-GetcuReone-FactFactory-SpecialFacts-BaseSpecialFact 'GetcuReone.FactFactory.SpecialFacts.BaseSpecialFact')
   - [EqualsInfo()](#M-GetcuReone-FactFactory-SpecialFacts-BaseSpecialFact-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.SpecialFacts.BaseSpecialFact.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
 - [BuildCanDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildCanDerived`1 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildCanDerived`1')
-  - [Condition\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildCanDerived`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}- 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildCanDerived`1.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection})')
+  - [Condition()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildCanDerived`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}- 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildCanDerived`1.Condition(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection})')
 - [BuildCannotDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildCannotDerived`1 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildCannotDerived`1')
-  - [Condition\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildCannotDerived`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}- 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildCannotDerived`1.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection})')
+  - [Condition()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildCannotDerived`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}- 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildCannotDerived`1.Condition(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection})')
 - [BuildContained\`1](#T-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildContained`1 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildContained`1')
-  - [Condition\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildContained`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}- 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildContained`1.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection})')
+  - [Condition()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildContained`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}- 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildContained`1.Condition(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection})')
 - [BuildNotContained\`1](#T-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildNotContained`1 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildNotContained`1')
-  - [Condition\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildNotContained`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}- 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildNotContained`1.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection})')
+  - [Condition()](#M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildNotContained`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}- 'GetcuReone.FactFactory.SpecialFacts.BuildCondition.BuildNotContained`1.Condition(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,GetcuReone.FactFactory.Interfaces.IFactRuleCollection})')
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [FactFactory](#T-GetcuReone-FactFactory-FactFactory 'GetcuReone.FactFactory.FactFactory')
@@ -95,13 +95,13 @@
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
 - [RCanDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCanDerived`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RCanDerived`1')
-  - [Condition\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCanDerived`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RCanDerived`1.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
+  - [Condition()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCanDerived`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RCanDerived`1.Condition(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
 - [RCannotDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCannotDerived`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RCannotDerived`1')
-  - [Condition\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCannotDerived`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RCannotDerived`1.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
+  - [Condition()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCannotDerived`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RCannotDerived`1.Condition(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
 - [RContained\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RContained`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RContained`1')
-  - [Condition\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RContained`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RContained`1.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
+  - [Condition()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RContained`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RContained`1.Condition(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
 - [RNotContained\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RNotContained`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RNotContained`1')
-  - [Condition\`\`1()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RNotContained`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RNotContained`1.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
+  - [Condition()](#M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RNotContained`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RNotContained`1.Condition(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
 
 <a name='T--ArrayExtensions'></a>
 ## ArrayExtensions `type`
@@ -144,8 +144,8 @@ GetcuReone.FactFactory.SpecialFacts.BuildCondition
 
 Base class for [IBuildConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IBuildConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IBuildConditionFact').
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BaseBuildConditionFact-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}-'></a>
-### Condition\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BaseBuildConditionFact-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}-'></a>
+### Condition() `method`
 
 ##### Summary
 
@@ -1453,8 +1453,8 @@ GetcuReone.FactFactory.SpecialFacts.RuntimeCondition
 
 Base class for [IRuntimeConditionFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact').
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-BaseRuntimeConditionFact-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext-'></a>
-### Condition\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-BaseRuntimeConditionFact-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext-'></a>
+### Condition() `method`
 
 ##### Summary
 
@@ -1558,8 +1558,8 @@ Fact condition that checks if a tree can be built for the fact `TFact` at the tr
 | ---- | ----------- |
 | TFact | The type of fact for which the condition is met. |
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildCanDerived`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}-'></a>
-### Condition\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildCanDerived`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}-'></a>
+### Condition() `method`
 
 ##### Summary
 
@@ -1590,8 +1590,8 @@ A fact condition that tests whether a tree cannot be built for the `TFact` fact 
 | ---- | ----------- |
 | TFact | The type of fact for which the condition is met. |
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildCannotDerived`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}-'></a>
-### Condition\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildCannotDerived`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}-'></a>
+### Condition() `method`
 
 ##### Summary
 
@@ -1622,8 +1622,8 @@ Fact condition. Checks if a `TFact` fact can be retrieved from a container at th
 | ---- | ----------- |
 | TFact | The type of fact for which the condition is met. |
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildContained`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}-'></a>
-### Condition\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildContained`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}-'></a>
+### Condition() `method`
 
 ##### Summary
 
@@ -1654,8 +1654,8 @@ Fact condition. Checks if a `TFact` fact cannot be retrieved from a container at
 | ---- | ----------- |
 | TFact | The type of fact for which the condition is met. |
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildNotContained`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}-'></a>
-### Condition\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-BuildCondition-BuildNotContained`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,GetcuReone-FactFactory-Interfaces-IFactRuleCollection}-'></a>
+### Condition() `method`
 
 ##### Summary
 
@@ -1810,8 +1810,8 @@ Fact condition that checks if a tree can be built for the fact `TFact`.
 | ---- | ----------- |
 | TFact | The type of fact for which the condition is met. |
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCanDerived`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext-'></a>
-### Condition\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCanDerived`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext-'></a>
+### Condition() `method`
 
 ##### Summary
 
@@ -1842,8 +1842,8 @@ Fact condition that checks if a tree can be built for the fact `TFact`.
 | ---- | ----------- |
 | TFact | The type of fact for which the condition is met. |
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCannotDerived`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext-'></a>
-### Condition\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCannotDerived`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext-'></a>
+### Condition() `method`
 
 ##### Summary
 
@@ -1874,8 +1874,8 @@ Fact condition. Checks if a `TFact` fact can be retrieved from a container.
 | ---- | ----------- |
 | TFact | The type of fact for which the condition is met. |
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RContained`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext-'></a>
-### Condition\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RContained`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext-'></a>
+### Condition() `method`
 
 ##### Summary
 
@@ -1906,8 +1906,8 @@ Fact condition. Checks if a `TFact` fact cannot be retrieved from a container.
 | ---- | ----------- |
 | TFact | The type of fact for which the condition is met. |
 
-<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RNotContained`1-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext-'></a>
-### Condition\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RNotContained`1-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext-'></a>
+### Condition() `method`
 
 ##### Summary
 

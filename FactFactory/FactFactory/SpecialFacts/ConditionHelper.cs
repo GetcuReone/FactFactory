@@ -12,13 +12,12 @@ namespace GetcuReone.FactFactory.SpecialFacts
 {
     internal static class ConditionHelper
     {
-        internal static bool CanDeriveFact<TFactWork>(
+        internal static bool CanDeriveFact(
             IBuildConditionFact conditionFact,
             IFactType searchFactType,
-            TFactWork factWork,
+            IFactWork factWork,
             IFactRuleCollection compatibleRules,
             IWantActionContext context)
-            where TFactWork : IFactWork
         {
             if (context.SingleEntity.CanExtractFact(searchFactType, factWork, context))
                 return true;
@@ -60,12 +59,11 @@ namespace GetcuReone.FactFactory.SpecialFacts
             }
         }
         
-        internal static bool CanDeriveFact<TFactWork>(
+        internal static bool CanDeriveFact(
             IRuntimeConditionFact conditionFact,
             IFactType searchFactType,
-            TFactWork factWork,
+            IFactWork factWork,
             IFactRulesContext context)
-            where TFactWork : IFactWork
         {
             if (context.SingleEntity.CanExtractFact(searchFactType, factWork, context))
                 return true;

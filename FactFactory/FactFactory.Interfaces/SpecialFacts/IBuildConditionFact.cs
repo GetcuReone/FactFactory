@@ -11,7 +11,6 @@ namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
         /// <summary>
         /// A condition that determines whether the current fact can be added to the container when deriving.
         /// </summary>
-        /// <typeparam name="TFactWork">Type <paramref name="factWork"/>.</typeparam>
         /// <param name="factWork">Work for which we learn about the possibility of using the fact.</param>
         /// <param name="getCompatibleRules">Func for get compatible rules.</param>
         /// <param name="context">Context.</param>
@@ -19,10 +18,9 @@ namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
         /// <remarks>
         /// Using it, you can determine which rule and under what conditions can be used to build a rule tree.
         /// </remarks>
-        bool Condition<TFactWork>(
-            TFactWork factWork,
+        bool Condition(
+            IFactWork factWork,
             IWantActionContext context,
-            Func<IWantActionContext, IFactRuleCollection> getCompatibleRules)
-            where TFactWork : IFactWork;
+            Func<IWantActionContext, IFactRuleCollection> getCompatibleRules);
     }
 }

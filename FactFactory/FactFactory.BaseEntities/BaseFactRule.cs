@@ -66,10 +66,11 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public override bool EqualsWork<TFactWork>(TFactWork workFact, IWantAction wantAction, IFactContainer container)
+        public override bool EqualsWork(IFactWork workFact, IWantAction wantAction, IFactContainer container)
         {
             if (!(workFact is IFactRule factRule))
                 return false;
+
             if (!OutputFactType.EqualsFactType(factRule.OutputFactType))
                 return false;
 

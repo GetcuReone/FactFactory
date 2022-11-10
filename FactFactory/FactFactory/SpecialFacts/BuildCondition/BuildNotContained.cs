@@ -15,8 +15,8 @@ namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
         /// Checks if a <typeparamref name="TFact"/> fact cannot be retrieved from a container.
         /// </summary>
         /// <inheritdoc/>
-        public override bool Condition<TFactWork>(
-            TFactWork factWork,
+        public override bool Condition(
+            IFactWork factWork,
             IWantActionContext context,
             Func<IWantActionContext, IFactRuleCollection> compatibleRules)
         {

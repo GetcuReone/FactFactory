@@ -20,12 +20,10 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <summary>
         /// Work equality.
         /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
         /// <param name="workFact">Work with which equality is determined.</param>
         /// <param name="wantAction">The action in the context of which this occurs</param>
         /// <param name="container"></param>
         /// <returns><paramref name="workFact"/> equal <paramref name="wantAction"/>?</returns>
-        bool EqualsWork<TFactWork>(TFactWork workFact, IWantAction wantAction, IFactContainer container)
-            where TFactWork : IFactWork;
+        bool EqualsWork(IFactWork workFact, IWantAction wantAction, IFactContainer container);
     }
 }

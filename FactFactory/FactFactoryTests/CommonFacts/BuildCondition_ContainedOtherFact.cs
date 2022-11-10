@@ -7,8 +7,9 @@ namespace FactFactoryTests.CommonFacts
 {
     internal sealed class BuildCondition_ContainedOtherFact : BaseBuildConditionFact<OtherFact>
     {
-        public override bool Condition<TFactWork>(
-            TFactWork factWork, IWantActionContext context,
+        public override bool Condition(
+            IFactWork factWork,
+            IWantActionContext context,
             Func<IWantActionContext, IFactRuleCollection> getCompatibleRules)
         {
             return context.Container.Contains<OtherFact>();

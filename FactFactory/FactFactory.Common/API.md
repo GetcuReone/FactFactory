@@ -156,7 +156,7 @@ Rule not found.
 
 ##### Summary
 
-Failed to meet [Condition\`\`1](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
+Failed to meet [](#!-IRuntimeConditionFact-Condition-IFactWork, Interfaces-Context-IFactRulesContext- 'IRuntimeConditionFact.Condition(IFactWork, Interfaces.Context.IFactRulesContext)')
 and find another solution
 
 <a name='T-GetcuReone-FactFactory-Resources-ErrorResources'></a>

@@ -17,10 +17,7 @@ namespace GetcuReone.FactFactory.SpecialFacts.RuntimeCondition
         private object _relatedRules;
 
         /// <inheritdoc/>
-        public abstract bool Condition<TFactWork>(
-            TFactWork factWork,
-            IFactRulesContext context)
-            where TFactWork : IFactWork;
+        public abstract bool Condition(IFactWork factWork, IFactRulesContext context);
 
         /// <inheritdoc/>
         public override bool EqualsInfo(ISpecialFact specialFact)

@@ -36,7 +36,7 @@
   - [OutputFactType](#P-GetcuReone-FactFactory-BaseEntities-BaseFactRule-OutputFactType 'GetcuReone.FactFactory.BaseEntities.BaseFactRule.OutputFactType')
   - [Calculate()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRule-Calculate-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRule.Calculate(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
   - [CalculateAsync()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRule-CalculateAsync-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRule.CalculateAsync(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
-  - [EqualsWork\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRule-EqualsWork``1-``0,GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.BaseEntities.BaseFactRule.EqualsWork``1(``0,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer)')
+  - [EqualsWork()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRule-EqualsWork-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.BaseEntities.BaseFactRule.EqualsWork(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer)')
   - [ToString()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRule-ToString 'GetcuReone.FactFactory.BaseEntities.BaseFactRule.ToString')
 - [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection')
   - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-#ctor 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.#ctor')
@@ -111,7 +111,7 @@
   - [InputFactTypes](#P-GetcuReone-FactFactory-BaseEntities-BaseFactWork-InputFactTypes 'GetcuReone.FactFactory.BaseEntities.BaseFactWork.InputFactTypes')
   - [Option](#P-GetcuReone-FactFactory-BaseEntities-BaseFactWork-Option 'GetcuReone.FactFactory.BaseEntities.BaseFactWork.Option')
   - [EqualsFactTypes(first,second)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactWork-EqualsFactTypes-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactType},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactType}- 'GetcuReone.FactFactory.BaseEntities.BaseFactWork.EqualsFactTypes(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})')
-  - [EqualsWork\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactWork-EqualsWork``1-``0,GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.BaseEntities.BaseFactWork.EqualsWork``1(``0,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer)')
+  - [EqualsWork()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactWork-EqualsWork-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.BaseEntities.BaseFactWork.EqualsWork(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer)')
 - [BaseWantAction](#T-GetcuReone-FactFactory-BaseEntities-BaseWantAction 'GetcuReone.FactFactory.BaseEntities.BaseWantAction')
   - [#ctor(wantAction,factTypes,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseWantAction-#ctor-System-Action{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseWantAction.#ctor(System.Action{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [#ctor(wantActionAsync,factTypes,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseWantAction-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseWantAction.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
@@ -563,8 +563,8 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRule-EqualsWork``1-``0,GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
-### EqualsWork\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRule-EqualsWork-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
+### EqualsWork() `method`
 
 ##### Summary
 
@@ -2084,8 +2084,8 @@ Determining the equality of a set of fact types.
 | first | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType}') |  |
 | second | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType}') |  |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactWork-EqualsWork``1-``0,GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
-### EqualsWork\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactWork-EqualsWork-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
+### EqualsWork() `method`
 
 ##### Summary
 
