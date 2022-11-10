@@ -7,11 +7,9 @@ namespace GetcuReone.FactFactory.Interfaces
     /// <summary>
     /// Fact factory interface.
     /// </summary>
-    /// <typeparam name="TFactRule">Type fact rule.</typeparam>
     /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
-    public interface IFactFactory<TFactRule, TFactRuleCollection>
-        where TFactRule : IFactRule
-        where TFactRuleCollection : IFactRuleCollection<TFactRule>
+    public interface IFactFactory<TFactRuleCollection>
+        where TFactRuleCollection : IFactRuleCollection
     {
         /// <summary>
         /// Collection of rules for derive facts.

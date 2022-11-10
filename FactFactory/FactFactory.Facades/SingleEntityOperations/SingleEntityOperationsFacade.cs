@@ -22,24 +22,22 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
     public class SingleEntityOperationsFacade : FacadeBase, ISingleEntityOperations
     {
         /// <inheritdoc/>
-        public virtual IComparer<TFactRule> GetRuleComparer<TFactRule>(IWantActionContext context)
-            where TFactRule : IFactRule
+        public virtual IComparer<IFactRule> GetRuleComparer(IWantActionContext context)
         {
-            return Comparer<TFactRule>.Create(
+            return Comparer<IFactRule>.Create(
                 (x, y) => CompareFactRules(x, y, context));
         }
 
         /// <summary>
         /// Compare <see cref="IFactRule"/>.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="firstRule"></param>
+        /// <param name="secondRule"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public virtual int CompareFactRules<TFactRule>(TFactRule x, TFactRule y, IWantActionContext context)
-            where TFactRule : IFactRule
+        public virtual int CompareFactRules(IFactRule firstRule, IFactRule secondRule, IWantActionContext context)
         {
-            return x.CompareTo(y);
+            return firstRule.CompareTo(secondRule);
         }
 
         /// <inheritdoc/>
@@ -62,44 +60,45 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual TFactRuleCollection ValidateAndGetRules<TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
-            where TFactRule : IFactRule
-            where TFactRuleCollection : IFactRuleCollection<TFactRule>
+        public virtual TFactRuleCollection ValidateAndGetRules<TFactRuleCollection>(TFactRuleCollection ruleCollection)
+            where TFactRuleCollection : IFactRuleCollection
         {
             // Get a copy of the rules
             if (ruleCollection == null)
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "Rules cannot be null.");
 
-            IFactRuleCollection<TFactRule> rulesCopy = ruleCollection.Copy();
+            IFactRuleCollection rulesCopy = ruleCollection.Copy();
+
             if (rulesCopy == null)
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactRuleCollection.Copy method return null.");
+
             if (rulesCopy.Equals(ruleCollection))
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactRuleCollection.Copy method return original rule collection.");
+            
             if (!(rulesCopy is TFactRuleCollection rules))
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactRuleCollection.Copy method returned a different type of rules.");
 
             rules.IsReadOnly = true;
+
             return rules;
         }
 
         /// <inheritdoc/>
-        public virtual IFactRuleCollection<TFactRule> GetCompatibleRules<TFactWork, TFactRule>(
+        public virtual IFactRuleCollection GetCompatibleRules<TFactWork>(
             TFactWork target,
-            IFactRuleCollection<TFactRule> factRules,
+            IFactRuleCollection factRules,
             IWantActionContext context)
             where TFactWork : IFactWork
-            where TFactRule : IFactRule
         {
             return factRules;
         }
 
         /// <inheritdoc/>
-        public virtual bool CompatibleRule<TFactWork, TFactRule>(
+        public virtual bool CompatibleRule<TFactWork>(
             TFactWork target,
-            TFactRule rule,
+            IFactRule rule,
             IWantActionContext context)
             where TFactWork : IFactWork
-            where TFactRule : IFactRule
         {
             return true;
         }
@@ -141,10 +140,9 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual bool NeedCalculateFact<TFactRule>(
-            NodeByFactRule<TFactRule> node,
+        public virtual bool NeedCalculateFact(
+            NodeByFactRule node,
             IWantActionContext context)
-            where TFactRule : IFactRule
         {
             return node.Parent != null
                 ? !CanExtractFact(node.Info.Rule.OutputFactType, node.Parent.Info.Rule, context)
@@ -152,8 +150,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual IFact CalculateFact<TFactRule>(NodeByFactRule<TFactRule> node, IWantActionContext context)
-            where TFactRule : IFactRule
+        public virtual IFact CalculateFact(NodeByFactRule node, IWantActionContext context)
         {
             (var rule, var buildSuccessConditions, var runtimeConditions) = 
                 (node.Info.Rule, node.Info.BuildSuccessConditions, node.Info.RuntimeConditions);
@@ -193,8 +190,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual async ValueTask<IFact> CalculateFactAsync<TFactRule>(NodeByFactRule<TFactRule> node, IWantActionContext context)
-            where TFactRule : IFactRule
+        public virtual async ValueTask<IFact> CalculateFactAsync(NodeByFactRule node, IWantActionContext context)
         {
             (var rule, var buildSuccessConditions, var runtimeConditions) =
                 (node.Info.Rule, node.Info.BuildSuccessConditions, node.Info.RuntimeConditions);
@@ -418,21 +414,19 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// <summary>
         /// Try to calculate a fact based on a <paramref name="condition"/>.
         /// </summary>
-        /// <typeparam name="TFactRule">Type rule.</typeparam>
         /// <param name="rule">Rule for which the condition is checked.</param>
         /// <param name="condition">Condition.</param>
         /// <param name="context">Context.</param>
         /// <returns>True - The <paramref name="condition"/> was not fulfilled and the fact had to be recalculated.</returns>
-        private (bool, IFact) TryCalculateFactByRuntimeCondition<TFactRule>(
-            TFactRule rule,
+        private (bool, IFact) TryCalculateFactByRuntimeCondition(
+            IFactRule rule,
             IRuntimeConditionFact condition,
             IWantActionContext context)
-            where TFactRule : IFactRule
         {
             (var wantAction, var container, var engine, var singleOperations, var treeOperations, var cache) =
                 (context.WantAction, context.Container, context.Engine, context.SingleEntity, context.TreeBuilding, context.Cache);
 
-            var rulesContext = new FactRulesContext<TFactRule>
+            var rulesContext = new FactRulesContext
             {
                 Cache = cache,
                 Container = container,
@@ -442,7 +436,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 Engine = engine,
             };
 
-            if (condition.TryGetRelatedRules(context, out IFactRuleCollection<TFactRule> rules))
+            if (condition.TryGetRelatedRules(context, out IFactRuleCollection rules))
             {
                 rulesContext.FactRules = rules;
 
@@ -471,9 +465,9 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                         wantAction.Option)
                 };
 
-                var requests = new List<DeriveWantActionRequest<TFactRule, IFactRuleCollection<TFactRule>>>
+                var requests = new List<DeriveWantActionRequest<IFactRuleCollection>>
                 {
-                    new DeriveWantActionRequest<TFactRule, IFactRuleCollection<TFactRule>>
+                    new DeriveWantActionRequest<IFactRuleCollection>
                     {
                         Rules = rules,
                         Context = wantContext
@@ -503,21 +497,19 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// <summary>
         /// Try to calculate a fact based on a <paramref name="condition"/>.
         /// </summary>
-        /// <typeparam name="TFactRule">Type rule.</typeparam>
         /// <param name="rule">Rule for which the condition is checked.</param>
         /// <param name="condition">Condition.</param>
         /// <param name="context">Context.</param>
         /// <returns>True - The <paramref name="condition"/> was not fulfilled and the fact had to be recalculated.</returns>
-        private async ValueTask<(bool, IFact)> TryCalculateFactByRuntimeConditionAsync<TFactRule>(
-            TFactRule rule,
+        private async ValueTask<(bool, IFact)> TryCalculateFactByRuntimeConditionAsync(
+            IFactRule rule,
             IRuntimeConditionFact condition,
             IWantActionContext context)
-            where TFactRule : IFactRule
         {
             (var wantAction, var container, var engine, var singleOperations, var treeOperations, var cache) =
                 (context.WantAction, context.Container, context.Engine, context.SingleEntity, context.TreeBuilding, context.Cache);
 
-            var rulesContext = new FactRulesContext<TFactRule>
+            var rulesContext = new FactRulesContext
             {
                 Cache = cache,
                 Container = container,
@@ -527,7 +519,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 Engine = engine,
             };
 
-            if (condition.TryGetRelatedRules(context, out IFactRuleCollection<TFactRule> rules))
+            if (condition.TryGetRelatedRules(context, out IFactRuleCollection rules))
             {
                 rulesContext.FactRules = rules;
 
@@ -556,9 +548,9 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                         wantAction.Option)
                 };
 
-                var requests = new List<DeriveWantActionRequest<TFactRule, IFactRuleCollection<TFactRule>>>
+                var requests = new List<DeriveWantActionRequest<IFactRuleCollection>>
                 {
-                    new DeriveWantActionRequest<TFactRule, IFactRuleCollection<TFactRule>>
+                    new DeriveWantActionRequest<IFactRuleCollection>
                     {
                         Rules = rules,
                         Context = wantContext
@@ -590,11 +582,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// </summary>
         /// <param name="condition">Condition.</param>
         /// <param name="context">Context.</param>
-        /// <returns>Result <see cref="IRuntimeConditionFact.Condition{TFactWork, TFactRule}(TFactWork, IFactRulesContext{TFactRule})"/>.</returns>
+        /// <returns>Result <see cref="IRuntimeConditionFact.Condition{TFactWork}(TFactWork, IFactRulesContext)"/>.</returns>
         private bool RuntimeCondition(IRuntimeConditionFact condition, IWantActionContext context)
         {
             var wantAction = context.WantAction;
-            var rulesContext = new FactRulesContext<IFactRule>
+            var rulesContext = new FactRulesContext
             {
                 Cache = context.Cache,
                 Container = context.Container,

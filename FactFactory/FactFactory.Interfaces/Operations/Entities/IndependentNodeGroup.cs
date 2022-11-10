@@ -7,28 +7,20 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Independent node group.
     /// </summary>
-    /// <typeparam name="TFactRule">Rule type.</typeparam>
-    public class IndependentNodeGroup<TFactRule> : List<NodeByFactRule<TFactRule>>
-        where TFactRule : IFactRule
+    public class IndependentNodeGroup : List<NodeByFactRule>
     {
         /// <inheritdoc/>
-        public IndependentNodeGroup()
-        {
-
-        }
+        public IndependentNodeGroup() { }
 
         /// <inheritdoc/>
-        public IndependentNodeGroup(IEnumerable<NodeByFactRule<TFactRule>> factRules) : base(factRules)
-        {
-
-        }
+        public IndependentNodeGroup(IEnumerable<NodeByFactRule> factRules) : base(factRules) { }
 
         /// <summary>
         /// Can add node.
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        public virtual bool CanAdd(NodeByFactRule<TFactRule> node)
+        public virtual bool CanAdd(NodeByFactRule node)
         {
             if (Count == 0)
                 return true;

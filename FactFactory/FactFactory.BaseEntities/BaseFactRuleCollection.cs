@@ -12,21 +12,20 @@ using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 namespace GetcuReone.FactFactory.BaseEntities
 {
     /// <summary>
-    /// Base collection for <typeparamref name="TFactRule"/>.
+    /// Base collection for <see cref="IFactRule"/>.
     /// </summary>
-    public abstract class BaseFactRuleCollection<TFactRule>: IFactRuleCollection<TFactRule>, IFactTypeCreation
-        where TFactRule : IFactRule
+    public abstract class BaseFactRuleCollection: IFactRuleCollection, IFactTypeCreation
     {
-        private List<TFactRule> _list;
+        private List<IFactRule> _list;
 
         /// <summary>
         /// Gets or sets the rule at the specified index.
         /// </summary>
         /// <param name="index">The zero-based index of the element to get or set.</param>
-        /// <exception cref="ArgumentOutOfRangeException">index is not a valid index in the <see cref="List{TFactRule}"/>.</exception>
-        /// <exception cref="NotSupportedException">The property is set and the <see cref="List{TFactRule}"/> is read-only.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">index is not a valid index in the <see cref="List{IFactRule}"/>.</exception>
+        /// <exception cref="NotSupportedException">The property is set and the <see cref="List{IFactRule}"/> is read-only.</exception>
         /// <returns>The rule at the specified index</returns>
-        public TFactRule this[int index]
+        public IFactRule this[int index]
         {
             get => _list[index];
             set
@@ -42,12 +41,12 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Gets the number of rules contained in the <see cref="BaseFactRuleCollection{TFactRule}"/>.
+        /// Gets the number of rules contained in the <see cref="BaseFactRuleCollection"/>.
         /// </summary>
         public int Count => _list.Count;
 
         /// <summary>
-        /// Gets a value indicating whether the <see cref="BaseFactRuleCollection{TFactRule}"/> is read-only.
+        /// Gets a value indicating whether the <see cref="BaseFactRuleCollection"/> is read-only.
         /// </summary>
         public bool IsReadOnly { get; set; }
 
@@ -62,7 +61,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Constructor.
         /// </summary>
         /// <param name="factRules"></param>
-        protected BaseFactRuleCollection(IEnumerable<TFactRule> factRules) : this(factRules, false)
+        protected BaseFactRuleCollection(IEnumerable<IFactRule> factRules) : this(factRules, false)
         {
         }
 
@@ -71,12 +70,12 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <param name="factRules"></param>
         /// <param name="isReadOnly"></param>
-        protected BaseFactRuleCollection(IEnumerable<TFactRule> factRules, bool isReadOnly)
+        protected BaseFactRuleCollection(IEnumerable<IFactRule> factRules, bool isReadOnly)
         {
             if (factRules != null)
-                _list = new List<TFactRule>(factRules);
+                _list = new List<IFactRule>(factRules);
             else
-                _list = new List<TFactRule>();
+                _list = new List<IFactRule>();
 
             IsReadOnly = isReadOnly;
         }
@@ -94,24 +93,24 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Creation method <typeparamref name="TFactRule"/>.
+        /// Creation method <see cref="IFactRule"/>
         /// </summary>
         /// <param name="func">func for calculate.</param>
         /// <param name="inputFactTypes">information on input factacles rules.</param>
         /// <param name="outputFactType">information on output fact.</param>
         /// <param name="option"></param>
         /// <returns></returns>
-        protected abstract TFactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option);
+        protected abstract IFactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option);
 
         /// <summary>
-        /// Creates <typeparamref name="TFactRule"/>.
+        /// Creates <ses cref="IFactRule"/>.
         /// </summary>
         /// <param name="func">func for calculate.</param>
         /// <param name="inputFactTypes">information on input factacles rules.</param>
         /// <param name="outputFactType">information on output fact.</param>
         /// <param name="option">Options for a rule.</param>
         /// <returns>Fact rule.</returns>
-        protected abstract TFactRule CreateFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option);
+        protected abstract IFactRule CreateFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option);
 
         /// <summary>
         /// Rules equality.
@@ -119,7 +118,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="firstRule"></param>
         /// <param name="secondRule"></param>
         /// <returns></returns>
-        protected virtual bool EqualsRules(TFactRule firstRule, TFactRule secondRule)
+        protected virtual bool EqualsRules(IFactRule firstRule, IFactRule secondRule)
         {
             if (firstRule == null && secondRule == null)
                 return true;
@@ -147,7 +146,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Adds rule.
         /// </summary>
         /// <param name="item"></param>
-        public void Add(TFactRule item)
+        public void Add(IFactRule item)
         {
             CheckReadOnly();
             item.OutputFactType.CannotIsType<ISpecialFact>(nameof(item));
@@ -1278,20 +1277,20 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Adds the elements of the specified collection to the end of the <see cref="BaseFactRuleCollection{TFactRule}"/>
+        /// Adds the elements of the specified collection to the end of the <see cref="BaseFactRuleCollection"/>
         /// </summary>
-        /// <param name="rules">The collection whose elements should be added to the end of the  <see cref="BaseFactRuleCollection{TFactRule}"/>. 
+        /// <param name="rules">The collection whose elements should be added to the end of the  <see cref="BaseFactRuleCollection"/>. 
         /// The collection itself cannot be null, but it can contain elements that are null,
         /// if type T is a reference type.</param>
         /// <exception cref="ArgumentNullException">collection is null</exception>
-        public void AddRange(IEnumerable<TFactRule> rules)
+        public void AddRange(IEnumerable<IFactRule> rules)
         {
-            foreach (TFactRule rule in rules)
+            foreach (IFactRule rule in rules)
                 Add(rule);
         }
 
         /// <summary>
-        /// Removes all elements from the <see cref="BaseFactRuleCollection{TFactRule}"/>
+        /// Removes all elements from the <see cref="BaseFactRuleCollection"/>
         /// </summary>
         public void Clear()
         {
@@ -1301,30 +1300,31 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Determines whether an element is in the <typeparamref name="TFactRule"/>. Use method <see cref="EqualsRules(TFactRule, TFactRule)"/>.
+        /// Determines whether an element is in the <see cref="IFactRule"/>.
+        /// Use method <see cref="EqualsRules(IFactRule, IFactRule)"/>.
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public bool Contains(TFactRule item)
+        public bool Contains(IFactRule item)
         {
             return _list.Any(r => EqualsRules(item, r));
         }
 
         /// <summary>
-        /// Copies the entire <see cref="BaseFactRuleCollection{TFactRule}"/> to a compatible one-dimensional array, starting at the specified index of the target array.
+        /// Copies the entire <see cref="BaseFactRuleCollection"/> to a compatible one-dimensional array, starting at the specified index of the target array.
         /// </summary>
-        /// <param name="array">The one-dimensional System.Array that is the destination of the elements copied from <see cref="BaseFactRuleCollection{TFactRule}"/>. The System.Array must have zero-based indexing.</param>
+        /// <param name="array">The one-dimensional System.Array that is the destination of the elements copied from <see cref="BaseFactRuleCollection"/>. The System.Array must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         /// <exception cref="ArgumentNullException">array is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">arrayIndex is less than 0.</exception>
-        /// <exception cref="ArgumentException">The number of elements in the source <see cref="BaseFactRuleCollection{TFactRule}"/> is greater than the available space from arrayIndex to the end of the destination array.</exception>
-        public void CopyTo(TFactRule[] array, int arrayIndex)
+        /// <exception cref="ArgumentException">The number of elements in the source <see cref="BaseFactRuleCollection"/> is greater than the available space from arrayIndex to the end of the destination array.</exception>
+        public void CopyTo(IFactRule[] array, int arrayIndex)
         {
             _list.CopyTo(array, arrayIndex);
         }
 
         /// <inheritdoc/>
-        public IEnumerator<TFactRule> GetEnumerator()
+        public IEnumerator<IFactRule> GetEnumerator()
         {
             return _list.GetEnumerator();
         }
@@ -1333,28 +1333,28 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Sorts collection.
         /// </summary>
         /// <param name="comparer"></param>
-        public void Sort(IComparer<TFactRule> comparer)
+        public void Sort(IComparer<IFactRule> comparer)
         {
             _list.Sort(comparer);
         }
 
         /// <summary>
-        /// Searches for the specified object and returns the zero-based index of the first occurrence within the entire <see cref="BaseFactRuleCollection{TFactRule}"/>.
+        /// Searches for the specified object and returns the zero-based index of the first occurrence within the entire <see cref="BaseFactRuleCollection"/>.
         /// </summary>
-        /// <param name="item">The object to locate in the <see cref="BaseFactRuleCollection{TFactRule}"/> be null for reference types. The value can</param>
-        /// <returns>The zero-based index of the first occurrence of item within the entire <see cref="BaseFactRuleCollection{TFactRule}"/>, if found; otherwise, –1.</returns>
-        public int IndexOf(TFactRule item)
+        /// <param name="item">The object to locate in the <see cref="BaseFactRuleCollection"/> be null for reference types. The value can</param>
+        /// <returns>The zero-based index of the first occurrence of item within the entire <see cref="BaseFactRuleCollection"/>, if found; otherwise, –1.</returns>
+        public int IndexOf(IFactRule item)
         {
             return _list.IndexOf(item);
         }
 
         /// <summary>
-        /// Inserts an element into the<see cref="BaseFactRuleCollection{TFactRule}"/> at the specified index.
+        /// Inserts an element into the<see cref="BaseFactRuleCollection"/> at the specified index.
         /// </summary>
         /// <param name="index">The zero-based index at which item should be inserted.</param>
         /// <param name="item">The object to insert. The value can be null for reference types.</param>
-        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is greater than <see cref="BaseFactRuleCollection{TFactRule}"/>.</exception>
-        public void Insert(int index, TFactRule item)
+        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is greater than <see cref="BaseFactRuleCollection"/>.</exception>
+        public void Insert(int index, IFactRule item)
         {
             CheckReadOnly();
 
@@ -1365,27 +1365,27 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Retrieves all the elements that match the conditions defined by the specified predicate.
         /// </summary>
         /// <param name="predicate">The System.Predicate`1 delegate that defines the conditions of the elements to search for.</param>
-        /// <returns>A <see cref="List{TFactRule}"/> containing all the elements that match the conditions defined by the specified <paramref name="predicate"/>, if found; otherwise, an empty <see cref="List{TFactRule}"/>.</returns>
-        public List<TFactRule> FindAll(Predicate<TFactRule> predicate)
+        /// <returns>A <see cref="List{IFactRule}"/> containing all the elements that match the conditions defined by the specified <paramref name="predicate"/>, if found; otherwise, an empty <see cref="List{IFactRule}"/>.</returns>
+        public List<IFactRule> FindAll(Predicate<IFactRule> predicate)
         {
             return _list.FindAll(predicate);
         }
 
         /// <summary>
-        /// Performs the specified action on each element of the <see cref="BaseFactRuleCollection{TFactRule}"/>.
+        /// Performs the specified action on each element of the <see cref="BaseFactRuleCollection"/>.
         /// </summary>
-        /// <param name="action">The System.Action`1 delegate to perform on each element of the <see cref="BaseFactRuleCollection{TFactRule}"/>.</param>
-        public void ForEach(Action<TFactRule> action)
+        /// <param name="action">The System.Action`1 delegate to perform on each element of the <see cref="BaseFactRuleCollection"/>.</param>
+        public void ForEach(Action<IFactRule> action)
         {
             _list.ForEach(action);
         }
 
         /// <summary>
-        /// Removes the first occurrence of a specific object from the <see cref="BaseFactRuleCollection{TFactRule}"/>.
+        /// Removes the first occurrence of a specific object from the <see cref="BaseFactRuleCollection"/>.
         /// </summary>
-        /// <param name="item">The object to remove from the <see cref="BaseFactRuleCollection{TFactRule}"/>. The value can be null for reference types.</param>
-        /// <returns>true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the <see cref="BaseFactRuleCollection{TFactRule}"/>.</returns>
-        public bool Remove(TFactRule item)
+        /// <param name="item">The object to remove from the <see cref="BaseFactRuleCollection"/>. The value can be null for reference types.</param>
+        /// <returns>true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the <see cref="BaseFactRuleCollection"/>.</returns>
+        public bool Remove(IFactRule item)
         {
             CheckReadOnly();
 
@@ -1393,10 +1393,10 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Removes the element at the specified index of the <see cref="BaseFactRuleCollection{TFactRule}"/>.
+        /// Removes the element at the specified index of the <see cref="BaseFactRuleCollection"/>.
         /// </summary>
         /// <param name="index">The zero-based index of the element to remove.</param>
-        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is equal to or greater than <see cref="BaseFactRuleCollection{TFactRule}"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">index is less than 0. -or- index is equal to or greater than <see cref="BaseFactRuleCollection"/>.</exception>
         public void RemoveAt(int index)
         {
             CheckReadOnly();
@@ -1411,13 +1411,14 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// <see cref="BaseFactRuleCollection{TFactRule}"/> copy method.
+        /// <see cref="BaseFactRuleCollection"/> copy method.
         /// </summary>
-        /// <returns>Copied <see cref="BaseFactRuleCollection{TFactRule}"/>.</returns>
-        public virtual IFactRuleCollection<TFactRule> Copy()
+        /// <returns>Copied <see cref="BaseFactRuleCollection"/>.</returns>
+        public virtual IFactRuleCollection Copy()
         {
-            var result = (BaseFactRuleCollection<TFactRule>) Empty();
-            result._list = new List<TFactRule>(_list);
+            var result = (BaseFactRuleCollection) Empty();
+
+            result._list = new List<IFactRule>(_list);
 
             return result;
         }
@@ -1426,22 +1427,24 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Return a copy of an object without rules.
         /// </summary>
         /// <returns>Copy of object without rules.</returns>
-        protected abstract IFactRuleCollection<TFactRule> Empty();
+        protected abstract IFactRuleCollection Empty();
 
         /// <inheritdoc/>
-        public virtual IFactRuleCollection<TFactRule> FindAll(Func<TFactRule, bool> predicate)
+        public virtual IFactRuleCollection FindAll(Func<IFactRule, bool> predicate)
         {
-            var result = (BaseFactRuleCollection<TFactRule>) Empty();
-            result._list = new List<TFactRule>(_list.Where(predicate));
+            var result = (BaseFactRuleCollection)Empty();
+
+            result._list = _list.FindAll(r => predicate(r));
 
             return result;
         }
 
         /// <inheritdoc/>
-        public IFactRuleCollection<TFactRule> SortByDescending<TKey>(Func<TFactRule, TKey> keySelector, IComparer<TKey> comparer)
+        public IFactRuleCollection SortByDescending<TKey>(Func<IFactRule, TKey> keySelector, IComparer<TKey> comparer)
         {
-            var result = (BaseFactRuleCollection<TFactRule>)Empty();
-            result._list = new List<TFactRule>(_list.OrderByDescending(keySelector, comparer));
+            var result = (BaseFactRuleCollection)Empty();
+
+            result._list = new List<IFactRule>(_list.OrderByDescending(keySelector, comparer));
 
             return result;
         }

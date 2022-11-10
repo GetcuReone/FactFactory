@@ -6,7 +6,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests.Env
 {
     internal sealed class FactRuleCollectionGetOriginal : Rules
     {
-        public override IFactRuleCollection<Rule> Copy()
+        public override IFactRuleCollection Copy()
         {
             return this;
         }

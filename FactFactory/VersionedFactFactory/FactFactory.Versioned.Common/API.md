@@ -13,8 +13,8 @@
   - [VersionNotFound](#F-GetcuReone-FactFactory-Versioned-Constants-VersionedErrorCode-VersionNotFound 'GetcuReone.FactFactory.Versioned.Constants.VersionedErrorCode.VersionNotFound')
 - [VersionedFactFactoryHelper](#T-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper')
   - [AddVerionParameter(fact,version)](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper-AddVerionParameter-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact- 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.AddVerionParameter(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact)')
+  - [CompareByVersion(firstRule,secondRule,context)](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper-CompareByVersion-GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext- 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.CompareByVersion(GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)')
   - [CompareByVersionParameter(x,y)](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper-CompareByVersionParameter-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.CompareByVersionParameter(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)')
-  - [CompareByVersion\`\`1(x,y,context)](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper-CompareByVersion``1-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext- 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.CompareByVersion``1(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)')
   - [FindVersionParameter\`\`1(fact)](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper-FindVersionParameter``1-``0- 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.FindVersionParameter``1(``0)')
   - [FirstVersionFactByFactType\`\`1(facts,factType,cache)](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper-FirstVersionFactByFactType``1-System-Collections-Generic-IEnumerable{``0},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.FirstVersionFactByFactType``1(System.Collections.Generic.IEnumerable{``0},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
   - [FirstVersionFactType(factTypes)](#M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper-FirstVersionFactType-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactType}- 'GetcuReone.FactFactory.Versioned.VersionedFactFactoryHelper.FirstVersionFactType(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactType})')
@@ -160,6 +160,27 @@ Adds a version fact to parameters.
 | fact | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Fact. |
 | version | [GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact](#T-GetcuReone-FactFactory-Versioned-Interfaces-IVersionFact 'GetcuReone.FactFactory.Versioned.Interfaces.IVersionFact') | Verion fact. |
 
+<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper-CompareByVersion-GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext-'></a>
+### CompareByVersion(firstRule,secondRule,context) `method`
+
+##### Summary
+
+Compares rules based on version facts.
+
+##### Returns
+
+1 - `firstRule` rule is greater than the `secondRule`,
+0 - `firstRule` rule is equal than the `secondRule`,
+-1 - `firstRule` rule is less than the `secondRule`.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| firstRule | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') | First rule. |
+| secondRule | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') | Second rule. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext') | Context. |
+
 <a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper-CompareByVersionParameter-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact-'></a>
 ### CompareByVersionParameter(x,y) `method`
 
@@ -179,33 +200,6 @@ Compares facts by version facts in parameters.
 | ---- | ---- | ----------- |
 | x | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Fist fact. |
 | y | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Second fact. |
-
-<a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper-CompareByVersion``1-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext-'></a>
-### CompareByVersion\`\`1(x,y,context) `method`
-
-##### Summary
-
-Compares rules based on version facts.
-
-##### Returns
-
-1 - `x` rule is greater than the `y`,
-0 - `x` rule is equal than the `y`,
--1 - `x` rule is less than the `y`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| x | [\`\`0](#T-``0 '``0') | First rule. |
-| y | [\`\`0](#T-``0 '``0') | Second rule. |
-| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext') | Context. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFactRule | Type rule. |
 
 <a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactoryHelper-FindVersionParameter``1-``0-'></a>
 ### FindVersionParameter\`\`1(fact) `method`

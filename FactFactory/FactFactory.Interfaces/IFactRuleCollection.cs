@@ -7,12 +7,10 @@ namespace GetcuReone.FactFactory.Interfaces
     /// <summary>
     /// Collection of rules.
     /// </summary>
-    /// <typeparam name="TFactRule">Rule type.</typeparam>
-    public interface IFactRuleCollection<TFactRule> : IList<TFactRule>, ICopy<IFactRuleCollection<TFactRule>>
-        where TFactRule : IFactRule
+    public interface IFactRuleCollection : IList<IFactRule>, ICopy<IFactRuleCollection>
     {
         /// <summary>
-        /// Gets a value indicating whether the <see cref="IFactRuleCollection{TFactRule}"/> is read-only.
+        /// Gets a value indicating whether the <see cref="IFactRuleCollection"/> is read-only.
         /// </summary>
         bool IsReadOnly { get; set; }
 
@@ -21,11 +19,11 @@ namespace GetcuReone.FactFactory.Interfaces
         /// </summary>
         /// <param name="predicate">A function to test each element for a condition.</param>
         /// <returns>
-        /// An <see cref="IFactRuleCollection{TFactRule}"/> that contains elements from the input
+        /// An <see cref="IFactRuleCollection"/> that contains elements from the input
         /// sequence that satisfy the condition.
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="predicate"/> is null.</exception>
-        IFactRuleCollection<TFactRule> FindAll(Func<TFactRule, bool> predicate);
+        IFactRuleCollection FindAll(Func<IFactRule, bool> predicate);
 
         /// <summary>
         /// Sorts the elements of a sequence in descending order according to a key.
@@ -34,10 +32,10 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <param name="keySelector">A function to extract a key from an element.</param>
         /// <param name="comparer">An <see cref="IComparer{T}"/> to compare keys.</param>
         /// <returns>
-        /// An <see cref="IFactRuleCollection{TFactRule}"/> whose elements are sorted in
+        /// An <see cref="IFactRuleCollection"/> whose elements are sorted in
         /// descending orderaccording to a key.
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="keySelector"/> is null.</exception>
-        IFactRuleCollection<TFactRule> SortByDescending<TKey>(Func<TFactRule, TKey> keySelector, IComparer<TKey> comparer);
+        IFactRuleCollection SortByDescending<TKey>(Func<IFactRule, TKey> keySelector, IComparer<TKey> comparer);
     }
 }

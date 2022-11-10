@@ -38,69 +38,69 @@
   - [CalculateAsync()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRule-CalculateAsync-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRule.CalculateAsync(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
   - [EqualsWork\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRule-EqualsWork``1-``0,GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.BaseEntities.BaseFactRule.EqualsWork``1(``0,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer)')
   - [ToString()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRule-ToString 'GetcuReone.FactFactory.BaseEntities.BaseFactRule.ToString')
-- [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1')
-  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-#ctor 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.#ctor')
-  - [#ctor(factRules)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-#ctor-System-Collections-Generic-IEnumerable{`0}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})')
-  - [#ctor(factRules,isReadOnly)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-#ctor-System-Collections-Generic-IEnumerable{`0},System-Boolean- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)')
-  - [Count](#P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Count 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Count')
-  - [IsReadOnly](#P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-IsReadOnly 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.IsReadOnly')
-  - [Item](#P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Item-System-Int32- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Item(System.Int32)')
-  - [Add(item)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add-`0- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add(`0)')
-  - [AddRange(rules)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-AddRange-System-Collections-Generic-IEnumerable{`0}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})')
-  - [Add\`\`1(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``1-System-Func{``0},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``1(System.Func{``0},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`1(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``1-System-Func{System-Threading-Tasks-ValueTask{``0}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``1(System.Func{System.Threading.Tasks.ValueTask{``0}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`10(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``10-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`10(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``10-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System-Threading-Tasks-ValueTask{``9}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System.Threading.Tasks.ValueTask{``9}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`11(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``11-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`11(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``11-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System-Threading-Tasks-ValueTask{``10}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System.Threading.Tasks.ValueTask{``10}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`12(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``12-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`12(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``12-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System-Threading-Tasks-ValueTask{``11}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System.Threading.Tasks.ValueTask{``11}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`13(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``13-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`13(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``13-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System-Threading-Tasks-ValueTask{``12}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System.Threading.Tasks.ValueTask{``12}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`14(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``14-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`14(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``14-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System-Threading-Tasks-ValueTask{``13}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System.Threading.Tasks.ValueTask{``13}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`15(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``15-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`15(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``15-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System-Threading-Tasks-ValueTask{``14}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System.Threading.Tasks.ValueTask{``14}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`16(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``16-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`16(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``16-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System-Threading-Tasks-ValueTask{``15}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System.Threading.Tasks.ValueTask{``15}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`17(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``17-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``17(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`17(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``17-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System-Threading-Tasks-ValueTask{``16}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``17(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System.Threading.Tasks.ValueTask{``16}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`2(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``2-System-Func{``0,``1},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``2(System.Func{``0,``1},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`2(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``2-System-Func{``0,System-Threading-Tasks-ValueTask{``1}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``2(System.Func{``0,System.Threading.Tasks.ValueTask{``1}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`3(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``3-System-Func{``0,``1,``2},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``3(System.Func{``0,``1,``2},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`3(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``3-System-Func{``0,``1,System-Threading-Tasks-ValueTask{``2}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``3(System.Func{``0,``1,System.Threading.Tasks.ValueTask{``2}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`4(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``4-System-Func{``0,``1,``2,``3},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``4(System.Func{``0,``1,``2,``3},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`4(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``4-System-Func{``0,``1,``2,System-Threading-Tasks-ValueTask{``3}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``4(System.Func{``0,``1,``2,System.Threading.Tasks.ValueTask{``3}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`5(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``5-System-Func{``0,``1,``2,``3,``4},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``5(System.Func{``0,``1,``2,``3,``4},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`5(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``5-System-Func{``0,``1,``2,``3,System-Threading-Tasks-ValueTask{``4}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``5(System.Func{``0,``1,``2,``3,System.Threading.Tasks.ValueTask{``4}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`6(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``6-System-Func{``0,``1,``2,``3,``4,``5},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``6(System.Func{``0,``1,``2,``3,``4,``5},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`6(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``6-System-Func{``0,``1,``2,``3,``4,System-Threading-Tasks-ValueTask{``5}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``6(System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.ValueTask{``5}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`7(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``7-System-Func{``0,``1,``2,``3,``4,``5,``6},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``7(System.Func{``0,``1,``2,``3,``4,``5,``6},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`7(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``7-System-Func{``0,``1,``2,``3,``4,``5,System-Threading-Tasks-ValueTask{``6}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``7(System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.ValueTask{``6}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`8(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``8-System-Func{``0,``1,``2,``3,``4,``5,``6,``7},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`8(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``8-System-Func{``0,``1,``2,``3,``4,``5,``6,System-Threading-Tasks-ValueTask{``7}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``8(System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.ValueTask{``7}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`9(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``9-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Add\`\`9(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``9-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,System-Threading-Tasks-ValueTask{``8}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Add``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.ValueTask{``8}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Clear()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Clear 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Clear')
-  - [Contains(item)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Contains-`0- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Contains(`0)')
-  - [Copy()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Copy 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Copy')
-  - [CopyTo(array,arrayIndex)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-CopyTo-`0[],System-Int32- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.CopyTo(`0[],System.Int32)')
-  - [CreateFactRule(func,inputFactTypes,outputFactType,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [CreateFactRule(func,inputFactTypes,outputFactType,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
-  - [Empty()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Empty 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Empty')
-  - [EqualsRules(firstRule,secondRule)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-EqualsRules-`0,`0- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.EqualsRules(`0,`0)')
-  - [FindAll(predicate)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-FindAll-System-Predicate{`0}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.FindAll(System.Predicate{`0})')
-  - [FindAll()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-FindAll-System-Func{`0,System-Boolean}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.FindAll(System.Func{`0,System.Boolean})')
-  - [ForEach(action)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-ForEach-System-Action{`0}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.ForEach(System.Action{`0})')
-  - [GetEnumerator()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-GetEnumerator 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.GetEnumerator')
-  - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-GetFactType``1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.GetFactType``1')
-  - [IndexOf(item)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-IndexOf-`0- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.IndexOf(`0)')
-  - [Insert(index,item)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Insert-System-Int32,`0- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Insert(System.Int32,`0)')
-  - [Remove(item)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Remove-`0- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Remove(`0)')
-  - [RemoveAt(index)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-RemoveAt-System-Int32- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.RemoveAt(System.Int32)')
-  - [Sort(comparer)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Sort-System-Collections-Generic-IComparer{`0}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.Sort(System.Collections.Generic.IComparer{`0})')
-  - [SortByDescending\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-SortByDescending``1-System-Func{`0,``0},System-Collections-Generic-IComparer{``0}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.SortByDescending``1(System.Func{`0,``0},System.Collections.Generic.IComparer{``0})')
-  - [System#Collections#IEnumerable#GetEnumerator()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-System#Collections#IEnumerable#GetEnumerator 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.System#Collections#IEnumerable#GetEnumerator')
+- [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection')
+  - [#ctor()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-#ctor 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.#ctor')
+  - [#ctor(factRules)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactRule}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule})')
+  - [#ctor(factRules,isReadOnly)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactRule},System-Boolean- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule},System.Boolean)')
+  - [Count](#P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Count 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Count')
+  - [IsReadOnly](#P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-IsReadOnly 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.IsReadOnly')
+  - [Item](#P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Item-System-Int32- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Item(System.Int32)')
+  - [Add(item)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add-GetcuReone-FactFactory-Interfaces-IFactRule- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add(GetcuReone.FactFactory.Interfaces.IFactRule)')
+  - [AddRange(rules)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-AddRange-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactRule}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule})')
+  - [Add\`\`1(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``1-System-Func{``0},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``1(System.Func{``0},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`1(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``1-System-Func{System-Threading-Tasks-ValueTask{``0}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``1(System.Func{System.Threading.Tasks.ValueTask{``0}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`10(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``10-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`10(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``10-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System-Threading-Tasks-ValueTask{``9}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System.Threading.Tasks.ValueTask{``9}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`11(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``11-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`11(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``11-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System-Threading-Tasks-ValueTask{``10}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``11(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System.Threading.Tasks.ValueTask{``10}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`12(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``12-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`12(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``12-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System-Threading-Tasks-ValueTask{``11}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``12(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System.Threading.Tasks.ValueTask{``11}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`13(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``13-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`13(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``13-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System-Threading-Tasks-ValueTask{``12}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``13(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System.Threading.Tasks.ValueTask{``12}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`14(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``14-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`14(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``14-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System-Threading-Tasks-ValueTask{``13}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``14(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System.Threading.Tasks.ValueTask{``13}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`15(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``15-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`15(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``15-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System-Threading-Tasks-ValueTask{``14}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``15(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System.Threading.Tasks.ValueTask{``14}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`16(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``16-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`16(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``16-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System-Threading-Tasks-ValueTask{``15}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``16(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System.Threading.Tasks.ValueTask{``15}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`17(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``17-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``17(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`17(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``17-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System-Threading-Tasks-ValueTask{``16}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``17(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System.Threading.Tasks.ValueTask{``16}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`2(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``2-System-Func{``0,``1},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``2(System.Func{``0,``1},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`2(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``2-System-Func{``0,System-Threading-Tasks-ValueTask{``1}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``2(System.Func{``0,System.Threading.Tasks.ValueTask{``1}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`3(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``3-System-Func{``0,``1,``2},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``3(System.Func{``0,``1,``2},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`3(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``3-System-Func{``0,``1,System-Threading-Tasks-ValueTask{``2}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``3(System.Func{``0,``1,System.Threading.Tasks.ValueTask{``2}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`4(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``4-System-Func{``0,``1,``2,``3},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``4(System.Func{``0,``1,``2,``3},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`4(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``4-System-Func{``0,``1,``2,System-Threading-Tasks-ValueTask{``3}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``4(System.Func{``0,``1,``2,System.Threading.Tasks.ValueTask{``3}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`5(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``5-System-Func{``0,``1,``2,``3,``4},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``5(System.Func{``0,``1,``2,``3,``4},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`5(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``5-System-Func{``0,``1,``2,``3,System-Threading-Tasks-ValueTask{``4}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``5(System.Func{``0,``1,``2,``3,System.Threading.Tasks.ValueTask{``4}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`6(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``6-System-Func{``0,``1,``2,``3,``4,``5},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``6(System.Func{``0,``1,``2,``3,``4,``5},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`6(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``6-System-Func{``0,``1,``2,``3,``4,System-Threading-Tasks-ValueTask{``5}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``6(System.Func{``0,``1,``2,``3,``4,System.Threading.Tasks.ValueTask{``5}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`7(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``7-System-Func{``0,``1,``2,``3,``4,``5,``6},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``7(System.Func{``0,``1,``2,``3,``4,``5,``6},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`7(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``7-System-Func{``0,``1,``2,``3,``4,``5,System-Threading-Tasks-ValueTask{``6}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``7(System.Func{``0,``1,``2,``3,``4,``5,System.Threading.Tasks.ValueTask{``6}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`8(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``8-System-Func{``0,``1,``2,``3,``4,``5,``6,``7},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`8(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``8-System-Func{``0,``1,``2,``3,``4,``5,``6,System-Threading-Tasks-ValueTask{``7}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``8(System.Func{``0,``1,``2,``3,``4,``5,``6,System.Threading.Tasks.ValueTask{``7}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`9(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``9-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Add\`\`9(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``9-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,System-Threading-Tasks-ValueTask{``8}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``9(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,System.Threading.Tasks.ValueTask{``8}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Clear()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Clear 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Clear')
+  - [Contains(item)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Contains-GetcuReone-FactFactory-Interfaces-IFactRule- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Contains(GetcuReone.FactFactory.Interfaces.IFactRule)')
+  - [Copy()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Copy 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Copy')
+  - [CopyTo(array,arrayIndex)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-CopyTo-GetcuReone-FactFactory-Interfaces-IFactRule[],System-Int32- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.CopyTo(GetcuReone.FactFactory.Interfaces.IFactRule[],System.Int32)')
+  - [CreateFactRule(func,inputFactTypes,outputFactType,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [CreateFactRule(func,inputFactTypes,outputFactType,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
+  - [Empty()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Empty 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Empty')
+  - [EqualsRules(firstRule,secondRule)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-EqualsRules-GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-IFactRule- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.EqualsRules(GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.IFactRule)')
+  - [FindAll(predicate)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-FindAll-System-Predicate{GetcuReone-FactFactory-Interfaces-IFactRule}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.FindAll(System.Predicate{GetcuReone.FactFactory.Interfaces.IFactRule})')
+  - [FindAll()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-FindAll-System-Func{GetcuReone-FactFactory-Interfaces-IFactRule,System-Boolean}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.FindAll(System.Func{GetcuReone.FactFactory.Interfaces.IFactRule,System.Boolean})')
+  - [ForEach(action)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-ForEach-System-Action{GetcuReone-FactFactory-Interfaces-IFactRule}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.ForEach(System.Action{GetcuReone.FactFactory.Interfaces.IFactRule})')
+  - [GetEnumerator()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-GetEnumerator 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.GetEnumerator')
+  - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-GetFactType``1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.GetFactType``1')
+  - [IndexOf(item)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-IndexOf-GetcuReone-FactFactory-Interfaces-IFactRule- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.IndexOf(GetcuReone.FactFactory.Interfaces.IFactRule)')
+  - [Insert(index,item)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Insert-System-Int32,GetcuReone-FactFactory-Interfaces-IFactRule- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Insert(System.Int32,GetcuReone.FactFactory.Interfaces.IFactRule)')
+  - [Remove(item)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Remove-GetcuReone-FactFactory-Interfaces-IFactRule- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Remove(GetcuReone.FactFactory.Interfaces.IFactRule)')
+  - [RemoveAt(index)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-RemoveAt-System-Int32- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.RemoveAt(System.Int32)')
+  - [Sort(comparer)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Sort-System-Collections-Generic-IComparer{GetcuReone-FactFactory-Interfaces-IFactRule}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Sort(System.Collections.Generic.IComparer{GetcuReone.FactFactory.Interfaces.IFactRule})')
+  - [SortByDescending\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-SortByDescending``1-System-Func{GetcuReone-FactFactory-Interfaces-IFactRule,``0},System-Collections-Generic-IComparer{``0}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.SortByDescending``1(System.Func{GetcuReone.FactFactory.Interfaces.IFactRule,``0},System.Collections.Generic.IComparer{``0})')
+  - [System#Collections#IEnumerable#GetEnumerator()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-System#Collections#IEnumerable#GetEnumerator 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.System#Collections#IEnumerable#GetEnumerator')
 - [BaseFactType\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactType`1 'GetcuReone.FactFactory.BaseEntities.BaseFactType`1')
   - [FactName](#P-GetcuReone-FactFactory-BaseEntities-BaseFactType`1-FactName 'GetcuReone.FactFactory.BaseEntities.BaseFactType`1.FactName')
   - [CreateBuildConditionFact\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactType`1-CreateBuildConditionFact``1 'GetcuReone.FactFactory.BaseEntities.BaseFactType`1.CreateBuildConditionFact``1')
@@ -142,8 +142,8 @@
   - [Engine](#P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-Engine 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.Engine')
   - [SingleEntity](#P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-SingleEntity 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.SingleEntity')
   - [TreeBuilding](#P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-TreeBuilding 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.TreeBuilding')
-- [FactRulesContext\`1](#T-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext`1 'GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext`1')
-  - [FactRules](#P-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext`1-FactRules 'GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext`1.FactRules')
+- [FactRulesContext](#T-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext 'GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext')
+  - [FactRules](#P-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext-FactRules 'GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext.FactRules')
 - [FactTypeCache](#T-GetcuReone-FactFactory-BaseEntities-FactTypeCache 'GetcuReone.FactFactory.BaseEntities.FactTypeCache')
   - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-FactTypeCache-GetFactType``1-``0- 'GetcuReone.FactFactory.BaseEntities.FactTypeCache.GetFactType``1(``0)')
 - [FactType\`1](#T-GetcuReone-FactFactory-FactType`1 'GetcuReone.FactFactory.FactType`1')
@@ -586,8 +586,8 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1'></a>
-## BaseFactRuleCollection\`1 `type`
+<a name='T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection'></a>
+## BaseFactRuleCollection `type`
 
 ##### Namespace
 
@@ -595,9 +595,9 @@ GetcuReone.FactFactory.BaseEntities
 
 ##### Summary
 
-Base collection for `TFactRule`.
+Base collection for [IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule').
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-#ctor'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-#ctor'></a>
 ### #ctor() `constructor`
 
 ##### Summary
@@ -608,7 +608,7 @@ Constructor.
 
 This constructor has no parameters.
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-#ctor-System-Collections-Generic-IEnumerable{`0}-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactRule}-'></a>
 ### #ctor(factRules) `constructor`
 
 ##### Summary
@@ -619,9 +619,9 @@ Constructor.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| factRules | [System.Collections.Generic.IEnumerable{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{`0}') |  |
+| factRules | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule}') |  |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-#ctor-System-Collections-Generic-IEnumerable{`0},System-Boolean-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactRule},System-Boolean-'></a>
 ### #ctor(factRules,isReadOnly) `constructor`
 
 ##### Summary
@@ -632,24 +632,24 @@ Constructor.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| factRules | [System.Collections.Generic.IEnumerable{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{`0}') |  |
+| factRules | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule}') |  |
 | isReadOnly | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') |  |
 
-<a name='P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Count'></a>
+<a name='P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Count'></a>
 ### Count `property`
 
 ##### Summary
 
-Gets the number of rules contained in the [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1').
+Gets the number of rules contained in the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection').
 
-<a name='P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-IsReadOnly'></a>
+<a name='P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-IsReadOnly'></a>
 ### IsReadOnly `property`
 
 ##### Summary
 
-Gets a value indicating whether the [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1') is read-only.
+Gets a value indicating whether the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection') is read-only.
 
-<a name='P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Item-System-Int32-'></a>
+<a name='P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Item-System-Int32-'></a>
 ### Item `property`
 
 ##### Summary
@@ -673,7 +673,7 @@ The rule at the specified index
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | index is not a valid index in the [List\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List`1 'System.Collections.Generic.List`1'). |
 | [System.NotSupportedException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.NotSupportedException 'System.NotSupportedException') | The property is set and the [List\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List`1 'System.Collections.Generic.List`1') is read-only. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add-`0-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add-GetcuReone-FactFactory-Interfaces-IFactRule-'></a>
 ### Add(item) `method`
 
 ##### Summary
@@ -684,20 +684,20 @@ Adds rule.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| item | [\`0](#T-`0 '`0') |  |
+| item | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') |  |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-AddRange-System-Collections-Generic-IEnumerable{`0}-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-AddRange-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactRule}-'></a>
 ### AddRange(rules) `method`
 
 ##### Summary
 
-Adds the elements of the specified collection to the end of the [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1')
+Adds the elements of the specified collection to the end of the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection')
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| rules | [System.Collections.Generic.IEnumerable{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{`0}') | The collection whose elements should be added to the end of the  [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1'). 
+| rules | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule}') | The collection whose elements should be added to the end of the  [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection'). 
 The collection itself cannot be null, but it can contain elements that are null,
 if type T is a reference type. |
 
@@ -707,7 +707,7 @@ if type T is a reference type. |
 | ---- | ----------- |
 | [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | collection is null |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``1-System-Func{``0},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``1-System-Func{``0},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`1(rule,option) `method`
 
 ##### Summary
@@ -727,7 +727,7 @@ Adds a rule without input facts.
 | ---- | ----------- |
 | TFactOut | Type of fact result. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``1-System-Func{System-Threading-Tasks-ValueTask{``0}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``1-System-Func{System-Threading-Tasks-ValueTask{``0}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`1(rule,option) `method`
 
 ##### Summary
@@ -747,7 +747,7 @@ Adds a rule without input facts.
 | ---- | ----------- |
 | TFactOut | Type of fact result. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``10-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``10-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`10(rule,option) `method`
 
 ##### Summary
@@ -776,7 +776,7 @@ Adds a rule with 9 input facts
 | TFactIn9 | Type 9 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``10-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System-Threading-Tasks-ValueTask{``9}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``10-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,System-Threading-Tasks-ValueTask{``9}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`10(rule,option) `method`
 
 ##### Summary
@@ -805,7 +805,7 @@ Adds a rule with 9 input facts
 | TFactIn9 | Type 9 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``11-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``11-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`11(rule,option) `method`
 
 ##### Summary
@@ -835,7 +835,7 @@ Adds a rule with 10 input facts
 | TFactIn10 | Type 10 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``11-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System-Threading-Tasks-ValueTask{``10}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``11-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,System-Threading-Tasks-ValueTask{``10}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`11(rule,option) `method`
 
 ##### Summary
@@ -865,7 +865,7 @@ Adds a rule with 10 input facts
 | TFactIn10 | Type 10 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``12-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``12-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`12(rule,option) `method`
 
 ##### Summary
@@ -896,7 +896,7 @@ Adds a rule with 11 input facts
 | TFactIn11 | Type 11 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``12-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System-Threading-Tasks-ValueTask{``11}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``12-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,System-Threading-Tasks-ValueTask{``11}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`12(rule,option) `method`
 
 ##### Summary
@@ -927,7 +927,7 @@ Adds a rule with 11 input facts
 | TFactIn11 | Type 11 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``13-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``13-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`13(rule,option) `method`
 
 ##### Summary
@@ -959,7 +959,7 @@ Adds a rule with 12 input facts
 | TFactIn12 | Type 12 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``13-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System-Threading-Tasks-ValueTask{``12}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``13-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,System-Threading-Tasks-ValueTask{``12}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`13(rule,option) `method`
 
 ##### Summary
@@ -991,7 +991,7 @@ Adds a rule with 12 input facts
 | TFactIn12 | Type 12 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``14-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``14-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`14(rule,option) `method`
 
 ##### Summary
@@ -1024,7 +1024,7 @@ Adds a rule with 13 input facts
 | TFactIn13 | Type 13 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``14-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System-Threading-Tasks-ValueTask{``13}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``14-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,System-Threading-Tasks-ValueTask{``13}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`14(rule,option) `method`
 
 ##### Summary
@@ -1057,7 +1057,7 @@ Adds a rule with 13 input facts
 | TFactIn13 | Type 13 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``15-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``15-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`15(rule,option) `method`
 
 ##### Summary
@@ -1091,7 +1091,7 @@ Adds a rule with 14 input facts
 | TFactIn14 | Type 14 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``15-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System-Threading-Tasks-ValueTask{``14}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``15-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,System-Threading-Tasks-ValueTask{``14}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`15(rule,option) `method`
 
 ##### Summary
@@ -1125,7 +1125,7 @@ Adds a rule with 14 input facts
 | TFactIn14 | Type 14 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``16-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``16-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`16(rule,option) `method`
 
 ##### Summary
@@ -1160,7 +1160,7 @@ Adds a rule with 15 input facts
 | TFactIn15 | Type 15 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``16-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System-Threading-Tasks-ValueTask{``15}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``16-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,System-Threading-Tasks-ValueTask{``15}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`16(rule,option) `method`
 
 ##### Summary
@@ -1195,7 +1195,7 @@ Adds a rule with 15 input facts
 | TFactIn15 | Type 15 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``17-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``17-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`17(rule,option) `method`
 
 ##### Summary
@@ -1231,7 +1231,7 @@ Adds a rule with 16 input facts
 | TFactIn16 | Type 16 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``17-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System-Threading-Tasks-ValueTask{``16}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``17-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,System-Threading-Tasks-ValueTask{``16}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`17(rule,option) `method`
 
 ##### Summary
@@ -1267,7 +1267,7 @@ Adds a rule with 16 input facts
 | TFactIn16 | Type 16 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``2-System-Func{``0,``1},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``2-System-Func{``0,``1},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`2(rule,option) `method`
 
 ##### Summary
@@ -1288,7 +1288,7 @@ Adds a rule with 1 input facts.
 | TFactIn1 | Type 1 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``2-System-Func{``0,System-Threading-Tasks-ValueTask{``1}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``2-System-Func{``0,System-Threading-Tasks-ValueTask{``1}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`2(rule,option) `method`
 
 ##### Summary
@@ -1309,7 +1309,7 @@ Adds a rule with 1 input facts.
 | TFactIn1 | Type 1 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``3-System-Func{``0,``1,``2},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``3-System-Func{``0,``1,``2},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`3(rule,option) `method`
 
 ##### Summary
@@ -1331,7 +1331,7 @@ Adds a rule with 2 input facts.
 | TFactIn2 | Type 2 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``3-System-Func{``0,``1,System-Threading-Tasks-ValueTask{``2}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``3-System-Func{``0,``1,System-Threading-Tasks-ValueTask{``2}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`3(rule,option) `method`
 
 ##### Summary
@@ -1353,7 +1353,7 @@ Adds a rule with 2 input facts.
 | TFactIn2 | Type 2 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``4-System-Func{``0,``1,``2,``3},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``4-System-Func{``0,``1,``2,``3},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`4(rule,option) `method`
 
 ##### Summary
@@ -1376,7 +1376,7 @@ Adds a rule with 3 input facts.
 | TFactIn3 | Type 3 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``4-System-Func{``0,``1,``2,System-Threading-Tasks-ValueTask{``3}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``4-System-Func{``0,``1,``2,System-Threading-Tasks-ValueTask{``3}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`4(rule,option) `method`
 
 ##### Summary
@@ -1399,7 +1399,7 @@ Adds a rule with 3 input facts.
 | TFactIn3 | Type 3 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``5-System-Func{``0,``1,``2,``3,``4},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``5-System-Func{``0,``1,``2,``3,``4},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`5(rule,option) `method`
 
 ##### Summary
@@ -1423,7 +1423,7 @@ Adds a rule with 4 input facts.
 | TFactIn4 | Type 4 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``5-System-Func{``0,``1,``2,``3,System-Threading-Tasks-ValueTask{``4}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``5-System-Func{``0,``1,``2,``3,System-Threading-Tasks-ValueTask{``4}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`5(rule,option) `method`
 
 ##### Summary
@@ -1447,7 +1447,7 @@ Adds a rule with 4 input facts.
 | TFactIn4 | Type 4 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``6-System-Func{``0,``1,``2,``3,``4,``5},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``6-System-Func{``0,``1,``2,``3,``4,``5},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`6(rule,option) `method`
 
 ##### Summary
@@ -1472,7 +1472,7 @@ Adds a rule with 5 input facts.
 | TFactIn5 | Type 5 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``6-System-Func{``0,``1,``2,``3,``4,System-Threading-Tasks-ValueTask{``5}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``6-System-Func{``0,``1,``2,``3,``4,System-Threading-Tasks-ValueTask{``5}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`6(rule,option) `method`
 
 ##### Summary
@@ -1497,7 +1497,7 @@ Adds a rule with 5 input facts.
 | TFactIn5 | Type 5 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``7-System-Func{``0,``1,``2,``3,``4,``5,``6},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``7-System-Func{``0,``1,``2,``3,``4,``5,``6},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`7(rule,option) `method`
 
 ##### Summary
@@ -1523,7 +1523,7 @@ Adds a rule with 6 input facts
 | TFactIn6 | Type 6 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``7-System-Func{``0,``1,``2,``3,``4,``5,System-Threading-Tasks-ValueTask{``6}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``7-System-Func{``0,``1,``2,``3,``4,``5,System-Threading-Tasks-ValueTask{``6}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`7(rule,option) `method`
 
 ##### Summary
@@ -1549,7 +1549,7 @@ Adds a rule with 6 input facts
 | TFactIn6 | Type 6 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``8-System-Func{``0,``1,``2,``3,``4,``5,``6,``7},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``8-System-Func{``0,``1,``2,``3,``4,``5,``6,``7},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`8(rule,option) `method`
 
 ##### Summary
@@ -1576,7 +1576,7 @@ Adds a rule with 7 input facts
 | TFactIn7 | Type 7 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``8-System-Func{``0,``1,``2,``3,``4,``5,``6,System-Threading-Tasks-ValueTask{``7}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``8-System-Func{``0,``1,``2,``3,``4,``5,``6,System-Threading-Tasks-ValueTask{``7}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`8(rule,option) `method`
 
 ##### Summary
@@ -1603,7 +1603,7 @@ Adds a rule with 7 input facts
 | TFactIn7 | Type 7 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``9-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``9-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`9(rule,option) `method`
 
 ##### Summary
@@ -1631,7 +1631,7 @@ Adds a rule with 8 input facts
 | TFactIn8 | Type 8 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Add``9-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,System-Threading-Tasks-ValueTask{``8}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``9-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,System-Threading-Tasks-ValueTask{``8}},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### Add\`\`9(rule,option) `method`
 
 ##### Summary
@@ -1659,23 +1659,24 @@ Adds a rule with 8 input facts
 | TFactIn8 | Type 8 input fact. |
 | TFactOut | Type output fact. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Clear'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Clear'></a>
 ### Clear() `method`
 
 ##### Summary
 
-Removes all elements from the [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1')
+Removes all elements from the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection')
 
 ##### Parameters
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Contains-`0-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Contains-GetcuReone-FactFactory-Interfaces-IFactRule-'></a>
 ### Contains(item) `method`
 
 ##### Summary
 
-Determines whether an element is in the `TFactRule`. Use method [EqualsRules](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-EqualsRules-`0,`0- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1.EqualsRules(`0,`0)').
+Determines whether an element is in the [IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule').
+Use method [EqualsRules](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-EqualsRules-GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-IFactRule- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.EqualsRules(GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.IFactRule)').
 
 ##### Returns
 
@@ -1685,35 +1686,35 @@ Determines whether an element is in the `TFactRule`. Use method [EqualsRules](#M
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| item | [\`0](#T-`0 '`0') |  |
+| item | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') |  |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Copy'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Copy'></a>
 ### Copy() `method`
 
 ##### Summary
 
-[BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1') copy method.
+[BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection') copy method.
 
 ##### Returns
 
-Copied [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1').
+Copied [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection').
 
 ##### Parameters
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-CopyTo-`0[],System-Int32-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-CopyTo-GetcuReone-FactFactory-Interfaces-IFactRule[],System-Int32-'></a>
 ### CopyTo(array,arrayIndex) `method`
 
 ##### Summary
 
-Copies the entire [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1') to a compatible one-dimensional array, starting at the specified index of the target array.
+Copies the entire [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection') to a compatible one-dimensional array, starting at the specified index of the target array.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| array | [\`0[]](#T-`0[] '`0[]') | The one-dimensional System.Array that is the destination of the elements copied from [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1'). The System.Array must have zero-based indexing. |
+| array | [GetcuReone.FactFactory.Interfaces.IFactRule[]](#T-GetcuReone-FactFactory-Interfaces-IFactRule[] 'GetcuReone.FactFactory.Interfaces.IFactRule[]') | The one-dimensional System.Array that is the destination of the elements copied from [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection'). The System.Array must have zero-based indexing. |
 | arrayIndex | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The zero-based index in array at which copying begins. |
 
 ##### Exceptions
@@ -1722,14 +1723,14 @@ Copies the entire [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEnti
 | ---- | ----------- |
 | [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | array is null. |
 | [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | arrayIndex is less than 0. |
-| [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | The number of elements in the source [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1') is greater than the available space from arrayIndex to the end of the destination array. |
+| [System.ArgumentException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentException 'System.ArgumentException') | The number of elements in the source [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection') is greater than the available space from arrayIndex to the end of the destination array. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### CreateFactRule(func,inputFactTypes,outputFactType,option) `method`
 
 ##### Summary
 
-Creation method `TFactRule`.
+Creation method [IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule')
 
 ##### Returns
 
@@ -1744,12 +1745,12 @@ Creation method `TFactRule`.
 | outputFactType | [GetcuReone.FactFactory.Interfaces.IFactType](#T-GetcuReone-FactFactory-Interfaces-IFactType 'GetcuReone.FactFactory.Interfaces.IFactType') | information on output fact. |
 | option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') |  |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### CreateFactRule(func,inputFactTypes,outputFactType,option) `method`
 
 ##### Summary
 
-Creates `TFactRule`.
+Creates .
 
 ##### Returns
 
@@ -1764,7 +1765,7 @@ Fact rule.
 | outputFactType | [GetcuReone.FactFactory.Interfaces.IFactType](#T-GetcuReone-FactFactory-Interfaces-IFactType 'GetcuReone.FactFactory.Interfaces.IFactType') | information on output fact. |
 | option | [GetcuReone.FactFactory.Interfaces.FactWorkOption](#T-GetcuReone-FactFactory-Interfaces-FactWorkOption 'GetcuReone.FactFactory.Interfaces.FactWorkOption') | Options for a rule. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Empty'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Empty'></a>
 ### Empty() `method`
 
 ##### Summary
@@ -1779,7 +1780,7 @@ Copy of object without rules.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-EqualsRules-`0,`0-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-EqualsRules-GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-IFactRule-'></a>
 ### EqualsRules(firstRule,secondRule) `method`
 
 ##### Summary
@@ -1794,10 +1795,10 @@ Rules equality.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| firstRule | [\`0](#T-`0 '`0') |  |
-| secondRule | [\`0](#T-`0 '`0') |  |
+| firstRule | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') |  |
+| secondRule | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') |  |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-FindAll-System-Predicate{`0}-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-FindAll-System-Predicate{GetcuReone-FactFactory-Interfaces-IFactRule}-'></a>
 ### FindAll(predicate) `method`
 
 ##### Summary
@@ -1812,9 +1813,9 @@ A [List\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| predicate | [System.Predicate{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{`0}') | The System.Predicate\`1 delegate that defines the conditions of the elements to search for. |
+| predicate | [System.Predicate{GetcuReone.FactFactory.Interfaces.IFactRule}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{GetcuReone.FactFactory.Interfaces.IFactRule}') | The System.Predicate\`1 delegate that defines the conditions of the elements to search for. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-FindAll-System-Func{`0,System-Boolean}-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-FindAll-System-Func{GetcuReone-FactFactory-Interfaces-IFactRule,System-Boolean}-'></a>
 ### FindAll() `method`
 
 ##### Summary
@@ -1825,20 +1826,20 @@ A [List\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-ForEach-System-Action{`0}-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-ForEach-System-Action{GetcuReone-FactFactory-Interfaces-IFactRule}-'></a>
 ### ForEach(action) `method`
 
 ##### Summary
 
-Performs the specified action on each element of the [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1').
+Performs the specified action on each element of the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection').
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| action | [System.Action{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{`0}') | The System.Action\`1 delegate to perform on each element of the [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1'). |
+| action | [System.Action{GetcuReone.FactFactory.Interfaces.IFactRule}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action{GetcuReone.FactFactory.Interfaces.IFactRule}') | The System.Action\`1 delegate to perform on each element of the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection'). |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-GetEnumerator'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-GetEnumerator'></a>
 ### GetEnumerator() `method`
 
 ##### Summary
@@ -1849,7 +1850,7 @@ Performs the specified action on each element of the [BaseFactRuleCollection\`1]
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-GetFactType``1'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-GetFactType``1'></a>
 ### GetFactType\`\`1() `method`
 
 ##### Summary
@@ -1860,66 +1861,66 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-IndexOf-`0-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-IndexOf-GetcuReone-FactFactory-Interfaces-IFactRule-'></a>
 ### IndexOf(item) `method`
 
 ##### Summary
 
-Searches for the specified object and returns the zero-based index of the first occurrence within the entire [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1').
+Searches for the specified object and returns the zero-based index of the first occurrence within the entire [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection').
 
 ##### Returns
 
-The zero-based index of the first occurrence of item within the entire [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1'), if found; otherwise, –1.
+The zero-based index of the first occurrence of item within the entire [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection'), if found; otherwise, –1.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| item | [\`0](#T-`0 '`0') | The object to locate in the [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1') be null for reference types. The value can |
+| item | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') | The object to locate in the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection') be null for reference types. The value can |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Insert-System-Int32,`0-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Insert-System-Int32,GetcuReone-FactFactory-Interfaces-IFactRule-'></a>
 ### Insert(index,item) `method`
 
 ##### Summary
 
-Inserts an element into the[BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1') at the specified index.
+Inserts an element into the[BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection') at the specified index.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | index | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | The zero-based index at which item should be inserted. |
-| item | [\`0](#T-`0 '`0') | The object to insert. The value can be null for reference types. |
+| item | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') | The object to insert. The value can be null for reference types. |
 
 ##### Exceptions
 
 | Name | Description |
 | ---- | ----------- |
-| [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | index is less than 0. -or- index is greater than [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1'). |
+| [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | index is less than 0. -or- index is greater than [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection'). |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Remove-`0-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Remove-GetcuReone-FactFactory-Interfaces-IFactRule-'></a>
 ### Remove(item) `method`
 
 ##### Summary
 
-Removes the first occurrence of a specific object from the [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1').
+Removes the first occurrence of a specific object from the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection').
 
 ##### Returns
 
-true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1').
+true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection').
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| item | [\`0](#T-`0 '`0') | The object to remove from the [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1'). The value can be null for reference types. |
+| item | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') | The object to remove from the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection'). The value can be null for reference types. |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-RemoveAt-System-Int32-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-RemoveAt-System-Int32-'></a>
 ### RemoveAt(index) `method`
 
 ##### Summary
 
-Removes the element at the specified index of the [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1').
+Removes the element at the specified index of the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection').
 
 ##### Parameters
 
@@ -1931,9 +1932,9 @@ Removes the element at the specified index of the [BaseFactRuleCollection\`1](#T
 
 | Name | Description |
 | ---- | ----------- |
-| [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | index is less than 0. -or- index is equal to or greater than [BaseFactRuleCollection\`1](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection`1'). |
+| [System.ArgumentOutOfRangeException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentOutOfRangeException 'System.ArgumentOutOfRangeException') | index is less than 0. -or- index is equal to or greater than [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection'). |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-Sort-System-Collections-Generic-IComparer{`0}-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Sort-System-Collections-Generic-IComparer{GetcuReone-FactFactory-Interfaces-IFactRule}-'></a>
 ### Sort(comparer) `method`
 
 ##### Summary
@@ -1944,9 +1945,9 @@ Sorts collection.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| comparer | [System.Collections.Generic.IComparer{\`0}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IComparer 'System.Collections.Generic.IComparer{`0}') |  |
+| comparer | [System.Collections.Generic.IComparer{GetcuReone.FactFactory.Interfaces.IFactRule}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IComparer 'System.Collections.Generic.IComparer{GetcuReone.FactFactory.Interfaces.IFactRule}') |  |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-SortByDescending``1-System-Func{`0,``0},System-Collections-Generic-IComparer{``0}-'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-SortByDescending``1-System-Func{GetcuReone-FactFactory-Interfaces-IFactRule,``0},System-Collections-Generic-IComparer{``0}-'></a>
 ### SortByDescending\`\`1() `method`
 
 ##### Summary
@@ -1957,7 +1958,7 @@ Sorts collection.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection`1-System#Collections#IEnumerable#GetEnumerator'></a>
+<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-System#Collections#IEnumerable#GetEnumerator'></a>
 ### System#Collections#IEnumerable#GetEnumerator() `method`
 
 ##### Summary
@@ -2472,8 +2473,8 @@ A context containing information within which current actions are taking place.
 
 *Inherit from parent.*
 
-<a name='T-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext`1'></a>
-## FactRulesContext\`1 `type`
+<a name='T-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext'></a>
+## FactRulesContext `type`
 
 ##### Namespace
 
@@ -2483,7 +2484,7 @@ GetcuReone.FactFactory.BaseEntities.Context
 
 *Inherit from parent.*
 
-<a name='P-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext`1-FactRules'></a>
+<a name='P-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext-FactRules'></a>
 ### FactRules `property`
 
 ##### Summary

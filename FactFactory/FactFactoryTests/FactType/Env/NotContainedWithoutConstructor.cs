@@ -10,7 +10,7 @@ namespace FactFactoryTests.FactType.Env
     {
         private NotContainedWithoutConstructor() { }
 
-        public override bool Condition<TFactWork, TFactRule>(TFactWork factWork, IWantActionContext context, Func<IWantActionContext, IFactRuleCollection<TFactRule>> getCompatibleRules)
+        public override bool Condition<TFactWork>(TFactWork factWork, IWantActionContext context, Func<IWantActionContext, IFactRuleCollection> getCompatibleRules)
         {
             throw new NotImplementedException();
         }
