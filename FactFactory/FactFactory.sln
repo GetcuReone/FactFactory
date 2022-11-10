@@ -86,6 +86,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "extensions", "extensions", 
 		.build-props\files\extensions\ListExtensions.cs = .build-props\files\extensions\ListExtensions.cs
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A3B0324E-3070-45C0-97B9-6C0E433C60D9}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\LICENSE.txt = ..\LICENSE.txt
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{FB72721B-883E-4AC0-BC9B-C15785A4D94A}"
+	ProjectSection(SolutionItems) = preProject
+		..\Pipelines\develop-pipeline.yml = ..\Pipelines\develop-pipeline.yml
+		..\Pipelines\master-pipeline.yml = ..\Pipelines\master-pipeline.yml
+		..\Pipelines\release-pipeline.yml = ..\Pipelines\release-pipeline.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -216,6 +230,7 @@ Global
 		{9626596E-1C93-4E79-AE5A-89BC96A67F13} = {05269488-721D-4DF7-9D6F-EAB974416A99}
 		{AA30A511-BF72-419B-BC45-A82813BB3FB6} = {05269488-721D-4DF7-9D6F-EAB974416A99}
 		{AD5E792C-9F73-45C0-8CBC-DAAABAF79106} = {AA30A511-BF72-419B-BC45-A82813BB3FB6}
+		{FB72721B-883E-4AC0-BC9B-C15785A4D94A} = {A3B0324E-3070-45C0-97B9-6C0E433C60D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FC41382-9108-4BAA-806E-C2CFE2D98DB2}

@@ -6,18 +6,12 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Result.
     /// </summary>
-    /// <typeparam name="TFactRule">Rule type.</typeparam>
-    /// <typeparam name="TWantAction">WantAction type.</typeparam>
-    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
-    public class BuildTreesForWantActionResult<TFactRule, TWantAction, TFactContainer>
-        where TFactRule : IFactRule
-        where TWantAction : IWantAction
-        where TFactContainer : IFactContainer
+    public class BuildTreesForWantActionResult
     {
         /// <summary>
         /// WantAction info.
         /// </summary>
-        public WantActionInfo<TWantAction, TFactContainer> WantActionInfo { get; set; }
+        public WantActionInfo WantActionInfo { get; set; }
 
         /// <summary>
         /// Errors that occurred while building a tree.
@@ -27,6 +21,6 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// <summary>
         /// Build trees.
         /// </summary>
-        public List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> TreesResult { get; set; }
+        public List<TreeByFactRule> TreesResult { get; set; }
     }
 }

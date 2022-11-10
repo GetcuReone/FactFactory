@@ -23,7 +23,7 @@ variables:
 - name: 'buildConfiguration'
   value: 'release'
 - name: 'majorVersion'
-  value: '4'
+  value: '5'
 - name: 'minorVersion'
   value: '0'
 - ${{ if startsWith(variables['Build.SourceBranchName'], 'release') }}:

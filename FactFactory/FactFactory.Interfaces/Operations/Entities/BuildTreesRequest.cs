@@ -6,25 +6,17 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Request.
     /// </summary>
-    /// <typeparam name="TFactRule">Rule type.</typeparam>
-    /// <typeparam name="TWantAction">WantAction type.</typeparam>
-    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
-    /// <typeparam name="TFactRuleCollection">Fact rule collection type.</typeparam>
-    public class BuildTreesRequest<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
-        where TFactRule : IFactRule
-        where TFactRuleCollection : IFactRuleCollection<TFactRule>
-        where TWantAction : IWantAction
-        where TFactContainer : IFactContainer
+    public class BuildTreesRequest
     {
         /// <summary>
         /// The contexts within which to build trees.
         /// </summary>
-        public List<IWantActionContext<TWantAction, TFactContainer>> WantActionContexts { get; set; }
+        public List<IWantActionContext> WantActionContexts { get; set; }
 
         /// <summary>
         /// List of rules that take part in the construction of trees.
         /// </summary>
-        public TFactRuleCollection FactRules { get; set; }
+        public IFactRuleCollection FactRules { get; set; }
 
         /// <summary>
         /// Filter for WantAction and FactRule.

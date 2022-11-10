@@ -3,27 +3,25 @@
 namespace GetcuReone.FactFactory.Priority.SpecialFacts
 {
     /// <summary>
-    /// Base class for priority fact with value of type <see cref="ulong"/>.
+    /// Base class for priority fact with value of type <see cref="uint"/>.
     /// </summary>
-    public class ULongPriorityBase : PriorityBase<ulong>
+    public abstract class BaseUintPriority : BasePriority<uint>
     {
         /// <inheritdoc/>
-        public ULongPriorityBase(ulong value) : base(value)
-        {
-        }
+        protected BaseUintPriority(uint value) : base(value) { }
 
         /// <inheritdoc/>
         public override int CompareTo(IPriorityFact other)
         {
             switch (other)
             {
-                case PriorityBase<int> priority:
+                case BasePriority<int> priority:
                     return priority.PriorityValue.CompareTo(PriorityValue);
-                case PriorityBase<uint> priority:
+                case BasePriority<uint> priority:
                     return priority.PriorityValue.CompareTo(PriorityValue);
-                case PriorityBase<long> priority:
+                case BasePriority<long> priority:
                     return priority.PriorityValue.CompareTo(PriorityValue);
-                case PriorityBase<ulong> priority:
+                case BasePriority<ulong> priority:
                     return priority.PriorityValue.CompareTo(PriorityValue);
 
                 case BaseFact<int> priority:

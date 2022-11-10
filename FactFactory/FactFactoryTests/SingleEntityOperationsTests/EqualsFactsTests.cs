@@ -3,7 +3,6 @@ using FactFactoryTests.CommonFacts;
 using FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
-using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.FactFactoryTests.CommonFacts;
 using GetcuReone.GetcuTestAdapter;
@@ -21,7 +20,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void EmptyFactsTestCase()
         {
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run Equals.", facade =>

@@ -1,5 +1,4 @@
 ﻿using GetcuReone.FactFactory.Exceptions.Entities;
-using GetcuReone.FactFactory.Interfaces.Context;
 using System.Collections.Generic;
 
 namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
@@ -7,18 +6,12 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Result.
     /// </summary>
-    /// <typeparam name="TFactRule">Rule type.</typeparam>
-    /// <typeparam name="TWantAction">WantAction type.</typeparam>
-    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
-    public class BuildTreesResult<TFactRule, TWantAction, TFactContainer>
-        where TFactRule : IFactRule
-        where TWantAction : IWantAction
-        where TFactContainer : IFactContainer
+    public class BuildTreesResult
     {
         /// <summary>
         /// Constructed trees by actions.
         /// </summary>
-        public Dictionary<WantActionInfo<TWantAction, TFactContainer>, List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>>> TreesByActions { get; set; }
+        public Dictionary<WantActionInfo, List<TreeByFactRule>> TreesByActions { get; set; }
 
         /// <summary>
         /// Errors when constructing trees.

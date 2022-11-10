@@ -1,7 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.SingleEntityOperationsTests.Env;
-using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,7 +18,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         {
             var first = GetFactRule((Input2Fact _, Input1Fact __) => new ResultFact(default));
             var second = GetFactRule((Input2Fact _) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
             const int expectedValue = -1;
 
             GivenCreateFacade()
@@ -36,7 +35,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         {
             var first = GetFactRule((Input2Fact _, Input1Fact __) => new ResultFact(default));
             var second = GetFactRule((Input2Fact _, Input1Fact __) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
             const int expectedValue = 0;
 
             GivenCreateFacade()
@@ -53,7 +52,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         {
             var first = GetFactRule((Input1Fact __) => new ResultFact(default));
             var second = GetFactRule((Input2Fact _, Input1Fact __) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
             const int expectedValue = 1;
 
             GivenCreateFacade()
@@ -70,7 +69,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         {
             var first = GetFactRule((Input2Fact _, SpecialFact __) => new ResultFact(default));
             var second = GetFactRule((Input2Fact _, Input1Fact __) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
             const int expectedValue = 1;
 
             GivenCreateFacade()
@@ -87,7 +86,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         {
             var first = GetFactRule((Input2Fact _, SpecialFact __) => new ResultFact(default));
             var second = GetFactRule((Input2Fact _, SpecialFact __) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
             const int expectedValue = 0;
 
             GivenCreateFacade()
@@ -104,7 +103,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         {
             var first = GetFactRule((Input2Fact _, Input1Fact __) => new ResultFact(default));
             var second = GetFactRule((Input2Fact _, SpecialFact __) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
             const int expectedValue = -1;
 
             GivenCreateFacade()
@@ -121,7 +120,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         {
             var first = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
             var second = GetFactRule((SpecialFact _, Input1Fact __) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
             const int expectedValue = 1;
 
             GivenCreateFacade()
@@ -138,7 +137,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         {
             var first = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
             var second = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
             const int expectedValue = 0;
 
             GivenCreateFacade()
@@ -155,7 +154,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         {
             var first = GetFactRule((SpecialFact _, Input1Fact __) => new ResultFact(default));
             var second = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
             const int expectedValue = -1;
 
             GivenCreateFacade()

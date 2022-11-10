@@ -12,11 +12,12 @@ namespace GetcuReone.FactFactory.SpecialFacts
 {
     internal static class ConditionHelper
     {
-        internal static bool CanDeriveFact<TFactWork, TFactRule, TWantAction, TFactContainer>(IBuildConditionFact conditionFact, IFactType searchFactType, TFactWork factWork, IFactRuleCollection<TFactRule> compatibleRules, IWantActionContext<TWantAction, TFactContainer> context)
-            where TFactWork : IFactWork
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        internal static bool CanDeriveFact(
+            IBuildConditionFact conditionFact,
+            IFactType searchFactType,
+            IFactWork factWork,
+            IFactRuleCollection compatibleRules,
+            IWantActionContext context)
         {
             if (context.SingleEntity.CanExtractFact(searchFactType, factWork, context))
                 return true;
@@ -25,10 +26,10 @@ namespace GetcuReone.FactFactory.SpecialFacts
                 .FindAll(rule => rule.InputFactTypes
                     .All(factType => !factType.EqualsFactType(context.Cache.GetFactType(conditionFact))));
 
-            var request = new BuildTreeForFactInfoRequest<TFactRule, TWantAction, TFactContainer>
+            var request = new BuildTreeForFactInfoRequest
             {
                 WantFactType = searchFactType,
-                Context = new FactRulesContext<TFactRule, TWantAction, TFactContainer>
+                Context = new FactRulesContext
                 {
                     Cache = context.Cache,
                     Container = context.Container,
@@ -58,11 +59,11 @@ namespace GetcuReone.FactFactory.SpecialFacts
             }
         }
         
-        internal static bool CanDeriveFact<TFactWork, TFactRule, TWantAction, TFactContainer>(IRuntimeConditionFact conditionFact, IFactType searchFactType, TFactWork factWork, IFactRulesContext<TFactRule, TWantAction, TFactContainer> context)
-            where TFactWork : IFactWork
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        internal static bool CanDeriveFact(
+            IRuntimeConditionFact conditionFact,
+            IFactType searchFactType,
+            IFactWork factWork,
+            IFactRulesContext context)
         {
             if (context.SingleEntity.CanExtractFact(searchFactType, factWork, context))
                 return true;
@@ -71,10 +72,10 @@ namespace GetcuReone.FactFactory.SpecialFacts
                 .FindAll(rule => rule.InputFactTypes
                     .All(factType => !factType.EqualsFactType(context.Cache.GetFactType(conditionFact))));
 
-            var request = new BuildTreeForFactInfoRequest<TFactRule, TWantAction, TFactContainer>
+            var request = new BuildTreeForFactInfoRequest
             {
                 WantFactType = searchFactType,
-                Context = new FactRulesContext<TFactRule, TWantAction, TFactContainer>
+                Context = new FactRulesContext
                 {
                     Cache = context.Cache,
                     Container = context.Container,

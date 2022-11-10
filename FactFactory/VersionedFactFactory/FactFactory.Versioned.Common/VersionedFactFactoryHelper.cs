@@ -73,24 +73,18 @@ namespace GetcuReone.FactFactory.Versioned
         /// <summary>
         /// Compares rules based on version facts.
         /// </summary>
-        /// <typeparam name="TFactRule">Type rule.</typeparam>
-        /// <typeparam name="TWantAction">Type wantAction.</typeparam>
-        /// <typeparam name="TFactContainer">Type fact container.</typeparam>
-        /// <param name="x">First rule.</param>
-        /// <param name="y">Second rule.</param>
+        /// <param name="firstRule">First rule.</param>
+        /// <param name="secondRule">Second rule.</param>
         /// <param name="context">Context.</param>
         /// <returns>
-        /// 1 - <paramref name="x"/> rule is greater than the <paramref name="y"/>,
-        /// 0 - <paramref name="x"/> rule is equal than the <paramref name="y"/>,
-        /// -1 - <paramref name="x"/> rule is less than the <paramref name="y"/>.
+        /// 1 - <paramref name="firstRule"/> rule is greater than the <paramref name="secondRule"/>,
+        /// 0 - <paramref name="firstRule"/> rule is equal than the <paramref name="secondRule"/>,
+        /// -1 - <paramref name="firstRule"/> rule is less than the <paramref name="secondRule"/>.
         /// </returns>
-        public static int CompareByVersion<TFactRule, TWantAction, TFactContainer>(this TFactRule x, TFactRule y, IWantActionContext<TWantAction, TFactContainer> context)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        public static int CompareByVersion(this IFactRule firstRule, IFactRule secondRule, IWantActionContext context)
         {
-            var xVersionType = x.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
-            var yVersionType = y.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
+            var xVersionType = firstRule.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
+            var yVersionType = secondRule.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
 
             if (xVersionType == null)
                 return yVersionType == null ? 0 : 1;

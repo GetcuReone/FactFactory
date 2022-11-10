@@ -1,7 +1,6 @@
-﻿using FactFactoryTests.SingleEntityOperationsTests.Env;
-using FactFactory.TestsCommon;
+﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
-using GetcuReone.FactFactory.Interfaces;
+using FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -23,7 +22,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
                 new Input1Fact(default),
             };
             var rule = GetFactRule((Input1Fact _) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, container);
+            var context = GetWantActionContext(null, container);
 
             GivenCreateFacade()
                 .When("Check extract.", facade =>
@@ -42,7 +41,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
             {
             };
             var rule = GetFactRule((Input1Fact _) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, container);
+            var context = GetWantActionContext(null, container);
 
             GivenCreateFacade()
                 .When("Check extract.", facade =>
