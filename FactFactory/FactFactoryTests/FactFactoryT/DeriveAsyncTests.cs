@@ -68,7 +68,7 @@ namespace FactFactoryTests.FactFactoryT
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
         [Description("WantAction run asynchronously.")]
-        [Timeout(Timeouts.Second.One)]
+        [Timeout(Timeouts.Second.Five)]
         public async Task WantActionRunAsynchronouslyTestCase()
         {
             Input16Fact fact16 = null;
