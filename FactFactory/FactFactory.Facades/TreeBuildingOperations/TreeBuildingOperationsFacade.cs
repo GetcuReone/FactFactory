@@ -22,18 +22,17 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
     public class TreeBuildingOperationsFacade : FacadeBase, ITreeBuildingOperations
     {
         /// <inheritdoc/>
-        public virtual bool TryBuildTreeForFactInfo<TFactRule>(
-            BuildTreeForFactInfoRequest<TFactRule> request,
-            out TreeByFactRule<TFactRule> treeResult,
+        public virtual bool TryBuildTreeForFactInfo(
+            BuildTreeForFactInfoRequest request,
+            out TreeByFactRule treeResult,
             out List<DeriveFactErrorDetail> deriveFactErrorDetails)
-            where TFactRule : IFactRule
         {
             var context = request.Context;
             treeResult = null;
             deriveFactErrorDetails = null;
 
             // find the rules that can calculate the fact
-            List<TreeByFactRule<TFactRule>> treesByWantFactType = request.GetTreesByRequest();
+            List<TreeByFactRule> treesByWantFactType = request.GetTreesByRequest();
             var treeReady = treesByWantFactType.FirstOrDefault(tree => tree.Status == TreeStatus.Built);
 
             if (treeReady != null)
@@ -43,7 +42,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             }
 
             List<List<IFactType>> notFoundFactSet = treesByWantFactType.ConvertAll(item => new List<IFactType>());
-            var allFinichedNodes = new Dictionary<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>>();
+            var allFinichedNodes = new Dictionary<NodeByFactRuleInfo, NodeByFactRule>();
 
             while (true)
             {
@@ -63,7 +62,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         continue;
                     }
 
-                    List<NodeByFactRule<TFactRule>> lastTreeLevel = treeByWantFactType.Levels[lastlevelNumber];
+                    List<NodeByFactRule> lastTreeLevel = treeByWantFactType.Levels[lastlevelNumber];
 
                     // If in the last level there are no nodes for calculation, then the tree can be calculated.
                     if (lastTreeLevel.Count == 0)
@@ -73,15 +72,15 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     }
 
                     // Next level nodes.
-                    var nextTreeLevel = new List<NodeByFactRule<TFactRule>>();
-                    var currentLevelFinishedNodes = new Dictionary<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>>();
+                    var nextTreeLevel = new List<NodeByFactRule>();
+                    var currentLevelFinishedNodes = new Dictionary<NodeByFactRuleInfo, NodeByFactRule>();
                     bool cannotDerived = false;
 
                     for (int j = 0; j < lastTreeLevel.Count; j++)
                     {
-                        NodeByFactRule<TFactRule> node = lastTreeLevel[j];
-                        NodeByFactRuleInfo<TFactRule> nodeInfo = node.Info;
-                        Dictionary<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>> copatibleAllFinishedNodes = nodeInfo.GetCompatibleFinishedNodes(allFinichedNodes, context);
+                        NodeByFactRule node = lastTreeLevel[j];
+                        NodeByFactRuleInfo nodeInfo = node.Info;
+                        Dictionary<NodeByFactRuleInfo, NodeByFactRule> copatibleAllFinishedNodes = nodeInfo.GetCompatibleFinishedNodes(allFinichedNodes, context);
                         List<IFactType> needFacts = nodeInfo
                             .RequiredFactTypes
                             .FindAll(needFactType => !CanRemoveFromNeedFactTypes(needFactType, node, context, copatibleAllFinishedNodes));
@@ -112,7 +111,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
                             if (needRules.Count > 0)
                             {
-                                List<NodeByFactRule<TFactRule>> nodes = needRules.GetNodesByRules(node, treeByWantFactType);
+                                List<NodeByFactRule> nodes = needRules.GetNodesByRules(node, treeByWantFactType);
                                 nextTreeLevel.AddRange(nodes);
                                 node.Childs.AddRange(nodes);
                             }
@@ -151,7 +150,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         treeByWantFactType.Built();
                 }
 
-                List<TreeByFactRule<TFactRule>> builtTrees = treesByWantFactType
+                List<TreeByFactRule> builtTrees = treesByWantFactType
                     .FindAll(tree => tree.Status == TreeStatus.Built);
 
                 if (builtTrees.Count != 0)
@@ -187,33 +186,33 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <summary>
         /// Synchronize tree levels with years ready for calculation.
         /// </summary>
-        /// <typeparam name="TFactRule">FatcRule type.</typeparam>
         /// <param name="treeByFactRule">Tree whose levels you want to synchronize.</param>
         /// <param name="level">The level at which to start synchronization.</param>
         /// <param name="finishedNodes"></param>
         /// <returns>True - managed to sync root level</returns>
-        private bool TrySyncTreeLevelsAndFinishedNodes<TFactRule>(
-            TreeByFactRule<TFactRule> treeByFactRule,
+        private bool TrySyncTreeLevelsAndFinishedNodes(
+            TreeByFactRule treeByFactRule,
             int level,
-            Dictionary<NodeByFactRuleInfo<TFactRule>,
-                NodeByFactRule<TFactRule>> finishedNodes)
-            where TFactRule : IFactRule
+            Dictionary<NodeByFactRuleInfo,
+            NodeByFactRule> finishedNodes)
         {
             if (level < 0)
                 return true;
 
             var context = treeByFactRule.Context;
-            List<NodeByFactRule<TFactRule>> currentLevel = treeByFactRule.Levels[level];
-            var finishedNodesInCurrentLevel = new Dictionary<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>>();
+            List<NodeByFactRule> currentLevel = treeByFactRule.Levels[level];
+            var finishedNodesInCurrentLevel = new Dictionary<NodeByFactRuleInfo, NodeByFactRule>();
 
             foreach (var node in currentLevel)
             {
-                TFactRule rule = node.Info.Rule;
-                IFactRuleCollection<TFactRule> finishedRules = context
+                IFactRule rule = node.Info.Rule;
+
+                IFactRuleCollection finishedRules = context
                     .FactRules
                     .FindAll(r => finishedNodes.Any(n =>
                         n.Key.Rule.EqualsWork(r, context.WantAction, context.Container)));
-                IFactRuleCollection<TFactRule> copabilitiesFinishedRules = rule.GetCompatibleRulesEx(finishedRules, context);
+
+                IFactRuleCollection copabilitiesFinishedRules = rule.GetCompatibleRulesEx(finishedRules, context);
 
                 if (rule.InputFactTypes.Count == 0)
                     finishedNodesInCurrentLevel.Add(node.Info, node);
@@ -240,33 +239,32 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <summary>
         /// Synchronize the tree level with years ready for calculation.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
         /// <param name="treeLevel">Tree level.</param>
         /// <param name="finishedNodes">Nodes by which the rule can already be calculated. Key - node info, value - node</param>
         /// <param name="context">Context.</param>
-        private void SyncTreeLevelAndFinishedNodes<TFactRule>(
-            List<NodeByFactRule<TFactRule>> treeLevel,
-            Dictionary<NodeByFactRuleInfo<TFactRule>,
-            NodeByFactRule<TFactRule>> finishedNodes,
+        private void SyncTreeLevelAndFinishedNodes(
+            List<NodeByFactRule> treeLevel,
+            Dictionary<NodeByFactRuleInfo,
+            NodeByFactRule> finishedNodes,
             IWantActionContext context)
-            where TFactRule : IFactRule
         {
             foreach (var finishedNode in finishedNodes)
             {
-                List<NodeByFactRule<TFactRule>> parentNodes = treeLevel
+                List<NodeByFactRule> parentNodes = treeLevel
                     .Where(node => node.Info.Rule.EqualsWork(finishedNode.Key.Rule, context.WantAction, context.Container))
                     .Select(node => node.Parent)
                     .Distinct()
                     .ToList();
 
-                foreach (NodeByFactRule<TFactRule> parentNode in parentNodes)
+                foreach (NodeByFactRule parentNode in parentNodes)
                 {
                     if (parentNode == null)
                         continue;
 
                     for (int i = parentNode.Childs.Count - 1; i >= 0; i--)
                     {
-                        NodeByFactRule<TFactRule> childNode = parentNode.Childs[i];
+                        NodeByFactRule childNode = parentNode.Childs[i];
+
                         if (!childNode.Info.Rule.OutputFactType.EqualsFactType(finishedNode.Key.Rule.OutputFactType))
                             continue;
 
@@ -287,19 +285,17 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <summary>
         /// Determines you can no longer consider the <paramref name="factType"/> necessary.
         /// </summary>
-        /// <typeparam name="TFactRule">FactRole type.</typeparam>
         /// <param name="factType">Fact type info.</param>
         /// <param name="node"></param>
         /// <param name="context"></param>
         /// <param name="copatibleAllFinishedNodes"></param>
         /// <returns>True - may not be considered necessary</returns>
-        private bool CanRemoveFromNeedFactTypes<TFactRule>(
+        private bool CanRemoveFromNeedFactTypes(
             IFactType factType,
-            NodeByFactRule<TFactRule> node,
-            IFactRulesContext<TFactRule> context,
-            Dictionary<NodeByFactRuleInfo<TFactRule>,
-            NodeByFactRule<TFactRule>> copatibleAllFinishedNodes)
-            where TFactRule : IFactRule
+            NodeByFactRule node,
+            IFactRulesContext context,
+            Dictionary<NodeByFactRuleInfo,
+            NodeByFactRule> copatibleAllFinishedNodes)
         {
             // Exclude condition special facts
             if (factType.IsFactType<IBuildConditionFact>())
@@ -348,7 +344,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             else
             {
                 // Exclude facts for which a solution has already been found.
-                List<KeyValuePair<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>>> finishedNodesForCurrentFact = copatibleAllFinishedNodes
+                List<KeyValuePair<NodeByFactRuleInfo, NodeByFactRule>> finishedNodesForCurrentFact = copatibleAllFinishedNodes
                     .Where(finishedNode => finishedNode.Key.Rule.OutputFactType.EqualsFactType(factType))
                     .ToList();
 
@@ -365,7 +361,6 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <summary>
         /// Delete current node.
         /// </summary>
-        /// <typeparam name="TFactRule">FatcRule type.</typeparam>
         /// <param name="node">Node to be removed.</param>
         /// <param name="treeByFactRule">Rule tree.</param>
         /// <param name="level">Level in tree.</param>
@@ -374,17 +369,17 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// Recursively delete parent nodes
         /// if they do not have other nodes calculating the fact from the child node.
         /// </remarks>
-        private bool TryRemoveRootNode<TFactRule>(
-            NodeByFactRule<TFactRule> node,
-            TreeByFactRule<TFactRule> treeByFactRule, int level)
-            where TFactRule : IFactRule
+        private bool TryRemoveRootNode(
+            NodeByFactRule node,
+            TreeByFactRule treeByFactRule, int level)
         {
             treeByFactRule.Levels[level].Remove(node);
 
             if (level == 0)
                 return true;
 
-            NodeByFactRule<TFactRule> parent = node.Parent;
+            NodeByFactRule parent = node.Parent;
+
             parent.Childs.Remove(node);
 
             // If the node has a child node that can calculate this fact
@@ -395,10 +390,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         }
 
         /// <inheritdoc/>
-        public bool TryBuildTreesForWantAction<TFactRule>(
-            BuildTreesForWantActionRequest<TFactRule> request,
-            out BuildTreesForWantActionResult<TFactRule> result)
-            where TFactRule : IFactRule
+        public bool TryBuildTreesForWantAction(BuildTreesForWantActionRequest request, out BuildTreesForWantActionResult result)
         {
             var context = request.Context;
             var deriveFactErrorDetails = new List<DeriveFactErrorDetail>();
@@ -409,9 +401,9 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 RuntimeConditions = new List<IRuntimeConditionFact>(),
                 Context = context,
             };
-            result = new BuildTreesForWantActionResult<TFactRule>
+            result = new BuildTreesForWantActionResult
             {
-                TreesResult = new List<TreeByFactRule<TFactRule>>(),
+                TreesResult = new List<TreeByFactRule>(),
                 WantActionInfo = wantActionInfo,
             };
 
@@ -451,10 +443,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     continue;
                 }
 
-                var requestFactType = new BuildTreeForFactInfoRequest<TFactRule>
+                var requestFactType = new BuildTreeForFactInfoRequest
                 {
                     WantFactType = needFactType,
-                    Context = new FactRulesContext<TFactRule>
+                    Context = new FactRulesContext
                     {
                         Cache = context.Cache,
                         Container = context.Container,
@@ -494,18 +486,17 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         }
 
         /// <inheritdoc/>
-        public virtual List<IndependentNodeGroup<TFactRule>> GetIndependentNodeGroups<TFactRule>(
-            TreeByFactRule<TFactRule> treeByFactRule)
-            where TFactRule : IFactRule
+        public virtual List<IndependentNodeGroup> GetIndependentNodeGroups(TreeByFactRule treeByFactRule)
         {
-            var allGroups = new List<IndependentNodeGroup<TFactRule>>();
+            var allGroups = new List<IndependentNodeGroup>();
+
             FillChildIndependentNodeGroup(treeByFactRule.Root, allGroups);
-            allGroups.Add(new IndependentNodeGroup<TFactRule> { treeByFactRule.Root });
+            allGroups.Add(new IndependentNodeGroup { treeByFactRule.Root });
+
             return allGroups;
         }
 
-        private void FillChildIndependentNodeGroup<TFactRule>(NodeByFactRule<TFactRule> node, List<IndependentNodeGroup<TFactRule>> groups)
-            where TFactRule : IFactRule
+        private void FillChildIndependentNodeGroup(NodeByFactRule node, List<IndependentNodeGroup> groups)
         {
             if (node.Childs.IsNullOrEmpty())
                 return;
@@ -513,11 +504,12 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             foreach (var child in node.Childs)
                 FillChildIndependentNodeGroup(child, groups);
 
-            IndependentNodeGroup<TFactRule> lastGroup;
+            IndependentNodeGroup lastGroup;
 
             if (groups.Count == 0)
             {
-                lastGroup = new IndependentNodeGroup<TFactRule>();
+                lastGroup = new IndependentNodeGroup();
+
                 groups.Add(lastGroup);
             }
             else
@@ -529,17 +521,15 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     lastGroup.Add(child);
                 else
                 {
-                    lastGroup = new IndependentNodeGroup<TFactRule> { child };
+                    lastGroup = new IndependentNodeGroup { child };
+
                     groups.Add(lastGroup);
                 }
             }
         }
 
         /// <inheritdoc/>
-        public virtual void CalculateTreeAndDeriveWantFacts<TFactRule>(
-            WantActionInfo wantActionInfo,
-            IEnumerable<TreeByFactRule<TFactRule>> treeByFactRules)
-            where TFactRule : IFactRule
+        public virtual void CalculateTreeAndDeriveWantFacts(WantActionInfo wantActionInfo, IEnumerable<TreeByFactRule> treeByFactRules)
         {
             foreach (var tree in treeByFactRules)
             {
@@ -548,8 +538,8 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
                 foreach (var group in treeOperations.GetIndependentNodeGroups(tree))
                 {
-                    var syncNodes = new List<NodeByFactRule<TFactRule>>();
-                    var syncAndParallelNodes = new List<NodeByFactRule<TFactRule>>();
+                    var syncNodes = new List<NodeByFactRule>();
+                    var syncAndParallelNodes = new List<NodeByFactRule>();
 
                     foreach (var node in group)
                     {
@@ -592,20 +582,17 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         }
 
         /// <inheritdoc/>
-        public virtual async ValueTask CalculateTreeAndDeriveWantFactsAsync<TFactRule>(
-            WantActionInfo wantActionInfo,
-            IEnumerable<TreeByFactRule<TFactRule>> treeByFactRules)
-            where TFactRule : IFactRule
+        public virtual async ValueTask CalculateTreeAndDeriveWantFactsAsync(WantActionInfo wantActionInfo, IEnumerable<TreeByFactRule> treeByFactRules)
         {
             foreach (var tree in treeByFactRules)
             {
                 var context = tree.Context;
                 foreach (var group in GetIndependentNodeGroups(tree))
                 {
-                    var syncNodes = new List<NodeByFactRule<TFactRule>>();
-                    var syncAndParallelNodes = new List<NodeByFactRule<TFactRule>>();
-                    var asyncNodes = new List<NodeByFactRule<TFactRule>>();
-                    var asyncAndParallelNodes = new List<NodeByFactRule<TFactRule>>();
+                    var syncNodes = new List<NodeByFactRule>();
+                    var syncAndParallelNodes = new List<NodeByFactRule>();
+                    var asyncNodes = new List<NodeByFactRule>();
+                    var asyncAndParallelNodes = new List<NodeByFactRule>();
 
                     foreach (var node in group)
                     {
@@ -678,14 +665,14 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <summary>
         /// Return related facts.
         /// </summary>
-        /// <typeparam name="TFactRule">Type rule.</typeparam>
         /// <param name="rule">Fact rule.</param>
         /// <param name="rules">Fact rules.</param>
         /// <param name="context">Context.</param>
         /// <returns>Related fact rules.</returns>
-        private IFactRuleCollection<TFactRule> GetRelatedRules<TFactRule>(
-            TFactRule rule, IFactRuleCollection<TFactRule> rules, IWantActionContext context)
-            where TFactRule : IFactRule
+        private IFactRuleCollection GetRelatedRules(
+            IFactRule rule,
+            IFactRuleCollection rules,
+            IWantActionContext context)
         {
             return rules.FindAll(r => !r.EqualsWork(rule, context.WantAction, context.Container));
         }

@@ -6,14 +6,12 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Result.
     /// </summary>
-    /// <typeparam name="TFactRule">Rule type.</typeparam>
-    public class BuildTreesResult<TFactRule>
-        where TFactRule : IFactRule
+    public class BuildTreesResult
     {
         /// <summary>
         /// Constructed trees by actions.
         /// </summary>
-        public Dictionary<WantActionInfo, List<TreeByFactRule<TFactRule>>> TreesByActions { get; set; }
+        public Dictionary<WantActionInfo, List<TreeByFactRule>> TreesByActions { get; set; }
 
         /// <summary>
         /// Errors when constructing trees.

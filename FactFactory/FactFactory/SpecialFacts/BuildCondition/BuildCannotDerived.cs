@@ -15,11 +15,11 @@ namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
         /// Checks if a tree cannot be built for the <typeparamref name="TFact"/> fact.
         /// </summary>
         /// <inheritdoc/>
-        public override bool Condition<TFactWork, TFactRule>(
+        public override bool Condition<TFactWork>(
             TFactWork factWork,
             IWantActionContext context,
             Func<IWantActionContext,
-            IFactRuleCollection<TFactRule>> compatibleRules)
+            IFactRuleCollection> compatibleRules)
         {
             return !ConditionHelper.CanDeriveFact(
                 this,

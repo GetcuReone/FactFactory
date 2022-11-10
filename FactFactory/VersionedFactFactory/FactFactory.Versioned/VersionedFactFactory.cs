@@ -7,9 +7,9 @@ using GetcuReone.FactFactory.Interfaces.Context;
 namespace GetcuReone.FactFactory.Versioned
 {
     /// <summary>
-    /// Default implementation of versioned fact factory <see cref="BaseVersionedFactFactory{TFactRule, TFactRuleCollection}"/>.
+    /// Default implementation of versioned fact factory <see cref="BaseVersionedFactFactory{TFactRuleCollection}"/>.
     /// </summary>
-    public class VersionedFactFactory : BaseVersionedFactFactory<FactRule, FactRuleCollection>
+    public class VersionedFactFactory : BaseVersionedFactFactory<FactRuleCollection>
     {
         private readonly Func<IWantActionContext, IEnumerable<IFact>> _getDefaultFactsFunc;
 

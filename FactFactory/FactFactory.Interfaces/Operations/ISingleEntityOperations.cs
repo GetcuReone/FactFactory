@@ -21,51 +21,43 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Validate and return a copy of the rules.
         /// </summary>
-        /// <typeparam name="TFactRule">Rule type.</typeparam>
         /// <typeparam name="TFactRuleCollection">Rule collection type.</typeparam>
         /// <param name="ruleCollection">Rules.</param>
         /// <returns>Rules.</returns>
-        TFactRuleCollection ValidateAndGetRules<TFactRule, TFactRuleCollection>(TFactRuleCollection ruleCollection)
-            where TFactRule : IFactRule
-            where TFactRuleCollection : IFactRuleCollection<TFactRule>;
+        TFactRuleCollection ValidateAndGetRules<TFactRuleCollection>(TFactRuleCollection ruleCollection)
+            where TFactRuleCollection : IFactRuleCollection;
 
         /// <summary>
         /// Returns comparer for <see cref="IFactRule"/>.
-        /// <typeparam name="TFactRule">Rule type.</typeparam>
         /// </summary>
         /// <param name="context">Context.</param>
         /// <returns>Compare for rule.</returns>
-        IComparer<TFactRule> GetRuleComparer<TFactRule>(IWantActionContext context)
-            where TFactRule : IFactRule;
+        IComparer<IFactRule> GetRuleComparer(IWantActionContext context);
 
         /// <summary>
         /// Returns rules compatible with <paramref name="target"/>.
         /// </summary>
         /// <typeparam name="TFactWork">Work type.</typeparam>
-        /// <typeparam name="TFactRule">Rule type.</typeparam>
         /// <param name="target">The purpose with which the rules must be compatible.</param>
         /// <param name="factRules">List of rules.</param>
         /// <param name="context">Context.</param>
         /// <returns>Compatible rules.</returns>
-        IFactRuleCollection<TFactRule> GetCompatibleRules<TFactWork, TFactRule>(
+        IFactRuleCollection GetCompatibleRules<TFactWork>(
             TFactWork target,
-            IFactRuleCollection<TFactRule> factRules,
+            IFactRuleCollection factRules,
             IWantActionContext context)
-            where TFactWork : IFactWork
-            where TFactRule : IFactRule;
+            where TFactWork : IFactWork;
 
         /// <summary>
         /// True - if the target is consistent with the rule.
         /// </summary>
         /// <typeparam name="TFactWork">Work type.</typeparam>
-        /// <typeparam name="TFactRule">Rule type.</typeparam>
         /// <param name="target">The purpose with which the rules must be compatible.</param>
         /// <param name="rule">Fact rule.</param>
         /// <param name="context">Context.</param>
         /// <returns>Are the rules compatible?</returns>
-        bool CompatibleRule<TFactWork, TFactRule>(TFactWork target, TFactRule rule, IWantActionContext context)
-            where TFactWork : IFactWork
-            where TFactRule : IFactRule;
+        bool CompatibleRule<TFactWork>(TFactWork target, IFactRule rule, IWantActionContext context)
+            where TFactWork : IFactWork;
 
         /// <summary>
         /// Is it possible to get a fact by type <paramref name="factType"/> from a container for a <paramref name="factWork"/>.
@@ -91,32 +83,26 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Do I need to recalculate the fact.
         /// </summary>
-        /// <typeparam name="TFactRule">Rule type.</typeparam>
         /// <param name="node">Node.</param>
         /// <param name="context">Context.</param>
         /// <returns>Do I need to recalculate the fact?</returns>
-        bool NeedCalculateFact<TFactRule>(NodeByFactRule<TFactRule> node, IWantActionContext context)
-            where TFactRule : IFactRule;
+        bool NeedCalculateFact(NodeByFactRule node, IWantActionContext context);
 
         /// <summary>
         /// Calculate fact by rule from node.
         /// </summary>
-        /// <typeparam name="TFactRule">Rule type.</typeparam>
         /// <param name="node">Node.</param>
         /// <param name="context">Context.</param>
         /// <returns>Fact.</returns>
-        IFact CalculateFact<TFactRule>(NodeByFactRule<TFactRule> node, IWantActionContext context)
-            where TFactRule : IFactRule;
+        IFact CalculateFact(NodeByFactRule node, IWantActionContext context);
 
         /// <summary>
         /// Calculate fact by rule from node.
         /// </summary>
-        /// <typeparam name="TFactRule">Rule type.</typeparam>
         /// <param name="node">Node.</param>
         /// <param name="context">Context.</param>
         /// <returns>Fact.</returns>
-        ValueTask<IFact> CalculateFactAsync<TFactRule>(NodeByFactRule<TFactRule> node, IWantActionContext context)
-            where TFactRule : IFactRule;
+        ValueTask<IFact> CalculateFactAsync(NodeByFactRule node, IWantActionContext context);
 
         /// <summary>
         /// Run <paramref name="wantActionInfo"/> with input facts.

@@ -19,8 +19,8 @@
   - [OnWantActionCannotBePerformedSynchronously(wantAction)](#M-GetcuReone-FactFactory-Resources-ErrorResources-OnWantActionCannotBePerformedSynchronously-GetcuReone-FactFactory-Interfaces-IWantAction- 'GetcuReone.FactFactory.Resources.ErrorResources.OnWantActionCannotBePerformedSynchronously(GetcuReone.FactFactory.Interfaces.IWantAction)')
 - [FactFactoryHelper](#T-GetcuReone-FactFactory-FactFactoryHelper 'GetcuReone.FactFactory.FactFactoryHelper')
   - [CannotIsType\`\`1(type,paramName)](#M-GetcuReone-FactFactory-FactFactoryHelper-CannotIsType``1-GetcuReone-FactFactory-Interfaces-IFactType,System-String- 'GetcuReone.FactFactory.FactFactoryHelper.CannotIsType``1(GetcuReone.FactFactory.Interfaces.IFactType,System.String)')
+  - [CompareTo(firstRule,secondRule)](#M-GetcuReone-FactFactory-FactFactoryHelper-CompareTo-GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-IFactRule- 'GetcuReone.FactFactory.FactFactoryHelper.CompareTo(GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.IFactRule)')
   - [CompareTo(x,y)](#M-GetcuReone-FactFactory-FactFactoryHelper-CompareTo-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.FactFactoryHelper.CompareTo(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)')
-  - [CompareTo\`\`1(x,y)](#M-GetcuReone-FactFactory-FactFactoryHelper-CompareTo``1-``0,``0- 'GetcuReone.FactFactory.FactFactoryHelper.CompareTo``1(``0,``0)')
   - [CreateDeriveException(details)](#M-GetcuReone-FactFactory-FactFactoryHelper-CreateDeriveException-System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Exceptions-Entities-DeriveErrorDetail}- 'GetcuReone.FactFactory.FactFactoryHelper.CreateDeriveException(System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Exceptions.Entities.DeriveErrorDetail})')
   - [CreateDeriveException(code,reason)](#M-GetcuReone-FactFactory-FactFactoryHelper-CreateDeriveException-System-String,System-String- 'GetcuReone.FactFactory.FactFactoryHelper.CreateDeriveException(System.String,System.String)')
   - [CreateDeriveException(code,reason,requiredAction,container)](#M-GetcuReone-FactFactory-FactFactoryHelper-CreateDeriveException-System-String,System-String,GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.FactFactoryHelper.CreateDeriveException(System.String,System.String,GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer)')
@@ -156,7 +156,7 @@ Rule not found.
 
 ##### Summary
 
-Failed to meet [Condition\`\`2](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact-Condition``2-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1}- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact.Condition``2(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{``1})')
+Failed to meet [Condition\`\`1](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact-Condition``1-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact.Condition``1(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)')
 and find another solution
 
 <a name='T-GetcuReone-FactFactory-Resources-ErrorResources'></a>
@@ -222,6 +222,24 @@ Cannot is `TFact`.
 | ---- | ----------- |
 | TFact | Type fact. |
 
+<a name='M-GetcuReone-FactFactory-FactFactoryHelper-CompareTo-GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-IFactRule-'></a>
+### CompareTo(firstRule,secondRule) `method`
+
+##### Summary
+
+Compare fact rules.
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| firstRule | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') |  |
+| secondRule | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') |  |
+
 <a name='M-GetcuReone-FactFactory-FactFactoryHelper-CompareTo-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact-'></a>
 ### CompareTo(x,y) `method`
 
@@ -239,30 +257,6 @@ Compare facts by [CalculateByRule](#F-GetcuReone-FactFactory-Constants-FactParam
 | ---- | ---- | ----------- |
 | x | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') |  |
 | y | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') |  |
-
-<a name='M-GetcuReone-FactFactory-FactFactoryHelper-CompareTo``1-``0,``0-'></a>
-### CompareTo\`\`1(x,y) `method`
-
-##### Summary
-
-Compare fact rules.
-
-##### Returns
-
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| x | [\`\`0](#T-``0 '``0') |  |
-| y | [\`\`0](#T-``0 '``0') |  |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFactRule |  |
 
 <a name='M-GetcuReone-FactFactory-FactFactoryHelper-CreateDeriveException-System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Exceptions-Entities-DeriveErrorDetail}-'></a>
 ### CreateDeriveException(details) `method`

@@ -6,11 +6,9 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Request.
     /// </summary>
-    /// <typeparam name="TFactRule">Rule type.</typeparam>
     /// <typeparam name="TFactRuleCollection">Fact rule collection type.</typeparam>
-    public class BuildTreesRequest<TFactRule, TFactRuleCollection>
-        where TFactRule : IFactRule
-        where TFactRuleCollection : IFactRuleCollection<TFactRule>
+    public class BuildTreesRequest<TFactRuleCollection>
+        where TFactRuleCollection : IFactRuleCollection
     {
         /// <summary>
         /// The contexts within which to build trees.

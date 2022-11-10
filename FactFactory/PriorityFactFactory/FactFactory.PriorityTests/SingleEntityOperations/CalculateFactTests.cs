@@ -19,24 +19,24 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
     public sealed class CalculateFactTests : PrioritySingleEntityOperationsTestBase
     {
         public FactRule Rule { get; set; }
-        public NodeByFactRuleInfo<FactRule> NodeInfo { get; set; }
-        public NodeByFactRule<FactRule> Node { get; set; }
+        public NodeByFactRuleInfo NodeInfo { get; set; }
+        public NodeByFactRule Node { get; set; }
         public IWantActionContext Context { get; set; }
 
         [TestInitialize]
         public void Initialize()
         {
             Rule = GetFactRule((Priority1 p, Fact1 f) => new FactResult(f.Value + p));
-            NodeInfo = new NodeByFactRuleInfo<FactRule>
+            NodeInfo = new NodeByFactRuleInfo
             {
                 BuildFailedConditions = new List<IBuildConditionFact>(),
                 Rule = Rule,
                 BuildSuccessConditions = new List<IBuildConditionFact>(),
                 RuntimeConditions = new List<IRuntimeConditionFact>(),
             };
-            Node = new NodeByFactRule<FactRule>
+            Node = new NodeByFactRule
             {
-                Childs = new List<NodeByFactRule<FactRule>>(),
+                Childs = new List<NodeByFactRule>(),
                 Info = NodeInfo,
                 Parent = null,
             };

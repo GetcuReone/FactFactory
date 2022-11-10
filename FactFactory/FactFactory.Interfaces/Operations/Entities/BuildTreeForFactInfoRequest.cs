@@ -5,11 +5,9 @@ using GetcuReone.FactFactory.Exceptions.Entities;
 namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
 {
     /// <summary>
-    /// Request for <see cref="ITreeBuildingOperations.TryBuildTreeForFactInfo{TFactRule}(BuildTreeForFactInfoRequest{TFactRule}, out TreeByFactRule{TFactRule}, out List{DeriveFactErrorDetail})"/>.
+    /// Request for <see cref="ITreeBuildingOperations.TryBuildTreeForFactInfo(BuildTreeForFactInfoRequest, out TreeByFactRule, out List{DeriveFactErrorDetail})"/>.
     /// </summary>
-    /// <typeparam name="TFactRule">Rule type.</typeparam>
-    public class BuildTreeForFactInfoRequest<TFactRule>
-        where TFactRule : IFactRule
+    public class BuildTreeForFactInfoRequest
     {
         /// <summary>
         /// The type of fact for which you want to build a tree.
@@ -19,6 +17,6 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// <summary>
         /// Context.
         /// </summary>
-        public IFactRulesContext<TFactRule> Context { get; set; }
+        public IFactRulesContext Context { get; set; }
     }
 }

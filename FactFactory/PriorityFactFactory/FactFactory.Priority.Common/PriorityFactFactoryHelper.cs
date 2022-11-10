@@ -59,20 +59,18 @@ namespace GetcuReone.FactFactory.Priority
         /// <summary>
         /// Compares rules based on priority facts.
         /// </summary>
-        /// <typeparam name="TFactRule">Type rule.</typeparam>
-        /// <param name="x">First rule.</param>
-        /// <param name="y">Second rule.</param>
+        /// <param name="firstRule">First rule.</param>
+        /// <param name="secondRule">Second rule.</param>
         /// <param name="context">Context.</param>
         /// <returns>
-        /// 1 - <paramref name="x"/> rule is greater than the <paramref name="y"/>,
-        /// 0 - <paramref name="x"/> rule is equal than the <paramref name="y"/>,
-        /// -1 - <paramref name="x"/> rule is less than the <paramref name="y"/>.
+        /// 1 - <paramref name="firstRule"/> rule is greater than the <paramref name="secondRule"/>,
+        /// 0 - <paramref name="firstRule"/> rule is equal than the <paramref name="secondRule"/>,
+        /// -1 - <paramref name="firstRule"/> rule is less than the <paramref name="secondRule"/>.
         /// </returns>
-        public static int CompareByPriority<TFactRule>(this TFactRule x, TFactRule y, IWantActionContext context)
-            where TFactRule : IFactRule
+        public static int CompareByPriority(this IFactRule firstRule, IFactRule secondRule, IWantActionContext context)
         {
-            var xPriorityType = x.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IPriorityFact>());
-            var yPriorityType = y.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IPriorityFact>());
+            var xPriorityType = firstRule.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IPriorityFact>());
+            var yPriorityType = secondRule.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IPriorityFact>());
 
             if (xPriorityType == null)
                 return yPriorityType == null ? 0 : -1;

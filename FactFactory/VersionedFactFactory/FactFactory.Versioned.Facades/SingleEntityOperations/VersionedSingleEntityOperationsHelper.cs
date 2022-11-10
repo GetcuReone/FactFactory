@@ -16,8 +16,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
                 : null;
         }
 
-        internal static bool CompatibleRule<TFactRule>(this TFactRule factRule, IVersionFact maxVersion, IWantActionContext context)
-            where TFactRule : IFactRule
+        internal static bool CompatibleRule(this IFactRule factRule, IVersionFact maxVersion, IWantActionContext context)
         {
             var version = factRule.InputFactTypes.GetVersionFact(context);
 

@@ -25,9 +25,8 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool Condition<TFactWork, TFactRule>(TFactWork factWork, IWantActionContext context, Func<IWantActionContext, IFactRuleCollection<TFactRule>> getCompatibleRules)
+        public bool Condition<TFactWork>(TFactWork factWork, IWantActionContext context, Func<IWantActionContext, IFactRuleCollection> getCompatibleRules)
             where TFactWork : IFactWork
-            where TFactRule : IFactRule
         {
             throw new NotImplementedException();
         }

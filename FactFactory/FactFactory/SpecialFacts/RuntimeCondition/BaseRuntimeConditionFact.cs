@@ -17,11 +17,10 @@ namespace GetcuReone.FactFactory.SpecialFacts.RuntimeCondition
         private object _relatedRules;
 
         /// <inheritdoc/>
-        public abstract bool Condition<TFactWork, TFactRule>(
+        public abstract bool Condition<TFactWork>(
             TFactWork factWork,
-            IFactRulesContext<TFactRule> context)
-            where TFactWork : IFactWork
-            where TFactRule : IFactRule;
+            IFactRulesContext context)
+            where TFactWork : IFactWork;
 
         /// <inheritdoc/>
         public override bool EqualsInfo(ISpecialFact specialFact)
@@ -30,11 +29,10 @@ namespace GetcuReone.FactFactory.SpecialFacts.RuntimeCondition
         }
 
         /// <inheritdoc/>
-        public void SetGetRelatedRulesFunc<TFactRule>(
-            Func<TFactRule, IFactRuleCollection<TFactRule>, IWantActionContext, IFactRuleCollection<TFactRule>> getRelatedRulesFunc,
-            TFactRule rule,
-            IFactRuleCollection<TFactRule> rules)
-            where TFactRule : IFactRule
+        public void SetGetRelatedRulesFunc(
+            Func<IFactRule, IFactRuleCollection, IWantActionContext, IFactRuleCollection> getRelatedRulesFunc,
+            IFactRule rule,
+            IFactRuleCollection rules)
         {
             _getRelatedRulesFunc = getRelatedRulesFunc;
             _rules = rules;
@@ -42,22 +40,21 @@ namespace GetcuReone.FactFactory.SpecialFacts.RuntimeCondition
         }
 
         /// <inheritdoc/>
-        public virtual bool TryGetRelatedRules<TFactRule>(
+        public virtual bool TryGetRelatedRules(
             IWantActionContext context,
-            out IFactRuleCollection<TFactRule> relatedRules)
-            where TFactRule : IFactRule
+            out IFactRuleCollection relatedRules)
         {
             relatedRules = null;
 
-            if (_relatedRules is IFactRuleCollection<TFactRule> result)
+            if (_relatedRules is IFactRuleCollection result)
             {
                 relatedRules = result;
                 return true;
             }
 
-            if(_getRelatedRulesFunc is Func<TFactRule, IFactRuleCollection<TFactRule>, IWantActionContext, IFactRuleCollection<TFactRule>> getRelatedRulesFunc 
-                && _rules is IFactRuleCollection<TFactRule> rules
-                && _rule is TFactRule rule)
+            if(_getRelatedRulesFunc is Func<IFactRule, IFactRuleCollection, IWantActionContext, IFactRuleCollection> getRelatedRulesFunc 
+                && _rules is IFactRuleCollection rules
+                && _rule is IFactRule rule)
             {
                 relatedRules = getRelatedRulesFunc(rule, rules, context);
                 _relatedRules = relatedRules;

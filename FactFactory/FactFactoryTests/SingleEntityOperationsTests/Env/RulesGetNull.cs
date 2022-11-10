@@ -5,7 +5,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests.Env
 {
     internal class RulesGetNull : Rules
     {
-        public override IFactRuleCollection<GetcuReone.FactFactory.Entities.FactRule> Copy()
+        public override IFactRuleCollection Copy()
         {
             return null;
         }

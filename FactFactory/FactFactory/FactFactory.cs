@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Factory default implementation.
     /// </summary>
-    public class FactFactory : BaseFactFactory<FactRule, FactRuleCollection>
+    public class FactFactory : BaseFactFactory<FactRuleCollection>
     {
         private readonly Func<IWantActionContext, IEnumerable<IFact>> _getDefaultFactsFunc;
 
