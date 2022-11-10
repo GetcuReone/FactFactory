@@ -14,7 +14,7 @@
   - [GetFactRule\`\`4(func,option)](#M-FactFactory-TestsCommon-CommonTestBase-GetFactRule``4-System-Func{``0,``1,``2,``3},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'FactFactory.TestsCommon.CommonTestBase.GetFactRule``4(System.Func{``0,``1,``2,``3},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [GetFactTypeCache()](#M-FactFactory-TestsCommon-CommonTestBase-GetFactTypeCache 'FactFactory.TestsCommon.CommonTestBase.GetFactTypeCache')
   - [GetFactType\`\`1()](#M-FactFactory-TestsCommon-CommonTestBase-GetFactType``1 'FactFactory.TestsCommon.CommonTestBase.GetFactType``1')
-  - [GetWantActionContext\`\`1(wantAction,container,singleEntity,cache)](#M-FactFactory-TestsCommon-CommonTestBase-GetWantActionContext``1-``0,GetcuReone-FactFactory-Interfaces-IFactContainer,GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'FactFactory.TestsCommon.CommonTestBase.GetWantActionContext``1(``0,GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
+  - [GetWantActionContext(wantAction,container,singleEntity,cache)](#M-FactFactory-TestsCommon-CommonTestBase-GetWantActionContext-GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer,GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'FactFactory.TestsCommon.CommonTestBase.GetWantActionContext(GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
   - [GetWantAction\`\`1()](#M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``1-System-Action{``0}- 'FactFactory.TestsCommon.CommonTestBase.GetWantAction``1(System.Action{``0})')
   - [GetWantAction\`\`2()](#M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``2-System-Action{``0,``1}- 'FactFactory.TestsCommon.CommonTestBase.GetWantAction``2(System.Action{``0,``1})')
   - [GetWantAction\`\`3(action)](#M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``3-System-Action{``0,``1,``2}- 'FactFactory.TestsCommon.CommonTestBase.GetWantAction``3(System.Action{``0,``1,``2})')
@@ -208,8 +208,8 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='M-FactFactory-TestsCommon-CommonTestBase-GetWantActionContext``1-``0,GetcuReone-FactFactory-Interfaces-IFactContainer,GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-'></a>
-### GetWantActionContext\`\`1(wantAction,container,singleEntity,cache) `method`
+<a name='M-FactFactory-TestsCommon-CommonTestBase-GetWantActionContext-GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer,GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-'></a>
+### GetWantActionContext(wantAction,container,singleEntity,cache) `method`
 
 ##### Summary
 
@@ -223,16 +223,10 @@ Context for [IWantAction](#T-GetcuReone-FactFactory-Interfaces-IWantAction 'Getc
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| wantAction | [\`\`0](#T-``0 '``0') | Desired action information |
+| wantAction | [GetcuReone.FactFactory.Interfaces.IWantAction](#T-GetcuReone-FactFactory-Interfaces-IWantAction 'GetcuReone.FactFactory.Interfaces.IWantAction') | Desired action information |
 | container | [GetcuReone.FactFactory.Interfaces.IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContainer 'GetcuReone.FactFactory.Interfaces.IFactContainer') | Fact container |
 | singleEntity | [GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations') | Single operations on entities of the FactFactory |
 | cache | [GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache 'GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache') | Cache for fact type |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TWantAction | Type `wantAction` |
 
 <a name='M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``1-System-Action{``0}-'></a>
 ### GetWantAction\`\`1() `method`
@@ -563,7 +557,7 @@ Fact container [IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContai
 
 ##### Summary
 
-Fact factory [IFactFactory\`3](#T-GetcuReone-FactFactory-Interfaces-IFactFactory`3 'GetcuReone.FactFactory.Interfaces.IFactFactory`3').
+Fact factory [IFactFactory\`2](#T-GetcuReone-FactFactory-Interfaces-IFactFactory`2 'GetcuReone.FactFactory.Interfaces.IFactFactory`2').
 
 <a name='F-FactFactory-TestsCommon-TC-Objects-Rule'></a>
 ### Rule `constants`

@@ -10,7 +10,7 @@ namespace FactFactory.PriorityTests
     [TestClass]
     public abstract class PriorityFactFactoryTestBase : CommonTestBase
     {
-        protected override IWantActionContext<TWantAction> GetWantActionContext<TWantAction>(TWantAction wantAction, IFactContainer container, ISingleEntityOperations singleEntity = null, IFactTypeCache cache = null)
+        protected override IWantActionContext GetWantActionContext(IWantAction wantAction, IFactContainer container, ISingleEntityOperations singleEntity = null, IFactTypeCache cache = null)
         {
             return base.GetWantActionContext(wantAction, container, singleEntity ?? GetFacade<PrioritySingleEntityOperationsFacade>(), cache);
         }

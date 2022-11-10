@@ -8,10 +8,7 @@ namespace FactFactoryTests.FactType.Env
 {
     internal class ConditionWithoutConstructor : IFact, IBuildConditionFact
     {
-        private ConditionWithoutConstructor()
-        {
-
-        }
+        private ConditionWithoutConstructor() { }
 
         public bool CalculatedByRule { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -22,17 +19,15 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool Condition<TFactWork, TWantAction>(TFactWork factWork, TWantAction wantAction, IFactContainer container)
+        public bool Condition<TFactWork>(TFactWork factWork, IWantAction wantAction, IFactContainer container)
             where TFactWork : IFactWork
-            where TWantAction : IWantAction
         {
             throw new NotImplementedException();
         }
 
-        public bool Condition<TFactWork, TFactRule, TWantAction>(TFactWork factWork, IWantActionContext<TWantAction> context, Func<IWantActionContext<TWantAction>, IFactRuleCollection<TFactRule>> getCompatibleRules)
+        public bool Condition<TFactWork, TFactRule>(TFactWork factWork, IWantActionContext context, Func<IWantActionContext, IFactRuleCollection<TFactRule>> getCompatibleRules)
             where TFactWork : IFactWork
             where TFactRule : IFactRule
-            where TWantAction : IWantAction
         {
             throw new NotImplementedException();
         }
@@ -62,9 +57,8 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool IsFactContained<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
+        public bool IsFactContained<TFactWork, TFactContainer>(TFactWork factWork, IWantAction wantAction, TFactContainer container)
             where TFactWork : IFactWork
-            where TWantAction : IWantAction
             where TFactContainer : IFactContainer
         {
             throw new NotImplementedException();

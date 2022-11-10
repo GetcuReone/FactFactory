@@ -12,14 +12,13 @@ namespace GetcuReone.FactFactory.SpecialFacts.BuildCondition
     public abstract class BaseBuildConditionFact : BaseSpecialFact, IBuildConditionFact
     {
         /// <inheritdoc/>
-        public abstract bool Condition<TFactWork, TFactRule, TWantAction>(
+        public abstract bool Condition<TFactWork, TFactRule>(
             TFactWork factWork,
-            IWantActionContext<TWantAction> context,
-            Func<IWantActionContext<TWantAction>,
+            IWantActionContext context,
+            Func<IWantActionContext,
             IFactRuleCollection<TFactRule>> getCompatibleRules)
             where TFactWork : IFactWork
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction;
+            where TFactRule : IFactRule;
 
         /// <inheritdoc/>
         public override bool EqualsInfo(ISpecialFact specialFact)

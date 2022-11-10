@@ -34,7 +34,7 @@
             Fact stores user information
             </summary>
         </member>
-        <member name="M:Versioned_MovieServiceExample.MovieServiceExample.GetAllVersion(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction})">
+        <member name="M:Versioned_MovieServiceExample.MovieServiceExample.GetAllVersion(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)">
             <summary>
             The method returns instances of all versions used in the rules.
             </summary>

@@ -12,7 +12,7 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
     [TestClass]
     public sealed class CompareFactRulesTests : PrioritySingleEntityOperationsTestBase
     {
-        public IWantActionContext<WantAction> Context { get; set; }
+        public IWantActionContext Context { get; set; }
 
         [TestInitialize]
         public void Initialize()

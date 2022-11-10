@@ -1,7 +1,6 @@
-﻿using FactFactoryTests.SingleEntityOperationsTests.Env;
-using FactFactory.TestsCommon;
+﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
-using GetcuReone.FactFactory.Interfaces;
+using FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,7 +18,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         {
             var first = GetFactRule((Input2Fact _, Input1Fact __) => new ResultFact(default));
             var second = GetFactRule((Input2Fact _) => new ResultFact(default));
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Check compatible.", facade => 

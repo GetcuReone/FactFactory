@@ -14,19 +14,13 @@ namespace GetcuReone.FactFactory.Entities
         /// <summary>
         /// Constructor.
         /// </summary>
-        public FactRuleCollection()
-        {
-        }
+        public FactRuleCollection() { }
 
         /// <inheritdoc/>
-        public FactRuleCollection(IEnumerable<FactRule> factRules) : base(factRules)
-        {
-        }
+        public FactRuleCollection(IEnumerable<FactRule> factRules) : base(factRules) { }
 
         /// <inheritdoc/>
-        public FactRuleCollection(IEnumerable<FactRule> factRules, bool isReadOnly) : base(factRules, isReadOnly)
-        {
-        }
+        public FactRuleCollection(IEnumerable<FactRule> factRules, bool isReadOnly) : base(factRules, isReadOnly) { }
 
         /// <inheritdoc/>
         protected override FactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)

@@ -42,7 +42,7 @@
             public const string WantAction = "want_action_test";
 
             /// <summary>
-            /// Fact factory <see cref="GetcuReone.FactFactory.Interfaces.IFactFactory{TFactRule, TFactRuleCollection, TWantAction}"/>.
+            /// Fact factory <see cref="GetcuReone.FactFactory.Interfaces.IFactFactory{TFactRule, TFactRuleCollection}"/>.
             /// </summary>
             public const string Factory = "factory_test";
 

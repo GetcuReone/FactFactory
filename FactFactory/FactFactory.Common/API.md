@@ -16,7 +16,7 @@
   - [RuleNotFound](#F-GetcuReone-FactFactory-Constants-ErrorCode-RuleNotFound 'GetcuReone.FactFactory.Constants.ErrorCode.RuleNotFound')
   - [RuntimeCondition](#F-GetcuReone-FactFactory-Constants-ErrorCode-RuntimeCondition 'GetcuReone.FactFactory.Constants.ErrorCode.RuntimeCondition')
 - [ErrorResources](#T-GetcuReone-FactFactory-Resources-ErrorResources 'GetcuReone.FactFactory.Resources.ErrorResources')
-  - [OnWantActionCannotBePerformedSynchronously\`\`1(wantAction)](#M-GetcuReone-FactFactory-Resources-ErrorResources-OnWantActionCannotBePerformedSynchronously``1-``0- 'GetcuReone.FactFactory.Resources.ErrorResources.OnWantActionCannotBePerformedSynchronously``1(``0)')
+  - [OnWantActionCannotBePerformedSynchronously(wantAction)](#M-GetcuReone-FactFactory-Resources-ErrorResources-OnWantActionCannotBePerformedSynchronously-GetcuReone-FactFactory-Interfaces-IWantAction- 'GetcuReone.FactFactory.Resources.ErrorResources.OnWantActionCannotBePerformedSynchronously(GetcuReone.FactFactory.Interfaces.IWantAction)')
 - [FactFactoryHelper](#T-GetcuReone-FactFactory-FactFactoryHelper 'GetcuReone.FactFactory.FactFactoryHelper')
   - [CannotIsType\`\`1(type,paramName)](#M-GetcuReone-FactFactory-FactFactoryHelper-CannotIsType``1-GetcuReone-FactFactory-Interfaces-IFactType,System-String- 'GetcuReone.FactFactory.FactFactoryHelper.CannotIsType``1(GetcuReone.FactFactory.Interfaces.IFactType,System.String)')
   - [CompareTo(x,y)](#M-GetcuReone-FactFactory-FactFactoryHelper-CompareTo-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.FactFactoryHelper.CompareTo(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)')
@@ -156,7 +156,7 @@ Rule not found.
 
 ##### Summary
 
-Failed to meet [Condition\`\`3](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact-Condition``3-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1,``2}- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact.Condition``3(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{``1,``2})')
+Failed to meet [Condition\`\`2](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact-Condition``2-``0,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext{``1}- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact.Condition``2(``0,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext{``1})')
 and find another solution
 
 <a name='T-GetcuReone-FactFactory-Resources-ErrorResources'></a>
@@ -170,8 +170,8 @@ GetcuReone.FactFactory.Resources
 
 Error resources.
 
-<a name='M-GetcuReone-FactFactory-Resources-ErrorResources-OnWantActionCannotBePerformedSynchronously``1-``0-'></a>
-### OnWantActionCannotBePerformedSynchronously\`\`1(wantAction) `method`
+<a name='M-GetcuReone-FactFactory-Resources-ErrorResources-OnWantActionCannotBePerformedSynchronously-GetcuReone-FactFactory-Interfaces-IWantAction-'></a>
+### OnWantActionCannotBePerformedSynchronously(wantAction) `method`
 
 ##### Summary
 
@@ -185,13 +185,7 @@ Error text.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| wantAction | [\`\`0](#T-``0 '``0') | WantAction. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TWantAction | Type wantAction. |
+| wantAction | [GetcuReone.FactFactory.Interfaces.IWantAction](#T-GetcuReone-FactFactory-Interfaces-IWantAction 'GetcuReone.FactFactory.Interfaces.IWantAction') | WantAction. |
 
 <a name='T-GetcuReone-FactFactory-FactFactoryHelper'></a>
 ## FactFactoryHelper `type`

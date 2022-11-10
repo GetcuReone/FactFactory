@@ -4,11 +4,10 @@ using GetcuReone.FactFactory.Interfaces.Context;
 namespace GetcuReone.FactFactory.BaseEntities.Context
 {
     /// <inheritdoc/>
-    public class WantActionContext<TWantAction> : FactFactoryContext, IWantActionContext<TWantAction>
-        where TWantAction : IWantAction
+    public class WantActionContext : FactFactoryContext, IWantActionContext
     {
         /// <inheritdoc/>
-        public TWantAction WantAction { get; set; }
+        public IWantAction WantAction { get; set; }
 
         /// <inheritdoc/>
         public IFactContainer Container { get; set; }

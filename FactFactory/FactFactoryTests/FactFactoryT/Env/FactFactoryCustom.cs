@@ -10,16 +10,16 @@ using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {
-    internal sealed class FactFactoryCustom : BaseFactFactory<Rule, Collection, Action>
+    internal sealed class FactFactoryCustom : BaseFactFactory<Rule, Collection>
     {
-        public List<WantFactsInfo<Action>> W_FactsInfos => WantFactsInfos;
+        public List<WantFactsInfo> W_FactsInfos => WantFactsInfos;
 
         public override Collection Rules => collection;
         internal Collection collection = new Collection();
 
         internal List<BaseFact> DefaultFacts { get; } = new List<BaseFact>();
 
-        protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext<Action> context)
+        protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext context)
         {
             return DefaultFacts;
         }

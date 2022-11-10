@@ -14,23 +14,19 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// </summary>
         /// <typeparam name="TFactRule">Type of rules used.</typeparam>
         /// <typeparam name="TFactRuleCollection">Rule collection type.</typeparam>
-        /// <typeparam name="TWantAction">Type wantAction</typeparam>
         /// <param name="requests">Requests.</param>
-        void DeriveWantAction<TFactRule, TFactRuleCollection, TWantAction>(List<DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction>> requests)
+        void DeriveWantAction<TFactRule, TFactRuleCollection>(List<DeriveWantActionRequest<TFactRule, TFactRuleCollection>> requests)
             where TFactRule : IFactRule
-            where TFactRuleCollection : IFactRuleCollection<TFactRule>
-            where TWantAction : IWantAction;
+            where TFactRuleCollection : IFactRuleCollection<TFactRule>;
 
         /// <summary>
         /// Build a trees and calculate facts for <paramref name="requests"/>.
         /// </summary>
         /// <typeparam name="TFactRule">Type of rules used.</typeparam>
         /// <typeparam name="TFactRuleCollection">Rule collection type.</typeparam>
-        /// <typeparam name="TWantAction">Type wantAction</typeparam>
         /// <param name="requests">Requests.</param>
-        ValueTask DeriveWantActionAsync<TFactRule, TFactRuleCollection, TWantAction>(List<DeriveWantActionRequest<TFactRule, TFactRuleCollection, TWantAction>> requests)
+        ValueTask DeriveWantActionAsync<TFactRule, TFactRuleCollection>(List<DeriveWantActionRequest<TFactRule, TFactRuleCollection>> requests)
             where TFactRule : IFactRule
-            where TFactRuleCollection : IFactRuleCollection<TFactRule>
-            where TWantAction : IWantAction;
+            where TFactRuleCollection : IFactRuleCollection<TFactRule>;
     }
 }

@@ -3,14 +3,12 @@
     /// <summary>
     /// Information about 'WantFacts'.
     /// </summary>
-    /// <typeparam name="TWantAction">WantAction type.</typeparam>
-    public class WantFactsInfo<TWantAction>
-        where TWantAction : IWantAction
+    public class WantFactsInfo
     {
         /// <summary>
         /// WantAction.
         /// </summary>
-        public TWantAction WantAction { get; set; }
+        public IWantAction WantAction { get; set; }
 
         /// <summary>
         /// Fact container.

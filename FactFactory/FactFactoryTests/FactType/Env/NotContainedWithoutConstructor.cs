@@ -8,12 +8,9 @@ namespace FactFactoryTests.FactType.Env
 {
     internal class NotContainedWithoutConstructor : BaseBuildConditionFact, IBuildConditionFact
     {
-        private NotContainedWithoutConstructor()
-        {
+        private NotContainedWithoutConstructor() { }
 
-        }
-
-        public override bool Condition<TFactWork, TFactRule, TWantAction>(TFactWork factWork, IWantActionContext<TWantAction> context, Func<IWantActionContext<TWantAction>, IFactRuleCollection<TFactRule>> getCompatibleRules)
+        public override bool Condition<TFactWork, TFactRule>(TFactWork factWork, IWantActionContext context, Func<IWantActionContext, IFactRuleCollection<TFactRule>> getCompatibleRules)
         {
             throw new NotImplementedException();
         }
