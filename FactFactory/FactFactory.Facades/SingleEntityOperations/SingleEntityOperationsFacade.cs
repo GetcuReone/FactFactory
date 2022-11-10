@@ -566,7 +566,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// </summary>
         /// <param name="condition">Condition.</param>
         /// <param name="context">Context.</param>
-        /// <returns>Result <see cref="IRuntimeConditionFact.Condition{TFactWork}(TFactWork, IFactRulesContext)"/>.</returns>
+        /// <returns>Result <see cref="IRuntimeConditionFact.Condition(IFactWork, IFactRulesContext)"/>.</returns>
         private bool RuntimeCondition(IRuntimeConditionFact condition, IWantActionContext context)
         {
             var wantAction = context.WantAction;
