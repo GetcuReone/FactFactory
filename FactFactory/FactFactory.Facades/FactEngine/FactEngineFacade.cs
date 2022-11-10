@@ -15,8 +15,7 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
     public class FactEngineFacade : FacadeBase, IFactEngine
     {
         /// <inheritdoc/>
-        public virtual void DeriveWantAction<TFactRuleCollection>(List<DeriveWantActionRequest<TFactRuleCollection>> requests)
-            where TFactRuleCollection : IFactRuleCollection
+        public virtual void DeriveWantAction(List<DeriveWantActionRequest> requests)
         {
             Validate(requests);
 
@@ -24,7 +23,7 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
             var deriveErrorDetails = new List<DeriveErrorDetail>();
 
 
-            foreach(DeriveWantActionRequest<TFactRuleCollection> request in requests)
+            foreach(DeriveWantActionRequest request in requests)
             {
                 var context = request.Context;
 
@@ -63,8 +62,7 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
         }
 
         /// <inheritdoc/>
-        public virtual async ValueTask DeriveWantActionAsync<TFactRuleCollection>(List<DeriveWantActionRequest<TFactRuleCollection>> requests)
-            where TFactRuleCollection : IFactRuleCollection
+        public virtual async ValueTask DeriveWantActionAsync(List<DeriveWantActionRequest> requests)
         {
             Validate(requests);
 
@@ -72,7 +70,7 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
             var deriveErrorDetails = new List<DeriveErrorDetail>();
 
 
-            foreach (DeriveWantActionRequest<TFactRuleCollection> request in requests)
+            foreach (DeriveWantActionRequest request in requests)
             {
                 var context = request.Context;
 
@@ -102,13 +100,12 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
         /// Validates <paramref name="requests"/>.
         /// </summary>
         /// <param name="requests">Requests.</param>
-        protected virtual void Validate<TFactRuleCollection>(List<DeriveWantActionRequest<TFactRuleCollection>> requests)
-            where TFactRuleCollection : IFactRuleCollection
+        protected virtual void Validate(List<DeriveWantActionRequest> requests)
         {
             var verifiedContainers = new List<IFactContainer>();
-            var verifiedRules = new List<TFactRuleCollection>();
+            var verifiedRules = new List<IFactRuleCollection>();
 
-            foreach(DeriveWantActionRequest<TFactRuleCollection> request in requests)
+            foreach(DeriveWantActionRequest request in requests)
             {
                 var singleOperations = request.Context.SingleEntity;
 

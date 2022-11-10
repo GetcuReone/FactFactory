@@ -5,8 +5,8 @@
 
 - [ArrayExtensions](#T--ArrayExtensions '.ArrayExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ArrayExtensions-IsNullOrEmpty``1-``0[]- 'ArrayExtensions.IsNullOrEmpty``1(``0[])')
-- [BasePriorityFactFactory\`1](#T-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`1 'GetcuReone.FactFactory.Priority.BasePriorityFactFactory`1')
-  - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`1-GetSingleEntityOperations 'GetcuReone.FactFactory.Priority.BasePriorityFactFactory`1.GetSingleEntityOperations')
+- [BasePriorityFactFactory](#T-GetcuReone-FactFactory-Priority-BasePriorityFactFactory 'GetcuReone.FactFactory.Priority.BasePriorityFactFactory')
+  - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Priority-BasePriorityFactFactory-GetSingleEntityOperations 'GetcuReone.FactFactory.Priority.BasePriorityFactFactory.GetSingleEntityOperations')
 - [BasePriority\`1](#T-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1')
   - [#ctor()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-#ctor-`0- 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.#ctor(`0)')
   - [PriorityValue](#P-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-PriorityValue 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.PriorityValue')
@@ -61,8 +61,8 @@ True - `items` is null or empty.
 | ---- | ----------- |
 | TItem | Type items. |
 
-<a name='T-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`1'></a>
-## BasePriorityFactFactory\`1 `type`
+<a name='T-GetcuReone-FactFactory-Priority-BasePriorityFactFactory'></a>
+## BasePriorityFactFactory `type`
 
 ##### Namespace
 
@@ -76,7 +76,7 @@ GetcuReone.FactFactory.Priority
 
 Base class for the fact factory working with priority rules
 
-<a name='M-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`1-GetSingleEntityOperations'></a>
+<a name='M-GetcuReone-FactFactory-Priority-BasePriorityFactFactory-GetSingleEntityOperations'></a>
 ### GetSingleEntityOperations() `method`
 
 ##### Summary

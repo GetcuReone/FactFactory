@@ -21,11 +21,9 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Validate and return a copy of the rules.
         /// </summary>
-        /// <typeparam name="TFactRuleCollection">Rule collection type.</typeparam>
         /// <param name="ruleCollection">Rules.</param>
         /// <returns>Rules.</returns>
-        TFactRuleCollection ValidateAndGetRules<TFactRuleCollection>(TFactRuleCollection ruleCollection)
-            where TFactRuleCollection : IFactRuleCollection;
+        IFactRuleCollection ValidateAndGetRules(IFactRuleCollection ruleCollection);
 
         /// <summary>
         /// Returns comparer for <see cref="IFactRule"/>.

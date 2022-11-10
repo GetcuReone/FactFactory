@@ -5,9 +5,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Request.
     /// </summary>
-    /// <typeparam name="TFactRuleCollection">Rule collection type.</typeparam>
-    public class DeriveWantActionRequest<TFactRuleCollection>
-        where TFactRuleCollection : IFactRuleCollection
+    public class DeriveWantActionRequest
     {
         /// <summary>
         /// The context in which the calculations will be made.
@@ -17,6 +15,6 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// <summary>
         /// Collection of rules used for calculations.
         /// </summary>
-        public TFactRuleCollection Rules { get; set; }
+        public IFactRuleCollection Rules { get; set; }
     }
 }

@@ -1,20 +1,16 @@
-﻿using GetcuReone.FactFactory.Interfaces.Operations;
-using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
     /// Fact factory interface.
     /// </summary>
-    /// <typeparam name="TFactRuleCollection">Type set rule.</typeparam>
-    public interface IFactFactory<TFactRuleCollection>
-        where TFactRuleCollection : IFactRuleCollection
+    public interface IFactFactory
     {
         /// <summary>
         /// Collection of rules for derive facts.
         /// </summary>
-        TFactRuleCollection Rules { get; }
+        IFactRuleCollection Rules { get; }
 
         /// <summary>
         /// Derive the facts.

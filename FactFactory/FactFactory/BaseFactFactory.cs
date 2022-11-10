@@ -23,8 +23,7 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Base class for fact factory.
     /// </summary>
-    public abstract class BaseFactFactory<TFactRuleCollection> : FactoryBase, IFactFactory<TFactRuleCollection>, IFacadeCreation
-        where TFactRuleCollection : BaseFactRuleCollection
+    public abstract class BaseFactFactory : FactoryBase, IFactFactory, IFacadeCreation
     {
         private ISingleEntityOperations _singleEntityOperations;
 
@@ -34,7 +33,7 @@ namespace GetcuReone.FactFactory
         protected List<WantFactsInfo> WantFactsInfos { get; } = new List<WantFactsInfo>();
 
         /// <inheritdoc/>
-        public abstract TFactRuleCollection Rules { get; }
+        public abstract IFactRuleCollection Rules { get; }
 
         /// <inheritdoc/>
         public virtual TFacade GetFacade<TFacade>()
@@ -66,7 +65,7 @@ namespace GetcuReone.FactFactory
             var contexts = WantFactsInfos.ConvertAll(info =>
                 GetWantActionContext(info, engine, treeBuildingOperations, singleEntityOperations, cache));
 
-            engine.DeriveWantAction(contexts.ConvertAll(context => new DeriveWantActionRequest<TFactRuleCollection>
+            engine.DeriveWantAction(contexts.ConvertAll(context => new DeriveWantActionRequest
             {
                 Context = context,
                 Rules = Rules,
@@ -88,7 +87,7 @@ namespace GetcuReone.FactFactory
             var contexts = WantFactsInfos.ConvertAll(info =>
                 GetWantActionContext(info, engine, treeBuildingOperations, singleEntityOperations, cache));
 
-            await engine.DeriveWantActionAsync(contexts.ConvertAll(context => new DeriveWantActionRequest<TFactRuleCollection>
+            await engine.DeriveWantActionAsync(contexts.ConvertAll(context => new DeriveWantActionRequest
             {
                 Context = context,
                 Rules = Rules,

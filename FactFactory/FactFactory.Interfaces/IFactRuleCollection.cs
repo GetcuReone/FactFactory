@@ -15,6 +15,14 @@ namespace GetcuReone.FactFactory.Interfaces
         bool IsReadOnly { get; set; }
 
         /// <summary>
+        /// Adds the elements of the specified collection to the end of the <see cref="IFactRuleCollection"/>
+        /// </summary>
+        /// <param name="rules">The collection whose elements should be added to the end of the  <see cref="IFactRuleCollection"/>. 
+        /// The collection itself cannot be null, but it can contain elements that are null,
+        /// if type T is a reference type.</param>
+        void AddRange(IEnumerable<IFactRule> rules);
+
+        /// <summary>
         /// Filters a sequence of values based on a predicate.
         /// </summary>
         /// <param name="predicate">A function to test each element for a condition.</param>
@@ -22,7 +30,6 @@ namespace GetcuReone.FactFactory.Interfaces
         /// An <see cref="IFactRuleCollection"/> that contains elements from the input
         /// sequence that satisfy the condition.
         /// </returns>
-        /// <exception cref="ArgumentNullException"><paramref name="predicate"/> is null.</exception>
         IFactRuleCollection FindAll(Func<IFactRule, bool> predicate);
 
         /// <summary>
@@ -35,7 +42,6 @@ namespace GetcuReone.FactFactory.Interfaces
         /// An <see cref="IFactRuleCollection"/> whose elements are sorted in
         /// descending orderaccording to a key.
         /// </returns>
-        /// <exception cref="ArgumentNullException"><paramref name="keySelector"/> is null.</exception>
         IFactRuleCollection SortByDescending<TKey>(Func<IFactRule, TKey> keySelector, IComparer<TKey> comparer);
     }
 }

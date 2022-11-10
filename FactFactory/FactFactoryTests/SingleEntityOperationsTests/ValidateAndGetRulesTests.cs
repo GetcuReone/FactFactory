@@ -46,22 +46,6 @@ namespace FactFactoryTests.SingleEntityOperationsTests
 
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.RuleCollection), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive with rules returning a different type of rules.")]
-        [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveWithRulesReturningDifferentTypeRulesTestCase()
-        {
-            const string expectedReason = "IFactRuleCollection.Copy method returned a different type of rules.";
-            var collection = new RulesGetDifferent();
-
-            GivenCreateFacade()
-                .When("Run method ValidateAndGetRules.", facade =>
-                    ExpectedDeriveException(() => facade.ValidateAndGetRules(collection)))
-                .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason)
-                .Run();
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(TC.Objects.RuleCollection), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get original rules.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void GetOriginalContainerTestCase()
