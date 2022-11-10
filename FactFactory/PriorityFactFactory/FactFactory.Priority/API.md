@@ -5,8 +5,8 @@
 
 - [ArrayExtensions](#T--ArrayExtensions '.ArrayExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ArrayExtensions-IsNullOrEmpty``1-``0[]- 'ArrayExtensions.IsNullOrEmpty``1(``0[])')
-- [BasePriorityFactFactory\`3](#T-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`3 'GetcuReone.FactFactory.Priority.BasePriorityFactFactory`3')
-  - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`3-GetSingleEntityOperations 'GetcuReone.FactFactory.Priority.BasePriorityFactFactory`3.GetSingleEntityOperations')
+- [BasePriorityFactFactory\`2](#T-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`2 'GetcuReone.FactFactory.Priority.BasePriorityFactFactory`2')
+  - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`2-GetSingleEntityOperations 'GetcuReone.FactFactory.Priority.BasePriorityFactFactory`2.GetSingleEntityOperations')
 - [BasePriority\`1](#T-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1')
   - [#ctor()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-#ctor-`0- 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.#ctor(`0)')
   - [PriorityValue](#P-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-PriorityValue 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.PriorityValue')
@@ -26,10 +26,10 @@
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
 - [PriorityFactFactory](#T-GetcuReone-FactFactory-Priority-PriorityFactFactory 'GetcuReone.FactFactory.Priority.PriorityFactFactory')
   - [#ctor()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-#ctor 'GetcuReone.FactFactory.Priority.PriorityFactFactory.#ctor')
-  - [#ctor(getDefaultFactsFunc)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}- 'GetcuReone.FactFactory.Priority.PriorityFactFactory.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}})')
+  - [#ctor(getDefaultFactsFunc)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}- 'GetcuReone.FactFactory.Priority.PriorityFactFactory.#ctor(System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}})')
   - [Rules](#P-GetcuReone-FactFactory-Priority-PriorityFactFactory-Rules 'GetcuReone.FactFactory.Priority.PriorityFactFactory.Rules')
   - [GetDefaultContainer()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-GetDefaultContainer 'GetcuReone.FactFactory.Priority.PriorityFactFactory.GetDefaultContainer')
-  - [GetDefaultFacts()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction}- 'GetcuReone.FactFactory.Priority.PriorityFactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction})')
+  - [GetDefaultFacts()](#M-GetcuReone-FactFactory-Priority-PriorityFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext- 'GetcuReone.FactFactory.Priority.PriorityFactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)')
 
 <a name='T--ArrayExtensions'></a>
 ## ArrayExtensions `type`
@@ -61,8 +61,8 @@ True - `items` is null or empty.
 | ---- | ----------- |
 | TItem | Type items. |
 
-<a name='T-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`3'></a>
-## BasePriorityFactFactory\`3 `type`
+<a name='T-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`2'></a>
+## BasePriorityFactFactory\`2 `type`
 
 ##### Namespace
 
@@ -76,7 +76,7 @@ GetcuReone.FactFactory.Priority
 
 Base class for the fact factory working with priority rules
 
-<a name='M-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`3-GetSingleEntityOperations'></a>
+<a name='M-GetcuReone-FactFactory-Priority-BasePriorityFactFactory`2-GetSingleEntityOperations'></a>
 ### GetSingleEntityOperations() `method`
 
 ##### Summary
@@ -332,7 +332,7 @@ Constructor.
 
 This constructor has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction},System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}-'></a>
+<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactory-#ctor-System-Func{GetcuReone-FactFactory-Interfaces-Context-IWantActionContext,System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}}-'></a>
 ### #ctor(getDefaultFactsFunc) `constructor`
 
 ##### Summary
@@ -343,7 +343,7 @@ Constructot.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| getDefaultFactsFunc | [System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction},System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}') | Function that returns default facts. |
+| getDefaultFactsFunc | [System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{GetcuReone.FactFactory.Interfaces.Context.IWantActionContext,System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact}}') | Function that returns default facts. |
 
 <a name='P-GetcuReone-FactFactory-Priority-PriorityFactFactory-Rules'></a>
 ### Rules `property`
@@ -363,7 +363,7 @@ Constructot.
 
 This method has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction}-'></a>
+<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext-'></a>
 ### GetDefaultFacts() `method`
 
 ##### Summary

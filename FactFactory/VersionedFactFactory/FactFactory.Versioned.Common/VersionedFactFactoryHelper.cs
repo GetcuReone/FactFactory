@@ -74,7 +74,6 @@ namespace GetcuReone.FactFactory.Versioned
         /// Compares rules based on version facts.
         /// </summary>
         /// <typeparam name="TFactRule">Type rule.</typeparam>
-        /// <typeparam name="TWantAction">Type wantAction.</typeparam>
         /// <param name="x">First rule.</param>
         /// <param name="y">Second rule.</param>
         /// <param name="context">Context.</param>
@@ -83,9 +82,8 @@ namespace GetcuReone.FactFactory.Versioned
         /// 0 - <paramref name="x"/> rule is equal than the <paramref name="y"/>,
         /// -1 - <paramref name="x"/> rule is less than the <paramref name="y"/>.
         /// </returns>
-        public static int CompareByVersion<TFactRule, TWantAction>(this TFactRule x, TFactRule y, IWantActionContext<TWantAction> context)
+        public static int CompareByVersion<TFactRule>(this TFactRule x, TFactRule y, IWantActionContext context)
             where TFactRule : IFactRule
-            where TWantAction : IWantAction
         {
             var xVersionType = x.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());
             var yVersionType = y.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IVersionFact>());

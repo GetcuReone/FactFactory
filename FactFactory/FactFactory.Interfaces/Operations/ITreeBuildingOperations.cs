@@ -14,67 +14,57 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// Try build tree for wantFact.
         /// </summary>
         /// <typeparam name="TFactRule">Rule type.</typeparam>
-        /// <typeparam name="TWantAction">WantAction type.</typeparam>
         /// <param name="request">Request.</param>
         /// <param name="treeResult">Build tree.</param>
         /// <param name="deriveFactErrorDetails">Errors that occurred while building a tree.</param>
         /// <returns>True - build tree. False - not build tree.</returns>
-        bool TryBuildTreeForFactInfo<TFactRule, TWantAction>(
-            BuildTreeForFactInfoRequest<TFactRule, TWantAction> request,
-            out TreeByFactRule<TFactRule, TWantAction> treeResult,
+        bool TryBuildTreeForFactInfo<TFactRule>(
+            BuildTreeForFactInfoRequest<TFactRule> request,
+            out TreeByFactRule<TFactRule> treeResult,
             out List<DeriveFactErrorDetail> deriveFactErrorDetails)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction;
+            where TFactRule : IFactRule;
 
         /// <summary>
         /// Try build trees for wantAction.
         /// </summary>
         /// <typeparam name="TFactRule">Rule type.</typeparam>
-        /// <typeparam name="TWantAction">WantAction type.</typeparam>
         /// <param name="request">Request.</param>
         /// <param name="result">Result.</param>
         /// <returns>True - build trees. False - not build trees.</returns>
-        bool TryBuildTreesForWantAction<TFactRule, TWantAction>(
-            BuildTreesForWantActionRequest<TFactRule, TWantAction> request,
-            out BuildTreesForWantActionResult<TFactRule, TWantAction> result)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction;
+        bool TryBuildTreesForWantAction<TFactRule>(
+            BuildTreesForWantActionRequest<TFactRule> request,
+            out BuildTreesForWantActionResult<TFactRule> result)
+            where TFactRule : IFactRule;
 
         /// <summary>
         /// List of groups of independent nodes.
         /// </summary>
         /// <typeparam name="TFactRule">Rule type.</typeparam>
-        /// <typeparam name="TWantAction">WantAction type.</typeparam>
         /// <param name="treeByFactRule">Decision tree built for the rule.</param>
         /// <returns>Independent node groups.</returns>
-        List<IndependentNodeGroup<TFactRule>> GetIndependentNodeGroups<TFactRule, TWantAction>(TreeByFactRule<TFactRule, TWantAction> treeByFactRule)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction;
+        List<IndependentNodeGroup<TFactRule>> GetIndependentNodeGroups<TFactRule>(TreeByFactRule<TFactRule> treeByFactRule)
+            where TFactRule : IFactRule;
 
         /// <summary>
         /// Calculate trees and derive fact.
         /// </summary>
         /// <typeparam name="TFactRule">Rule type.</typeparam>
-        /// <typeparam name="TWantAction">WantAction type.</typeparam>
         /// <param name="wantActionInfo">Information about the WantAction.</param>
         /// <param name="treeByFactRules">Trees that need to be calculated to output a facts.</param>
-        void CalculateTreeAndDeriveWantFacts<TFactRule, TWantAction>(
-            WantActionInfo<TWantAction> wantActionInfo,
-            IEnumerable<TreeByFactRule<TFactRule, TWantAction>> treeByFactRules)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction;
+        void CalculateTreeAndDeriveWantFacts<TFactRule>(
+            WantActionInfo wantActionInfo,
+            IEnumerable<TreeByFactRule<TFactRule>> treeByFactRules)
+            where TFactRule : IFactRule;
 
         /// <summary>
         /// Async calculate trees and derive fact.
         /// </summary>
         /// <typeparam name="TFactRule">Rule type.</typeparam>
-        /// <typeparam name="TWantAction">WantAction type.</typeparam>
         /// <param name="wantActionInfo">Information about the WantAction.</param>
         /// <param name="treeByFactRules">Trees that need to be calculated to output a facts.</param>
-        ValueTask CalculateTreeAndDeriveWantFactsAsync<TFactRule, TWantAction>(
-            WantActionInfo<TWantAction> wantActionInfo,
-            IEnumerable<TreeByFactRule<TFactRule, TWantAction>> treeByFactRules)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction;
+        ValueTask CalculateTreeAndDeriveWantFactsAsync<TFactRule>(
+            WantActionInfo wantActionInfo,
+            IEnumerable<TreeByFactRule<TFactRule>> treeByFactRules)
+            where TFactRule : IFactRule;
     }
 }

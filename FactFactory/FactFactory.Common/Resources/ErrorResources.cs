@@ -10,11 +10,9 @@ namespace GetcuReone.FactFactory.Resources
         /// <summary>
         /// Action cannot be performed synchronously.
         /// </summary>
-        /// <typeparam name="TWantAction">Type wantAction.</typeparam>
         /// <param name="wantAction">WantAction.</param>
         /// <returns>Error text.</returns>
-        public static string OnWantActionCannotBePerformedSynchronously<TWantAction>(TWantAction wantAction)
-            where TWantAction : IWantAction
+        public static string OnWantActionCannotBePerformedSynchronously(IWantAction wantAction)
         {
             return $"{wantAction} cannot be performed synchronously.";
         }

@@ -7,11 +7,11 @@ using GetcuReone.FactFactory.Interfaces.Context;
 namespace GetcuReone.FactFactory.Versioned
 {
     /// <summary>
-    /// Default implementation of versioned fact factory <see cref="BaseVersionedFactFactory{TFactRule, TFactRuleCollection, TWantAction}"/>.
+    /// Default implementation of versioned fact factory <see cref="BaseVersionedFactFactory{TFactRule, TFactRuleCollection}"/>.
     /// </summary>
-    public class VersionedFactFactory : BaseVersionedFactFactory<FactRule, FactRuleCollection, WantAction>
+    public class VersionedFactFactory : BaseVersionedFactFactory<FactRule, FactRuleCollection>
     {
-        private readonly Func<IWantActionContext<WantAction>, IEnumerable<IFact>> _getDefaultFactsFunc;
+        private readonly Func<IWantActionContext, IEnumerable<IFact>> _getDefaultFactsFunc;
 
         /// <inheritdoc/>
         public override FactRuleCollection Rules { get; }
@@ -25,14 +25,14 @@ namespace GetcuReone.FactFactory.Versioned
         /// Constructor.
         /// </summary>
         /// <param name="getDefaultFactsFunc">Function that returns default facts.</param>
-        public VersionedFactFactory(Func<IWantActionContext<WantAction>, IEnumerable<IFact>> getDefaultFactsFunc)
+        public VersionedFactFactory(Func<IWantActionContext, IEnumerable<IFact>> getDefaultFactsFunc)
         {
             _getDefaultFactsFunc = getDefaultFactsFunc;
             Rules = new FactRuleCollection();
         }
 
         /// <inheritdoc/>
-        protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext<WantAction> context)
+        protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext context)
         {
             return _getDefaultFactsFunc?.Invoke(context) ?? base.GetDefaultFacts(context);
         }

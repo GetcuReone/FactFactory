@@ -13,10 +13,9 @@ namespace GetcuReone.FactFactory.Versioned
     /// Base class for versioned fact factory.
     /// </summary>
     /// <inheritdoc/>
-    public abstract class BaseVersionedFactFactory<TFactRule, TFactRuleCollection, TWantAction> : BaseFactFactory<TFactRule, TFactRuleCollection, TWantAction>
+    public abstract class BaseVersionedFactFactory<TFactRule, TFactRuleCollection> : BaseFactFactory<TFactRule, TFactRuleCollection>
         where TFactRule : BaseFactRule
         where TFactRuleCollection : BaseFactRuleCollection<TFactRule>
-        where TWantAction : BaseWantAction
     {
         /// <summary>
         /// Returns the <see cref="VersionedSingleEntityOperationsFacade"/>.
@@ -40,7 +39,7 @@ namespace GetcuReone.FactFactory.Versioned
             TFactResult fact = default;
 
             var singleOperations = GetSingleEntityOperationsOnce();
-            var previousWantFacts = new List<WantFactsInfo<TWantAction>>(WantFactsInfos);
+            var previousWantFacts = new List<WantFactsInfo>(WantFactsInfos);
             var inputFacts = new List<IFactType> 
             { 
                 singleOperations.GetFactType<TFactResult>(),
@@ -50,7 +49,7 @@ namespace GetcuReone.FactFactory.Versioned
             WantFactsInfos.Clear();
 
             WantFacts(
-                singleOperations.CreateWantAction<TWantAction>(
+                singleOperations.CreateWantAction(
                     facts => fact = facts.GetFact<TFactResult>(),
                     inputFacts,
                     FactWorkOption.CanExecuteSync),
@@ -76,7 +75,7 @@ namespace GetcuReone.FactFactory.Versioned
             TFactResult fact = default;
 
             var singleOperations = GetSingleEntityOperationsOnce();
-            var previousWantFacts = new List<WantFactsInfo<TWantAction>>(WantFactsInfos);
+            var previousWantFacts = new List<WantFactsInfo>(WantFactsInfos);
             var inputFacts = new List<IFactType> 
             { 
                 singleOperations.GetFactType<TFactResult>(), 
@@ -86,7 +85,7 @@ namespace GetcuReone.FactFactory.Versioned
             WantFactsInfos.Clear();
 
             WantFacts(
-                singleOperations.CreateWantAction<TWantAction>(
+                singleOperations.CreateWantAction(
                     facts => fact = facts.GetFact<TFactResult>(),
                     inputFacts,
                     FactWorkOption.CanExecuteSync),

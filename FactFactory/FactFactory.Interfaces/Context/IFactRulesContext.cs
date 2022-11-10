@@ -1,9 +1,8 @@
 ﻿namespace GetcuReone.FactFactory.Interfaces.Context
 {
     /// <inheritdoc/>
-    public interface IFactRulesContext<TFactRule, TWantAction> : IWantActionContext<TWantAction>
+    public interface IFactRulesContext<TFactRule> : IWantActionContext
         where TFactRule : IFactRule
-        where TWantAction : IWantAction
     {
         /// <summary>
         /// Fact rules in context.

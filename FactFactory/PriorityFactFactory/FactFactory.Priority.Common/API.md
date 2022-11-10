@@ -12,7 +12,7 @@
 - [PriorityFactFactoryHelper](#T-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper')
   - [AddPriorityParameter\`\`2(fact,priority)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-AddPriorityParameter``2-``0,``1- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.AddPriorityParameter``2(``0,``1)')
   - [CompareByPriorityParameter(x,y)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriorityParameter-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.CompareByPriorityParameter(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)')
-  - [CompareByPriority\`\`2(x,y,context)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriority``2-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1}- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.CompareByPriority``2(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1})')
+  - [CompareByPriority\`\`1(x,y,context)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriority``1-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.CompareByPriority``1(``0,``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)')
   - [FindPriorityParameter\`\`1(fact)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FindPriorityParameter``1-``0- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.FindPriorityParameter``1(``0)')
   - [FirstPriorityFactByFactType\`\`1(facts,factType,cache)](#M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FirstPriorityFactByFactType``1-System-Collections-Generic-IEnumerable{``0},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'GetcuReone.FactFactory.Priority.PriorityFactFactoryHelper.FirstPriorityFactByFactType``1(System.Collections.Generic.IEnumerable{``0},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
 - [PriorityFactParametersCodes](#T-GetcuReone-FactFactory-Priority-Constants-PriorityFactParametersCodes 'GetcuReone.FactFactory.Priority.Constants.PriorityFactParametersCodes')
@@ -164,8 +164,8 @@ Compares facts by priority facts in parameters.
 | x | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Fist fact. |
 | y | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Second fact. |
 
-<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriority``2-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1}-'></a>
-### CompareByPriority\`\`2(x,y,context) `method`
+<a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-CompareByPriority``1-``0,``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext-'></a>
+### CompareByPriority\`\`1(x,y,context) `method`
 
 ##### Summary
 
@@ -183,14 +183,13 @@ Compares rules based on priority facts.
 | ---- | ---- | ----------- |
 | x | [\`\`0](#T-``0 '``0') | First rule. |
 | y | [\`\`0](#T-``0 '``0') | Second rule. |
-| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{\`\`1}](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{``1} 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{``1}') | Context. |
+| context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext') | Context. |
 
 ##### Generic Types
 
 | Name | Description |
 | ---- | ----------- |
 | TFactRule | Type rule. |
-| TWantAction | Type wantAction. |
 
 <a name='M-GetcuReone-FactFactory-Priority-PriorityFactFactoryHelper-FindPriorityParameter``1-``0-'></a>
 ### FindPriorityParameter\`\`1(fact) `method`

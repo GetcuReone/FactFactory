@@ -60,7 +60,6 @@ namespace GetcuReone.FactFactory.Priority
         /// Compares rules based on priority facts.
         /// </summary>
         /// <typeparam name="TFactRule">Type rule.</typeparam>
-        /// <typeparam name="TWantAction">Type wantAction.</typeparam>
         /// <param name="x">First rule.</param>
         /// <param name="y">Second rule.</param>
         /// <param name="context">Context.</param>
@@ -69,9 +68,8 @@ namespace GetcuReone.FactFactory.Priority
         /// 0 - <paramref name="x"/> rule is equal than the <paramref name="y"/>,
         /// -1 - <paramref name="x"/> rule is less than the <paramref name="y"/>.
         /// </returns>
-        public static int CompareByPriority<TFactRule, TWantAction>(this TFactRule x, TFactRule y, IWantActionContext<TWantAction> context)
+        public static int CompareByPriority<TFactRule>(this TFactRule x, TFactRule y, IWantActionContext context)
             where TFactRule : IFactRule
-            where TWantAction : IWantAction
         {
             var xPriorityType = x.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IPriorityFact>());
             var yPriorityType = y.InputFactTypes?.SingleOrDefault(type => type.IsFactType<IPriorityFact>());

@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
 using Versioned_MovieServiceExample.Entities;
 using Versioned_MovieServiceExample.Facts;
 using Versioned_MovieServiceExample.Versions;
@@ -28,7 +28,7 @@ namespace Versioned_MovieServiceExample
         /// The method returns instances of all versions used in the rules.
         /// </summary>
         /// <returns></returns>
-        private List<IVersionFact> GetAllVersion(IWantActionContext<WantAction> context)
+        private List<IVersionFact> GetAllVersion(IWantActionContext context)
         {
             return new List<IVersionFact>
             {

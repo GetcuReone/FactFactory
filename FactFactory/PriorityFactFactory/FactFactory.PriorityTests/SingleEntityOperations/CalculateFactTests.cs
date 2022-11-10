@@ -21,7 +21,7 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
         public FactRule Rule { get; set; }
         public NodeByFactRuleInfo<FactRule> NodeInfo { get; set; }
         public NodeByFactRule<FactRule> Node { get; set; }
-        public IWantActionContext<WantAction> Context { get; set; }
+        public IWantActionContext Context { get; set; }
 
         [TestInitialize]
         public void Initialize()

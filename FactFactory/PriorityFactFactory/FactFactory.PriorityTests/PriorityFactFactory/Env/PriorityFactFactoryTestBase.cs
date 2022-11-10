@@ -1,5 +1,4 @@
 ﻿using FactFactory.PriorityTests.CommonFacts;
-using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.GwtTestFramework.Entities;
@@ -17,7 +16,7 @@ namespace FactFactory.PriorityTests.PriorityFactFactory.Env
                 new GetcuReone.FactFactory.Priority.PriorityFactFactory(GetPriorityFacts));
         }
 
-        protected IEnumerable<IFact> GetPriorityFacts(IWantActionContext<WantAction> context)
+        protected IEnumerable<IFact> GetPriorityFacts(IWantActionContext context)
         {
             return new List<IFact>
             {

@@ -9,9 +9,9 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Factory default implementation.
     /// </summary>
-    public class FactFactory : BaseFactFactory<FactRule, FactRuleCollection, WantAction>
+    public class FactFactory : BaseFactFactory<FactRule, FactRuleCollection>
     {
-        private readonly Func<IWantActionContext<WantAction>, IEnumerable<IFact>> _getDefaultFactsFunc;
+        private readonly Func<IWantActionContext, IEnumerable<IFact>> _getDefaultFactsFunc;
 
         /// <inheritdoc/>
         public override FactRuleCollection Rules { get; }
@@ -19,15 +19,13 @@ namespace GetcuReone.FactFactory
         /// <summary>
         /// Constructor.
         /// </summary>
-        public FactFactory() : this(null)
-        {
-        }
+        public FactFactory() : this(null) { }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="getDefaultFactsFunc">Function that returns a list of facts by default.</param>
-        public FactFactory(Func<IWantActionContext<WantAction>, IEnumerable<IFact>> getDefaultFactsFunc)
+        public FactFactory(Func<IWantActionContext, IEnumerable<IFact>> getDefaultFactsFunc)
         {
             _getDefaultFactsFunc = getDefaultFactsFunc;
             Rules = new FactRuleCollection();
@@ -40,7 +38,7 @@ namespace GetcuReone.FactFactory
         }
 
         /// <inheritdoc/>
-        protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext<WantAction> context)
+        protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext context)
         {
             return _getDefaultFactsFunc?.Invoke(context);
         }

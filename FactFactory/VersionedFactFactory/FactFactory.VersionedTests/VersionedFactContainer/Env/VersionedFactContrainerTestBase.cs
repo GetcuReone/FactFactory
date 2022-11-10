@@ -1,5 +1,4 @@
 ﻿using FactFactory.TestsCommon;
-using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations;
 using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,7 +14,7 @@ namespace FactFactory.VersionedTests.VersionedFactContainer.Env
             return Given("Create container.", () => new Container())
                 .And("Add comparer.", container => 
                 {
-                    container.Comparer = GetFacade<VersionedSingleEntityOperationsFacade>().GetFactComparer<WantAction>(null);
+                    container.Comparer = GetFacade<VersionedSingleEntityOperationsFacade>().GetFactComparer(null);
                 });
         }
     }

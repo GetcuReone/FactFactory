@@ -14,10 +14,9 @@ namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
     {
         /// <summary>
         /// Compares rules by priority and base attribute
-        /// (<see cref="SingleEntityOperationsFacade.CompareFactRules{TFactRule, TWantAction}(TFactRule, TFactRule, IWantActionContext{TWantAction})"/>).
+        /// (<see cref="SingleEntityOperationsFacade.CompareFactRules{TFactRule}(TFactRule, TFactRule, IWantActionContext)"/>).
         /// </summary>
         /// <typeparam name="TFactRule">Type rule.</typeparam>
-        /// <typeparam name="TWantAction">Type wantAction.</typeparam>
         /// <param name="x">First rule.</param>
         /// <param name="y">Secon role.</param>
         /// <param name="context">Context.</param>
@@ -26,7 +25,7 @@ namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
         /// 0 - <paramref name="x"/> rule is equal than the <paramref name="y"/>,
         /// -1 - <paramref name="x"/> rule is less than the <paramref name="y"/>.
         /// </returns>
-        public override int CompareFactRules<TFactRule, TWantAction>(TFactRule x, TFactRule y, IWantActionContext<TWantAction> context)
+        public override int CompareFactRules<TFactRule>(TFactRule x, TFactRule y, IWantActionContext context)
         {
             int priorityResult = x.CompareByPriority(y, context);
 
@@ -58,11 +57,10 @@ namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
         /// Calculates the fact and adds the priority fact to the parameters.
         /// </summary>
         /// <typeparam name="TFactRule">Type rule.</typeparam>
-        /// <typeparam name="TWantAction">Type wantAction.</typeparam>
         /// <param name="node">Node containing information about the calculation rule.</param>
         /// <param name="context">Context</param>
         /// <returns>Fact.</returns>
-        public override IFact CalculateFact<TFactRule, TWantAction>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction> context)
+        public override IFact CalculateFact<TFactRule>(NodeByFactRule<TFactRule> node, IWantActionContext context)
         {
             IPriorityFact priority = node.Info.Rule.GetPriorityFact(context);
             return base
@@ -74,12 +72,10 @@ namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
         /// Calculates the fact asynchronously and adds the priority fact to the parameters.
         /// </summary>
         /// <typeparam name="TFactRule">Type rule.</typeparam>
-        /// <typeparam name="TWantAction">Type wantAction.</typeparam>
-        /// <typeparam name="TFactContainer">Type fact container.</typeparam>
         /// <param name="node">Node containing information about the calculation rule.</param>
         /// <param name="context">Context</param>
         /// <returns>Fact.</returns>
-        public override async ValueTask<IFact> CalculateFactAsync<TFactRule, TWantAction>(NodeByFactRule<TFactRule> node, IWantActionContext<TWantAction> context)
+        public override async ValueTask<IFact> CalculateFactAsync<TFactRule>(NodeByFactRule<TFactRule> node, IWantActionContext context)
         {
             IPriorityFact priority = node.Info.Rule.GetPriorityFact(context);
             return (await base.CalculateFactAsync(node, context).ConfigureAwait(false)).AddPriorityParameter(priority);
