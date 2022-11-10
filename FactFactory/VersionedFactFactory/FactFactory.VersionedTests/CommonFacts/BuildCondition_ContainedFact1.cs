@@ -7,8 +7,8 @@ namespace FactFactory.VersionedTests.CommonFacts
 {
     internal sealed class BuildCondition_ContainedFact1 : BaseBuildConditionFact<Fact1>
     {
-        public override bool Condition<TFactWork>(
-            TFactWork factWork,
+        public override bool Condition(
+            IFactWork factWork,
             IWantActionContext context,
             Func<IWantActionContext, IFactRuleCollection> getCompatibleRules)
         {

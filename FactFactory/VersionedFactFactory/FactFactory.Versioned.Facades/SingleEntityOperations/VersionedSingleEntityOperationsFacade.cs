@@ -32,7 +32,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        public override IFactRuleCollection GetCompatibleRules<TFactWork>(TFactWork target, IFactRuleCollection factRules, IWantActionContext context)
+        public override IFactRuleCollection GetCompatibleRules(IFactWork target, IFactRuleCollection factRules, IWantActionContext context)
         {
             var result = base.GetCompatibleRules(target, factRules, context);
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
@@ -45,7 +45,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        public override bool CompatibleRule<TFactWork>(TFactWork target, IFactRule rule, IWantActionContext context)
+        public override bool CompatibleRule(IFactWork target, IFactRule rule, IWantActionContext context)
         {
             if (!base.CompatibleRule(target, rule, context))
                 return false;
@@ -64,7 +64,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        public override bool CanExtractFact<TFactWork>(IFactType factType, TFactWork factWork, IWantActionContext context)
+        public override bool CanExtractFact(IFactType factType, IFactWork factWork, IWantActionContext context)
         {
             if (factType.IsFactType<ISpecialFact>())
                 return base.CanExtractFact(factType, factWork, context);
@@ -87,7 +87,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        public override IEnumerable<IFactType> GetRequiredTypesOfFacts<TFactWork>(TFactWork factWork, IWantActionContext context)
+        public override IEnumerable<IFactType> GetRequiredTypesOfFacts(IFactWork factWork, IWantActionContext context)
         {
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 
@@ -100,7 +100,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         /// <inheritdoc/>
         /// <remarks>Additionally checks version compatibility.</remarks>
-        protected override IEnumerable<IFact> GetRequireFacts<TFactWork>(TFactWork factWork, IWantActionContext context)
+        protected override IEnumerable<IFact> GetRequireFacts(IFactWork factWork, IWantActionContext context)
         {
             var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
 

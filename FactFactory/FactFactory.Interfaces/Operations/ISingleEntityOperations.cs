@@ -35,48 +35,40 @@ namespace GetcuReone.FactFactory.Interfaces.Operations
         /// <summary>
         /// Returns rules compatible with <paramref name="target"/>.
         /// </summary>
-        /// <typeparam name="TFactWork">Work type.</typeparam>
         /// <param name="target">The purpose with which the rules must be compatible.</param>
         /// <param name="factRules">List of rules.</param>
         /// <param name="context">Context.</param>
         /// <returns>Compatible rules.</returns>
-        IFactRuleCollection GetCompatibleRules<TFactWork>(
-            TFactWork target,
+        IFactRuleCollection GetCompatibleRules(
+            IFactWork target,
             IFactRuleCollection factRules,
-            IWantActionContext context)
-            where TFactWork : IFactWork;
+            IWantActionContext context);
 
         /// <summary>
         /// True - if the target is consistent with the rule.
         /// </summary>
-        /// <typeparam name="TFactWork">Work type.</typeparam>
         /// <param name="target">The purpose with which the rules must be compatible.</param>
         /// <param name="rule">Fact rule.</param>
         /// <param name="context">Context.</param>
         /// <returns>Are the rules compatible?</returns>
-        bool CompatibleRule<TFactWork>(TFactWork target, IFactRule rule, IWantActionContext context)
-            where TFactWork : IFactWork;
+        bool CompatibleRule(IFactWork target, IFactRule rule, IWantActionContext context);
 
         /// <summary>
         /// Is it possible to get a fact by type <paramref name="factType"/> from a container for a <paramref name="factWork"/>.
         /// </summary>
-        /// <typeparam name="TFactWork">Work type.</typeparam>
         /// <param name="factType">Extracted fact type.</param>
         /// <param name="factWork"><see cref="IFactWork"/> for which to extract a fact.</param>
         /// <param name="context">Context.</param>
         /// <returns>Is it possible to extract a fact?</returns>
-        bool CanExtractFact<TFactWork>(IFactType factType, TFactWork factWork, IWantActionContext context)
-            where TFactWork : IFactWork;
+        bool CanExtractFact(IFactType factType, IFactWork factWork, IWantActionContext context);
 
         /// <summary>
         /// Returns types of facts that cannot be extracted from the container.
         /// </summary>
-        /// <typeparam name="TFactWork">Work type.</typeparam>
         /// <param name="factWork">Purpose for which facts are needed.</param>
         /// <param name="context">Context.</param>
         /// <returns>Types of facts that cannot be extracted from the container.</returns>
-        IEnumerable<IFactType> GetRequiredTypesOfFacts<TFactWork>(TFactWork factWork, IWantActionContext context)
-            where TFactWork : IFactWork;
+        IEnumerable<IFactType> GetRequiredTypesOfFacts(IFactWork factWork, IWantActionContext context);
 
         /// <summary>
         /// Do I need to recalculate the fact.

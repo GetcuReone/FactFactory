@@ -19,14 +19,15 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool Condition<TFactWork>(TFactWork factWork, IWantAction wantAction, IFactContainer container)
-            where TFactWork : IFactWork
+        public bool Condition(IFactWork factWork, IWantAction wantAction, IFactContainer container)
         {
             throw new NotImplementedException();
         }
 
-        public bool Condition<TFactWork>(TFactWork factWork, IWantActionContext context, Func<IWantActionContext, IFactRuleCollection> getCompatibleRules)
-            where TFactWork : IFactWork
+        public bool Condition(
+            IFactWork factWork,
+            IWantActionContext context,
+            Func<IWantActionContext, IFactRuleCollection> getCompatibleRules)
         {
             throw new NotImplementedException();
         }
@@ -56,9 +57,7 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool IsFactContained<TFactWork, TFactContainer>(TFactWork factWork, IWantAction wantAction, TFactContainer container)
-            where TFactWork : IFactWork
-            where TFactContainer : IFactContainer
+        public bool IsFactContained(IFactWork factWork, IWantAction wantAction, IFactContainer container)
         {
             throw new NotImplementedException();
         }

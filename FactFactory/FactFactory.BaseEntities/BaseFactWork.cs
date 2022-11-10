@@ -56,8 +56,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public virtual bool EqualsWork<TFactWork>(TFactWork workFact, IWantAction wantAction, IFactContainer container)
-            where TFactWork : IFactWork
+        public virtual bool EqualsWork(IFactWork workFact, IWantAction wantAction, IFactContainer container)
         {
             return EqualsFactTypes(InputFactTypes, workFact?.InputFactTypes);
         }

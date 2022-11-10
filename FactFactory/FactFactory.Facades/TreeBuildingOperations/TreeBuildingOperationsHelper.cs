@@ -78,11 +78,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                 .ToDictionary(finishedNode => finishedNode.Key, finishedNode => finishedNode.Value);
         }
 
-        internal static IFactRuleCollection GetCompatibleRulesEx<TFactWork>(
-            this TFactWork target,
+        internal static IFactRuleCollection GetCompatibleRulesEx(
+            this IFactWork target,
             IFactRuleCollection rules,
             IWantActionContext context)
-            where TFactWork : IFactWork
         {
             return context.SingleEntity.GetCompatibleRules(target, rules, context);
         }

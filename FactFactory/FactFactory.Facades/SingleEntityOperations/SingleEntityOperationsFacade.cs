@@ -80,38 +80,34 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual IFactRuleCollection GetCompatibleRules<TFactWork>(
-            TFactWork target,
+        public virtual IFactRuleCollection GetCompatibleRules(
+            IFactWork target,
             IFactRuleCollection factRules,
             IWantActionContext context)
-            where TFactWork : IFactWork
         {
             return factRules;
         }
 
         /// <inheritdoc/>
-        public virtual bool CompatibleRule<TFactWork>(
-            TFactWork target,
+        public virtual bool CompatibleRule(
+            IFactWork target,
             IFactRule rule,
             IWantActionContext context)
-            where TFactWork : IFactWork
         {
             return true;
         }
 
         /// <inheritdoc/>
-        public virtual bool CanExtractFact<TFactWork>(
+        public virtual bool CanExtractFact(
             IFactType factType,
-            TFactWork factWork,
+            IFactWork factWork,
             IWantActionContext context)
-            where TFactWork : IFactWork
         {
             return context.Container.Any(fact => context.Cache.GetFactType(fact).EqualsFactType(factType));
         }
 
         /// <inheritdoc/>
-        public virtual IEnumerable<IFactType> GetRequiredTypesOfFacts<TFactWork>(TFactWork factWork, IWantActionContext context)
-            where TFactWork : IFactWork
+        public virtual IEnumerable<IFactType> GetRequiredTypesOfFacts(IFactWork factWork, IWantActionContext context)
         {
             return factWork.InputFactTypes.Where(factType => !context.SingleEntity.CanExtractFact(factType, factWork, context));
         }
@@ -119,14 +115,10 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// <summary>
         /// Get the facts needed to enter the work.
         /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
         /// <param name="factWork"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        protected virtual IEnumerable<IFact> GetRequireFacts<TFactWork>(
-            TFactWork factWork,
-            IWantActionContext context)
-            where TFactWork : IFactWork
+        protected virtual IEnumerable<IFact> GetRequireFacts(IFactWork factWork, IWantActionContext context)
         {
             return context.Container
                 .Where(fact => factWork.InputFactTypes
@@ -136,9 +128,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual bool NeedCalculateFact(
-            NodeByFactRule node,
-            IWantActionContext context)
+        public virtual bool NeedCalculateFact(NodeByFactRule node, IWantActionContext context)
         {
             return node.Parent != null
                 ? !CanExtractFact(node.Info.Rule.OutputFactType, node.Parent.Info.Rule, context)
@@ -301,13 +291,11 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// <summary>
         /// Is it possible to start a <see cref="IFactWork"/>.
         /// </summary>
-        /// <typeparam name="TFactWork"></typeparam>
         /// <param name="inputFacts">Input facts.</param>
         /// <param name="factWork"></param>
         /// <param name="cache"></param>
         /// <returns></returns>
-        public virtual bool CanInvokeWork<TFactWork>(IEnumerable<IFact> inputFacts, TFactWork factWork, IFactTypeCache cache)
-            where TFactWork : IFactWork
+        public virtual bool CanInvokeWork(IEnumerable<IFact> inputFacts, IFactWork factWork, IFactTypeCache cache)
         {
             foreach(IFactType requiredFactType in factWork.InputFactTypes)
             {
