@@ -8,11 +8,12 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
 namespace FactFactoryTests.FactFactoryT.Env
 {
-    internal sealed class FactFactoryCustom : BaseFactFactory<Collection>
+    internal sealed class FactFactoryCustom : BaseFactFactory
     {
         public List<WantFactsInfo> W_FactsInfos => WantFactsInfos;
 
-        public override Collection Rules => collection;
+        public override IFactRuleCollection Rules => collection;
+
         internal Collection collection = new Collection();
 
         internal List<BaseFact> DefaultFacts { get; } = new List<BaseFact>();

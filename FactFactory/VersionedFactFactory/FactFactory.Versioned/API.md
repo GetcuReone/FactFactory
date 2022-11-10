@@ -31,10 +31,10 @@
   - [EqualsInfo()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion`1-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion`1.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
   - [ToString()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion`1-ToString 'GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion`1.ToString')
   - [op_Implicit(fact)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion`1-op_Implicit-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion{`0}-~`0 'GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion`1.op_Implicit(GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion{`0})~`0')
-- [BaseVersionedFactFactory\`1](#T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`1 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`1')
-  - [DeriveFactAsync\`\`2()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`1-DeriveFactAsync``2-GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`1.DeriveFactAsync``2(GetcuReone.FactFactory.Interfaces.IFactContainer)')
-  - [DeriveFact\`\`2()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`1-DeriveFact``2-GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`1.DeriveFact``2(GetcuReone.FactFactory.Interfaces.IFactContainer)')
-  - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`1-GetSingleEntityOperations 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`1.GetSingleEntityOperations')
+- [BaseVersionedFactFactory](#T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory')
+  - [DeriveFactAsync\`\`2()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-DeriveFactAsync``2-GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory.DeriveFactAsync``2(GetcuReone.FactFactory.Interfaces.IFactContainer)')
+  - [DeriveFact\`\`2()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-DeriveFact``2-GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory.DeriveFact``2(GetcuReone.FactFactory.Interfaces.IFactContainer)')
+  - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-GetSingleEntityOperations 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory.GetSingleEntityOperations')
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
@@ -380,8 +380,8 @@ Extracts [VersionValue](#P-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVer
 | ---- | ---- | ----------- |
 | fact | [GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion{\`0})~\`0](#T-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion{`0}-~`0 'GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion{`0})~`0') | Version value. |
 
-<a name='T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`1'></a>
-## BaseVersionedFactFactory\`1 `type`
+<a name='T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory'></a>
+## BaseVersionedFactFactory `type`
 
 ##### Namespace
 
@@ -395,7 +395,7 @@ GetcuReone.FactFactory.Versioned
 
 Base class for versioned fact factory.
 
-<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`1-DeriveFactAsync``2-GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
+<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-DeriveFactAsync``2-GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
 ### DeriveFactAsync\`\`2() `method`
 
 ##### Summary
@@ -417,7 +417,7 @@ This method has no parameters.
 | TFactResult | Type of desired fact. |
 | TVersion | Type of version fact. |
 
-<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`1-DeriveFact``2-GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
+<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-DeriveFact``2-GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
 ### DeriveFact\`\`2() `method`
 
 ##### Summary
@@ -439,7 +439,7 @@ This method has no parameters.
 | TFactResult | Type of desired fact. |
 | TVersion | Type of version fact. |
 
-<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`1-GetSingleEntityOperations'></a>
+<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-GetSingleEntityOperations'></a>
 ### GetSingleEntityOperations() `method`
 
 ##### Summary
@@ -523,7 +523,7 @@ GetcuReone.FactFactory.Versioned
 
 ##### Summary
 
-Default implementation of versioned fact factory [BaseVersionedFactFactory\`1](#T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory`1 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory`1').
+Default implementation of versioned fact factory [BaseVersionedFactFactory](#T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory').
 
 <a name='M-GetcuReone-FactFactory-Versioned-VersionedFactFactory-#ctor'></a>
 ### #ctor() `constructor`

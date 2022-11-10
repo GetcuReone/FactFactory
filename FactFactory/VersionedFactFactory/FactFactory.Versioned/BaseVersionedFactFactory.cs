@@ -13,8 +13,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// Base class for versioned fact factory.
     /// </summary>
     /// <inheritdoc/>
-    public abstract class BaseVersionedFactFactory<TFactRuleCollection> : BaseFactFactory<TFactRuleCollection>
-        where TFactRuleCollection : BaseFactRuleCollection
+    public abstract class BaseVersionedFactFactory : BaseFactFactory
     {
         /// <summary>
         /// Returns the <see cref="VersionedSingleEntityOperationsFacade"/>.

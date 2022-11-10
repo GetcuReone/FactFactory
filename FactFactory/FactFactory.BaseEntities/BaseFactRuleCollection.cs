@@ -149,6 +149,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         public void Add(IFactRule item)
         {
             CheckReadOnly();
+
             item.OutputFactType.CannotIsType<ISpecialFact>(nameof(item));
 
             if (Contains(item))
@@ -1276,17 +1277,21 @@ namespace GetcuReone.FactFactory.BaseEntities
                 option));
         }
 
-        /// <summary>
-        /// Adds the elements of the specified collection to the end of the <see cref="BaseFactRuleCollection"/>
-        /// </summary>
-        /// <param name="rules">The collection whose elements should be added to the end of the  <see cref="BaseFactRuleCollection"/>. 
-        /// The collection itself cannot be null, but it can contain elements that are null,
-        /// if type T is a reference type.</param>
+        /// <inheritdoc />
         /// <exception cref="ArgumentNullException">collection is null</exception>
-        public void AddRange(IEnumerable<IFactRule> rules)
+        public virtual void AddRange(IEnumerable<IFactRule> rules)
         {
+            CheckReadOnly();
+
             foreach (IFactRule rule in rules)
-                Add(rule);
+            {
+                rule.OutputFactType.CannotIsType<ISpecialFact>(nameof(rule));
+
+                if (Contains(rule))
+                    throw new ArgumentException("This rule is already in the rule collection.");
+            }
+
+            _list.AddRange(rules);
         }
 
         /// <summary>
@@ -1362,16 +1367,6 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <summary>
-        /// Retrieves all the elements that match the conditions defined by the specified predicate.
-        /// </summary>
-        /// <param name="predicate">The System.Predicate`1 delegate that defines the conditions of the elements to search for.</param>
-        /// <returns>A <see cref="List{IFactRule}"/> containing all the elements that match the conditions defined by the specified <paramref name="predicate"/>, if found; otherwise, an empty <see cref="List{IFactRule}"/>.</returns>
-        public List<IFactRule> FindAll(Predicate<IFactRule> predicate)
-        {
-            return _list.FindAll(predicate);
-        }
-
-        /// <summary>
         /// Performs the specified action on each element of the <see cref="BaseFactRuleCollection"/>.
         /// </summary>
         /// <param name="action">The System.Action`1 delegate to perform on each element of the <see cref="BaseFactRuleCollection"/>.</param>
@@ -1430,6 +1425,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         protected abstract IFactRuleCollection Empty();
 
         /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException"><paramref name="predicate"/> is null.</exception>
         public virtual IFactRuleCollection FindAll(Func<IFactRule, bool> predicate)
         {
             var result = (BaseFactRuleCollection)Empty();
@@ -1440,6 +1436,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
+        /// <exception cref="ArgumentNullException"><paramref name="keySelector"/> is null.</exception>
         public IFactRuleCollection SortByDescending<TKey>(Func<IFactRule, TKey> keySelector, IComparer<TKey> comparer)
         {
             var result = (BaseFactRuleCollection)Empty();

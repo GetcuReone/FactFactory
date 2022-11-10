@@ -8,8 +8,7 @@ namespace GetcuReone.FactFactory.Priority
     /// Base class for the fact factory working with priority rules
     /// </summary>
     /// <inheritdoc/>
-    public abstract class BasePriorityFactFactory<TFactRuleCollection> : BaseFactFactory<TFactRuleCollection>
-        where TFactRuleCollection : BaseFactRuleCollection
+    public abstract class BasePriorityFactFactory : BaseFactFactory
     {
         /// <summary>
         /// Returns the <see cref="PrioritySingleEntityOperationsFacade"/>.

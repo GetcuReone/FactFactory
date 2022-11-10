@@ -46,7 +46,7 @@
   - [IsReadOnly](#P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-IsReadOnly 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.IsReadOnly')
   - [Item](#P-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Item-System-Int32- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Item(System.Int32)')
   - [Add(item)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add-GetcuReone-FactFactory-Interfaces-IFactRule- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add(GetcuReone.FactFactory.Interfaces.IFactRule)')
-  - [AddRange(rules)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-AddRange-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactRule}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule})')
+  - [AddRange()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-AddRange-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactRule}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule})')
   - [Add\`\`1(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``1-System-Func{``0},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``1(System.Func{``0},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [Add\`\`1(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``1-System-Func{System-Threading-Tasks-ValueTask{``0}},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``1(System.Func{System.Threading.Tasks.ValueTask{``0}},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [Add\`\`10(rule,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Add``10-System-Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Add``10(System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
@@ -89,7 +89,6 @@
   - [CreateFactRule(func,inputFactTypes,outputFactType,option)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-CreateFactRule-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.CreateFactRule(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [Empty()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-Empty 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.Empty')
   - [EqualsRules(firstRule,secondRule)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-EqualsRules-GetcuReone-FactFactory-Interfaces-IFactRule,GetcuReone-FactFactory-Interfaces-IFactRule- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.EqualsRules(GetcuReone.FactFactory.Interfaces.IFactRule,GetcuReone.FactFactory.Interfaces.IFactRule)')
-  - [FindAll(predicate)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-FindAll-System-Predicate{GetcuReone-FactFactory-Interfaces-IFactRule}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.FindAll(System.Predicate{GetcuReone.FactFactory.Interfaces.IFactRule})')
   - [FindAll()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-FindAll-System-Func{GetcuReone-FactFactory-Interfaces-IFactRule,System-Boolean}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.FindAll(System.Func{GetcuReone.FactFactory.Interfaces.IFactRule,System.Boolean})')
   - [ForEach(action)](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-ForEach-System-Action{GetcuReone-FactFactory-Interfaces-IFactRule}- 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.ForEach(System.Action{GetcuReone.FactFactory.Interfaces.IFactRule})')
   - [GetEnumerator()](#M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-GetEnumerator 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection.GetEnumerator')
@@ -687,19 +686,15 @@ Adds rule.
 | item | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') |  |
 
 <a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-AddRange-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactRule}-'></a>
-### AddRange(rules) `method`
+### AddRange() `method`
 
 ##### Summary
 
-Adds the elements of the specified collection to the end of the [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection')
+*Inherit from parent.*
 
 ##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| rules | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule}') | The collection whose elements should be added to the end of the  [BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection'). 
-The collection itself cannot be null, but it can contain elements that are null,
-if type T is a reference type. |
+This method has no parameters.
 
 ##### Exceptions
 
@@ -1798,23 +1793,6 @@ Rules equality.
 | firstRule | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') |  |
 | secondRule | [GetcuReone.FactFactory.Interfaces.IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule') |  |
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-FindAll-System-Predicate{GetcuReone-FactFactory-Interfaces-IFactRule}-'></a>
-### FindAll(predicate) `method`
-
-##### Summary
-
-Retrieves all the elements that match the conditions defined by the specified predicate.
-
-##### Returns
-
-A [List\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List`1 'System.Collections.Generic.List`1') containing all the elements that match the conditions defined by the specified `predicate`, if found; otherwise, an empty [List\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List`1 'System.Collections.Generic.List`1').
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| predicate | [System.Predicate{GetcuReone.FactFactory.Interfaces.IFactRule}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Predicate 'System.Predicate{GetcuReone.FactFactory.Interfaces.IFactRule}') | The System.Predicate\`1 delegate that defines the conditions of the elements to search for. |
-
 <a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-FindAll-System-Func{GetcuReone-FactFactory-Interfaces-IFactRule,System-Boolean}-'></a>
 ### FindAll() `method`
 
@@ -1825,6 +1803,12 @@ A [List\`1](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US
 ##### Parameters
 
 This method has no parameters.
+
+##### Exceptions
+
+| Name | Description |
+| ---- | ----------- |
+| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | `predicate` is null. |
 
 <a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-ForEach-System-Action{GetcuReone-FactFactory-Interfaces-IFactRule}-'></a>
 ### ForEach(action) `method`
@@ -1957,6 +1941,12 @@ Sorts collection.
 ##### Parameters
 
 This method has no parameters.
+
+##### Exceptions
+
+| Name | Description |
+| ---- | ----------- |
+| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | `keySelector` is null. |
 
 <a name='M-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-System#Collections#IEnumerable#GetEnumerator'></a>
 ### System#Collections#IEnumerable#GetEnumerator() `method`

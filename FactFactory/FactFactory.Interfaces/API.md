@@ -15,10 +15,10 @@
   - [DeriveErrorDetail](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionResult-DeriveErrorDetail 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionResult.DeriveErrorDetail')
   - [TreesResult](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionResult-TreesResult 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionResult.TreesResult')
   - [WantActionInfo](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesForWantActionResult-WantActionInfo 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesForWantActionResult.WantActionInfo')
-- [BuildTreesRequest\`1](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest`1 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest`1')
-  - [FactRules](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest`1-FactRules 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest`1.FactRules')
-  - [Filters](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest`1-Filters 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest`1.Filters')
-  - [WantActionContexts](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest`1-WantActionContexts 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest`1.WantActionContexts')
+- [BuildTreesRequest](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest')
+  - [FactRules](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest-FactRules 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest.FactRules')
+  - [Filters](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest-Filters 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest.Filters')
+  - [WantActionContexts](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest-WantActionContexts 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesRequest.WantActionContexts')
 - [BuildTreesResult](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesResult 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesResult')
   - [DeriveErrorDetails](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesResult-DeriveErrorDetails 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesResult.DeriveErrorDetails')
   - [TreesByActions](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesResult-TreesByActions 'GetcuReone.FactFactory.Interfaces.Operations.Entities.BuildTreesResult.TreesByActions')
@@ -31,9 +31,9 @@
   - [#ctor(requiredFact,needFacts)](#M-GetcuReone-FactFactory-Exceptions-Entities-DeriveFactErrorDetail-#ctor-GetcuReone-FactFactory-Interfaces-IFactType,System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Interfaces-IFactType}- 'GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail.#ctor(GetcuReone.FactFactory.Interfaces.IFactType,System.Collections.Generic.IReadOnlyCollection{GetcuReone.FactFactory.Interfaces.IFactType})')
   - [NeedFacts](#P-GetcuReone-FactFactory-Exceptions-Entities-DeriveFactErrorDetail-NeedFacts 'GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail.NeedFacts')
   - [RequiredFact](#P-GetcuReone-FactFactory-Exceptions-Entities-DeriveFactErrorDetail-RequiredFact 'GetcuReone.FactFactory.Exceptions.Entities.DeriveFactErrorDetail.RequiredFact')
-- [DeriveWantActionRequest\`1](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`1 'GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest`1')
-  - [Context](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`1-Context 'GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest`1.Context')
-  - [Rules](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`1-Rules 'GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest`1.Rules')
+- [DeriveWantActionRequest](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest 'GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest')
+  - [Context](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest-Context 'GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest.Context')
+  - [Rules](#P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest-Rules 'GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest.Rules')
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [ErrorDetail](#T-GetcuReone-FactFactory-Exceptions-Entities-ErrorDetail 'GetcuReone.FactFactory.Exceptions.Entities.ErrorDetail')
@@ -73,18 +73,18 @@
   - [Remove\`\`1(fact)](#M-GetcuReone-FactFactory-Interfaces-IFactContainer-Remove``1-``0- 'GetcuReone.FactFactory.Interfaces.IFactContainer.Remove``1(``0)')
   - [TryGetFact\`\`1(fact)](#M-GetcuReone-FactFactory-Interfaces-IFactContainer-TryGetFact``1-``0@- 'GetcuReone.FactFactory.Interfaces.IFactContainer.TryGetFact``1(``0@)')
 - [IFactEngine](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine 'GetcuReone.FactFactory.Interfaces.Operations.IFactEngine')
-  - [DeriveWantActionAsync\`\`1(requests)](#M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantActionAsync``1-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0}}- 'GetcuReone.FactFactory.Interfaces.Operations.IFactEngine.DeriveWantActionAsync``1(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0}})')
-  - [DeriveWantAction\`\`1(requests)](#M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantAction``1-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0}}- 'GetcuReone.FactFactory.Interfaces.Operations.IFactEngine.DeriveWantAction``1(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0}})')
+  - [DeriveWantAction(requests)](#M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantAction-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest}- 'GetcuReone.FactFactory.Interfaces.Operations.IFactEngine.DeriveWantAction(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest})')
+  - [DeriveWantActionAsync(requests)](#M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantActionAsync-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest}- 'GetcuReone.FactFactory.Interfaces.Operations.IFactEngine.DeriveWantActionAsync(System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest})')
+- [IFactFactory](#T-GetcuReone-FactFactory-Interfaces-IFactFactory 'GetcuReone.FactFactory.Interfaces.IFactFactory')
+  - [Rules](#P-GetcuReone-FactFactory-Interfaces-IFactFactory-Rules 'GetcuReone.FactFactory.Interfaces.IFactFactory.Rules')
+  - [Derive()](#M-GetcuReone-FactFactory-Interfaces-IFactFactory-Derive 'GetcuReone.FactFactory.Interfaces.IFactFactory.Derive')
+  - [DeriveAsync()](#M-GetcuReone-FactFactory-Interfaces-IFactFactory-DeriveAsync 'GetcuReone.FactFactory.Interfaces.IFactFactory.DeriveAsync')
+  - [WantFacts(wantAction,container)](#M-GetcuReone-FactFactory-Interfaces-IFactFactory-WantFacts-GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Interfaces.IFactFactory.WantFacts(GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer)')
 - [IFactFactoryContext](#T-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext 'GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext')
   - [Cache](#P-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext-Cache 'GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext.Cache')
   - [Engine](#P-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext-Engine 'GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext.Engine')
   - [SingleEntity](#P-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext-SingleEntity 'GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext.SingleEntity')
   - [TreeBuilding](#P-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext-TreeBuilding 'GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext.TreeBuilding')
-- [IFactFactory\`1](#T-GetcuReone-FactFactory-Interfaces-IFactFactory`1 'GetcuReone.FactFactory.Interfaces.IFactFactory`1')
-  - [Rules](#P-GetcuReone-FactFactory-Interfaces-IFactFactory`1-Rules 'GetcuReone.FactFactory.Interfaces.IFactFactory`1.Rules')
-  - [Derive()](#M-GetcuReone-FactFactory-Interfaces-IFactFactory`1-Derive 'GetcuReone.FactFactory.Interfaces.IFactFactory`1.Derive')
-  - [DeriveAsync()](#M-GetcuReone-FactFactory-Interfaces-IFactFactory`1-DeriveAsync 'GetcuReone.FactFactory.Interfaces.IFactFactory`1.DeriveAsync')
-  - [WantFacts(wantAction,container)](#M-GetcuReone-FactFactory-Interfaces-IFactFactory`1-WantFacts-GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Interfaces.IFactFactory`1.WantFacts(GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer)')
 - [IFactParameter](#T-GetcuReone-FactFactory-Interfaces-IFactParameter 'GetcuReone.FactFactory.Interfaces.IFactParameter')
   - [Code](#P-GetcuReone-FactFactory-Interfaces-IFactParameter-Code 'GetcuReone.FactFactory.Interfaces.IFactParameter.Code')
   - [Value](#P-GetcuReone-FactFactory-Interfaces-IFactParameter-Value 'GetcuReone.FactFactory.Interfaces.IFactParameter.Value')
@@ -94,6 +94,7 @@
   - [CalculateAsync(requireFacts)](#M-GetcuReone-FactFactory-Interfaces-IFactRule-CalculateAsync-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.Interfaces.IFactRule.CalculateAsync(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
 - [IFactRuleCollection](#T-GetcuReone-FactFactory-Interfaces-IFactRuleCollection 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection')
   - [IsReadOnly](#P-GetcuReone-FactFactory-Interfaces-IFactRuleCollection-IsReadOnly 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection.IsReadOnly')
+  - [AddRange(rules)](#M-GetcuReone-FactFactory-Interfaces-IFactRuleCollection-AddRange-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactRule}- 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection.AddRange(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule})')
   - [FindAll(predicate)](#M-GetcuReone-FactFactory-Interfaces-IFactRuleCollection-FindAll-System-Func{GetcuReone-FactFactory-Interfaces-IFactRule,System-Boolean}- 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection.FindAll(System.Func{GetcuReone.FactFactory.Interfaces.IFactRule,System.Boolean})')
   - [SortByDescending\`\`1(keySelector,comparer)](#M-GetcuReone-FactFactory-Interfaces-IFactRuleCollection-SortByDescending``1-System-Func{GetcuReone-FactFactory-Interfaces-IFactRule,``0},System-Collections-Generic-IComparer{``0}- 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection.SortByDescending``1(System.Func{GetcuReone.FactFactory.Interfaces.IFactRule,``0},System.Collections.Generic.IComparer{``0})')
 - [IFactRulesContext](#T-GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext 'GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext')
@@ -131,7 +132,7 @@
   - [GetRequiredTypesOfFacts\`\`1(factWork,context)](#M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-GetRequiredTypesOfFacts``1-``0,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext- 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.GetRequiredTypesOfFacts``1(``0,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)')
   - [GetRuleComparer(context)](#M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-GetRuleComparer-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext- 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.GetRuleComparer(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)')
   - [NeedCalculateFact(node,context)](#M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-NeedCalculateFact-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext- 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.NeedCalculateFact(GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule,GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)')
-  - [ValidateAndGetRules\`\`1(ruleCollection)](#M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-ValidateAndGetRules``1-``0- 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.ValidateAndGetRules``1(``0)')
+  - [ValidateAndGetRules(ruleCollection)](#M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-ValidateAndGetRules-GetcuReone-FactFactory-Interfaces-IFactRuleCollection- 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.ValidateAndGetRules(GetcuReone.FactFactory.Interfaces.IFactRuleCollection)')
   - [ValidateContainer(container)](#M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-ValidateContainer-GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations.ValidateContainer(GetcuReone.FactFactory.Interfaces.IFactContainer)')
 - [ISpecialFact](#T-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact 'GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact')
   - [EqualsInfo(specialFact)](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
@@ -302,8 +303,8 @@ Build trees.
 
 WantAction info.
 
-<a name='T-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest`1'></a>
-## BuildTreesRequest\`1 `type`
+<a name='T-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest'></a>
+## BuildTreesRequest `type`
 
 ##### Namespace
 
@@ -313,27 +314,21 @@ GetcuReone.FactFactory.Interfaces.Operations.Entities
 
 Request.
 
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFactRuleCollection | Fact rule collection type. |
-
-<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest`1-FactRules'></a>
+<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest-FactRules'></a>
 ### FactRules `property`
 
 ##### Summary
 
 List of rules that take part in the construction of trees.
 
-<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest`1-Filters'></a>
+<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest-Filters'></a>
 ### Filters `property`
 
 ##### Summary
 
 Filter for WantAction and FactRule.
 
-<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest`1-WantActionContexts'></a>
+<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-BuildTreesRequest-WantActionContexts'></a>
 ### WantActionContexts `property`
 
 ##### Summary
@@ -453,8 +448,8 @@ Facts that were not enough to derive.
 
 The fact that tried to derive.
 
-<a name='T-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`1'></a>
-## DeriveWantActionRequest\`1 `type`
+<a name='T-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest'></a>
+## DeriveWantActionRequest `type`
 
 ##### Namespace
 
@@ -464,20 +459,14 @@ GetcuReone.FactFactory.Interfaces.Operations.Entities
 
 Request.
 
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFactRuleCollection | Rule collection type. |
-
-<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`1-Context'></a>
+<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest-Context'></a>
 ### Context `property`
 
 ##### Summary
 
 The context in which the calculations will be made.
 
-<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest`1-Rules'></a>
+<a name='P-GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest-Rules'></a>
 ### Rules `property`
 
 ##### Summary
@@ -1002,8 +991,8 @@ GetcuReone.FactFactory.Interfaces.Operations
 
 Engine for calculating facts
 
-<a name='M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantActionAsync``1-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0}}-'></a>
-### DeriveWantActionAsync\`\`1(requests) `method`
+<a name='M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantAction-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest}-'></a>
+### DeriveWantAction(requests) `method`
 
 ##### Summary
 
@@ -1013,16 +1002,10 @@ Build a trees and calculate facts for `requests`.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| requests | [System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{\`\`0}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0}}') | Requests. |
+| requests | [System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest}') | Requests. |
 
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFactRuleCollection | Rule collection type. |
-
-<a name='M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantAction``1-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest{``0}}-'></a>
-### DeriveWantAction\`\`1(requests) `method`
+<a name='M-GetcuReone-FactFactory-Interfaces-Operations-IFactEngine-DeriveWantActionAsync-System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-Operations-Entities-DeriveWantActionRequest}-'></a>
+### DeriveWantActionAsync(requests) `method`
 
 ##### Summary
 
@@ -1032,13 +1015,65 @@ Build a trees and calculate facts for `requests`.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| requests | [System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{\`\`0}}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest{``0}}') | Requests. |
+| requests | [System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.List 'System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.Operations.Entities.DeriveWantActionRequest}') | Requests. |
 
-##### Generic Types
+<a name='T-GetcuReone-FactFactory-Interfaces-IFactFactory'></a>
+## IFactFactory `type`
 
-| Name | Description |
-| ---- | ----------- |
-| TFactRuleCollection | Rule collection type. |
+##### Namespace
+
+GetcuReone.FactFactory.Interfaces
+
+##### Summary
+
+Fact factory interface.
+
+<a name='P-GetcuReone-FactFactory-Interfaces-IFactFactory-Rules'></a>
+### Rules `property`
+
+##### Summary
+
+Collection of rules for derive facts.
+
+<a name='M-GetcuReone-FactFactory-Interfaces-IFactFactory-Derive'></a>
+### Derive() `method`
+
+##### Summary
+
+Derive the facts.
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-Interfaces-IFactFactory-DeriveAsync'></a>
+### DeriveAsync() `method`
+
+##### Summary
+
+Asynchronously derive the facts.
+
+##### Returns
+
+
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-Interfaces-IFactFactory-WantFacts-GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
+### WantFacts(wantAction,container) `method`
+
+##### Summary
+
+Requesting a desired fact through action.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| wantAction | [GetcuReone.FactFactory.Interfaces.IWantAction](#T-GetcuReone-FactFactory-Interfaces-IWantAction 'GetcuReone.FactFactory.Interfaces.IWantAction') | WantAction. |
+| container | [GetcuReone.FactFactory.Interfaces.IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContainer 'GetcuReone.FactFactory.Interfaces.IFactContainer') | Fact container. |
 
 <a name='T-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext'></a>
 ## IFactFactoryContext `type`
@@ -1078,70 +1113,6 @@ A context containing information within which current actions are taking place.
 ##### Summary
 
 *Inherit from parent.*
-
-<a name='T-GetcuReone-FactFactory-Interfaces-IFactFactory`1'></a>
-## IFactFactory\`1 `type`
-
-##### Namespace
-
-GetcuReone.FactFactory.Interfaces
-
-##### Summary
-
-Fact factory interface.
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFactRuleCollection | Type set rule. |
-
-<a name='P-GetcuReone-FactFactory-Interfaces-IFactFactory`1-Rules'></a>
-### Rules `property`
-
-##### Summary
-
-Collection of rules for derive facts.
-
-<a name='M-GetcuReone-FactFactory-Interfaces-IFactFactory`1-Derive'></a>
-### Derive() `method`
-
-##### Summary
-
-Derive the facts.
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-GetcuReone-FactFactory-Interfaces-IFactFactory`1-DeriveAsync'></a>
-### DeriveAsync() `method`
-
-##### Summary
-
-Asynchronously derive the facts.
-
-##### Returns
-
-
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='M-GetcuReone-FactFactory-Interfaces-IFactFactory`1-WantFacts-GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
-### WantFacts(wantAction,container) `method`
-
-##### Summary
-
-Requesting a desired fact through action.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| wantAction | [GetcuReone.FactFactory.Interfaces.IWantAction](#T-GetcuReone-FactFactory-Interfaces-IWantAction 'GetcuReone.FactFactory.Interfaces.IWantAction') | WantAction. |
-| container | [GetcuReone.FactFactory.Interfaces.IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContainer 'GetcuReone.FactFactory.Interfaces.IFactContainer') | Fact container. |
 
 <a name='T-GetcuReone-FactFactory-Interfaces-IFactParameter'></a>
 ## IFactParameter `type`
@@ -1238,6 +1209,21 @@ Collection of rules.
 
 Gets a value indicating whether the [IFactRuleCollection](#T-GetcuReone-FactFactory-Interfaces-IFactRuleCollection 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection') is read-only.
 
+<a name='M-GetcuReone-FactFactory-Interfaces-IFactRuleCollection-AddRange-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFactRule}-'></a>
+### AddRange(rules) `method`
+
+##### Summary
+
+Adds the elements of the specified collection to the end of the [IFactRuleCollection](#T-GetcuReone-FactFactory-Interfaces-IFactRuleCollection 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection')
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| rules | [System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Collections.Generic.IEnumerable 'System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFactRule}') | The collection whose elements should be added to the end of the  [IFactRuleCollection](#T-GetcuReone-FactFactory-Interfaces-IFactRuleCollection 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection'). 
+The collection itself cannot be null, but it can contain elements that are null,
+if type T is a reference type. |
+
 <a name='M-GetcuReone-FactFactory-Interfaces-IFactRuleCollection-FindAll-System-Func{GetcuReone-FactFactory-Interfaces-IFactRule,System-Boolean}-'></a>
 ### FindAll(predicate) `method`
 
@@ -1255,12 +1241,6 @@ sequence that satisfy the condition.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | predicate | [System.Func{GetcuReone.FactFactory.Interfaces.IFactRule,System.Boolean}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{GetcuReone.FactFactory.Interfaces.IFactRule,System.Boolean}') | A function to test each element for a condition. |
-
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | `predicate` is null. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-IFactRuleCollection-SortByDescending``1-System-Func{GetcuReone-FactFactory-Interfaces-IFactRule,``0},System-Collections-Generic-IComparer{``0}-'></a>
 ### SortByDescending\`\`1(keySelector,comparer) `method`
@@ -1286,12 +1266,6 @@ descending orderaccording to a key.
 | Name | Description |
 | ---- | ----------- |
 | TKey | The type of the key returned by keySelector. |
-
-##### Exceptions
-
-| Name | Description |
-| ---- | ----------- |
-| [System.ArgumentNullException](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.ArgumentNullException 'System.ArgumentNullException') | `keySelector` is null. |
 
 <a name='T-GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext'></a>
 ## IFactRulesContext `type`
@@ -1860,8 +1834,8 @@ Do I need to recalculate the fact?
 | node | [GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule](#T-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule 'GetcuReone.FactFactory.Interfaces.Operations.Entities.NodeByFactRule') | Node. |
 | context | [GetcuReone.FactFactory.Interfaces.Context.IWantActionContext](#T-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext 'GetcuReone.FactFactory.Interfaces.Context.IWantActionContext') | Context. |
 
-<a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-ValidateAndGetRules``1-``0-'></a>
-### ValidateAndGetRules\`\`1(ruleCollection) `method`
+<a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-ValidateAndGetRules-GetcuReone-FactFactory-Interfaces-IFactRuleCollection-'></a>
+### ValidateAndGetRules(ruleCollection) `method`
 
 ##### Summary
 
@@ -1875,13 +1849,7 @@ Rules.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| ruleCollection | [\`\`0](#T-``0 '``0') | Rules. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFactRuleCollection | Rule collection type. |
+| ruleCollection | [GetcuReone.FactFactory.Interfaces.IFactRuleCollection](#T-GetcuReone-FactFactory-Interfaces-IFactRuleCollection 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection') | Rules. |
 
 <a name='M-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations-ValidateContainer-GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
 ### ValidateContainer(container) `method`
@@ -2170,7 +2138,7 @@ GetcuReone.FactFactory.Exceptions
 
 ##### Summary
 
-[FactFactoryException](#T-GetcuReone-FactFactory-Exceptions-FactFactoryException 'GetcuReone.FactFactory.Exceptions.FactFactoryException') for method [IFactFactory\`1](#T-GetcuReone-FactFactory-Interfaces-IFactFactory`1 'GetcuReone.FactFactory.Interfaces.IFactFactory`1').
+[FactFactoryException](#T-GetcuReone-FactFactory-Exceptions-FactFactoryException 'GetcuReone.FactFactory.Exceptions.FactFactoryException') for method [IFactFactory](#T-GetcuReone-FactFactory-Interfaces-IFactFactory 'GetcuReone.FactFactory.Interfaces.IFactFactory').
 
 <a name='M-GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException-#ctor-System-Collections-Generic-IReadOnlyCollection{GetcuReone-FactFactory-Exceptions-Entities-DeriveErrorDetail}-'></a>
 ### #ctor() `constructor`

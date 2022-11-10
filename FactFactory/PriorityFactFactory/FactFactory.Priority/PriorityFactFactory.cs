@@ -9,12 +9,12 @@ namespace GetcuReone.FactFactory.Priority
     /// <summary>
     /// Default priority fact factory.
     /// </summary>
-    public class PriorityFactFactory : BasePriorityFactFactory<FactRuleCollection>
+    public class PriorityFactFactory : BasePriorityFactFactory
     {
         private readonly Func<IWantActionContext, IEnumerable<IFact>> _getDefaultFactsFunc;
 
         /// <inheritdoc/>
-        public override FactRuleCollection Rules { get; }
+        public override IFactRuleCollection Rules { get; }
 
         /// <summary>
         /// Constructor.

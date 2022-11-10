@@ -19,7 +19,7 @@
   - [GetWantAction\`\`2()](#M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``2-System-Action{``0,``1}- 'FactFactory.TestsCommon.CommonTestBase.GetWantAction``2(System.Action{``0,``1})')
   - [GetWantAction\`\`3(action)](#M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``3-System-Action{``0,``1,``2}- 'FactFactory.TestsCommon.CommonTestBase.GetWantAction``3(System.Action{``0,``1,``2})')
 - [CommonTestHelper](#T-FactFactory-TestsCommon-Helpers-CommonTestHelper 'FactFactory.TestsCommon.Helpers.CommonTestHelper')
-  - [AndAddRules\`\`2(givenBlock,factRules)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.AndAddRules``2(GetcuReone.GwtTestFramework.Entities.GivenBlock{``0,``1},GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection)')
+  - [AndAddRules\`\`2(givenBlock,factRules)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-Interfaces-IFactRuleCollection- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.AndAddRules``2(GetcuReone.GwtTestFramework.Entities.GivenBlock{``0,``1},GetcuReone.FactFactory.Interfaces.IFactRuleCollection)')
   - [AndAssertErrorDetail\`\`1(thenBlock,errorCode,errorMessage)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAssertErrorDetail``1-GetcuReone-GwtTestFramework-Entities-ThenBlock{``0,GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException},System-String,System-String- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.AndAssertErrorDetail``1(GetcuReone.GwtTestFramework.Entities.ThenBlock{``0,GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException},System.String,System.String)')
   - [SetCalculateByRuleParam\`\`1(fact)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-SetCalculateByRuleParam``1-``0- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.SetCalculateByRuleParam``1(``0)')
   - [ThenAssertErrorDetail\`\`1(whenBlock,errorCode,errorMessage)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-ThenAssertErrorDetail``1-GetcuReone-GwtTestFramework-Entities-WhenBlock{``0,GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException},System-String,System-String- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.ThenAssertErrorDetail``1(GetcuReone.GwtTestFramework.Entities.WhenBlock{``0,GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException},System.String,System.String)')
@@ -286,7 +286,7 @@ FactFactory.TestsCommon.Helpers
 
 Helper for test.
 
-<a name='M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection-'></a>
+<a name='M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-Interfaces-IFactRuleCollection-'></a>
 ### AndAddRules\`\`2(givenBlock,factRules) `method`
 
 ##### Summary
@@ -302,7 +302,7 @@ Given block.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | givenBlock | [GetcuReone.GwtTestFramework.Entities.GivenBlock{\`\`0,\`\`1}](#T-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1} 'GetcuReone.GwtTestFramework.Entities.GivenBlock{``0,``1}') | Previous given block |
-| factRules | [GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection') | Fact rules |
+| factRules | [GetcuReone.FactFactory.Interfaces.IFactRuleCollection](#T-GetcuReone-FactFactory-Interfaces-IFactRuleCollection 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection') | Fact rules |
 
 ##### Generic Types
 
@@ -557,7 +557,7 @@ Fact container [IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContai
 
 ##### Summary
 
-Fact factory [IFactFactory\`1](#T-GetcuReone-FactFactory-Interfaces-IFactFactory`1 'GetcuReone.FactFactory.Interfaces.IFactFactory`1').
+Fact factory [IFactFactory](#T-GetcuReone-FactFactory-Interfaces-IFactFactory 'GetcuReone.FactFactory.Interfaces.IFactFactory').
 
 <a name='F-FactFactory-TestsCommon-TC-Objects-Rule'></a>
 ### Rule `constants`

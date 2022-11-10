@@ -60,8 +60,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         }
 
         /// <inheritdoc/>
-        public virtual TFactRuleCollection ValidateAndGetRules<TFactRuleCollection>(TFactRuleCollection ruleCollection)
-            where TFactRuleCollection : IFactRuleCollection
+        public virtual IFactRuleCollection ValidateAndGetRules(IFactRuleCollection ruleCollection)
         {
             // Get a copy of the rules
             if (ruleCollection == null)
@@ -75,12 +74,9 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             if (rulesCopy.Equals(ruleCollection))
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactRuleCollection.Copy method return original rule collection.");
             
-            if (!(rulesCopy is TFactRuleCollection rules))
-                throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, "IFactRuleCollection.Copy method returned a different type of rules.");
+            rulesCopy.IsReadOnly = true;
 
-            rules.IsReadOnly = true;
-
-            return rules;
+            return rulesCopy;
         }
 
         /// <inheritdoc/>
@@ -465,9 +461,9 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                         wantAction.Option)
                 };
 
-                var requests = new List<DeriveWantActionRequest<IFactRuleCollection>>
+                var requests = new List<DeriveWantActionRequest>
                 {
-                    new DeriveWantActionRequest<IFactRuleCollection>
+                    new DeriveWantActionRequest
                     {
                         Rules = rules,
                         Context = wantContext
@@ -548,9 +544,9 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                         wantAction.Option)
                 };
 
-                var requests = new List<DeriveWantActionRequest<IFactRuleCollection>>
+                var requests = new List<DeriveWantActionRequest>
                 {
-                    new DeriveWantActionRequest<IFactRuleCollection>
+                    new DeriveWantActionRequest
                     {
                         Rules = rules,
                         Context = wantContext
