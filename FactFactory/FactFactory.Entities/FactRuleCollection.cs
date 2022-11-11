@@ -9,39 +9,33 @@ namespace GetcuReone.FactFactory.Entities
     /// <summary>
     /// Collection for <see cref="FactRule"/>.
     /// </summary>
-    public class FactRuleCollection : BaseFactRuleCollection<FactRule>
+    public class FactRuleCollection : BaseFactRuleCollection
     {
         /// <summary>
         /// Constructor.
         /// </summary>
-        public FactRuleCollection()
-        {
-        }
+        public FactRuleCollection() { }
 
         /// <inheritdoc/>
-        public FactRuleCollection(IEnumerable<FactRule> factRules) : base(factRules)
-        {
-        }
+        public FactRuleCollection(IEnumerable<FactRule> factRules) : base(factRules) { }
 
         /// <inheritdoc/>
-        public FactRuleCollection(IEnumerable<FactRule> factRules, bool isReadOnly) : base(factRules, isReadOnly)
-        {
-        }
+        public FactRuleCollection(IEnumerable<FactRule> factRules, bool isReadOnly) : base(factRules, isReadOnly) { }
 
         /// <inheritdoc/>
-        protected override FactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
+        protected override IFactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
         {
             return new FactRule(func, inputFactTypes, outputFactType, option);
         }
 
         /// <inheritdoc/>
-        protected override FactRule CreateFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
+        protected override IFactRule CreateFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
         {
             return new FactRule(func, inputFactTypes, outputFactType, option);
         }
 
         /// <inheritdoc/>
-        protected override IFactRuleCollection<FactRule> Empty()
+        protected override IFactRuleCollection Empty()
         {
             return new FactRuleCollection(null, IsReadOnly);
         }

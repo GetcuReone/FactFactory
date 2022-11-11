@@ -13,11 +13,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// Base class for versioned fact factory.
     /// </summary>
     /// <inheritdoc/>
-    public abstract class BaseVersionedFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer> : BaseFactFactory<TFactRule, TFactRuleCollection, TWantAction, TFactContainer>
-        where TFactContainer : BaseFactContainer
-        where TFactRule : BaseFactRule
-        where TFactRuleCollection : BaseFactRuleCollection<TFactRule>
-        where TWantAction : BaseWantAction
+    public abstract class BaseVersionedFactFactory : BaseFactFactory
     {
         /// <summary>
         /// Returns the <see cref="VersionedSingleEntityOperationsFacade"/>.
@@ -34,14 +30,14 @@ namespace GetcuReone.FactFactory.Versioned
         /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
         /// <returns>Derived fact.</returns>
-        public virtual TFactResult DeriveFact<TFactResult, TVersion>(TFactContainer container = null)
+        public virtual TFactResult DeriveFact<TFactResult, TVersion>(IFactContainer container = null)
             where TFactResult : IFact
             where TVersion : IVersionFact
         {
             TFactResult fact = default;
 
             var singleOperations = GetSingleEntityOperationsOnce();
-            var previousWantFacts = new List<WantFactsInfo<TWantAction, TFactContainer>>(WantFactsInfos);
+            var previousWantFacts = new List<WantFactsInfo>(WantFactsInfos);
             var inputFacts = new List<IFactType> 
             { 
                 singleOperations.GetFactType<TFactResult>(),
@@ -51,7 +47,7 @@ namespace GetcuReone.FactFactory.Versioned
             WantFactsInfos.Clear();
 
             WantFacts(
-                singleOperations.CreateWantAction<TWantAction>(
+                singleOperations.CreateWantAction(
                     facts => fact = facts.GetFact<TFactResult>(),
                     inputFacts,
                     FactWorkOption.CanExecuteSync),
@@ -70,14 +66,14 @@ namespace GetcuReone.FactFactory.Versioned
         /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
         /// <typeparam name="TVersion">Type of version fact.</typeparam>
         /// <returns></returns>
-        public virtual async ValueTask<TFactResult> DeriveFactAsync<TFactResult, TVersion>(TFactContainer container = null)
+        public virtual async ValueTask<TFactResult> DeriveFactAsync<TFactResult, TVersion>(IFactContainer container = null)
             where TFactResult : IFact
             where TVersion : IVersionFact
         {
             TFactResult fact = default;
 
             var singleOperations = GetSingleEntityOperationsOnce();
-            var previousWantFacts = new List<WantFactsInfo<TWantAction, TFactContainer>>(WantFactsInfos);
+            var previousWantFacts = new List<WantFactsInfo>(WantFactsInfos);
             var inputFacts = new List<IFactType> 
             { 
                 singleOperations.GetFactType<TFactResult>(), 
@@ -87,7 +83,7 @@ namespace GetcuReone.FactFactory.Versioned
             WantFactsInfos.Clear();
 
             WantFacts(
-                singleOperations.CreateWantAction<TWantAction>(
+                singleOperations.CreateWantAction(
                     facts => fact = facts.GetFact<TFactResult>(),
                     inputFacts,
                     FactWorkOption.CanExecuteSync),

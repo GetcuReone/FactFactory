@@ -131,35 +131,33 @@ namespace GetcuReone.FactFactory
         /// <summary>
         /// Compare fact rules.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="firstRule"></param>
+        /// <param name="secondRule"></param>
         /// <returns></returns>
-        public static int CompareTo<TFactRule>(this TFactRule x, TFactRule y)
-            where TFactRule : IFactRule
+        public static int CompareTo(this IFactRule firstRule, IFactRule secondRule)
         {
-            if ((x is IWantAction) || (y is IWantAction))
+            if ((firstRule is IWantAction) || (secondRule is IWantAction))
                 return 0;
 
-            if (x.InputFactTypes.IsNullOrEmpty())
+            if (firstRule.InputFactTypes.IsNullOrEmpty())
             {
-                if (y.InputFactTypes.IsNullOrEmpty())
+                if (secondRule.InputFactTypes.IsNullOrEmpty())
                     return 0;
 
-                return y.InputFactTypes.Any(factType => factType.IsFactType<ISpecialFact>())
+                return secondRule.InputFactTypes.Any(factType => factType.IsFactType<ISpecialFact>())
                     ? -1
                     : 1;
             }
 
-            if (y.InputFactTypes.IsNullOrEmpty())
+            if (secondRule.InputFactTypes.IsNullOrEmpty())
             {
-                return x.InputFactTypes.Any(factType => factType.IsFactType<ISpecialFact>())
+                return firstRule.InputFactTypes.Any(factType => factType.IsFactType<ISpecialFact>())
                     ? 1
                     : -1;
             }
 
-            int xCountCondition = x.InputFactTypes.Count(factType => factType.IsFactType<IBuildConditionFact>());
-            int yCountCondition = y.InputFactTypes.Count(factType => factType.IsFactType<IBuildConditionFact>());
+            int xCountCondition = firstRule.InputFactTypes.Count(factType => factType.IsFactType<IBuildConditionFact>());
+            int yCountCondition = secondRule.InputFactTypes.Count(factType => factType.IsFactType<IBuildConditionFact>());
 
             if (xCountCondition != yCountCondition)
             {
@@ -168,8 +166,8 @@ namespace GetcuReone.FactFactory
                     : -1;
             }
 
-            int xCountSpecial = x.InputFactTypes.Count(factType => factType.IsFactType<ISpecialFact>());
-            int yCountSpecial = y.InputFactTypes.Count(factType => factType.IsFactType<ISpecialFact>());
+            int xCountSpecial = firstRule.InputFactTypes.Count(factType => factType.IsFactType<ISpecialFact>());
+            int yCountSpecial = secondRule.InputFactTypes.Count(factType => factType.IsFactType<ISpecialFact>());
 
             if (xCountSpecial != yCountSpecial)
             {
@@ -178,9 +176,9 @@ namespace GetcuReone.FactFactory
                     : -1;
             }
 
-            if (x.InputFactTypes.Count > y.InputFactTypes.Count)
+            if (firstRule.InputFactTypes.Count > secondRule.InputFactTypes.Count)
                 return -1;
-            if (x.InputFactTypes.Count < y.InputFactTypes.Count)
+            if (firstRule.InputFactTypes.Count < secondRule.InputFactTypes.Count)
                 return 1;
             return 0;
         }

@@ -14,7 +14,7 @@
 - [MovieIdFact](#T-Versioned_MovieServiceExample-Facts-MovieIdFact 'Versioned_MovieServiceExample.Facts.MovieIdFact')
 - [MoviePurchasePriceFact](#T-Versioned_MovieServiceExample-Facts-MoviePurchasePriceFact 'Versioned_MovieServiceExample.Facts.MoviePurchasePriceFact')
 - [MovieServiceExample](#T-Versioned_MovieServiceExample-MovieServiceExample 'Versioned_MovieServiceExample.MovieServiceExample')
-  - [GetAllVersion()](#M-Versioned_MovieServiceExample-MovieServiceExample-GetAllVersion-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer}- 'Versioned_MovieServiceExample.MovieServiceExample.GetAllVersion(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext{GetcuReone.FactFactory.Entities.WantAction,GetcuReone.FactFactory.Entities.FactContainer})')
+  - [GetAllVersion()](#M-Versioned_MovieServiceExample-MovieServiceExample-GetAllVersion-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext- 'Versioned_MovieServiceExample.MovieServiceExample.GetAllVersion(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)')
 - [UserEmailFact](#T-Versioned_MovieServiceExample-Facts-UserEmailFact 'Versioned_MovieServiceExample.Facts.UserEmailFact')
 - [UserFact](#T-Versioned_MovieServiceExample-Facts-UserFact 'Versioned_MovieServiceExample.Facts.UserFact')
 
@@ -159,7 +159,7 @@ The fact stores information about the cost of buying a movie for the user
 
 Versioned_MovieServiceExample
 
-<a name='M-Versioned_MovieServiceExample-MovieServiceExample-GetAllVersion-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext{GetcuReone-FactFactory-Entities-WantAction,GetcuReone-FactFactory-Entities-FactContainer}-'></a>
+<a name='M-Versioned_MovieServiceExample-MovieServiceExample-GetAllVersion-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext-'></a>
 ### GetAllVersion() `method`
 
 ##### Summary

@@ -21,7 +21,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void EmptyFactParametersTestCase()
         {
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>
@@ -37,7 +37,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
         public void FirstParameterIsNullTestCase()
         {
             const string factParamCode = "factParamCode";
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>
@@ -53,7 +53,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
         public void SecondParameterIsNullTestCase()
         {
             const string factParamCode = "factParamCode";
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>
@@ -71,7 +71,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, null);
             var secondParam = new FactParameter(factParamCode, null);
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>
@@ -89,7 +89,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, null);
             var secondParam = new FactParameter(factParamCode, new object());
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>
@@ -107,7 +107,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new object());
             var secondParam = new FactParameter(factParamCode, null);
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>
@@ -125,7 +125,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new object());
             var secondParam = new FactParameter(factParamCode, new object());
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>
@@ -143,7 +143,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new object());
             var secondParam = new FactParameter(factParamCode, firstParam.Value);
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>
@@ -161,7 +161,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new SpecialFact1());
             var secondParam = new FactParameter(factParamCode, new SpecialFact2());
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>
@@ -179,7 +179,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new SpecialFact());
             var secondParam = new FactParameter(factParamCode, new SpecialFact());
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>
@@ -197,7 +197,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
             var secondParam = new FactParameter(factParamCode, new BuildContained<OtherFact>());
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>
@@ -215,7 +215,7 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
             const string factParamCode = "factParamCode";
             var firstParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
             var secondParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
-            var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
+            var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
                 .When("Run EqualsFactParameters.", facade =>

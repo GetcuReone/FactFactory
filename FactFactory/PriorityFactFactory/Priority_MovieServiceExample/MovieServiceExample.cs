@@ -114,7 +114,7 @@ namespace Priority_MovieServiceExample
             Factory.Rules.AddRange(Rules);
         }
 
-        private IEnumerable<IFact> GetPriorityFacts(IWantActionContext<WantAction, FactContainer> context)
+        private IEnumerable<IFact> GetPriorityFacts(IWantActionContext context)
         {
             return new List<IFact>
             {

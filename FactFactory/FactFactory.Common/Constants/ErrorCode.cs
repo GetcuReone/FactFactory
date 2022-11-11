@@ -38,7 +38,7 @@ namespace GetcuReone.FactFactory.Constants
         public const string InvalidOperation = "InvalidOperation";
 
         /// <summary>
-        /// Failed to meet <see cref="IRuntimeConditionFact.Condition{TFactWork, TFactRule, TWantAction, TFactContainer}(TFactWork, Interfaces.Context.IFactRulesContext{TFactRule, TWantAction, TFactContainer})"/>
+        /// Failed to meet <see cref="IRuntimeConditionFact.Condition(Interfaces.IFactWork, Interfaces.Context.IFactRulesContext)"/>
         /// and find another solution
         /// </summary>
         public const string RuntimeCondition = "RuntimeCondition";

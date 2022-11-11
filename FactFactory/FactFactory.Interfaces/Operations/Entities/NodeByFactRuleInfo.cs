@@ -6,14 +6,12 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Node info.
     /// </summary>
-    /// <typeparam name="TFactRule">Rule type.</typeparam>
-    public class NodeByFactRuleInfo<TFactRule>
-        where TFactRule : IFactRule
+    public class NodeByFactRuleInfo
     {
         /// <summary>
         /// Rule.
         /// </summary>
-        public TFactRule Rule { get; set; }
+        public IFactRule Rule { get; set; }
 
         /// <summary>
         /// List of successfully <see cref="IBuildConditionFact"/>. Successfully completed conditions for <see cref="Rule"/>.
@@ -38,7 +36,7 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
         /// <summary>
         /// Compatible rules.
         /// </summary>
-        public IFactRuleCollection<TFactRule> CompatibleRules { get; set; }
+        public IFactRuleCollection CompatibleRules { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()

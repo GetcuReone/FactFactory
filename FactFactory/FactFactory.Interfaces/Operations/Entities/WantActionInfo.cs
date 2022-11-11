@@ -7,16 +7,12 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Info for WantAction from context.
     /// </summary>
-    /// <typeparam name="TWantAction">WantAction type.</typeparam>
-    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
-    public class WantActionInfo<TWantAction, TFactContainer>
-        where TWantAction : IWantAction
-        where TFactContainer : IFactContainer
+    public class WantActionInfo
     {
         /// <summary>
         /// Context.
         /// </summary>
-        public IWantActionContext<TWantAction, TFactContainer> Context { get; set; }
+        public IWantActionContext Context { get; set; }
 
         /// <summary>
         /// List of successfully <see cref="IBuildConditionFact"/>. Successfully completed conditions for WantAction from <see cref="Context"/>.

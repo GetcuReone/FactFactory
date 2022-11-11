@@ -7,12 +7,10 @@ namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
 {
     internal static class PrioritySingleEntityOperationsHelper
     {
-        internal static IPriorityFact GetPriorityFact<TFactWork, TWantAction, TFactContainer>(this TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context)
-            where TFactWork : IFactWork
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        internal static IPriorityFact GetPriorityFact(this IFactWork factWork, IWantActionContext context)
         {
             var priorityType = factWork.InputFactTypes?.FirstOrDefault(type => type.IsFactType<IPriorityFact>());
+
             return priorityType != null
                 ? context.Container.FirstPriorityFactByFactType(priorityType, context.Cache)
                 : null;

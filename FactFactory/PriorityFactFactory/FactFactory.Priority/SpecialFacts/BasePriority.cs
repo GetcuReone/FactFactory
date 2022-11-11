@@ -10,7 +10,7 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
     /// Base class for <see cref="IPriorityFact"/>.
     /// </summary>
     /// <typeparam name="TPriorityValue">Priority value type.</typeparam>
-    public abstract class PriorityBase<TPriorityValue> : BaseSpecialFact, IPriorityFact
+    public abstract class BasePriority<TPriorityValue> : BaseSpecialFact, IPriorityFact
     {
         /// <summary>
         /// Priority value.
@@ -18,7 +18,7 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
         public TPriorityValue PriorityValue { get; }
 
         /// <inheritdoc/>
-        protected PriorityBase(TPriorityValue value)
+        protected BasePriority(TPriorityValue value)
         {
             PriorityValue = value;
         }
@@ -43,10 +43,10 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
         }
 
         /// <summary>
-        /// Extracts the <see cref="PriorityBase{TPriorityValue}.PriorityValue"/>.
+        /// Extracts the <see cref="BasePriority{TPriorityValue}.PriorityValue"/>.
         /// </summary>
         /// <param name="fact">Priority fact.</param>
-        public static implicit operator TPriorityValue(PriorityBase<TPriorityValue> fact)
+        public static implicit operator TPriorityValue(BasePriority<TPriorityValue> fact)
         {
             return fact.PriorityValue;
         }

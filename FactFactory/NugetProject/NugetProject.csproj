@@ -13,7 +13,10 @@
         <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
             Changes ($(PackageVersion)):
-            - renaming base classes ('base' is now a prefix)
+            - removed deprecated code
+            - rejected the typed rule
+            - rejected the typed wantaction
+            - rejected the typed conteiner
         </PackageReleaseNotes>
     </PropertyGroup>
 

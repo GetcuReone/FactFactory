@@ -13,17 +13,11 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
     internal static class TreeBuildingOperationsHelper
     {
         /// <summary>
-        /// Get <see cref="TreeByFactRule{TFactRule, TWantAction, TFactContainer}"/> by <paramref name="request"/>.
+        /// Get <see cref="TreeByFactRule"/> by <paramref name="request"/>.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="request"></param>
         /// <returns></returns>
-        internal static List<TreeByFactRule<TFactRule, TWantAction, TFactContainer>> GetTreesByRequest<TFactRule, TWantAction, TFactContainer>(this BuildTreeForFactInfoRequest<TFactRule, TWantAction, TFactContainer> request)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        internal static List<TreeByFactRule> GetTreesByRequest(this BuildTreeForFactInfoRequest request)
         {
             var context = request.Context;
             var factRules = request.Context.FactRules;
@@ -37,7 +31,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             if (needRules.IsNullOrEmpty())
                 throw CommonHelper.CreateDeriveException(ErrorCode.RuleNotFound, $"No rules found able to calculate fact {request.WantFactType.FactName}.");
 
-            var nodeInfos = needRules.ConvertAll(rule => new NodeByFactRuleInfo<TFactRule>
+            var nodeInfos = needRules.ConvertAll(rule => new NodeByFactRuleInfo
             {
                 BuildSuccessConditions = new List<IBuildConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IBuildConditionFact>())),
                 BuildFailedConditions = new List<IBuildConditionFact>(),
@@ -49,17 +43,17 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
             return nodeInfos.ConvertAll(info =>
             {
-                var node = new NodeByFactRule<TFactRule>
+                var node = new NodeByFactRule
                 {
-                    Childs = new List<NodeByFactRule<TFactRule>>(),
+                    Childs = new List<NodeByFactRule>(),
                     Info = info,
                 };
 
-                var tree = new TreeByFactRule<TFactRule, TWantAction, TFactContainer>
+                var tree = new TreeByFactRule
                 {
-                    Levels = new List<List<NodeByFactRule<TFactRule>>>
+                    Levels = new List<List<NodeByFactRule>>
                     {
-                        new List<NodeByFactRule<TFactRule>> { node },
+                        new List<NodeByFactRule> { node },
                     },
                     NodeInfos = nodeInfos,
                     Root = node,
@@ -73,21 +67,21 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             });
         }
 
-        internal static Dictionary<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>> GetCompatibleFinishedNodes<TFactRule, TWantAction, TFactContainer>(this NodeByFactRuleInfo<TFactRule> nodeInfo, Dictionary<NodeByFactRuleInfo<TFactRule>, NodeByFactRule<TFactRule>> finishedNodes, IWantActionContext<TWantAction, TFactContainer> context)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        internal static Dictionary<NodeByFactRuleInfo, NodeByFactRule> GetCompatibleFinishedNodes(
+            this NodeByFactRuleInfo nodeInfo,
+            Dictionary<NodeByFactRuleInfo,
+            NodeByFactRule> finishedNodes,
+            IWantActionContext context)
         {
             return finishedNodes
                 .Where(finishedNode => context.SingleEntity.CompatibleRule(nodeInfo.Rule, finishedNode.Key.Rule, context))
                 .ToDictionary(finishedNode => finishedNode.Key, finishedNode => finishedNode.Value);
         }
 
-        internal static IFactRuleCollection<TFactRule> GetCompatibleRulesEx<TFactWork, TFactRule, TWantAction, TFactContainer>(this TFactWork target, IFactRuleCollection<TFactRule> rules, IWantActionContext<TWantAction, TFactContainer> context)
-            where TFactWork : IFactWork
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        internal static IFactRuleCollection GetCompatibleRulesEx(
+            this IFactWork target,
+            IFactRuleCollection rules,
+            IWantActionContext context)
         {
             return context.SingleEntity.GetCompatibleRules(target, rules, context);
         }
@@ -95,12 +89,10 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <summary>
         /// Whether the <paramref name="rule"/> is contained in a branch with <paramref name="nodeFromBranch"/>.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
         /// <param name="rule"></param>
         /// <param name="nodeFromBranch"></param>
         /// <returns></returns>
-        internal static bool RuleContainBranch<TFactRule>(this TFactRule rule, NodeByFactRule<TFactRule> nodeFromBranch) 
-            where TFactRule : IFactRule
+        internal static bool RuleContainBranch(this IFactRule rule, NodeByFactRule nodeFromBranch)
         {
             if (rule == null && nodeFromBranch.Info.Rule == null)
                 return true;
@@ -118,27 +110,24 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <summary>
         /// Returns nodes by rules.
         /// </summary>
-        /// <typeparam name="TFactRule">FatcRule type.</typeparam>
-        /// <typeparam name="TWantAction">WantAction type.</typeparam>
-        /// <typeparam name="TFactContainer">FactContainer type.</typeparam>
         /// <param name="rules">List of rule.</param>
         /// <param name="treeByFactRule">Rule tree.</param>
         /// <param name="parentNode">Parent node.</param>
         /// <returns>Node list.</returns>
-        public static List<NodeByFactRule<TFactRule>> GetNodesByRules<TFactRule, TWantAction, TFactContainer>(this IEnumerable<TFactRule> rules, NodeByFactRule<TFactRule> parentNode, TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeByFactRule)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        public static List<NodeByFactRule> GetNodesByRules(
+            this IEnumerable<IFactRule> rules,
+            NodeByFactRule parentNode,
+            TreeByFactRule treeByFactRule)
         {
             var context = treeByFactRule.Context;
-            var result = new List<NodeByFactRule<TFactRule>>();
+            var result = new List<NodeByFactRule>();
 
             foreach (var rule in rules)
             {
-                NodeByFactRuleInfo<TFactRule> nodeInfo = treeByFactRule.NodeInfos.FirstOrDefault(nInfo => nInfo.Rule.EqualsWork(rule, context.WantAction, context.Container));
+                NodeByFactRuleInfo nodeInfo = treeByFactRule.NodeInfos.FirstOrDefault(nInfo => nInfo.Rule.EqualsWork(rule, context.WantAction, context.Container));
 
                 if (nodeInfo == null)
-                    nodeInfo = new NodeByFactRuleInfo<TFactRule>
+                    nodeInfo = new NodeByFactRuleInfo
                     {
                         Rule = rule,
                         BuildSuccessConditions = new List<IBuildConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IBuildConditionFact>())),
@@ -148,9 +137,9 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context),
                     };
 
-                result.Add(new NodeByFactRule<TFactRule>
+                result.Add(new NodeByFactRule
                 {
-                    Childs = new List<NodeByFactRule<TFactRule>>(),
+                    Childs = new List<NodeByFactRule>(),
                     Info = nodeInfo,
                     Parent = parentNode,
                 });
@@ -159,8 +148,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             return result;
         }
 
-        private static void FillUniqueRulesFromTree<TFactRule>(NodeByFactRule<TFactRule> node, HashSet<TFactRule> eniqueRules)
-            where TFactRule : IFactRule
+        private static void FillUniqueRulesFromTree(NodeByFactRule node, HashSet<IFactRule> eniqueRules)
         {
             foreach (var child in node.Childs)
                 FillUniqueRulesFromTree(child, eniqueRules);
@@ -172,25 +160,20 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <summary>
         /// Get unique rules from tree.
         /// </summary>
-        /// <typeparam name="TFactRule"></typeparam>
-        /// <typeparam name="TWantAction"></typeparam>
-        /// <typeparam name="TFactContainer"></typeparam>
         /// <param name="treeByFactRule"></param>
         /// <returns></returns>
-        internal static HashSet<TFactRule> GetUniqueRulesFromTree<TFactRule, TWantAction, TFactContainer>(this TreeByFactRule<TFactRule, TWantAction, TFactContainer> treeByFactRule)
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        internal static HashSet<IFactRule> GetUniqueRulesFromTree(this TreeByFactRule treeByFactRule)
         {
-            var result = new HashSet<TFactRule>();
+            var result = new HashSet<IFactRule>();
+
             FillUniqueRulesFromTree(treeByFactRule.Root, result);
+
             return result;
         }
 
-        internal static NodeByFactRule<TFactRule> Copy<TFactRule>(this NodeByFactRule<TFactRule> node, NodeByFactRule<TFactRule> newParent)
-            where TFactRule : IFactRule
+        internal static NodeByFactRule Copy(this NodeByFactRule node, NodeByFactRule newParent)
         {
-            return new NodeByFactRule<TFactRule>
+            return new NodeByFactRule
             {
                 Childs = node.Childs,
                 Info = node.Info,

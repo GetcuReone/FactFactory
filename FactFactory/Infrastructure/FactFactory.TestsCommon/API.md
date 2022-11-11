@@ -14,12 +14,12 @@
   - [GetFactRule\`\`4(func,option)](#M-FactFactory-TestsCommon-CommonTestBase-GetFactRule``4-System-Func{``0,``1,``2,``3},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'FactFactory.TestsCommon.CommonTestBase.GetFactRule``4(System.Func{``0,``1,``2,``3},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [GetFactTypeCache()](#M-FactFactory-TestsCommon-CommonTestBase-GetFactTypeCache 'FactFactory.TestsCommon.CommonTestBase.GetFactTypeCache')
   - [GetFactType\`\`1()](#M-FactFactory-TestsCommon-CommonTestBase-GetFactType``1 'FactFactory.TestsCommon.CommonTestBase.GetFactType``1')
-  - [GetWantActionContext\`\`2(wantAction,container,singleEntity,cache)](#M-FactFactory-TestsCommon-CommonTestBase-GetWantActionContext``2-``0,``1,GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'FactFactory.TestsCommon.CommonTestBase.GetWantActionContext``2(``0,``1,GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
+  - [GetWantActionContext(wantAction,container,singleEntity,cache)](#M-FactFactory-TestsCommon-CommonTestBase-GetWantActionContext-GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer,GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache- 'FactFactory.TestsCommon.CommonTestBase.GetWantActionContext(GetcuReone.FactFactory.Interfaces.IWantAction,GetcuReone.FactFactory.Interfaces.IFactContainer,GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations,GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache)')
   - [GetWantAction\`\`1()](#M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``1-System-Action{``0}- 'FactFactory.TestsCommon.CommonTestBase.GetWantAction``1(System.Action{``0})')
   - [GetWantAction\`\`2()](#M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``2-System-Action{``0,``1}- 'FactFactory.TestsCommon.CommonTestBase.GetWantAction``2(System.Action{``0,``1})')
   - [GetWantAction\`\`3(action)](#M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``3-System-Action{``0,``1,``2}- 'FactFactory.TestsCommon.CommonTestBase.GetWantAction``3(System.Action{``0,``1,``2})')
 - [CommonTestHelper](#T-FactFactory-TestsCommon-Helpers-CommonTestHelper 'FactFactory.TestsCommon.Helpers.CommonTestHelper')
-  - [AndAddRules\`\`2(givenBlock,factRules)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection{GetcuReone-FactFactory-Entities-FactRule}- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.AndAddRules``2(GetcuReone.GwtTestFramework.Entities.GivenBlock{``0,``1},GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection{GetcuReone.FactFactory.Entities.FactRule})')
+  - [AndAddRules\`\`2(givenBlock,factRules)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-Interfaces-IFactRuleCollection- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.AndAddRules``2(GetcuReone.GwtTestFramework.Entities.GivenBlock{``0,``1},GetcuReone.FactFactory.Interfaces.IFactRuleCollection)')
   - [AndAssertErrorDetail\`\`1(thenBlock,errorCode,errorMessage)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAssertErrorDetail``1-GetcuReone-GwtTestFramework-Entities-ThenBlock{``0,GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException},System-String,System-String- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.AndAssertErrorDetail``1(GetcuReone.GwtTestFramework.Entities.ThenBlock{``0,GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException},System.String,System.String)')
   - [SetCalculateByRuleParam\`\`1(fact)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-SetCalculateByRuleParam``1-``0- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.SetCalculateByRuleParam``1(``0)')
   - [ThenAssertErrorDetail\`\`1(whenBlock,errorCode,errorMessage)](#M-FactFactory-TestsCommon-Helpers-CommonTestHelper-ThenAssertErrorDetail``1-GetcuReone-GwtTestFramework-Entities-WhenBlock{``0,GetcuReone-FactFactory-Exceptions-InvalidDeriveOperationException},System-String,System-String- 'FactFactory.TestsCommon.Helpers.CommonTestHelper.ThenAssertErrorDetail``1(GetcuReone.GwtTestFramework.Entities.WhenBlock{``0,GetcuReone.FactFactory.Exceptions.InvalidDeriveOperationException},System.String,System.String)')
@@ -208,8 +208,8 @@ This method has no parameters.
 
 This method has no parameters.
 
-<a name='M-FactFactory-TestsCommon-CommonTestBase-GetWantActionContext``2-``0,``1,GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-'></a>
-### GetWantActionContext\`\`2(wantAction,container,singleEntity,cache) `method`
+<a name='M-FactFactory-TestsCommon-CommonTestBase-GetWantActionContext-GetcuReone-FactFactory-Interfaces-IWantAction,GetcuReone-FactFactory-Interfaces-IFactContainer,GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations,GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-'></a>
+### GetWantActionContext(wantAction,container,singleEntity,cache) `method`
 
 ##### Summary
 
@@ -223,17 +223,10 @@ Context for [IWantAction](#T-GetcuReone-FactFactory-Interfaces-IWantAction 'Getc
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| wantAction | [\`\`0](#T-``0 '``0') | Desired action information |
-| container | [\`\`1](#T-``1 '``1') | Fact container |
+| wantAction | [GetcuReone.FactFactory.Interfaces.IWantAction](#T-GetcuReone-FactFactory-Interfaces-IWantAction 'GetcuReone.FactFactory.Interfaces.IWantAction') | Desired action information |
+| container | [GetcuReone.FactFactory.Interfaces.IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContainer 'GetcuReone.FactFactory.Interfaces.IFactContainer') | Fact container |
 | singleEntity | [GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations](#T-GetcuReone-FactFactory-Interfaces-Operations-ISingleEntityOperations 'GetcuReone.FactFactory.Interfaces.Operations.ISingleEntityOperations') | Single operations on entities of the FactFactory |
 | cache | [GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache 'GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache') | Cache for fact type |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TWantAction | Type `wantAction` |
-| TFactContainer | Type `container` |
 
 <a name='M-FactFactory-TestsCommon-CommonTestBase-GetWantAction``1-System-Action{``0}-'></a>
 ### GetWantAction\`\`1() `method`
@@ -293,7 +286,7 @@ FactFactory.TestsCommon.Helpers
 
 Helper for test.
 
-<a name='M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection{GetcuReone-FactFactory-Entities-FactRule}-'></a>
+<a name='M-FactFactory-TestsCommon-Helpers-CommonTestHelper-AndAddRules``2-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1},GetcuReone-FactFactory-Interfaces-IFactRuleCollection-'></a>
 ### AndAddRules\`\`2(givenBlock,factRules) `method`
 
 ##### Summary
@@ -309,7 +302,7 @@ Given block.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | givenBlock | [GetcuReone.GwtTestFramework.Entities.GivenBlock{\`\`0,\`\`1}](#T-GetcuReone-GwtTestFramework-Entities-GivenBlock{``0,``1} 'GetcuReone.GwtTestFramework.Entities.GivenBlock{``0,``1}') | Previous given block |
-| factRules | [GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection{GetcuReone.FactFactory.Entities.FactRule}](#T-GetcuReone-FactFactory-BaseEntities-BaseFactRuleCollection{GetcuReone-FactFactory-Entities-FactRule} 'GetcuReone.FactFactory.BaseEntities.BaseFactRuleCollection{GetcuReone.FactFactory.Entities.FactRule}') | Fact rules |
+| factRules | [GetcuReone.FactFactory.Interfaces.IFactRuleCollection](#T-GetcuReone-FactFactory-Interfaces-IFactRuleCollection 'GetcuReone.FactFactory.Interfaces.IFactRuleCollection') | Fact rules |
 
 ##### Generic Types
 
@@ -564,7 +557,7 @@ Fact container [IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContai
 
 ##### Summary
 
-Fact factory [IFactFactory\`4](#T-GetcuReone-FactFactory-Interfaces-IFactFactory`4 'GetcuReone.FactFactory.Interfaces.IFactFactory`4').
+Fact factory [IFactFactory](#T-GetcuReone-FactFactory-Interfaces-IFactFactory 'GetcuReone.FactFactory.Interfaces.IFactFactory').
 
 <a name='F-FactFactory-TestsCommon-TC-Objects-Rule'></a>
 ### Rule `constants`

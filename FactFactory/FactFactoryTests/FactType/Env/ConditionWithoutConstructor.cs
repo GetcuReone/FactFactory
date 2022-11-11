@@ -8,10 +8,7 @@ namespace FactFactoryTests.FactType.Env
 {
     internal class ConditionWithoutConstructor : IFact, IBuildConditionFact
     {
-        private ConditionWithoutConstructor()
-        {
-
-        }
+        private ConditionWithoutConstructor() { }
 
         public bool CalculatedByRule { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -22,19 +19,15 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool Condition<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-            where TFactWork : IFactWork
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        public bool Condition(IFactWork factWork, IWantAction wantAction, IFactContainer container)
         {
             throw new NotImplementedException();
         }
 
-        public bool Condition<TFactWork, TFactRule, TWantAction, TFactContainer>(TFactWork factWork, IWantActionContext<TWantAction, TFactContainer> context, Func<IWantActionContext<TWantAction, TFactContainer>, IFactRuleCollection<TFactRule>> getCompatibleRules)
-            where TFactWork : IFactWork
-            where TFactRule : IFactRule
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        public bool Condition(
+            IFactWork factWork,
+            IWantActionContext context,
+            Func<IWantActionContext, IFactRuleCollection> getCompatibleRules)
         {
             throw new NotImplementedException();
         }
@@ -64,10 +57,7 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public bool IsFactContained<TFactWork, TWantAction, TFactContainer>(TFactWork factWork, TWantAction wantAction, TFactContainer container)
-            where TFactWork : IFactWork
-            where TWantAction : IWantAction
-            where TFactContainer : IFactContainer
+        public bool IsFactContained(IFactWork factWork, IWantAction wantAction, IFactContainer container)
         {
             throw new NotImplementedException();
         }

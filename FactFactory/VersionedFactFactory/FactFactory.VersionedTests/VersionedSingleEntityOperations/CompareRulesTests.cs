@@ -23,7 +23,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade => 
-                    facade.CompareFactRules(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
+                    facade.CompareFactRules(first, second, GetWantActionContext(null, Container, facade)))
                 .ThenAreEqual(expectedValue)
                 .Run();
         }
@@ -40,7 +40,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareFactRules(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
+                    facade.CompareFactRules(first, second, GetWantActionContext(null, Container, facade)))
                 .ThenAreEqual(expectedValue)
                 .Run();
         }
@@ -57,7 +57,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations
 
             GivenCreateFacade()
                 .When("Comparison rules.", facade =>
-                    facade.CompareFactRules(first, second, GetWantActionContext((IWantAction)null, Container, facade)))
+                    facade.CompareFactRules(first, second, GetWantActionContext(null, Container, facade)))
                 .ThenAreEqual(expectedValue)
                 .Run();
         }

@@ -7,33 +7,27 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// A tree built by type of fact rule.
     /// </summary>
-    /// <typeparam name="TFactRule">Rule type.</typeparam>
-    /// <typeparam name="TWantAction">WantAction type.</typeparam>
-    /// <typeparam name="TFactContainer">Fact container type.</typeparam>
-    public class TreeByFactRule<TFactRule, TWantAction, TFactContainer>
-        where TFactRule : IFactRule
-        where TWantAction : IWantAction
-        where TFactContainer : IFactContainer
+    public class TreeByFactRule
     {
         /// <summary>
         /// Root node.
         /// </summary>
-        public NodeByFactRule<TFactRule> Root { get; set; }
+        public NodeByFactRule Root { get; set; }
 
         /// <summary>
         /// Context.
         /// </summary>
-        public IFactRulesContext<TFactRule, TWantAction, TFactContainer> Context { get; set; }
+        public IFactRulesContext Context { get; set; }
 
         /// <summary>
         /// Information about all the rules that were tested for the ability to use when building a tree.
         /// </summary>
-        public List<NodeByFactRuleInfo<TFactRule>> NodeInfos { get; set; }
+        public List<NodeByFactRuleInfo> NodeInfos { get; set; }
 
         /// <summary>
         /// Tree levels.
         /// </summary>
-        public List<List<NodeByFactRule<TFactRule>>> Levels { get; set; }
+        public List<List<NodeByFactRule>> Levels { get; set; }
 
         /// <summary>
         /// Tree work status.

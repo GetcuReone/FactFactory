@@ -5,23 +5,21 @@ namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
     /// <summary>
     /// Node.
     /// </summary>
-    /// <typeparam name="TFactRule">Rule type.</typeparam>
-    public class NodeByFactRule<TFactRule>
-        where TFactRule : IFactRule
+    public class NodeByFactRule
     {
         /// <summary>
         /// Parent node.
         /// </summary>
-        public NodeByFactRule<TFactRule> Parent { get; set; }
+        public NodeByFactRule Parent { get; set; }
 
         /// <summary>
         /// Childs node.
         /// </summary>
-        public List<NodeByFactRule<TFactRule>> Childs { get; set; }
+        public List<NodeByFactRule> Childs { get; set; }
 
         /// <summary>
         /// Node info.
         /// </summary>
-        public NodeByFactRuleInfo<TFactRule> Info { get; set; }
+        public NodeByFactRuleInfo Info { get; set; }
     }
 }
