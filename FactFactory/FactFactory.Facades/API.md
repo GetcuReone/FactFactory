@@ -493,7 +493,7 @@ Checks for a `condition`
 
 ##### Returns
 
-Result [](#!-IRuntimeConditionFact-Condition<TFactWork>-TFactWork, IFactRulesContext- 'IRuntimeConditionFact.Condition<TFactWork>(TFactWork, IFactRulesContext)').
+Result [Condition](#M-GetcuReone-FactFactory-Interfaces-SpecialFacts-IRuntimeConditionFact-Condition-GetcuReone-FactFactory-Interfaces-IFactWork,GetcuReone-FactFactory-Interfaces-Context-IFactRulesContext- 'GetcuReone.FactFactory.Interfaces.SpecialFacts.IRuntimeConditionFact.Condition(GetcuReone.FactFactory.Interfaces.IFactWork,GetcuReone.FactFactory.Interfaces.Context.IFactRulesContext)').
 
 ##### Parameters
 
