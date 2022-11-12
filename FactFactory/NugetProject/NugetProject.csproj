@@ -17,6 +17,7 @@
             - rejected the typed rule
             - rejected the typed wantaction
             - rejected the typed conteiner
+            - moved the wantAction to the interface through lambda functions
         </PackageReleaseNotes>
     </PropertyGroup>
 
