@@ -4,6 +4,8 @@ using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Extensions;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
@@ -22,7 +24,7 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SuccessfulDeriveBuildCanDerivedTestCase()
         {
-            Given("Create factory.", () => new FactFactoryCustom())
+            Given("Create factory.", () => (IFactFactory)new FactFactoryCustom())
                 .AndAddRules(new Collection
                 {
                     () => new OtherFact(default),
@@ -41,7 +43,7 @@ namespace FactFactoryTests.FactFactoryT
         {
             string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(BuildCanDerived<OtherFact>).Name}).";
 
-            Given("Create factory.", () => new FactFactoryCustom())
+            Given("Create factory.", () => (IFactFactory)new FactFactoryCustom())
                 .When("Run Derive.", factFactory => 
                     ExpectedDeriveException(() => factFactory.DeriveFact<BuildCanDerived<OtherFact>>()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage)

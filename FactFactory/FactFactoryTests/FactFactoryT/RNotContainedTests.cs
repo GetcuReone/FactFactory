@@ -2,6 +2,7 @@
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT;
+using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.SpecialFacts.RuntimeCondition;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;

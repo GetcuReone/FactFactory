@@ -1,6 +1,7 @@
 ﻿using FactFactory.PriorityTests.CommonFacts;
 using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
+using GetcuReone.FactFactory.Extensions;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
