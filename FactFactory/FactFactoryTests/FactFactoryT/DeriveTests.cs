@@ -4,6 +4,7 @@ using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions.Entities;
+using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;

@@ -1,6 +1,8 @@
 using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Versioned;
+using GetcuReone.FactFactory.Versioned.Extensions;
 using GetcuReone.FactFactory.Versioned.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -22,7 +24,7 @@ namespace Versioned_MovieServiceExample
 
         FactRuleCollection Rules;
 
-        VersionedFactFactory Factory;
+        IFactFactory Factory;
 
         /// <summary>
         /// The method returns instances of all versions used in the rules.

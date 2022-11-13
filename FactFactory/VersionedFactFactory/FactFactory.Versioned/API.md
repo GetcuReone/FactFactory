@@ -37,6 +37,9 @@
   - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-GetSingleEntityOperations 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory.GetSingleEntityOperations')
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
+- [FactFactoryExtensions](#T-GetcuReone-FactFactory-Versioned-Extensions-FactFactoryExtensions 'GetcuReone.FactFactory.Versioned.Extensions.FactFactoryExtensions')
+  - [DeriveFactAsync\`\`2(factory,container)](#M-GetcuReone-FactFactory-Versioned-Extensions-FactFactoryExtensions-DeriveFactAsync``2-GetcuReone-FactFactory-Interfaces-IFactFactory,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Versioned.Extensions.FactFactoryExtensions.DeriveFactAsync``2(GetcuReone.FactFactory.Interfaces.IFactFactory,GetcuReone.FactFactory.Interfaces.IFactContainer)')
+  - [DeriveFact\`\`2(factory,container)](#M-GetcuReone-FactFactory-Versioned-Extensions-FactFactoryExtensions-DeriveFact``2-GetcuReone-FactFactory-Interfaces-IFactFactory,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Versioned.Extensions.FactFactoryExtensions.DeriveFact``2(GetcuReone.FactFactory.Interfaces.IFactFactory,GetcuReone.FactFactory.Interfaces.IFactContainer)')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
 - [VersionedFactFactory](#T-GetcuReone-FactFactory-Versioned-VersionedFactFactory 'GetcuReone.FactFactory.Versioned.VersionedFactFactory')
@@ -483,6 +486,67 @@ True - `items` is null or empty.
 | Name | Description |
 | ---- | ----------- |
 | TItem | Type items. |
+
+<a name='T-GetcuReone-FactFactory-Versioned-Extensions-FactFactoryExtensions'></a>
+## FactFactoryExtensions `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Versioned.Extensions
+
+##### Summary
+
+Extensions methods for [IFactFactory](#T-GetcuReone-FactFactory-Interfaces-IFactFactory 'GetcuReone.FactFactory.Interfaces.IFactFactory')
+
+<a name='M-GetcuReone-FactFactory-Versioned-Extensions-FactFactoryExtensions-DeriveFactAsync``2-GetcuReone-FactFactory-Interfaces-IFactFactory,GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
+### DeriveFactAsync\`\`2(factory,container) `method`
+
+##### Summary
+
+Derive `TFactResult` with version.
+
+##### Returns
+
+Requested fact.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| factory | [GetcuReone.FactFactory.Interfaces.IFactFactory](#T-GetcuReone-FactFactory-Interfaces-IFactFactory 'GetcuReone.FactFactory.Interfaces.IFactFactory') | Fact factory. |
+| container | [GetcuReone.FactFactory.Interfaces.IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContainer 'GetcuReone.FactFactory.Interfaces.IFactContainer') | Fact container. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactResult | The type of fact to get. |
+| TVersionFact | The type of fact version to get. |
+
+<a name='M-GetcuReone-FactFactory-Versioned-Extensions-FactFactoryExtensions-DeriveFact``2-GetcuReone-FactFactory-Interfaces-IFactFactory,GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
+### DeriveFact\`\`2(factory,container) `method`
+
+##### Summary
+
+Derive `TFactResult` with version.
+
+##### Returns
+
+Requested fact.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| factory | [GetcuReone.FactFactory.Interfaces.IFactFactory](#T-GetcuReone-FactFactory-Interfaces-IFactFactory 'GetcuReone.FactFactory.Interfaces.IFactFactory') | Fact factory. |
+| container | [GetcuReone.FactFactory.Interfaces.IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContainer 'GetcuReone.FactFactory.Interfaces.IFactContainer') | Fact container. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactResult | The type of fact to get. |
+| TVersion | The type of fact version to get. |
 
 <a name='T--ListExtensions'></a>
 ## ListExtensions `type`

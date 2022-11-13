@@ -5,6 +5,7 @@ using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Facades.FactEngine;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Facades.TreeBuildingOperations;
@@ -132,28 +133,11 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
         /// <param name="container">Fact container.</param>
         /// <returns>Fact <typeparamref name="TFactResult"/>.</returns>
-        public virtual TFactResult DeriveFact<TFactResult>(IFactContainer container = null) where TFactResult : IFact
+        [Obsolete("[5.0.2] Use FactFactoryExtensions.DeriveFact")]
+        public virtual TFactResult DeriveFact<TFactResult>(IFactContainer container = null)
+            where TFactResult : IFact
         {
-            TFactResult fact = default;
-
-            var singleOperations = GetSingleEntityOperationsOnce();
-            var previousWantFacts = new List<WantFactsInfo>(WantFactsInfos);
-            var inputFacts = new List<IFactType> { singleOperations.GetFactType<TFactResult>() };
-
-            WantFactsInfos.Clear();
-
-            WantFacts(
-                singleOperations.CreateWantAction(
-                    facts => fact = facts.GetFact<TFactResult>(),
-                    inputFacts,
-                    FactWorkOption.CanExecuteSync),
-                container);
-
-            Derive();
-
-            WantFactsInfos.AddRange(previousWantFacts);
-
-            return fact;
+            return FactFactoryExtensions.DeriveFact<TFactResult>(this, container);
         }
 
         /// <summary>
@@ -162,28 +146,11 @@ namespace GetcuReone.FactFactory
         /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
         /// <param name="container"></param>
         /// <returns></returns>
-        public virtual async ValueTask<TFactResult> DeriveFactAsync<TFactResult>(IFactContainer container = null) where TFactResult : IFact
+        [Obsolete("[5.0.2] Use FactFactoryExtensions.DeriveFactAsync")]
+        public virtual ValueTask<TFactResult> DeriveFactAsync<TFactResult>(IFactContainer container = null)
+            where TFactResult : IFact
         {
-            TFactResult fact = default;
-
-            var singleOperations = GetSingleEntityOperationsOnce();
-            var previousWantFacts = new List<WantFactsInfo>(WantFactsInfos);
-            var inputFacts = new List<IFactType> { singleOperations.GetFactType<TFactResult>() };
-
-            WantFactsInfos.Clear();
-
-            WantFacts(
-                singleOperations.CreateWantAction(
-                    facts => fact = facts.GetFact<TFactResult>(),
-                    inputFacts,
-                    FactWorkOption.CanExecuteSync),
-                container);
-
-            await DeriveAsync().ConfigureAwait(false);
-
-            WantFactsInfos.AddRange(previousWantFacts);
-
-            return fact;
+            return FactFactoryExtensions.DeriveFactAsync<TFactResult>(this, container); ;
         }
 
         /// <summary>

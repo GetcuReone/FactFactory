@@ -1,4 +1,5 @@
 using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Priority;
@@ -21,7 +22,7 @@ namespace Priority_MovieServiceExample
 
         FactRuleCollection Rules;
 
-        PriorityFactFactory Factory;
+        IFactFactory Factory;
 
         [TestInitialize]
         public void Initialize()

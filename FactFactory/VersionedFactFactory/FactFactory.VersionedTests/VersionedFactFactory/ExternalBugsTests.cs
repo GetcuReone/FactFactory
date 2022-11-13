@@ -3,6 +3,7 @@ using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
 using FactFactory.VersionedTests.VersionedFactFactory.Bug73;
 using FactFactory.VersionedTests.VersionedFactFactory.Bug73.Entities;
+using GetcuReone.FactFactory.Versioned.Extensions;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

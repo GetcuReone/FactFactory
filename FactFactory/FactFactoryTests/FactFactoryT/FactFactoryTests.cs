@@ -4,6 +4,8 @@ using FactFactoryTests.CommonFacts;
 using FactFactoryTests.FactFactoryT.Env;
 using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Extensions;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.GetcuTestAdapter;
@@ -190,9 +192,9 @@ namespace FactFactoryTests.FactFactoryT
 
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive only one fact.")]
+        [Description("Derive all facts.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void DeriveOnlyOneFactTestCase()
+        public void DeriveAllFactsTestCase()
         {
             Input6Fact fact6 = null;
             Input16Fact fact16 = null;
@@ -216,9 +218,9 @@ namespace FactFactoryTests.FactFactoryT
                 .ThenIsNotNull()
                 .And("Check result.", _ =>
                 {
-                    Assert.IsNull(fact7, "fact7 cannot derived");
-                    Assert.IsNull(fact16, "fact16 cannot derived");
-                    Assert.IsNull(fact6, "fact6 cannot derived");
+                    Assert.IsNotNull(fact7, "fact7 cannot derived");
+                    Assert.IsNotNull(fact16, "fact16 cannot derived");
+                    Assert.IsNotNull(fact6, "fact6 cannot derived");
                 })
                 .Run();
         }
@@ -232,7 +234,7 @@ namespace FactFactoryTests.FactFactoryT
             Input6Fact fact6 = null;
             Input16Fact fact16 = null;
             Input7Fact fact7 = null;
-            GetcuReone.FactFactory.FactFactory factory = null;
+            IFactFactory factory = null;
             var container = new Container();
 
             GivenCreateFactFactory()

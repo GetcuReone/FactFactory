@@ -1,9 +1,11 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
+using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Priority;
 using GetcuReone.FactFactory.Versioned;
+using GetcuReone.FactFactory.Versioned.Extensions;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
