@@ -92,6 +92,9 @@
   - [Rules](#P-GetcuReone-FactFactory-FactFactory-Rules 'GetcuReone.FactFactory.FactFactory.Rules')
   - [GetDefaultContainer()](#M-GetcuReone-FactFactory-FactFactory-GetDefaultContainer 'GetcuReone.FactFactory.FactFactory.GetDefaultContainer')
   - [GetDefaultFacts()](#M-GetcuReone-FactFactory-FactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext- 'GetcuReone.FactFactory.FactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)')
+- [FactFactoryExtensions](#T-GetcuReone-FactFactory-Extensions-FactFactoryExtensions 'GetcuReone.FactFactory.Extensions.FactFactoryExtensions')
+  - [DeriveFactAsync\`\`1(factory,container)](#M-GetcuReone-FactFactory-Extensions-FactFactoryExtensions-DeriveFactAsync``1-GetcuReone-FactFactory-Interfaces-IFactFactory,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Extensions.FactFactoryExtensions.DeriveFactAsync``1(GetcuReone.FactFactory.Interfaces.IFactFactory,GetcuReone.FactFactory.Interfaces.IFactContainer)')
+  - [DeriveFact\`\`1(factory,container)](#M-GetcuReone-FactFactory-Extensions-FactFactoryExtensions-DeriveFact``1-GetcuReone-FactFactory-Interfaces-IFactFactory,GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Extensions.FactFactoryExtensions.DeriveFact``1(GetcuReone.FactFactory.Interfaces.IFactFactory,GetcuReone.FactFactory.Interfaces.IFactContainer)')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
 - [RCanDerived\`1](#T-GetcuReone-FactFactory-SpecialFacts-RuntimeCondition-RCanDerived`1 'GetcuReone.FactFactory.SpecialFacts.RuntimeCondition.RCanDerived`1')
@@ -1762,6 +1765,65 @@ This method has no parameters.
 ##### Parameters
 
 This method has no parameters.
+
+<a name='T-GetcuReone-FactFactory-Extensions-FactFactoryExtensions'></a>
+## FactFactoryExtensions `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Extensions
+
+##### Summary
+
+Extensions methods for [IFactFactory](#T-GetcuReone-FactFactory-Interfaces-IFactFactory 'GetcuReone.FactFactory.Interfaces.IFactFactory').
+
+<a name='M-GetcuReone-FactFactory-Extensions-FactFactoryExtensions-DeriveFactAsync``1-GetcuReone-FactFactory-Interfaces-IFactFactory,GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
+### DeriveFactAsync\`\`1(factory,container) `method`
+
+##### Summary
+
+Derive `TFactResult`.
+
+##### Returns
+
+Requested fact.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| factory | [GetcuReone.FactFactory.Interfaces.IFactFactory](#T-GetcuReone-FactFactory-Interfaces-IFactFactory 'GetcuReone.FactFactory.Interfaces.IFactFactory') | Fact factory. |
+| container | [GetcuReone.FactFactory.Interfaces.IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContainer 'GetcuReone.FactFactory.Interfaces.IFactContainer') | Fact container. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactResult | The type of fact to get. |
+
+<a name='M-GetcuReone-FactFactory-Extensions-FactFactoryExtensions-DeriveFact``1-GetcuReone-FactFactory-Interfaces-IFactFactory,GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
+### DeriveFact\`\`1(factory,container) `method`
+
+##### Summary
+
+Derive `TFactResult`.
+
+##### Returns
+
+Requested fact.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| factory | [GetcuReone.FactFactory.Interfaces.IFactFactory](#T-GetcuReone-FactFactory-Interfaces-IFactFactory 'GetcuReone.FactFactory.Interfaces.IFactFactory') | Fact factory. |
+| container | [GetcuReone.FactFactory.Interfaces.IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContainer 'GetcuReone.FactFactory.Interfaces.IFactContainer') | Fact container. |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| TFactResult | The type of fact to get. |
 
 <a name='T--ListExtensions'></a>
 ## ListExtensions `type`

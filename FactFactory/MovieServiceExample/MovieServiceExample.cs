@@ -1,5 +1,7 @@
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Extensions;
+using GetcuReone.FactFactory.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MovieServiceExample.Entities;
 using MovieServiceExample.Facts;
@@ -20,7 +22,7 @@ namespace MovieServiceExample
 
         FactRuleCollection Rules;
 
-        FactFactory Factory;
+        IFactFactory Factory;
 
         [TestInitialize]
         public void Initialize()

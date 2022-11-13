@@ -5,6 +5,7 @@ using FactFactoryTests.FactFactoryT.Helpers;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.GetcuTestAdapter;
+using GetcuReone.FactFactory.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
