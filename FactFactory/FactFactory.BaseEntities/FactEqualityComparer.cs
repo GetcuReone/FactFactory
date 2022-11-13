@@ -78,9 +78,11 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             if (first == null)
                 return second == null;
-            else if (second == null)
+
+            if (second == null)
                 return false;
-            else if (first == second)
+
+            if (first == second)
                 return true;
 
             if (first is ISpecialFact xSpecialFact && second is ISpecialFact ySpecialFact)
@@ -102,6 +104,7 @@ namespace GetcuReone.FactFactory.BaseEntities
 
             if (!firstFactType.EqualsFactType(secondFactType))
                 return false;
+
             if (!includeFactParams)
                 return true;
 
@@ -110,8 +113,10 @@ namespace GetcuReone.FactFactory.BaseEntities
 
             if (firstParameters.IsNullOrEmpty() && secondParameters.IsNullOrEmpty())
                 return true;
+
             if (firstParameters.IsNullOrEmpty() || secondParameters.IsNullOrEmpty())
                 return false;
+
             if (firstParameters.Count != secondParameters.Count)
                 return false;
 
