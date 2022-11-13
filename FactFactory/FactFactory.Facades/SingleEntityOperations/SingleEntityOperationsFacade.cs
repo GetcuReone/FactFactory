@@ -54,8 +54,17 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
 
             foreach(var fact in container)
             {
-                if (container.Count(f => comparer.Equals(f, fact)) != 1)
-                    throw CommonHelper.CreateDeriveException(ErrorCode.InvalidData, $"Using the IEqualityComparer<IFact>, the '{fact.GetFactType().FactName}' fact was not found in the container or was found multiple times.");
+                var countFoundFact = container.Count(f => comparer.Equals(f, fact));
+
+                if (countFoundFact < 1)
+                    throw CommonHelper.CreateDeriveException(
+                        ErrorCode.InvalidData,
+                        $"Using the IEqualityComparer<IFact>, the '{fact.GetFactType().FactName}' fact was not found in the container.");
+
+                if (countFoundFact > 1)
+                    throw CommonHelper.CreateDeriveException(
+                        ErrorCode.InvalidData,
+                        $"Using the IEqualityComparer<IFact>, the '{fact.GetFactType().FactName}' fact was found multiple times in the container.");
             }
         }
 

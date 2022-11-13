@@ -70,10 +70,10 @@ namespace GetcuReone.FactFactory.BaseEntities
 
         private void InnerAdd<TFact>(TFact fact, IEqualityComparer<IFact> comparer) where TFact : IFact
         {
-            IFactType factType = fact.GetFactType();
-
             if (ContainerList.Contains(fact, comparer))
-                throw CommonHelper.CreateException(ErrorCode.InvalidData, $"The fact container already contains '{factType.FactName}' fact.");
+                throw CommonHelper.CreateException(
+                    ErrorCode.InvalidData,
+                    $"The fact container already contains '{fact.GetFactType().FactName}' fact.");
 
             ContainerList.Add(fact);
         }
