@@ -7,7 +7,7 @@
   - [IsNullOrEmpty\`\`1(items)](#M-ArrayExtensions-IsNullOrEmpty``1-``0[]- 'ArrayExtensions.IsNullOrEmpty``1(``0[])')
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
-- [IPriorityFact](#T-FactFactory-Priority-Interfaces-IPriorityFact 'FactFactory.Priority.Interfaces.IPriorityFact')
+- [IPriorityFact](#T-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact 'GetcuReone.FactFactory.Priority.Interfaces.IPriorityFact')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
 
@@ -71,12 +71,12 @@ True - `items` is null or empty.
 | ---- | ----------- |
 | TItem | Type items. |
 
-<a name='T-FactFactory-Priority-Interfaces-IPriorityFact'></a>
+<a name='T-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact'></a>
 ## IPriorityFact `type`
 
 ##### Namespace
 
-FactFactory.Priority.Interfaces
+GetcuReone.FactFactory.Priority.Interfaces
 
 ##### Summary
 

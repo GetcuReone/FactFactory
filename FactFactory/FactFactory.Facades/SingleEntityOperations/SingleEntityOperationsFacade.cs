@@ -3,6 +3,7 @@ using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
@@ -172,7 +173,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 facts => rule.Calculate(facts),
                 requiredFacts);
 
-            fact.SetCalculateByRule();
+            fact.SetCalculateByRule(context.ParameterCache);
             context.WantAction.AddUsedRule(rule);
 
             using (var writer = context.Container.GetWriter())
@@ -212,7 +213,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 .CreateObject(facts => rule.CalculateAsync(facts), requiredFacts)
                 .ConfigureAwait(false);
 
-            fact.SetCalculateByRule();
+            fact.SetCalculateByRule(context.ParameterCache);
             context.WantAction.AddUsedRule(rule);
 
             using (var writer = context.Container.GetWriter())
@@ -416,8 +417,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             IRuntimeConditionFact condition,
             IWantActionContext context)
         {
-            (var wantAction, var container, var engine, var singleOperations, var treeOperations, var cache) =
-                (context.WantAction, context.Container, context.Engine, context.SingleEntity, context.TreeBuilding, context.Cache);
+            (var wantAction, var container, var engine, var singleOperations, var treeOperations, var cache, var parameterCahce) =
+                (context.WantAction, context.Container, context.Engine, context.SingleEntity, context.TreeBuilding, context.Cache, context.ParameterCache);
 
             var rulesContext = new FactRulesContext
             {
@@ -427,6 +428,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 TreeBuilding = treeOperations,
                 WantAction = wantAction,
                 Engine = engine,
+                ParameterCache = parameterCahce,
             };
 
             if (condition.TryGetRelatedRules(context, out IFactRuleCollection rules))
@@ -455,7 +457,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                     WantAction = singleOperations.CreateWantAction(
                         facts => { resultFact = facts.FirstFactByFactType(rule.OutputFactType, context.Cache); },
                         inputTypes,
-                        wantAction.Option)
+                        wantAction.Option),
+                    ParameterCache = parameterCahce,
                 };
 
                 var requests = new List<DeriveWantActionRequest>
@@ -499,8 +502,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             IRuntimeConditionFact condition,
             IWantActionContext context)
         {
-            (var wantAction, var container, var engine, var singleOperations, var treeOperations, var cache) =
-                (context.WantAction, context.Container, context.Engine, context.SingleEntity, context.TreeBuilding, context.Cache);
+            (var wantAction, var container, var engine, var singleOperations, var treeOperations, var cache, var parameterCache) =
+                (context.WantAction, context.Container, context.Engine, context.SingleEntity, context.TreeBuilding, context.Cache, context.ParameterCache);
 
             var rulesContext = new FactRulesContext
             {
@@ -510,6 +513,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 TreeBuilding = treeOperations,
                 WantAction = wantAction,
                 Engine = engine,
+                ParameterCache = parameterCache,
             };
 
             if (condition.TryGetRelatedRules(context, out IFactRuleCollection rules))
@@ -538,7 +542,8 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                     WantAction = singleOperations.CreateWantAction(
                         facts => { resultFact = facts.FirstFactByFactType(rule.OutputFactType, context.Cache); },
                         inputTypes,
-                        wantAction.Option)
+                        wantAction.Option),
+                    ParameterCache = parameterCache,
                 };
 
                 var requests = new List<DeriveWantActionRequest>
@@ -587,6 +592,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                 TreeBuilding = context.TreeBuilding,
                 WantAction = wantAction,
                 Engine = context.Engine,
+                ParameterCache = context.ParameterCache,
             };
 
             return condition.Condition(wantAction, rulesContext);

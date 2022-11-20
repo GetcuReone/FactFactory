@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Operations;
 
 namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
 {
@@ -15,10 +16,12 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// </summary>
         /// <typeparam name="TFact"></typeparam>
         /// <param name="fact"></param>
-        public static TFact SetCalculateByRule<TFact>(this TFact fact)
+        /// <param name="parameterCache"></param>
+        public static TFact SetCalculateByRule<TFact>(this TFact fact, IFactParameterCache parameterCache)
             where TFact : IFact
         {
-            fact.AddParameter(new FactParameter(FactParametersCodes.CalculateByRule, true));
+            fact.AddParameter(parameterCache.GetOrCreate(FactParametersCodes.CalculateByRule, true));
+
             return fact;
         }
 

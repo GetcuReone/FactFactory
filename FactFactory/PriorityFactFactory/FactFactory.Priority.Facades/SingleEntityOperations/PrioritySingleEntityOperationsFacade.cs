@@ -1,8 +1,10 @@
-﻿using FactFactory.Priority.Interfaces;
+﻿using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
+using GetcuReone.FactFactory.Priority.Common.Extensions;
+using GetcuReone.FactFactory.Priority.Interfaces;
 using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
@@ -61,9 +63,10 @@ namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
         public override IFact CalculateFact(NodeByFactRule node, IWantActionContext context)
         {
             IPriorityFact priority = node.Info.Rule.GetPriorityFact(context);
+
             return base
                 .CalculateFact(node, context)
-                .AddPriorityParameter(priority);
+                .AddPriorityParameter(priority, context.ParameterCache);
         }
 
         /// <summary>
@@ -75,7 +78,10 @@ namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
         public override async ValueTask<IFact> CalculateFactAsync(NodeByFactRule node, IWantActionContext context)
         {
             IPriorityFact priority = node.Info.Rule.GetPriorityFact(context);
-            return (await base.CalculateFactAsync(node, context).ConfigureAwait(false)).AddPriorityParameter(priority);
+
+            return (await base.CalculateFactAsync(node, context)
+                .ConfigureAwait(false))
+                .AddPriorityParameter(priority, context.ParameterCache);
         }
     }
 }

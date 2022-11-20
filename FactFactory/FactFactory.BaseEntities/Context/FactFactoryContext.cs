@@ -19,5 +19,8 @@ namespace GetcuReone.FactFactory.BaseEntities.Context
 
         /// <inheritdoc/>
         public IFactEngine Engine { get; set; }
+
+        /// <inheritdoc/>
+        public IFactParameterCache ParameterCache { get; set; }
     }
 }

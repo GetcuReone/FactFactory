@@ -115,11 +115,15 @@
 - [IFactFactoryContext](#T-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext 'GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext')
   - [Cache](#P-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext-Cache 'GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext.Cache')
   - [Engine](#P-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext-Engine 'GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext.Engine')
+  - [ParameterCache](#P-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext-ParameterCache 'GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext.ParameterCache')
   - [SingleEntity](#P-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext-SingleEntity 'GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext.SingleEntity')
   - [TreeBuilding](#P-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext-TreeBuilding 'GetcuReone.FactFactory.Interfaces.Context.IFactFactoryContext.TreeBuilding')
 - [IFactParameter](#T-GetcuReone-FactFactory-Interfaces-IFactParameter 'GetcuReone.FactFactory.Interfaces.IFactParameter')
   - [Code](#P-GetcuReone-FactFactory-Interfaces-IFactParameter-Code 'GetcuReone.FactFactory.Interfaces.IFactParameter.Code')
   - [Value](#P-GetcuReone-FactFactory-Interfaces-IFactParameter-Value 'GetcuReone.FactFactory.Interfaces.IFactParameter.Value')
+- [IFactParameterCache](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactParameterCache 'GetcuReone.FactFactory.Interfaces.Operations.IFactParameterCache')
+  - [GetOrCreate(parameterCode,parameterValue)](#M-GetcuReone-FactFactory-Interfaces-Operations-IFactParameterCache-GetOrCreate-System-String,System-Object- 'GetcuReone.FactFactory.Interfaces.Operations.IFactParameterCache.GetOrCreate(System.String,System.Object)')
+  - [GetOrCreate(parameterCode,parameterValue,createParameterFunc)](#M-GetcuReone-FactFactory-Interfaces-Operations-IFactParameterCache-GetOrCreate-System-String,System-Object,System-Func{System-String,System-Object,GetcuReone-FactFactory-Interfaces-IFactParameter}- 'GetcuReone.FactFactory.Interfaces.Operations.IFactParameterCache.GetOrCreate(System.String,System.Object,System.Func{System.String,System.Object,GetcuReone.FactFactory.Interfaces.IFactParameter})')
 - [IFactRule](#T-GetcuReone-FactFactory-Interfaces-IFactRule 'GetcuReone.FactFactory.Interfaces.IFactRule')
   - [OutputFactType](#P-GetcuReone-FactFactory-Interfaces-IFactRule-OutputFactType 'GetcuReone.FactFactory.Interfaces.IFactRule.OutputFactType')
   - [Calculate(requireFacts)](#M-GetcuReone-FactFactory-Interfaces-IFactRule-Calculate-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact}- 'GetcuReone.FactFactory.Interfaces.IFactRule.Calculate(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact})')
@@ -138,7 +142,7 @@
   - [EqualsFactType\`\`1(factInfo)](#M-GetcuReone-FactFactory-Interfaces-IFactType-EqualsFactType``1-``0- 'GetcuReone.FactFactory.Interfaces.IFactType.EqualsFactType``1(``0)')
   - [IsFactType\`\`1()](#M-GetcuReone-FactFactory-Interfaces-IFactType-IsFactType``1 'GetcuReone.FactFactory.Interfaces.IFactType.IsFactType``1')
 - [IFactTypeCache](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache 'GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache')
-  - [GetFactType\`\`1(fact)](#M-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-GetFactType``1-``0- 'GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache.GetFactType``1(``0)')
+  - [GetFactType(fact)](#M-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-GetFactType-GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCache.GetFactType(GetcuReone.FactFactory.Interfaces.IFact)')
 - [IFactTypeCreation](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCreation 'GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCreation')
   - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCreation-GetFactType``1 'GetcuReone.FactFactory.Interfaces.Operations.IFactTypeCreation.GetFactType``1')
 - [IFactWork](#T-GetcuReone-FactFactory-Interfaces-IFactWork 'GetcuReone.FactFactory.Interfaces.IFactWork')
@@ -2038,6 +2042,13 @@ A context containing information within which current actions are taking place.
 
 *Inherit from parent.*
 
+<a name='P-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext-ParameterCache'></a>
+### ParameterCache `property`
+
+##### Summary
+
+*Inherit from parent.*
+
 <a name='P-GetcuReone-FactFactory-Interfaces-Context-IFactFactoryContext-SingleEntity'></a>
 ### SingleEntity `property`
 
@@ -2076,6 +2087,54 @@ Parameter code.
 ##### Summary
 
 Parameter value.
+
+<a name='T-GetcuReone-FactFactory-Interfaces-Operations-IFactParameterCache'></a>
+## IFactParameterCache `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Interfaces.Operations
+
+##### Summary
+
+Fact parameter cache.
+
+<a name='M-GetcuReone-FactFactory-Interfaces-Operations-IFactParameterCache-GetOrCreate-System-String,System-Object-'></a>
+### GetOrCreate(parameterCode,parameterValue) `method`
+
+##### Summary
+
+Returns or creates a fact parameter.
+
+##### Returns
+
+Fact parameter.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| parameterCode | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Parameter code. |
+| parameterValue | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') | Parameter value. |
+
+<a name='M-GetcuReone-FactFactory-Interfaces-Operations-IFactParameterCache-GetOrCreate-System-String,System-Object,System-Func{System-String,System-Object,GetcuReone-FactFactory-Interfaces-IFactParameter}-'></a>
+### GetOrCreate(parameterCode,parameterValue,createParameterFunc) `method`
+
+##### Summary
+
+Returns or creates a fact parameter.
+
+##### Returns
+
+Fact parameter.
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| parameterCode | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | Parameter code. |
+| parameterValue | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') | Parameter value. |
+| createParameterFunc | [System.Func{System.String,System.Object,GetcuReone.FactFactory.Interfaces.IFactParameter}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Func 'System.Func{System.String,System.Object,GetcuReone.FactFactory.Interfaces.IFactParameter}') | Fact parameter creation method. |
 
 <a name='T-GetcuReone-FactFactory-Interfaces-IFactRule'></a>
 ## IFactRule `type`
@@ -2328,8 +2387,8 @@ GetcuReone.FactFactory.Interfaces.Operations
 
 Fact type cache.
 
-<a name='M-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-GetFactType``1-``0-'></a>
-### GetFactType\`\`1(fact) `method`
+<a name='M-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCache-GetFactType-GetcuReone-FactFactory-Interfaces-IFact-'></a>
+### GetFactType(fact) `method`
 
 ##### Summary
 
@@ -2343,13 +2402,7 @@ Fact type info.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| fact | [\`\`0](#T-``0 '``0') | Fact. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFact | Fact type. |
+| fact | [GetcuReone.FactFactory.Interfaces.IFact](#T-GetcuReone-FactFactory-Interfaces-IFact 'GetcuReone.FactFactory.Interfaces.IFact') | Fact. |
 
 <a name='T-GetcuReone-FactFactory-Interfaces-Operations-IFactTypeCreation'></a>
 ## IFactTypeCreation `type`

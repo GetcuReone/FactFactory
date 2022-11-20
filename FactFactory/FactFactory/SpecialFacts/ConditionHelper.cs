@@ -38,6 +38,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
                     TreeBuilding = context.TreeBuilding,
                     WantAction = context.WantAction,
                     Engine = context.Engine,
+                    ParameterCache = context.ParameterCache,
                 },
             };
 
@@ -84,6 +85,7 @@ namespace GetcuReone.FactFactory.SpecialFacts
                     TreeBuilding = context.TreeBuilding,
                     WantAction = context.WantAction,
                     Engine = context.Engine,
+                    ParameterCache = context.ParameterCache,
                 },
             };
 

@@ -7,7 +7,7 @@
         <RootNamespace>GetcuReone.$(MSBuildProjectName)</RootNamespace>
         <AssemblyName>GetcuReone.$(MSBuildProjectName)</AssemblyName>
         <MajorVersion>$([MSBuild]::ValueOrDefault('$(majorVersion)', '5'))</MajorVersion>
-        <MinorVersion>$([MSBuild]::ValueOrDefault('$(minorVersion)', '0'))</MinorVersion>
+        <MinorVersion>$([MSBuild]::ValueOrDefault('$(minorVersion)', '1'))</MinorVersion>
         <PatchVersion>$([MSBuild]::ValueOrDefault('$(patchVersion)', '0'))</PatchVersion>
         <PackageVersion>$(majorVersion).$(minorVersion).$(patchVersion)</PackageVersion>
         <AssemblyVersion>3.0.0.0</AssemblyVersion>
