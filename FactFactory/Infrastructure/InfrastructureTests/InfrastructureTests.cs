@@ -110,7 +110,7 @@ namespace InfrastructureTests
             {
             };
             string majorVersion = BuildConfiguration == "Release"
-                ? Environment.GetEnvironmentVariable("majorVersion") ?? "3"
+                ? Environment.GetEnvironmentVariable("majorVersion") ?? ""
                 : "1";
             string excpectedAssemblyVersion = $"{majorVersion}.0.0.0";
 
