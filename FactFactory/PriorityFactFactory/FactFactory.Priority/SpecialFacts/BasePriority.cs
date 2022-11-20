@@ -1,7 +1,7 @@
-﻿using FactFactory.Priority.Interfaces;
-using GetcuReone.FactFactory.Constants;
+﻿using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using GetcuReone.FactFactory.Priority.Interfaces;
 using GetcuReone.FactFactory.SpecialFacts;
 
 namespace GetcuReone.FactFactory.Priority.SpecialFacts

@@ -1,4 +1,5 @@
 ﻿using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
@@ -125,10 +126,12 @@ namespace GetcuReone.FactFactory.Versioned
         /// </summary>
         /// <param name="fact">Fact.</param>
         /// <param name="version">Verion fact.</param>
+        /// <param name="parameterCache">Fact parameter cache.</param>
         /// <returns><paramref name="fact"/>.</returns>
-        public static IFact AddVerionParameter(this IFact fact, IVersionFact version)
+        public static IFact AddVerionParameter(this IFact fact, IVersionFact version, IFactParameterCache parameterCache)
         {
-            fact.AddParameter(new FactParameter(VersionedFactParametersCodes.Version, version));
+            fact.AddParameter(parameterCache.GetOrCreate(VersionedFactParametersCodes.Version, version));
+
             return fact;
         }
 

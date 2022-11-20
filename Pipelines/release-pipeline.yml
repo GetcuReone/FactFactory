@@ -25,7 +25,7 @@ variables:
 - name: 'majorVersion'
   value: '5'
 - name: 'minorVersion'
-  value: '0'
+  value: '1'
 - ${{ if startsWith(variables['Build.SourceBranchName'], 'release') }}:
   - name: 'patchVersion'
     value: $[counter(format('{0}.{1}', variables.majorVersion, variables.minorVersion), 0)]

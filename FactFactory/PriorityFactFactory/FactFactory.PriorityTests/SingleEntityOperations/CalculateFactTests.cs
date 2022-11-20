@@ -1,5 +1,4 @@
-﻿using FactFactory.Priority.Interfaces;
-using FactFactory.PriorityTests.CommonFacts;
+﻿using FactFactory.PriorityTests.CommonFacts;
 using FactFactory.PriorityTests.SingleEntityOperations.Env;
 using FactFactory.TestsCommon;
 using GetcuReone.FactFactory;
@@ -7,7 +6,8 @@ using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using GetcuReone.FactFactory.Priority;
+using GetcuReone.FactFactory.Priority.Common.Extensions;
+using GetcuReone.FactFactory.Priority.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

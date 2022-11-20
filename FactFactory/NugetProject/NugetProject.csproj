@@ -19,6 +19,8 @@
             - rejected the typed conteiner
             - moved the wantAction to the interface through lambda functions
             - corrected the text of the error when there are several uses of facts in the container
+            - removed typing from the method IFactTypeCache.GetFactType
+            - moved extension methods to appropriate classes
         </PackageReleaseNotes>
     </PropertyGroup>
 

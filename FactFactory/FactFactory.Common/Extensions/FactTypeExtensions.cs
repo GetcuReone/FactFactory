@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
+using System;
 
 namespace GetcuReone.FactFactory.Extensions
 {
@@ -16,6 +17,22 @@ namespace GetcuReone.FactFactory.Extensions
         public static bool IsBuildOrRuntimeFact(this IFactType type)
         {
             return type.IsFactType<IBuildConditionFact>() || type.IsFactType<IRuntimeConditionFact>();
+        }
+
+        /// <summary>
+        /// Cannot is <typeparamref name="TFact"/>.
+        /// </summary>
+        /// <typeparam name="TFact">Type fact.</typeparam>
+        /// <param name="type">Type fact info.</param>
+        /// <param name="paramName">Parameter name.</param>
+        /// <returns><paramref name="type"/>.</returns>
+        public static IFactType CannotIsType<TFact>(this IFactType type, string paramName)
+            where TFact : IFact
+        {
+            if (type.IsFactType<TFact>())
+                throw new ArgumentException($"Parameter {paramName} should not be converted into {typeof(TFact).FullName}");
+
+            return type;
         }
     }
 }

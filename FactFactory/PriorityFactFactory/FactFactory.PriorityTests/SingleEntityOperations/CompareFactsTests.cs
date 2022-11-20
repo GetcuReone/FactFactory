@@ -1,7 +1,8 @@
 ﻿using FactFactory.PriorityTests.CommonFacts;
 using FactFactory.PriorityTests.SingleEntityOperations.Env;
 using FactFactory.TestsCommon;
-using GetcuReone.FactFactory.Priority;
+using GetcuReone.FactFactory.Entities;
+using GetcuReone.FactFactory.Priority.Common.Extensions;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -33,9 +34,16 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void WithSamePriorityTestCase()
         {
-            var fact1 = new FactResult(default).AddPriorityParameter(new Priority1());
-            var fact2 = new FactResult(default).AddPriorityParameter(new Priority1());
             const int expectedValue = 0;
+
+            var parameterCache = new FactParameterCache();
+
+            var fact1 = new FactResult(default)
+                .AddPriorityParameter(new Priority1(), parameterCache);
+
+            var fact2 = new FactResult(default)
+                .AddPriorityParameter(new Priority1(), parameterCache);
+            
 
             GivenCreateFacade()
                 .When("Compare fact.", facade => facade.CompareFacts(fact1, fact2))
@@ -49,9 +57,15 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void WithFirstAndSecondPrioritiesTestCase()
         {
-            var fact1 = new FactResult(default).AddPriorityParameter(new Priority1());
-            var fact2 = new FactResult(default).AddPriorityParameter(new Priority2());
             const int expectedValue = 1;
+
+            var parameterCache = new FactParameterCache();
+
+            var fact1 = new FactResult(default)
+                .AddPriorityParameter(new Priority1(), parameterCache);
+
+            var fact2 = new FactResult(default)
+                .AddPriorityParameter(new Priority2(), parameterCache);
 
             GivenCreateFacade()
                 .When("Compare fact.", facade => facade.CompareFacts(fact1, fact2))
@@ -65,9 +79,15 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void WithSecondAndFirstPrioritiesTestCase()
         {
-            var fact1 = new FactResult(default).AddPriorityParameter(new Priority2());
-            var fact2 = new FactResult(default).AddPriorityParameter(new Priority1());
             const int expectedValue = -1;
+
+            var parameterCache = new FactParameterCache();
+
+            var fact1 = new FactResult(default)
+                .AddPriorityParameter(new Priority2(), parameterCache);
+
+            var fact2 = new FactResult(default)
+                .AddPriorityParameter(new Priority1(), parameterCache);
 
             GivenCreateFacade()
                 .When("Compare fact.", facade => facade.CompareFacts(fact1, fact2))

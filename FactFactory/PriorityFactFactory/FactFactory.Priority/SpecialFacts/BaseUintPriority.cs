@@ -1,4 +1,4 @@
-﻿using FactFactory.Priority.Interfaces;
+﻿using GetcuReone.FactFactory.Priority.Interfaces;
 
 namespace GetcuReone.FactFactory.Priority.SpecialFacts
 {

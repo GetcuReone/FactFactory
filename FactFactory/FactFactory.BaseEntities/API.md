@@ -139,12 +139,13 @@
 - [FactFactoryContext](#T-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext')
   - [Cache](#P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-Cache 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.Cache')
   - [Engine](#P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-Engine 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.Engine')
+  - [ParameterCache](#P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-ParameterCache 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.ParameterCache')
   - [SingleEntity](#P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-SingleEntity 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.SingleEntity')
   - [TreeBuilding](#P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-TreeBuilding 'GetcuReone.FactFactory.BaseEntities.Context.FactFactoryContext.TreeBuilding')
 - [FactRulesContext](#T-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext 'GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext')
   - [FactRules](#P-GetcuReone-FactFactory-BaseEntities-Context-FactRulesContext-FactRules 'GetcuReone.FactFactory.BaseEntities.Context.FactRulesContext.FactRules')
 - [FactTypeCache](#T-GetcuReone-FactFactory-BaseEntities-FactTypeCache 'GetcuReone.FactFactory.BaseEntities.FactTypeCache')
-  - [GetFactType\`\`1()](#M-GetcuReone-FactFactory-BaseEntities-FactTypeCache-GetFactType``1-``0- 'GetcuReone.FactFactory.BaseEntities.FactTypeCache.GetFactType``1(``0)')
+  - [GetFactType()](#M-GetcuReone-FactFactory-BaseEntities-FactTypeCache-GetFactType-GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.BaseEntities.FactTypeCache.GetFactType(GetcuReone.FactFactory.Interfaces.IFact)')
 - [FactType\`1](#T-GetcuReone-FactFactory-FactType`1 'GetcuReone.FactFactory.FactType`1')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-ListExtensions-IsNullOrEmpty``1-System-Collections-Generic-List{``0}- 'ListExtensions.IsNullOrEmpty``1(System.Collections.Generic.List{``0})')
@@ -240,7 +241,7 @@ Constructor.
 
 ##### Remarks
 
-If the value is not specified, then [CompareTo](#M-GetcuReone-FactFactory-FactFactoryHelper-CompareTo-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.FactFactoryHelper.CompareTo(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)') will be used.
+If the value is not specified, then [CompareTo](#M-GetcuReone-FactFactory-Extensions-FactExtensions-CompareTo-GetcuReone-FactFactory-Interfaces-IFact,GetcuReone-FactFactory-Interfaces-IFact- 'GetcuReone.FactFactory.Extensions.FactExtensions.CompareTo(GetcuReone.FactFactory.Interfaces.IFact,GetcuReone.FactFactory.Interfaces.IFact)') will be used.
 
 <a name='P-GetcuReone-FactFactory-BaseEntities-BaseFactContainer-ContainerList'></a>
 ### ContainerList `property`
@@ -2449,6 +2450,13 @@ A context containing information within which current actions are taking place.
 
 *Inherit from parent.*
 
+<a name='P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-ParameterCache'></a>
+### ParameterCache `property`
+
+##### Summary
+
+*Inherit from parent.*
+
 <a name='P-GetcuReone-FactFactory-BaseEntities-Context-FactFactoryContext-SingleEntity'></a>
 ### SingleEntity `property`
 
@@ -2492,8 +2500,8 @@ GetcuReone.FactFactory.BaseEntities
 
 Fact type cache.
 
-<a name='M-GetcuReone-FactFactory-BaseEntities-FactTypeCache-GetFactType``1-``0-'></a>
-### GetFactType\`\`1() `method`
+<a name='M-GetcuReone-FactFactory-BaseEntities-FactTypeCache-GetFactType-GetcuReone-FactFactory-Interfaces-IFact-'></a>
+### GetFactType() `method`
 
 ##### Summary
 

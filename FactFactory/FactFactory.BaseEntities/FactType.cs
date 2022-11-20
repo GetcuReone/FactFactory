@@ -8,7 +8,5 @@ namespace GetcuReone.FactFactory
     /// </summary>
     /// <inheritdoc/>
     public class FactType<TFact> : BaseFactType<TFact>
-        where TFact: IFact
-    {
-    }
+        where TFact: IFact { }
 }

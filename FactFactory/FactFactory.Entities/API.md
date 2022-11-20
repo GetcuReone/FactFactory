@@ -13,6 +13,9 @@
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactContainer-#ctor-System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Boolean- 'GetcuReone.FactFactory.Entities.FactContainer.#ctor(System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Boolean)')
 - [FactParameter](#T-GetcuReone-FactFactory-Entities-FactParameter 'GetcuReone.FactFactory.Entities.FactParameter')
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactParameter-#ctor-System-String,System-Object- 'GetcuReone.FactFactory.Entities.FactParameter.#ctor(System.String,System.Object)')
+- [FactParameterCache](#T-GetcuReone-FactFactory-Entities-FactParameterCache 'GetcuReone.FactFactory.Entities.FactParameterCache')
+  - [GetOrCreate()](#M-GetcuReone-FactFactory-Entities-FactParameterCache-GetOrCreate-System-String,System-Object- 'GetcuReone.FactFactory.Entities.FactParameterCache.GetOrCreate(System.String,System.Object)')
+  - [GetOrCreate()](#M-GetcuReone-FactFactory-Entities-FactParameterCache-GetOrCreate-System-String,System-Object,System-Func{System-String,System-Object,GetcuReone-FactFactory-Interfaces-IFactParameter}- 'GetcuReone.FactFactory.Entities.FactParameterCache.GetOrCreate(System.String,System.Object,System.Func{System.String,System.Object,GetcuReone.FactFactory.Interfaces.IFactParameter})')
 - [FactRule](#T-GetcuReone-FactFactory-Entities-FactRule 'GetcuReone.FactFactory.Entities.FactRule')
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactRule-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},GetcuReone-FactFactory-Interfaces-IFact},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},GetcuReone.FactFactory.Interfaces.IFact},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [#ctor()](#M-GetcuReone-FactFactory-Entities-FactRule-#ctor-System-Func{System-Collections-Generic-IEnumerable{GetcuReone-FactFactory-Interfaces-IFact},System-Threading-Tasks-ValueTask{GetcuReone-FactFactory-Interfaces-IFact}},System-Collections-Generic-List{GetcuReone-FactFactory-Interfaces-IFactType},GetcuReone-FactFactory-Interfaces-IFactType,GetcuReone-FactFactory-Interfaces-FactWorkOption- 'GetcuReone.FactFactory.Entities.FactRule.#ctor(System.Func{System.Collections.Generic.IEnumerable{GetcuReone.FactFactory.Interfaces.IFact},System.Threading.Tasks.ValueTask{GetcuReone.FactFactory.Interfaces.IFact}},System.Collections.Generic.List{GetcuReone.FactFactory.Interfaces.IFactType},GetcuReone.FactFactory.Interfaces.IFactType,GetcuReone.FactFactory.Interfaces.FactWorkOption)')
@@ -154,6 +157,39 @@ Fact parameter.
 ##### Parameters
 
 This constructor has no parameters.
+
+<a name='T-GetcuReone-FactFactory-Entities-FactParameterCache'></a>
+## FactParameterCache `type`
+
+##### Namespace
+
+GetcuReone.FactFactory.Entities
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-GetcuReone-FactFactory-Entities-FactParameterCache-GetOrCreate-System-String,System-Object-'></a>
+### GetOrCreate() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-Entities-FactParameterCache-GetOrCreate-System-String,System-Object,System-Func{System-String,System-Object,GetcuReone-FactFactory-Interfaces-IFactParameter}-'></a>
+### GetOrCreate() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-GetcuReone-FactFactory-Entities-FactRule'></a>
 ## FactRule `type`
