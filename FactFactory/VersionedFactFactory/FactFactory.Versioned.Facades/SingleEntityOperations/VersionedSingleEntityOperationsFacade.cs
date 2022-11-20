@@ -1,8 +1,10 @@
-﻿using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Extensions;
+using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Priority;
+using GetcuReone.FactFactory.Priority.Common.Extensions;
 using GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations;
 using System.Collections.Generic;
 using System.Linq;
@@ -135,7 +137,9 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         public override IFact CalculateFact(NodeByFactRule node, IWantActionContext context)
         {
             var version = node.Info.Rule.InputFactTypes.GetVersionFact(context);
-            return base.CalculateFact(node, context).AddVerionParameter(version);
+
+            return base.CalculateFact(node, context)
+                .AddVerionParameter(version, context.ParameterCache);
         }
 
         /// <inheritdoc/>
@@ -143,7 +147,10 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         public override async ValueTask<IFact> CalculateFactAsync(NodeByFactRule node, IWantActionContext context)
         {
             var version = node.Info.Rule.InputFactTypes.GetVersionFact(context);
-            return (await base.CalculateFactAsync(node, context).ConfigureAwait(false)).AddVerionParameter(version);
+
+            return (await base.CalculateFactAsync(node, context)
+                .ConfigureAwait(false))
+                .AddVerionParameter(version, context.ParameterCache);
         }
     }
 }

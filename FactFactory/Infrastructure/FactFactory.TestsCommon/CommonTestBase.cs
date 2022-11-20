@@ -3,6 +3,7 @@ using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
@@ -54,6 +55,15 @@ namespace FactFactory.TestsCommon
         }
 
         /// <summary>
+        /// Get fact parameter cache.
+        /// </summary>
+        /// <returns>Fact parameter cahce.</returns>
+        protected IFactParameterCache GetFactParameterCache()
+        {
+            return new FactParameterCache();
+        }
+
+        /// <summary>
         /// Get context for <see cref="IWantAction"/>.
         /// </summary>
         /// <param name="wantAction">Desired action information</param>
@@ -69,6 +79,7 @@ namespace FactFactory.TestsCommon
                 SingleEntity = singleEntity ?? GetFacade<SingleEntityOperationsFacade>(),
                 WantAction = wantAction,
                 Container = container,
+                ParameterCache = GetFactParameterCache(),
             };
         }
 

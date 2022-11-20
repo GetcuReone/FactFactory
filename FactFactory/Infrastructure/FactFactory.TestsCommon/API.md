@@ -8,6 +8,7 @@
 - [CommonTestBase](#T-FactFactory-TestsCommon-CommonTestBase 'FactFactory.TestsCommon.CommonTestBase')
   - [ExpectedDeriveException(action)](#M-FactFactory-TestsCommon-CommonTestBase-ExpectedDeriveException-System-Action- 'FactFactory.TestsCommon.CommonTestBase.ExpectedDeriveException(System.Action)')
   - [ExpectedFactFactoryException(action)](#M-FactFactory-TestsCommon-CommonTestBase-ExpectedFactFactoryException-System-Action- 'FactFactory.TestsCommon.CommonTestBase.ExpectedFactFactoryException(System.Action)')
+  - [GetFactParameterCache()](#M-FactFactory-TestsCommon-CommonTestBase-GetFactParameterCache 'FactFactory.TestsCommon.CommonTestBase.GetFactParameterCache')
   - [GetFactRule\`\`1()](#M-FactFactory-TestsCommon-CommonTestBase-GetFactRule``1-System-Func{``0},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'FactFactory.TestsCommon.CommonTestBase.GetFactRule``1(System.Func{``0},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [GetFactRule\`\`2()](#M-FactFactory-TestsCommon-CommonTestBase-GetFactRule``2-System-Func{``0,``1},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'FactFactory.TestsCommon.CommonTestBase.GetFactRule``2(System.Func{``0,``1},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
   - [GetFactRule\`\`3()](#M-FactFactory-TestsCommon-CommonTestBase-GetFactRule``3-System-Func{``0,``1,``2},GetcuReone-FactFactory-Interfaces-FactWorkOption- 'FactFactory.TestsCommon.CommonTestBase.GetFactRule``3(System.Func{``0,``1,``2},GetcuReone.FactFactory.Interfaces.FactWorkOption)')
@@ -121,6 +122,21 @@ Error [FactFactoryException](#T-GetcuReone-FactFactory-Exceptions-FactFactoryExc
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | action | [System.Action](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Action 'System.Action') | Action |
+
+<a name='M-FactFactory-TestsCommon-CommonTestBase-GetFactParameterCache'></a>
+### GetFactParameterCache() `method`
+
+##### Summary
+
+Get fact parameter cache.
+
+##### Returns
+
+Fact parameter cahce.
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='M-FactFactory-TestsCommon-CommonTestBase-GetFactRule``1-System-Func{``0},GetcuReone-FactFactory-Interfaces-FactWorkOption-'></a>
 ### GetFactRule\`\`1() `method`

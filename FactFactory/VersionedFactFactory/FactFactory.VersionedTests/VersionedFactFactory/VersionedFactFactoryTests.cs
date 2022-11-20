@@ -1,9 +1,10 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactory.VersionedTests.CommonFacts;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
-using GetcuReone.FactFactory.Priority;
+using GetcuReone.FactFactory.Priority.Common.Extensions;
 using GetcuReone.FactFactory.Versioned;
 using GetcuReone.FactFactory.Versioned.Extensions;
 using GetcuReone.GetcuTestAdapter;
@@ -276,10 +277,16 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         public void SelectHigherPriorityFactFromContainerTestCase()
         {
             const long expectedValue = 1;
+
+            var parameterCache = new FactParameterCache();
             var container = new Container
             {
-                new FactResult(expectedValue).AddPriorityParameter(new Priority1()).AddVerionParameter(new Version1()),
-                new FactResult(expectedValue * 2).AddVerionParameter(new Version2())
+                new FactResult(expectedValue)
+                    .AddPriorityParameter(new Priority1(), parameterCache)
+                    .AddVerionParameter(new Version1(), parameterCache),
+
+                new FactResult(expectedValue * 2)
+                    .AddVerionParameter(new Version2(), parameterCache)
             };
 
             GivenCreateVersionedFactFactory()
@@ -316,10 +323,16 @@ namespace FactFactory.VersionedTests.VersionedFactFactory
         public void SelectFactNotCalculatedByRuleTestCase()
         {
             const long expectedValue = 1;
+
+            var parameterCache = new FactParameterCache();
             var container = new Container
             {
-                new FactResult(expectedValue).AddVerionParameter(new Version1()),
-                new FactResult(expectedValue * 2).SetCalculateByRule().AddVerionParameter(new Version2())
+                new FactResult(expectedValue)
+                    .AddVerionParameter(new Version1(), parameterCache),
+
+                new FactResult(expectedValue * 2)
+                    .SetCalculateByRule(parameterCache)
+                    .AddVerionParameter(new Version2(), parameterCache)
             };
 
             GivenCreateVersionedFactFactory()

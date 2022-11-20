@@ -18,5 +18,8 @@ namespace GetcuReone.FactFactory.Interfaces.Context
 
         /// <inheritdoc cref="IFactEngine"/>
         IFactEngine Engine { get; }
+
+        /// <inheritdoc cref="IFactParameterCache"/>
+        IFactParameterCache ParameterCache { get; }
     }
 }

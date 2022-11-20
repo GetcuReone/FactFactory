@@ -13,7 +13,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         private readonly Dictionary<IFact, IFactType> _cache = new Dictionary<IFact, IFactType>();
 
         /// <inheritdoc/>
-        public virtual IFactType GetFactType<TFact>(TFact fact) where TFact : IFact
+        public virtual IFactType GetFactType(IFact fact)
         {
             if (_cache.ContainsKey(fact))
                 return _cache[fact];

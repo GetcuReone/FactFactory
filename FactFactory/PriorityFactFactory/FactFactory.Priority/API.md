@@ -10,16 +10,16 @@
 - [BasePriority\`1](#T-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1')
   - [#ctor()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-#ctor-`0- 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.#ctor(`0)')
   - [PriorityValue](#P-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-PriorityValue 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.PriorityValue')
-  - [CompareTo(other)](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.CompareTo(FactFactory.Priority.Interfaces.IPriorityFact)')
-  - [CreateIncompatibilityVersionException(priorityFact)](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-CreateIncompatibilityVersionException-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.CreateIncompatibilityVersionException(FactFactory.Priority.Interfaces.IPriorityFact)')
+  - [CompareTo(other)](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-CompareTo-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.CompareTo(GetcuReone.FactFactory.Priority.Interfaces.IPriorityFact)')
+  - [CreateIncompatibilityVersionException(priorityFact)](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-CreateIncompatibilityVersionException-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.CreateIncompatibilityVersionException(GetcuReone.FactFactory.Priority.Interfaces.IPriorityFact)')
   - [EqualsInfo()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.EqualsInfo(GetcuReone.FactFactory.Interfaces.SpecialFacts.ISpecialFact)')
   - [op_Implicit(fact)](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-op_Implicit-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority{`0}-~`0 'GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority`1.op_Implicit(GetcuReone.FactFactory.Priority.SpecialFacts.BasePriority{`0})~`0')
 - [BaseULongPriority](#T-GetcuReone-FactFactory-Priority-SpecialFacts-BaseULongPriority 'GetcuReone.FactFactory.Priority.SpecialFacts.BaseULongPriority')
   - [#ctor()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BaseULongPriority-#ctor-System-UInt64- 'GetcuReone.FactFactory.Priority.SpecialFacts.BaseULongPriority.#ctor(System.UInt64)')
-  - [CompareTo()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BaseULongPriority-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.BaseULongPriority.CompareTo(FactFactory.Priority.Interfaces.IPriorityFact)')
+  - [CompareTo()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BaseULongPriority-CompareTo-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.BaseULongPriority.CompareTo(GetcuReone.FactFactory.Priority.Interfaces.IPriorityFact)')
 - [BaseUintPriority](#T-GetcuReone-FactFactory-Priority-SpecialFacts-BaseUintPriority 'GetcuReone.FactFactory.Priority.SpecialFacts.BaseUintPriority')
   - [#ctor()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BaseUintPriority-#ctor-System-UInt32- 'GetcuReone.FactFactory.Priority.SpecialFacts.BaseUintPriority.#ctor(System.UInt32)')
-  - [CompareTo()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BaseUintPriority-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.BaseUintPriority.CompareTo(FactFactory.Priority.Interfaces.IPriorityFact)')
+  - [CompareTo()](#M-GetcuReone-FactFactory-Priority-SpecialFacts-BaseUintPriority-CompareTo-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact- 'GetcuReone.FactFactory.Priority.SpecialFacts.BaseUintPriority.CompareTo(GetcuReone.FactFactory.Priority.Interfaces.IPriorityFact)')
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
 - [ListExtensions](#T--ListExtensions '.ListExtensions')
@@ -100,7 +100,7 @@ GetcuReone.FactFactory.Priority.SpecialFacts
 
 ##### Summary
 
-Base class for [IPriorityFact](#T-FactFactory-Priority-Interfaces-IPriorityFact 'FactFactory.Priority.Interfaces.IPriorityFact').
+Base class for [IPriorityFact](#T-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact 'GetcuReone.FactFactory.Priority.Interfaces.IPriorityFact').
 
 ##### Generic Types
 
@@ -126,7 +126,7 @@ This constructor has no parameters.
 
 Priority value.
 
-<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact-'></a>
+<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-CompareTo-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact-'></a>
 ### CompareTo(other) `method`
 
 ##### Summary
@@ -141,9 +141,9 @@ Compares the priority fact to the `other`.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| other | [FactFactory.Priority.Interfaces.IPriorityFact](#T-FactFactory-Priority-Interfaces-IPriorityFact 'FactFactory.Priority.Interfaces.IPriorityFact') | Priority fact for comparison |
+| other | [GetcuReone.FactFactory.Priority.Interfaces.IPriorityFact](#T-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact 'GetcuReone.FactFactory.Priority.Interfaces.IPriorityFact') | Priority fact for comparison |
 
-<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-CreateIncompatibilityVersionException-FactFactory-Priority-Interfaces-IPriorityFact-'></a>
+<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-CreateIncompatibilityVersionException-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact-'></a>
 ### CreateIncompatibilityVersionException(priorityFact) `method`
 
 ##### Summary
@@ -158,7 +158,7 @@ Error creating incompatibility priority facts.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| priorityFact | [FactFactory.Priority.Interfaces.IPriorityFact](#T-FactFactory-Priority-Interfaces-IPriorityFact 'FactFactory.Priority.Interfaces.IPriorityFact') | Priority fact. |
+| priorityFact | [GetcuReone.FactFactory.Priority.Interfaces.IPriorityFact](#T-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact 'GetcuReone.FactFactory.Priority.Interfaces.IPriorityFact') | Priority fact. |
 
 <a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-BasePriority`1-EqualsInfo-GetcuReone-FactFactory-Interfaces-SpecialFacts-ISpecialFact-'></a>
 ### EqualsInfo() `method`
@@ -206,7 +206,7 @@ Base class for priority fact with value of type [UInt64](http://msdn.microsoft.c
 
 This constructor has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-BaseULongPriority-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact-'></a>
+<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-BaseULongPriority-CompareTo-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact-'></a>
 ### CompareTo() `method`
 
 ##### Summary
@@ -239,7 +239,7 @@ Base class for priority fact with value of type [UInt32](http://msdn.microsoft.c
 
 This constructor has no parameters.
 
-<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-BaseUintPriority-CompareTo-FactFactory-Priority-Interfaces-IPriorityFact-'></a>
+<a name='M-GetcuReone-FactFactory-Priority-SpecialFacts-BaseUintPriority-CompareTo-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact-'></a>
 ### CompareTo() `method`
 
 ##### Summary
