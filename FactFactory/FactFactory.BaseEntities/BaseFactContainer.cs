@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
+using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using System.Collections;
@@ -27,7 +28,9 @@ namespace GetcuReone.FactFactory.BaseEntities
         public IEqualityComparer<IFact> EqualityComparer { get; set; }
 
         /// <inheritdoc/>
-        /// <remarks>If the value is not specified, then <see cref="CommonHelper.CompareTo(IFact, IFact)"/> will be used.</remarks>
+        /// <remarks>
+        /// If the value is not specified, then <see cref="FactExtensions.CompareTo(IFact, IFact)"/> will be used.
+        /// </remarks>
         public IComparer<IFact> Comparer { get; set; }
 
         /// <summary>

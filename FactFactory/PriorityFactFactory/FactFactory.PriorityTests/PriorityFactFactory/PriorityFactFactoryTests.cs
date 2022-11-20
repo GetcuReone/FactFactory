@@ -41,7 +41,7 @@ namespace FactFactory.PriorityTests.PriorityFactFactory
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(TC.Projects.Priority), TestCategory(GetcuReoneTC.Unit)]
         [Description("Use a higher priority right.")]
-        [Timeout(Timeouts.Second.One)]
+        //[Timeout(Timeouts.Second.One)]
         public void UseHigherPriorityRightTestCase()
         {
             const long expectedValue = 2;

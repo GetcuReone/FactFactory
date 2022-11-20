@@ -1,6 +1,7 @@
-﻿using FactFactory.Priority.Interfaces;
-using GetcuReone.FactFactory.Interfaces;
+﻿using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
+using GetcuReone.FactFactory.Priority.Common.Extensions;
+using GetcuReone.FactFactory.Priority.Interfaces;
 using System.Linq;
 
 namespace GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations

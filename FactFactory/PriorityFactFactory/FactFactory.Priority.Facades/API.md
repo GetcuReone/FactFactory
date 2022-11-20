@@ -114,7 +114,7 @@ GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations
 
 ##### Summary
 
-Single operations on entities of the FactFactory. Sharpened for work with [IPriorityFact](#T-FactFactory-Priority-Interfaces-IPriorityFact 'FactFactory.Priority.Interfaces.IPriorityFact').
+Single operations on entities of the FactFactory. Sharpened for work with [IPriorityFact](#T-GetcuReone-FactFactory-Priority-Interfaces-IPriorityFact 'GetcuReone.FactFactory.Priority.Interfaces.IPriorityFact').
 
 <a name='M-GetcuReone-FactFactory-Priority-Facades-SingleEntityOperations-PrioritySingleEntityOperationsFacade-CalculateFact-GetcuReone-FactFactory-Interfaces-Operations-Entities-NodeByFactRule,GetcuReone-FactFactory-Interfaces-Context-IWantActionContext-'></a>
 ### CalculateFact(node,context) `method`

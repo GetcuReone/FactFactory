@@ -342,9 +342,10 @@ namespace FactFactoryTests.FactFactoryT
             var container = new Container();
 
             Given("Create factory.", () => factFactoryCustom = new FactFactoryCustom())
-                .And("Add default fact.", factFactory => factFactory.DefaultFacts.Add(defaultFact))
-                .When("Run Derive.", factFactory => 
-                    factFactory.DeriveFact<DefaultFact>(container))
+                .And("Add default fact.", factory => factFactoryCustom.DefaultFacts.Add(defaultFact))
+                .And("Convert type.", factory => (IFactFactory)factory)
+                .When("Run Derive.", factory =>
+                    factory.DeriveFact<DefaultFact>(container))
                 .ThenIsNotNull()
                 .AndAreEqual(defaultFact)
                 .And("Check Container.", _ => 

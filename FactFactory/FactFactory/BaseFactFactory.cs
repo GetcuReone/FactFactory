@@ -4,6 +4,7 @@ using GetcuReone.ComboPatterns.Interfaces;
 using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Facades.FactEngine;
@@ -61,10 +62,11 @@ namespace GetcuReone.FactFactory
             ISingleEntityOperations singleEntityOperations = GetSingleEntityOperations();
             ITreeBuildingOperations treeBuildingOperations = GetTreeBuildingOperations();
             IFactEngine engine = GetFactEngine();
+            IFactParameterCache parameterCache = GetFactParameterCache();
 
             // Validate container and get contexts.
             var contexts = WantFactsInfos.ConvertAll(info =>
-                GetWantActionContext(info, engine, treeBuildingOperations, singleEntityOperations, cache));
+                GetWantActionContext(info, engine, treeBuildingOperations, singleEntityOperations, cache, parameterCache));
 
             engine.DeriveWantAction(contexts.ConvertAll(context => new DeriveWantActionRequest
             {
@@ -83,10 +85,11 @@ namespace GetcuReone.FactFactory
             ISingleEntityOperations singleEntityOperations = GetSingleEntityOperations();
             ITreeBuildingOperations treeBuildingOperations = GetTreeBuildingOperations();
             IFactEngine engine = GetFactEngine();
+            IFactParameterCache parameterCache = GetFactParameterCache();
 
             // Validate container and get contexts.
             var contexts = WantFactsInfos.ConvertAll(info =>
-                GetWantActionContext(info, engine, treeBuildingOperations, singleEntityOperations, cache));
+                GetWantActionContext(info, engine, treeBuildingOperations, singleEntityOperations, cache, parameterCache));
 
             await engine.DeriveWantActionAsync(contexts.ConvertAll(context => new DeriveWantActionRequest
             {
@@ -97,7 +100,13 @@ namespace GetcuReone.FactFactory
             WantFactsInfos.Clear();
         }
 
-        private IWantActionContext GetWantActionContext(WantFactsInfo wantFactsInfo, IFactEngine engine, ITreeBuildingOperations treeBuilding, ISingleEntityOperations singleEntity, IFactTypeCache cache)
+        private IWantActionContext GetWantActionContext(
+            WantFactsInfo wantFactsInfo,
+            IFactEngine engine,
+            ITreeBuildingOperations treeBuilding,
+            ISingleEntityOperations singleEntity,
+            IFactTypeCache cache,
+            IFactParameterCache parameterCache)
         {
             var context = new WantActionContext
             {
@@ -107,6 +116,7 @@ namespace GetcuReone.FactFactory
                 TreeBuilding = treeBuilding,
                 WantAction = wantFactsInfo.WantAction,
                 Engine = engine,
+                ParameterCache = parameterCache,
             };
             context.Container.EqualityComparer = context.SingleEntity.GetFactEqualityComparer(context);
             context.Container.Comparer = context.SingleEntity.GetFactComparer(context);
@@ -202,6 +212,15 @@ namespace GetcuReone.FactFactory
         protected virtual IFactEngine GetFactEngine()
         {
             return GetFacade<FactEngineFacade>();
+        }
+
+        /// <summary>
+        /// Returns <see cref="IFactParameterCache"/>
+        /// </summary>
+        /// <returns>Instanse <see cref="IFactParameterCache"/>.</returns>
+        protected virtual IFactParameterCache GetFactParameterCache()
+        {
+            return new FactParameterCache();
         }
 
         #region overloads method WantFact

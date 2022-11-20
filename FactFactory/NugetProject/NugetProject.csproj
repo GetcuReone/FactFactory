@@ -13,12 +13,9 @@
         <PackageTags>factfactory fact factory getcureone</PackageTags>
         <PackageReleaseNotes>
             Changes ($(PackageVersion)):
-            - removed deprecated code
-            - rejected the typed rule
-            - rejected the typed wantaction
-            - rejected the typed conteiner
-            - moved the wantAction to the interface through lambda functions
-            - corrected the text of the error when there are several uses of facts in the container
+            - add fact parameter cache
+            - move IPriorityFact to GetcuReone.FactFactory.Priority.Interfaces
+            - moved extension methods to appropriate classes
         </PackageReleaseNotes>
     </PropertyGroup>
 

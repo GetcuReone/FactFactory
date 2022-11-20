@@ -26,6 +26,7 @@
   - [GetDefaultFacts(context)](#M-GetcuReone-FactFactory-BaseFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext- 'GetcuReone.FactFactory.BaseFactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)')
   - [GetFacade\`\`1()](#M-GetcuReone-FactFactory-BaseFactFactory-GetFacade``1 'GetcuReone.FactFactory.BaseFactFactory.GetFacade``1')
   - [GetFactEngine()](#M-GetcuReone-FactFactory-BaseFactFactory-GetFactEngine 'GetcuReone.FactFactory.BaseFactFactory.GetFactEngine')
+  - [GetFactParameterCache()](#M-GetcuReone-FactFactory-BaseFactFactory-GetFactParameterCache 'GetcuReone.FactFactory.BaseFactFactory.GetFactParameterCache')
   - [GetFactTypeCache()](#M-GetcuReone-FactFactory-BaseFactFactory-GetFactTypeCache 'GetcuReone.FactFactory.BaseFactFactory.GetFactTypeCache')
   - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-BaseFactFactory-GetSingleEntityOperations 'GetcuReone.FactFactory.BaseFactFactory.GetSingleEntityOperations')
   - [GetSingleEntityOperationsOnce()](#M-GetcuReone-FactFactory-BaseFactFactory-GetSingleEntityOperationsOnce 'GetcuReone.FactFactory.BaseFactFactory.GetSingleEntityOperationsOnce')
@@ -398,6 +399,21 @@ Returns [FactEngineFacade](#T-GetcuReone-FactFactory-Facades-FactEngine-FactEngi
 ##### Returns
 
 Instanse [FactEngineFacade](#T-GetcuReone-FactFactory-Facades-FactEngine-FactEngineFacade 'GetcuReone.FactFactory.Facades.FactEngine.FactEngineFacade').
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-GetcuReone-FactFactory-BaseFactFactory-GetFactParameterCache'></a>
+### GetFactParameterCache() `method`
+
+##### Summary
+
+Returns [IFactParameterCache](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactParameterCache 'GetcuReone.FactFactory.Interfaces.Operations.IFactParameterCache')
+
+##### Returns
+
+Instanse [IFactParameterCache](#T-GetcuReone-FactFactory-Interfaces-Operations-IFactParameterCache 'GetcuReone.FactFactory.Interfaces.Operations.IFactParameterCache').
 
 ##### Parameters
 
