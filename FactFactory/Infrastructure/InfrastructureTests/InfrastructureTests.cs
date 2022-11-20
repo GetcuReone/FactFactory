@@ -106,13 +106,8 @@ namespace InfrastructureTests
         [Timeout(Timeouts.Minute.One)]
         public void AssembliesHave3ersionTestCase()
         {
-            string[] includeAssemblies = new string[]
-            {
-            };
-            string majorVersion = BuildConfiguration == "Release"
-                ? Environment.GetEnvironmentVariable("majorVersion") ?? ""
-                : "1";
-            string excpectedAssemblyVersion = $"{majorVersion}.0.0.0";
+            string[] includeAssemblies = new string[] { };
+            string excpectedAssemblyVersion = "3.0.0.0";
 
             CheckAssembliesVersion(_solutionFolder, _projectName, excpectedAssemblyVersion, includeAssemblies);
         }
