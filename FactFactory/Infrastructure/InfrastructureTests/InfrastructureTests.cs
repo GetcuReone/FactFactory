@@ -104,7 +104,7 @@ namespace InfrastructureTests
         [TestCategory(GetcuReoneTC.Infra)]
         [Description("Assemblies have major version.")]
         [Timeout(Timeouts.Minute.One)]
-        public void AssembliesHaveMajorVersionTestCase()
+        public void AssembliesHave3ersionTestCase()
         {
             string[] includeAssemblies = new string[]
             {
