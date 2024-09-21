@@ -1,4 +1,6 @@
-﻿using GetcuReone.ComboPatterns.Facade;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions.Entities;
@@ -10,16 +12,13 @@ using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities.Enums;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 {
     /// <summary>
     /// Tree building operations.
     /// </summary>
-    public class TreeBuildingOperationsFacade : FacadeBase, ITreeBuildingOperations
+    public class TreeBuildingOperationsFacade : ITreeBuildingOperations
     {
         /// <inheritdoc/>
         public virtual bool TryBuildTreeForFactInfo(
@@ -300,17 +299,14 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             // Exclude condition special facts
             if (factType.IsFactType<IBuildConditionFact>())
             {
-                var nodeInfo = node.Info;
+                NodeByFactRuleInfo nodeInfo = node.Info;
 
                 if (nodeInfo.BuildSuccessConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(factType)))
                     return true;
                 else if (nodeInfo.BuildFailedConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(factType)))
                     return false;
 
-                var condition = Factory.CreateObject(
-                    type => type.CreateBuildConditionFact<IBuildConditionFact>(),
-                    factType
-                );
+                var condition = factType.CreateBuildConditionFact<IBuildConditionFact>();
 
                 if (condition.Condition(nodeInfo.Rule, context, _ => nodeInfo.CompatibleRules))
                 {
@@ -325,15 +321,12 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             }
             else if (factType.IsFactType<IRuntimeConditionFact>())
             {
-                var nodeInfo = node.Info;
+                NodeByFactRuleInfo nodeInfo = node.Info;
 
                 if (nodeInfo.RuntimeConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(factType)))
                     return true;
 
-                var condition = Factory.CreateObject(
-                    type => type.CreateRuntimeConditionFact<IRuntimeConditionFact>(),
-                    factType
-                );
+                IRuntimeConditionFact condition = factType.CreateRuntimeConditionFact<IRuntimeConditionFact>();
 
                 condition.SetGetRelatedRulesFunc(GetRelatedRules, node.Info.Rule, context.FactRules);
 
@@ -414,10 +407,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     if (wantActionInfo.BuildSuccessConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(needFactType)) || wantActionInfo.BuildFailedConditions.Exists(fact => context.Cache.GetFactType(fact).EqualsFactType(needFactType)))
                         continue;
 
-                    var condition = Factory.CreateObject(
-                        type => type.CreateBuildConditionFact<IBuildConditionFact>(),
-                        needFactType
-                    );
+                    var condition = needFactType.CreateBuildConditionFact<IBuildConditionFact>();
 
                     if (condition.Condition(context.WantAction, context, ct => ct.WantAction.GetCompatibleRulesEx(request.FactRules, context)))
                     {
@@ -434,9 +424,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
                 if (needFactType.IsFactType<IRuntimeConditionFact>())
                 {
-                    var condition = Factory.CreateObject(
-                        type => type.CreateRuntimeConditionFact<IRuntimeConditionFact>(),
-                        needFactType);
+                    var condition = needFactType.CreateRuntimeConditionFact<IRuntimeConditionFact>();
 
                     result.WantActionInfo.RuntimeConditions.Add(condition);
 

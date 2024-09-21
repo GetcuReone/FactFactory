@@ -10,12 +10,10 @@
         
         Think of the vertices of the graph as the information you describe, and the edges of the graph as the rules for calculating that information.
         A fact factory can build a decision tree to calculate one piece of information from another, using your rules to link between your set of information.</Description>
-        <PackageTags>factfactory fact factory getcureone</PackageTags>
+        <PackageTags>factfactory fact factory getcureone facts</PackageTags>
         <PackageReleaseNotes>
             Changes ($(PackageVersion)):
-            - add fact parameter cache
-            - move IPriorityFact to GetcuReone.FactFactory.Priority.Interfaces
-            - moved extension methods to appropriate classes
+            - remove dependence on ComboPatterns
         </PackageReleaseNotes>
     </PropertyGroup>
 

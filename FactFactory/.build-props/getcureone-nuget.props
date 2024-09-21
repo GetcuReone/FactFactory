@@ -6,7 +6,7 @@
     <Import Project="$(MSBuildThisFileDirectory)\getcureone-library.props"/>
 
     <PropertyGroup>
-        <Product>FactFactory</Product>
+        <Product>GetcuReone.FactFactory</Product>
         <PackageVersion>$(majorVersion).$(minorVersion).$(patchVersion)</PackageVersion>
         <RepositoryUrl>https://github.com/GetcuReone/FactFactory.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>

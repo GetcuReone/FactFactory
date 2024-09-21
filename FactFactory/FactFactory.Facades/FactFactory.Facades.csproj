@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ComboPatterns" Version="4.0.0" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\FactFactory.Entities\FactFactory.Entities.csproj" />
     </ItemGroup>
 
