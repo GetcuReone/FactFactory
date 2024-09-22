@@ -1,4 +1,7 @@
-﻿using GetcuReone.ComboPatterns.Facade;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
@@ -9,10 +12,6 @@ using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
@@ -20,7 +19,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
     /// <summary>
     /// Single operations on entities of the FactFactory.
     /// </summary>
-    public class SingleEntityOperationsFacade : FacadeBase, ISingleEntityOperations
+    public class SingleEntityOperationsFacade : ISingleEntityOperations
     {
         /// <inheritdoc/>
         public virtual IComparer<IFactRule> GetRuleComparer(IWantActionContext context)
@@ -169,9 +168,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             if (!CanInvokeWork(requiredFacts, rule, context.Cache))
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"Can't calculate the '{rule}' rule.", context.WantAction, context.Container);
 
-            var fact = Factory.CreateObject(
-                facts => rule.Calculate(facts),
-                requiredFacts);
+            var fact = rule.Calculate(requiredFacts);
 
             fact.SetCalculateByRule(context.ParameterCache);
             context.WantAction.AddUsedRule(rule);
@@ -209,8 +206,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             if (!CanInvokeWork(requiredFacts, rule, context.Cache))
                 throw CommonHelper.CreateDeriveException(ErrorCode.InvalidOperation, $"Can't calculate the '{rule}' rule.", context.WantAction, context.Container);
 
-            IFact fact = await Factory
-                .CreateObject(facts => rule.CalculateAsync(facts), requiredFacts)
+            IFact fact = await rule.CalculateAsync(requiredFacts)
                 .ConfigureAwait(false);
 
             fact.SetCalculateByRule(context.ParameterCache);

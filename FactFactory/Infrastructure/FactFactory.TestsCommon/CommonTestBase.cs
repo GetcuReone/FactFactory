@@ -76,7 +76,7 @@ namespace FactFactory.TestsCommon
             return new WantActionContext
             {
                 Cache = cache ?? GetFactTypeCache(),
-                SingleEntity = singleEntity ?? GetFacade<SingleEntityOperationsFacade>(),
+                SingleEntity = singleEntity ?? new SingleEntityOperationsFacade(),
                 WantAction = wantAction,
                 Container = container,
                 ParameterCache = GetFactParameterCache(),

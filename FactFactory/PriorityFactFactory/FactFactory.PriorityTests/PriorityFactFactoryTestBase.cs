@@ -12,7 +12,7 @@ namespace FactFactory.PriorityTests
     {
         protected override IWantActionContext GetWantActionContext(IWantAction wantAction, IFactContainer container, ISingleEntityOperations singleEntity = null, IFactTypeCache cache = null)
         {
-            return base.GetWantActionContext(wantAction, container, singleEntity ?? GetFacade<PrioritySingleEntityOperationsFacade>(), cache);
+            return base.GetWantActionContext(wantAction, container, singleEntity ?? new PrioritySingleEntityOperationsFacade(), cache);
         }
     }
 }

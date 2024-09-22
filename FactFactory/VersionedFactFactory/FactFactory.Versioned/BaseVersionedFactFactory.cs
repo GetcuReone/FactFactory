@@ -20,7 +20,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <returns>Instance <see cref="VersionedSingleEntityOperationsFacade"/>.</returns>
         protected override ISingleEntityOperations GetSingleEntityOperations()
         {
-            return GetFacade<VersionedSingleEntityOperationsFacade>();
+            return new VersionedSingleEntityOperationsFacade();
         }
 
         /// <summary>
