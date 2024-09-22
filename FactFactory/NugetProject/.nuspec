@@ -1,34 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
-  <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <authors>$author$</authors>
-    <description>$Description$</description>
-    <tags>$PackageTags$</tags>
+    <metadata>
+        <id>$id$</id>
+        <version>$version$</version>
+        <authors>$author$</authors>
+        <description>$Description$</description>
+        <tags>$PackageTags$</tags>
 
-    <!--Project info-->
-    <projectUrl>$PackageProjectUrl$</projectUrl>
-    <repository type="$RepositoryType$" url="$RepositoryUrl$" branch="$RepositoryBranch$"/>
+        <!-- Project info -->
+        <projectUrl>$PackageProjectUrl$</projectUrl>
+        <repository type="$RepositoryType$" url="$RepositoryUrl$" branch="$RepositoryBranch$" />
 
-    <!--License info-->
-    <license type="file">$PackageLicenseFile$</license>
-    <requireLicenseAcceptance>$PackageRequireLicenseAcceptance$</requireLicenseAcceptance>
-    <copyright>$Copyright$</copyright>
-    <releaseNotes>$PackageReleaseNotes$</releaseNotes>
-    <language>$NeutralLanguage$</language>
+        <!-- License info -->
+        <license type="file">$PackageLicenseFile$</license>
+        <requireLicenseAcceptance>$PackageRequireLicenseAcceptance$</requireLicenseAcceptance>
+        <copyright>$Copyright$</copyright>
+        <releaseNotes>$PackageReleaseNotes$</releaseNotes>
+        <language>$NeutralLanguage$</language>
 
-    <dependencies>
-      <group targetFramework=".$TargetFramework$">
-        <dependency id="System.Threading.Tasks.Extensions" version="4.5.4" />
-      </group>
-    </dependencies>
-  </metadata>
+        <!-- Dependencies for different target frameworks -->
+        <dependencies>
+            <!-- Dependencies for netstandard2.0 -->
+            <group targetFramework="netstandard2.0">
+                <dependency id="System.Threading.Tasks.Extensions" version="4.5.4" />
+            </group>
+            <!-- Dependencies for netcoreapp3.1 -->
+            <group targetFramework="netcoreapp3.1">
+                <dependency id="System.Threading.Tasks.Extensions" version="4.5.4" />
+            </group>
+            <!-- Dependencies for net6.0 -->
+            <group targetFramework="net6.0">
+                <dependency id="System.Threading.Tasks.Extensions" version="4.5.4" />
+            </group>
+            <!-- Dependencies for net8.0 -->
+            <group targetFramework="net8.0">
+                <dependency id="System.Threading.Tasks.Extensions" version="4.5.4" />
+            </group>
+        </dependencies>
+    </metadata>
 
-  <files>
-    <file src="bin\$Configuration$\$TargetFramework$\GetcuReone.FactFactory**dll" target="lib\$TargetFramework$" />
-    <file src="bin\$Configuration$\$TargetFramework$\GetcuReone.FactFactory**xml" target="lib\$TargetFramework$" />
-    <file src="bin\$Configuration$\$TargetFramework$\$PackageLicenseFile$" target="" />
-    <file src="bin\$Configuration$\$TargetFramework$\README.md" target="" />
-  </files>
+    <files>
+        <!-- Files for netstandard2.0 -->
+        <file src="bin\$Configuration$\netstandard2.0\GetcuReone.FactFactory**dll" target="lib\netstandard2.0" />
+        <file src="bin\$Configuration$\netstandard2.0\GetcuReone.FactFactory**xml" target="lib\netstandard2.0" />
+
+        <!-- Files for netcoreapp3.1 -->
+        <file src="bin\$Configuration$\netcoreapp3.1\GetcuReone.FactFactory**dll" target="lib\netcoreapp3.1" />
+        <file src="bin\$Configuration$\netcoreapp3.1\GetcuReone.FactFactory**xml" target="lib\netcoreapp3.1" />
+
+        <!-- Files for net6.0 -->
+        <file src="bin\$Configuration$\net6.0\GetcuReone.FactFactory**dll" target="lib\net6.0" />
+        <file src="bin\$Configuration$\net6.0\GetcuReone.FactFactory**xml" target="lib\net6.0" />
+
+        <!-- Files for net8.0 -->
+        <file src="bin\$Configuration$\net8.0\GetcuReone.FactFactory**dll" target="lib\net8.0" />
+        <file src="bin\$Configuration$\net8.0\GetcuReone.FactFactory**xml" target="lib\net8.0" />
+
+        <!-- License and README files -->
+        <file src="$PackageLicenseFile$" target="LICENSE" />
+        <file src="README.md" target="README.md" />
+    </files>
 </package>

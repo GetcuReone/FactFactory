@@ -116,7 +116,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="..\..\LICENSE.txt">
+        <None Include="..\..\LICENSE">
             <Pack>True</Pack>
             <PackagePath></PackagePath>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
