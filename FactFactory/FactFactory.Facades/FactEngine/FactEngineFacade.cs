@@ -1,18 +1,17 @@
-﻿using GetcuReone.ComboPatterns.Facade;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Resources;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.Facades.FactEngine
 {
     /// <inheritdoc cref="IFactEngine"/>
-    public class FactEngineFacade : FacadeBase, IFactEngine
+    public class FactEngineFacade : IFactEngine
     {
         /// <inheritdoc/>
         public virtual void DeriveWantAction(List<DeriveWantActionRequest> requests)

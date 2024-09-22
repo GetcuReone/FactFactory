@@ -1,6 +1,7 @@
-﻿using GetcuReone.ComboPatterns.Facade;
-using GetcuReone.ComboPatterns.Factory;
-using GetcuReone.ComboPatterns.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
@@ -14,10 +15,6 @@ using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory
@@ -25,7 +22,7 @@ namespace GetcuReone.FactFactory
     /// <summary>
     /// Base class for fact factory.
     /// </summary>
-    public abstract class BaseFactFactory : FactoryBase, IFactFactory, IFacadeCreation
+    public abstract class BaseFactFactory : IFactFactory
     {
         private ISingleEntityOperations _singleEntityOperations;
 
@@ -36,13 +33,6 @@ namespace GetcuReone.FactFactory
 
         /// <inheritdoc/>
         public abstract IFactRuleCollection Rules { get; }
-
-        /// <inheritdoc/>
-        public virtual TFacade GetFacade<TFacade>()
-            where TFacade : IFacade, new()
-        {
-            return FacadeBase.Create<TFacade>(this);
-        }
 
         /// <summary>
         /// Returns the fact set that will be contained in the default container.
@@ -138,32 +128,6 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Derive <typeparamref name="TFactResult"/>.
-        /// </summary>
-        /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
-        /// <param name="container">Fact container.</param>
-        /// <returns>Fact <typeparamref name="TFactResult"/>.</returns>
-        [Obsolete("[5.0.2] Use FactFactoryExtensions.DeriveFact")]
-        public virtual TFactResult DeriveFact<TFactResult>(IFactContainer container = null)
-            where TFactResult : IFact
-        {
-            return FactFactoryExtensions.DeriveFact<TFactResult>(this, container);
-        }
-
-        /// <summary>
-        /// Derive <typeparamref name="TFactResult"/>.
-        /// </summary>
-        /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        [Obsolete("[5.0.2] Use FactFactoryExtensions.DeriveFactAsync")]
-        public virtual ValueTask<TFactResult> DeriveFactAsync<TFactResult>(IFactContainer container = null)
-            where TFactResult : IFact
-        {
-            return FactFactoryExtensions.DeriveFactAsync<TFactResult>(this, container); ;
-        }
-
-        /// <summary>
         /// Returns default container.
         /// </summary>
         /// <returns>Default container.</returns>
@@ -175,7 +139,7 @@ namespace GetcuReone.FactFactory
         /// <returns>Instanse <see cref="TreeBuildingOperationsFacade"/>.</returns>
         protected virtual ITreeBuildingOperations GetTreeBuildingOperations()
         {
-            return GetFacade<TreeBuildingOperationsFacade>();
+            return new TreeBuildingOperationsFacade();
         }
 
         /// <summary>
@@ -184,7 +148,7 @@ namespace GetcuReone.FactFactory
         /// <returns>Instanse <see cref="SingleEntityOperationsFacade"/>.</returns>
         protected virtual ISingleEntityOperations GetSingleEntityOperations()
         {
-            return GetFacade<SingleEntityOperationsFacade>();
+            return new SingleEntityOperationsFacade();
         }
 
         /// <summary>
@@ -211,7 +175,7 @@ namespace GetcuReone.FactFactory
         /// <returns>Instanse <see cref="FactEngineFacade"/>.</returns>
         protected virtual IFactEngine GetFactEngine()
         {
-            return GetFacade<FactEngineFacade>();
+            return new FactEngineFacade();
         }
 
         /// <summary>

@@ -6,7 +6,7 @@
     <PropertyGroup>
         <Authors>Itua Juel-Gaben</Authors>
         <NeutralLanguage>en-US</NeutralLanguage>
-        <Copyright>Copyright © 2020 $(Authors)</Copyright>
+        <Copyright>Copyright © 2024 $(Authors)</Copyright>
     </PropertyGroup>
 
 </Project>

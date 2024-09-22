@@ -9,7 +9,7 @@ namespace FactFactory.PriorityTests.SingleEntityOperations.Env
     {
         protected GivenBlock<object, PrioritySingleEntityOperationsFacade> GivenCreateFacade()
         {
-            return Given("Create PrioritySingleEntityOperationsFacade facade.", () => GetFacade<PrioritySingleEntityOperationsFacade>());
+            return Given("Create PrioritySingleEntityOperationsFacade facade.", () => new PrioritySingleEntityOperationsFacade());
         }
     }
 }

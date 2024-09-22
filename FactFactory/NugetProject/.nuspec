@@ -20,8 +20,7 @@
 
     <dependencies>
       <group targetFramework=".$TargetFramework$">
-        <dependency id="ComboPatterns" version="[4.0.0,)" />
-        <dependency id="System.Threading.Tasks.Extensions" version="[4.5.4,)" />
+        <dependency id="System.Threading.Tasks.Extensions" version="4.5.4" />
       </group>
     </dependencies>
   </metadata>

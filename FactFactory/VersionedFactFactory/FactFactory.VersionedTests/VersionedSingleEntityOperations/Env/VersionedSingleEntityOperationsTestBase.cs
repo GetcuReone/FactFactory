@@ -9,7 +9,7 @@ namespace FactFactory.VersionedTests.VersionedSingleEntityOperations.Env
     {
         protected virtual GivenBlock<object, VersionedSingleEntityOperationsFacade> GivenCreateFacade()
         {
-            return Given("Create SingleEntityOperationsFacade", () => GetFacade<VersionedSingleEntityOperationsFacade>());
+            return Given("Create SingleEntityOperationsFacade", () => new VersionedSingleEntityOperationsFacade());
         }
     }
 }
