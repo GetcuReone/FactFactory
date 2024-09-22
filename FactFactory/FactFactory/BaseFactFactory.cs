@@ -128,32 +128,6 @@ namespace GetcuReone.FactFactory
         }
 
         /// <summary>
-        /// Derive <typeparamref name="TFactResult"/>.
-        /// </summary>
-        /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
-        /// <param name="container">Fact container.</param>
-        /// <returns>Fact <typeparamref name="TFactResult"/>.</returns>
-        [Obsolete("[5.0.2] Use FactFactoryExtensions.DeriveFact")]
-        public virtual TFactResult DeriveFact<TFactResult>(IFactContainer container = null)
-            where TFactResult : IFact
-        {
-            return FactFactoryExtensions.DeriveFact<TFactResult>(this, container);
-        }
-
-        /// <summary>
-        /// Derive <typeparamref name="TFactResult"/>.
-        /// </summary>
-        /// <typeparam name="TFactResult">Type of desired fact.</typeparam>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        [Obsolete("[5.0.2] Use FactFactoryExtensions.DeriveFactAsync")]
-        public virtual ValueTask<TFactResult> DeriveFactAsync<TFactResult>(IFactContainer container = null)
-            where TFactResult : IFact
-        {
-            return FactFactoryExtensions.DeriveFactAsync<TFactResult>(this, container); ;
-        }
-
-        /// <summary>
         /// Returns default container.
         /// </summary>
         /// <returns>Default container.</returns>
