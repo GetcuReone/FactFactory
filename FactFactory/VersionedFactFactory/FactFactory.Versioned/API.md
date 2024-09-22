@@ -32,8 +32,6 @@
   - [ToString()](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion`1-ToString 'GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion`1.ToString')
   - [op_Implicit(fact)](#M-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion`1-op_Implicit-GetcuReone-FactFactory-Versioned-SpecialFacts-BaseVersion{`0}-~`0 'GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion`1.op_Implicit(GetcuReone.FactFactory.Versioned.SpecialFacts.BaseVersion{`0})~`0')
 - [BaseVersionedFactFactory](#T-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory')
-  - [DeriveFactAsync\`\`2()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-DeriveFactAsync``2-GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory.DeriveFactAsync``2(GetcuReone.FactFactory.Interfaces.IFactContainer)')
-  - [DeriveFact\`\`2()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-DeriveFact``2-GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory.DeriveFact``2(GetcuReone.FactFactory.Interfaces.IFactContainer)')
   - [GetSingleEntityOperations()](#M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-GetSingleEntityOperations 'GetcuReone.FactFactory.Versioned.BaseVersionedFactFactory.GetSingleEntityOperations')
 - [EnumerableExtensions](#T--EnumerableExtensions '.EnumerableExtensions')
   - [IsNullOrEmpty\`\`1(items)](#M-EnumerableExtensions-IsNullOrEmpty``1-System-Collections-Generic-IEnumerable{``0}- 'EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})')
@@ -397,50 +395,6 @@ GetcuReone.FactFactory.Versioned
 ##### Summary
 
 Base class for versioned fact factory.
-
-<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-DeriveFactAsync``2-GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
-### DeriveFactAsync\`\`2() `method`
-
-##### Summary
-
-Derive `TFactResult` with version.
-
-##### Returns
-
-
-
-##### Parameters
-
-This method has no parameters.
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFactResult | Type of desired fact. |
-| TVersion | Type of version fact. |
-
-<a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-DeriveFact``2-GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
-### DeriveFact\`\`2() `method`
-
-##### Summary
-
-Derive `TFactResult` with version.
-
-##### Returns
-
-Derived fact.
-
-##### Parameters
-
-This method has no parameters.
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFactResult | Type of desired fact. |
-| TVersion | Type of version fact. |
 
 <a name='M-GetcuReone-FactFactory-Versioned-BaseVersionedFactFactory-GetSingleEntityOperations'></a>
 ### GetSingleEntityOperations() `method`

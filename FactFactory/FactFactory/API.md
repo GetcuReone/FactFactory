@@ -20,8 +20,6 @@
   - [WantFactsInfos](#P-GetcuReone-FactFactory-BaseFactFactory-WantFactsInfos 'GetcuReone.FactFactory.BaseFactFactory.WantFactsInfos')
   - [Derive()](#M-GetcuReone-FactFactory-BaseFactFactory-Derive 'GetcuReone.FactFactory.BaseFactFactory.Derive')
   - [DeriveAsync()](#M-GetcuReone-FactFactory-BaseFactFactory-DeriveAsync 'GetcuReone.FactFactory.BaseFactFactory.DeriveAsync')
-  - [DeriveFactAsync\`\`1(container)](#M-GetcuReone-FactFactory-BaseFactFactory-DeriveFactAsync``1-GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.BaseFactFactory.DeriveFactAsync``1(GetcuReone.FactFactory.Interfaces.IFactContainer)')
-  - [DeriveFact\`\`1(container)](#M-GetcuReone-FactFactory-BaseFactFactory-DeriveFact``1-GetcuReone-FactFactory-Interfaces-IFactContainer- 'GetcuReone.FactFactory.BaseFactFactory.DeriveFact``1(GetcuReone.FactFactory.Interfaces.IFactContainer)')
   - [GetDefaultContainer()](#M-GetcuReone-FactFactory-BaseFactFactory-GetDefaultContainer 'GetcuReone.FactFactory.BaseFactFactory.GetDefaultContainer')
   - [GetDefaultFacts(context)](#M-GetcuReone-FactFactory-BaseFactFactory-GetDefaultFacts-GetcuReone-FactFactory-Interfaces-Context-IWantActionContext- 'GetcuReone.FactFactory.BaseFactFactory.GetDefaultFacts(GetcuReone.FactFactory.Interfaces.Context.IWantActionContext)')
   - [GetFactEngine()](#M-GetcuReone-FactFactory-BaseFactFactory-GetFactEngine 'GetcuReone.FactFactory.BaseFactFactory.GetFactEngine')
@@ -298,52 +296,6 @@ This method has no parameters.
 ##### Parameters
 
 This method has no parameters.
-
-<a name='M-GetcuReone-FactFactory-BaseFactFactory-DeriveFactAsync``1-GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
-### DeriveFactAsync\`\`1(container) `method`
-
-##### Summary
-
-Derive `TFactResult`.
-
-##### Returns
-
-
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| container | [GetcuReone.FactFactory.Interfaces.IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContainer 'GetcuReone.FactFactory.Interfaces.IFactContainer') |  |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFactResult | Type of desired fact. |
-
-<a name='M-GetcuReone-FactFactory-BaseFactFactory-DeriveFact``1-GetcuReone-FactFactory-Interfaces-IFactContainer-'></a>
-### DeriveFact\`\`1(container) `method`
-
-##### Summary
-
-Derive `TFactResult`.
-
-##### Returns
-
-Fact `TFactResult`.
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| container | [GetcuReone.FactFactory.Interfaces.IFactContainer](#T-GetcuReone-FactFactory-Interfaces-IFactContainer 'GetcuReone.FactFactory.Interfaces.IFactContainer') | Fact container. |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| TFactResult | Type of desired fact. |
 
 <a name='M-GetcuReone-FactFactory-BaseFactFactory-GetDefaultContainer'></a>
 ### GetDefaultContainer() `method`
