@@ -3,7 +3,7 @@
     <Import Project="..\.build-props\getcureone-nuget.props" />
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFrameworks>netstandard2.0;netcoreapp3.1;net6.0;net8.0</TargetFrameworks>
 
         <PackageId>GetcuReone.FactFactory</PackageId>
         <Description>Welcome to my Fact Factory project. In this project, I realized my vision of the fact factory. It is a decision tree building mechanism for information processing.
