@@ -14,6 +14,7 @@
         <PackageReleaseNotes>
             Changes ($(PackageVersion)):
             - remove dependence on ComboPatterns
+            - added support targets netcoreapp3.1, net6 and net8
         </PackageReleaseNotes>
     </PropertyGroup>
 
