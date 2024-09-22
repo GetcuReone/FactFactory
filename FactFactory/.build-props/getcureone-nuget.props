@@ -12,7 +12,6 @@
         <RepositoryType>git</RepositoryType>
         <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
 
         <RepositoryBranch>$([MSBuild]::ValueOrDefault('$(RepositoryBranch)', 'develop'))</RepositoryBranch>
 

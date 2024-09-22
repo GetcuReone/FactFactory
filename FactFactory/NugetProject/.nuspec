@@ -12,7 +12,7 @@
         <repository type="$RepositoryType$" url="$RepositoryUrl$" branch="$RepositoryBranch$" />
 
         <!-- License info -->
-        <license type="file">$PackageLicenseFile$</license>
+        <license type="file">LICENSE</license>
         <requireLicenseAcceptance>$PackageRequireLicenseAcceptance$</requireLicenseAcceptance>
         <copyright>$Copyright$</copyright>
         <releaseNotes>$PackageReleaseNotes$</releaseNotes>
@@ -57,7 +57,7 @@
         <file src="bin\$Configuration$\net8.0\GetcuReone.FactFactory**xml" target="lib\net8.0" />
 
         <!-- License and README files -->
-        <file src="$PackageLicenseFile$" target="LICENSE" />
-        <file src="README.md" target="README.md" />
+        <file src="bin\$Configuration$\netstandard2.0\LICENSE" target="LICENSE" />
+        <file src="bin\$Configuration$\netstandard2.0\README.md" target="README.md" />
     </files>
 </package>

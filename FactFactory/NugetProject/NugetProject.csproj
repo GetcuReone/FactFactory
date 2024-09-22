@@ -35,7 +35,6 @@
         <NuspecProperties>$(NuspecProperties);RepositoryUrl=$(RepositoryUrl)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);RepositoryBranch=$(RepositoryBranch)</NuspecProperties>
         <!--Transfer license information-->
-        <NuspecProperties>$(NuspecProperties);PackageLicenseFile=$(PackageLicenseFile)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);PackageRequireLicenseAcceptance=$(PackageRequireLicenseAcceptance)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);Copyright=$(Copyright)</NuspecProperties>
         <!--Transfer another information-->
@@ -118,7 +117,7 @@
     <ItemGroup>
         <None Include="..\..\LICENSE">
             <Pack>True</Pack>
-            <PackagePath></PackagePath>
+            <PackagePath>LICENSE</PackagePath>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Include="..\..\README.md">
