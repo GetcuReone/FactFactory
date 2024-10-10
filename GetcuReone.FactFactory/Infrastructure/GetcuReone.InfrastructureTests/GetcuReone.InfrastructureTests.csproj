@@ -8,10 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\FactFactoryTests\FactFactoryTests.csproj" />
-        <ProjectReference Include="..\..\PriorityFactFactory\FactFactory.PriorityTests\FactFactory.PriorityTests.csproj" />
-        <ProjectReference Include="..\..\VersionedFactFactory\FactFactory.VersionedTests\FactFactory.VersionedTests.csproj" />
-        <ProjectReference Include="..\FactFactory.TestsCommon\FactFactory.TestsCommon.csproj" />
+        <ProjectReference Include="..\..\FactFactoryTests\GetcuReone.FactFactoryTests.csproj" />
+        <ProjectReference Include="..\..\PriorityFactFactory\GetcuReone.FactFactory.PriorityTests\GetcuReone.FactFactory.PriorityTests.csproj" />
+        <ProjectReference Include="..\..\VersionedFactFactory\GetcuReone.FactFactory.VersionedTests\GetcuReone.FactFactory.VersionedTests.csproj" />
+        <ProjectReference Include="..\GetcuReone.FactFactory.TestsCommon\GetcuReone.FactFactory.TestsCommon.csproj" />
     </ItemGroup>
 
 </Project>
