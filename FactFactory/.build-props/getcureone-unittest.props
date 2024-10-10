@@ -3,7 +3,16 @@
 
     <!-- Common Unit Tests settings-->
 
-    <Import Project="$(MSBuildThisFileDirectory)\getcureone-library.props"/>
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-assembly-info.props"/>
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-publisher-info.props"/>
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-signature.props"/>
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-documentation.props"/>
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-code-analysis.props"/>
+    <Import Project="$(MSBuildThisFileDirectory)\common-props\getcureone-files-extensions.props"/>
+
+    <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
 
     <PropertyGroup>
         <NoWarn>1701;1702;CS1591</NoWarn>
