@@ -39,7 +39,7 @@ namespace InfrastructureTests
                 "net8.0"
                 ];
             List<string> files = [
-                "LICENSE.txt",
+                "LICENSE",
                 "README.md",
             ];
 
