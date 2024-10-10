@@ -3,7 +3,7 @@
     <Import Project="..\.build-props\getcureone-nuget.props" />
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFrameworks>netstandard2.0;netcoreapp3.1;net6.0;net8.0</TargetFrameworks>
 
         <PackageId>GetcuReone.FactFactory</PackageId>
         <Description>Welcome to my Fact Factory project. In this project, I realized my vision of the fact factory. It is a decision tree building mechanism for information processing.
@@ -14,6 +14,7 @@
         <PackageReleaseNotes>
             Changes ($(PackageVersion)):
             - remove dependence on ComboPatterns
+            - added support targets netcoreapp3.1, net6 and net8
         </PackageReleaseNotes>
     </PropertyGroup>
 
@@ -34,7 +35,6 @@
         <NuspecProperties>$(NuspecProperties);RepositoryUrl=$(RepositoryUrl)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);RepositoryBranch=$(RepositoryBranch)</NuspecProperties>
         <!--Transfer license information-->
-        <NuspecProperties>$(NuspecProperties);PackageLicenseFile=$(PackageLicenseFile)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);PackageRequireLicenseAcceptance=$(PackageRequireLicenseAcceptance)</NuspecProperties>
         <NuspecProperties>$(NuspecProperties);Copyright=$(Copyright)</NuspecProperties>
         <!--Transfer another information-->
@@ -115,9 +115,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="..\..\LICENSE.txt">
+        <None Include="..\..\LICENSE">
             <Pack>True</Pack>
-            <PackagePath></PackagePath>
+            <PackagePath>LICENSE</PackagePath>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Include="..\..\README.md">
