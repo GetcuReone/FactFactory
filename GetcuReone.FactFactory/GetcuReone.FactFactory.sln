@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory", "G
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F59B953D-A6E3-435D-BCDD-4D1F22B2A036}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureTests", "Infrastructure\InfrastructureTests\InfrastructureTests.csproj", "{AB633B69-6A85-4C1C-8AA7-749414A37349}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureTests", "Infrastructure\GetcuReone.InfrastructureTests\GetcuReone.InfrastructureTests.csproj", "{AB633B69-6A85-4C1C-8AA7-749414A37349}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VersionedFactFactory", "VersionedFactFactory", "{3547EA62-D78C-4D23-A846-451179E70B32}"
 EndProject
