@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\.build-props\getcureone-library.props" />
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;netcoreapp3.1;net6.0;net8.0</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\GetcuReone.FactFactory\GetcuReone.FactFactory.csproj" />
+        <ProjectReference Include="..\GetcuReone.FactFactory.Versioned.BaseEntities\GetcuReone.FactFactory.Versioned.BaseEntities.csproj" />
+        <ProjectReference Include="..\GetcuReone.FactFactory.Versioned.Common\GetcuReone.FactFactory.Versioned.Common.csproj" />
+        <ProjectReference Include="..\GetcuReone.FactFactory.Versioned.Entities\GetcuReone.FactFactory.Versioned.Entities.csproj" />
+        <ProjectReference Include="..\GetcuReone.FactFactory.Versioned.Facades\GetcuReone.FactFactory.Versioned.Facades.csproj" />
+    </ItemGroup>
+
+</Project>
