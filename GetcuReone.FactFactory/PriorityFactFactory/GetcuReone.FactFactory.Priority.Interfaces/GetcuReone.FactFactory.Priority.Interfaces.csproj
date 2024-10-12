@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <Import Project="..\..\.build-props\getcureone-library.props" />
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netcoreapp3.1;net6.0;net8.0</TargetFrameworks>
+        <GeneratedMSBuildEditorConfigFile>$(MSBuildProjectName).GeneratedMSBuild.editorconfig</GeneratedMSBuildEditorConfigFile>
     </PropertyGroup>
 
     <ItemGroup>
