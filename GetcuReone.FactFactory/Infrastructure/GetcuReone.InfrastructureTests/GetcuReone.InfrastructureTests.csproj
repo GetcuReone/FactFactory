@@ -9,8 +9,8 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\GetcuReone.FactFactoryTests\GetcuReone.FactFactoryTests.csproj" />
-        <ProjectReference Include="..\..\PriorityFactFactory\GetcuReone.FactFactory.PriorityTests\GetcuReone.FactFactory.PriorityTests.csproj" />
-        <ProjectReference Include="..\..\VersionedFactFactory\GetcuReone.FactFactory.VersionedTests\GetcuReone.FactFactory.VersionedTests.csproj" />
+        <ProjectReference Include="..\..\Priority\GetcuReone.FactFactory.PriorityTests\GetcuReone.FactFactory.PriorityTests.csproj" />
+        <ProjectReference Include="..\..\Versioned\GetcuReone.FactFactory.VersionedTests\GetcuReone.FactFactory.VersionedTests.csproj" />
         <ProjectReference Include="..\GetcuReone.FactFactory.TestsCommon\GetcuReone.FactFactory.TestsCommon.csproj" />
     </ItemGroup>
 

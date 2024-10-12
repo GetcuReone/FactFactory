@@ -70,45 +70,45 @@
         </ProjectReference>
 
         <!-- priorited fact factory references -->
-        <ProjectReference Include="..\PriorityFactFactory\GetcuReone.FactFactory.Priority.Interfaces\GetcuReone.FactFactory.Priority.Interfaces.csproj">
+        <ProjectReference Include="..\Priority\GetcuReone.FactFactory.Priority.Interfaces\GetcuReone.FactFactory.Priority.Interfaces.csproj">
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
-        <ProjectReference Include="..\PriorityFactFactory\GetcuReone.FactFactory.Priority.Common\GetcuReone.FactFactory.Priority.Common.csproj">
+        <ProjectReference Include="..\Priority\GetcuReone.FactFactory.Priority.Common\GetcuReone.FactFactory.Priority.Common.csproj">
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
-        <ProjectReference Include="..\PriorityFactFactory\GetcuReone.FactFactory.Priority.Facades\GetcuReone.FactFactory.Priority.Facades.csproj">
+        <ProjectReference Include="..\Priority\GetcuReone.FactFactory.Priority.Facades\GetcuReone.FactFactory.Priority.Facades.csproj">
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
-        <ProjectReference Include="..\PriorityFactFactory\GetcuReone.FactFactory.Priority\GetcuReone.FactFactory.Priority.csproj">
+        <ProjectReference Include="..\Priority\GetcuReone.FactFactory.Priority\GetcuReone.FactFactory.Priority.csproj">
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
 
         <!-- versioned fact factory references -->
-        <ProjectReference Include="..\VersionedFactFactory\GetcuReone.FactFactory.Versioned.Interfaces\GetcuReone.FactFactory.Versioned.Interfaces.csproj">
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned.Interfaces\GetcuReone.FactFactory.Versioned.Interfaces.csproj">
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
-        <ProjectReference Include="..\VersionedFactFactory\GetcuReone.FactFactory.Versioned.Common\GetcuReone.FactFactory.Versioned.Common.csproj">
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned.Common\GetcuReone.FactFactory.Versioned.Common.csproj">
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
-        <ProjectReference Include="..\VersionedFactFactory\GetcuReone.FactFactory.Versioned.Facades\GetcuReone.FactFactory.Versioned.Facades.csproj">
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned.Facades\GetcuReone.FactFactory.Versioned.Facades.csproj">
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
-        <ProjectReference Include="..\VersionedFactFactory\GetcuReone.FactFactory.Versioned.BaseEntities\GetcuReone.FactFactory.Versioned.BaseEntities.csproj">
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned.BaseEntities\GetcuReone.FactFactory.Versioned.BaseEntities.csproj">
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
-        <ProjectReference Include="..\VersionedFactFactory\GetcuReone.FactFactory.Versioned.Entities\GetcuReone.FactFactory.Versioned.Entities.csproj">
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned.Entities\GetcuReone.FactFactory.Versioned.Entities.csproj">
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
-        <ProjectReference Include="..\VersionedFactFactory\GetcuReone.FactFactory.Versioned\GetcuReone.FactFactory.Versioned.csproj">
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned\GetcuReone.FactFactory.Versioned.csproj">
             <PrivateAssets>All</PrivateAssets>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>

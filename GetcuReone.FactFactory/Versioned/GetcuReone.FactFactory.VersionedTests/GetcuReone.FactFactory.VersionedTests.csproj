@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\Infrastructure\GetcuReone.FactFactory.TestsCommon\GetcuReone.FactFactory.TestsCommon.csproj" />
-        <ProjectReference Include="..\..\PriorityFactFactory\GetcuReone.FactFactory.Priority\GetcuReone.FactFactory.Priority.csproj" />
+        <ProjectReference Include="..\..\Priority\GetcuReone.FactFactory.Priority\GetcuReone.FactFactory.Priority.csproj" />
         <ProjectReference Include="..\GetcuReone.FactFactory.Versioned\GetcuReone.FactFactory.Versioned.csproj" />
     </ItemGroup>
 

@@ -8,7 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\GetcuReone.FactFactory.Facades\GetcuReone.FactFactory.Facades.csproj" />
-      <ProjectReference Include="..\..\PriorityFactFactory\GetcuReone.FactFactory.Priority.Facades\GetcuReone.FactFactory.Priority.Facades.csproj" />
+      <ProjectReference Include="..\..\Priority\GetcuReone.FactFactory.Priority.Facades\GetcuReone.FactFactory.Priority.Facades.csproj" />
       <ProjectReference Include="..\GetcuReone.FactFactory.Versioned.Common\GetcuReone.FactFactory.Versioned.Common.csproj" />
       <ProjectReference Include="..\GetcuReone.FactFactory.Versioned.Interfaces\GetcuReone.FactFactory.Versioned.Interfaces.csproj" />
     </ItemGroup>

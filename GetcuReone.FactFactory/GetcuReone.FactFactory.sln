@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureTests", "Infrastructure\GetcuReone.InfrastructureTests\GetcuReone.InfrastructureTests.csproj", "{AB633B69-6A85-4C1C-8AA7-749414A37349}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VersionedFactFactory", "VersionedFactFactory", "{3547EA62-D78C-4D23-A846-451179E70B32}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Versioned", "Versioned", "{3547EA62-D78C-4D23-A846-451179E70B32}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned", "VersionedFactFactory\GetcuReone.FactFactory.Versioned\GetcuReone.FactFactory.Versioned.csproj", "{5BFDA09D-ED48-4553-8A65-B9E9570C2DEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned", "Versioned\GetcuReone.FactFactory.Versioned\GetcuReone.FactFactory.Versioned.csproj", "{5BFDA09D-ED48-4553-8A65-B9E9570C2DEC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.VersionedTests", "VersionedFactFactory\GetcuReone.FactFactory.VersionedTests\GetcuReone.FactFactory.VersionedTests.csproj", "{90291275-0D7E-4846-89BF-95C77A4BA498}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.VersionedTests", "Versioned\GetcuReone.FactFactory.VersionedTests\GetcuReone.FactFactory.VersionedTests.csproj", "{90291275-0D7E-4846-89BF-95C77A4BA498}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.TestsCommon", "Infrastructure\GetcuReone.FactFactory.TestsCommon\GetcuReone.FactFactory.TestsCommon.csproj", "{3AC49AB3-93F2-4A96-A408-7CBC3B12B130}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versioned_MovieServiceExample", "VersionedFactFactory\Versioned_MovieServiceExample\Versioned_MovieServiceExample.csproj", "{BBA497E3-6ABB-4E6D-9925-C107CA138E6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versioned_MovieServiceExample", "Versioned\Versioned_MovieServiceExample\Versioned_MovieServiceExample.csproj", "{BBA497E3-6ABB-4E6D-9925-C107CA138E6C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Interfaces", "GetcuReone.FactFactory.Interfaces\GetcuReone.FactFactory.Interfaces.csproj", "{34D79D91-821F-429A-92EF-DACC3E80C275}"
 EndProject
@@ -35,29 +35,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieServiceExample", "Movi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactoryTests", "GetcuReone.FactFactoryTests\GetcuReone.FactFactoryTests.csproj", "{9CAD9AC5-61F2-4723-9114-00E2C58A3A0B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned.Interfaces", "VersionedFactFactory\GetcuReone.FactFactory.Versioned.Interfaces\GetcuReone.FactFactory.Versioned.Interfaces.csproj", "{9147FC60-2D32-4C53-A650-74EFB3AF3DD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned.Interfaces", "Versioned\GetcuReone.FactFactory.Versioned.Interfaces\GetcuReone.FactFactory.Versioned.Interfaces.csproj", "{9147FC60-2D32-4C53-A650-74EFB3AF3DD1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned.Common", "VersionedFactFactory\GetcuReone.FactFactory.Versioned.Common\GetcuReone.FactFactory.Versioned.Common.csproj", "{21EE6CBA-B040-45D8-8C04-7B53612A3023}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned.Common", "Versioned\GetcuReone.FactFactory.Versioned.Common\GetcuReone.FactFactory.Versioned.Common.csproj", "{21EE6CBA-B040-45D8-8C04-7B53612A3023}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned.Facades", "VersionedFactFactory\GetcuReone.FactFactory.Versioned.Facades\GetcuReone.FactFactory.Versioned.Facades.csproj", "{2F3EEFFF-D508-4170-B546-BA8A1E995DDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned.Facades", "Versioned\GetcuReone.FactFactory.Versioned.Facades\GetcuReone.FactFactory.Versioned.Facades.csproj", "{2F3EEFFF-D508-4170-B546-BA8A1E995DDC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned.BaseEntities", "VersionedFactFactory\GetcuReone.FactFactory.Versioned.BaseEntities\GetcuReone.FactFactory.Versioned.BaseEntities.csproj", "{C2E1F803-1A35-4721-8EB0-569C23ABC31E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned.BaseEntities", "Versioned\GetcuReone.FactFactory.Versioned.BaseEntities\GetcuReone.FactFactory.Versioned.BaseEntities.csproj", "{C2E1F803-1A35-4721-8EB0-569C23ABC31E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned.Entities", "VersionedFactFactory\GetcuReone.FactFactory.Versioned.Entities\GetcuReone.FactFactory.Versioned.Entities.csproj", "{3ED74C24-A6F6-4475-9B84-4B2ED426EAF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Versioned.Entities", "Versioned\GetcuReone.FactFactory.Versioned.Entities\GetcuReone.FactFactory.Versioned.Entities.csproj", "{3ED74C24-A6F6-4475-9B84-4B2ED426EAF4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PriorityFactFactory", "PriorityFactFactory", "{6D86EC26-1D0A-4FC9-8758-82096E8A2874}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Priority", "Priority", "{6D86EC26-1D0A-4FC9-8758-82096E8A2874}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Priority.Interfaces", "PriorityFactFactory\GetcuReone.FactFactory.Priority.Interfaces\GetcuReone.FactFactory.Priority.Interfaces.csproj", "{C885657D-F06A-49CF-A21B-C6BE2B464127}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Priority.Interfaces", "Priority\GetcuReone.FactFactory.Priority.Interfaces\GetcuReone.FactFactory.Priority.Interfaces.csproj", "{C885657D-F06A-49CF-A21B-C6BE2B464127}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Priority.Common", "PriorityFactFactory\GetcuReone.FactFactory.Priority.Common\GetcuReone.FactFactory.Priority.Common.csproj", "{0D21666C-61E9-44F0-8081-54F8387B76D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Priority.Common", "Priority\GetcuReone.FactFactory.Priority.Common\GetcuReone.FactFactory.Priority.Common.csproj", "{0D21666C-61E9-44F0-8081-54F8387B76D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Priority.Facades", "PriorityFactFactory\GetcuReone.FactFactory.Priority.Facades\GetcuReone.FactFactory.Priority.Facades.csproj", "{1AC1CCA5-ED19-4DFC-A3BA-FE58742B5C64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Priority.Facades", "Priority\GetcuReone.FactFactory.Priority.Facades\GetcuReone.FactFactory.Priority.Facades.csproj", "{1AC1CCA5-ED19-4DFC-A3BA-FE58742B5C64}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.PriorityTests", "PriorityFactFactory\GetcuReone.FactFactory.PriorityTests\GetcuReone.FactFactory.PriorityTests.csproj", "{5582E471-A762-41B1-B291-51B997C72567}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.PriorityTests", "Priority\GetcuReone.FactFactory.PriorityTests\GetcuReone.FactFactory.PriorityTests.csproj", "{5582E471-A762-41B1-B291-51B997C72567}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Priority", "PriorityFactFactory\GetcuReone.FactFactory.Priority\GetcuReone.FactFactory.Priority.csproj", "{8A9086E8-8396-498C-B19D-0694C4AD3C77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory.Priority", "Priority\GetcuReone.FactFactory.Priority\GetcuReone.FactFactory.Priority.csproj", "{8A9086E8-8396-498C-B19D-0694C4AD3C77}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Priority_MovieServiceExample", "PriorityFactFactory\Priority_MovieServiceExample\Priority_MovieServiceExample.csproj", "{F346F924-E810-4814-B074-039962B9961B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Priority_MovieServiceExample", "Priority\Priority_MovieServiceExample\Priority_MovieServiceExample.csproj", "{F346F924-E810-4814-B074-039962B9961B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build-props", ".build-props", "{05269488-721D-4DF7-9D6F-EAB974416A99}"
 	ProjectSection(SolutionItems) = preProject
