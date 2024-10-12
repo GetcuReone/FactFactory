@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+
+    <!-- Assembly Information-->
+
+    <PropertyGroup>
+        <MajorVersion>$([MSBuild]::ValueOrDefault('$(majorVersion)', '6'))</MajorVersion>
+        <MinorVersion>$([MSBuild]::ValueOrDefault('$(minorVersion)', '0'))</MinorVersion>
+        <PatchVersion>$([MSBuild]::ValueOrDefault('$(patchVersion)', '0'))</PatchVersion>
+        <PackageVersion>$(majorVersion).$(minorVersion).$(patchVersion)</PackageVersion>
+        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+        <FileVersion>$(majorVersion).$(minorVersion).$(patchVersion).0</FileVersion>
+    </PropertyGroup>
+
+</Project>
