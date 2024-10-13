@@ -7,6 +7,7 @@
       <Compile Include="$(MSBuildThisFileDirectory)\..\..\.build-props\files\extensions\ArrayExtensions.cs" Link="Extensions\ArrayExtensions.cs" />
       <Compile Include="$(MSBuildThisFileDirectory)\..\..\.build-props\files\extensions\EnumerableExtensions.cs" Link="Extensions\EnumerableExtensions.cs" />
       <Compile Include="$(MSBuildThisFileDirectory)\..\..\.build-props\files\extensions\ListExtensions.cs" Link="Extensions\ListExtensions.cs" />
+      <Compile Include="$(MSBuildThisFileDirectory)\..\..\.build-props\files\attributes\NullableAttributes.cs" Link="Attributes\NullableAttributes.cs" />
     </ItemGroup>
 
 </Project>

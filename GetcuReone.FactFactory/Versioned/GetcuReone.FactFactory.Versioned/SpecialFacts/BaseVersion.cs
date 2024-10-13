@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Constants;
+﻿using System.Diagnostics.CodeAnalysis;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.SpecialFacts;
@@ -31,9 +32,9 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         /// </summary>
         /// <param name="versionedFact"></param>
         /// <returns></returns>
-        protected virtual FactFactoryException CreateIncompatibilityVersionException(IVersionFact versionedFact)
+        protected virtual FactFactoryException CreateIncompatibilityVersionException(IVersionFact? versionedFact)
         {
-            return CommonHelper.CreateException(ErrorCode.InvalidFactType, $"Unable to compare versions {GetFactType().FactName} and {versionedFact.GetFactType().FactName}.");
+            return CommonHelper.CreateException(ErrorCode.InvalidFactType, $"Unable to compare versions {GetFactType().FactName} and {versionedFact?.GetFactType().FactName ?? "null"}.");
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         /// </summary>
         /// <param name="other">Version fact for comparison</param>
         /// <returns>1 - more, 0 - equal, -1 less.</returns>
-        public abstract int CompareTo(IVersionFact other);
+        public abstract int CompareTo([AllowNull] IVersionFact other);
 
         /// <summary>
         /// Extracts <see cref="BaseVersion{TVersionValue}.VersionValue"/>.

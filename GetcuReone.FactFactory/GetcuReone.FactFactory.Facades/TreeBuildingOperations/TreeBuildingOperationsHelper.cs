@@ -19,45 +19,43 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <returns></returns>
         internal static List<TreeByFactRule> GetTreesByRequest(this BuildTreeForFactInfoRequest request)
         {
-            var context = request.Context;
-            var factRules = request.Context.FactRules;
+            IFactRulesContext context = request.Context;
+            IFactRuleCollection? factRules = request.Context.FactRules;
+
+#pragma warning disable CS8604
             if (factRules.IsNullOrEmpty())
+#pragma warning restore CS8604
                 throw CommonHelper.CreateDeriveException(ErrorCode.EmptyRuleCollection, "Rules cannot be null.");
 
-            var needRules = factRules
+            List<IFactRule> needRules = factRules!
                 .Where(rule => rule.OutputFactType.EqualsFactType(request.WantFactType))
                 .ToList();
 
             if (needRules.IsNullOrEmpty())
                 throw CommonHelper.CreateDeriveException(ErrorCode.RuleNotFound, $"No rules found able to calculate fact {request.WantFactType.FactName}.");
 
-            var nodeInfos = needRules.ConvertAll(rule => new NodeByFactRuleInfo
+            List<NodeByFactRuleInfo> nodeInfos = needRules!.ConvertAll(rule => new NodeByFactRuleInfo(rule)
             {
                 BuildSuccessConditions = new List<IBuildConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IBuildConditionFact>())),
                 BuildFailedConditions = new List<IBuildConditionFact>(),
                 RuntimeConditions = new List<IRuntimeConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IRuntimeConditionFact>())),
-                Rule = rule,
                 RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
-                CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context),
+                CompatibleRules = rule.GetCompatibleRulesEx(factRules!, context),
             });
 
             return nodeInfos.ConvertAll(info =>
             {
-                var node = new NodeByFactRule
+                var node = new NodeByFactRule(info)
                 {
                     Childs = new List<NodeByFactRule>(),
-                    Info = info,
                 };
 
-                var tree = new TreeByFactRule
+                var tree = new TreeByFactRule(node, context, nodeInfos)
                 {
                     Levels = new List<List<NodeByFactRule>>
                     {
                         new List<NodeByFactRule> { node },
-                    },
-                    NodeInfos = nodeInfos,
-                    Root = node,
-                    Context = context,
+                    }
                 };
 
                 if (info.RequiredFactTypes.Count == 0)
@@ -124,23 +122,19 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
             foreach (var rule in rules)
             {
-                NodeByFactRuleInfo nodeInfo = treeByFactRule.NodeInfos.FirstOrDefault(nInfo => nInfo.Rule.EqualsWork(rule, context.WantAction, context.Container));
+                NodeByFactRuleInfo? nodeInfo = treeByFactRule.NodeInfos.FirstOrDefault(nInfo => nInfo.Rule.EqualsWork(rule, context.WantAction, context.Container));
+                nodeInfo ??= new NodeByFactRuleInfo(rule)
+                {
+                    BuildSuccessConditions = new List<IBuildConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IBuildConditionFact>())),
+                    BuildFailedConditions = new List<IBuildConditionFact>(),
+                    RuntimeConditions = new List<IRuntimeConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IRuntimeConditionFact>())),
+                    RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
+                    CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules!, context),
+                };
 
-                if (nodeInfo == null)
-                    nodeInfo = new NodeByFactRuleInfo
-                    {
-                        Rule = rule,
-                        BuildSuccessConditions = new List<IBuildConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IBuildConditionFact>())),
-                        BuildFailedConditions = new List<IBuildConditionFact>(),
-                        RuntimeConditions = new List<IRuntimeConditionFact>(rule.InputFactTypes.Count(type => type.IsFactType<IRuntimeConditionFact>())),
-                        RequiredFactTypes = context.SingleEntity.GetRequiredTypesOfFacts(rule, context).ToList(),
-                        CompatibleRules = rule.GetCompatibleRulesEx(context.FactRules, context),
-                    };
-
-                result.Add(new NodeByFactRule
+                result.Add(new NodeByFactRule(nodeInfo)
                 {
                     Childs = new List<NodeByFactRule>(),
-                    Info = nodeInfo,
                     Parent = parentNode,
                 });
             }
@@ -150,7 +144,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
         private static void FillUniqueRulesFromTree(NodeByFactRule node, HashSet<IFactRule> eniqueRules)
         {
-            foreach (var child in node.Childs)
+            foreach (var child in node.Childs!)
                 FillUniqueRulesFromTree(child, eniqueRules);
 
             if (!eniqueRules.Contains(node.Info.Rule))
@@ -173,10 +167,9 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
         internal static NodeByFactRule Copy(this NodeByFactRule node, NodeByFactRule newParent)
         {
-            return new NodeByFactRule
+            return new NodeByFactRule(node.Info)
             {
                 Childs = node.Childs,
-                Info = node.Info,
                 Parent = newParent,
             };
         }

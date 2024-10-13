@@ -3,23 +3,32 @@
 namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
 {
     /// <summary>
-    /// Node.
+    /// Node
     /// </summary>
     public class NodeByFactRule
     {
         /// <summary>
-        /// Parent node.
+        /// Parent node
         /// </summary>
-        public NodeByFactRule Parent { get; set; }
+        public NodeByFactRule? Parent { get; set; }
 
         /// <summary>
-        /// Childs node.
+        /// Childs node
         /// </summary>
-        public List<NodeByFactRule> Childs { get; set; }
+        public List<NodeByFactRule>? Childs { get; set; }
 
         /// <summary>
-        /// Node info.
+        /// Node info
         /// </summary>
-        public NodeByFactRuleInfo Info { get; set; }
+        public NodeByFactRuleInfo Info { get; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="info">Node info</param>
+        public NodeByFactRule(NodeByFactRuleInfo info)
+        {
+            Info = info;
+        }
     }
 }

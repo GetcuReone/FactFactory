@@ -15,7 +15,7 @@ namespace GetcuReone.FactFactory.Extensions
         /// <returns></returns>
         public static bool IsCalculatedByRule(this IFact fact)
         {
-            object value = fact.GetParameter(FactParametersCodes.CalculateByRule)?.Value;
+            object? value = fact.FindParameter(FactParametersCodes.CalculateByRule)?.Value;
 
             if (value == null)
                 return false;

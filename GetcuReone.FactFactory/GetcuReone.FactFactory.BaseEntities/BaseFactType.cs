@@ -34,7 +34,7 @@ namespace GetcuReone.FactFactory.BaseEntities
                 throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} doesn't have a default constructor.");
 
 
-            return (TFactResult)Activator.CreateInstance(type, false);
+            return (TFactResult)Activator.CreateInstance(type, false)!;
         }
         
         /// <inheritdoc/>
@@ -49,7 +49,7 @@ namespace GetcuReone.FactFactory.BaseEntities
                 throw CommonHelper.CreateException(ErrorCode.InvalidFactType, $"{type.FullName} doesn't have a default constructor.");
 
 
-            return (TFactResult)Activator.CreateInstance(type, false);
+            return (TFactResult)Activator.CreateInstance(type, false)!;
         }
 
         /// <inheritdoc/>

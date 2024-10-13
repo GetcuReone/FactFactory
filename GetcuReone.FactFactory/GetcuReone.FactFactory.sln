@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.FactFactory", "G
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F59B953D-A6E3-435D-BCDD-4D1F22B2A036}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureTests", "Infrastructure\GetcuReone.InfrastructureTests\GetcuReone.InfrastructureTests.csproj", "{AB633B69-6A85-4C1C-8AA7-749414A37349}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetcuReone.InfrastructureTests", "Infrastructure\GetcuReone.InfrastructureTests\GetcuReone.InfrastructureTests.csproj", "{AB633B69-6A85-4C1C-8AA7-749414A37349}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Versioned", "Versioned", "{3547EA62-D78C-4D23-A846-451179E70B32}"
 EndProject
@@ -73,6 +73,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common-props", "common-prop
 		.build-props\common-props\getcureone-configuration.props = .build-props\common-props\getcureone-configuration.props
 		.build-props\common-props\getcureone-convert-projectreferences-to-package.props = .build-props\common-props\getcureone-convert-projectreferences-to-package.props
 		.build-props\common-props\getcureone-documentation.props = .build-props\common-props\getcureone-documentation.props
+		.build-props\common-props\getcureone-files-extensions.props = .build-props\common-props\getcureone-files-extensions.props
 		.build-props\common-props\getcureone-publisher-info.props = .build-props\common-props\getcureone-publisher-info.props
 		.build-props\common-props\getcureone-signature.props = .build-props\common-props\getcureone-signature.props
 	EndProjectSection
@@ -98,6 +99,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{
 		..\Pipelines\develop-pipeline.yml = ..\Pipelines\develop-pipeline.yml
 		..\Pipelines\master-pipeline.yml = ..\Pipelines\master-pipeline.yml
 		..\Pipelines\release-pipeline.yml = ..\Pipelines\release-pipeline.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "attributes", "attributes", "{44B36C87-39C5-498E-89E0-7CA8B8EB6319}"
+	ProjectSection(SolutionItems) = preProject
+		.build-props\files\attributes\NullableAttributes.cs = .build-props\files\attributes\NullableAttributes.cs
 	EndProjectSection
 EndProject
 Global
@@ -231,6 +237,7 @@ Global
 		{AA30A511-BF72-419B-BC45-A82813BB3FB6} = {05269488-721D-4DF7-9D6F-EAB974416A99}
 		{AD5E792C-9F73-45C0-8CBC-DAAABAF79106} = {AA30A511-BF72-419B-BC45-A82813BB3FB6}
 		{FB72721B-883E-4AC0-BC9B-C15785A4D94A} = {A3B0324E-3070-45C0-97B9-6C0E433C60D9}
+		{44B36C87-39C5-498E-89E0-7CA8B8EB6319} = {AA30A511-BF72-419B-BC45-A82813BB3FB6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FC41382-9108-4BAA-806E-C2CFE2D98DB2}

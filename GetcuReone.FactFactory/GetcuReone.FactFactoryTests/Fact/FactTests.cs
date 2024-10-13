@@ -56,7 +56,7 @@ namespace FactFactoryTests.Fact
                 .And("Add parameter.", fact =>
                     fact.AddParameter(new FactParameter(code, obj)))
                 .When("Get parameter.", fact =>
-                    fact.GetParameter(code))
+                    fact.FindParameter(code))
                 .ThenIsNotNull(errorMessage: "factParameter is null.")
                 .AndAreEqual(parameter => parameter.Code, code,
                     errorMessage: "Other parameter code expected.")

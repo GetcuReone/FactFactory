@@ -1,9 +1,10 @@
-﻿using GetcuReone.FactFactory.Priority.Interfaces;
+﻿using System.Diagnostics.CodeAnalysis;
+using GetcuReone.FactFactory.Priority.Interfaces;
 
 namespace GetcuReone.FactFactory.Priority.SpecialFacts
 {
     /// <summary>
-    /// Base class for priority fact with value of type <see cref="uint"/>.
+    /// Base class for priority fact with value of type <see cref="uint"/>
     /// </summary>
     public abstract class BaseUintPriority : BasePriority<uint>
     {
@@ -11,30 +12,20 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
         protected BaseUintPriority(uint value) : base(value) { }
 
         /// <inheritdoc/>
-        public override int CompareTo(IPriorityFact other)
+        public override int CompareTo([AllowNull] IPriorityFact other)
         {
-            switch (other)
+            return other switch
             {
-                case BasePriority<int> priority:
-                    return priority.PriorityValue.CompareTo(PriorityValue);
-                case BasePriority<uint> priority:
-                    return priority.PriorityValue.CompareTo(PriorityValue);
-                case BasePriority<long> priority:
-                    return priority.PriorityValue.CompareTo(PriorityValue);
-                case BasePriority<ulong> priority:
-                    return priority.PriorityValue.CompareTo(PriorityValue);
-
-                case BaseFact<int> priority:
-                    return priority.Value.CompareTo(PriorityValue);
-                case BaseFact<uint> priority:
-                    return priority.Value.CompareTo(PriorityValue);
-                case BaseFact<long> priority:
-                    return priority.Value.CompareTo(PriorityValue);
-                case BaseFact<ulong> priority:
-                    return priority.Value.CompareTo(PriorityValue);
-
-                default: throw CreateIncompatibilityVersionException(other);
-            }
+                BasePriority<int> priority => priority.PriorityValue.CompareTo(PriorityValue),
+                BasePriority<uint> priority => priority.PriorityValue.CompareTo(PriorityValue),
+                BasePriority<long> priority => priority.PriorityValue.CompareTo(PriorityValue),
+                BasePriority<ulong> priority => priority.PriorityValue.CompareTo(PriorityValue),
+                BaseFact<int> priority => priority.Value.CompareTo(PriorityValue),
+                BaseFact<uint> priority => priority.Value.CompareTo(PriorityValue),
+                BaseFact<long> priority => priority.Value.CompareTo(PriorityValue),
+                BaseFact<ulong> priority => priority.Value.CompareTo(PriorityValue),
+                _ => throw CreateIncompatibilityVersionException(other),
+            };
         }
     }
 }

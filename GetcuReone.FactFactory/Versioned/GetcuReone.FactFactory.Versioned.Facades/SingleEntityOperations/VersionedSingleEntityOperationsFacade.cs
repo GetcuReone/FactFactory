@@ -6,6 +6,7 @@ using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Priority;
 using GetcuReone.FactFactory.Priority.Common.Extensions;
 using GetcuReone.FactFactory.Priority.Facades.SingleEntityOperations;
+using GetcuReone.FactFactory.Versioned.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         public override IFactRuleCollection GetCompatibleRules(IFactWork target, IFactRuleCollection factRules, IWantActionContext context)
         {
             var result = base.GetCompatibleRules(target, factRules, context);
-            var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
+            var maxVersion = context.WantAction.InputFactTypes.FindVersionFact(context);
 
             if (maxVersion == null)
                 return result;
@@ -52,16 +53,14 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (!base.CompatibleRule(target, rule, context))
                 return false;
 
-            var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
+            var maxVersion = context.WantAction.InputFactTypes.FindVersionFact(context);
 
             if (maxVersion == null)
                 return true;
 
-            var ruleVersion = rule.InputFactTypes.GetVersionFact(context);
+            var ruleVersion = rule.InputFactTypes.FindVersionFact(context);
 
-            return ruleVersion != null
-                ? maxVersion.CompareTo(ruleVersion) >= 0
-                : false;
+            return ruleVersion != null && maxVersion.CompareTo(ruleVersion) >= 0;
         }
 
         /// <inheritdoc/>
@@ -79,7 +78,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
             if (facts.Count == 0)
                 return false;
 
-            var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
+            var maxVersion = context.WantAction.InputFactTypes.FindVersionFact(context);
 
             if (maxVersion == null)
                 return true;
@@ -91,7 +90,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         /// <remarks>Additionally checks version compatibility.</remarks>
         public override IEnumerable<IFactType> GetRequiredTypesOfFacts(IFactWork factWork, IWantActionContext context)
         {
-            var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
+            IVersionFact? maxVersion = context.WantAction.InputFactTypes.FindVersionFact(context);
 
             return factWork.InputFactTypes.Where(factType => context
                 .Container
@@ -104,7 +103,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         /// <remarks>Additionally checks version compatibility.</remarks>
         protected override IEnumerable<IFact> GetRequireFacts(IFactWork factWork, IWantActionContext context)
         {
-            var maxVersion = context.WantAction.InputFactTypes.GetVersionFact(context);
+            var maxVersion = context.WantAction.InputFactTypes.FindVersionFact(context);
 
             if (maxVersion == null)
                 return base.GetRequireFacts(factWork, context);
@@ -136,21 +135,29 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
         /// <remarks>Adds a versioned fact to the parameters of the calculated fact.</remarks>
         public override IFact CalculateFact(NodeByFactRule node, IWantActionContext context)
         {
-            var version = node.Info.Rule.InputFactTypes.GetVersionFact(context);
+            IVersionFact? version = node.Info.Rule.InputFactTypes.FindVersionFact(context);
 
-            return base.CalculateFact(node, context)
-                .AddVerionParameter(version, context.ParameterCache);
+            IFact fact = base.CalculateFact(node, context);
+
+            if (version != null)
+                fact.AddVerionParameter(version, context.ParameterCache);
+
+            return fact;
         }
 
         /// <inheritdoc/>
-        /// <remarks>Adds a <see cref="Interfaces.IVersionFact"/> to the parameters of the calculated fact.</remarks>
+        /// <remarks>Adds a <see cref="IVersionFact"/> to the parameters of the calculated fact.</remarks>
         public override async ValueTask<IFact> CalculateFactAsync(NodeByFactRule node, IWantActionContext context)
         {
-            var version = node.Info.Rule.InputFactTypes.GetVersionFact(context);
+            IVersionFact? version = node.Info.Rule.InputFactTypes.FindVersionFact(context);
 
-            return (await base.CalculateFactAsync(node, context)
-                .ConfigureAwait(false))
-                .AddVerionParameter(version, context.ParameterCache);
+            IFact fact = await base.CalculateFactAsync(node, context)
+                .ConfigureAwait(false);
+
+            if (version != null)
+                fact.AddVerionParameter(version, context.ParameterCache);
+
+            return fact;
         }
     }
 }

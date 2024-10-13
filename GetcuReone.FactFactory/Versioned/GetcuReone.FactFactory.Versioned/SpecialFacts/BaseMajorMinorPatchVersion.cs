@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
 namespace GetcuReone.FactFactory.Versioned.SpecialFacts
@@ -27,16 +28,18 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         }
 
         /// <inheritdoc/>
-        public override int CompareTo(IVersionFact other)
+        public override int CompareTo([AllowNull] IVersionFact other)
         {
             switch (other)
             {
                 case BaseMajorMinorPatchVersion version:
                     return _version.CompareTo(version._version);
                 case BaseFact<string> version:
-                    string pattern = @"^(\*|\d+(\.\d+){0,2}(\.\*)?)$";
+                    const string pattern = @"^(\*|\d+(\.\d+){0,2}(\.\*)?)$";
+
                     if (!Regex.IsMatch(version.Value, pattern))
                         throw new ArgumentException($"{version} version doesn't match regular expression <{pattern}>.");
+
                     return _version.CompareTo(new Version(version.Value));
 
                 default:

@@ -21,10 +21,10 @@ namespace GetcuReone.FactFactory.Versioned
         /// <typeparam name="TFact">Type fact.</typeparam>
         /// <param name="fact">Fact.</param>
         /// <returns><see cref="IVersionFact"/> fact or null.</returns>
-        public static IVersionFact FindVersionParameter<TFact>(this TFact fact)
+        public static IVersionFact? FindVersionParameter<TFact>(this TFact fact)
             where TFact : IFact
         {
-            return fact.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+            return fact.FindParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// </summary>
         /// <param name="factTypes">List fact types.</param>
         /// <returns>First found fact type inherited from <see cref="IVersionFact"/></returns>
-        public static IFactType FirstVersionFactType(this IEnumerable<IFactType> factTypes)
+        public static IFactType? FirstVersionFactType(this IEnumerable<IFactType> factTypes)
         {
             return factTypes.FirstOrDefault(type => type.IsFactType<IVersionFact>());
         }
@@ -65,7 +65,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="factType">Fact type of <see cref="IVersionFact"/>.</param>
         /// <param name="cache">Cache.</param>
         /// <returns><see cref="IVersionFact"/> fact or null.</returns>
-        public static IVersionFact FirstVersionFactByFactType<TFact>(this IEnumerable<TFact> facts, IFactType factType, IFactTypeCache cache)
+        public static IVersionFact? FirstVersionFactByFactType<TFact>(this IEnumerable<TFact> facts, IFactType factType, IFactTypeCache cache)
             where TFact : IFact
         {
             return facts.FirstFactByFactType(factType, cache) as IVersionFact;
@@ -92,8 +92,8 @@ namespace GetcuReone.FactFactory.Versioned
             if (yVersionType == null)
                 return -1;
 
-            IVersionFact xVersion = context.Container.FirstVersionFactByFactType(xVersionType, context.Cache);
-            IVersionFact yVersion = context.Container.FirstVersionFactByFactType(yVersionType, context.Cache);
+            IVersionFact xVersion = context.Container.FirstVersionFactByFactType(xVersionType, context.Cache)!;
+            IVersionFact yVersion = context.Container.FirstVersionFactByFactType(yVersionType, context.Cache)!;
 
             return xVersion.CompareTo(yVersion);
         }
@@ -110,8 +110,8 @@ namespace GetcuReone.FactFactory.Versioned
         /// </returns>
         public static int CompareByVersionParameter(this IFact x, IFact y)
         {
-            var xVersion = x.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
-            var yVersion = y.GetParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+            IVersionFact? xVersion = x.FindParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
+            IVersionFact? yVersion = y.FindParameter(VersionedFactParametersCodes.Version)?.Value as IVersionFact;
 
             if (xVersion == null)
                 return yVersion == null ? 0 : 1;
@@ -142,13 +142,13 @@ namespace GetcuReone.FactFactory.Versioned
         /// <param name="fact">Fact.</param>
         /// <param name="maxVersion">Max version (optional).</param>
         /// <returns>Whether the version of the fact is within the valid versions?</returns>
-        public static bool IsRelevantFactByVersioned<TFact>(this TFact fact, IVersionFact maxVersion)
+        public static bool IsRelevantFactByVersioned<TFact>(this TFact fact, IVersionFact? maxVersion)
             where TFact : IFact
         {
             if (maxVersion == null || !fact.IsCalculatedByRule())
                 return true;
 
-            var value = fact.GetParameter(VersionedFactParametersCodes.Version)?.Value;
+            var value = fact.FindParameter(VersionedFactParametersCodes.Version)?.Value;
 
             if (value == null)
                 return false;

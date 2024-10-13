@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 internal static class EnumerableExtensions
 {
@@ -9,7 +10,7 @@ internal static class EnumerableExtensions
     /// <typeparam name="TItem">Type items.</typeparam>
     /// <param name="items">Collection.</param>
     /// <returns><paramref name="items"/> is empty or null?</returns>
-    internal static bool IsNullOrEmpty<TItem>(this IEnumerable<TItem> items)
+    internal static bool IsNullOrEmpty<TItem>([NotNullWhen(false)][MaybeNull] this IEnumerable<TItem> items)
     {
         return items == null || !items.Any();
     }

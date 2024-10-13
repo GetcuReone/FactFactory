@@ -11,19 +11,19 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// </summary>
     public class FactEqualityComparer : EqualityComparer<IFact>
     {
-        private readonly Func<IFact, IFact, bool> _equalsFunc;
+        private readonly Func<IFact?, IFact?, bool> _equalsFunc;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="equalsFunc"></param>
-        public FactEqualityComparer(Func<IFact, IFact, bool> equalsFunc)
+        public FactEqualityComparer(Func<IFact?, IFact?, bool> equalsFunc)
         {
            _equalsFunc = equalsFunc ?? throw new ArgumentNullException(nameof(equalsFunc));
         }
 
         /// <inheritdoc/>
-        public override bool Equals(IFact x, IFact y)
+        public override bool Equals(IFact? x, IFact? y)
         {
             return _equalsFunc(x, y);
         }
@@ -74,7 +74,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// False - Parameters of facts will be compared using the method.
         /// </param>
         /// <returns></returns>
-        public static bool EqualsFacts(IFact first, IFact second, IFactTypeCache cache = null, bool includeFactParams = true)
+        public static bool EqualsFacts(IFact? first, IFact? second, IFactTypeCache? cache = null, bool includeFactParams = true)
         {
             if (first == null)
                 return second == null;
@@ -111,13 +111,12 @@ namespace GetcuReone.FactFactory.BaseEntities
             IReadOnlyCollection<IFactParameter> firstParameters = first.GetParameters();
             IReadOnlyCollection<IFactParameter> secondParameters = second.GetParameters();
 
-            if (firstParameters.IsNullOrEmpty() && secondParameters.IsNullOrEmpty())
-                return true;
-
-            if (firstParameters.IsNullOrEmpty() || secondParameters.IsNullOrEmpty())
+            if (firstParameters.IsNullOrEmpty())
+                return secondParameters.IsNullOrEmpty();
+            else if (secondParameters.IsNullOrEmpty())
                 return false;
 
-            if (firstParameters.Count != secondParameters.Count)
+            if (firstParameters!.Count != secondParameters!.Count)
                 return false;
 
             foreach (IFactParameter xParameter in firstParameters)

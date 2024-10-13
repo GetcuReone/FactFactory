@@ -11,7 +11,7 @@ namespace GetcuReone.FactFactory.Versioned
     /// </summary>
     public class VersionedFactFactory : BaseVersionedFactFactory
     {
-        private readonly Func<IWantActionContext, IEnumerable<IFact>> _getDefaultFactsFunc;
+        private readonly Func<IWantActionContext, IEnumerable<IFact>>? _getDefaultFactsFunc;
 
         /// <inheritdoc/>
         public override IFactRuleCollection Rules { get; }
@@ -25,7 +25,7 @@ namespace GetcuReone.FactFactory.Versioned
         /// Constructor.
         /// </summary>
         /// <param name="getDefaultFactsFunc">Function that returns default facts.</param>
-        public VersionedFactFactory(Func<IWantActionContext, IEnumerable<IFact>> getDefaultFactsFunc)
+        public VersionedFactFactory(Func<IWantActionContext, IEnumerable<IFact>>? getDefaultFactsFunc)
         {
             _getDefaultFactsFunc = getDefaultFactsFunc;
             Rules = new FactRuleCollection();

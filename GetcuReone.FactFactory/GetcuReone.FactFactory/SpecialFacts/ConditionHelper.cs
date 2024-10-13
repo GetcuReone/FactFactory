@@ -22,25 +22,15 @@ namespace GetcuReone.FactFactory.SpecialFacts
             if (context.SingleEntity.CanExtractFact(searchFactType, factWork, context))
                 return true;
 
-            var rulesWithoutConditionFact = compatibleRules
+            IFactRuleCollection rulesWithoutConditionFact = compatibleRules
                 .FindAll(rule => rule.InputFactTypes
                     .All(factType => !factType.EqualsFactType(context.Cache.GetFactType(conditionFact))));
 
-            var request = new BuildTreeForFactInfoRequest
+            var newContext = new FactRulesContext(context)
             {
-                WantFactType = searchFactType,
-                Context = new FactRulesContext
-                {
-                    Cache = context.Cache,
-                    Container = context.Container,
-                    FactRules = rulesWithoutConditionFact,
-                    SingleEntity = context.SingleEntity,
-                    TreeBuilding = context.TreeBuilding,
-                    WantAction = context.WantAction,
-                    Engine = context.Engine,
-                    ParameterCache = context.ParameterCache,
-                },
+                FactRules = rulesWithoutConditionFact
             };
+            var request = new BuildTreeForFactInfoRequest(searchFactType, newContext);
 
             try
             {
@@ -69,25 +59,15 @@ namespace GetcuReone.FactFactory.SpecialFacts
             if (context.SingleEntity.CanExtractFact(searchFactType, factWork, context))
                 return true;
 
-            var rulesWithoutConditionFact = context.FactRules
+            IFactRuleCollection rulesWithoutConditionFact = context.FactRules!
                 .FindAll(rule => rule.InputFactTypes
                     .All(factType => !factType.EqualsFactType(context.Cache.GetFactType(conditionFact))));
 
-            var request = new BuildTreeForFactInfoRequest
+            var newContext = new FactRulesContext(context)
             {
-                WantFactType = searchFactType,
-                Context = new FactRulesContext
-                {
-                    Cache = context.Cache,
-                    Container = context.Container,
-                    FactRules = rulesWithoutConditionFact,
-                    SingleEntity = context.SingleEntity,
-                    TreeBuilding = context.TreeBuilding,
-                    WantAction = context.WantAction,
-                    Engine = context.Engine,
-                    ParameterCache = context.ParameterCache,
-                },
+                FactRules = rulesWithoutConditionFact,
             };
+            var request = new BuildTreeForFactInfoRequest(searchFactType, newContext);
 
             try
             {

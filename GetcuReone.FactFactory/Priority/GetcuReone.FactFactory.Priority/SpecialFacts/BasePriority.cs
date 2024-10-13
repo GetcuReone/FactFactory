@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Constants;
+﻿using System.Diagnostics.CodeAnalysis;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Priority.Interfaces;
@@ -28,18 +29,18 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
         /// </summary>
         /// <param name="other">Priority fact for comparison</param>
         /// <returns>1 - more, 0 - equal, -1 less.</returns>
-        public abstract int CompareTo(IPriorityFact other);
+        public abstract int CompareTo([AllowNull] IPriorityFact other);
 
         /// <summary>
         /// Creates an error creating incompatibility priority facts.
         /// </summary>
         /// <param name="priorityFact">Priority fact.</param>
         /// <returns>Error creating incompatibility priority facts.</returns>
-        protected virtual FactFactoryException CreateIncompatibilityVersionException(IPriorityFact priorityFact)
+        protected virtual FactFactoryException CreateIncompatibilityVersionException(IPriorityFact? priorityFact)
         {
             return FactFactoryHelper.CreateException(
                 ErrorCode.InvalidFactType,
-                $"Unable to compare priorities {GetFactType().FactName} and {priorityFact.GetFactType().FactName}.");
+                $"Unable to compare priorities {GetFactType().FactName} and {priorityFact?.GetFactType().FactName ?? "null"}.");
         }
 
         /// <summary>

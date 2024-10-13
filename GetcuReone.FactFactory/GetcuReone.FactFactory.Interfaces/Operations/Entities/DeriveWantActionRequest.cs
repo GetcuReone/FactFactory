@@ -3,18 +3,29 @@
 namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
 {
     /// <summary>
-    /// Request.
+    /// Request
     /// </summary>
     public class DeriveWantActionRequest
     {
         /// <summary>
-        /// The context in which the calculations will be made.
+        /// The context in which the calculations will be made
         /// </summary>
-        public IWantActionContext Context { get; set; }
+        public IWantActionContext Context { get; }
 
         /// <summary>
-        /// Collection of rules used for calculations.
+        /// Collection of rules used for calculations
         /// </summary>
-        public IFactRuleCollection Rules { get; set; }
+        public IFactRuleCollection Rules { get; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context">The context in which the calculations will be made</param>
+        /// <param name="rules">Collection of rules used for calculations</param>
+        public DeriveWantActionRequest(IWantActionContext context, IFactRuleCollection rules)
+        {
+            Context = context;
+            Rules = rules;
+        }
     }
 }

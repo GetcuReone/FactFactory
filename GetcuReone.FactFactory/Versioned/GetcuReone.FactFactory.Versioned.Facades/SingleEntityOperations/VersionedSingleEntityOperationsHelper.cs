@@ -8,9 +8,9 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 {
     internal static class VersionedSingleEntityOperationsHelper
     {
-        internal static IVersionFact GetVersionFact(this IEnumerable<IFactType> factTypes, IWantActionContext context)
+        internal static IVersionFact? FindVersionFact(this IEnumerable<IFactType> factTypes, IWantActionContext context)
         {
-            IFactType versionType = factTypes.SingleOrDefault(type => type.IsFactType<IVersionFact>());
+            IFactType? versionType = factTypes.SingleOrDefault(type => type.IsFactType<IVersionFact>());
             return versionType != null
                 ? (IVersionFact)context.Container.First(fact => context.Cache.GetFactType(fact).EqualsFactType(versionType))
                 : null;
@@ -18,7 +18,7 @@ namespace GetcuReone.FactFactory.Versioned.Facades.SingleEntityOperations
 
         internal static bool CompatibleRule(this IFactRule factRule, IVersionFact maxVersion, IWantActionContext context)
         {
-            var version = factRule.InputFactTypes.GetVersionFact(context);
+            IVersionFact? version = factRule.InputFactTypes.FindVersionFact(context);
 
             if (version == null)
                 return false;

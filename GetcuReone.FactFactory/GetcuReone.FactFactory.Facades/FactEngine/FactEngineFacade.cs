@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions.Entities;
 using GetcuReone.FactFactory.Interfaces;
+using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
 using GetcuReone.FactFactory.Resources;
@@ -24,7 +25,7 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
 
             foreach(DeriveWantActionRequest request in requests)
             {
-                var context = request.Context;
+                IWantActionContext context = request.Context;
 
                 if (!context.WantAction.Option.HasFlag(FactWorkOption.CanExecuteSync))
                 {
@@ -37,19 +38,16 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
                     continue;
                 }
 
-                var requestForAction = new BuildTreesForWantActionRequest
-                {
-                    Context = context,
-                    FactRules = request
-                        .Rules
-                        .FindAll(factRule => factRule.Option.HasFlag(FactWorkOption.CanExecuteSync))
-                        .SortByDescending(r => r, context.SingleEntity.GetRuleComparer(context)),
-                };
+                IFactRuleCollection subRules = request
+                    .Rules
+                    .FindAll(factRule => factRule.Option.HasFlag(FactWorkOption.CanExecuteSync))
+                    .SortByDescending(r => r, context.SingleEntity.GetRuleComparer(context));
+                var requestForAction = new BuildTreesForWantActionRequest(context, subRules);
 
                 if (context.TreeBuilding.TryBuildTreesForWantAction(requestForAction, out var resultForAction))
                     treesByActions.Add(resultForAction.WantActionInfo, resultForAction.TreesResult);
                 else
-                    deriveErrorDetails.Add(resultForAction.DeriveErrorDetail);
+                    deriveErrorDetails.Add(resultForAction.DeriveErrorDetail!);
             }
 
             // Check that we were able to adequately build the tree.
@@ -71,20 +69,17 @@ namespace GetcuReone.FactFactory.Facades.FactEngine
 
             foreach (DeriveWantActionRequest request in requests)
             {
-                var context = request.Context;
+                IWantActionContext context = request.Context;
 
-                var requestForAction = new BuildTreesForWantActionRequest
-                {
-                    Context = context,
-                    FactRules = request
-                        .Rules
-                        .SortByDescending(r => r, context.SingleEntity.GetRuleComparer(context)),
-                };
+                IFactRuleCollection subRules = request
+                    .Rules
+                    .SortByDescending(r => r, context.SingleEntity.GetRuleComparer(context));
+                var requestForAction = new BuildTreesForWantActionRequest(context, subRules);
 
-                if (context.TreeBuilding.TryBuildTreesForWantAction(requestForAction, out var resultForAction))
+                if (context.TreeBuilding.TryBuildTreesForWantAction(requestForAction, out BuildTreesForWantActionResult resultForAction))
                     treesByActions.Add(resultForAction.WantActionInfo, resultForAction.TreesResult);
                 else
-                    deriveErrorDetails.Add(resultForAction.DeriveErrorDetail);
+                    deriveErrorDetails.Add(resultForAction.DeriveErrorDetail!);
             }
 
             // Check that we were able to adequately build the tree.

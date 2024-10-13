@@ -11,7 +11,7 @@ namespace GetcuReone.FactFactory.Priority
     /// </summary>
     public class PriorityFactFactory : BasePriorityFactFactory
     {
-        private readonly Func<IWantActionContext, IEnumerable<IFact>> _getDefaultFactsFunc;
+        private readonly Func<IWantActionContext, IEnumerable<IFact>>? _getDefaultFactsFunc;
 
         /// <inheritdoc/>
         public override IFactRuleCollection Rules { get; }
@@ -25,7 +25,7 @@ namespace GetcuReone.FactFactory.Priority
         /// Constructot.
         /// </summary>
         /// <param name="getDefaultFactsFunc">Function that returns default facts.</param>
-        public PriorityFactFactory(Func<IWantActionContext, IEnumerable<IFact>> getDefaultFactsFunc)
+        public PriorityFactFactory(Func<IWantActionContext, IEnumerable<IFact>>? getDefaultFactsFunc)
         {
             _getDefaultFactsFunc = getDefaultFactsFunc;
             Rules = new FactRuleCollection();

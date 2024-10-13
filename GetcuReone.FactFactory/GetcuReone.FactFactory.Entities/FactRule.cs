@@ -12,13 +12,13 @@ namespace GetcuReone.FactFactory.Entities
     public class FactRule : BaseFactRule
     {
         /// <inheritdoc/>
-        public FactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
+        public FactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType>? inputFactTypes, IFactType outputFactType, FactWorkOption option)
             : base(func, inputFactTypes, outputFactType, option)
         {
         }
 
         /// <inheritdoc/>
-        public FactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> funcAsync, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
+        public FactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> funcAsync, List<IFactType>? inputFactTypes, IFactType outputFactType, FactWorkOption option)
             : base(funcAsync, inputFactTypes, outputFactType, option)
         {
         }

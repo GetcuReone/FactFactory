@@ -3,33 +3,33 @@
 namespace GetcuReone.FactFactory.Interfaces
 {
     /// <summary>
-    /// Fact interface.
+    /// Fact interface
     /// </summary>
     public interface IFact
     {
         /// <summary>
-        /// Return fact information as an output parameter.
+        /// Return fact information as an output parameter
         /// </summary>
         /// <returns></returns>
         IFactType GetFactType();
 
         /// <summary>
-        /// Add parameter.
+        /// Add parameter
         /// </summary>
-        /// <param name="parameter"></param>
+        /// <param name="parameter">Parameter</param>
         void AddParameter(IFactParameter parameter);
 
         /// <summary>
-        /// Get parameter by code.
+        /// Find parameter by code
         /// </summary>
-        /// <param name="parameterCode">Parameter code.</param>
-        /// <returns>Fact parameter.</returns>
-        IFactParameter GetParameter(string parameterCode);
+        /// <param name="parameterCode">Parameter code</param>
+        /// <returns>Fact parameter</returns>
+        IFactParameter? FindParameter(string parameterCode);
 
         /// <summary>
-        /// Return parameters of a fact.
+        /// Return parameters of a fact
         /// </summary>
-        /// <returns>Fact parameters.</returns>
+        /// <returns>Fact parameters</returns>
         IReadOnlyCollection<IFactParameter> GetParameters();
     }
 }

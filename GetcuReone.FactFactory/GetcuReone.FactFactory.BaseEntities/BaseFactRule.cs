@@ -13,8 +13,8 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// </summary>
     public abstract class BaseFactRule : BaseFactWork, IFactRule
     {
-        private readonly Func<IEnumerable<IFact>, IFact> _func;
-        private readonly Func<IEnumerable<IFact>, ValueTask<IFact>> _funcAsync;
+        private readonly Func<IEnumerable<IFact>, IFact>? _func;
+        private readonly Func<IEnumerable<IFact>, ValueTask<IFact>>? _funcAsync;
 
         /// <summary>
         /// Information on output fact.
@@ -30,7 +30,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="option">Options for a rule.</param>
         /// <exception cref="ArgumentNullException"><paramref name="func"/> or <paramref name="outputFactType"/> is null.</exception>
         /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
-        protected BaseFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
+        protected BaseFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType>? inputFactTypes, IFactType outputFactType, FactWorkOption option)
             : base(inputFactTypes, option)
         {
             _func = func ?? throw new ArgumentNullException(nameof(func));
@@ -47,7 +47,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="option">Options for a rule.</param>
         /// <exception cref="ArgumentNullException"><paramref name="funcAsync"/> or <paramref name="outputFactType"/> is null.</exception>
         /// <exception cref="ArgumentException">The fact is requested at the input, which the rule calculates.</exception>
-        protected BaseFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> funcAsync, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option)
+        protected BaseFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> funcAsync, List<IFactType>? inputFactTypes, IFactType outputFactType, FactWorkOption option)
             : base(inputFactTypes, option)
         {
             _funcAsync = funcAsync ?? throw new ArgumentNullException(nameof(funcAsync));
@@ -55,7 +55,7 @@ namespace GetcuReone.FactFactory.BaseEntities
             OutputFactType = outputFactType;
         }
 
-        private void ValidateParam(List<IFactType> inputFactTypes, IFactType outputFactType)
+        private void ValidateParam(List<IFactType>? inputFactTypes, IFactType outputFactType)
         {
             if (outputFactType == null)
                 throw new ArgumentNullException(nameof(outputFactType));
@@ -67,7 +67,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public override bool EqualsWork(IFactWork workFact, IWantAction wantAction, IFactContainer container)
+        public override bool EqualsWork(IFactWork workFact, IWantAction wantAction, IFactContainer? container)
         {
             if (!(workFact is IFactRule factRule))
                 return false;
@@ -81,13 +81,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public virtual ValueTask<IFact> CalculateAsync(IEnumerable<IFact> requireFacts)
         {
-            return _funcAsync(requireFacts);
+            return _funcAsync!(requireFacts);
         }
 
         /// <inheritdoc/>
         public virtual IFact Calculate(IEnumerable<IFact> requireFacts)
         {
-            return _func(requireFacts);
+            return _func!(requireFacts);
         }
 
         /// <inheritdoc />

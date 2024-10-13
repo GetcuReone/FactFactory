@@ -6,6 +6,6 @@
         /// <summary>
         /// Fact rules in context.
         /// </summary>
-        IFactRuleCollection FactRules { get; }
+        IFactRuleCollection? FactRules { get; }
     }
 }

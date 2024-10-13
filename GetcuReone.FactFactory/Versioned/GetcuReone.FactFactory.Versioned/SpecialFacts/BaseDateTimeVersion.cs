@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Versioned.Interfaces;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
@@ -12,18 +13,14 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         protected BaseDateTimeVersion(DateTime version) : base(version) { }
 
         /// <inheritdoc/>
-        public override int CompareTo(IVersionFact other)
+        public override int CompareTo([AllowNull] IVersionFact other)
         {
-            switch (other)
+            return other switch
             {
-                case BaseVersion<DateTime> version:
-                    return VersionValue.CompareTo(version.VersionValue);
-                case BaseFact<DateTime> version:
-                    return VersionValue.CompareTo(version.Value);
-
-                default:
-                    throw CreateIncompatibilityVersionException(other);
-            }
+                BaseVersion<DateTime> version => VersionValue.CompareTo(version.VersionValue),
+                BaseFact<DateTime> version => VersionValue.CompareTo(version.Value),
+                _ => throw CreateIncompatibilityVersionException(other),
+            };
         }
     }
 }

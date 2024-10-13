@@ -62,7 +62,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Constructor.
         /// </summary>
         /// <param name="factRules"></param>
-        protected BaseFactRuleCollection(IEnumerable<IFactRule> factRules) : this(factRules, false)
+        protected BaseFactRuleCollection(IEnumerable<IFactRule>? factRules) : this(factRules, false)
         {
         }
 
@@ -71,7 +71,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <param name="factRules"></param>
         /// <param name="isReadOnly"></param>
-        protected BaseFactRuleCollection(IEnumerable<IFactRule> factRules, bool isReadOnly)
+        protected BaseFactRuleCollection(IEnumerable<IFactRule>? factRules, bool isReadOnly)
         {
             if (factRules != null)
                 _list = new List<IFactRule>(factRules);
@@ -101,7 +101,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="outputFactType">information on output fact.</param>
         /// <param name="option"></param>
         /// <returns></returns>
-        protected abstract IFactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option);
+        protected abstract IFactRule CreateFactRule(Func<IEnumerable<IFact>, IFact> func, List<IFactType>? inputFactTypes, IFactType outputFactType, FactWorkOption option);
 
         /// <summary>
         /// Creates <ses cref="IFactRule"/>.
@@ -111,7 +111,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="outputFactType">information on output fact.</param>
         /// <param name="option">Options for a rule.</param>
         /// <returns>Fact rule.</returns>
-        protected abstract IFactRule CreateFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType> inputFactTypes, IFactType outputFactType, FactWorkOption option);
+        protected abstract IFactRule CreateFactRule(Func<IEnumerable<IFact>, ValueTask<IFact>> func, List<IFactType>? inputFactTypes, IFactType outputFactType, FactWorkOption option);
 
         /// <summary>
         /// Rules equality.
@@ -123,19 +123,27 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             if (firstRule == null && secondRule == null)
                 return true;
+
             if (firstRule == null || secondRule == null)
                 return false;
-            if (firstRule.OutputFactType != null && secondRule.OutputFactType == null)
+
+            if (firstRule.OutputFactType != null)
+            {
+                if (secondRule.OutputFactType == null)
+                    return false;
+
+                if (!firstRule.OutputFactType.EqualsFactType(secondRule.OutputFactType))
+                    return false;
+            }
+            else if (secondRule.OutputFactType != null)
                 return false;
-            if (firstRule.OutputFactType == null && secondRule.OutputFactType != null)
+
+            if (firstRule.InputFactTypes.IsNullOrEmpty())
+                return secondRule.InputFactTypes.IsNullOrEmpty();
+            else if (secondRule.InputFactTypes.IsNullOrEmpty())
                 return false;
-            if (!firstRule.OutputFactType.EqualsFactType(secondRule.OutputFactType))
-                return false;
-            if (firstRule.InputFactTypes.IsNullOrEmpty() && secondRule.InputFactTypes.IsNullOrEmpty())
-                return true;
-            if (firstRule.InputFactTypes.IsNullOrEmpty() || secondRule.InputFactTypes.IsNullOrEmpty())
-                return false;
-            if (firstRule.InputFactTypes.Count != secondRule.InputFactTypes.Count)
+
+            if (firstRule.InputFactTypes!.Count != secondRule.InputFactTypes!.Count)
                 return false;
 
             return firstRule.InputFactTypes

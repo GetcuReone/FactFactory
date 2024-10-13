@@ -4,23 +4,32 @@ using System.Collections.Generic;
 namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
 {
     /// <summary>
-    /// Result.
+    /// Result
     /// </summary>
     public class BuildTreesForWantActionResult
     {
         /// <summary>
-        /// WantAction info.
+        /// WantAction info
         /// </summary>
-        public WantActionInfo WantActionInfo { get; set; }
+        public WantActionInfo WantActionInfo { get; }
 
         /// <summary>
-        /// Errors that occurred while building a tree.
+        /// Errors that occurred while building a tree
         /// </summary>
-        public DeriveErrorDetail DeriveErrorDetail { get; set; }
+        public DeriveErrorDetail? DeriveErrorDetail { get; set; }
 
         /// <summary>
-        /// Build trees.
+        /// Build trees
         /// </summary>
-        public List<TreeByFactRule> TreesResult { get; set; }
+        public List<TreeByFactRule> TreesResult { get; set; } = new List<TreeByFactRule>();
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="wantActionInfo">WantAction info</param>
+        public BuildTreesForWantActionResult(WantActionInfo wantActionInfo)
+        {
+            WantActionInfo = wantActionInfo;
+        }
     }
 }

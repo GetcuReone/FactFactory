@@ -17,7 +17,7 @@ namespace GetcuReone.FactFactory.Versioned.Extensions
         /// <param name="factory">Fact factory.</param>
         /// <param name="container">Fact container.</param>
         /// <returns>Requested fact.</returns>
-        public static TFactResult DeriveFact<TFactResult, TVersion>(this IFactFactory factory, IFactContainer container = null)
+        public static TFactResult DeriveFact<TFactResult, TVersion>(this IFactFactory factory, IFactContainer? container = null)
             where TFactResult : IFact
             where TVersion : IVersionFact
         {
@@ -30,7 +30,7 @@ namespace GetcuReone.FactFactory.Versioned.Extensions
 
             factory.Derive();
 
-            return result;
+            return result!;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace GetcuReone.FactFactory.Versioned.Extensions
         /// <param name="factory">Fact factory.</param>
         /// <param name="container">Fact container.</param>
         /// <returns>Requested fact.</returns>
-        public static async ValueTask<TFactResult> DeriveFactAsync<TFactResult, TVersionFact>(this IFactFactory factory, IFactContainer container = null)
+        public static async ValueTask<TFactResult> DeriveFactAsync<TFactResult, TVersionFact>(this IFactFactory factory, IFactContainer? container = null)
             where TFactResult : IFact
             where TVersionFact : IVersionFact
         {
@@ -54,7 +54,7 @@ namespace GetcuReone.FactFactory.Versioned.Extensions
 
             await factory.DeriveAsync();
 
-            return result;
+            return result!;
         }
     }
 }
