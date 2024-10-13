@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Priority.Interfaces;
+﻿using System.Diagnostics.CodeAnalysis;
+using GetcuReone.FactFactory.Priority.Interfaces;
 
 namespace GetcuReone.FactFactory.Priority.SpecialFacts
 {
@@ -11,7 +12,7 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
         protected BaseUintPriority(uint value) : base(value) { }
 
         /// <inheritdoc/>
-        public override int CompareTo(IPriorityFact other)
+        public override int CompareTo([AllowNull] IPriorityFact other)
         {
             return other switch
             {
