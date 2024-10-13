@@ -7,7 +7,7 @@ namespace GetcuReone.FactFactory.SpecialFacts.RuntimeCondition
     /// Fact condition that checks if a tree can be built for the fact <typeparamref name = "TFact" />.
     /// </summary>
     /// <typeparam name="TFact">The type of fact for which the condition is met.</typeparam>
-    public class RCannotDerived<TFact> : BaseRuntimeConditionFact<TFact>
+    public class FrCannotDerived<TFact> : BaseRuntimeConditionFact<TFact>
         where TFact : IFact
     {
         /// <summary>

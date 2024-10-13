@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GetcuReone.FactFactory.Interfaces
@@ -21,8 +22,8 @@ namespace GetcuReone.FactFactory.Interfaces
         /// <summary>
         /// Asynchronously derive the facts.
         /// </summary>
-        /// <returns></returns>
-        ValueTask DeriveAsync();
+        /// <param name="cancellationToken">Propagates notification that operations should be canceled</param>
+        ValueTask DeriveAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Requesting a desired fact through action.

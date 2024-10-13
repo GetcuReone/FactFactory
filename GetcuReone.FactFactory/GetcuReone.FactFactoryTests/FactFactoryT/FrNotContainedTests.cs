@@ -1,7 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
-using FactFactoryTests.FactFactoryT;
 using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.SpecialFacts.RuntimeCondition;
 using GetcuReone.GetcuTestAdapter;
@@ -13,10 +12,10 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace GetcuReone.FactFactoryTests.FactFactoryT
 {
     /// <summary>
-    /// <see cref="RNotContained{TFact}"/> testing class.
+    /// <see cref="FrNotContained{TFact}"/> testing class.
     /// </summary>
     [TestClass]
-    public sealed class RNotContainedTests : FactFactoryTestBase
+    public sealed class FrNotContainedTests : FactFactoryTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
@@ -30,7 +29,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     () => new Input1Fact(expectedValue),
-                    (RNotContained<Input2Fact> _, Input1Fact fact) => new ResultFact(fact)
+                    (FrNotContained<Input2Fact> _, Input1Fact fact) => new ResultFact(fact)
                 })
                 .When("Derive facts.", factory =>
                     factory.DeriveFact<ResultFact>(new Container()))

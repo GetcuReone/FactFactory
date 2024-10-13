@@ -16,7 +16,7 @@ using System.Linq;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
-namespace FactFactoryTests.FactRuleCollection
+namespace GetcuReone.FactFactoryTests.FactRuleCollection
 {
     [TestClass]
     public sealed class FactRuleCollectionTests : CommonTestBase
@@ -41,7 +41,7 @@ namespace FactFactoryTests.FactRuleCollection
         public void AddRuleWithoutInputFactsTestCase()
         {
             Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
-                .When("Add rule.", _ => 
+                .When("Add rule.", _ =>
                     Collection.Add(() => new ResultFact(default)))
                 .Then("Check collection.", _ =>
                 {
@@ -58,7 +58,7 @@ namespace FactFactoryTests.FactRuleCollection
         public void AddRuleWith1InputFactTestCase()
         {
             Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
-                .When("Add rule.", _ => 
+                .When("Add rule.", _ =>
                     Collection.Add((Input1Fact fact1) => new ResultFact(default)))
                 .Then("Check collection.", _ =>
                 {
@@ -87,7 +87,7 @@ namespace FactFactoryTests.FactRuleCollection
         public void AddRuleWith2InputFactTestCase()
         {
             Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
-                .When("Add rule.", _ => 
+                .When("Add rule.", _ =>
                     Collection.Add((Input1Fact fact1, Input2Fact fact2) => new ResultFact(default)))
                 .Then("Check collection.", _ =>
                 {
@@ -117,7 +117,7 @@ namespace FactFactoryTests.FactRuleCollection
         public void AddRuleWith3InputFactTestCase()
         {
             Given("Check count collection.", () => Assert.AreEqual(0, Collection.Count, "Collection is not empty."))
-                .When("Add rule.", _ => 
+                .When("Add rule.", _ =>
                     Collection.Add((Input1Fact fact1, Input2Fact fact2, Input3Fact fact3) => new ResultFact(default)))
                 .Then("Check collection.", _ =>
                 {
@@ -629,7 +629,7 @@ namespace FactFactoryTests.FactRuleCollection
         public void AddRuleAlreadyContainsTestCase()
         {
             GivenEmpty()
-                .And("Add rule.", _ => 
+                .And("Add rule.", _ =>
                     Collection.Add(() => new Input10Fact(10)))
                 .When("Add rule already contains", _ =>
                 {
@@ -648,7 +648,7 @@ namespace FactFactoryTests.FactRuleCollection
             GivenEmpty()
                 .When("Add rule already contains", _ =>
                 {
-                    return ExpectedException<ArgumentException>(() => Collection.Add(() => new BuildNotContained<Input10Fact>()));
+                    return ExpectedException<ArgumentException>(() => Collection.Add(() => new FbNotContained<Input10Fact>()));
                 })
                 .ThenIsNotNull()
                 .Run();
@@ -663,13 +663,13 @@ namespace FactFactoryTests.FactRuleCollection
             Rule factRule = null;
 
             Given("Create rule", () => factRule = GetFactRule(() => new Input1Fact(default)))
-                .And("Add rule.", _ => 
+                .And("Add rule.", _ =>
                     Collection.Add(factRule))
-                .When("Get copied.", _ => 
+                .When("Get copied.", _ =>
                     Collection.Copy())
                 .ThenIsNotNull()
                 .AndAreNotEqual(Collection)
-                .And("Check result", copyCollection => 
+                .And("Check result", copyCollection =>
                 {
                     Assert.AreEqual(Collection.Count, copyCollection.Count, "Collections should have the same amount of rules.");
                     Assert.AreEqual(factRule, copyCollection[0], "The collection contains another rule.");
@@ -686,7 +686,7 @@ namespace FactFactoryTests.FactRuleCollection
             const string expectedReason = "Rule collection is read-only.";
 
             GivenCreateCollection(true)
-                .When("Add rule.", rules => 
+                .When("Add rule.", rules =>
                     ExpectedFactFactoryException(() => rules.Add(null)))
                 .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason)
                 .Run();
@@ -701,7 +701,7 @@ namespace FactFactoryTests.FactRuleCollection
             const string expectedReason = "Rule collection is read-only.";
 
             GivenCreateCollection(true)
-                .When("Remove rule", rules => 
+                .When("Remove rule", rules =>
                     ExpectedFactFactoryException(() => rules.Remove(null)))
                 .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason)
                 .Run();
@@ -716,7 +716,7 @@ namespace FactFactoryTests.FactRuleCollection
             const string expectedReason = "Rule collection is read-only.";
 
             GivenCreateCollection(true)
-                .When("Clear", rules => 
+                .When("Clear", rules =>
                     ExpectedFactFactoryException(() => rules.Clear()))
                 .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason)
                 .Run();
@@ -731,7 +731,7 @@ namespace FactFactoryTests.FactRuleCollection
             const string expectedReason = "Rule collection is read-only.";
 
             GivenCreateCollection(true)
-                .When("Insert rule", rules => 
+                .When("Insert rule", rules =>
                     ExpectedFactFactoryException(() => rules.Insert(0, null)))
                 .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason)
                 .Run();
@@ -746,7 +746,7 @@ namespace FactFactoryTests.FactRuleCollection
             const string expectedReason = "Rule collection is read-only.";
 
             GivenCreateCollection(true)
-                .When("RemoveAt rule", rules => 
+                .When("RemoveAt rule", rules =>
                     ExpectedFactFactoryException(() => rules.RemoveAt(0)))
                 .ThenAssertErrorDetail(ErrorCode.InvalidOperation, expectedReason)
                 .Run();

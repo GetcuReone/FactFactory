@@ -1,7 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.FactFactoryTests.CommonFacts;
 using GetcuReone.GetcuTestAdapter;
@@ -183,8 +182,8 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
         public void DifferentValuesBuildConditionFactsTestCase()
         {
             const string factParamCode = "factParamCode";
-            var firstParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
-            var secondParam = new FactParameter(factParamCode, new BuildContained<OtherFact>());
+            var firstParam = new FactParameter(factParamCode, new FbContained<IntFact>());
+            var secondParam = new FactParameter(factParamCode, new FbContained<OtherFact>());
 
             GivenCreateComparer()
                 .When("Run EqualsFactParameters.", _ =>
@@ -200,8 +199,8 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
         public void SameValuesConditionFactsTestCase()
         {
             const string factParamCode = "factParamCode";
-            var firstParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
-            var secondParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
+            var firstParam = new FactParameter(factParamCode, new FbContained<IntFact>());
+            var secondParam = new FactParameter(factParamCode, new FbContained<IntFact>());
 
             GivenCreateComparer()
                 .When("Run EqualsFactParameters.", _ =>

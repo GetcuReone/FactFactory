@@ -14,7 +14,7 @@ using System.Linq;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
-namespace FactFactoryTests.FactFactoryT
+namespace GetcuReone.FactFactoryTests.FactFactoryT
 {
     [TestClass]
     public sealed class DeriveTests : FactFactoryTestBase
@@ -63,9 +63,9 @@ namespace FactFactoryTests.FactFactoryT
 
             GivenCreateFactFactory()
                 .AndAddRules(RuleCollectionHelper.GetInputFactRules())
-                .And("Want fact.", factory => 
+                .And("Want fact.", factory =>
                     factory.WantFacts((OtherFact fact) => { }))
-                .When("Derive facts.", factory => 
+                .When("Derive facts.", factory =>
                     ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.RuleNotFound, expectedReason)
                 .Run();
@@ -94,12 +94,12 @@ namespace FactFactoryTests.FactFactoryT
 
             GivenCreateFactFactory()
                 .AndAddRules(RuleCollectionHelper.GetInputFactRules())
-                .And("Want fact.", factory => 
+                .And("Want fact.", factory =>
                     factory.WantFacts((Input4Fact fact) => { }))
-                .When("Derive facts.", factory => 
+                .When("Derive facts.", factory =>
                     ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
-                .And("Get first detail.", error => 
+                .And("Get first detail.", error =>
                     error.Details.First())
                 .AndAreEqual(detail => detail.RequiredFacts.Count, setNeedFacts.Count,
                     errorMessage: "A different amount of required facts was expected.")
@@ -150,7 +150,7 @@ namespace FactFactoryTests.FactFactoryT
                     factory.WantFacts((Input4Fact fact) => { }))
                 .And("Want fact.", factory =>
                     factory.WantFacts((Input4Fact fact) => { }))
-                .When("Derive facts.", factory => 
+                .When("Derive facts.", factory =>
                     ExpectedDeriveException(() => factory.Derive()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedReason)
                 .AndAreEqual(error => error.Details.Count, 2,
@@ -173,7 +173,7 @@ namespace FactFactoryTests.FactFactoryT
 
                             for (int j = 0; i < expectedNeedFacts.Count; i++)
                                 Assert.IsTrue(expectedNeedFacts[j].EqualsFactType(needFacts[j]), "Another missing fact was expected.");
-                        } 
+                        }
                     }
                 })
                 .Run();
@@ -208,7 +208,7 @@ namespace FactFactoryTests.FactFactoryT
             };
 
             GivenCreateFactFactory()
-                .AndAddRules(new Collection 
+                .AndAddRules(new Collection
                 {
                     (Input3Fact fact) => new Input1Fact(fact.Value),
                     (Input4Fact fact) => new Input2Fact(fact.Value)
@@ -436,7 +436,7 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     () => new Input1Fact(default),
                     (Input1Fact fact) => new ResultFact(1_000),
-                    (BuildCondition_ContainedOtherFact condition) => new ResultFact(expectedValue),
+                    (FbCondition_ContainedOtherFact condition) => new ResultFact(expectedValue),
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<ResultFact>(container))
@@ -457,7 +457,7 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     () => new OtherFact(default),
                     (OtherFact fact) => new ResultFact(expectedValue),
-                    (BuildCondition_ContainedOtherFact condition) => new ResultFact(10),
+                    (FbCondition_ContainedOtherFact condition) => new ResultFact(10),
                 })
                 .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<ResultFact>())

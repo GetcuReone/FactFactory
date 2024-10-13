@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using GetcuReone.FactFactory.Interfaces;
 
 namespace GetcuReone.FactFactory.Extensions
@@ -36,8 +37,12 @@ namespace GetcuReone.FactFactory.Extensions
         /// <typeparam name="TFactResult">The type of fact to get.</typeparam>
         /// <param name="factory">Fact factory.</param>
         /// <param name="container">Fact container.</param>
+        /// <param name="cancellationToken">Propagates notification that operations should be canceled.</param>
         /// <returns>Requested fact.</returns>
-        public static async ValueTask<TFactResult> DeriveFactAsync<TFactResult>(this IFactFactory factory, IFactContainer? container = null)
+        public static async ValueTask<TFactResult> DeriveFactAsync<TFactResult>(
+            this IFactFactory factory,
+            IFactContainer? container = null,
+            CancellationToken cancellationToken = default)
             where TFactResult : IFact
         {
             TFactResult result = default;
@@ -47,7 +52,7 @@ namespace GetcuReone.FactFactory.Extensions
                 result = fact;
             }, container);
 
-            await factory.DeriveAsync();
+            await factory.DeriveAsync(cancellationToken);
 
             return result!;
         }

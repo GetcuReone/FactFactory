@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
-namespace FactFactoryTests.FactFactoryT
+namespace GetcuReone.FactFactoryTests.FactFactoryT
 {
     [TestClass]
     public sealed class DeriveAsyncTests : FactFactoryTestBase
@@ -83,7 +83,7 @@ namespace FactFactoryTests.FactFactoryT
                         return new Input16Fact(expectedValue);
                     }
                 })
-                .And("Want actions.", factory => factory.WantFacts(async (Input16Fact fact) => 
+                .And("Want actions.", factory => factory.WantFacts(async (Input16Fact fact) =>
                 {
                     await Task.Delay(Timeouts.Millisecond.Hundred);
                     fact16 = fact;

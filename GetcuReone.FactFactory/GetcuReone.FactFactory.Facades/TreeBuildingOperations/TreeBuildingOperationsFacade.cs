@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
@@ -555,7 +556,9 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         }
 
         /// <inheritdoc/>
-        public virtual async ValueTask CalculateTreeAndDeriveWantFactsAsync(WantActionInfo wantActionInfo, IEnumerable<TreeByFactRule> treeByFactRules)
+        public virtual async ValueTask CalculateTreeAndDeriveWantFactsAsync(
+            WantActionInfo wantActionInfo,
+            IEnumerable<TreeByFactRule> treeByFactRules)
         {
             foreach (var tree in treeByFactRules)
             {

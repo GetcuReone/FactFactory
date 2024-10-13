@@ -1,7 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
-using FactFactoryTests.FactFactoryT;
 using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.SpecialFacts.RuntimeCondition;
 using GetcuReone.GetcuTestAdapter;
@@ -13,16 +12,16 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace GetcuReone.FactFactoryTests.FactFactoryT
 {
     /// <summary>
-    /// <see cref="RCannotDerived{TFact}"/> testing class.
+    /// <see cref="FrCanDerived{TFact}"/> testing class.
     /// </summary>
     [TestClass]
-    public sealed class RCannotDerivedTests : FactFactoryTestBase
+    public sealed class FrCanDerivedTests : FactFactoryTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Derive ResultFact if Input2Fact cannot derived.")]
+        [Description("Derive ResultFact if Input2Fact can derived.")]
         [Timeout(Timeouts.Millisecond.FiveHundred)]
-        public void RCannotDerived_TestCase()
+        public void RCanDerived_TestCase()
         {
             const int expectedValue = 1;
 
@@ -30,7 +29,8 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     () => new Input1Fact(expectedValue),
-                    (RCannotDerived<Input2Fact> _, Input1Fact fact) => new ResultFact(fact)
+                    (FrCanDerived<Input2Fact> _, Input1Fact fact) => new ResultFact(fact),
+                    () => new Input2Fact(default),
                 })
                 .When("Derive facts.", factory =>
                     factory.DeriveFact<ResultFact>(new Container()))

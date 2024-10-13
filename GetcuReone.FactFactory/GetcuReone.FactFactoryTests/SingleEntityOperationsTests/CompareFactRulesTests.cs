@@ -1,11 +1,11 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
-using FactFactoryTests.SingleEntityOperationsTests.Env;
+using GetcuReone.FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FactFactoryTests.SingleEntityOperationsTests
+namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
 {
     [TestClass]
     public sealed class CompareFactRulesTests : SingleEntityOperationsTestBase
@@ -118,7 +118,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ComparisonWithConditionFacts_1_TestCase()
         {
-            var first = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
+            var first = GetFactRule((SpecialFact _, FbCondition_ContainedOtherFact __) => new ResultFact(default));
             var second = GetFactRule((SpecialFact _, Input1Fact __) => new ResultFact(default));
             var context = GetWantActionContext(null, null);
             const int expectedValue = 1;
@@ -135,8 +135,8 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void ComparisonWithConditionFacts_2_TestCase()
         {
-            var first = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
-            var second = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
+            var first = GetFactRule((SpecialFact _, FbCondition_ContainedOtherFact __) => new ResultFact(default));
+            var second = GetFactRule((SpecialFact _, FbCondition_ContainedOtherFact __) => new ResultFact(default));
             var context = GetWantActionContext(null, null);
             const int expectedValue = 0;
 
@@ -153,7 +153,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
         public void ComparisonWithConditionFacts_3_TestCase()
         {
             var first = GetFactRule((SpecialFact _, Input1Fact __) => new ResultFact(default));
-            var second = GetFactRule((SpecialFact _, BuildCondition_ContainedOtherFact __) => new ResultFact(default));
+            var second = GetFactRule((SpecialFact _, FbCondition_ContainedOtherFact __) => new ResultFact(default));
             var context = GetWantActionContext(null, null);
             const int expectedValue = -1;
 

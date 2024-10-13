@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 
-namespace FactFactoryTests.Fact
+namespace GetcuReone.FactFactoryTests.Fact
 {
     [TestClass]
     public sealed class FactTests : CommonTestBase
@@ -23,7 +23,7 @@ namespace FactFactoryTests.Fact
             DateTime operationDate = DateTime.Now;
 
             GivenEmpty()
-                .When("Create fact.", _ => 
+                .When("Create fact.", _ =>
                     new DateTimeFact(operationDate))
                 .ThenFactValueEquals(operationDate)
                 .Run();
@@ -36,9 +36,9 @@ namespace FactFactoryTests.Fact
         public void GetFactTypeTestCase()
         {
             Given("Create fact.", () => new DateTimeFact(DateTime.Now))
-                .When("Run method.", fact => 
+                .When("Run method.", fact =>
                     fact.GetFactType())
-                .Then("Check result.", factInfo => 
+                .Then("Check result.", factInfo =>
                     Assert.IsTrue(factInfo is FactType<DateTimeFact>, "a different type of factual information was expected"))
                 .Run();
         }

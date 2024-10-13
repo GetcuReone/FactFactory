@@ -8,10 +8,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
-namespace FactFactoryTests.FactFactoryT
+namespace GetcuReone.FactFactoryTests.FactFactoryT
 {
     [TestClass]
-    public sealed class BuildContainedTests : FactFactoryTestBase
+    public sealed class FbContainedTests : FactFactoryTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.BuildContained), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
@@ -28,10 +28,10 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
                 {
-                    (BuildContained<Input1Fact> _, Input1Fact fact) => new ResultFact(fact.Value),
-                    (BuildNotContained<Input1Fact> _) => new ResultFact(-1),
+                    (FbContained<Input1Fact> _, Input1Fact fact) => new ResultFact(fact.Value),
+                    (FbNotContained<Input1Fact> _) => new ResultFact(-1),
                 })
-                .When("Derive.", factFactory => 
+                .When("Derive.", factFactory =>
                     factFactory.DeriveFact<ResultFact>(container))
                 .ThenFactValueEquals(expectedValue)
                 .Run();

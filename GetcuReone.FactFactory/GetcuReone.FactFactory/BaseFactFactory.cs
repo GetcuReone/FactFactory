@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using GetcuReone.FactFactory.BaseEntities;
@@ -13,6 +14,7 @@ using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Facades.FactEngine;
 using GetcuReone.FactFactory.Facades.SingleEntityOperations;
 using GetcuReone.FactFactory.Facades.TreeBuildingOperations;
+using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
@@ -67,7 +69,7 @@ namespace GetcuReone.FactFactory
         }
 
         /// <inheritdoc/>
-        public virtual async ValueTask DeriveAsync()
+        public virtual async ValueTask DeriveAsync(CancellationToken cancellationToken = default)
         {
             // Create static context data.
             IFactTypeCache cache = GetFactTypeCache();
@@ -77,11 +79,24 @@ namespace GetcuReone.FactFactory
             IFactParameterCache parameterCache = GetFactParameterCache();
 
             // Validate container and get contexts.
-            var contexts = WantFactsInfos.ConvertAll(info =>
-                GetWantActionContext(info, engine, treeBuildingOperations, singleEntityOperations, cache, parameterCache));
+            var contexts = new List<WantActionContext>();
+            var fToken = new FCancellationToken(cancellationToken);
+
+            foreach (var info in WantFactsInfos)
+            {
+                IFactContainer container = info.Container;
+
+                if (!container.Contains<FCancellationToken>())
+                    container.Remove<FCancellationToken>();
+
+                info.Container.Add(fToken);
+
+                contexts.Add(GetWantActionContext(info, engine, treeBuildingOperations, singleEntityOperations, cache, parameterCache));
+            }
 
             await engine.DeriveWantActionAsync(
-                contexts.ConvertAll(context => new DeriveWantActionRequest(context, Rules)));
+                contexts.ConvertAll(context => new DeriveWantActionRequest(context, Rules)))
+                .ConfigureAwait(false);
 
             WantFactsInfos.Clear();
         }

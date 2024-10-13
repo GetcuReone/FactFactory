@@ -5,7 +5,7 @@ using System;
 
 namespace FactFactoryTests.CommonFacts
 {
-    internal sealed class BuildCondition_ContainedOtherFact : BaseBuildConditionFact<OtherFact>
+    internal sealed class FbCondition_ContainedOtherFact : BaseBuildConditionFact<OtherFact>
     {
         public override bool Condition(
             IFactWork factWork,

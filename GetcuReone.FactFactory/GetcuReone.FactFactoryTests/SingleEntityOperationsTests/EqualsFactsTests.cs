@@ -1,10 +1,10 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
-using FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -151,8 +151,8 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DifferentConditionFactTestCase()
         {
-            var fact1 = new BuildContained<IntFact>();
-            var fact2 = new BuildContained<OtherFact>();
+            var fact1 = new FbContained<IntFact>();
+            var fact2 = new FbContained<OtherFact>();
             var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
             GivenCreateFacade()
@@ -168,8 +168,8 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SameConditionFactTestCase()
         {
-            var fact1 = new BuildContained<OtherFact>();
-            var fact2 = new BuildContained<OtherFact>();
+            var fact1 = new FbContained<OtherFact>();
+            var fact2 = new FbContained<OtherFact>();
             var context = GetWantActionContext((IWantAction)null, (IFactContainer)null);
 
             GivenCreateFacade()

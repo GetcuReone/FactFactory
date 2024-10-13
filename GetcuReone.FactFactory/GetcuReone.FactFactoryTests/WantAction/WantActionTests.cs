@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using WAction = GetcuReone.FactFactory.Entities.WantAction;
 
-namespace FactFactoryTests.WantAction
+namespace GetcuReone.FactFactoryTests.WantAction
 {
     [TestClass]
     public sealed class WantActionTests : CommonTestBase
@@ -20,7 +20,7 @@ namespace FactFactoryTests.WantAction
         public void CreateWantActionWithoutActionTestCase()
         {
             GivenEmpty()
-                .When("Create WantAction.", _ => 
+                .When("Create WantAction.", _ =>
                     ExpectedException<ArgumentNullException>(() => new WAction((Action<IEnumerable<IFact>>)null, null, FactWorkOption.CanExecuteSync)))
                 .ThenIsNotNull()
                 .AndAreEqual(ex => ex.ParamName, "wantAction",
@@ -37,9 +37,9 @@ namespace FactFactoryTests.WantAction
             bool isRun = false;
 
             Given("Create WantAction.", () => new WAction(ct => isRun = true, new List<IFactType> { GetFactType<OtherFact>() }, FactWorkOption.CanExecuteSync))
-                .When("Run method.", wantAction => 
-                    wantAction.Invoke(new GetcuReone.FactFactory.Entities.FactContainer()))
-                .Then("Check result.", _ => 
+                .When("Run method.", wantAction =>
+                    wantAction.Invoke(new FactFactory.Entities.FactContainer()))
+                .Then("Check result.", _ =>
                     Assert.IsTrue(isRun, "Invoke not run."))
                 .Run();
         }
@@ -52,7 +52,7 @@ namespace FactFactoryTests.WantAction
         {
             const string expectedReason = "factTypes cannot be empty. The desired action should request a fact on entry.";
             GivenEmpty()
-                .When("Create WantAction.", _ => 
+                .When("Create WantAction.", _ =>
                     ExpectedException<ArgumentException>(() => new WAction(ct => { }, null, FactWorkOption.CanExecuteSync)))
                 .ThenIsNotNull()
                 .And("Check error.", ex =>
