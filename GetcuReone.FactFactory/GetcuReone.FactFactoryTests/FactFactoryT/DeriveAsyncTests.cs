@@ -1,9 +1,11 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactory.Facts;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading;
 using System.Threading.Tasks;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
@@ -34,7 +36,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                 .WhenAsync("Derive.", factory => factory.DeriveAsync())
                 .Then("Check result.", () =>
                 {
-                    Assert.AreEqual(fact16, expectedValue);
+                    Assert.AreEqual(expectedValue, fact16);
                 })
                 .RunAsync();
         }
@@ -165,6 +167,52 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                 .Then("Check result.", () =>
                 {
                     Assert.AreEqual(fact16, expectedValue);
+                })
+                .RunAsync();
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Derive default cancellationToken.")]
+        [Timeout(Timeouts.Second.Two)]
+        public async Task DeriveDefaultCancellationTokenTestCase()
+        {
+            FCancellationToken fCancellationToken = null;
+
+            await GivenCreateFactFactory()
+                .AndAddRules(new Collection())
+                .And("Want actions.", factory => factory.WantFacts((FCancellationToken fact) =>
+                {
+                    fCancellationToken = fact;
+                }))
+                .WhenAsync("Derive.", factory => factory.DeriveAsync())
+                .Then("Check result.", () =>
+                {
+                    Assert.IsNotNull(fCancellationToken);
+                })
+                .RunAsync();
+        }
+
+        [TestMethod]
+        [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
+        [Description("Derive cancellationToken.")]
+        [Timeout(Timeouts.Second.Two)]
+        public async Task DeriveCancellationTokenTestCase()
+        {
+            FCancellationToken fCancellationToken = null;
+            CancellationTokenSource src = new();
+            CancellationToken cancellationToken = src.Token;
+
+            await GivenCreateFactFactory()
+                .AndAddRules(new Collection())
+                .And("Want actions.", factory => factory.WantFacts((FCancellationToken fact) =>
+                {
+                    fCancellationToken = fact;
+                }))
+                .WhenAsync("Derive.", factory => factory.DeriveAsync(cancellationToken))
+                .Then("Check result.", () =>
+                {
+                    Assert.AreEqual(cancellationToken, fCancellationToken);
                 })
                 .RunAsync();
         }
