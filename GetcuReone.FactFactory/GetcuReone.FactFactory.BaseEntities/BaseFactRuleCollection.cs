@@ -750,7 +750,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="rule">Rule of fact calculation.</param>
         /// <param name="option">Options for a rule.</param>
         public void Add<TFactIn1, TFactOut>(
-            Func<TFactIn1, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Func<TFactIn1, ValueTask<TFactOut>> rule, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFactOut : IFact
             where TFactIn1 : IFact
         {
