@@ -1,5 +1,6 @@
 ﻿using GetcuReone.FactFactory.Interfaces.Context;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
 {
@@ -25,7 +26,7 @@ namespace GetcuReone.FactFactory.Interfaces.SpecialFacts
         /// <param name="context">Context.</param>
         /// <param name="relatedRules">Related fact rules.</param>
         /// <returns>True - was able to return the associated fact rules.</returns>
-        bool TryGetRelatedRules(IWantActionContext context, out IFactRuleCollection relatedRules);
+        bool TryGetRelatedRules(IWantActionContext context, [NotNullWhen(true)] out IFactRuleCollection? relatedRules);
 
         /// <summary>
         /// A condition that determines whether the current fact can be added to the container when deriving.

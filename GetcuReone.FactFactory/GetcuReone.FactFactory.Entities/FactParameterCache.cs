@@ -26,7 +26,7 @@ namespace GetcuReone.FactFactory.Entities
             if (createParameterFunc == null)
                 throw new ArgumentNullException(nameof(createParameterFunc));
 
-            IFactParameter parameter = _parameters
+            IFactParameter? parameter = _parameters
                 .FirstOrDefault(p => p.Code.Equals(parameterCode, StringComparison.OrdinalIgnoreCase) && p.Value == parameterValue);
 
             if (parameter != null)

@@ -21,7 +21,7 @@ namespace FactFactory.TestsCommon.Helpers
         {
             Assert.IsNotNull(error, "error cannot be null");
             Assert.IsNotNull(error.Details, "error cannot be null");
-            Assert.AreNotEqual(0, error.Details.Count, "Details must contain 0 detail");
+            Assert.AreNotEqual(0, error.Details!.Count, "Details must contain 0 detail");
 
             if (!error.Details.Any(detail => detail.Code == errorCode && detail.Reason == errorMessage))
                 Assert.Fail($"Expected '{errorCode}' code and reason '{errorMessage}'.");
@@ -41,11 +41,11 @@ namespace FactFactory.TestsCommon.Helpers
                 .Then($"Check error with code {errorCode}", error =>
                 {
                     if (error == null)
-                        AssertErrorDetail(null, errorCode, errorMessage);
+                        AssertErrorDetail(null!, errorCode, errorMessage);
                     else if (error.Details == null)
                         new FactFactoryException(null);
 
-                    new FactFactoryException(error.Details.Select(detail => (ErrorDetail)detail).ToList()).AssertErrorDetail(errorCode, errorMessage);
+                    new FactFactoryException(error!.Details!.Select(detail => (ErrorDetail)detail).ToList()).AssertErrorDetail(errorCode, errorMessage);
                 });
         }
 
@@ -62,11 +62,11 @@ namespace FactFactory.TestsCommon.Helpers
             return thenBlock.And($"Check error with code {errorCode}", error =>
             {
                 if (error == null)
-                    AssertErrorDetail(null, errorCode, errorMessage);
+                    AssertErrorDetail(null!, errorCode, errorMessage);
                 else if (error.Details == null)
                     new FactFactoryException(null);
 
-                new FactFactoryException(error.Details.Select(detail => (ErrorDetail)detail).ToList()).AssertErrorDetail(errorCode, errorMessage);
+                new FactFactoryException(error!.Details!.Select(detail => (ErrorDetail)detail).ToList()).AssertErrorDetail(errorCode, errorMessage);
             });
         }
 

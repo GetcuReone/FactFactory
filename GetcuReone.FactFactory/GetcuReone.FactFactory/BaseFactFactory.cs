@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
@@ -24,7 +26,7 @@ namespace GetcuReone.FactFactory
     /// </summary>
     public abstract class BaseFactFactory : IFactFactory
     {
-        private ISingleEntityOperations _singleEntityOperations;
+        private ISingleEntityOperations? _singleEntityOperations;
 
         /// <summary>
         /// WantFacts.
@@ -58,11 +60,8 @@ namespace GetcuReone.FactFactory
             var contexts = WantFactsInfos.ConvertAll(info =>
                 GetWantActionContext(info, engine, treeBuildingOperations, singleEntityOperations, cache, parameterCache));
 
-            engine.DeriveWantAction(contexts.ConvertAll(context => new DeriveWantActionRequest
-            {
-                Context = context,
-                Rules = Rules,
-            }));
+            engine.DeriveWantAction(
+                contexts.ConvertAll(context => new DeriveWantActionRequest(context, Rules)));
 
             WantFactsInfos.Clear();
         }
@@ -81,16 +80,13 @@ namespace GetcuReone.FactFactory
             var contexts = WantFactsInfos.ConvertAll(info =>
                 GetWantActionContext(info, engine, treeBuildingOperations, singleEntityOperations, cache, parameterCache));
 
-            await engine.DeriveWantActionAsync(contexts.ConvertAll(context => new DeriveWantActionRequest
-            {
-                Context = context,
-                Rules = Rules,
-            }));
+            await engine.DeriveWantActionAsync(
+                contexts.ConvertAll(context => new DeriveWantActionRequest(context, Rules)));
 
             WantFactsInfos.Clear();
         }
 
-        private IWantActionContext GetWantActionContext(
+        private WantActionContext GetWantActionContext(
             WantFactsInfo wantFactsInfo,
             IFactEngine engine,
             ITreeBuildingOperations treeBuilding,
@@ -98,16 +94,15 @@ namespace GetcuReone.FactFactory
             IFactTypeCache cache,
             IFactParameterCache parameterCache)
         {
-            var context = new WantActionContext
-            {
-                Cache = cache,
-                Container = wantFactsInfo.Container,
-                SingleEntity = singleEntity,
-                TreeBuilding = treeBuilding,
-                WantAction = wantFactsInfo.WantAction,
-                Engine = engine,
-                ParameterCache = parameterCache,
-            };
+            var context = new WantActionContext(
+                cache,
+                singleEntity,
+                treeBuilding,
+                engine,
+                parameterCache,
+                wantFactsInfo.WantAction,
+                wantFactsInfo.Container);
+
             context.Container.EqualityComparer = context.SingleEntity.GetFactEqualityComparer(context);
             context.Container.Comparer = context.SingleEntity.GetFactComparer(context);
             context.Container.IsReadOnly = true;
@@ -116,7 +111,7 @@ namespace GetcuReone.FactFactory
 
             if (!defaultFacts.IsNullOrEmpty())
             {
-                foreach (var defaultFact in defaultFacts)
+                foreach (var defaultFact in defaultFacts!)
                 {
                     if (!context.Container.Contains(defaultFact))
                         using (var writer = context.Container.GetWriter())
@@ -157,7 +152,7 @@ namespace GetcuReone.FactFactory
         /// <inheritdoc cref="GetSingleEntityOperations"/>
         protected ISingleEntityOperations GetSingleEntityOperationsOnce()
         {
-            return _singleEntityOperations ?? (_singleEntityOperations = GetSingleEntityOperations());
+            return _singleEntityOperations ??= GetSingleEntityOperations();
         }
 
         /// <summary>
@@ -194,7 +189,7 @@ namespace GetcuReone.FactFactory
         /// <param name="wantAction"></param>
         /// <param name="container"></param>
         /// <exception cref="FactFactoryException">The action has already been requested before.</exception>
-        public virtual void WantFacts(IWantAction wantAction, IFactContainer container)
+        public virtual void WantFacts(IWantAction wantAction, IFactContainer? container)
         {
             if (wantAction == null)
                 throw CommonHelper.CreateException(ErrorCode.InvalidData, "WantAction is null.");
@@ -203,11 +198,7 @@ namespace GetcuReone.FactFactory
             if (WantFactsInfos.Any(info => info.WantAction == wantAction && info.Container == factContainer))
                 throw CommonHelper.CreateException(ErrorCode.InvalidData, "Action already requested.");
 
-            WantFactsInfos.Add(new WantFactsInfo
-            {
-                Container = factContainer,
-                WantAction = wantAction,
-            });
+            WantFactsInfos.Add(new WantFactsInfo(wantAction, factContainer));
         }
 
         /// <summary>
@@ -217,7 +208,7 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactAction">Desired action.</param>
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
-        public virtual void WantFacts<TFact1>(Action<TFact1> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+        public virtual void WantFacts<TFact1>(Action<TFact1> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
         {
             var singleOperations = GetSingleEntityOperationsOnce();
@@ -240,7 +231,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2>(
-            Action<TFact1, TFact2> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
         {
@@ -265,7 +256,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3>(
-            Action<TFact1, TFact2, TFact3> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -292,7 +283,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4>(
-            Action<TFact1, TFact2, TFact3, TFact4> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -321,7 +312,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -352,7 +343,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -385,7 +376,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -420,7 +411,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -457,7 +448,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -496,7 +487,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -537,7 +528,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -580,7 +571,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -625,7 +616,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -672,7 +663,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -721,7 +712,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -772,7 +763,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16>(
-            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
+            Action<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteSync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -808,7 +799,7 @@ namespace GetcuReone.FactFactory
         /// <param name="wantFactActionAsync">Desired action.</param>
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
-        public virtual void WantFacts<TFact1>(Func<TFact1, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+        public virtual void WantFacts<TFact1>(Func<TFact1, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
         {
             var singleOperations = GetSingleEntityOperationsOnce();
@@ -831,7 +822,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2>(
-            Func<TFact1, TFact2, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
         {
@@ -856,7 +847,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3>(
-            Func<TFact1, TFact2, TFact3, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -883,7 +874,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4>(
-            Func<TFact1, TFact2, TFact3, TFact4, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -912,7 +903,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -943,7 +934,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -976,7 +967,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -1011,7 +1002,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -1048,7 +1039,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -1087,7 +1078,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -1128,7 +1119,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -1171,7 +1162,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -1216,7 +1207,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -1263,7 +1254,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -1312,7 +1303,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, ValueTask> wantFactActionAsync, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, ValueTask> wantFactActionAsync, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact
@@ -1363,7 +1354,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="option">FactWork options.</param>
         public virtual void WantFacts<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16>(
-            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16, ValueTask> wantFactAction, IFactContainer container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
+            Func<TFact1, TFact2, TFact3, TFact4, TFact5, TFact6, TFact7, TFact8, TFact9, TFact10, TFact11, TFact12, TFact13, TFact14, TFact15, TFact16, ValueTask> wantFactAction, IFactContainer? container = null, FactWorkOption option = FactWorkOption.CanExecuteAsync)
             where TFact1 : IFact
             where TFact2 : IFact
             where TFact3 : IFact

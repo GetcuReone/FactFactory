@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using GetcuReone.FactFactory.BaseEntities;
 using GetcuReone.FactFactory.BaseEntities.Context;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions.Entities;
@@ -23,8 +25,8 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <inheritdoc/>
         public virtual bool TryBuildTreeForFactInfo(
             BuildTreeForFactInfoRequest request,
-            out TreeByFactRule treeResult,
-            out List<DeriveFactErrorDetail> deriveFactErrorDetails)
+            [NotNullWhen(true)] out TreeByFactRule? treeResult,
+            [NotNullWhen(false)] out List<DeriveFactErrorDetail>? deriveFactErrorDetails)
         {
             var context = request.Context;
             treeResult = null;
@@ -55,7 +57,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     int lastlevelNumber = treeByWantFactType.Levels.Count - 1;
 
                     // If after synchronization we can calculate the tree.
-                    if (TrySyncTreeLevelsAndFinishedNodes(treeByWantFactType, lastlevelNumber, allFinichedNodes))
+                    if (TreeBuildingOperationsFacade.TrySyncTreeLevelsAndFinishedNodes(treeByWantFactType, lastlevelNumber, allFinichedNodes))
                     {
                         treeByWantFactType.Built();
                         continue;
@@ -93,7 +95,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         }
 
                         bool canTryRemoveNode = false;
-                        foreach (var needFact in needFacts)
+                        foreach (var needFact in needFacts!)
                         {
                             if (needFact.IsFactType<ISpecialFact>())
                             {
@@ -106,13 +108,13 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
                             var needRules = nodeInfo
                                 .CompatibleRules
-                                .FindAll(rule => rule.OutputFactType.EqualsFactType(needFact) && !rule.RuleContainBranch(node));
+                                !.FindAll(rule => rule.OutputFactType.EqualsFactType(needFact) && !rule.RuleContainBranch(node));
 
                             if (needRules.Count > 0)
                             {
                                 List<NodeByFactRule> nodes = needRules.GetNodesByRules(node, treeByWantFactType);
                                 nextTreeLevel.AddRange(nodes);
-                                node.Childs.AddRange(nodes);
+                                node.Childs!.AddRange(nodes);
                             }
                             else
                             {
@@ -126,7 +128,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         if (canTryRemoveNode)
                         {
                             // Is there a neighboring node capable of deriving this fact.
-                            cannotDerived = TryRemoveRootNode(node, treeByWantFactType, lastlevelNumber);
+                            cannotDerived = TreeBuildingOperationsFacade.TryRemoveRootNode(node, treeByWantFactType, lastlevelNumber);
                             j--;
                         }
                     }
@@ -135,11 +137,11 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                         treeByWantFactType.Cencel();
                     else if (currentLevelFinishedNodes.Count > 0)
                     {
-                        if (TrySyncTreeLevelsAndFinishedNodes(treeByWantFactType, lastlevelNumber, currentLevelFinishedNodes))
+                        if (TreeBuildingOperationsFacade.TrySyncTreeLevelsAndFinishedNodes(treeByWantFactType, lastlevelNumber, currentLevelFinishedNodes))
                             treeByWantFactType.Built();
                         else if (nextTreeLevel.Count > 0)
                         {
-                            SyncTreeLevelAndFinishedNodes(nextTreeLevel, currentLevelFinishedNodes, context);
+                            TreeBuildingOperationsFacade.SyncTreeLevelAndFinishedNodes(nextTreeLevel, currentLevelFinishedNodes, context);
                             treeByWantFactType.Levels.Add(nextTreeLevel);
                         }
                     }
@@ -189,7 +191,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <param name="level">The level at which to start synchronization.</param>
         /// <param name="finishedNodes"></param>
         /// <returns>True - managed to sync root level</returns>
-        private bool TrySyncTreeLevelsAndFinishedNodes(
+        private static bool TrySyncTreeLevelsAndFinishedNodes(
             TreeByFactRule treeByFactRule,
             int level,
             Dictionary<NodeByFactRuleInfo,
@@ -208,7 +210,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
                 IFactRuleCollection finishedRules = context
                     .FactRules
-                    .FindAll(r => finishedNodes.Any(n =>
+                    !.FindAll(r => finishedNodes.Any(n =>
                         n.Key.Rule.EqualsWork(r, context.WantAction, context.Container)));
 
                 IFactRuleCollection copabilitiesFinishedRules = rule.GetCompatibleRulesEx(finishedRules, context);
@@ -224,15 +226,15 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             if (finishedNodesInCurrentLevel.IsNullOrEmpty())
                 return false;
 
-            SyncTreeLevelAndFinishedNodes(currentLevel, finishedNodesInCurrentLevel, context);
+            TreeBuildingOperationsFacade.SyncTreeLevelAndFinishedNodes(currentLevel, finishedNodesInCurrentLevel!, context);
 
-            foreach (var finishedNode in finishedNodesInCurrentLevel)
+            foreach (KeyValuePair<NodeByFactRuleInfo, NodeByFactRule> finishedNode in finishedNodesInCurrentLevel!)
             {
                 if (finishedNodes.Keys.Any(nodeInfo => nodeInfo.Rule.EqualsWork(finishedNode.Key.Rule, context.WantAction, context.Container)))
                     continue;
                 finishedNodes.Add(finishedNode.Key, finishedNode.Value);
             }
-            return TrySyncTreeLevelsAndFinishedNodes(treeByFactRule, level - 1, finishedNodes);
+            return TreeBuildingOperationsFacade.TrySyncTreeLevelsAndFinishedNodes(treeByFactRule, level - 1, finishedNodes);
         }
 
         /// <summary>
@@ -241,7 +243,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// <param name="treeLevel">Tree level.</param>
         /// <param name="finishedNodes">Nodes by which the rule can already be calculated. Key - node info, value - node</param>
         /// <param name="context">Context.</param>
-        private void SyncTreeLevelAndFinishedNodes(
+        private static void SyncTreeLevelAndFinishedNodes(
             List<NodeByFactRule> treeLevel,
             Dictionary<NodeByFactRuleInfo,
             NodeByFactRule> finishedNodes,
@@ -251,7 +253,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             {
                 List<NodeByFactRule> parentNodes = treeLevel
                     .Where(node => node.Info.Rule.EqualsWork(finishedNode.Key.Rule, context.WantAction, context.Container))
-                    .Select(node => node.Parent)
+                    .Select(node => node.Parent!)
                     .Distinct()
                     .ToList();
 
@@ -260,7 +262,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     if (parentNode == null)
                         continue;
 
-                    for (int i = parentNode.Childs.Count - 1; i >= 0; i--)
+                    for (int i = parentNode.Childs!.Count - 1; i >= 0; i--)
                     {
                         NodeByFactRule childNode = parentNode.Childs[i];
 
@@ -308,7 +310,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
                 var condition = factType.CreateBuildConditionFact<IBuildConditionFact>();
 
-                if (condition.Condition(nodeInfo.Rule, context, _ => nodeInfo.CompatibleRules))
+                if (condition.Condition(nodeInfo.Rule, context, _ => nodeInfo.CompatibleRules!))
                 {
                     nodeInfo.BuildSuccessConditions.Add(condition);
                     return true;
@@ -328,7 +330,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
                 IRuntimeConditionFact condition = factType.CreateRuntimeConditionFact<IRuntimeConditionFact>();
 
-                condition.SetGetRelatedRulesFunc(GetRelatedRules, node.Info.Rule, context.FactRules);
+                condition.SetGetRelatedRulesFunc(GetRelatedRules, node.Info.Rule, context.FactRules!);
 
                 nodeInfo.RuntimeConditions.Add(condition);
 
@@ -343,7 +345,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
 
                 if (finishedNodesForCurrentFact.Count != 0)
                 {
-                    node.Childs.Insert(0, finishedNodesForCurrentFact[0].Value);
+                    node.Childs!.Insert(0, finishedNodesForCurrentFact[0].Value);
                     return true;
                 }
             }
@@ -362,7 +364,7 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         /// Recursively delete parent nodes
         /// if they do not have other nodes calculating the fact from the child node.
         /// </remarks>
-        private bool TryRemoveRootNode(
+        private static bool TryRemoveRootNode(
             NodeByFactRule node,
             TreeByFactRule treeByFactRule, int level)
         {
@@ -371,15 +373,15 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             if (level == 0)
                 return true;
 
-            NodeByFactRule parent = node.Parent;
+            NodeByFactRule parent = node.Parent!;
 
-            parent.Childs.Remove(node);
+            parent.Childs!.Remove(node);
 
             // If the node has a child node that can calculate this fact
             if (parent.Childs.Any(n => n.Info.Rule.OutputFactType.EqualsFactType(node.Info.Rule.OutputFactType)))
                 return false;
             else
-                return TryRemoveRootNode(parent, treeByFactRule, level - 1);
+                return TreeBuildingOperationsFacade.TryRemoveRootNode(parent, treeByFactRule, level - 1);
         }
 
         /// <inheritdoc/>
@@ -387,18 +389,8 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
         {
             var context = request.Context;
             var deriveFactErrorDetails = new List<DeriveFactErrorDetail>();
-            var wantActionInfo = new WantActionInfo
-            {
-                BuildFailedConditions = new List<IBuildConditionFact>(),
-                BuildSuccessConditions = new List<IBuildConditionFact>(),
-                RuntimeConditions = new List<IRuntimeConditionFact>(),
-                Context = context,
-            };
-            result = new BuildTreesForWantActionResult
-            {
-                TreesResult = new List<TreeByFactRule>(),
-                WantActionInfo = wantActionInfo,
-            };
+            var wantActionInfo = new WantActionInfo(context);
+            result = new BuildTreesForWantActionResult(wantActionInfo);
 
             foreach (var needFactType in context.SingleEntity.GetRequiredTypesOfFacts(context.WantAction, context))
             {
@@ -431,23 +423,13 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     continue;
                 }
 
-                var requestFactType = new BuildTreeForFactInfoRequest
+                var newContext = new FactRulesContext(context)
                 {
-                    WantFactType = needFactType,
-                    Context = new FactRulesContext
-                    {
-                        Cache = context.Cache,
-                        Container = context.Container,
-                        FactRules = context
+                    FactRules = context
                             .WantAction
                             .GetCompatibleRulesEx(request.FactRules, context),
-                        SingleEntity = context.SingleEntity,
-                        TreeBuilding = context.TreeBuilding,
-                        WantAction = context.WantAction,
-                        Engine = context.Engine,
-                        ParameterCache = context.ParameterCache,
-                    },
                 };
+                var requestFactType = new BuildTreeForFactInfoRequest(needFactType, newContext);
 
                 if (context.TreeBuilding.TryBuildTreeForFactInfo(requestFactType, out var resultTree, out var errorList))
                 {
@@ -485,12 +467,14 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
             return allGroups;
         }
 
-        private void FillChildIndependentNodeGroup(NodeByFactRule node, List<IndependentNodeGroup> groups)
+        private static void FillChildIndependentNodeGroup(NodeByFactRule node, List<IndependentNodeGroup> groups)
         {
+#pragma warning disable CS8604 // Possible null reference argument.
             if (node.Childs.IsNullOrEmpty())
+#pragma warning restore CS8604 // Possible null reference argument.
                 return;
 
-            foreach (var child in node.Childs)
+            foreach (NodeByFactRule child in node.Childs!)
                 FillChildIndependentNodeGroup(child, groups);
 
             IndependentNodeGroup lastGroup;
@@ -549,17 +533,17 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     if (syncNodes.Count != 0)
                         syncNodes.ForEach(node => 
                         {
-                            var fact = singleOperations.CalculateFact(node, context);
-                            using (var writer = container.GetWriter())
-                                writer.Add(fact);
+                            IFact fact = singleOperations.CalculateFact(node, context);
+                            using FactContainerWriter writer = container.GetWriter();
+                            writer.Add(fact);
                         });
 
                     if (syncAndParallelNodes.Count != 0)
                         Parallel.ForEach(syncAndParallelNodes, node => 
                         {
-                            var fact = singleOperations.CalculateFact(node, context);
-                            using (var writer = container.GetWriter())
-                                writer.Add(fact);
+                            IFact fact = singleOperations.CalculateFact(node, context);
+                            using FactContainerWriter writer = container.GetWriter();
+                            writer.Add(fact);
                         });
                 }
             }
@@ -609,33 +593,34 @@ namespace GetcuReone.FactFactory.Facades.TreeBuildingOperations
                     if (syncNodes.Count != 0)
                         syncNodes.ForEach(node =>
                         {
-                            var fact = context.SingleEntity.CalculateFact(node, context);
-                            using (var writer = context.Container.GetWriter())
-                                writer.Add(fact);
+                            IFact fact = context.SingleEntity.CalculateFact(node, context);
+                            using FactContainerWriter writer = context.Container.GetWriter();
+                            writer.Add(fact);
                         });
 
                     if (syncAndParallelNodes.Count != 0)
                         Parallel.ForEach(syncAndParallelNodes, node =>
                         {
-                            var fact = context.SingleEntity.CalculateFact(node, context);
-                            using (var writer = context.Container.GetWriter())
-                                writer.Add(fact);
+                            IFact fact = context.SingleEntity.CalculateFact(node, context);
+                            using FactContainerWriter writer = context.Container.GetWriter();
+                            writer.Add(fact);
                         });
 
                     if (asyncNodes.Count != 0)
                         foreach(var node in asyncNodes)
                         {
-                            var fact = await context.SingleEntity.CalculateFactAsync(node, context).ConfigureAwait(false);
-                            using (var writer = context.Container.GetWriter())
-                                writer.Add(fact);
+                            IFact fact = await context.SingleEntity.CalculateFactAsync(node, context).ConfigureAwait(false);
+                            using FactContainerWriter writer = context.Container.GetWriter();
+                            writer.Add(fact);
                         }
 
                     if (asyncAndParallelNodes.Count != 0)
                     {
-                        var facts = await asyncAndParallelNodes
+                        IReadOnlyCollection<IFact> facts = await asyncAndParallelNodes
                             .ConvertAll(node => context.SingleEntity.CalculateFactAsync(node, context))
                             .WhenAll()
                             .ConfigureAwait(false);
+
                         foreach(var fact in facts)
                             using (var writer = context.Container.GetWriter())
                                 writer.Add(fact);

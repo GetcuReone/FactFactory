@@ -11,7 +11,7 @@ namespace GetcuReone.FactFactory
     /// </summary>
     public class FactFactory : BaseFactFactory
     {
-        private readonly Func<IWantActionContext, IEnumerable<IFact>> _getDefaultFactsFunc;
+        private readonly Func<IWantActionContext, IEnumerable<IFact>>? _getDefaultFactsFunc;
 
         /// <inheritdoc/>
         public override IFactRuleCollection Rules { get; }
@@ -25,7 +25,7 @@ namespace GetcuReone.FactFactory
         /// Constructor.
         /// </summary>
         /// <param name="getDefaultFactsFunc">Function that returns a list of facts by default.</param>
-        public FactFactory(Func<IWantActionContext, IEnumerable<IFact>> getDefaultFactsFunc)
+        public FactFactory(Func<IWantActionContext, IEnumerable<IFact>>? getDefaultFactsFunc)
         {
             _getDefaultFactsFunc = getDefaultFactsFunc;
             Rules = new FactRuleCollection();
@@ -40,7 +40,7 @@ namespace GetcuReone.FactFactory
         /// <inheritdoc/>
         protected override IEnumerable<IFact> GetDefaultFacts(IWantActionContext context)
         {
-            return _getDefaultFactsFunc?.Invoke(context);
+            return _getDefaultFactsFunc?.Invoke(context) ?? base.GetDefaultFacts(context);
         }
     }
 }

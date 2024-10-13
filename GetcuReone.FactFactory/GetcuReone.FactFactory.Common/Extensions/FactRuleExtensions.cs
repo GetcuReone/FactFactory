@@ -25,20 +25,20 @@ namespace GetcuReone.FactFactory.Extensions
                 if (secondRule.InputFactTypes.IsNullOrEmpty())
                     return 0;
 
-                return secondRule.InputFactTypes.Any(factType => factType.IsFactType<ISpecialFact>())
+                return secondRule.InputFactTypes!.Any(factType => factType.IsFactType<ISpecialFact>())
                     ? -1
                     : 1;
             }
 
             if (secondRule.InputFactTypes.IsNullOrEmpty())
             {
-                return firstRule.InputFactTypes.Any(factType => factType.IsFactType<ISpecialFact>())
+                return firstRule.InputFactTypes!.Any(factType => factType.IsFactType<ISpecialFact>())
                     ? 1
                     : -1;
             }
 
-            int xCountCondition = firstRule.InputFactTypes.Count(factType => factType.IsFactType<IBuildConditionFact>());
-            int yCountCondition = secondRule.InputFactTypes.Count(factType => factType.IsFactType<IBuildConditionFact>());
+            int xCountCondition = firstRule.InputFactTypes!.Count(factType => factType.IsFactType<IBuildConditionFact>());
+            int yCountCondition = secondRule.InputFactTypes!.Count(factType => factType.IsFactType<IBuildConditionFact>());
 
             if (xCountCondition != yCountCondition)
             {
@@ -47,8 +47,8 @@ namespace GetcuReone.FactFactory.Extensions
                     : -1;
             }
 
-            int xCountSpecial = firstRule.InputFactTypes.Count(factType => factType.IsFactType<ISpecialFact>());
-            int yCountSpecial = secondRule.InputFactTypes.Count(factType => factType.IsFactType<ISpecialFact>());
+            int xCountSpecial = firstRule.InputFactTypes!.Count(factType => factType.IsFactType<ISpecialFact>());
+            int yCountSpecial = secondRule.InputFactTypes!.Count(factType => factType.IsFactType<ISpecialFact>());
 
             if (xCountSpecial != yCountSpecial)
             {
@@ -57,7 +57,7 @@ namespace GetcuReone.FactFactory.Extensions
                     : -1;
             }
 
-            if (firstRule.InputFactTypes.Count > secondRule.InputFactTypes.Count)
+            if (firstRule.InputFactTypes!.Count > secondRule.InputFactTypes!.Count)
                 return -1;
             if (firstRule.InputFactTypes.Count < secondRule.InputFactTypes.Count)
                 return 1;

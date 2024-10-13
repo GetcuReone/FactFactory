@@ -3,7 +3,7 @@
 namespace GetcuReone.FactFactory.Interfaces.Context
 {
     /// <summary>
-    /// A context containing information within which current actions are taking place.
+    /// A context containing information within which current actions are taking place
     /// </summary>
     public interface IFactFactoryContext
     {

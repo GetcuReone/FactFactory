@@ -54,7 +54,7 @@ namespace GetcuReone.FactFactory
         /// <param name="requiredAction">Action for which it was not possible to derive the facts.</param>
         /// <param name="container">Fact container.</param>
         /// <returns>Exception.</returns>
-        public static InvalidDeriveOperationException CreateDeriveException(string code, string reason, IWantAction requiredAction, IFactContainer container)
+        public static InvalidDeriveOperationException CreateDeriveException(string code, string reason, IWantAction? requiredAction, IFactContainer? container)
         {
             return CreateDeriveException(code, reason, requiredAction , container, null);
         }
@@ -68,7 +68,7 @@ namespace GetcuReone.FactFactory
         /// <param name="container">Fact container.</param>
         /// <param name="requiredFacts">The facts that tried to derive.</param>
         /// <returns>Exception.</returns>
-        public static InvalidDeriveOperationException CreateDeriveException(string code, string reason, IWantAction requiredAction, IFactContainer container, IReadOnlyCollection<DeriveFactErrorDetail> requiredFacts)
+        public static InvalidDeriveOperationException CreateDeriveException(string code, string reason, IWantAction? requiredAction, IFactContainer? container, IReadOnlyCollection<DeriveFactErrorDetail>? requiredFacts)
         {
             return new InvalidDeriveOperationException(new List<DeriveErrorDetail>
             {

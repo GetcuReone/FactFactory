@@ -1,6 +1,7 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,9 +12,9 @@ namespace GetcuReone.FactFactory.BaseEntities
     /// </summary>
     public abstract class BaseWantAction : BaseFactWork, IWantAction
     {
-        private readonly Action<IEnumerable<IFact>> _action;
-        private readonly Func<IEnumerable<IFact>, ValueTask> _actionAsync;
-        private List<IFactRule> _usedRules;
+        private readonly Action<IEnumerable<IFact>>? _action;
+        private readonly Func<IEnumerable<IFact>, ValueTask>? _actionAsync;
+        private List<IFactRule>? _usedRules;
 
         /// <summary>
         /// Constructor.
@@ -56,20 +57,19 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <inheritdoc/>
         public virtual void Invoke(IEnumerable<IFact> requireFacts)
         {
-            _action(requireFacts);
+            _action!(requireFacts);
         }
 
         /// <inheritdoc/>
         public virtual async ValueTask InvokeAsync(IEnumerable<IFact> requireFacts)
         {
-            await _actionAsync(requireFacts).ConfigureAwait(false);
+            await _actionAsync!(requireFacts).ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
         public virtual void AddUsedRule(IFactRule rule)
         {
-            if (_usedRules == null)
-                _usedRules = new List<IFactRule>();
+            _usedRules ??= new List<IFactRule>();
 
             _usedRules.Add(rule);
         }

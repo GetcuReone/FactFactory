@@ -1,5 +1,7 @@
 ﻿using GetcuReone.FactFactory.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace GetcuReone.FactFactory.BaseEntities
@@ -20,11 +22,13 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <param name="factTypes">Fact types.</param>
         /// <param name="option">FactWork option.</param>
-        protected BaseFactWork(List<IFactType> factTypes, FactWorkOption option)
+        protected BaseFactWork(List<IFactType>? factTypes, FactWorkOption option)
         {
+#pragma warning disable CS8604 // Possible null reference argument.
             InputFactTypes = !factTypes.IsNullOrEmpty()
-                ? factTypes.AsReadOnly()
-                : new List<IFactType>(0).AsReadOnly();
+#pragma warning restore CS8604 // Possible null reference argument.
+                ? factTypes!.AsReadOnly()
+                : new ReadOnlyCollection<IFactType>(Array.Empty<IFactType>());
 
             Option = option;
         }
@@ -35,19 +39,21 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// <param name="first"></param>
         /// <param name="second"></param>
         /// <returns></returns>
-        protected virtual bool EqualsFactTypes(IEnumerable<IFactType> first, IEnumerable<IFactType> second)
+        protected virtual bool EqualsFactTypes(IEnumerable<IFactType>? first, IEnumerable<IFactType>? second)
         {
-            if (first.IsNullOrEmpty() && second.IsNullOrEmpty())
-                return true;
-            else if (first.IsNullOrEmpty() || second.IsNullOrEmpty())
+#pragma warning disable CS8604 // Possible null reference argument.
+            if (first.IsNullOrEmpty())
+                return second.IsNullOrEmpty();
+            else if (second.IsNullOrEmpty())
                 return false;
-            else if (first.Count() != second.Count())
+#pragma warning restore CS8604 // Possible null reference argument.
+            else if (first!.Count() != second!.Count())
                 return false;
             else
             {
-                foreach (var fact in second)
+                foreach (IFactType fact in second!)
                 {
-                    if (first.All(f => !f.EqualsFactType(fact)))
+                    if (first!.All(f => !f.EqualsFactType(fact)))
                         return false;
                 }
 
@@ -56,7 +62,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public virtual bool EqualsWork(IFactWork workFact, IWantAction wantAction, IFactContainer container)
+        public virtual bool EqualsWork(IFactWork workFact, IWantAction wantAction, IFactContainer? container)
         {
             return EqualsFactTypes(InputFactTypes, workFact?.InputFactTypes);
         }

@@ -3,18 +3,29 @@
 namespace GetcuReone.FactFactory.Interfaces.Operations.Entities
 {
     /// <summary>
-    /// Request.
+    /// Request
     /// </summary>
     public class BuildTreesForWantActionRequest
     {
         /// <summary>
-        /// Context.
+        /// Context
         /// </summary>
-        public IWantActionContext Context { get; set; }
+        public IWantActionContext Context { get; }
 
         /// <summary>
-        /// Fact rules.
+        /// Fact rules
         /// </summary>
-        public IFactRuleCollection FactRules { get; set; }
+        public IFactRuleCollection FactRules { get; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context">Context</param>
+        /// <param name="factRules">Fact rules</param>
+        public BuildTreesForWantActionRequest(IWantActionContext context, IFactRuleCollection factRules)
+        {
+            Context = context;
+            FactRules = factRules;
+        }
     }
 }

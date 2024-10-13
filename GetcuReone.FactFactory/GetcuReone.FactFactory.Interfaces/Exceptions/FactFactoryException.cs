@@ -9,7 +9,7 @@ namespace GetcuReone.FactFactory.Exceptions
     public class FactFactoryException : FactFactoryExceptionBase<ErrorDetail>
     {
         /// <inheritdoc/>
-        public FactFactoryException(IReadOnlyCollection<ErrorDetail> details) : base(details)
+        public FactFactoryException(IReadOnlyCollection<ErrorDetail>? details) : base(details)
         {
         }
     }

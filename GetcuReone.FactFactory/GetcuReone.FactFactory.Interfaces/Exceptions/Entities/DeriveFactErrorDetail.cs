@@ -13,7 +13,7 @@ namespace GetcuReone.FactFactory.Exceptions.Entities
         /// </summary>
         /// <param name="requiredFact">The fact that tried to derive.</param>
         /// <param name="needFacts">Facts that were not enough to derive.</param>
-        public DeriveFactErrorDetail(IFactType requiredFact, IReadOnlyCollection<IFactType> needFacts)
+        public DeriveFactErrorDetail(IFactType requiredFact, IReadOnlyCollection<IFactType>? needFacts)
         {
             RequiredFact = requiredFact;
             NeedFacts = needFacts;
@@ -27,6 +27,6 @@ namespace GetcuReone.FactFactory.Exceptions.Entities
         /// <summary>
         /// Facts that were not enough to derive.
         /// </summary>
-        public IReadOnlyCollection<IFactType> NeedFacts { get; }
+        public IReadOnlyCollection<IFactType>? NeedFacts { get; }
     }
 }

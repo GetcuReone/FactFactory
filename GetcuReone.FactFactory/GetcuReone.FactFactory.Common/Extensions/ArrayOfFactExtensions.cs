@@ -2,6 +2,7 @@
 using GetcuReone.FactFactory.Interfaces.Operations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace GetcuReone.FactFactory.Extensions
@@ -61,6 +62,7 @@ namespace GetcuReone.FactFactory.Extensions
         /// <param name="factType">Fact type.</param>
         /// <param name="cache">Cache.</param>
         /// <returns>Fact or null.</returns>
+        [return: MaybeNull]
         public static TFact FirstFactByFactType<TFact>(this IEnumerable<TFact> facts, IFactType factType, IFactTypeCache cache)
             where TFact : IFact
         {

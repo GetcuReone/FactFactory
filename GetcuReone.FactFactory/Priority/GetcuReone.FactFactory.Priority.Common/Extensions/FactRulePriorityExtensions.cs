@@ -31,8 +31,8 @@ namespace GetcuReone.FactFactory.Priority.Common.Extensions
             if (yPriorityType == null)
                 return 1;
 
-            IPriorityFact xPriority = context.Container.FirstPriorityFactByFactType(xPriorityType, context.Cache);
-            IPriorityFact yPriority = context.Container.FirstPriorityFactByFactType(yPriorityType, context.Cache);
+            IPriorityFact xPriority = context.Container.FirstPriorityFactByFactType(xPriorityType, context.Cache)!;
+            IPriorityFact yPriority = context.Container.FirstPriorityFactByFactType(yPriorityType, context.Cache)!;
 
             return xPriority.CompareTo(yPriority);
         }

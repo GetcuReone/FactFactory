@@ -28,7 +28,9 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
         /// </summary>
         /// <param name="other">Priority fact for comparison</param>
         /// <returns>1 - more, 0 - equal, -1 less.</returns>
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
         public abstract int CompareTo(IPriorityFact other);
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
 
         /// <summary>
         /// Creates an error creating incompatibility priority facts.

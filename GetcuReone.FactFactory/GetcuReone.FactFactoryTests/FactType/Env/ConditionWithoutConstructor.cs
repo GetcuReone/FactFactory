@@ -42,7 +42,7 @@ namespace FactFactoryTests.FactType.Env
             throw new NotImplementedException();
         }
 
-        public IFactParameter GetParameter(string parameterCode)
+        public IFactParameter FindParameter(string parameterCode)
         {
             throw new NotImplementedException();
         }

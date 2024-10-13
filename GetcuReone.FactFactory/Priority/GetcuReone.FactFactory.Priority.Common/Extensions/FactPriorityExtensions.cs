@@ -15,9 +15,9 @@ namespace GetcuReone.FactFactory.Priority.Common.Extensions
         /// </summary>
         /// <param name="fact">Fact.</param>
         /// <returns><see cref="IPriorityFact"/> fact or null.</returns>
-        public static IPriorityFact FindPriorityParameter(this IFact fact)
+        public static IPriorityFact? FindPriorityParameter(this IFact fact)
         {
-            return fact.GetParameter(PriorityFactParametersCodes.Priority)?.Value as IPriorityFact;
+            return fact.FindParameter(PriorityFactParametersCodes.Priority)?.Value as IPriorityFact;
         }
 
         /// <summary>
@@ -48,8 +48,8 @@ namespace GetcuReone.FactFactory.Priority.Common.Extensions
         /// </returns>
         public static int CompareByPriorityParameter(this IFact x, IFact y)
         {
-            var xPriority = x.GetParameter(PriorityFactParametersCodes.Priority)?.Value as IPriorityFact;
-            var yPriority = y.GetParameter(PriorityFactParametersCodes.Priority)?.Value as IPriorityFact;
+            IPriorityFact? xPriority = x.FindParameter(PriorityFactParametersCodes.Priority)?.Value as IPriorityFact;
+            IPriorityFact? yPriority = y.FindParameter(PriorityFactParametersCodes.Priority)?.Value as IPriorityFact;
 
             if (xPriority == null)
                 return yPriority != null ? -1 : 0;

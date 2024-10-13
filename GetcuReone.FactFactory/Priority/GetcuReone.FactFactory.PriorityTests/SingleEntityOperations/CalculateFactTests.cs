@@ -5,13 +5,10 @@ using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations.Entities;
-using GetcuReone.FactFactory.Interfaces.SpecialFacts;
 using GetcuReone.FactFactory.Priority.Common.Extensions;
-using GetcuReone.FactFactory.Priority.Interfaces;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace FactFactory.PriorityTests.SingleEntityOperations
 {
@@ -27,17 +24,15 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
         public void Initialize()
         {
             Rule = GetFactRule((Priority1 p, Fact1 f) => new FactResult(f.Value + p));
-            NodeInfo = new NodeByFactRuleInfo
+            NodeInfo = new NodeByFactRuleInfo(Rule)
             {
-                BuildFailedConditions = new List<IBuildConditionFact>(),
-                Rule = Rule,
-                BuildSuccessConditions = new List<IBuildConditionFact>(),
-                RuntimeConditions = new List<IRuntimeConditionFact>(),
+                BuildFailedConditions = [],
+                BuildSuccessConditions = [],
+                RuntimeConditions = [],
             };
-            Node = new NodeByFactRule
+            Node = new NodeByFactRule(NodeInfo)
             {
-                Childs = new List<NodeByFactRule>(),
-                Info = NodeInfo,
+                Childs = [],
                 Parent = null,
             };
             Context = GetWantActionContext(
@@ -68,7 +63,7 @@ namespace FactFactory.PriorityTests.SingleEntityOperations
                     errorMessage: "result must have type FactResult.")
                 .AndAreEqual(fact => fact.Value, expectedValue)
                 .AndIsTrue(fact => fact.FindPriorityParameter() != null)
-                .AndIsTrue(fact => fact.FindPriorityParameter() is IPriorityFact)
+                .AndIsTrue(fact => fact.FindPriorityParameter() is not null)
                 .Run();
         }
     }

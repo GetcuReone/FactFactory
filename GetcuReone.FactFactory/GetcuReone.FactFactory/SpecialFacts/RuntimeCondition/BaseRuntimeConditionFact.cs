@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Context;
 using GetcuReone.FactFactory.Interfaces.Operations;
@@ -11,10 +12,10 @@ namespace GetcuReone.FactFactory.SpecialFacts.RuntimeCondition
     /// </summary>
     public abstract class BaseRuntimeConditionFact : BaseSpecialFact, IRuntimeConditionFact
     {
-        private IFactRule _rule;
-        private object _rules;
-        private object _getRelatedRulesFunc;
-        private object _relatedRules;
+        private IFactRule? _rule;
+        private object? _rules;
+        private object? _getRelatedRulesFunc;
+        private object? _relatedRules;
 
         /// <inheritdoc/>
         public abstract bool Condition(IFactWork factWork, IFactRulesContext context);
@@ -39,7 +40,7 @@ namespace GetcuReone.FactFactory.SpecialFacts.RuntimeCondition
         /// <inheritdoc/>
         public virtual bool TryGetRelatedRules(
             IWantActionContext context,
-            out IFactRuleCollection relatedRules)
+            [NotNullWhen(true)] out IFactRuleCollection? relatedRules)
         {
             relatedRules = null;
 

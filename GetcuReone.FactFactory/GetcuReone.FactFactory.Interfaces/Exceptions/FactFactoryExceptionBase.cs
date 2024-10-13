@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GetcuReone.FactFactory.Exceptions
 {
@@ -13,7 +13,7 @@ namespace GetcuReone.FactFactory.Exceptions
         /// Constructor.
         /// </summary>
         /// <param name="details"></param>
-        protected FactFactoryExceptionBase(IReadOnlyCollection<TDetail> details) : base(details?.FirstOrDefault()?.ToString() ?? string.Empty)
+        protected FactFactoryExceptionBase(IReadOnlyCollection<TDetail>? details) : base(details?.FirstOrDefault()?.ToString() ?? string.Empty)
         {
             Details = details;
         }
@@ -21,6 +21,6 @@ namespace GetcuReone.FactFactory.Exceptions
         /// <summary>
         /// More info exception.
         /// </summary>
-        public IReadOnlyCollection<TDetail> Details { get; }
+        public IReadOnlyCollection<TDetail>? Details { get; }
     }
 }

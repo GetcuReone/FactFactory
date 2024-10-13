@@ -1,11 +1,12 @@
-﻿using GetcuReone.FactFactory.Constants;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Extensions;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.Interfaces.Operations;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using CommonHelper = GetcuReone.FactFactory.FactFactoryHelper;
 
 namespace GetcuReone.FactFactory.BaseEntities
@@ -25,13 +26,25 @@ namespace GetcuReone.FactFactory.BaseEntities
 
         /// <inheritdoc/>
         /// <remarks>If the value is not specified, then <see cref="FactEqualityComparer.GetDefault"/> will be used.</remarks>
-        public IEqualityComparer<IFact> EqualityComparer { get; set; }
+        [AllowNull]
+        public IEqualityComparer<IFact> EqualityComparer
+        {
+            get => _equalityComparer ??= FactEqualityComparer.GetDefault();
+            set => _equalityComparer = value;
+        }
+        private IEqualityComparer<IFact>? _equalityComparer;
 
         /// <inheritdoc/>
         /// <remarks>
         /// If the value is not specified, then <see cref="FactExtensions.CompareTo(IFact, IFact)"/> will be used.
         /// </remarks>
-        public IComparer<IFact> Comparer { get; set; }
+        [AllowNull]
+        public IComparer<IFact> Comparer
+        {
+            get => _comparer ??= Comparer<IFact>.Create((x, y) => x.CompareTo(y));
+            set => _comparer = value;
+        }
+        private IComparer<IFact>? _comparer;
 
         /// <summary>
         /// Constructor.
@@ -44,7 +57,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// Constructor.
         /// </summary>
         /// <param name="facts">An array of facts to add to the container.</param>
-        protected BaseFactContainer(IEnumerable<IFact> facts) : this(facts, false) 
+        protected BaseFactContainer(IEnumerable<IFact>? facts) : this(facts, false) 
         {
         }
 
@@ -53,22 +66,19 @@ namespace GetcuReone.FactFactory.BaseEntities
         /// </summary>
         /// <param name="facts">An array of facts to add to the container.</param>
         /// <param name="isReadOnly"></param>
-        protected BaseFactContainer(IEnumerable<IFact> facts, bool isReadOnly)
+        protected BaseFactContainer(IEnumerable<IFact>? facts, bool isReadOnly)
         {
             ContainerList = new List<IFact>();
 
+#pragma warning disable CS8604 // Possible null reference argument.
             if (!facts.IsNullOrEmpty())
+#pragma warning restore CS8604 // Possible null reference argument.
             {
                 IsReadOnly = false;
-                AddRange(facts); 
+                AddRange(facts!); 
             }
 
             IsReadOnly = isReadOnly;
-        }
-
-        private IEqualityComparer<IFact> GetEqualityComparer()
-        {
-            return EqualityComparer ?? FactEqualityComparer.GetDefault();
         }
 
         private void InnerAdd<TFact>(TFact fact, IEqualityComparer<IFact> comparer) where TFact : IFact
@@ -102,7 +112,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         public virtual void Add<TFact>(TFact fact) where TFact : IFact
         {
             CheckReadOnly();
-            InnerAdd(fact, GetEqualityComparer());
+            InnerAdd(fact, EqualityComparer);
         }
 
         /// <inheritdoc/>
@@ -111,7 +121,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         {
             CheckReadOnly();
 
-            var comparer = GetEqualityComparer();
+            var comparer = EqualityComparer;
             foreach (IFact fact in facts)
                 InnerAdd(fact, comparer);
         }
@@ -126,7 +136,7 @@ namespace GetcuReone.FactFactory.BaseEntities
         public virtual bool Contains<TFact>(TFact fact) where TFact : IFact
         {
             IFactType factType = fact.GetFactType();
-            return ContainerList.Contains(fact, GetEqualityComparer());
+            return ContainerList.Contains(fact, EqualityComparer);
         }
 
         /// <inheritdoc/>
@@ -164,17 +174,20 @@ namespace GetcuReone.FactFactory.BaseEntities
         }
 
         /// <inheritdoc/>
-        public virtual bool TryGetFact<TFact>(out TFact fact) where TFact : IFact
+        public virtual bool TryGetFact<TFact>([NotNullWhen(true)] out TFact fact)
+            where TFact : IFact
         {
             var destFactType = GetFactType<TFact>();
-            IFact innerFact = ContainerList
+            IFact? innerFact = ContainerList
                 .Where(f => f.GetFactType().EqualsFactType(destFactType))
-                .OrderByDescending(f => f, Comparer ?? Comparer<IFact>.Create((x, y) => x.CompareTo(y)))
+                .OrderByDescending(f => f, Comparer)
                 .FirstOrDefault();
 
             if (innerFact == null)
             {
+#pragma warning disable CS8601 // Possible null reference assignment.
                 fact = default;
+#pragma warning restore CS8601 // Possible null reference assignment.
                 return false;
             }
             else

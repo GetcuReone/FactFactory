@@ -11,13 +11,13 @@ namespace GetcuReone.FactFactory
     /// </summary>
     public abstract class BaseFact : IFact
     {
-        private List<IFactParameter> _parameters;
+        private List<IFactParameter>? _parameters;
 
         /// <inheritdoc/>
         public virtual IFactType GetFactType()
         {
             Type genericType = typeof(FactType<>).MakeGenericType(GetType());
-            return (IFactType)Activator.CreateInstance(genericType);
+            return (IFactType)Activator.CreateInstance(genericType)!;
         }
 
         /// <inheritdoc/>
@@ -32,7 +32,7 @@ namespace GetcuReone.FactFactory
         }
 
         /// <inheritdoc/>
-        public virtual IFactParameter GetParameter(string parameterCode)
+        public virtual IFactParameter? FindParameter(string parameterCode)
         {
             return _parameters?.FirstOrDefault(p => p.Code.Equals(parameterCode, StringComparison.Ordinal));
         }

@@ -331,21 +331,22 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         /// <param name="second"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public virtual bool EqualsFacts(IFact first, IFact second, IWantActionContext context)
+        public virtual bool EqualsFacts(IFact? first, IFact? second, IWantActionContext context)
         {
             if (first == null && second == null)
                 return true;
+
             if (!FactEqualityComparer.EqualsFacts(first, second, cache: context.Cache, includeFactParams: false))
                 return false;
 
-            IReadOnlyCollection<IFactParameter> firstParameters = first.GetParameters();
-            IReadOnlyCollection<IFactParameter> secondParameters = second.GetParameters();
+            IReadOnlyCollection<IFactParameter> firstParameters = first!.GetParameters();
+            IReadOnlyCollection<IFactParameter> secondParameters = second!.GetParameters();
 
-            if (firstParameters.IsNullOrEmpty() && secondParameters.IsNullOrEmpty())
-                return true;
-            if (firstParameters.IsNullOrEmpty() || secondParameters.IsNullOrEmpty())
+            if (firstParameters.IsNullOrEmpty())
+                return secondParameters.IsNullOrEmpty();
+            else if (secondParameters.IsNullOrEmpty())
                 return false;
-            if (firstParameters.Count != secondParameters.Count)
+            else if (firstParameters!.Count != secondParameters!.Count)
                 return false;
 
             foreach (IFactParameter xParameter in firstParameters)
@@ -416,54 +417,50 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             (var wantAction, var container, var engine, var singleOperations, var treeOperations, var cache, var parameterCahce) =
                 (context.WantAction, context.Container, context.Engine, context.SingleEntity, context.TreeBuilding, context.Cache, context.ParameterCache);
 
-            var rulesContext = new FactRulesContext
-            {
-                Cache = cache,
-                Container = container,
-                SingleEntity = singleOperations,
-                TreeBuilding = treeOperations,
-                WantAction = wantAction,
-                Engine = engine,
-                ParameterCache = parameterCahce,
-            };
+            var rulesContext = new FactRulesContext(
+                cache,
+                singleOperations,
+                treeOperations,
+                engine,
+                parameterCahce,
+                wantAction,
+                container);
 
-            if (condition.TryGetRelatedRules(context, out IFactRuleCollection rules))
+            if (condition.TryGetRelatedRules(context, out IFactRuleCollection? rules))
             {
                 rulesContext.FactRules = rules;
 
                 if (condition.Condition(rule, rulesContext))
-                    return (false, default);
+                    return (false, default!);
 
                 if (rules.Count == 0 || !rules.Any(r => r.OutputFactType.EqualsFactType(rule.OutputFactType)))
                     throw CommonHelper.CreateDeriveException(
                         ErrorCode.RuntimeCondition,
                         $"Failed to meet {rulesContext.Cache.GetFactType(condition).FactName} for {rule} and find another solution.");
 
-                IFact resultFact = null;
-                var inputTypes = new List<IFactType>(wantAction.InputFactTypes.Where(t => t.IsFactType<ISpecialFact>()));
-                inputTypes.Add(rule.OutputFactType);
-
-                var wantContext = new WantActionContext
+                IFact resultFact = null!;
+                var inputTypes = new List<IFactType>(wantAction.InputFactTypes.Where(t => t.IsFactType<ISpecialFact>()))
                 {
-                    Cache = cache,
-                    Container = container,
-                    Engine = engine,
-                    SingleEntity = singleOperations,
-                    TreeBuilding = treeOperations,
-                    WantAction = singleOperations.CreateWantAction(
-                        facts => { resultFact = facts.FirstFactByFactType(rule.OutputFactType, context.Cache); },
-                        inputTypes,
-                        wantAction.Option),
-                    ParameterCache = parameterCahce,
+                    rule.OutputFactType
                 };
+
+                IWantAction newAction = singleOperations.CreateWantAction(
+                        facts => { resultFact = facts.FirstFactByFactType(rule.OutputFactType, context.Cache)!; },
+                        inputTypes,
+                        wantAction.Option);
+
+                var wantContext = new WantActionContext(
+                    cache,
+                    singleOperations,
+                    treeOperations,
+                    engine,
+                    parameterCahce,
+                    newAction,
+                    container);
 
                 var requests = new List<DeriveWantActionRequest>
                 {
-                    new DeriveWantActionRequest
-                    {
-                        Rules = rules,
-                        Context = wantContext
-                    }
+                    new DeriveWantActionRequest(wantContext, rules),
                 };
 
                 context.Engine.DeriveWantAction(requests);
@@ -483,7 +480,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                     $"Failed to meet {rulesContext.Cache.GetFactType(condition).FactName} for {rule} and find another solution.");
             }
 
-            return (false, default);
+            return (false, default!);
         }
 
         /// <summary>
@@ -501,54 +498,43 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
             (var wantAction, var container, var engine, var singleOperations, var treeOperations, var cache, var parameterCache) =
                 (context.WantAction, context.Container, context.Engine, context.SingleEntity, context.TreeBuilding, context.Cache, context.ParameterCache);
 
-            var rulesContext = new FactRulesContext
-            {
-                Cache = cache,
-                Container = container,
-                SingleEntity = singleOperations,
-                TreeBuilding = treeOperations,
-                WantAction = wantAction,
-                Engine = engine,
-                ParameterCache = parameterCache,
-            };
+            var rulesContext = new FactRulesContext(context);
 
-            if (condition.TryGetRelatedRules(context, out IFactRuleCollection rules))
+            if (condition.TryGetRelatedRules(context, out IFactRuleCollection? rules))
             {
                 rulesContext.FactRules = rules;
 
                 if (condition.Condition(rule, rulesContext))
-                    return (false, default);
+                    return (false, default!);
 
                 if (rules.Count == 0 || !rules.Any(r => r.OutputFactType.EqualsFactType(rule.OutputFactType)))
                     throw CommonHelper.CreateDeriveException(
                         ErrorCode.RuntimeCondition,
                         $"Failed to meet {rulesContext.Cache.GetFactType(condition).FactName} for {rule} and find another solution.");
 
-                IFact resultFact = null;
-                var inputTypes = new List<IFactType>(wantAction.InputFactTypes.Where(t => t.IsFactType<ISpecialFact>()));
-                inputTypes.Add(rule.OutputFactType);
-
-                var wantContext = new WantActionContext
+                IFact resultFact = null!;
+                var inputTypes = new List<IFactType>(wantAction.InputFactTypes.Where(t => t.IsFactType<ISpecialFact>()))
                 {
-                    Cache = cache,
-                    Container = container,
-                    Engine = engine,
-                    SingleEntity = singleOperations,
-                    TreeBuilding = treeOperations,
-                    WantAction = singleOperations.CreateWantAction(
-                        facts => { resultFact = facts.FirstFactByFactType(rule.OutputFactType, context.Cache); },
-                        inputTypes,
-                        wantAction.Option),
-                    ParameterCache = parameterCache,
+                    rule.OutputFactType
                 };
+
+                IWantAction newAction = singleOperations.CreateWantAction(
+                        facts => { resultFact = facts.FirstFactByFactType(rule.OutputFactType, context.Cache)!; },
+                        inputTypes,
+                        wantAction.Option);
+
+                var wantContext = new WantActionContext(
+                    cache,
+                    singleOperations,
+                    treeOperations,
+                    engine,
+                    parameterCache,
+                    newAction,
+                    container);
 
                 var requests = new List<DeriveWantActionRequest>
                 {
-                    new DeriveWantActionRequest
-                    {
-                        Rules = rules,
-                        Context = wantContext
-                    }
+                    new DeriveWantActionRequest(wantContext, rules),
                 };
 
                 await context.Engine.DeriveWantActionAsync(requests);
@@ -568,7 +554,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
                     $"Failed to meet {rulesContext.Cache.GetFactType(condition).FactName} for {rule} and find another solution.");
             }
 
-            return (false, default);
+            return (false, default!);
         }
 
         /// <summary>
@@ -580,16 +566,7 @@ namespace GetcuReone.FactFactory.Facades.SingleEntityOperations
         private bool RuntimeCondition(IRuntimeConditionFact condition, IWantActionContext context)
         {
             var wantAction = context.WantAction;
-            var rulesContext = new FactRulesContext
-            {
-                Cache = context.Cache,
-                Container = context.Container,
-                SingleEntity = context.SingleEntity,
-                TreeBuilding = context.TreeBuilding,
-                WantAction = wantAction,
-                Engine = context.Engine,
-                ParameterCache = context.ParameterCache,
-            };
+            var rulesContext = new FactRulesContext(context);
 
             return condition.Condition(wantAction, rulesContext);
         }

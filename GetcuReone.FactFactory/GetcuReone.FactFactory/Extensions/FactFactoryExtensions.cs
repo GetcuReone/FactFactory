@@ -1,8 +1,5 @@
-﻿using GetcuReone.FactFactory.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using GetcuReone.FactFactory.Interfaces;
 
 namespace GetcuReone.FactFactory.Extensions
 {
@@ -18,7 +15,7 @@ namespace GetcuReone.FactFactory.Extensions
         /// <param name="factory">Fact factory.</param>
         /// <param name="container">Fact container.</param>
         /// <returns>Requested fact.</returns>
-        public static TFactResult DeriveFact<TFactResult>(this IFactFactory factory, IFactContainer container = null)
+        public static TFactResult DeriveFact<TFactResult>(this IFactFactory factory, IFactContainer? container = null)
             where TFactResult : IFact
         {
             TFactResult result = default;
@@ -30,7 +27,7 @@ namespace GetcuReone.FactFactory.Extensions
 
             factory.Derive();
 
-            return result;
+            return result!;
         }
 
         /// <summary>
@@ -40,7 +37,7 @@ namespace GetcuReone.FactFactory.Extensions
         /// <param name="factory">Fact factory.</param>
         /// <param name="container">Fact container.</param>
         /// <returns>Requested fact.</returns>
-        public static async ValueTask<TFactResult> DeriveFactAsync<TFactResult>(this IFactFactory factory, IFactContainer container = null)
+        public static async ValueTask<TFactResult> DeriveFactAsync<TFactResult>(this IFactFactory factory, IFactContainer? container = null)
             where TFactResult : IFact
         {
             TFactResult result = default;
@@ -52,7 +49,7 @@ namespace GetcuReone.FactFactory.Extensions
 
             await factory.DeriveAsync();
 
-            return result;
+            return result!;
         }
     }
 }
