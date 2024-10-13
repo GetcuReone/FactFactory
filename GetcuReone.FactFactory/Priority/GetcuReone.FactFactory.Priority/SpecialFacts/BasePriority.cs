@@ -36,11 +36,11 @@ namespace GetcuReone.FactFactory.Priority.SpecialFacts
         /// </summary>
         /// <param name="priorityFact">Priority fact.</param>
         /// <returns>Error creating incompatibility priority facts.</returns>
-        protected virtual FactFactoryException CreateIncompatibilityVersionException(IPriorityFact priorityFact)
+        protected virtual FactFactoryException CreateIncompatibilityVersionException(IPriorityFact? priorityFact)
         {
             return FactFactoryHelper.CreateException(
                 ErrorCode.InvalidFactType,
-                $"Unable to compare priorities {GetFactType().FactName} and {priorityFact.GetFactType().FactName}.");
+                $"Unable to compare priorities {GetFactType().FactName} and {priorityFact?.GetFactType().FactName ?? "null"}.");
         }
 
         /// <summary>

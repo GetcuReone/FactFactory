@@ -1,4 +1,5 @@
-﻿using GetcuReone.FactFactory.Versioned.Interfaces;
+﻿using System.Diagnostics.CodeAnalysis;
+using GetcuReone.FactFactory.Versioned.Interfaces;
 
 namespace GetcuReone.FactFactory.Versioned.SpecialFacts
 {
@@ -14,31 +15,20 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         protected BaseLongVersion(long version) : base(version) { }
 
         /// <inheritdoc/>
-        public override int CompareTo(IVersionFact other)
+        public override int CompareTo([AllowNull] IVersionFact other)
         {
-            switch (other)
+            return other switch
             {
-                case BaseVersion<int> version:
-                    return VersionValue.CompareTo(version.VersionValue);
-                case BaseVersion<long> version:
-                    return VersionValue.CompareTo(version.VersionValue);
-                case BaseVersion<uint> version:
-                    return VersionValue.CompareTo(version.VersionValue);
-                case BaseVersion<ulong> version:
-                    return VersionValue.CompareTo(version.VersionValue);
-
-                case BaseFact<int> version:
-                    return VersionValue.CompareTo(version.Value);
-                case BaseFact<long> version:
-                    return VersionValue.CompareTo(version.Value);
-                case BaseFact<uint> version:
-                    return VersionValue.CompareTo(version.Value);
-                case BaseFact<ulong> version:
-                    return VersionValue.CompareTo(version.Value);
-
-                default:
-                    throw CreateIncompatibilityVersionException(other);
-            }
+                BaseVersion<int> version => VersionValue.CompareTo(version.VersionValue),
+                BaseVersion<long> version => VersionValue.CompareTo(version.VersionValue),
+                BaseVersion<uint> version => VersionValue.CompareTo(version.VersionValue),
+                BaseVersion<ulong> version => VersionValue.CompareTo(version.VersionValue),
+                BaseFact<int> version => VersionValue.CompareTo(version.Value),
+                BaseFact<long> version => VersionValue.CompareTo(version.Value),
+                BaseFact<uint> version => VersionValue.CompareTo(version.Value),
+                BaseFact<ulong> version => VersionValue.CompareTo(version.Value),
+                _ => throw CreateIncompatibilityVersionException(other),
+            };
         }
     }
 }

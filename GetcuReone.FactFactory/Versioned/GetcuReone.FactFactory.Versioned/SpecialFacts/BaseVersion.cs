@@ -32,9 +32,9 @@ namespace GetcuReone.FactFactory.Versioned.SpecialFacts
         /// </summary>
         /// <param name="versionedFact"></param>
         /// <returns></returns>
-        protected virtual FactFactoryException CreateIncompatibilityVersionException(IVersionFact versionedFact)
+        protected virtual FactFactoryException CreateIncompatibilityVersionException(IVersionFact? versionedFact)
         {
-            return CommonHelper.CreateException(ErrorCode.InvalidFactType, $"Unable to compare versions {GetFactType().FactName} and {versionedFact.GetFactType().FactName}.");
+            return CommonHelper.CreateException(ErrorCode.InvalidFactType, $"Unable to compare versions {GetFactType().FactName} and {versionedFact?.GetFactType().FactName ?? "null"}.");
         }
 
         /// <summary>
