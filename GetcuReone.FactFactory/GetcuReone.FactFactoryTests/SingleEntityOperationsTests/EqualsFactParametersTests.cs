@@ -1,11 +1,11 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
-using FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.FactFactory.Entities;
 using GetcuReone.FactFactory.Interfaces;
 using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.FactFactoryTests.CommonFacts;
+using GetcuReone.FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -195,8 +195,8 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
         public void DifferentValuesConditionFactsTestCase()
         {
             const string factParamCode = "factParamCode";
-            var firstParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
-            var secondParam = new FactParameter(factParamCode, new BuildContained<OtherFact>());
+            var firstParam = new FactParameter(factParamCode, new FbContained<IntFact>());
+            var secondParam = new FactParameter(factParamCode, new FbContained<OtherFact>());
             var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
@@ -213,8 +213,8 @@ namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
         public void SameValuesConditionFactsTestCase()
         {
             const string factParamCode = "factParamCode";
-            var firstParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
-            var secondParam = new FactParameter(factParamCode, new BuildContained<IntFact>());
+            var firstParam = new FactParameter(factParamCode, new FbContained<IntFact>());
+            var secondParam = new FactParameter(factParamCode, new FbContained<IntFact>());
             var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()

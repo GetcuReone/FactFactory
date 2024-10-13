@@ -1,7 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
 using FactFactoryTests.CommonFacts;
-using FactFactoryTests.FactFactoryT;
 using GetcuReone.FactFactory.Constants;
 using GetcuReone.FactFactory.Exceptions;
 using GetcuReone.FactFactory.Extensions;
@@ -17,10 +16,10 @@ using Container = GetcuReone.FactFactory.Entities.FactContainer;
 namespace GetcuReone.FactFactoryTests.FactFactoryT
 {
     /// <summary>
-    /// <see cref="RContained{TFact}"/> testing class.
+    /// <see cref="FrContained{TFact}"/> testing class.
     /// </summary>
     [TestClass]
-    public sealed class RContainedTests : FactFactoryTestBase
+    public sealed class FrContainedTests : FactFactoryTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
@@ -37,7 +36,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                     () => new Input1Fact(expectedValue),
                     (Input1Fact fact) => new ResultFact(fact),
                 })
-                .And("Want fact.", factory => factory.WantFacts((RContained<Input1Fact> _, ResultFact fact) =>
+                .And("Want fact.", factory => factory.WantFacts((FrContained<Input1Fact> _, ResultFact fact) =>
                 {
                     expectedFact = fact;
                 }, new Container()))
@@ -63,7 +62,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     () => new Input1Fact(expectedValue),
-                    (RContained<Input1Fact> _, Input1Fact fact) => new ResultFact(fact)
+                    (FrContained<Input1Fact> _, Input1Fact fact) => new ResultFact(fact)
                 })
                 .When("Derive facts.", factory =>
                     factory.DeriveFact<ResultFact>(new Container()))
@@ -84,7 +83,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     () => new Input1Fact(expectedValue),
-                    (RContained<Input2Fact> _, Input1Fact fact) => new ResultFact(fact),
+                    (FrContained<Input2Fact> _, Input1Fact fact) => new ResultFact(fact),
 
                     (Input1Fact fact) => new Input3Fact(fact),
                     (Input3Fact fact) => new ResultFact(fact)
@@ -108,7 +107,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     () => new Input1Fact(expectedValue),
-                    (RContained<Input2Fact> _, Input1Fact fact) => new ResultFact(fact)
+                    (FrContained<Input2Fact> _, Input1Fact fact) => new ResultFact(fact)
                 })
                 .When("Derive facts.", factory =>
                     ExpectedDeriveException(() => factory.DeriveFact<ResultFact>(new Container())))
@@ -129,7 +128,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                     () => new ResultFact(default)
                 })
                 .And("Want facts.", factory =>
-                    factory.WantFacts((RContained<Input1Fact> _, ResultFact fact) => { }, new Container()))
+                    factory.WantFacts((FrContained<Input1Fact> _, ResultFact fact) => { }, new Container()))
                 .When("Derive facts.", factory =>
                     ExpectedDeriveException(factory.Derive))
                 .ThenIsNotNull()
@@ -152,7 +151,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                     () => new Input1Fact(expectedValue),
                     (Input1Fact fact) => new ResultFact(fact),
                 })
-                .And("Want fact.", factory => factory.WantFacts((RContained<Input1Fact> _, ResultFact fact) =>
+                .And("Want fact.", factory => factory.WantFacts((FrContained<Input1Fact> _, ResultFact fact) =>
                 {
                     expectedFact = fact;
                     return default;
@@ -179,7 +178,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     () => new Input1Fact(expectedValue),
-                    (RContained<Input1Fact> _, Input1Fact fact) =>
+                    (FrContained<Input1Fact> _, Input1Fact fact) =>
                     {
                         return new ValueTask<ResultFact>(new ResultFact(fact));
                     }
@@ -203,7 +202,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     () => new Input1Fact(expectedValue),
-                    (RContained<Input2Fact> _, Input1Fact fact) =>
+                    (FrContained<Input2Fact> _, Input1Fact fact) =>
                     {
                         return new ValueTask<ResultFact>(new ResultFact(fact));
                     },
@@ -230,7 +229,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     () => new Input1Fact(expectedValue),
-                    (RContained<Input2Fact> _, Input1Fact fact) =>
+                    (FrContained<Input2Fact> _, Input1Fact fact) =>
                     {
                         return new ValueTask<ResultFact>(new ResultFact(fact));
                     }
@@ -266,7 +265,7 @@ namespace GetcuReone.FactFactoryTests.FactFactoryT
                     () => new ResultFact(default)
                 })
                 .And("Want facts.", factory =>
-                    factory.WantFacts((RContained<Input1Fact> _, ResultFact fact) => { return default; }, new Container()))
+                    factory.WantFacts((FrContained<Input1Fact> _, ResultFact fact) => { return default; }, new Container()))
                 .WhenAsync("Derive facts.", async factory =>
                 {
                     try

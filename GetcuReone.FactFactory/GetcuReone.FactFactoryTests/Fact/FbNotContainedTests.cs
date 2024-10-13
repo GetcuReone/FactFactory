@@ -5,10 +5,10 @@ using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FactFactoryTests.Fact
+namespace GetcuReone.FactFactoryTests.Fact
 {
     [TestClass]
-    public sealed class BuildNotContainedTests : CommonTestBase
+    public sealed class FbNotContainedTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.BuildNotContained), TestCategory(GetcuReoneTC.Unit)]
@@ -17,10 +17,10 @@ namespace FactFactoryTests.Fact
         public void GetFactTypeForBuildNotContainedFactTestCase()
         {
             GivenEmpty()
-                .When("Create NotContained.", () => new BuildNotContained<ResultFact>())
+                .When("Create NotContained.", () => new FbNotContained<ResultFact>())
                 .Then("Check fact type.", fact =>
                 {
-                    Assert.IsTrue(fact.GetFactType() is FactType<BuildNotContained<ResultFact>>, "Expected another FactType.");
+                    Assert.IsTrue(fact.GetFactType() is FactType<FbNotContained<ResultFact>>, "Expected another FactType.");
                 })
                 .Run();
         }

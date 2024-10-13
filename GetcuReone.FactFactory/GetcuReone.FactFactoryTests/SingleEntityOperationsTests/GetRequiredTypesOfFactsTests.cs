@@ -1,12 +1,12 @@
-﻿using FactFactoryTests.SingleEntityOperationsTests.Env;
-using FactFactory.TestsCommon;
+﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using GetcuReone.FactFactoryTests.SingleEntityOperationsTests.Env;
 
-namespace FactFactoryTests.SingleEntityOperationsTests
+namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
 {
     [TestClass]
     public sealed class GetRequiredTypesOfFactsTests : SingleEntityOperationsTestBase

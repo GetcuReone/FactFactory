@@ -1,12 +1,12 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
-using FactFactoryTests.SingleEntityOperationsTests.Env;
+using GetcuReone.FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
-namespace FactFactoryTests.SingleEntityOperationsTests
+namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
 {
     [TestClass]
     public sealed class CanExtractFactTests : SingleEntityOperationsTestBase

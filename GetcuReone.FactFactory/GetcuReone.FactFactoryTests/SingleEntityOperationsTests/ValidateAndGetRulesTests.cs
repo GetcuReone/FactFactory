@@ -1,13 +1,13 @@
-﻿using FactFactoryTests.SingleEntityOperationsTests.Env;
-using FactFactory.TestsCommon;
+﻿using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
+using FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.FactFactory.Constants;
+using GetcuReone.FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
-using Rule = GetcuReone.FactFactory.Entities.FactRule;
 
-namespace FactFactoryTests.SingleEntityOperationsTests
+namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
 {
     [TestClass]
     public sealed class ValidateAndGetRulesTests : SingleEntityOperationsTestBase

@@ -5,10 +5,10 @@ using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.GetcuTestAdapter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FactFactoryTests.Fact
+namespace GetcuReone.FactFactoryTests.Fact
 {
     [TestClass]
-    public sealed class BuildCanDerivedTests : CommonTestBase
+    public sealed class FbCanDerivedTests : CommonTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.Fact), TestCategory(TC.Objects.BuildCanDerived), TestCategory(GetcuReoneTC.Unit)]
@@ -17,10 +17,10 @@ namespace FactFactoryTests.Fact
         public void GetFactTypeForBuildCanDerivedFactTestCase()
         {
             GivenEmpty()
-                .When("Create CanDerived.", () => new BuildCanDerived<ResultFact>())
+                .When("Create CanDerived.", () => new FbCanDerived<ResultFact>())
                 .Then("Check fact type.", fact =>
                 {
-                    Assert.IsTrue(fact.GetFactType() is FactType<BuildCanDerived<ResultFact>>, "Expected another FactType.");
+                    Assert.IsTrue(fact.GetFactType() is FactType<FbCanDerived<ResultFact>>, "Expected another FactType.");
                 })
                 .Run();
         }

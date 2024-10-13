@@ -5,7 +5,7 @@ using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
-namespace FactFactoryTests.SingleEntityOperationsTests.Env
+namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests.Env
 {
     [TestClass]
     public abstract class SingleEntityOperationsTestBase : CommonTestBase

@@ -1,7 +1,6 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
 using GetcuReone.FactFactory.Entities;
-using GetcuReone.FactFactory.SpecialFacts;
 using GetcuReone.FactFactory.SpecialFacts.BuildCondition;
 using GetcuReone.FactFactoryTests.CommonFacts;
 using GetcuReone.GetcuTestAdapter;
@@ -139,8 +138,8 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void DifferentBuildConditionFactTestCase()
         {
-            var fact1 = new BuildContained<IntFact>();
-            var fact2 = new BuildContained<OtherFact>();
+            var fact1 = new FbContained<IntFact>();
+            var fact2 = new FbContained<OtherFact>();
 
             GivenCreateComparer()
                 .When("Run Equals.", comparer =>
@@ -155,8 +154,8 @@ namespace GetcuReone.FactFactoryTests.FactEqualityComparer
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void SameBuildConditionFactTestCase()
         {
-            var fact1 = new BuildContained<OtherFact>();
-            var fact2 = new BuildContained<OtherFact>();
+            var fact1 = new FbContained<OtherFact>();
+            var fact2 = new FbContained<OtherFact>();
 
             GivenCreateComparer()
                 .When("Run Equals.", comparer =>

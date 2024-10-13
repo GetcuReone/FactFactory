@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 
-namespace FactFactoryTests.FactFactoryT
+namespace GetcuReone.FactFactoryTests.FactFactoryT
 {
     [TestClass]
     public sealed class WantFactTests : FactFactoryTestBase
@@ -21,7 +21,7 @@ namespace FactFactoryTests.FactFactoryT
             Input1Fact input1Fact = null;
 
             GivenCreateFactFactory()
-                .AndAddRules(new Collection 
+                .AndAddRules(new Collection
                 {
                     () => new Input1Fact(startValue + 1),
                 })
@@ -32,7 +32,7 @@ namespace FactFactoryTests.FactFactoryT
                         input1Fact = fact1;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -67,7 +67,7 @@ namespace FactFactoryTests.FactFactoryT
                         input2Fact = fact2;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -107,7 +107,7 @@ namespace FactFactoryTests.FactFactoryT
                         input3Fact = fact3;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -152,7 +152,7 @@ namespace FactFactoryTests.FactFactoryT
                         input4Fact = fact4;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -202,7 +202,7 @@ namespace FactFactoryTests.FactFactoryT
                         input5Fact = fact5;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -257,7 +257,7 @@ namespace FactFactoryTests.FactFactoryT
                         input6Fact = fact6;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -317,7 +317,7 @@ namespace FactFactoryTests.FactFactoryT
                         input7Fact = fact7;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -382,7 +382,7 @@ namespace FactFactoryTests.FactFactoryT
                         input8Fact = fact8;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -452,7 +452,7 @@ namespace FactFactoryTests.FactFactoryT
                         input9Fact = fact9;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -527,7 +527,7 @@ namespace FactFactoryTests.FactFactoryT
                         input10Fact = fact10;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -607,7 +607,7 @@ namespace FactFactoryTests.FactFactoryT
                         input11Fact = fact11;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -692,7 +692,7 @@ namespace FactFactoryTests.FactFactoryT
                         input12Fact = fact12;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -782,7 +782,7 @@ namespace FactFactoryTests.FactFactoryT
                         input13Fact = fact13;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -877,7 +877,7 @@ namespace FactFactoryTests.FactFactoryT
                         input14Fact = fact14;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -977,7 +977,7 @@ namespace FactFactoryTests.FactFactoryT
                         input15Fact = fact15;
                     });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {
@@ -1082,7 +1082,7 @@ namespace FactFactoryTests.FactFactoryT
                             input16Fact = fact16;
                         });
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.Derive())
                 .Then("Check result.", _ =>
                 {

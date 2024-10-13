@@ -4,7 +4,7 @@ using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Factory = GetcuReone.FactFactory.FactFactory;
 
-namespace FactFactoryTests.FactFactoryT
+namespace GetcuReone.FactFactoryTests.FactFactoryT
 {
     [TestClass]
     public abstract class FactFactoryTestBase : CommonTestBase

@@ -22,9 +22,9 @@ namespace FactFactory.DefaultTests.Fact
         {
             GivenEmpty()
                 .When("Create NotContainet.", () => 
-                    new BuildNotContained<FactResult>())
+                    new FbNotContained<FactResult>())
                 .ThenIsTrue(fact => 
-                    fact.GetFactType() is FactType<BuildNotContained<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
+                    fact.GetFactType() is FactType<FbNotContained<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
                 .Run();
         }
 
@@ -36,9 +36,9 @@ namespace FactFactory.DefaultTests.Fact
         {
             GivenEmpty()
                 .When("Create NotContainet.", () 
-                    => new BuildContained<FactResult>())
+                    => new FbContained<FactResult>())
                 .ThenIsTrue(fact => 
-                    fact.GetFactType() is FactType<BuildContained<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
+                    fact.GetFactType() is FactType<FbContained<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
                 .Run();
         }
 
@@ -50,9 +50,9 @@ namespace FactFactory.DefaultTests.Fact
         {
             GivenEmpty()
                 .When("Create NotContainet.", () => 
-                    new BuildCannotDerived<FactResult>())
+                    new FbCannotDerived<FactResult>())
                 .ThenIsTrue(fact => 
-                    fact.GetFactType() is FactType<BuildCannotDerived<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
+                    fact.GetFactType() is FactType<FbCannotDerived<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
                 .Run();
         }
 
@@ -64,9 +64,9 @@ namespace FactFactory.DefaultTests.Fact
         {
             GivenEmpty()
                 .When("Create BuildCanDerived.", () 
-                    => new BuildCanDerived<FactResult>())
+                    => new FbCanDerived<FactResult>())
                 .ThenIsTrue(fact => 
-                    fact.GetFactType() is FactType<BuildCanDerived<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
+                    fact.GetFactType() is FactType<FbCanDerived<FactResult>>, _checkFactTypeBlockName, _checkFactTypeErrorMessage)
                 .Run();
         }
     }

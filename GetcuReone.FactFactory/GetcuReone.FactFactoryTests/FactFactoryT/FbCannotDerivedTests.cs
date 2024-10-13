@@ -10,10 +10,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
-namespace FactFactoryTests.FactFactoryT
+namespace GetcuReone.FactFactoryTests.FactFactoryT
 {
     [TestClass]
-    public sealed class BuildCannotDerivedTests : FactFactoryTestBase
+    public sealed class FbCannotDerivedTests : FactFactoryTestBase
     {
         [TestMethod]
         [TestCategory(TC.Objects.BuildCannotDerived), TestCategory(TC.Objects.Factory), TestCategory(GetcuReoneTC.Unit)]
@@ -28,7 +28,7 @@ namespace FactFactoryTests.FactFactoryT
                 .AndRulesNotNul()
                 .AndAddRules(new Collection
                 {
-                    (BuildCannotDerived<Input3Fact> _) => new Input2Fact(value),
+                    (FbCannotDerived<Input3Fact> _) => new Input2Fact(value),
                     (Input2Fact fact) => new Input1Fact(fact.Value + 1),
                 })
                 .When("Derive fact1.", factory => factory.DeriveFact<Input1Fact>())
@@ -54,10 +54,10 @@ namespace FactFactoryTests.FactFactoryT
                 .AndAddRules(new Collection
                 {
                     (Input12Fact fact) => new Input11Fact(fact.Value + 11),
-                    (Input14Fact fact, BuildCannotDerived<Input9Fact> no) => new Input12Fact(fact.Value + 12),
+                    (Input14Fact fact, FbCannotDerived<Input9Fact> no) => new Input12Fact(fact.Value + 12),
                     (Input8Fact fact) => new Input9Fact(fact.Value + 12)
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     factory.DeriveFact<Input11Fact>(container))
                 .ThenFactValueEquals(expectedValue)
                 .Run();
@@ -78,7 +78,7 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
                 {
-                    (BuildCannotDerived<Input1Fact> _) => new ResultFact(default),
+                    (FbCannotDerived<Input1Fact> _) => new ResultFact(default),
                 })
                 .When("Run Derive.", factFactory
                     => ExpectedDeriveException(() => factFactory.DeriveFact<ResultFact>(container)))
@@ -97,10 +97,10 @@ namespace FactFactoryTests.FactFactoryT
             GivenCreateFactFactory()
                 .AndAddRules(new Collection
                 {
-                    (BuildCannotDerived<Input1Fact> _) => new ResultFact(default),
-                    (BuildCannotDerived<ResultFact> _) => new Input1Fact(default),
+                    (FbCannotDerived<Input1Fact> _) => new ResultFact(default),
+                    (FbCannotDerived<ResultFact> _) => new Input1Fact(default),
                 })
-                .When("Derive.", factory => 
+                .When("Derive.", factory =>
                     ExpectedDeriveException(() => factory.DeriveFact<ResultFact>()))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage)
                 .Run();

@@ -15,7 +15,7 @@ using System.Linq;
 using Collection = GetcuReone.FactFactory.Entities.FactRuleCollection;
 using Container = GetcuReone.FactFactory.Entities.FactContainer;
 
-namespace FactFactoryTests.FactFactoryT
+namespace GetcuReone.FactFactoryTests.FactFactoryT
 {
     [TestClass]
     public sealed class FactFactoryTests : FactFactoryTestBase
@@ -29,7 +29,7 @@ namespace FactFactoryTests.FactFactoryT
             const string expectedReason = "Rules cannot be null.";
 
             GivenCreateFactFactory()
-                .When("Derive facts.", factory => 
+                .When("Derive facts.", factory =>
                     ExpectedDeriveException(() => factory.DeriveFact<Input10Fact>()))
                 .ThenAssertErrorDetail(ErrorCode.EmptyRuleCollection, expectedReason)
                 .Run();
@@ -145,9 +145,9 @@ namespace FactFactoryTests.FactFactoryT
                         return new Input10Fact(f.Value + 1);
                     }
                 })
-                .When("Derive facts.", factFactory => 
+                .When("Derive facts.", factFactory =>
                     factFactory.DeriveFact<Input1Fact>(container))
-                .Then("Check result.", _ => 
+                .Then("Check result.", _ =>
                     Assert.AreEqual(expectedValue, counter, "It had to work out 5 rules"))
                 .Run();
         }
@@ -213,7 +213,7 @@ namespace FactFactoryTests.FactFactoryT
                     factFactory.WantFacts((Input16Fact fact) => fact16 = fact);
                     factFactory.WantFacts((Input7Fact fact) => fact7 = fact);
                 })
-                .When("Derive fact.", factFactory => 
+                .When("Derive fact.", factFactory =>
                     factFactory.DeriveFact<Input7Fact>())
                 .ThenIsNotNull()
                 .And("Check result.", _ =>
@@ -251,7 +251,7 @@ namespace FactFactoryTests.FactFactoryT
                     factFactory.WantFacts((Input7Fact fact) => fact7 = fact, container);
                     factory = factFactory;
                 })
-                .And("Derive fact.", factFactory => 
+                .And("Derive fact.", factFactory =>
                     factFactory.DeriveFact<Input7Fact>(container))
                 .When("Derive facts", fact =>
                 {
@@ -275,7 +275,7 @@ namespace FactFactoryTests.FactFactoryT
         {
             GivenCreateFactFactory()
                 .When("Run Derive.", factFactory =>
-                    factFactory.DeriveFact<BuildNotContained<OtherFact>>())
+                    factFactory.DeriveFact<FbNotContained<OtherFact>>())
                 .ThenIsNotNull()
                 .Run();
         }
@@ -286,15 +286,15 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UnsuccessfulDeriveBuildNotContainedTestCase()
         {
-            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(BuildNotContained<OtherFact>).Name}).";
+            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(FbNotContained<OtherFact>).Name}).";
             var container = new Container
             {
                 new OtherFact(default),
             };
 
             GivenCreateFactFactory()
-                .When("Run Derive.", factFactory => 
-                    ExpectedDeriveException(() => factFactory.DeriveFact<BuildNotContained<OtherFact>>(container)))
+                .When("Run Derive.", factFactory =>
+                    ExpectedDeriveException(() => factFactory.DeriveFact<FbNotContained<OtherFact>>(container)))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage)
                 .Run();
         }
@@ -307,7 +307,7 @@ namespace FactFactoryTests.FactFactoryT
         {
             GivenCreateFactFactory()
                 .When("Run Derive.", factFactory =>
-                    factFactory.DeriveFact<BuildCannotDerived<OtherFact>>())
+                    factFactory.DeriveFact<FbCannotDerived<OtherFact>>())
                 .ThenIsNotNull()
                 .Run();
         }
@@ -318,15 +318,15 @@ namespace FactFactoryTests.FactFactoryT
         [Timeout(Timeouts.Millisecond.FiveHundred)]
         public void UnsuccessfulDeriveBuildCannotDerivedTestCase()
         {
-            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(BuildCannotDerived<OtherFact>).Name}).";
+            string expectedMessage = $"Failed to derive one or more facts for the action ({typeof(FbCannotDerived<OtherFact>).Name}).";
             var container = new Container
             {
                 new OtherFact(default),
             };
 
             GivenCreateFactFactory()
-                .When("Run Derive.", factFactory => 
-                    ExpectedDeriveException(() => factFactory.DeriveFact<BuildCannotDerived<OtherFact>>(container)))
+                .When("Run Derive.", factFactory =>
+                    ExpectedDeriveException(() => factFactory.DeriveFact<FbCannotDerived<OtherFact>>(container)))
                 .ThenAssertErrorDetail(ErrorCode.FactCannotDerived, expectedMessage)
                 .Run();
         }
@@ -348,7 +348,7 @@ namespace FactFactoryTests.FactFactoryT
                     factory.DeriveFact<DefaultFact>(container))
                 .ThenIsNotNull()
                 .AndAreEqual(defaultFact)
-                .And("Check Container.", _ => 
+                .And("Check Container.", _ =>
                 {
                     Assert.AreEqual(1, container.Count(), "Container must be empty");
                 })
@@ -368,9 +368,9 @@ namespace FactFactoryTests.FactFactoryT
                 {
                     factFactory.collection = null;
                 })
-                .And("Want facts.", factFactory => 
+                .And("Want facts.", factFactory =>
                     factFactory.WantFacts((DefaultFact fact) => { }))
-                .When("Run Derive.", factFactory => 
+                .When("Run Derive.", factFactory =>
                     ExpectedDeriveException(factFactory.Derive))
                 .ThenAssertErrorDetail(ErrorCode.InvalidData, expectedReason)
                 .Run();
@@ -408,7 +408,7 @@ namespace FactFactoryTests.FactFactoryT
             string expectedMessage = $"Container contains {nameof(IBuildConditionFact)} facts.";
             var container = new Container
             {
-                new BuildCanDerived<ResultFact>(),
+                new FbCanDerived<ResultFact>(),
             };
 
             GivenCreateFactFactory()

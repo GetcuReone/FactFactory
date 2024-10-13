@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using FactFactory.TestsCommon;
 using FactFactory.TestsCommon.Helpers;
-using FactFactoryTests.FactFactoryT;
 using GetcuReone.FactFactory;
 using GetcuReone.FactFactory.Extensions;
 using GetcuReone.GetcuTestAdapter;

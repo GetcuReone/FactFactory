@@ -1,11 +1,11 @@
 ﻿using FactFactory.TestsCommon;
 using FactFactoryTests.CommonFacts;
-using FactFactoryTests.SingleEntityOperationsTests.Env;
+using GetcuReone.FactFactoryTests.SingleEntityOperationsTests.Env;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FactFactoryTests.SingleEntityOperationsTests
+namespace GetcuReone.FactFactoryTests.SingleEntityOperationsTests
 {
     [TestClass]
     public sealed class CompatibleRuleTests : SingleEntityOperationsTestBase
@@ -21,7 +21,7 @@ namespace FactFactoryTests.SingleEntityOperationsTests
             var context = GetWantActionContext(null, null);
 
             GivenCreateFacade()
-                .When("Check compatible.", facade => 
+                .When("Check compatible.", facade =>
                     facade.CompatibleRule(first, second, context))
                 .ThenIsTrue()
                 .Run();
