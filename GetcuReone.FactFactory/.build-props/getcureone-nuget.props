@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+
+    <!-- Common NuGet settings-->
+
+    <Import Project="$(MSBuildThisFileDirectory)\getcureone-library.props"/>
+
+    <PropertyGroup>
+        <Product>GetcuReone.FactFactory</Product>
+        <PackageVersion>$(majorVersion).$(minorVersion).$(patchVersion)</PackageVersion>
+        <RepositoryUrl>https://github.com/GetcuReone/FactFactory.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageProjectUrl>https://github.com/GetcuReone/FactFactory/wiki</PackageProjectUrl>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+
+        <RepositoryBranch>$([MSBuild]::ValueOrDefault('$(RepositoryBranch)', 'develop'))</RepositoryBranch>
+
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+</Project>
