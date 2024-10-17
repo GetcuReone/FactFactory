@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\.build-props\getcureone-unittest.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\GetcuReone.FactFactory.Versioned\GetcuReone.FactFactory.Versioned.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,130 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\.build-props\getcureone-nuget.props" />
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;netcoreapp3.1;net6.0;net8.0</TargetFrameworks>
+
+        <PackageId>GetcuReone.FactFactory</PackageId>
+        <Description>Welcome to my Fact Factory project. In this project, I realized my vision of the fact factory. It is a decision tree building mechanism for information processing.
+        
+        Think of the vertices of the graph as the information you describe, and the edges of the graph as the rules for calculating that information.
+        A fact factory can build a decision tree to calculate one piece of information from another, using your rules to link between your set of information.</Description>
+        <PackageTags>factfactory fact factory getcureone facts</PackageTags>
+        <PackageReleaseNotes>
+            Changes ($(PackageVersion)):
+            - remove dependence on ComboPatterns
+            - added support targets netcoreapp3.1, net6 and net8
+        </PackageReleaseNotes>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <!--Transfer information to a nuspec file-->
+        <NuspecFile>.nuspec</NuspecFile>
+        <!--General Information Transfer-->
+        <NuspecProperties>$(NuspecProperties);id=$(PackageId)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);version=$(PackageVersion)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);author=$(Authors)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);Description=$(Description)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);PackageTags=$(PackageTags)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);PackageReleaseNotes=$(PackageReleaseNotes)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);NeutralLanguage=$(NeutralLanguage)</NuspecProperties>
+        <!--Transfer project information-->
+        <NuspecProperties>$(NuspecProperties);PackageProjectUrl=$(PackageProjectUrl)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);RepositoryType=$(RepositoryType)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);RepositoryUrl=$(RepositoryUrl)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);RepositoryBranch=$(RepositoryBranch)</NuspecProperties>
+        <!--Transfer license information-->
+        <NuspecProperties>$(NuspecProperties);PackageRequireLicenseAcceptance=$(PackageRequireLicenseAcceptance)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);Copyright=$(Copyright)</NuspecProperties>
+        <!--Transfer another information-->
+        <NuspecProperties>$(NuspecProperties);Configuration=$(Configuration)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);TargetFramework=$(TargetFramework)</NuspecProperties>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- fact factory references -->
+        <ProjectReference Include="..\GetcuReone.FactFactory.BaseEntities\GetcuReone.FactFactory.BaseEntities.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\GetcuReone.FactFactory.Common\GetcuReone.FactFactory.Common.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\GetcuReone.FactFactory.Entities\GetcuReone.FactFactory.Entities.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\GetcuReone.FactFactory.Facades\GetcuReone.FactFactory.Facades.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\GetcuReone.FactFactory.Interfaces\GetcuReone.FactFactory.Interfaces.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\GetcuReone.FactFactory\GetcuReone.FactFactory.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+
+        <!-- priorited fact factory references -->
+        <ProjectReference Include="..\Priority\GetcuReone.FactFactory.Priority.Interfaces\GetcuReone.FactFactory.Priority.Interfaces.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\Priority\GetcuReone.FactFactory.Priority.Common\GetcuReone.FactFactory.Priority.Common.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\Priority\GetcuReone.FactFactory.Priority.Facades\GetcuReone.FactFactory.Priority.Facades.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\Priority\GetcuReone.FactFactory.Priority\GetcuReone.FactFactory.Priority.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+
+        <!-- versioned fact factory references -->
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned.Interfaces\GetcuReone.FactFactory.Versioned.Interfaces.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned.Common\GetcuReone.FactFactory.Versioned.Common.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned.Facades\GetcuReone.FactFactory.Versioned.Facades.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned.BaseEntities\GetcuReone.FactFactory.Versioned.BaseEntities.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned.Entities\GetcuReone.FactFactory.Versioned.Entities.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\Versioned\GetcuReone.FactFactory.Versioned\GetcuReone.FactFactory.Versioned.csproj">
+            <PrivateAssets>All</PrivateAssets>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\..\LICENSE">
+            <Pack>True</Pack>
+            <PackagePath>LICENSE</PackagePath>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Include="..\..\README.md">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>
