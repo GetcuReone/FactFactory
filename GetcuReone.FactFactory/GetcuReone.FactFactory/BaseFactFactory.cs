@@ -86,10 +86,13 @@ namespace GetcuReone.FactFactory
             {
                 IFactContainer container = info.Container;
 
-                if (!container.Contains<FCancellationToken>())
-                    container.Remove<FCancellationToken>();
+                if (!container.Contains(fToken))
+                {
+                    using FactContainerWriter writer = container.GetWriter();
 
-                info.Container.Add(fToken);
+                    writer.Remove<FCancellationToken>();
+                    writer.Add(fToken);
+                }
 
                 contexts.Add(GetWantActionContext(info, engine, treeBuildingOperations, singleEntityOperations, cache, parameterCache));
             }
@@ -126,11 +129,14 @@ namespace GetcuReone.FactFactory
 
             if (!defaultFacts.IsNullOrEmpty())
             {
+                using var writer = context.Container.GetWriter();
+
                 foreach (var defaultFact in defaultFacts!)
                 {
-                    if (!context.Container.Contains(defaultFact))
-                        using (var writer = context.Container.GetWriter())
-                            writer.Add(defaultFact);
+                    if (context.Container.Contains(defaultFact))
+                        continue;
+
+                    writer.Add(defaultFact);
                 }
             }
 
